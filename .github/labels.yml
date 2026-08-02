@@ -1,0 +1,96 @@
+---
+# Label taxonomy for homecoming-build-companion (GitLab: paragon-stats/homecoming-build-companion).
+#
+# GitLab scoped labels ("key::value") promote the key into a grouping in the label list.
+# NOTE: this instance is GitLab CE (enterprise:false), so scoped-label mutual exclusivity
+# (a Premium feature) does not apply here; the prefix still groups labels visually.
+#
+# Colors follow the maintainer's convention across repos: type azure, area purple,
+# priority traffic-light. See paragon-stats/.github/labels.yml for the sibling taxonomy.
+#
+# Deliberately absent:
+#   status/*  - GitLab issue state and boards already track it.
+#   risk/*    - "Risk / Severity" is a required field in the work-package issue template.
+#
+# These labels are currently project-level. Promoting them to group labels on
+# paragon-stats would let sibling projects inherit one shared set; promotion is a
+# one-way merge, so do it while labels are unused.
+
+# Types — Azure (#1d76db)
+- name: "type::feat"
+  color: "1d76db"
+  description: "New feature"
+- name: "type::fix"
+  color: "1d76db"
+  description: "Bug fix"
+- name: "type::bug"
+  color: "1d76db"
+  description: "Bug report / defect"
+- name: "type::enh"
+  color: "1d76db"
+  description: "Enhancement / improvement"
+- name: "type::perf"
+  color: "1d76db"
+  description: "Performance improvement"
+- name: "type::security"
+  color: "1d76db"
+  description: "Security-specific change"
+- name: "type::refactor"
+  color: "1d76db"
+  description: "Restructure without behavior change"
+- name: "type::test"
+  color: "1d76db"
+  description: "Tests-only change"
+- name: "type::chore"
+  color: "1d76db"
+  description: "Tooling, config, hygiene"
+- name: "type::docs"
+  color: "1d76db"
+  description: "Documentation change"
+
+# Areas — Purple (#6f42c1)
+- name: "area::engine"
+  color: "6f42c1"
+  description: "src/coh_engine — build math, registries, build-file I/O"
+- name: "area::data"
+  color: "6f42c1"
+  description: "data/canonical and data/diff — harvested game data"
+- name: "area::samples"
+  color: "6f42c1"
+  description: "samples/builds and build-format — build artifacts and schema"
+- name: "area::at"
+  color: "6f42c1"
+  description: "Archetype and powerset profiles"
+- name: "area::community"
+  color: "6f42c1"
+  description: "community/ — captured guides and expert builds"
+- name: "area::tools"
+  color: "6f42c1"
+  description: "tools/mids-dump — the C# reference-dump harness"
+- name: "area::ci"
+  color: "6f42c1"
+  description: "CI/CD, workflows, automation"
+- name: "area::docs"
+  color: "6f42c1"
+  description: "Documentation"
+- name: "area::build"
+  color: "6f42c1"
+  description: "Build config, packaging, versioning"
+
+# Priority — traffic-light gradient
+- name: "priority::P0"
+  color: "e11d48"
+  description: "Critical / blocking"
+- name: "priority::P1"
+  color: "f97316"
+  description: "High"
+- name: "priority::P2"
+  color: "eab308"
+  description: "Medium"
+- name: "priority::P3"
+  color: "22c55e"
+  description: "Low"
+
+- name: "dependencies"
+  color: "0366d6"
+  description: "Dependency updates"
