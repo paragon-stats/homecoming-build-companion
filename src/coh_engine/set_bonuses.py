@@ -264,6 +264,25 @@ def _resolve_bonus_powers(set_def: EnhancementSetDef, info: _SetInfo, pv_mode: i
     return out
 
 
+def piece_grants_special(set_def: EnhancementSetDef, enh_nid: int) -> bool:
+    """Whether this member piece carries a per-enhancement special (global/proc).
+
+    A special activates on its own (``SpecialBonus[]``, >=1 piece), so a piece that has
+    one is useful slotted alone. Every other member only contributes through the tier
+    bonuses, which need >=2 pieces of the set *in the same power* — a lone piece of those
+    buys nothing beyond its raw enhancement value.
+
+    Single-sources the ">=1 vs >=2" split that :func:`_resolve_bonus_powers` applies, so
+    the legality warning and the bonus math cannot disagree.
+    """
+    for i, member in enumerate(set_def.enhancements):
+        if member != enh_nid:
+            continue
+        if i < len(set_def.special_bonus) and set_def.special_bonus[i].index:
+            return True
+    return False
+
+
 def _tally_build(
     powers: Sequence[Power],
     slots: Mapping[int, Sequence[SlotRef]],
