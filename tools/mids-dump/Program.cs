@@ -572,6 +572,13 @@ internal static class Program
                 pw.VariableEnabled,
                 entry.StatInclude,
                 entry.VariableValue,
+                // Whether the player spent one of the 24 picks on this power. Mids adds
+                // powers the build never picked -- auto-granted sub-powers (Mystic Flight
+                // grants Translocation), inherents and incarnates all come in through
+                // AddPower with chosen=false. Group-name checks catch the last two; only
+                // this flag distinguishes an auto-granted POOL sub-power, which otherwise
+                // looks exactly like a real pool pick to the hard-limits validator.
+                entry.Chosen,
                 // The enhancement set types this power accepts (Power.SetTypes,
                 // the raw eSetType ordinals as List<int>). An IO set is slottable
                 // here only if its SetType ordinal is in this list — the power<->set

@@ -38,6 +38,7 @@ def _power(
     pick_level: int = 0,
     requires_powers: tuple[tuple[str, ...], ...] = (),
     requires_powers_not: tuple[tuple[str, ...], ...] = (),
+    chosen: bool = True,
 ) -> Power:
     """A minimal build power (only the fields the hard-limits rules read)."""
     return Power(
@@ -59,6 +60,7 @@ def _power(
         pick_level=pick_level,
         requires_powers=requires_powers,
         requires_powers_not=requires_powers_not,
+        chosen=chosen,
     )
 
 
@@ -182,6 +184,19 @@ def test_incarnates_do_not_count_toward_picks_or_grant_levels(schedule: LevelSch
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
     assert "H-POWER-001" not in _rule_ids(diags)
     assert "H-POWER-003" not in _rule_ids(diags)
+
+
+def test_auto_granted_subpower_does_not_count_toward_picks(schedule: LevelSchedule) -> None:
+    """An auto-granted sub-power (``chosen=false``) is not one of the 24 picks.
+
+    Mystic Flight grants Translocation, and Mids adds it to the build as an unchosen
+    ``PowerEntry`` in the same ``Pool`` group as a real pick. Counting it would report
+    H-POWER-001 on a legal 24-pick Sorcery build.
+    """
+    powers = [_power(i, f"Blaster_Ranged.Electrical_Blast.P{i}", pick_level=0) for i in range(24)]
+    powers += [_power(24, "Pool.Sorcery.Translocation", pick_level=5, chosen=False)]
+    diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
+    assert "H-POWER-001" not in _rule_ids(diags)
 
 
 def test_power_picked_before_available_errors(schedule: LevelSchedule) -> None:
