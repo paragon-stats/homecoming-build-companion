@@ -1,26 +1,22 @@
 ---
-# Label taxonomy for homecoming-build-companion. Currently applied to both
-# paragon-stats/homecoming-build-companion on GitHub and the GitLab project of the same
-# path; GitHub is the intended long-term home (the GitLab side is slated to be retired).
-# Reconcile GitHub from this file with (idempotent, safe to re-run):
+# Label taxonomy for homecoming-build-companion (paragon-stats/homecoming-build-companion
+# on GitHub — the repository's only home).
+# Reconcile the label set from this file with (idempotent, safe to re-run):
 #   gh label create <name> --color <color> --description <desc> --force --repo <repo>
 #
-# The "key::value" names are GitLab scoped labels: GitLab promotes the key into a grouping
-# in the label list. NOTE: this instance is GitLab CE (enterprise:false), so scoped-label
-# mutual exclusivity (a Premium feature) does not apply here; the prefix still groups
-# labels visually. GitHub has no scoped-label concept at all — there the "::" is just part
-# of the name, so the grouping is a naming convention rather than a rendered behaviour.
+# The "key::value" names group the taxonomy by prefix. GitHub has no scoped-label concept,
+# so this is a naming convention rather than a rendered behaviour; the shape is kept
+# because it sorts the labels usefully and matches the sibling repos.
 #
 # Colors follow the maintainer's convention across repos: type azure, area purple,
 # priority traffic-light. See paragon-stats/.github/labels.yml for the sibling taxonomy.
 #
 # Deliberately absent:
-#   status/*  - GitLab issue state and boards already track it.
+#   status/*  - issue state and Projects boards already track it.
 #   risk/*    - "Risk / Severity" is a required field in the work-package issue template.
 #
-# These labels are currently project-level. Promoting them to group labels on
-# paragon-stats would let sibling projects inherit one shared set; promotion is a
-# one-way merge, so do it while labels are unused.
+# These labels are per-repository. GitHub has no org-wide label set to inherit from, so a
+# sibling repo adopting this taxonomy copies this file and runs the same reconcile command.
 
 # Types — Azure (#1d76db)
 - name: "type::feat"
