@@ -18,6 +18,35 @@ Detail in [`docs/repository-standards/`](../../docs/repository-standards/) and [
 - **No hook bypass.** `--no-verify`, `--no-gpg-sign`, `-c commit.gpgsign=false` forbidden without explicit user direction.
 - **`.github/COMMIT_TEMPLATE`** sets `git config commit.template` for the repo. Use it.
 
+## Merge strategy — merge commits only
+
+The repository allows **merge commits only**. Squash and rebase merges are disabled in the
+GitHub repository settings:
+
+```text
+allow_merge_commit:  true
+allow_squash_merge:  false
+allow_rebase_merge:  false
+```
+
+This mirrors the intent of `pete.kloehn/kloehnwars-homelab` on GitLab (`merge_method: ff`,
+`squash_option: default_off`): every commit reaches `main` with its own message intact.
+
+Why each option is set the way it is:
+
+- **Squash is off** because it discards every commit message and replaces them with the PR
+  title and body. That silently drops the per-commit `Closes #NNN` / `Refs #NNN` trailers this
+  rule requires, so the issues they name never close. Squash was the default until it was
+  found doing exactly that.
+- **Rebase is off** because GitHub re-parents each commit with a new SHA, which does not carry
+  the original SSH signature forward. Signed commits are a MUST (see above and
+  [`devsecops.md`](./devsecops.md)), so linear history is not worth the signature chain on
+  `main`.
+- **Merge commits** preserve both the messages and the signatures. The cost is merge bubbles
+  in the history, which is the accepted trade.
+
+Do not re-enable squash to tidy a branch. Rewrite the branch's commits before merging instead.
+
 ## Issue grouping of commits in PRs
 
 PRs that close more than one issue group commits by issue. The PR template at [`.github/pull_request_template.md`](../../.github/pull_request_template.md) defines the structure.
