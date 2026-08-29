@@ -264,10 +264,40 @@ internal static class Program
             var name = Path.GetFileNameWithoutExtension(mbdPath);
             byName[name] = mbdPath;
             DumpOneBuild(Path.Combine(outDir, "builds", name), toon);
+            DumpForumExport(Path.Combine(outDir, "builds", name), name);
         }
 
         failures += DumpExemplarVariants(byName, outDir);
         return failures;
+    }
+
+    // The forum export is MidsReborn's own emitter (ClsOutput.Build), so the markdown a build
+    // proposal ships is generated rather than hand-transcribed — the format is a spec, not a
+    // style choice (.claude/rules/build-creation.md P1).
+    private static void DumpForumExport(string buildDir, string name)
+    {
+        try
+        {
+            if (MidsContext.Config.Export.FormatCode.Length == 0) MidsContext.Config.Export.ResetCodesToDefaults();
+            if (MidsContext.Config.Export.ColorSchemes.Length == 0) MidsContext.Config.Export.ResetColorsToDefaults();
+            // Pick the plain-text format code when one exists; BBCode markup is noise in markdown.
+            var codes = MidsContext.Config.Export.FormatCode;
+            for (var i = 0; i < codes.Length; i++)
+            {
+                if (!codes[i].Name.Contains("Forum", StringComparison.OrdinalIgnoreCase)) continue;
+                MidsContext.Config.ExportTarget = i;
+                break;
+            }
+
+            var text = new ClsOutput().Build("", true);
+            Directory.CreateDirectory(buildDir);
+            File.WriteAllText(Path.Combine(buildDir, "forum_export.txt"), text);
+            Console.WriteLine($"wrote {Path.Combine(buildDir, "forum_export.txt")}");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"E22: forum export failed for {name}: {ex.Message}");
+        }
     }
 
     private static void DumpOneBuild(string buildDir, clsToonX toon)
