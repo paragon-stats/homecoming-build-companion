@@ -1,9 +1,15 @@
 ---
-# Label taxonomy for homecoming-build-companion (GitLab: paragon-stats/homecoming-build-companion).
+# Label taxonomy for homecoming-build-companion. Currently applied to both
+# paragon-stats/homecoming-build-companion on GitHub and the GitLab project of the same
+# path; GitHub is the intended long-term home (the GitLab side is slated to be retired).
+# Reconcile GitHub from this file with (idempotent, safe to re-run):
+#   gh label create <name> --color <color> --description <desc> --force --repo <repo>
 #
-# GitLab scoped labels ("key::value") promote the key into a grouping in the label list.
-# NOTE: this instance is GitLab CE (enterprise:false), so scoped-label mutual exclusivity
-# (a Premium feature) does not apply here; the prefix still groups labels visually.
+# The "key::value" names are GitLab scoped labels: GitLab promotes the key into a grouping
+# in the label list. NOTE: this instance is GitLab CE (enterprise:false), so scoped-label
+# mutual exclusivity (a Premium feature) does not apply here; the prefix still groups
+# labels visually. GitHub has no scoped-label concept at all — there the "::" is just part
+# of the name, so the grouping is a naming convention rather than a rendered behaviour.
 #
 # Colors follow the maintainer's convention across repos: type azure, area purple,
 # priority traffic-light. See paragon-stats/.github/labels.yml for the sibling taxonomy.
