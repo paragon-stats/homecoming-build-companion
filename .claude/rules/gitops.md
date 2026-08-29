@@ -9,7 +9,10 @@ Detail in [`docs/repository-standards/`](../../docs/repository-standards/) and [
 ## Baseline
 
 - **Branch from `main`.** Short-lived feature/fix branches; no long-lived integration branches.
-- **Conventional Commits.** `<type>(<scope>): <subject>` — types: `feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`, `build`. `commitlint` workflow enforces format on PR.
+- **Conventional Commits.** `<type>(<scope>): <subject>`. The `commitlint` workflow enforces the format on PR.
+  Allowed types are the cross-repo SSOT (`ci-templates/commit-types.yml`) plus the local `build`:
+  `feat`, `fix`, `perf`, `security`, `revert`, `docs`, `test`, `ci`, `chore`, `style`, `refactor`, `build`.
+  Write a revert by hand as `revert(<scope>): <what and why>`; the default `Revert "…"` message `git revert` produces is rejected.
 - **Heredoc commit messages.** Use single-quoted heredoc when committing from a tool to avoid expansion. See [`docs/git/heredoc-commit-messages.md`](../../docs/git/heredoc-commit-messages.md).
 - **Signed commits.** Every commit signed (SSH or GPG). Recovery procedure: [`docs/automation/runbooks/fix-unsigned-commits-in-pr.md`](../../docs/automation/runbooks/fix-unsigned-commits-in-pr.md).
 - **No hook bypass.** `--no-verify`, `--no-gpg-sign`, `-c commit.gpgsign=false` forbidden without explicit user direction.
