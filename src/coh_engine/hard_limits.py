@@ -122,12 +122,15 @@ def build_context(
 ) -> HardLimitsContext:
     """Assemble the shared context every rule reads (the single build walk).
 
-    Picks exclude both the auto-granted ``Inherent`` group and the ``Incarnate`` group —
-    neither counts against the 24 core picks (Mids auto-adds both with ``chosen=false``).
+    Picks exclude anything the player did not spend a pick on: ``PowerEntry.Chosen`` is
+    false for every power Mids auto-adds, and the ``Inherent`` / ``Incarnate`` groups are
+    excluded by name as well so dumps predating the ``Chosen`` field still classify right.
+    ``Chosen`` is what catches an auto-granted *pool* sub-power — Mystic Flight grants
+    Translocation into ``Pool.Sorcery``, which no group check can tell from a real pick.
     Slot accounting walks all powers, so inherent Health/Stamina slots still count against
     the budget and slotless incarnates contribute 0.
     """
-    picks = tuple(p for p in powers if p.build_index >= 0 and not _is_inherent(p) and not _is_incarnate(p))
+    picks = tuple(p for p in powers if p.build_index >= 0 and p.chosen and not _is_inherent(p) and not _is_incarnate(p))
     added_by_power: dict[int, int] = {}
     added_by_level: dict[int, int] = {}
     added_pairs: list[tuple[Power, SlotRef]] = []

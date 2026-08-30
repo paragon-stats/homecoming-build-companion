@@ -96,18 +96,60 @@ class TestValidateCommitMessage:
         is_valid, _reason = mod.validate_commit_message("Fix: resolve crash")
         assert not is_valid
 
-    @pytest.mark.parametrize("commit_type", ["feat", "fix", "docs", "chore", "refactor", "test", "ci", "build"])
+    @pytest.mark.parametrize(
+        "commit_type",
+        ["feat", "fix", "perf", "security", "revert", "docs", "test", "ci", "chore", "style", "refactor", "build"],
+    )
     def test_all_gitops_types_accepted(self, commit_type: str) -> None:
         """Every type gitops.md permits is accepted, with and without scope."""
         assert mod.validate_commit_message(f"{commit_type}: do the thing")[0]
         assert mod.validate_commit_message(f"{commit_type}(scope): do the thing")[0]
 
-    @pytest.mark.parametrize("commit_type", ["feature", "wip", "hotfix", "perf", "style"])
+    def test_allowlist_matches_gitops_rule(self) -> None:
+        """The allowlist is the ci-templates SSOT plus the local `build` extra.
+
+        Guards the drift this list already suffered once: it was hand-transcribed from
+        prose and silently lost four standard types.
+        """
+        ssot = {"feat", "fix", "perf", "security", "revert", "docs", "test", "ci", "chore", "style", "refactor"}
+        assert set(mod._ALLOWED_TYPES) == ssot | {"build"}
+
+    @pytest.mark.parametrize("commit_type", ["feature", "wip", "hotfix", "improvement"])
     def test_unlisted_type_rejected(self, commit_type: str) -> None:
         """Types outside the gitops.md allowlist are rejected (local adaptation)."""
         is_valid, reason = mod.validate_commit_message(f"{commit_type}: something")
         assert not is_valid
         assert "Allowed types:" in reason
+
+    @pytest.mark.parametrize(
+        "subject",
+        [
+            "feat!: drop the legacy loader",
+            "feat(engine)!: drop the legacy loader",
+            "fix(ci)!: change the required check names",
+        ],
+    )
+    def test_breaking_change_marker_accepted(self, subject: str) -> None:
+        """The `!` breaking-change marker is valid after the type and after the scope.
+
+        cliff.toml and the release flow both key the version bump off this marker, so
+        rejecting it would block the one message shape the release process asks for.
+        """
+        assert mod.validate_commit_message(subject)[0]
+
+    def test_bare_bang_without_type_rejected(self) -> None:
+        """The marker does not make an otherwise invalid subject valid."""
+        assert not mod.validate_commit_message("!: do a thing")[0]
+        assert not mod.validate_commit_message("wip!: do a thing")[0]
+
+    def test_git_revert_default_message_rejected(self) -> None:
+        """`git revert`'s generated `Revert "..."` message is not a conventional commit.
+
+        Adding the `revert` type accepts a hand-written `revert(scope): summary`; it must
+        not quietly let the auto-generated message through, which explains nothing.
+        """
+        is_valid, _reason = mod.validate_commit_message('Revert "ci(gitlab): remove the pipeline"')
+        assert not is_valid
 
 
 # ---------------------------------------------------------------------------

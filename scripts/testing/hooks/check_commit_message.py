@@ -20,11 +20,44 @@ from pathlib import Path
 
 _DEPENDABOT_RE = re.compile(r"^Bump (the\b|[a-z])", re.IGNORECASE)
 _MERGE_RE = re.compile(r"^Merge ")
-# Local adaptation from the kloehnwars-homelab import: the type set is
-# restricted to the types .claude/rules/gitops.md permits, rather than any
-# lowercase word.
-_ALLOWED_TYPES = ("feat", "fix", "docs", "chore", "refactor", "test", "ci", "build")
-_CONVENTIONAL_RE = re.compile(rf"^({'|'.join(_ALLOWED_TYPES)})(\([^)]+\))?: .+")
+# Local adaptation from the kloehnwars-homelab import: the type set is an explicit
+# allowlist rather than any lowercase word (upstream repo-template accepts `[a-z]+`).
+#
+# The list is the cross-repo SSOT, ci-templates/commit-types.yml, plus `build`.
+# It previously held only 8 of these because it was transcribed from the prose in
+# gitops.md rather than derived from that SSOT, which silently dropped `perf`,
+# `security`, `revert` and `style` — all standard conventional-commit types
+# (Angular convention, @commitlint/config-conventional, the Conventional Commits
+# FAQ). `build` is kept as a local extra: it is not in the SSOT but is already in
+# use here and is a config-conventional type.
+#
+# Ordered to mirror the SSOT: release-bearing types first (feat minor; fix, perf,
+# security, revert patch), then the no-release housekeeping types.
+#
+# Note `revert` accepts a hand-written `revert(scope): summary`. It does NOT accept
+# the message `git revert` generates by default, `Revert "<original subject>"` —
+# that stays rejected, so a revert has to say what is being undone and why.
+_ALLOWED_TYPES = (
+    "feat",
+    "fix",
+    "perf",
+    "security",
+    "revert",
+    "docs",
+    "test",
+    "ci",
+    "chore",
+    "style",
+    "refactor",
+    "build",
+)
+# The optional ``!`` is the Conventional Commits breaking-change marker, allowed after the
+# type or after the scope (``feat!:`` and ``feat(engine)!:`` are both valid). It is not
+# optional decoration: cliff.toml's [bump] section and the release flow in
+# docs/automation/commit-message-workflow.md both key major/minor bumps off it, so a
+# pattern that rejected it would block the exact message shape the release process asks
+# for -- across the pre-commit hook, the commitlint job and the pr-title gate alike.
+_CONVENTIONAL_RE = re.compile(rf"^({'|'.join(_ALLOWED_TYPES)})(\([^)]+\))?!?: .+")
 
 
 def validate_commit_message(message: str) -> tuple[bool, str]:

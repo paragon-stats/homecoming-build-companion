@@ -37,8 +37,8 @@ from typing import Any
 
 from coh_engine.diagnostics import Diagnostic
 from coh_engine.effect import Power
-from coh_engine.enhancement import SlotRef
-from coh_engine.set_bonuses import SetBonusDb, power_accepts_set
+from coh_engine.enhancement import EnhancementRecord, SlotRef
+from coh_engine.set_bonuses import SetBonusDb, piece_grants_special, power_accepts_set
 
 # Build.cs:1078: the superior/attuned base-version key strips both prefixes so a
 # Superior_Attuned_Superior_X and its Attuned_X (or the ATO/Winter regular version)
@@ -139,6 +139,10 @@ class LegalityContext:
 
     set_db: SetBonusDb
     filled: tuple[_FilledSlot, ...]
+    # Enhancement-mode effects, keyed by nID. Optional: callers that only have the
+    # legality dump still get every rule, but P-SET-001 cannot then identify a pure
+    # proc (a piece with no numeric effect) and falls back to unique/special alone.
+    enh_effects: Mapping[int, EnhancementRecord] | None = None
 
 
 def _build_filled(
@@ -169,6 +173,10 @@ def registered_rules() -> list[str]:
 
 def _error(rule_id: str, message: str, **ctx: Any) -> Diagnostic:
     return Diagnostic(rule_id=rule_id, severity="error", message=message, **ctx)
+
+
+def _warning(rule_id: str, message: str, **ctx: Any) -> Diagnostic:
+    return Diagnostic(rule_id=rule_id, severity="warning", message=message, **ctx)
 
 
 def _placement_diagnostic(
@@ -260,6 +268,82 @@ def _rule_mutex(ctx: LegalityContext) -> Iterable[Diagnostic]:
             versions[base] = power.full_name
 
 
+def _works_alone(ctx: LegalityContext, enh: EnhancementLegality) -> bool:
+    """Whether this set piece is useful slotted by itself, so a lone placement is fine.
+
+    Three independent signals, all load-bearing — none subsumes the others:
+
+    * a per-enhancement **special** (``SpecialBonus``) activates at one piece. Catches
+        Luck of the Gambler's Defense/+Global Recharge, which is not flagged ``Unique``.
+    * ``unique`` marks the global/proc IOs the game allows once per build (Kismet:
+        Accuracy, Panacea, Gaussian's Chance for Build Up, Celerity).
+    * **no enhancement-mode effects** means the piece enhances nothing numerically, so
+        its whole value is a proc. The harness keeps only ``Mode == Enhancement`` effects
+        (:class:`~coh_engine.enhancement.EnhancementRecord`), so a pure proc has none.
+        Catches Force Feedback's Chance for +Recharge, Achilles' Heel's Chance for Res
+        Debuff, Performance Shifter's Chance for +End and Power Transfer's Chance to
+        Heal Self — all of which are neither unique nor special-bearing.
+
+    The third test needs ``ctx.enh_effects``; without it those procs cannot be told from
+    plain pieces and will be reported.
+    """
+    if enh.unique:
+        return True
+    set_def = ctx.set_db.sets.get(enh.nid_set)
+    if set_def is not None and piece_grants_special(set_def, enh.nid):
+        return True
+    if ctx.enh_effects is not None:
+        record = ctx.enh_effects.get(enh.nid)
+        if record is not None and not record.effects:
+            return True
+    return False
+
+
+@legality_rule
+def _rule_lone_set_piece(ctx: LegalityContext) -> Iterable[Diagnostic]:
+    """P-SET-001: a single piece of a set in one power, earning no set bonus.
+
+    Set bonuses accrue PER POWER: the tier bonuses need >=2 pieces of the set slotted in
+    the SAME power. Pieces of one set spread across different powers never combine, so a
+    build-wide tally ("7 Shield Wall pieces") says nothing about what the build earns. A
+    lone piece therefore contributes only its raw enhancement value.
+
+    Exempt: pieces carrying a per-enhancement special (globals like Luck of the Gambler's
+    +recharge or Steadfast Protection's +3% defence), which activate at one piece — see
+    :func:`coh_engine.set_bonuses.piece_grants_special`, the single source for that split.
+
+    Exempt pieces are those that do their job alone — see :func:`_works_alone`.
+
+    Warning, not an error: even a plain lone piece can be deliberate, e.g. a one-slot pool
+    prerequisite where a second piece will not fit.
+    """
+    counts: dict[tuple[int, int], int] = {}
+    first: dict[tuple[int, int], tuple[Power, EnhancementLegality]] = {}
+    for power, _, enh in ctx.filled:
+        if enh is None or enh.nid_set < 0 or enh.nid_set not in ctx.set_db.sets:
+            continue
+        key = (power.build_index, enh.nid_set)
+        counts[key] = counts.get(key, 0) + 1
+        first.setdefault(key, (power, enh))
+    for key, count in counts.items():
+        if count != 1:
+            continue
+        power, enh = first[key]
+        set_def = ctx.set_db.sets[key[1]]
+        if _works_alone(ctx, enh):
+            continue
+        yield _warning(
+            "P-SET-001",
+            f"{enh.long_name!r} is the only {set_def.uid!r} piece in {power.full_name!r}; set bonuses "
+            "need at least 2 pieces of one set in the same power, so this piece adds no set bonus "
+            "(its own enhancement value, and any proc it carries, still apply)",
+            fix=f"slot a second {set_def.uid!r} piece in this power, use a piece carrying a global, "
+            "or confirm the lone piece is a deliberate proc carrier or mule",
+            expected=2,
+            actual=1,
+        )
+
+
 @legality_rule
 def _rule_per_power_set_dup(ctx: LegalityContext) -> Iterable[Diagnostic]:
     """H-ENH-006: the same set piece slotted twice in one power."""
@@ -293,12 +377,16 @@ def check_build_legality(
     slots: Mapping[int, Sequence[SlotRef]],
     enh_db: Mapping[int, EnhancementLegality],
     set_db: SetBonusDb,
+    enh_effects: Mapping[int, EnhancementRecord] | None = None,
 ) -> list[Diagnostic]:
     """Every legality violation, by running the registered rules over a pre-built context.
 
     The runner holds no per-dimension logic: it builds the :class:`LegalityContext` once
     and folds every ``@legality_rule`` over it. A new legality dimension is a new
     ``@legality_rule`` — never an edit here. An empty list means legal.
+
+    ``enh_effects`` is optional; supplying it lets P-SET-001 recognise a pure proc (see
+    :func:`_works_alone`) instead of reporting it as a bare lone piece.
     """
-    ctx = LegalityContext(set_db=set_db, filled=_build_filled(powers, slots, enh_db))
+    ctx = LegalityContext(set_db=set_db, filled=_build_filled(powers, slots, enh_db), enh_effects=enh_effects)
     return [diagnostic for rule in _RULES for diagnostic in rule(ctx)]

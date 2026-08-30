@@ -38,6 +38,35 @@ def test_run_validate_returns_diagnostics() -> None:
     assert any(d.rule_id.startswith("H-") for d in diags)
 
 
+def test_run_validate_arms_the_pure_proc_exemption() -> None:
+    """The CLI must pass ``enhancement_effects.json`` into the legality registry.
+
+    P-SET-001's pure-proc exemption is keyed on a piece having no ``Enhancement``-mode
+    effects. When ``run_validate`` omits that argument the rule still runs, but degrades
+    silently: it warns on every pure proc a real build slots alone. Comparing against a
+    fully-armed direct call pins the wiring without depending on which procs a given
+    fixture happens to contain.
+    """
+    from coh_engine.effect import load_powers_effects
+    from coh_engine.enhancement import load_build_slots, load_enhancement_effects
+    from coh_engine.legality import check_build_legality, load_enhancement_legality
+    from coh_engine.set_bonuses import load_set_bonus_db
+
+    mids = FIXTURES / "mids"
+    powers = load_powers_effects(BUILD_DIR / "powers_effects.json")
+    slots = dict(load_build_slots(BUILD_DIR / "slots.json"))
+    armed = check_build_legality(
+        powers,
+        slots,
+        load_enhancement_legality(mids / "enhancements.json"),
+        load_set_bonus_db(mids / "enhancement_sets.json", mids / "set_bonus_powers.json"),
+        dict(load_enhancement_effects(mids / "enhancement_effects.json")),
+    )
+    via_cli = run_validate(BUILD_DIR, mids)
+    lone = "P-SET-001"
+    assert sum(1 for d in via_cli if d.rule_id == lone) == sum(1 for d in armed if d.rule_id == lone)
+
+
 def test_validate_subcommand_text(capsys: pytest.CaptureFixture[str]) -> None:
     """`validate <build>` runs both registries and exits 1 when findings exist (text)."""
     code = main(["validate", str(BUILD_DIR)])

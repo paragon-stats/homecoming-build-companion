@@ -4,12 +4,21 @@ name: Commit Message Lint
 on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
+  # The merge commit is only created at merge time, so it is never seen by a
+  # pull_request run. Linting pushes to main is what catches it. Direct pushes are
+  # already blocked by the ruleset's pull_request rule, so in practice this fires
+  # on the merge commit and nothing else.
+  push:
+    branches:
+      - main
 permissions:
   contents: read
 
 
 jobs:
   commitlint:
+    name: Lint the commits on the pull request
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       # pull-requests:read is required so report-status-context can fetch the PR merge/head SHA.
@@ -20,12 +29,12 @@ jobs:
       statuses: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.14'
 
@@ -53,5 +62,112 @@ jobs:
           job-status: ${{ job.status }}
           status-context: Commit Message Lint / commitlint
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  # The PR title is load-bearing: with merge_commit_title = PR_TITLE it becomes the
+  # subject of the merge commit on main, which the changelog and the version bump both
+  # read. Nothing validated it until this job existed, so a badly-typed title could put
+  # a non-conventional commit on main with no gate anywhere in the pipeline.
+  pr-title:
+    name: Lint the pull request title
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Lint the PR title
+        shell: bash
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          tmpfile=$(mktemp)
+          echo "$PR_TITLE" > "$tmpfile"
+          if ! python3 scripts/testing/hooks/check_commit_message.py "$tmpfile"; then
+            echo "::error::PR title is not a valid conventional commit. It becomes the merge commit subject on main."
+            rm -f "$tmpfile"
+            exit 1
+          fi
+          rm -f "$tmpfile"
+
+      - name: Report required status context
+        if: ${{ always() }}
+        uses: ./.github/actions/report-status-context
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-number: ${{ github.event.pull_request.number }}
+          job-status: ${{ job.status }}
+          status-context: Commit Message Lint / pr-title
+          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  # Safety net on main itself. Catches the merge commit, which no pull_request run can
+  # see. Merge commits whose subject starts with "Merge " are exempt inside
+  # check_commit_message.py, so this stays correct whichever way merge_commit_title
+  # is configured.
+  main-commits:
+    name: Lint the commits landing on main
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      # Pinned for the same reason the other two jobs pin it: all three run the same
+      # validator, so they must run it on the same interpreter. On the runner default
+      # this job would break with a SyntaxError, not a lint failure, the first time the
+      # validator uses newer syntax.
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Lint the pushed commits
+        shell: bash
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -uo pipefail
+          # A new branch or a force-push reports an all-zero "before"; fall back to the
+          # tip commit alone rather than walking the whole history.
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            range="$AFTER~1..$AFTER"
+          else
+            range="$BEFORE..$AFTER"
+          fi
+          # Capture separately from the loop: `for sha in $(git log ...)` swallows a
+          # git failure into an empty list, so an unresolvable range would lint nothing
+          # and report green - a safety net that silently stops catching anything.
+          if ! shas=$(git log --format=%H "$range"); then
+            echo "::error::could not resolve commit range '$range'"
+            exit 1
+          fi
+          if [ -z "$shas" ]; then
+            echo "::error::commit range '$range' resolved to no commits"
+            exit 1
+          fi
+          failed=0
+          for sha in $shas; do
+            tmpfile=$(mktemp)
+            git log -1 --format=%B "$sha" > "$tmpfile"
+            if ! python3 scripts/testing/hooks/check_commit_message.py "$tmpfile"; then
+              echo "::error::Commit $sha on main failed commitlint"
+              failed=1
+            fi
+            rm -f "$tmpfile"
+          done
+          exit $failed
 
 ...

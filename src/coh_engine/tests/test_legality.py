@@ -21,7 +21,7 @@ import pytest
 
 from coh_engine.diagnostics import Diagnostic
 from coh_engine.effect import Power, load_powers_effects
-from coh_engine.enhancement import SlotRef, load_build_slots
+from coh_engine.enhancement import SlotRef, load_build_slots, load_enhancement_effects
 from coh_engine.legality import (
     EnhancementLegality,
     check_build_legality,
@@ -259,3 +259,93 @@ def test_diagnostics_are_diagnostic_instances(enh_leg: dict[int, EnhancementLega
     power = _power(0, "p", enhancements=())
     diags = check_build_legality([power], {0: (_slot(43),)}, enh_leg, set_db)  # Recharge, class not accepted
     assert diags and all(isinstance(d, Diagnostic) for d in diags)
+
+
+def test_lone_set_piece_earns_no_bonus(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """One plain piece of a set in a power yields P-SET-001 (warning, not error)."""
+    ff = 640  # Crafted_Force_Feedback_A: plain SetO piece, enhances numerically.
+    st = set_db.sets[enh_leg[ff].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(ff),)}, enh_leg, set_db)
+    assert any(d.rule_id == "P-SET-001" and d.severity == "warning" for d in diags)
+
+
+def test_two_pieces_of_one_set_in_a_power_is_clean(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """Two pieces of the same set in one power reach the tier threshold: no P-SET-001."""
+    a, b = 640, 641  # Crafted_Force_Feedback_A / _B
+    st = set_db.sets[enh_leg[a].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(a), _slot(b))}, enh_leg, set_db)
+    assert not any(d.rule_id == "P-SET-001" for d in diags)
+
+
+def test_same_set_split_across_powers_still_warns(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """Two pieces of one set in DIFFERENT powers do not combine: both warn.
+
+    The failure the rule exists to catch -- a build-wide piece tally looks fine while
+    neither power reaches the 2-piece threshold.
+    """
+    a, b = 640, 641
+    st = set_db.sets[enh_leg[a].nid_set].set_type
+    p0 = _power(0, "a", set_types=(st,))
+    p1 = _power(1, "b", set_types=(st,))
+    diags = check_build_legality([p0, p1], {0: (_slot(a),), 1: (_slot(b),)}, enh_leg, set_db)
+    assert len([d for d in diags if d.rule_id == "P-SET-001"]) == 2
+
+
+def _nid(enh_leg: dict[int, EnhancementLegality], uid: str) -> int:
+    return next(nid for nid, e in enh_leg.items() if e.uid == uid)
+
+
+def test_lone_special_piece_is_exempt(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """Luck of the Gambler's global is not Unique but carries a SpecialBonus: exempt."""
+    lotg = _nid(enh_leg, "Crafted_Luck_of_the_Gambler_F")
+    assert not enh_leg[lotg].unique  # the special test, not the unique test, must catch it
+    st = set_db.sets[enh_leg[lotg].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(lotg),)}, enh_leg, set_db)
+    assert not any(d.rule_id == "P-SET-001" for d in diags)
+
+
+def test_lone_unique_piece_is_exempt(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """Kismet: Accuracy is Unique with no SpecialBonus: the unique test must catch it."""
+    kismet = _nid(enh_leg, "Crafted_Kismet_E")
+    assert enh_leg[kismet].unique
+    st = set_db.sets[enh_leg[kismet].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(kismet),)}, enh_leg, set_db)
+    assert not any(d.rule_id == "P-SET-001" for d in diags)
+
+
+def test_lone_proc_is_exempt_with_effects_db(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """A pure proc is neither unique nor special; zero enhancement effects exempts it."""
+    ff_proc = _nid(enh_leg, "Crafted_Force_Feedback_F")
+    assert not enh_leg[ff_proc].unique
+    effects = load_enhancement_effects(MIDS / "enhancement_effects.json")
+    assert not effects[ff_proc].effects  # the signal the exemption relies on
+    st = set_db.sets[enh_leg[ff_proc].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(ff_proc),)}, enh_leg, set_db, effects)
+    assert not any(d.rule_id == "P-SET-001" for d in diags)
+
+
+def test_lone_proc_warns_without_effects_db(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """Without the effects dump a pure proc cannot be identified, so it is reported."""
+    ff_proc = _nid(enh_leg, "Crafted_Force_Feedback_F")
+    st = set_db.sets[enh_leg[ff_proc].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(ff_proc),)}, enh_leg, set_db)
+    assert any(d.rule_id == "P-SET-001" for d in diags)
+
+
+def test_plain_piece_still_warns_with_effects_db(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:
+    """A piece that DOES enhance numerically is not a proc, so the effects dump must not
+    exempt it -- the exemption keys on having no enhancement effects, not on merely
+    being present in the dump."""
+    ff = _nid(enh_leg, "Crafted_Force_Feedback_A")
+    effects = load_enhancement_effects(MIDS / "enhancement_effects.json")
+    assert effects[ff].effects  # plain piece: has numeric effects
+    st = set_db.sets[enh_leg[ff].nid_set].set_type
+    power = _power(0, "p", set_types=(st,))
+    diags = check_build_legality([power], {0: (_slot(ff),)}, enh_leg, set_db, effects)
+    assert any(d.rule_id == "P-SET-001" for d in diags)

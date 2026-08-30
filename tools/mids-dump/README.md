@@ -71,7 +71,10 @@ Non-incarnate builds are byte-identical patched or not — only race-carrying bu
 | `builds/<name>/totals.json` | Per parity build: `Totals` + `TotalsCapped` after `GenerateBuffedPowerArray()` |
 | `builds/<name>_exemplar<N>/*` | A designated build recomputed at a lowered `ForceLevel` (N) — the exemplar-parity fixtures; the set-bonus gate keys on `PickLevel`, not the DB minimum, so bonuses from powers picked above N drop |
 
-Each build power in `powers_effects.json` also carries `PickLevel` (the build's actual
+Each build power in `powers_effects.json` also carries `Chosen` (`PowerEntry.Chosen` — false
+for every power Mids auto-adds rather than the player picking: inherents, incarnates, and
+granted sub-powers such as Sorcery's Translocation; the hard-limits validator excludes these
+from the 24-pick count) and `PickLevel` (the build's actual
 `PowerEntry.Level`) alongside the DB minimum `Level`; the set-bonus exemplar gate uses
 `PickLevel` (they coincide at `ForceLevel` 50 and diverge under exemplar). It further
 carries the base `RechargeTime` / `CastTime` / `InterruptTime` and `IgnoreEnh` (the

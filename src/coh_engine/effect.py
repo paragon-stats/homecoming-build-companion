@@ -131,6 +131,12 @@ class Power:
     # class-prerequisite validation belongs to the post-CP10 AT-specific tier.
     requires_powers: tuple[tuple[str, ...], ...] = ()
     requires_powers_not: tuple[tuple[str, ...], ...] = ()
+    # ``PowerEntry.Chosen`` — whether the player spent one of the 24 picks on this power.
+    # Mids also adds powers the build never picked: auto-granted sub-powers (Mystic Flight
+    # grants Translocation), inherents, and incarnates all arrive via ``AddPower`` with
+    # ``chosen=false``. Defaults True so a directly-constructed power, and a dump predating
+    # the field, still reads as a real pick.
+    chosen: bool = True
 
 
 def _parse_effect(raw: dict[str, Any]) -> Effect:
@@ -219,6 +225,9 @@ def load_powers_effects(path: Path | str) -> tuple[Power, ...]:
             # (single-power requirements leave the second slot blank) are dropped.
             requires_powers=_parse_requirement_groups(r.get("RequiresPowers", ())),
             requires_powers_not=_parse_requirement_groups(r.get("RequiresPowersNot", ())),
+            # Lenient (``.get``): Chosen was added after the earlier build dumps, which
+            # carry only real picks plus inherents — both correctly read as chosen there.
+            chosen=r.get("Chosen", True),
             effects=tuple(_parse_effect(fx) for fx in r["Effects"]),
         )
         for r in records

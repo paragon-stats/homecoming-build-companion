@@ -1,4 +1,7 @@
-# git-cliff configuration for CalVer changelog generation
+# git-cliff configuration: semver changelog + version bumping.
+# The bump is derived from the conventional-commit type, matching the release mapping in
+# ci-templates/commit-types.yml (feat -> minor; fix/perf/security/revert -> patch;
+# docs/test/ci/chore/style/refactor -> no release, gated in the release workflow).
 # Docs: https://git-cliff.org/docs/configuration
 
 [changelog]
@@ -39,9 +42,22 @@ commit_parsers = [
     { message = "^style", group = "🎨 Styling" },
     { message = "^test", group = "🧪 Testing" },
     { message = "^ci", group = "🔧 CI/CD" },
+    { message = "^revert", group = "⏪ Reverts" },
+    { message = "^build", group = "🏗️ Build" },
     { message = "^chore\\(release\\)", skip = true },
     { message = "^chore", group = "⚙️ Miscellaneous" },
     { message = "^Bump", group = "📦 Dependencies" },
 ]
-tag_pattern = "v\\d{4}\\.\\d{2}\\.\\d+"
+tag_pattern = "v\\d+\\.\\d+\\.\\d+"
 sort_commits = "newest"
+
+[bump]
+# `feat` -> minor; every other releasable type -> patch (git-cliff's default).
+features_always_bump_minor = true
+# Deliberately FALSE while the project is pre-1.0. The `!` breaking marker is still
+# written on breaking commits, but below 1.0.0 it bumps minor rather than major --
+# semver's own guidance for 0.x is that anything MAY change at any time. Flip this to
+# true when the CP ladder is deployed and 1.0.0 is cut.
+breaking_always_bump_major = false
+# No tags exist yet; this branch's history seeds the first version.
+initial_tag = "v0.1.0"
