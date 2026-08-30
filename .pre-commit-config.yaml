@@ -57,9 +57,25 @@ repos:
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Compliance
-        # Verbatim/harvested game data and generated extraction docs are exempt,
-        # mirroring the Super-Linter FILTER_REGEX_EXCLUDE.
-        exclude: ^(src/coh_engine/tests/fixtures/|samples/|data/canonical/|docs/engine/)
+        # Verbatim/harvested game data, generated extraction docs and the legacy
+        # PowerShell lanes are exempt. This MUST stay in parity with
+        # FILTER_REGEX_EXCLUDE in .github/workflows/super-linter.yml, which is the
+        # same exemption set expressed in that action's syntax.
+        #
+        # It previously drifted: this pattern was root-anchored and omitted the
+        # PowerShell and lane clauses, so `pre-commit run --all-files` failed on 94
+        # findings that CI never saw. CI only scans changed files unless dispatched
+        # with full_scan, which is why the gap stayed hidden.
+        exclude: |
+          (?x)^(
+            (.*/)?(samples|fixtures|canonical)/
+            | src/coh_engine/tests/fixtures/
+            | data/canonical/
+            | docs/engine/
+            | scripts/[^/]+\.ps1$
+            | scripts/lane-[ab]/
+            | community/
+          )
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0

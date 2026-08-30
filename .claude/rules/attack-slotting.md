@@ -4,17 +4,20 @@
 
 ## What is required
 
-Fill the **inherent slot (A)** and the **first added slot** of every attack with **accuracy-bearing IOs** — set pieces that include Accuracy as one of their aspects (Acc/Dmg, Acc/Dmg/Rchg, Acc/Dmg/EndRdx, Acc/Dmg/EndRdx/Rchg, etc.). Damage-only or Dmg/Rchg pieces appear no earlier than slot 3.
+Fill the **inherent slot (A)** and the **first added slot** of every attack with
+**accuracy-bearing IOs** — set pieces that include Accuracy as one of their aspects
+(Acc/Dmg, Acc/Dmg/Rchg, Acc/Dmg/EndRdx, Acc/Dmg/EndRdx/Rchg, etc.).
+Damage-only or Dmg/Rchg pieces appear no earlier than slot 3.
 
 Default slotting order, slots 1–6:
 
 ```text
 (A)  Acc/Dmg
- 2   Acc/Dmg/X     (X = Rchg or EndRdx)
- 3   Dmg/X
- 4   Dmg/X
- 5   Dmg/X
- 6   proc, or the set's ATO crit-proc piece, or a slot-in proc (FF +Recharge, Achilles' Heel, etc.)
+  2  Acc/Dmg/X     (X = Rchg or EndRdx)
+  3  Dmg/X
+  4  Dmg/X
+  5  Dmg/X
+  6  proc, or the set's ATO crit-proc piece, or a slot-in proc (FF +Recharge, Achilles' Heel, etc.)
 ```
 
 Exact aspect picks depend on the set's available pieces.
@@ -28,7 +31,11 @@ The build is intended to remain playable at exemplar 10 (see [`exemplar-10.md`](
 - Global to-hit buffs (Tactics, Kismet: Accuracy +6%, Focused Accuracy) may not be picked or unlocked yet.
 - The slotted accuracy enhancement is what holds the attack above the +0 ToHit floor (75% baseline = 50% chance + 25% built-in attacker bonus).
 
-Missed attacks waste the same endurance as landed ones. A 75%-hit attack costing 10 end is effectively **13.3 end per landed hit**; a 95%-hit attack at 10 end is **10.5 end per hit**. Endurance bottlenecks a build long before damage ceilings do — especially before Stamina slot 1 unlocks at character level 12.
+Missed attacks waste the same endurance as landed ones.
+A 75%-hit attack costing 10 end is effectively **13.3 end per landed hit**;
+a 95%-hit attack at 10 end is **10.5 end per hit**.
+Endurance bottlenecks a build long before damage ceilings do — especially before
+Stamina slot 1 unlocks at character level 12.
 
 ## How to apply
 
@@ -43,7 +50,9 @@ Missed attacks waste the same endurance as landed ones. A 75%-hit attack costing
 When the rule is intentionally not followed, the build's trade-offs section names the attack and the reason:
 
 - **Pre-buffed snipe** where Aim + Tactics + Kismet: Accuracy +6% already meets the 22% to-hit threshold for fast-snipe activation. No slotted accuracy needed beyond the inherent set piece.
-- **Procmonster vehicle** — a fast-recharge low-damage attack held purely as a proc carrier. The proc rolls aren't gated by the player's to-hit chance against the proc's effect, so accuracy slotting is lower priority.
+- **Procmonster vehicle** — a fast-recharge low-damage attack held purely as a proc
+  carrier. The proc rolls aren't gated by the player's to-hit chance against the proc's
+  effect, so accuracy slotting is lower priority.
 - **AT-inherent accuracy boost** — e.g. Stalker Assassin's Strike from Hide grants high to-hit; the slotting profile changes accordingly.
 - **Auto-hit attacks** — confirm via canonical data that `accuracy = -1` (auto-hit) or that no to-hit check fires.
 

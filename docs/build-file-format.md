@@ -4,7 +4,7 @@ MidsReborn uses three serialization formats for builds. They're roundtrip-equiva
 
 | Format             | Extension                                                                | When it's used                                                                        |
 | ------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
-| Modern JSON        | `.json` (or no extension when in `homecoming-build-companion/build-format/samples/`) | Human-readable. What Claude reads and writes.                                         |
+| Modern JSON        | `.json` (or no extension in `build-format/samples/`)                     | Human-readable. What Claude reads and writes.                                         |
 | Legacy MXD binary  | `.mxd`                                                                   | Native MidsReborn save format. Compact. Requires the app to read.                     |
 | DataLink hyperlink | `.txt` (or pasted)                                                       | URL-encoded compressed payload, max ~2048 chars. Used for forum signatures and links. |
 | MBD chunk          | `.txt`                                                                   | Multi-line base64 chunk with `\|MBD;...\|` headers. Used for forum posts.             |
@@ -15,7 +15,8 @@ For the project, **the JSON format is canonical**. We keep `.mxd` files alongsid
 
 ## Modern JSON (the format Claude operates on)
 
-Schema: [build-format/schema.json](../build-format/schema.json) (JSON Schema 2020-12). Authoritative source: [CharacterBuildData.cs](../../MidsReborn/MidsReborn/Core/BuildFile/CharacterBuildData.cs) and the data-model classes.
+Schema: [build-format/schema.json](../build-format/schema.json) (JSON Schema 2020-12).
+Authoritative source: [CharacterBuildData.cs](../../MidsReborn/MidsReborn/Core/BuildFile/CharacterBuildData.cs) and the data-model classes.
 
 ### Top-level shape
 
@@ -122,10 +123,11 @@ Current version: `3.20`. Older versions (3.10, 3.00) supported via migration pat
 6. Name (string)
 7. PowerSet array (length-prefixed array of powerset name strings)
 8. Power picks (length-prefixed):
-   - Per power: nIDPower, level, slot count, slots
+    - Per power: nIDPower, level, slot count, slots
 9. Per slot: enhancement nID + level + IO level + RelativeLevel + Obtained flag
 
-The C# binary reader/writer lives at `MidsReborn/Core/MidsCharacterFileFormat.cs`. We do **not** parse this format ourselves — instead, the running app converts to/from JSON via File → Save As / File → Open.
+The C# binary reader/writer lives at `MidsReborn/Core/MidsCharacterFileFormat.cs`.
+We do **not** parse this format ourselves — instead, the running app converts to/from JSON via File → Save As / File → Open.
 
 ---
 
@@ -133,7 +135,7 @@ The C# binary reader/writer lives at `MidsReborn/Core/MidsCharacterFileFormat.cs
 
 A compressed-base64 build encoded into a URL fragment, intended for forum signatures and links. Format:
 
-```
+```text
 mrb://import/MBD;<size_uncompressed>;<size_compressed>;<size_encoded>;BASE64;<base64-data>
 ```
 
@@ -149,7 +151,7 @@ Imported by: File → Import (Ctrl+I) in the app, paste the URL.
 
 A line-wrapped compressed-base64 build, intended for pasting into forum posts. Format:
 
-```
+```text
 |MBD;<size_uncompressed>;<size_compressed>;<size_encoded>;BASE64;|
 <wrapped base64, 67 chars per line>
 ```
