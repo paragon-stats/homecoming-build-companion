@@ -1,14 +1,26 @@
 ---
-# CalVer tagging workflow
-# Creates a CalVer tag and GitHub Release on every push to main
-# Version format: YYYY.0M.MICRO (e.g., v2026.03.0)
+# CalVer tagging workflow - DISABLED, pending replacement by semver (#58).
+#
+# Creates a CalVer tag and GitHub Release. Version format: YYYY.0M.MICRO.
+#
+# The automatic trigger is removed deliberately. The repository moved to semver:
+# tags v0.1.0 through v0.8.0 were backfilled onto main, reconstructing one bump per
+# merged pull request. This workflow computes its version with scripts.devops.calver,
+# whose CALVER_TAG_RE only matches `vYYYY.MM.N`, so it cannot see those semver tags at
+# all - `--dry-run` currently returns 2026.08.0. Left on `push: main` it would cut
+# v2026.08.0 on the next merge, on top of the semver series, and publish a Release for
+# it.
+#
+# Kept rather than deleted so the tagging and release-notes steps remain available as a
+# reference while #58 replaces the version computation. workflow_dispatch means it only
+# ever runs if someone deliberately starts it.
+#
+# Do not restore the push trigger. Delete this file as part of #58.
 
 name: CalVer Tag
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

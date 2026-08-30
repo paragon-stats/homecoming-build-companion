@@ -19,7 +19,7 @@ from coh_engine.base_totals import load_server_data
 from coh_engine.diagnostics import Diagnostic, exit_code, format_json, format_text
 from coh_engine.effect import load_powers_effects
 from coh_engine.enh_aspects import registered_aspect_handlers
-from coh_engine.enhancement import load_build_slots
+from coh_engine.enhancement import load_build_slots, load_enhancement_effects
 from coh_engine.hard_limits import check_hard_limits, registered_hard_limit_rules
 from coh_engine.legality import check_build_legality, load_enhancement_legality, registered_rules
 from coh_engine.levels import load_level_schedule
@@ -47,8 +47,17 @@ def run_validate(build_dir: Path, mids_dir: Path) -> list[Diagnostic]:
 
     ``build_dir`` holds ``powers_effects.json`` + ``slots.json`` (a harness build dump);
     ``mids_dir`` holds the shared DB dumps (``enhancements.json``, ``enhancement_sets.json``,
-    ``set_bonus_powers.json``, ``levels.json``, ``server_data.json``). The two registries
-    both fold over the loaded build; the result is their combined diagnostics.
+    ``set_bonus_powers.json``, ``levels.json``, ``server_data.json``, ``enhancement_effects.json``).
+    The two registries both fold over the loaded build; the result is their combined diagnostics.
+
+    ``enhancement_effects.json`` is loaded and passed through to the legality registry
+    because P-SET-001's pure-proc exemption is keyed on it: a piece with no
+    ``Enhancement``-mode effects is a proc that works alone and must not be reported as a
+    lone set piece. Without it the rule degrades silently, warning on every pure proc a
+    real build slots by itself (Performance Shifter: Chance for +Endurance, Force Feedback:
+    Chance for +Recharge, Achilles' Heel: Chance for Resistance Debuff). The set-global and
+    unique signals do not need it, so the failure is partial, which is what made it hard to
+    notice.
     """
     powers = load_powers_effects(build_dir / "powers_effects.json")
     slots = dict(load_build_slots(build_dir / "slots.json"))
@@ -56,9 +65,10 @@ def run_validate(build_dir: Path, mids_dir: Path) -> list[Diagnostic]:
     set_db = load_set_bonus_db(mids_dir / "enhancement_sets.json", mids_dir / "set_bonus_powers.json")
     schedule = load_level_schedule(mids_dir / "levels.json")
     server = load_server_data(mids_dir / "server_data.json")
+    enh_effects = dict(load_enhancement_effects(mids_dir / "enhancement_effects.json"))
     return [
         *check_hard_limits(powers, slots, schedule, server.max_slots),
-        *check_build_legality(powers, slots, enh_legality, set_db),
+        *check_build_legality(powers, slots, enh_legality, set_db, enh_effects),
     ]
 
 

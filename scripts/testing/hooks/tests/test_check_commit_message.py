@@ -121,6 +121,27 @@ class TestValidateCommitMessage:
         assert not is_valid
         assert "Allowed types:" in reason
 
+    @pytest.mark.parametrize(
+        "subject",
+        [
+            "feat!: drop the legacy loader",
+            "feat(engine)!: drop the legacy loader",
+            "fix(ci)!: change the required check names",
+        ],
+    )
+    def test_breaking_change_marker_accepted(self, subject: str) -> None:
+        """The `!` breaking-change marker is valid after the type and after the scope.
+
+        cliff.toml and the release flow both key the version bump off this marker, so
+        rejecting it would block the one message shape the release process asks for.
+        """
+        assert mod.validate_commit_message(subject)[0]
+
+    def test_bare_bang_without_type_rejected(self) -> None:
+        """The marker does not make an otherwise invalid subject valid."""
+        assert not mod.validate_commit_message("!: do a thing")[0]
+        assert not mod.validate_commit_message("wip!: do a thing")[0]
+
     def test_git_revert_default_message_rejected(self) -> None:
         """`git revert`'s generated `Revert "..."` message is not a conventional commit.
 

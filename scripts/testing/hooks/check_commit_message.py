@@ -51,7 +51,13 @@ _ALLOWED_TYPES = (
     "refactor",
     "build",
 )
-_CONVENTIONAL_RE = re.compile(rf"^({'|'.join(_ALLOWED_TYPES)})(\([^)]+\))?: .+")
+# The optional ``!`` is the Conventional Commits breaking-change marker, allowed after the
+# type or after the scope (``feat!:`` and ``feat(engine)!:`` are both valid). It is not
+# optional decoration: cliff.toml's [bump] section and the release flow in
+# docs/automation/commit-message-workflow.md both key major/minor bumps off it, so a
+# pattern that rejected it would block the exact message shape the release process asks
+# for -- across the pre-commit hook, the commitlint job and the pr-title gate alike.
+_CONVENTIONAL_RE = re.compile(rf"^({'|'.join(_ALLOWED_TYPES)})(\([^)]+\))?!?: .+")
 
 
 def validate_commit_message(message: str) -> tuple[bool, str]:
