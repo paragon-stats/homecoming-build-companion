@@ -68,8 +68,10 @@ because a title can be changed after the PR opens, long after the last commit wa
 **The merge commit is invisible to a pull request run.** It does not exist until merge time,
 so no `pull_request` job can see it. The `main-commits` job runs on pushes to `main` and lints
 whatever actually landed. It is a safety net rather than a gate — it reports after the fact —
-but it is the only check that sees the merge commit at all, and it also covers commits pushed
-directly to `main`, which is possible because `main` is not currently a protected branch.
+but it is the only check that sees the merge commit at all.
+
+Direct pushes to `main` are already blocked by the ruleset's pull-request rule, so in practice
+this job fires on the merge commit and nothing else.
 
 Merge commits whose subject begins with the word `Merge` are exempt inside the validator, so
 this job stays correct whichever way `merge_commit_title` is configured.
@@ -109,17 +111,38 @@ The project is deliberately below 1.0.0 until the checkpoint ladder is deployed.
 change marker is still written on breaking commits, but below 1.0.0 it produces a minor bump
 rather than a major one, which is semver's own guidance for the 0.x series.
 
+## What the platform enforces
+
+The controls live in the repository ruleset, not in this repository's files and not in any
+release tool. The ruleset on the default branch is active with no bypass actors and enforces:
+
+| Rule | Effect |
+| --- | --- |
+| `required_signatures` | Every commit reaching the default branch must be signed |
+| `pull_request` | No direct pushes; merges restricted to the merge-commit method |
+| `required_status_checks` | The five contexts below must pass, and the branch must be current |
+| `deletion`, `non_fast_forward` | The branch cannot be deleted or force-pushed |
+| `code_quality` | Code-quality gate |
+
+Required status checks: Super-Linter, `commitlint`, `pr-title`, pre-commit, and the aggregate
+test gate.
+
+`required_linear_history` was deliberately removed. It forbids merge commits, and merge commits
+are the only merge method that preserves both per-commit messages and their signatures — squash
+discards the messages, and GitHub cannot sign the commits it recreates during a rebase merge, so
+rebase and `required_signatures` are mutually exclusive. Dropping linear history was the only
+change that satisfies both goals; signature enforcement is untouched.
+
 ## Known gaps
 
-- **Tag signing in CI is unproven.** The backfilled tags were signed locally. No release
-  automation has cut a tag yet, and the candidate tooling has no first-class signing option,
-  inheriting git configuration instead. See the release tooling issue for the open decision.
+- **Tag signing in automation is unproven.** The backfilled tags were signed locally. No
+  release automation has cut a tag yet, and the candidate tooling has no first-class signing
+  option, inheriting git configuration instead. Note the ruleset governs commit signatures on
+  the branch, not signatures on tag objects — GitHub has no rule for the latter.
 - **Merge commits can be double-counted.** With `merge_commit_title = PR_TITLE` the merge
   commit is itself conventional, so a changelog generator sees both it and the commits it
   merges. Setting the title back to the default merge message makes it unconventional, and it
   is then filtered out automatically.
-- **`main` is not a protected branch.** The `main-commits` job reports on a bad commit but
-  cannot prevent it landing.
 
 ## Reference
 

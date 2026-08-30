@@ -5,8 +5,9 @@ on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
   # The merge commit is only created at merge time, so it is never seen by a
-  # pull_request run. Linting pushes to main catches it, and catches any commit
-  # pushed directly to main (main is not currently a protected branch).
+  # pull_request run. Linting pushes to main is what catches it. Direct pushes are
+  # already blocked by the ruleset's pull_request rule, so in practice this fires
+  # on the merge commit and nothing else.
   push:
     branches:
       - main
@@ -108,8 +109,9 @@ jobs:
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
   # Safety net on main itself. Catches the merge commit, which no pull_request run can
-  # see, and any commit pushed directly to main. Merge commits whose subject starts with
-  # "Merge " are exempt inside check_commit_message.py.
+  # see. Merge commits whose subject starts with "Merge " are exempt inside
+  # check_commit_message.py, so this stays correct whichever way merge_commit_title
+  # is configured.
   main-commits:
     name: Lint the commits landing on main
     if: github.event_name == 'push'
