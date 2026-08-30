@@ -13,6 +13,16 @@
 # Known gap: tags created here are not SSH-signed, while the backfilled v0.1.0-v0.8.0
 # tags are. Closing that needs a GitHub App installation token, the pattern
 # paragon-stats/paragon-stats uses. Tracked on #58; not a ruleset violation.
+#
+# The other reason that repo mints an App token does NOT apply here, but it is
+# conditional, so check before adding a trigger: a ref created with GITHUB_TOKEN does not
+# fire workflows, tags included, because of Actions loop-prevention. Verified at the time
+# of writing that no workflow in this repository triggers on `push: tags:` or `release:` --
+# every one is `push: branches: [main]`, `pull_request`, `merge_group` or
+# `workflow_dispatch` -- so nothing is waiting on the tag this job creates.
+#
+# If a tag- or release-triggered workflow is ever added, it will silently never run. At
+# that point this job needs an App installation token, not a debugging session.
 
 name: Release
 
