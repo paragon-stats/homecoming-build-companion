@@ -41,7 +41,7 @@ body:
     attributes:
       label: Deployed version
       description: >-
-        Incident-rca only — CalVer tag of the deployed release when the
+        Incident-rca only — semver tag of the deployed release when the
         incident occurred (vYYYY.0M.MICRO, e.g. v2026.03.1)
       placeholder: "v2026.03.0"
 

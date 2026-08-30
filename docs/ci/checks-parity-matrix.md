@@ -197,7 +197,7 @@ All CI workflows and their triggers.
 | sync-directives-pull.yml    | schedule               | ✓                  |                      |               |
 | issue-priority-triage.yml   | issues                 | ✓                  |                      |               |
 | validate-copilot-limits.yml | push, PR               | ✓                  |                      |               |
-| calver-tag.yml              | push to main           | ✓                  |                      |               |
+| release.yml                 | push to main           | ✓                  |                      |               |
 
 ## Sync-directives commit ordering
 

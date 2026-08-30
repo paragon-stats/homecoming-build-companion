@@ -84,7 +84,7 @@ Rules:
 |    7 | Local validation | Before commit               | Run repo hooks once via git commit (avoid double-running).                                                                                                                                                                                       | Ensure sudo token is primed if Docker-based hooks require it.                  | Pre-commit output.                       | All hooks pass.                                                |
 |    8 | Security         | New/changed code            | Run required security checks for the touched tech (see references). Fix findings and re-run.                                                                                                                                                     | Authenticate tools if prompted (when needed).                                  | Scan outputs + remediation notes.        | No new high severity issues (or explicitly accepted).          |
 |    9 | Review           | Feedback received           | Make focused fixes, keep diffs minimal, rerun validations as needed.                                                                                                                                                                             | Approve when ready.                                                            | Updated commits.                         | Required contexts are green.                                   |
-|   10 | Merge            | PR approved                 | Do not merge unless asked. Provide diff-based verification guidance under squash merges. CalVer tag `v{YYYY.0M.MICRO}` and GitHub Release are automatically created on push to main.                                                             | Perform squash merge.                                                          | Merge completed.                         | Main contains the change.                                      |
+|   10 | Merge            | PR approved                 | Do not merge unless asked. Provide diff-based verification guidance under squash merges. Semver tag `vX.Y.Z` and GitHub Release auto-created on push to main when warranted.                                                                     | Perform squash merge.                                                          | Merge completed.                         | Main contains the change.                                      |
 |   11 | Cleanup          | After merge                 | Verify branch content is in main via diff. Delete local branch and prune remotes.                                                                                                                                                                | None.                                                                          | Clean local branches.                    | No stale work branches.                                        |
 
 ## Definition of done (homelab)
@@ -103,7 +103,7 @@ Use this checklist when relevant to the change type.
   - Do not hardcode environment-sensitive values when a config or env var is the intended mechanism.
   - Run required scans for new or changed first-party code.
 - Version tagging
-  - CalVer tag and GitHub Release created on main after merge (automated by CI).
+  - Semver tag and GitHub Release created on main after merge, when the merged commit types warrant one (automated by CI).
 
 ## Setup commands
 
@@ -293,7 +293,7 @@ Single-issue PRs retain the existing flat format (`### 🚀 Features` at H3 with
 - GitHub platform standards (reviews, required contexts): docs/repository-standards/github-platform-standards.md
 - Checks parity matrix (local vs CI): docs/ci/checks-parity-matrix.md
 - CI runs pre-commit hooks in `.github/workflows/pre-commit.yml` with `SKIP` derived from `.github/precommit-hook-classification.yml` `ci_skip` and `SKIP_GIT_SIGNING_CHECK=1`.
-- CalVer tagging: .github/workflows/calver-tag.yml
+- Semver releases: .github/workflows/release.yml
 
 Bootstrap helpers:
 

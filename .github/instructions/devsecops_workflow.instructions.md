@@ -25,7 +25,9 @@ python3 -m scripts.github.<module> ...
 - Do not use `python` on Linux nodes; it may not be installed or may not point to Python 3.
 
 - Assume squash merges; verify merges using diffs, not git ancestry.
-- CalVer tagging is automated: every squash merge to `main` triggers `calver-tag.yml`. Do not create version tags manually.
+- Semver tagging is automated: every merge to `main` triggers `release.yml`, which bumps from the
+  merged commit types. `feat` bumps the minor; `fix`, `perf`, `security` and `revert` bump the
+  patch; every other type cuts no release. Do not create version tags manually.
 
 ## Start work on issue #X (ordered steps)
 

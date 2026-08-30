@@ -97,11 +97,17 @@ Store it in 1Password at `op://Homelab/mcp-github-local/credential`, matching th
 
 ## Relationship to `scripts/github/`
 
-The MCP server replaces the **agent-facing** GitHub helpers. It does not replace the
-**CI-facing** ones: GitHub Actions cannot call an MCP server, so
-[`scripts/github/create_tag.py`](../../scripts/github/create_tag.py) — invoked by
-`.github/workflows/calver-tag.yml` — stays, along with the `gh_cli` and `cli_utils` modules it
-imports.
+The MCP server replaces the **agent-facing** GitHub helpers.
+
+There is no longer a CI-facing one. `create_tag.py` existed solely for the CalVer workflow
+and validated its argument against the CalVer tag pattern, so it could not have produced a
+semver tag; both were removed when releases moved to `python-semantic-release`, which tags
+through its own action. That leaves `gh_cli.py` and `cli_utils.py` in the package with no
+production caller — a decision for the MCP adoption issue, not something this document
+settles.
+
+Note that GitHub Actions still cannot call an MCP server: MCP is an agent-side transport. Any
+future CI task needing the GitHub API uses `gh` or the REST API directly, not this server.
 
 Note that `.github/instructions/devsecops_workflow.instructions.md` and
 `docs/automation/runbooks/fix-unsigned-commits-in-pr.md` reference several `scripts.github.*`

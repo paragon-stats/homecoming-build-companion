@@ -76,21 +76,26 @@ Rationale:
 
 ## Versioning
 
-This repository uses Calendar Versioning (CalVer). CI creates an
-annotated tag on every squash merge to `main`, excluding the automated release commits produced by the workflow itself.
+This repository uses Semantic Versioning, derived from Conventional Commits. CI tags `main`
+on merge when the merged commits warrant a release.
 
 REQUIRE:
 
-- CalVer tags apply to `main` only, after squash merge.
+- Semver tags apply to `main` only, after merge.
 - Feature branches carry no version information.
 
 Guidance:
 
-- Tag format: `v{YYYY.0M.MICRO}` (e.g., `v2026.03.0`).
-- `MICRO` resets to `0` each calendar month and increments per
-  merge within a month.
-- Each squash merge into `main` triggers CI to create an automated
-  version-bump commit; the CalVer tag points to that release commit.
+- Tag format: `vX.Y.Z` (e.g., `v0.9.0`).
+- The bump comes from the commit types in the merge: `feat` bumps the minor;
+  `fix`, `perf`, `security` and `revert` bump the patch; `docs`, `test`, `ci`,
+  `chore`, `style`, `refactor` and `build` cut no release at all.
+- Below `1.0.0` a breaking change bumps the minor rather than the major. The `!` marker
+  is still written on breaking commits; it forces a major only once `1.0.0` is cut.
+- No version-bump commit is created. `project.dynamic = ["version"]` with setuptools-scm
+  means the package version is read from the tag, so the release only tags.
+- Merge commits are ignored when computing the bump: their subject is the PR title, which
+  repeats a commit already counted from the same merge.
 
 ### Namespace separation
 

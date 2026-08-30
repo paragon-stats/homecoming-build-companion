@@ -1,0 +1,77 @@
+---
+# Semver release: one bump per merge to main, derived from that merge's commit types.
+#
+# Configuration lives in pyproject.toml under [tool.semantic_release]. The version is
+# NOT written to a file: `project.dynamic = ["version"]` plus setuptools-scm means the
+# package version comes from the git tag, so this workflow only creates the tag.
+#
+# `commit = false` in the config, so nothing is pushed to main. That matters for the
+# branch ruleset: `required_signatures` governs commits reaching main, and this workflow
+# creates none. GitHub has no ruleset rule for tag-object signatures, so GITHUB_TOKEN is
+# sufficient here.
+#
+# Known gap: tags created here are not SSH-signed, while the backfilled v0.1.0-v0.8.0
+# tags are. Closing that needs a GitHub App installation token, the pattern
+# paragon-stats/paragon-stats uses. Tracked on #58; not a ruleset violation.
+
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  release:
+    name: Tag and publish
+    runs-on: ubuntu-latest
+    permissions:
+      # Creating the tag and the GitHub Release.
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          # Full history and tags: the bump is computed from the commits since the most
+          # recent tag, so a shallow clone would read the wrong range or no range at all.
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+          cache: "pip"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]'
+
+      # Reported before acting so a run that cuts nothing still says what it saw.
+      - name: Report the computed version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "last released: $(python -m semantic_release --noop version --print-last-released || echo none)"
+          echo "next version:  $(python -m semantic_release --noop version --print || echo 'no release')"
+
+      # No-op when every commit since the last tag maps to NO_RELEASE (docs, test, ci,
+      # chore, style, refactor). That is the intended behaviour, not a failure.
+      - name: Tag the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m semantic_release version --push --changelog
+
+      - name: Publish the GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m semantic_release publish
+...

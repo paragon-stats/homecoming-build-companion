@@ -18,7 +18,7 @@ Copilot instruction parallel: [`.github/instructions/devsecops_workflow.instruct
 
 ## CI security
 
-- **Workflows: least privilege.** Default `permissions: read-all`; grant `write` only on the job that needs it (e.g., `contents: write` on calver-tag).
+- **Workflows: least privilege.** Default `permissions: read-all`; grant `write` only on the job that needs it (e.g., `contents: write` on the release job).
 - **Pinned action versions.** SHA-pin third-party actions in security paths; tag pinning (`@v1`) only for first-party `actions/*` and trusted GitHub/Anthropic actions.
 - **Secrets scoped to the job that needs them.** Never expose `GITHUB_TOKEN` or `secrets.*` to a job that doesn't operationally require them.
 

@@ -22,6 +22,7 @@ dev = [
     "ruff>=0.8.0,<1.0.0",
     "mypy>=1.0.0,<2.0.0",
     "types-PyYAML>=6.0.12",
+    "python-semantic-release>=10.0.0,<11.0.0",
 ]
 
 [tool.setuptools.package-dir]
@@ -33,6 +34,44 @@ include = ["scripts*", "coh_engine*"]
 exclude = ["scripts.*.tests*", "scripts.*.fixtures*", "coh_engine.tests*"]
 
 [tool.setuptools-scm]
+
+# Releases: semver derived from Conventional Commits, one bump per merged PR.
+#
+# There is no version literal to write. `project.dynamic = ["version"]` plus
+# setuptools-scm above means the package version comes from the git tag, so this tool
+# only has to create the tag. (`paragon-stats` reaches the same outcome with MinVer.)
+# That is why no `version_variables` / `version_toml` is configured: pointing this tool
+# at a file would create a second source of truth that setuptools-scm would then ignore.
+[tool.semantic_release]
+tag_format = "v{version}"
+# Below 1.0.0 a breaking change bumps the minor, not the major. The `!` marker is still
+# written on breaking commits; it just does not force 1.0.0 while the checkpoint ladder
+# is unfinished. Flip to true when cutting 1.0.0.
+major_on_zero = false
+allow_zero_version = true
+# The release runs on `main` only; the bump comes from the commits that merge into it.
+branch = "main"
+# Nothing commits a version back to the repository: setuptools-scm reads the tag, so a
+# version-bump commit would be a no-op that also has to satisfy the signed-commit
+# ruleset. Tag and changelog only.
+commit = false
+tag = true
+build_command = ""
+
+[tool.semantic_release.commit_parser_options]
+# The release level per commit type, matching ci-templates/commit-types.yml. A type in
+# `allowed_tags` that appears in neither `minor_tags` nor `patch_tags` falls through to
+# `default_bump_level`, which is NO_RELEASE — so a docs-only or chore-only merge cuts
+# nothing. This is the behaviour git-cliff could not express.
+allowed_tags = [
+    "feat", "fix", "perf", "security", "revert",
+    "docs", "test", "ci", "chore", "style", "refactor", "build",
+]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf", "security", "revert"]
+# Merge commits carry the PR title, which repeats a commit already counted from the same
+# PR. Without this a single feature would bump twice and appear twice in the changelog.
+ignore_merge_commits = true
 
 [tool.coverage.run]
 relative_files = true
