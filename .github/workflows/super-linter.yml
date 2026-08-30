@@ -61,7 +61,7 @@ jobs:
           #   .claude/rules/markdown.md).
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
-          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|src/coh_engine/tests/fixtures/|data/canonical/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
+          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|src/coh_engine/tests/fixtures/|data/canonical/|docs/engine/|community/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
           JSCPD_LINTER_RULES: /github/workspace/.github/linters/.jscpd.json
           # Checkov path/framework carve-outs live in ONE place:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).

@@ -2,7 +2,10 @@
 
 **Status:** MUST. Applies whenever a session is asked to draft, modify, evaluate, or compare a City of Heroes build.
 
-The CoH knowledge tree at [`knowledge/coh/`](../../knowledge/coh/) is **not auto-loaded.** Loading the entire 14-AT roster + every powerset + every preference + every build goal into context for every build request would blow the context budget. Instead, the agent navigates the tree per request and loads only the files that match.
+The CoH knowledge tree at [`knowledge/coh/`](../../knowledge/coh/) is **not auto-loaded.**
+Loading the entire 14-AT roster + every powerset + every preference + every build goal into
+context for every build request would blow the context budget. Instead, the agent navigates
+the tree per request and loads only the files that match.
 
 ## When this rule fires
 
@@ -19,13 +22,13 @@ If the request doesn't involve a build, the knowledge tree stays unread.
 
 1. **Read [`knowledge/coh/INDEX.md`](../../knowledge/coh/INDEX.md) first.** This is the navigation document. It maps (AT-style → AT) and (build-goal) to the file paths to load.
 2. **Identify the request's parameters:**
-   - Archetype-style group (melee / ranged / ranged-support / control / pets / kheldian / arachnos-soldier / arachnos-widow).
-   - Specific archetype within that group.
-   - Primary powerset (with category sub-folder: melee / ranged / control / buff / pet).
-   - Secondary powerset (with category sub-folder: defense / manipulation / support / assault).
-   - Ancillary pool (if specified).
-   - Pool powers picked (Speed, Leaping, Fighting, Leadership, etc.).
-   - Build goal (max-single-target-dps, soft-cap-defense, perma-hasten, all-around, set-and-forget, etc.).
+    - Archetype-style group (melee / ranged / ranged-support / control / pets / kheldian / arachnos-soldier / arachnos-widow).
+    - Specific archetype within that group.
+    - Primary powerset (with category sub-folder: melee / ranged / control / buff / pet).
+    - Secondary powerset (with category sub-folder: defense / manipulation / support / assault).
+    - Ancillary pool (if specified).
+    - Pool powers picked (Speed, Leaping, Fighting, Leadership, etc.).
+    - Build goal (max-single-target-dps, soft-cap-defense, perma-hasten, all-around, set-and-forget, etc.).
 3. **Load only the files INDEX points to** for those parameters. Typical load for a single build request is **8–14 files**, never the whole tree.
 4. **If a file the agent needs isn't authored yet,** stop and tell the user. Don't fabricate content from training memory.
 
