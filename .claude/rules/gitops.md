@@ -17,6 +17,13 @@ Detail in [`docs/repository-standards/`](../../docs/repository-standards/) and [
 - **Signed commits.** Every commit signed (SSH or GPG). Recovery procedure: [`docs/automation/runbooks/fix-unsigned-commits-in-pr.md`](../../docs/automation/runbooks/fix-unsigned-commits-in-pr.md).
 - **No hook bypass.** `--no-verify`, `--no-gpg-sign`, `-c commit.gpgsign=false` forbidden without explicit user direction.
 - **`.github/COMMIT_TEMPLATE`** sets `git config commit.template` for the repo. Use it.
+- **`push.autoSetupRemote = true`, set `--local` by `make bootstrap`.** A first push of a new
+  branch sets its upstream instead of failing with "has no upstream branch". Git will not let a
+  repository push config to the machines that clone it, so this cannot ship in a tracked file
+  and apply itself — the bootstrap is the earliest point a clone runs repository code. The scope
+  is deliberately `--local`, so it does not override the developer's preference elsewhere.
+  Declared in `LOCAL_GIT_SETTINGS` in [`scripts/dev/bootstrap_venv.py`](../../scripts/dev/bootstrap_venv.py);
+  add repository-workflow git settings there rather than expecting each clone to set them by hand.
 
 ## Merge strategy — merge commits only
 

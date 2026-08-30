@@ -12,7 +12,9 @@ import pytest
 from scripts.dev.bootstrap_venv import (
     EXIT_FAILED,
     EXIT_OK,
+    LOCAL_GIT_SETTINGS,
     _check_pip_version,
+    _configure_local_git,
     _create_venv,
     _describe_local_bootstrap,
     _ensure_venv,
@@ -504,6 +506,33 @@ class TestRunStep:
         with patch("scripts.dev.bootstrap_venv.subprocess.run") as mock_run:
             mock_run.return_value = subprocess.CompletedProcess(args=[], returncode=1)
             assert _run_step(["fail"], cwd=tmp_path) == 1
+
+
+class TestConfigureLocalGit:
+    """Repository-workflow git settings applied to each clone by the bootstrap."""
+
+    def test_applies_each_setting_locally(self, tmp_path: Path) -> None:
+        """Every declared setting is written with --local scope, never --global.
+
+        Scope matters: --global would override the developer's preference in unrelated
+        repositories, which the bootstrap has no business doing.
+        """
+        with patch("scripts.dev.bootstrap_venv.subprocess.run") as mock_run:
+            mock_run.return_value = subprocess.CompletedProcess(args=[], returncode=0, stderr="")
+            _configure_local_git(tmp_path)
+        assert mock_run.call_count == len(LOCAL_GIT_SETTINGS)
+        for call, (key, value) in zip(mock_run.call_args_list, LOCAL_GIT_SETTINGS, strict=True):
+            assert call.args[0] == ["git", "config", "--local", key, value]
+            assert call.kwargs["cwd"] == tmp_path
+
+    def test_failure_warns_but_does_not_raise(self, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+        """A git failure is advisory: stock git behaviour is friction, not a broken bootstrap."""
+        with patch("scripts.dev.bootstrap_venv.subprocess.run") as mock_run:
+            mock_run.return_value = subprocess.CompletedProcess(
+                args=[], returncode=1, stderr="fatal: not in a git directory"
+            )
+            _configure_local_git(tmp_path)
+        assert "[WARN]" in capsys.readouterr().out
 
 
 class TestCreateVenv:

@@ -543,7 +543,43 @@ def _run_bootstrap_actions(*, repo_root: Path, venv_python: Path, plan: list[str
         if hook_rc != 0:
             return hook_rc
 
+    _configure_local_git(repo_root)
+
     return EXIT_OK
+
+
+# Repository-workflow git settings applied to every clone. Git deliberately refuses to let a
+# repository push config to the machines that clone it, so this cannot ship in a tracked file
+# and be picked up automatically -- the bootstrap is the earliest point a clone runs our code.
+#
+# Scope is deliberately --local: it configures this checkout without overriding whatever the
+# developer prefers in their other repositories.
+LOCAL_GIT_SETTINGS: tuple[tuple[str, str], ...] = (
+    # `git push` on a new branch sets its upstream instead of failing with
+    # "has no upstream branch". Branches here are short-lived and always push to origin, so
+    # the prompt is friction with no decision behind it.
+    ("push.autoSetupRemote", "true"),
+)
+
+
+def _configure_local_git(repo_root: Path) -> None:
+    """Apply the repository-workflow git settings to this clone.
+
+    Advisory: a failure here leaves the developer with stock git behaviour, which is a
+    friction, not a broken bootstrap. It must not fail the run.
+    """
+    for key, value in LOCAL_GIT_SETTINGS:
+        proc = subprocess.run(
+            ["git", "config", "--local", key, value],
+            cwd=repo_root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if proc.returncode == 0:
+            print(f"[OK] git config --local {key}={value}")
+        else:
+            print(f"[WARN] could not set git config {key}: {proc.stderr.strip()}")
 
 
 BOOTSTRAP_LOCAL_MODULE = "scripts.dev.bootstrap_local"

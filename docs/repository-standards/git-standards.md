@@ -35,6 +35,23 @@ git config --global core.safecrlf warn
 git config --global core.editor "code --wait"
 ```
 
+### Repository-workflow settings (applied by `make bootstrap`)
+
+These are set `--local` on each clone by `make bootstrap`, so no manual step is needed. They are
+listed here because git will not let a repository push configuration to the machines that clone
+it — the settings live in `LOCAL_GIT_SETTINGS` in `scripts/dev/bootstrap_venv.py`, and the
+bootstrap is the earliest point at which a clone runs repository code.
+
+```bash
+# A first push of a new branch sets its upstream, instead of failing with
+# "has no upstream branch" and asking for --set-upstream.
+git config --local push.autoSetupRemote true
+```
+
+`--local` is deliberate: it configures this checkout without overriding whatever the developer
+prefers in their other repositories. To add a repository-workflow git setting, extend
+`LOCAL_GIT_SETTINGS` rather than documenting a command for each person to run by hand.
+
 ### For Windows Developers (CRITICAL)
 
 Windows developers must run these additional commands:
