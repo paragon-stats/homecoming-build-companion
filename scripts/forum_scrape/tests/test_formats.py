@@ -11,6 +11,7 @@ from scripts.forum_scrape.scrape import (
     Artifact,
     crawl_forum,
     harvest_topic,
+    load_section_ledger,
     load_topic_ledger,
     main,
     record_section,
@@ -169,6 +170,81 @@ def test_an_empty_section_records_no_size(tmp_path: Path) -> None:
     assert not (tmp_path / "section_sizes.jsonl").exists()
 
 
+# --- ruling out a whole section on one request -------------------------------------
+
+
+def three_pages(last_activity: str = "2026-01-01T00:00:00Z") -> StubFetcher:
+    """A section whose listing runs to three pages, each carrying one thread."""
+    body = FIXTURE.read_text(encoding="utf-8")
+    return StubFetcher(
+        {
+            FORUM: paginated(TOPIC, FORUM, 3, last_activity),
+            f"{FORUM}page/2/": paginated(OTHER, FORUM, 3, "2019-01-01T00:00:00Z"),
+            f"{FORUM}page/3/": paginated(OTHER, FORUM, 3, "2019-01-01T00:00:00Z"),
+            TOPIC: body,
+            OTHER: body,
+        }
+    )
+
+
+def test_an_unchanged_section_costs_one_request(tmp_path: Path) -> None:
+    """Listings run newest-first, so page one settles it for every page behind it."""
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    again = three_pages()
+    result = crawl_forum(again, FORUM, 10, tmp_path, False, ["mbd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert result.skipped_reason == "no new posts since last crawl"
+    assert again.requested == [FORUM]  # page 2 and 3 never asked for, nor any thread
+
+
+def test_a_section_with_a_new_post_is_walked_again(tmp_path: Path) -> None:
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    again = three_pages("2026-09-07T17:15:18Z")  # someone posted since
+    result = crawl_forum(again, FORUM, 10, tmp_path, False, ["mbd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert not result.skipped_reason
+    assert f"{FORUM}page/3/" in again.requested
+
+
+def test_a_section_asked_for_a_new_format_is_walked_again(tmp_path: Path) -> None:
+    """Same decision as a thread's, because it is literally the same decision."""
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    again = three_pages()
+    result = crawl_forum(again, FORUM, 10, tmp_path, False, ["mxd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert not result.skipped_reason
+
+
+def test_a_page_one_row_of_unknown_age_withdraws_the_shortcut(tmp_path: Path) -> None:
+    """The section's newest could be that row, so its age cannot be ruled on."""
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    again = three_pages()
+    undated = f"<li class='ipsDataItem'><a href='{TOPIC}'>t</a><time datetime='2019-01-01T00:00:00Z'>x</time></li>"
+    again.pages[FORUM] = undated + paginated(OTHER, FORUM, 3)
+    result = crawl_forum(again, FORUM, 10, tmp_path, False, ["mbd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert not result.skipped_reason
+
+
+def test_a_capped_walk_records_no_freshness(tmp_path: Path) -> None:
+    """--pages 1 never saw pages 2 and 3, so its newest thread cannot speak for them."""
+    crawl_forum(three_pages(), FORUM, 1, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+    assert load_section_ledger(tmp_path)[FORUM].last_activity == ""
+
+    again = three_pages()
+    result = crawl_forum(again, FORUM, 10, tmp_path, False, ["mbd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert not result.skipped_reason
+    assert f"{FORUM}page/3/" in again.requested
+
+
+def test_force_walks_a_section_that_would_have_been_skipped(tmp_path: Path) -> None:
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    again = three_pages()
+    result = crawl_forum(again, FORUM, 10, tmp_path, True, ["mbd"], sections=load_section_ledger(tmp_path))  # type: ignore[arg-type]
+    assert not result.skipped_reason
+
+
 # --- skipping ----------------------------------------------------------------------
 
 
@@ -257,15 +333,15 @@ def test_an_unknown_timestamp_means_look_again(tmp_path: Path) -> None:
 
     Guessing would freeze those threads at whatever they held when first seen.
     """
-    from scripts.forum_scrape.scrape import TopicCoverage, is_covered
+    from scripts.forum_scrape.scrape import Coverage, is_covered
 
-    known = TopicCoverage(frozenset({"mbd"}), "2024-01-01T00:00:00Z")
+    known = Coverage(frozenset({"mbd"}), "2024-01-01T00:00:00Z")
     assert is_covered(known, ["mbd"], "2024-01-01T00:00:00Z")
     assert not is_covered(known, ["mbd"], "2026-01-01T00:00:00Z")  # newer post
     assert not is_covered(known, ["mbd", "mxd"], "2024-01-01T00:00:00Z")  # new format
     assert not is_covered(None, ["mbd"], "2024-01-01T00:00:00Z")  # never crawled
 
-    legacy = TopicCoverage(frozenset({"mbd"}), "")  # pre-freshness ledger row
+    legacy = Coverage(frozenset({"mbd"}), "")  # pre-freshness ledger row
     assert not is_covered(legacy, ["mbd"], "2024-01-01T00:00:00Z")
     assert not is_covered(known, ["mbd"], "")  # listing gave no time
 
