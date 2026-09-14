@@ -63,18 +63,19 @@ function Get-LedgerProgress {
         }
     }
 
-    $total = 0
-    $sections = 0
+    # One entry per section, latest wins. This file is append-only too, so a section
+    # walked twice has two rows and summing them doubles the denominator.
     $sizes = Join-Path $Dir 'section_sizes.jsonl'
+    $bySection = [ordered]@{}
     if (Test-Path $sizes) {
         foreach ($line in [IO.File]::ReadLines((Resolve-Path $sizes))) {
-            if ($line -match '"topics":\s*(\d+)') {
-                $total += [int]$Matches[1]
-                $sections++
+            if ($line -match '"forum_url":\s*"([^"]+)".*?"topics":\s*(\d+)') {
+                $bySection[$Matches[1]] = [int]$Matches[2]
             }
         }
     }
-    [PSCustomObject]@{ Done = $threads.Count; Total = $total; Sections = $sections }
+    $total = ($bySection.Values | Measure-Object -Sum).Sum
+    [PSCustomObject]@{ Done = $threads.Count; Total = [int]$total; Sections = $bySection.Count }
 }
 
 function Get-LineCount {
