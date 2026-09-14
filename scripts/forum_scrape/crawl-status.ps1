@@ -4,8 +4,8 @@
 
 .DESCRIPTION
     Reads each run's topic ledger and artifact index, plus the process list to tell a
-    live run from a finished one. It never contacts the forum, so it is safe to run as
-    often as you like and costs the crawl nothing.
+    live run from a finished one. It never contacts the forum, and every file is opened
+    sharing writes, so a running crawl keeps appending while this reads.
 
     The completed fraction comes from section_sizes.jsonl, which the crawl writes before it
     works through a section (see record_section in scrape.py). A run with no such file
@@ -49,6 +49,32 @@ function Get-CrawlProcess {
         } | Sort-Object Name -Unique
 }
 
+function Read-LedgerLines {
+    <#
+        Stream a ledger the crawler may be appending to, right now, from another process.
+
+        The share mode is the whole point. [IO.File]::ReadLines and Get-Content both open
+        with FileShare.Read, which denies a writer -- the crawler's next append fails with
+        PermissionError and the run dies. That is not theoretical: it killed a 19-section
+        crawl at 90.7%, ten hours in, because this script was run to look at its progress.
+        A reporting tool must not be able to do that, so the handle explicitly permits the
+        writes it is reading alongside.
+    #>
+    param([string]$Path)
+
+    $stream = [IO.FileStream]::new(
+        $Path, [IO.FileMode]::Open, [IO.FileAccess]::Read,
+        [IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete)
+    $reader = [IO.StreamReader]::new($stream)
+    try {
+        while ($null -ne ($line = $reader.ReadLine())) { $line }
+    }
+    finally {
+        $reader.Dispose()
+        $stream.Dispose()
+    }
+}
+
 function Get-LedgerProgress {
     param([string]$Dir)
 
@@ -57,8 +83,7 @@ function Get-LedgerProgress {
     $threads = [Collections.Generic.HashSet[string]]::new()
     $ledger = Join-Path $Dir 'topics.jsonl'
     if (Test-Path $ledger) {
-        # ReadLines streams; Get-Content would materialise tens of thousands of objects.
-        foreach ($line in [IO.File]::ReadLines((Resolve-Path $ledger))) {
+        foreach ($line in Read-LedgerLines (Resolve-Path $ledger)) {
             if ($line -match '"topic_url":\s*"([^"]+)"') { [void]$threads.Add($Matches[1]) }
         }
     }
@@ -68,7 +93,7 @@ function Get-LedgerProgress {
     $sizes = Join-Path $Dir 'section_sizes.jsonl'
     $bySection = [ordered]@{}
     if (Test-Path $sizes) {
-        foreach ($line in [IO.File]::ReadLines((Resolve-Path $sizes))) {
+        foreach ($line in Read-LedgerLines (Resolve-Path $sizes)) {
             if ($line -match '"forum_url":\s*"([^"]+)".*?"topics":\s*(\d+)') {
                 $bySection[$Matches[1]] = [int]$Matches[2]
             }
@@ -80,7 +105,7 @@ function Get-LedgerProgress {
 
 function Get-LineCount {
     param([string]$Path)
-    if (Test-Path $Path) { [Linq.Enumerable]::Count([IO.File]::ReadLines((Resolve-Path $Path))) } else { 0 }
+    if (Test-Path $Path) { @(Read-LedgerLines (Resolve-Path $Path)).Count } else { 0 }
 }
 
 function Show-CrawlStatus {
