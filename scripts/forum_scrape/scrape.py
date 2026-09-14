@@ -682,6 +682,9 @@ def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
     :func:`topic_rows`. Rows written before that field existed carry an empty string,
     which means "unknown", and those threads get looked at once more so they can pick one
     up. Across runs the formats union and the newest activity wins.
+
+    Section-size rows written by :func:`record_section` share the file and are skipped
+    here; they carry no ``topic_url``.
     """
     path = out_dir / _TOPIC_LEDGER
     if not path.exists():
@@ -692,7 +695,9 @@ def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
         if not line.strip():
             continue
         row = json.loads(line)
-        url = row["topic_url"]
+        url = row.get("topic_url")
+        if url is None:  # a section-size row from record_section, not a thread
+            continue
         formats.setdefault(url, set()).update(row.get("formats_requested", []))
         seen = row.get("last_activity", "")
         if seen > activity.get(url, ""):
@@ -723,15 +728,44 @@ def record_topic(
     last_activity: str = "",
 ) -> None:
     """Append this thread's coverage to the ledger: what was asked for, what turned up."""
+    _append_ledger(
+        out_dir,
+        {
+            "topic_url": topic_url,
+            "formats_requested": sorted(formats),
+            "formats_found": sorted({a.chunk_format for a in artifacts}),
+            "artifacts": len(artifacts),
+            "last_activity": last_activity,
+            "fetched_at": datetime.now(UTC).isoformat(),
+        },
+    )
+
+
+def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> None:
+    """Append one section-size row: how many listing pages and threads the section holds.
+
+    Written as soon as the listing walk finishes and before any thread is fetched, so a
+    run still in progress can be measured against it — the thread rows that follow it are
+    the numerator. Without this row the only honest answer to "how far along is it?" is a
+    live request to the site, which is the wrong way to ask.
+
+    Both numbers are kept because they answer different questions: ``pages`` is what the
+    crawl paid to enumerate the section, ``topics`` is what it still has to work through.
+    """
+    _append_ledger(
+        out_dir,
+        {
+            "forum_url": forum_url,
+            "pages": pages,
+            "topics": topics,
+            "fetched_at": datetime.now(UTC).isoformat(),
+        },
+    )
+
+
+def _append_ledger(out_dir: Path, row: dict[str, Any]) -> None:
+    """Append one row to the shared ledger file, under the write lock."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    row = {
-        "topic_url": topic_url,
-        "formats_requested": sorted(formats),
-        "formats_found": sorted({a.chunk_format for a in artifacts}),
-        "artifacts": len(artifacts),
-        "last_activity": last_activity,
-        "fetched_at": datetime.now(UTC).isoformat(),
-    }
     with _INDEX_LOCK, (out_dir / _TOPIC_LEDGER).open("a", encoding="utf-8") as ledger:
         ledger.write(json.dumps(row) + "\n")
 
@@ -843,7 +877,8 @@ def crawl_forum(
     # alias for page 2 silently re-serves page 1 rather than 404ing. Both the base and
     # the count are taken from the pagination element for the same reason.
     base = listing_base(first, forum_url)
-    for number in range(2, min(pages, last_page_number(first)) + 1):
+    page_count = min(pages, last_page_number(first))
+    for number in range(2, page_count + 1):
         listing = fetcher.get(f"{base}/page/{number}/")
         if listing is None:
             continue
@@ -853,6 +888,7 @@ def crawl_forum(
     if not targets:
         return ForumResult(forum_url, 0, 0, 0, "no topics visible")
 
+    record_section(out_dir, forum_url, page_count, len(targets))
     wanted = set(formats)
     ledger = already or {}
     found = written = skipped = 0
