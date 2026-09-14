@@ -138,7 +138,7 @@ def test_ledger_tracks_requests_not_finds(tmp_path: Path) -> None:
 
 def test_a_section_row_records_the_size_the_listing_reported(tmp_path: Path) -> None:
     record_section(tmp_path, FORUM, 26, 640)
-    row = json.loads((tmp_path / "sections.jsonl").read_text(encoding="utf-8").strip())
+    row = json.loads((tmp_path / "section_sizes.jsonl").read_text(encoding="utf-8").strip())
     assert (row["forum_url"], row["pages"], row["topics"]) == (FORUM, 26, 640)
 
 
@@ -159,14 +159,14 @@ def test_crawling_records_the_section_size_before_working_through_it(tmp_path: P
     fetcher.pages[OTHER] = FIXTURE.read_text(encoding="utf-8")
 
     crawl_forum(fetcher, FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
-    row = json.loads((tmp_path / "sections.jsonl").read_text(encoding="utf-8").strip())
+    row = json.loads((tmp_path / "section_sizes.jsonl").read_text(encoding="utf-8").strip())
     assert (row["forum_url"], row["pages"], row["topics"]) == (FORUM, 3, 2)
 
 
 def test_an_empty_section_records_no_size(tmp_path: Path) -> None:
     """Nothing to be a fraction of, so the row would only be noise."""
     crawl_forum(StubFetcher({FORUM: "<html>no topics</html>"}), FORUM, 1, tmp_path, False)  # type: ignore[arg-type]
-    assert not (tmp_path / "sections.jsonl").exists()
+    assert not (tmp_path / "section_sizes.jsonl").exists()
 
 
 # --- skipping ----------------------------------------------------------------------

@@ -156,7 +156,7 @@ BUILD_EXTENSIONS = ("mbd", "mxd")
 # is no format at all but is what many posts actually contain.
 ALL_FORMATS = ("mbd", "mxd", "text")
 _TOPIC_LEDGER = "topics.jsonl"
-_SECTION_LEDGER = "sections.jsonl"
+_SECTION_LEDGER = "section_sizes.jsonl"
 # One row of a forum listing, which pairs a topic with its started/last-posted times.
 _LISTING_ROW = re.compile(r"(?=<li[^>]*class=['\"][^'\"]*ipsDataItem)", re.I)
 # Mids wraps share-block payloads at this width; matching it keeps a rebuilt block
