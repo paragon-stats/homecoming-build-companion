@@ -138,14 +138,15 @@ def test_ledger_tracks_requests_not_finds(tmp_path: Path) -> None:
 
 def test_a_section_row_records_the_size_the_listing_reported(tmp_path: Path) -> None:
     record_section(tmp_path, FORUM, 26, 640)
-    row = json.loads((tmp_path / "topics.jsonl").read_text(encoding="utf-8").strip())
+    row = json.loads((tmp_path / "sections.jsonl").read_text(encoding="utf-8").strip())
     assert (row["forum_url"], row["pages"], row["topics"]) == (FORUM, 26, 640)
 
 
-def test_a_section_row_is_not_mistaken_for_a_thread(tmp_path: Path) -> None:
-    """Both kinds share the file, so the reader must ignore the one without a topic_url."""
+def test_a_section_row_stays_out_of_the_thread_ledger(tmp_path: Path) -> None:
+    """A per-thread file whose line count is not a thread count is a miscount waiting."""
     record_section(tmp_path, FORUM, 26, 640)
     record_topic(tmp_path, TOPIC, ["mbd"], [])
+    assert len((tmp_path / "topics.jsonl").read_text(encoding="utf-8").splitlines()) == 1
     assert set(load_topic_ledger(tmp_path)) == {TOPIC}
 
 
@@ -158,17 +159,14 @@ def test_crawling_records_the_section_size_before_working_through_it(tmp_path: P
     fetcher.pages[OTHER] = FIXTURE.read_text(encoding="utf-8")
 
     crawl_forum(fetcher, FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
-    rows = [json.loads(line) for line in (tmp_path / "topics.jsonl").read_text(encoding="utf-8").splitlines()]
-    sections = [r for r in rows if "forum_url" in r]
-    assert sections == [{**sections[0], "forum_url": FORUM, "pages": 3, "topics": 2}]
-    # It leads the thread rows it is the denominator for.
-    assert rows[0] == sections[0]
+    row = json.loads((tmp_path / "sections.jsonl").read_text(encoding="utf-8").strip())
+    assert (row["forum_url"], row["pages"], row["topics"]) == (FORUM, 3, 2)
 
 
 def test_an_empty_section_records_no_size(tmp_path: Path) -> None:
     """Nothing to be a fraction of, so the row would only be noise."""
     crawl_forum(StubFetcher({FORUM: "<html>no topics</html>"}), FORUM, 1, tmp_path, False)  # type: ignore[arg-type]
-    assert not (tmp_path / "topics.jsonl").exists()
+    assert not (tmp_path / "sections.jsonl").exists()
 
 
 # --- skipping ----------------------------------------------------------------------
