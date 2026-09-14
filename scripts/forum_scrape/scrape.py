@@ -663,14 +663,47 @@ def harvest_post(
 
 
 @dataclass(frozen=True, slots=True)
-class TopicCoverage:
-    """What a prior run did to one thread, and how fresh the thread was at the time."""
+class Coverage:
+    """What a prior run asked for, and how fresh the thing was at the time.
+
+    Holds for a single thread and for a whole forum section alike, which is the point:
+    one :func:`is_covered` decides both, so section skipping cannot drift from thread
+    skipping.
+    """
 
     formats: frozenset[str]
-    last_activity: str  # the thread's last-post time when crawled; "" if not recorded
+    last_activity: str  # last-post time when crawled; "" if not recorded
 
 
-def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
+def _load_coverage(path: Path, key: str) -> dict[str, Coverage]:
+    """Fold a ledger file into coverage per ``key``: formats union, newest activity wins."""
+    if not path.exists():
+        return {}
+    formats: dict[str, set[str]] = {}
+    activity: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        url = row[key]
+        formats.setdefault(url, set()).update(row.get("formats_requested", []))
+        seen = row.get("last_activity", "")
+        if seen > activity.get(url, ""):
+            activity[url] = seen
+    return {url: Coverage(frozenset(f), activity.get(url, "")) for url, f in formats.items()}
+
+
+def load_section_ledger(out_dir: Path) -> dict[str, Coverage]:
+    """What each forum section was asked for, and how fresh it was when that happened.
+
+    The section-level counterpart of :func:`load_topic_ledger`, and the thing that lets a
+    whole section be ruled out for the price of one request. See :func:`crawl_forum` for
+    why reading page one is enough to decide it.
+    """
+    return _load_coverage(out_dir / _SECTION_LEDGER, "forum_url")
+
+
+def load_topic_ledger(out_dir: Path) -> dict[str, Coverage]:
     """What each thread has already been *asked* for, and how current that answer is.
 
     Keyed on what was requested rather than what was found, because those differ in a way
@@ -684,24 +717,10 @@ def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
     which means "unknown", and those threads get looked at once more so they can pick one
     up. Across runs the formats union and the newest activity wins.
     """
-    path = out_dir / _TOPIC_LEDGER
-    if not path.exists():
-        return {}
-    formats: dict[str, set[str]] = {}
-    activity: dict[str, str] = {}
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
-            continue
-        row = json.loads(line)
-        url = row["topic_url"]
-        formats.setdefault(url, set()).update(row.get("formats_requested", []))
-        seen = row.get("last_activity", "")
-        if seen > activity.get(url, ""):
-            activity[url] = seen
-    return {url: TopicCoverage(frozenset(f), activity.get(url, "")) for url, f in formats.items()}
+    return _load_coverage(out_dir / _TOPIC_LEDGER, "topic_url")
 
 
-def is_covered(coverage: TopicCoverage | None, wanted: Collection[str], last_activity: str) -> bool:
+def is_covered(coverage: Coverage | None, wanted: Collection[str], last_activity: str) -> bool:
     """Whether a thread can be skipped: same formats, and nothing posted since.
 
     Skipping needs both halves to be *known*. An unknown timestamp on either side — a
@@ -738,7 +757,14 @@ def record_topic(
     )
 
 
-def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> None:
+def record_section(
+    out_dir: Path,
+    forum_url: str,
+    pages: int,
+    topics: int,
+    formats: Collection[str] = (),
+    last_activity: str = "",
+) -> None:
     """Record how big a section is: its listing page count and how many threads it holds.
 
     Written as soon as the listing walk finishes and before any thread is fetched, so a
@@ -752,6 +778,11 @@ def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> No
     Kept in its own file rather than mixed into the thread ledger. The two are read for
     different reasons at different times, and a per-thread file whose line count is not a
     thread count invites exactly the miscount this row exists to prevent.
+
+    ``formats`` and ``last_activity`` are what a later run needs to rule the whole section
+    out; :func:`crawl_forum` explains when they may be trusted. ``last_activity`` is left
+    empty for a walk that did not reach every page, because the newest thread says nothing
+    about pages that were never enumerated.
     """
     _append_ledger(
         out_dir,
@@ -760,6 +791,8 @@ def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> No
             "forum_url": forum_url,
             "pages": pages,
             "topics": topics,
+            "formats_requested": sorted(formats),
+            "last_activity": last_activity,
             "fetched_at": datetime.now(UTC).isoformat(),
         },
     )
@@ -857,7 +890,8 @@ def crawl_forum(
     out_dir: Path,
     force: bool,
     formats: Collection[str] = ALL_FORMATS,
-    already: Mapping[str, TopicCoverage] | None = None,
+    already: Mapping[str, Coverage] | None = None,
+    sections: Mapping[str, Coverage] | None = None,
 ) -> ForumResult:
     """Walk one forum section's listing pages and harvest every topic on them.
 
@@ -868,11 +902,31 @@ def crawl_forum(
     ``already`` is the topic ledger from prior runs. A thread whose requested formats have
     all been asked for before is skipped without fetching it, so a second pass for a
     different format only pays for the threads it has not covered.
+
+    ``sections`` is the section ledger, which can rule the whole section out on the
+    strength of page one. Invision orders a listing by last post, newest first, so the
+    most recently touched thread in a section is always on its first page — measured
+    across 3,033 crawled threads in two sections, there was not one row whose last-post
+    time was newer than the row above it. If nothing on page one is newer than what the
+    last run recorded, nothing anywhere in the section is, and 83 further listing fetches
+    can be skipped for the price of the one already made.
+
+    Two things withdraw that shortcut, both erring towards looking:
+
+    - A page-one row with no last-post time. The section's true newest could be that row,
+        so its age cannot be ruled on.
+    - A prior walk that did not reach every page, which records no ``last_activity`` at
+        all. Its newest thread says nothing about the pages it never enumerated.
     """
+    wanted = set(formats)
     first = fetcher.get(forum_url)
     if first is None:
         return ForumResult(forum_url, 0, 0, 0, "listing unreachable")
     targets: dict[str, str] = dict(topic_rows(first))
+
+    newest = max(targets.values(), default="") if all(targets.values()) else ""
+    if not force and is_covered((sections or {}).get(forum_url), wanted, newest):
+        return ForumResult(forum_url, 0, 0, 0, "no new posts since last crawl")
 
     # Page URLs come from the listing's own pagination, not from appending to the URL we
     # were handed: an alias section paginates under its canonical id, and asking the
@@ -890,8 +944,17 @@ def crawl_forum(
     if not targets:
         return ForumResult(forum_url, 0, 0, 0, "no topics visible")
 
-    record_section(out_dir, forum_url, page_count, len(targets))
-    wanted = set(formats)
+    # A capped walk records no freshness: page_count is what was asked for, not what the
+    # section has, and the threads past it were never seen.
+    complete = page_count >= last_page_number(first)
+    record_section(
+        out_dir,
+        forum_url,
+        page_count,
+        len(targets),
+        wanted,
+        max(targets.values(), default="") if complete and all(targets.values()) else "",
+    )
     ledger = already or {}
     found = written = skipped = 0
     for topic_url, last_activity in targets.items():
@@ -922,15 +985,17 @@ def crawl_forums(
     The shared :class:`Fetcher` keeps the combined request rate at one per ``--delay``
     no matter how many threads are running.
 
-    The topic ledger is read once here and shared: every worker needs the same view of
-    what earlier runs already covered, and re-reading it per section would be both slower
-    and inconsistent as the file grows underneath them.
+    Both ledgers are read once here and shared: every worker needs the same view of what
+    earlier runs already covered, and re-reading them per section would be both slower and
+    inconsistent as the files grow underneath them.
     """
     already = load_topic_ledger(out_dir)
+    sections = load_section_ledger(out_dir)
     results: list[ForumResult] = []
     with ThreadPoolExecutor(max_workers=max(1, workers), thread_name_prefix="forum") as pool:
         futures = {
-            pool.submit(crawl_forum, fetcher, url, pages, out_dir, force, formats, already): url for url in forum_urls
+            pool.submit(crawl_forum, fetcher, url, pages, out_dir, force, formats, already, sections): url
+            for url in forum_urls
         }
         for future in as_completed(futures):
             result = future.result()
