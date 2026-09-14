@@ -7,7 +7,7 @@
     live run from a finished one. It never contacts the forum, so it is safe to run as
     often as you like and costs the crawl nothing.
 
-    The completed fraction comes from sections.jsonl, which the crawl writes before it
+    The completed fraction comes from section_sizes.jsonl, which the crawl writes before it
     works through a section (see record_section in scrape.py). A run with no such file
     has no denominator, and its Pct column reads "-" rather than a guess.
 
@@ -65,7 +65,7 @@ function Get-LedgerProgress {
 
     $total = 0
     $sections = 0
-    $sizes = Join-Path $Dir 'sections.jsonl'
+    $sizes = Join-Path $Dir 'section_sizes.jsonl'
     if (Test-Path $sizes) {
         foreach ($line in [IO.File]::ReadLines((Resolve-Path $sizes))) {
             if ($line -match '"topics":\s*(\d+)') {
