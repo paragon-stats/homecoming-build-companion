@@ -881,6 +881,10 @@ class ForumResult:
     found: int
     written: int
     skipped_reason: str = ""
+    # Whether this run actually examined the section's threads. False when it could not
+    # look — unreachable, or every thread already covered — which is not the same as
+    # having looked and found nothing, and must not be reported as though it were.
+    looked: bool = True
 
 
 def crawl_forum(
@@ -921,12 +925,12 @@ def crawl_forum(
     wanted = set(formats)
     first = fetcher.get(forum_url)
     if first is None:
-        return ForumResult(forum_url, 0, 0, 0, "listing unreachable")
+        return ForumResult(forum_url, 0, 0, 0, "listing unreachable", looked=False)
     targets: dict[str, str] = dict(topic_rows(first))
 
     newest = max(targets.values(), default="") if all(targets.values()) else ""
     if not force and is_covered((sections or {}).get(forum_url), wanted, newest):
-        return ForumResult(forum_url, 0, 0, 0, "no new posts since last crawl")
+        return ForumResult(forum_url, 0, 0, 0, "no new posts since last crawl", looked=False)
 
     # Page URLs come from the listing's own pagination, not from appending to the URL we
     # were handed: an alias section paginates under its canonical id, and asking the
@@ -966,7 +970,7 @@ def crawl_forum(
         written += write_artifacts(artifacts, out_dir, force)
         record_topic(out_dir, topic_url, wanted, artifacts, last_activity)
     note = f"{skipped} topic(s) unchanged since last crawl" if skipped else ""
-    return ForumResult(forum_url, len(targets), found, written, note)
+    return ForumResult(forum_url, len(targets), found, written, note, looked=len(targets) > skipped)
 
 
 def crawl_forums(
@@ -1021,10 +1025,16 @@ def write_section_report(out_dir: Path, results: list[ForumResult]) -> list[str]
     reports the measurement instead of guessing: a section that turned up zero builds is
     listed with its slug, ready to paste back as ``--exclude-forum``. Re-run it after a
     wide crawl and the exclusion list becomes evidence rather than a hunch.
+
+    Only sections this run actually examined can be called barren. On a resumed run a
+    fully covered section finds nothing because there was nothing left to look at, which
+    is the opposite of evidence that it holds no builds — recommending it for exclusion
+    would have permanently blinded the crawl to Blaster, Mastermind and Scrapper, the
+    three richest sections in the set.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     ranked = sorted(results, key=lambda r: (-r.found, r.forum_url))
-    barren = [r.forum_url.rstrip("/").rsplit("/", 1)[-1] for r in ranked if r.found == 0]
+    barren = [r.forum_url.rstrip("/").rsplit("/", 1)[-1] for r in ranked if r.found == 0 and r.looked]
 
     lines = [
         "# Builds by forum section",
