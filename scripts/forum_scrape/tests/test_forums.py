@@ -124,7 +124,8 @@ def test_crawl_forum_reports_an_unreachable_section(tmp_path: Path) -> None:
     """A 403 section (guests cannot read it) is named as such, not as empty."""
     forum = f"{BASE}/forum/92-torchbearer-player-led-event-calendar/"
     result = crawl_forum(StubFetcher({}), forum, 1, tmp_path, False)  # type: ignore[arg-type]
-    assert result == ForumResult(forum, 0, 0, 0, "listing unreachable")
+    # looked=False: a section nobody could read is not a section known to be empty.
+    assert result == ForumResult(forum, 0, 0, 0, "listing unreachable", looked=False)
 
 
 def test_crawl_forum_stops_at_the_real_page_count(tmp_path: Path) -> None:

@@ -237,6 +237,32 @@ def test_a_capped_walk_records_no_freshness(tmp_path: Path) -> None:
     assert f"{FORUM}page/3/" in again.requested
 
 
+def test_a_covered_section_is_not_reported_as_barren(tmp_path: Path) -> None:
+    """Finding nothing because nothing was left to look at is not evidence of nothing."""
+    from scripts.forum_scrape.scrape import write_section_report
+
+    crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+    ledger = load_topic_ledger(tmp_path)
+    again = crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"], ledger)  # type: ignore[arg-type]
+
+    assert again.found == 0  # nothing new, because nothing was new
+    assert not again.looked
+    assert write_section_report(tmp_path, [again]) == []  # so: no exclusion advice
+
+
+def test_a_section_walked_and_empty_is_reported_as_barren(tmp_path: Path) -> None:
+    """The case the advice is actually for: every thread looked at, no builds in any."""
+    from scripts.forum_scrape.scrape import write_section_report
+
+    bare = "<article id='elComment_1'><div data-role='commentContent'>no build here</div></article>"
+    fetcher = StubFetcher({FORUM: paginated(TOPIC, FORUM, 1), TOPIC: bare})
+    result = crawl_forum(fetcher, FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
+
+    assert result.found == 0
+    assert result.looked
+    assert write_section_report(tmp_path, [result]) == ["19-mastermind"]
+
+
 def test_force_walks_a_section_that_would_have_been_skipped(tmp_path: Path) -> None:
     crawl_forum(three_pages(), FORUM, 10, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
 
