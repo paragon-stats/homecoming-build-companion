@@ -156,6 +156,7 @@ BUILD_EXTENSIONS = ("mbd", "mxd")
 # is no format at all but is what many posts actually contain.
 ALL_FORMATS = ("mbd", "mxd", "text")
 _TOPIC_LEDGER = "topics.jsonl"
+_SECTION_LEDGER = "sections.jsonl"
 # One row of a forum listing, which pairs a topic with its started/last-posted times.
 _LISTING_ROW = re.compile(r"(?=<li[^>]*class=['\"][^'\"]*ipsDataItem)", re.I)
 # Mids wraps share-block payloads at this width; matching it keeps a rebuilt block
@@ -682,9 +683,6 @@ def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
     :func:`topic_rows`. Rows written before that field existed carry an empty string,
     which means "unknown", and those threads get looked at once more so they can pick one
     up. Across runs the formats union and the newest activity wins.
-
-    Section-size rows written by :func:`record_section` share the file and are skipped
-    here; they carry no ``topic_url``.
     """
     path = out_dir / _TOPIC_LEDGER
     if not path.exists():
@@ -695,9 +693,7 @@ def load_topic_ledger(out_dir: Path) -> dict[str, TopicCoverage]:
         if not line.strip():
             continue
         row = json.loads(line)
-        url = row.get("topic_url")
-        if url is None:  # a section-size row from record_section, not a thread
-            continue
+        url = row["topic_url"]
         formats.setdefault(url, set()).update(row.get("formats_requested", []))
         seen = row.get("last_activity", "")
         if seen > activity.get(url, ""):
@@ -730,6 +726,7 @@ def record_topic(
     """Append this thread's coverage to the ledger: what was asked for, what turned up."""
     _append_ledger(
         out_dir,
+        _TOPIC_LEDGER,
         {
             "topic_url": topic_url,
             "formats_requested": sorted(formats),
@@ -742,18 +739,23 @@ def record_topic(
 
 
 def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> None:
-    """Append one section-size row: how many listing pages and threads the section holds.
+    """Record how big a section is: its listing page count and how many threads it holds.
 
     Written as soon as the listing walk finishes and before any thread is fetched, so a
-    run still in progress can be measured against it — the thread rows that follow it are
-    the numerator. Without this row the only honest answer to "how far along is it?" is a
-    live request to the site, which is the wrong way to ask.
+    run still in progress can be measured against it — the thread ledger is the numerator,
+    this is the denominator. Without this row the only honest answer to "how far along is
+    it?" is a live request to the site, which is the wrong way to ask.
 
     Both numbers are kept because they answer different questions: ``pages`` is what the
     crawl paid to enumerate the section, ``topics`` is what it still has to work through.
+
+    Kept in its own file rather than mixed into the thread ledger. The two are read for
+    different reasons at different times, and a per-thread file whose line count is not a
+    thread count invites exactly the miscount this row exists to prevent.
     """
     _append_ledger(
         out_dir,
+        _SECTION_LEDGER,
         {
             "forum_url": forum_url,
             "pages": pages,
@@ -763,10 +765,10 @@ def record_section(out_dir: Path, forum_url: str, pages: int, topics: int) -> No
     )
 
 
-def _append_ledger(out_dir: Path, row: dict[str, Any]) -> None:
-    """Append one row to the shared ledger file, under the write lock."""
+def _append_ledger(out_dir: Path, name: str, row: dict[str, Any]) -> None:
+    """Append one row to a ledger file, under the write lock."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    with _INDEX_LOCK, (out_dir / _TOPIC_LEDGER).open("a", encoding="utf-8") as ledger:
+    with _INDEX_LOCK, (out_dir / name).open("a", encoding="utf-8") as ledger:
         ledger.write(json.dumps(row) + "\n")
 
 
