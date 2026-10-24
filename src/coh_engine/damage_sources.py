@@ -12,7 +12,7 @@ against a fixture).
 Spec: issue #67.
 """
 
-from coh_engine.attack_chain import ChainOption, arcana_cast_time, plan_attack_chain
+from coh_engine.attack_chain import ChainOption, ChainPlan, arcana_cast_time, plan_attack_chain
 from coh_engine.damage_model import (
     SOURCE_AURA,
     SOURCE_CHAIN,
@@ -40,9 +40,9 @@ def attacks_for_form(ctx: DamageContext) -> tuple[ChainAttack, ...]:
     return tuple(a for a in ctx.attacks if ctx.form in a.profile.modes_required)
 
 
-def chosen_chain(ctx: DamageContext) -> ChainOption | None:
-    """The planner's pick for ``ctx``: best affordable rotation, else the best overall, else None."""
-    plan = plan_attack_chain(
+def chain_plan(ctx: DamageContext) -> ChainPlan:
+    """The planner's full result for ``ctx``: every option ranked, with its headline picks."""
+    return plan_attack_chain(
         attacks_for_form(ctx),
         stance=ctx.stance,
         movement=ctx.movement,
@@ -52,6 +52,11 @@ def chosen_chain(ctx: DamageContext) -> ChainOption | None:
         other_drain_per_sec=ctx.other_drain_per_sec,
         min_cycles=ctx.assumptions.get("chain.min_cycles", 4.0),
     )
+
+
+def chosen_chain(ctx: DamageContext) -> ChainOption | None:
+    """The planner's pick for ``ctx``: best affordable rotation, else the best overall, else None."""
+    plan = chain_plan(ctx)
     return plan.best_affordable or plan.best_overall
 
 

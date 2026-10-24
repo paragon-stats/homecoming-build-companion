@@ -12,7 +12,7 @@ import pytest
 
 from coh_engine import chain_report
 from coh_engine.archetypes import load_archetypes
-from coh_engine.attack_chain import ChainOption, arcana_cast_time
+from coh_engine.attack_chain import ChainOption, ChainPlan, arcana_cast_time
 from coh_engine.attack_profile import canonical_resolver, classify_attack
 from coh_engine.attribmod import get_modifier, load_attribmod
 from coh_engine.chain_report import (
@@ -589,7 +589,8 @@ def test_p_end_002_is_silent_when_empty_time_clears_the_minimum(monkeypatch: pyt
         time_to_empty=500.0,
         sustainable=False,
     )
-    monkeypatch.setattr(chain_report, "chosen_chain", lambda ctx: option)
+    plan = ChainPlan(Stance.MELEE, option, None, option, (option,), ())
+    monkeypatch.setattr(chain_report, "chain_plan", lambda ctx: plan)
     assert "P-END-002" not in _rules(run_chain(setup, [Stance.MELEE]))
 
 
@@ -625,6 +626,9 @@ def test_json_view_is_serialisable_and_complete() -> None:
     # Drains, but lasts the default 4 cycles, so it is affordable.
     assert melee["endurance"]["time_to_empty_s"] >= 4 * melee["rotation"]["cycle_time_s"]
     assert ranged["rotation"]["attacks"] == [MOONBEAM]
+    alternatives = melee["alternatives"]
+    assert alternatives["best_overall"]["chain_dps"] >= alternatives["best_sustainable"]["chain_dps"] > 0.0
+    assert alternatives["best_sustainable"]["sustainable"] is True
     assert melee["health"]["max_hp"] > 0.0
     assert melee["modifiers"][0]["factor"] > 1.0
     assert melee["diagnostics"][0]["rule_id"].startswith("P-")
@@ -632,6 +636,7 @@ def test_json_view_is_serialisable_and_complete() -> None:
     (bare,) = [stance_to_json(melee_only, r) for r in run_chain(melee_only, [Stance.RANGED])]
     assert bare["endurance"]["time_to_empty_s"] is None  # toggles alone: inf -> null
     assert bare["rotation"] is None
+    assert bare["alternatives"] == {"best_sustainable": None, "best_overall": None}
 
 
 def test_text_view_for_sustainable_and_draining_builds() -> None:
@@ -649,6 +654,7 @@ def test_text_view_for_sustainable_and_draining_builds() -> None:
     ):
         assert needle in text
     assert "health: max" in text
+    assert "best sustainable: " in text and "best overall: " in text
     assert "P-CHAIN-001" in text
     assert "    Scrapper_Melee.Dark_Melee.Smite: " in text  # per-item detail under its layer
     assert f"rotation: {MOONBEAM}" in stance_to_text(setup, ranged)

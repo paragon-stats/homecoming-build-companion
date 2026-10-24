@@ -30,7 +30,7 @@ from typing import Any
 
 from coh_engine import damage_plugins
 from coh_engine.archetypes import Archetype, ArchetypeDb, load_archetypes
-from coh_engine.attack_chain import ChainOption
+from coh_engine.attack_chain import ChainOption, ChainPlan
 from coh_engine.attack_profile import (
     Resolver,
     canonical_resolver,
@@ -54,7 +54,7 @@ from coh_engine.damage_model import (
     evaluate_damage,
 )
 from coh_engine.damage_reference import PowerDamageRef, load_damage_refs
-from coh_engine.damage_sources import chosen_chain
+from coh_engine.damage_sources import chain_plan
 from coh_engine.diagnostics import Diagnostic
 from coh_engine.endurance_budget import (
     HealthBudget,
@@ -518,6 +518,7 @@ class StanceReport:
     chain: ChainOption | None
     diagnostics: tuple[Diagnostic, ...]
     form: str = ""
+    plan: ChainPlan | None = None
 
 
 def available_forms(context: DamageContext) -> tuple[str, ...]:
@@ -546,10 +547,11 @@ def run_chain(
         for form in wanted:
             ctx = replace(setup.context, stance=stance, form=form)
             report = evaluate_damage(ctx)
-            chain = chosen_chain(report.remainder_context)
+            plan = chain_plan(report.remainder_context)
+            chain = plan.best_affordable or plan.best_overall
             rc = RuleContext(setup=setup, context=ctx, report=report, chain=chain, path=path)
             diagnostics = tuple(d for rule in _CHAIN_RULES for d in rule(rc))
-            results.append(StanceReport(stance, report, chain, diagnostics, form))
+            results.append(StanceReport(stance, report, chain, diagnostics, form, plan))
     return results
 
 
@@ -557,9 +559,15 @@ def _finite(value: float) -> float | None:
     return None if isinf(value) else value
 
 
+def _alternative(option: ChainOption | None) -> dict[str, Any] | None:
+    if option is None:
+        return None
+    return {"attacks": list(option.rotation), "chain_dps": option.dps, "sustainable": option.sustainable}
+
+
 def stance_to_json(setup: ChainSetup, result: StanceReport) -> dict[str, Any]:
     """One stance's report as JSON-safe data (``inf`` becomes ``null``)."""
-    report, chain, budget = result.report, result.chain, setup.context.budget
+    report, chain, budget, plan = result.report, result.chain, setup.context.budget, result.plan
     chain_drain = sum(s.end_per_sec for s in report.sources if s.source == SOURCE_CHAIN)
     return {
         "stance": result.stance.value,
@@ -572,6 +580,11 @@ def stance_to_json(setup: ChainSetup, result: StanceReport) -> dict[str, Any]:
             "gap_s": chain.gap,
             "move_time_s": chain.move_time,
             "sustainable": chain.sustainable,
+        },
+        # The planner's other headline picks, for comparison with the chosen rotation (chain DPS only).
+        "alternatives": {
+            "best_sustainable": _alternative(plan.best_sustainable if plan else None),
+            "best_overall": _alternative(plan.best_overall if plan else None),
         },
         "dps": {
             "total": report.total_dps,
@@ -620,6 +633,10 @@ def stance_to_text(setup: ChainSetup, result: StanceReport) -> str:
             f"  cycle {rot['cycle_time_s']:.2f} s, gap {rot['gap_s']:.2f} s, move {rot['move_time_s']:.2f} s, "
             f"{'sustainable' if rot['sustainable'] else 'not sustainable'}"
         )
+    for key, title in (("best_sustainable", "best sustainable"), ("best_overall", "best overall")):
+        alt = data["alternatives"][key]
+        shown = "none" if alt is None else f"{' > '.join(alt['attacks'])} (chain {alt['chain_dps']:.1f} DPS)"
+        lines.append(f"  {title}: {shown}")
     lines.append("dps (scaled; items below each layer are before modifiers):")
     for name, value in dps["layers"].items():
         label = dps["labels"].get(name)
