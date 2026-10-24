@@ -251,6 +251,14 @@ def test_toggle_damage_buff_needs_no_canonical_file(tmp_path: Path) -> None:
     ]
 
 
+def test_incarnate_powers_are_never_candidates(tmp_path: Path) -> None:
+    """Incarnate summons (Lore pets) and damage (Judgement) are out of scope (#41), even with a file."""
+    _write_power(tmp_path, "Incarnate.Lore.Knives", [{"templates": [{"attribs": ["Create_Entity"]}]}])
+    _write_power(tmp_path, "Incarnate.Judgement.Ion", [{"templates": [{"attribs": ["Energy_Dmg"]}]}])
+    refs = {"Incarnate.Lore.Knives": _ref("Incarnate.Lore.Knives"), "Incarnate.Judgement.Ion": _ref("x", 300.0)}
+    assert chain_report._candidates(refs, tmp_path) == {}
+
+
 def test_candidates_propagate_non_e35_errors(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     """Only a missing file is tolerated for a zero-signal power."""
 
@@ -342,6 +350,10 @@ def test_json_view_is_serialisable_and_complete() -> None:
         "Inherent.Inherent.Brawl",
     ]
     assert melee["dps"]["total"] > 0.0
+    chain_items = melee["dps"]["detail"]["chain"]
+    assert [i["name"] for i in chain_items] == melee["rotation"]["attacks"]
+    assert sum(i["dps"] for i in chain_items) == pytest.approx(melee["dps"]["unscaled"]["chain"], rel=1e-4)
+    assert "#31" in melee["dps"]["labels"]["chain"]
     # Drains, but lasts the default 4 cycles, so it is affordable.
     assert melee["endurance"]["time_to_empty_s"] >= 4 * melee["rotation"]["cycle_time_s"]
     assert ranged["endurance"]["time_to_empty_s"] is None  # toggles alone: inf -> null
@@ -367,6 +379,7 @@ def test_text_view_for_sustainable_and_draining_builds() -> None:
         assert needle in text
     assert "health: max" in text
     assert "P-CHAIN-001" in text
+    assert "    Scrapper_Melee.Dark_Melee.Smite: " in text  # per-item detail under its layer
     ranged_text = stance_to_text(setup, ranged)
     assert "rotation: none" in ranged_text
     assert "time to empty sustainable" in ranged_text

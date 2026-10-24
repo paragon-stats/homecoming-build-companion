@@ -137,6 +137,8 @@ def _candidates(refs: Mapping[str, PowerDamageRef], powers_root: Path) -> dict[s
     propagates). Any other power is kept only if its file exists and creates an entity: virtual powers
     such as ``Inherent.Inherent.Special_Set_Bonuses`` have no canonical file and are skipped.
     """
+    # Incarnate summons and damage are out of scope here (#41).
+    refs = {n: r for n, r in refs.items() if not n.startswith("Incarnate.")}
     found = dict(load_canonical_powers(powers_root, [n for n, r in refs.items() if _has_signal(r)]))
     for name, ref in refs.items():
         if _has_signal(ref):
@@ -430,6 +432,9 @@ def stance_to_json(setup: ChainSetup, result: StanceReport) -> dict[str, Any]:
             "total": report.total_dps,
             "layers": dict(report.scaled_dps),
             "unscaled": {s.source: s.dps for s in report.sources},
+            # Per attack (chain) or per pet, before modifiers; summing a layer gives its unscaled DPS.
+            "detail": {s.source: [{"name": n, "dps": v} for n, v in s.detail] for s in report.sources if s.detail},
+            "labels": {s.source: s.label for s in report.sources if s.label},
         },
         "modifiers": [
             {
@@ -469,8 +474,11 @@ def stance_to_text(setup: ChainSetup, result: StanceReport) -> str:
             f"  cycle {rot['cycle_time_s']:.2f} s, gap {rot['gap_s']:.2f} s, move {rot['move_time_s']:.2f} s, "
             f"{'sustainable' if rot['sustainable'] else 'not sustainable'}"
         )
-    lines.append("dps (scaled):")
-    lines += [f"  {name}: {value:.1f}" for name, value in dps["layers"].items()]
+    lines.append("dps (scaled; items below each layer are before modifiers):")
+    for name, value in dps["layers"].items():
+        label = dps["labels"].get(name)
+        lines.append(f"  {name}: {value:.1f}" + (f"  [{label}]" if label else ""))
+        lines += [f"    {item['name']}: {item['dps']:.1f}" for item in dps["detail"].get(name, ())]
     lines.append(f"  total: {dps['total']:.1f}")
     lines.append("modifiers:")
     lines += [

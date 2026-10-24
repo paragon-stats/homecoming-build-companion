@@ -30,7 +30,7 @@ SOURCE_BUFF_CAST = "buff_cast"
 
 
 def chosen_chain(ctx: DamageContext) -> ChainOption | None:
-    """The planner's pick for ``ctx``: best sustainable rotation, else the best overall, else None."""
+    """The planner's pick for ``ctx``: best affordable rotation, else the best overall, else None."""
     plan = plan_attack_chain(
         ctx.attacks,
         stance=ctx.stance,
@@ -62,7 +62,13 @@ def chain_source(ctx: DamageContext) -> SourceResult | None:
         )
         for name in option.rotation
     )
-    kind = "sustainable" if option.sustainable else "not sustainable (best overall)"
+    cycles = f32(option.time_to_empty / option.cycle_time)
+    if option.sustainable:
+        kind = "sustainable"
+    elif cycles >= ctx.assumptions.get("chain.min_cycles", 4.0):
+        kind = f"affordable: empties in {option.time_to_empty:.1f} s, {cycles:.0f} cycles"
+    else:
+        kind = f"not affordable (best overall): empties in {option.time_to_empty:.1f} s, {cycles:.1f} cycles"
     return SourceResult(
         source=SOURCE_CHAIN,
         dps=option.dps,

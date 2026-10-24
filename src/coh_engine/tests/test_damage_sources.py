@@ -93,7 +93,7 @@ def test_chain_source_sustainable_pick() -> None:
 
 
 def test_chain_falls_back_to_best_overall() -> None:
-    """When nothing is sustainable the pick is the highest-DPS option, labelled as such."""
+    """When no option lasts its minimum cycles the pick is the highest-DPS option, labelled as such."""
     ctx = _ctx(
         _attack("Heavy", end=500.0),
         budget=EnduranceBudget(max_end=100.0, recovery_per_sec=1.0, toggle_drain_per_sec=0.0),
@@ -103,7 +103,17 @@ def test_chain_falls_back_to_best_overall() -> None:
     assert not option.sustainable
     result = chain_source(ctx)
     assert result is not None
-    assert "not sustainable" in result.label
+    assert "not affordable (best overall)" in result.label
+
+
+def test_chain_label_names_an_affordable_draining_pick() -> None:
+    """A draining pick that lasts its minimum cycles is labelled affordable, with its cycle count."""
+    # Cycle 2.188 s drains 5 / 2.188 = 2.29/s against 2.0 recovery: empty in ~351 s, about 160 cycles.
+    ctx = _ctx(_attack("A"), budget=EnduranceBudget(max_end=100.0, recovery_per_sec=2.0, toggle_drain_per_sec=0.0))
+    result = chain_source(ctx)
+    assert result is not None
+    assert "affordable: empties in" in result.label
+    assert "cycles" in result.label
 
 
 def test_aura_melee_ranged_hybrid() -> None:
