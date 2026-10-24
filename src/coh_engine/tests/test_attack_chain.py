@@ -4,6 +4,7 @@ The cadence inputs (recharge/cast) are parity-validated in test_statistics; here
 rotation and gap logic — the port's own, with no Mids equivalent — is exercised directly.
 """
 
+from dataclasses import replace
 from math import inf
 
 import pytest
@@ -222,6 +223,28 @@ def test_affordable_draining_chain_outranks_a_sustainable_idle_one() -> None:
     assert len(plan.best_sustainable.rotation) == 1
     assert plan.best_affordable.dps > plan.best_sustainable.dps
     assert plan.ranked[0] == plan.best_affordable
+
+
+def test_a_debuffing_attack_earns_its_slot_through_the_other_attacks() -> None:
+    """Ranking scores debuff-adjusted DPS, so a weak -Res attack beats a stronger plain one when it lifts the chain.
+
+    Main fills every chain. Plain adds 60 damage; Debuff adds 40 but -50% res on a long duration, so
+    Main + Debuff deals (100 + 40) x 1.5 per cycle against Main + Plain's 160.
+    """
+    main = _atk("Main", damage=100, recharge=1.0)
+    plain = _atk("Plain", damage=60, recharge=1.0)
+    debuff = replace(_atk("Debuff", damage=40, recharge=1.0), target_res_debuff=0.5, target_res_debuff_duration=60.0)
+    best = _plan([main, plain, debuff], max_attacks=3).best_affordable
+    assert best is not None
+    pair = [o for o in _plan([main, plain, debuff]).ranked if len(o.rotation) == 2]
+    with_debuff = next(o for o in pair if "Debuff" in o.rotation and "Main" in o.rotation)
+    with_plain = next(o for o in pair if "Plain" in o.rotation and "Main" in o.rotation)
+    assert with_debuff.res_debuff == pytest.approx(0.5)
+    assert with_plain.res_debuff == 0.0
+    assert with_debuff.dps < with_plain.dps
+    assert with_debuff.dps * (1 + with_debuff.res_debuff) > with_plain.dps
+    ranked = _plan([main, plain, debuff]).ranked
+    assert ranked.index(with_debuff) < ranked.index(with_plain)
 
 
 def test_no_sustainable_option() -> None:

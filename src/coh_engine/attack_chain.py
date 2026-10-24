@@ -109,7 +109,8 @@ class ChainOption:
     ``cast_sum`` totals the arcana cast times; ``move_time`` is the stance-switch time per cycle
     (``switches`` crossings of the standoff); ``gap`` is idle time beyond casting and moving.
     ``dps`` and ``end_per_sec`` are already scaled by the timeline share the chain gets.
-    ``time_to_empty`` is ``inf`` when ``sustainable``.
+    ``time_to_empty`` is ``inf`` when ``sustainable``. ``res_debuff`` is the stacked target -Res the
+    rotation keeps up (each debuff at duration / cycle uptime); ranking scores ``dps * (1 + res_debuff)``.
     """
 
     rotation: tuple[str, ...]
@@ -126,6 +127,12 @@ class ChainOption:
     net_end_per_sec: float
     time_to_empty: float
     sustainable: bool
+    res_debuff: float = 0.0
+
+    @property
+    def score(self) -> float:
+        """Debuff-adjusted DPS used for ranking (a target at 0% resistance)."""
+        return f32(self.dps * (1.0 + self.res_debuff))
 
 
 @dataclass(frozen=True, slots=True)
@@ -201,6 +208,8 @@ def plan_attack_chain(
             f32(cast + a.recharge_time),
             f32(a.damage * scenario.targets_hit(a.profile)),
             a.end_cost,
+            a.target_res_debuff,
+            a.target_res_debuff_duration,
         )
         for a, cast in rows
     ]
@@ -219,6 +228,7 @@ def plan_attack_chain(
         end_per_sec = f32(f32(_f32_sum(p[5] for p in picked) / cycle_time) * scaled)
         drain = f32(other_drain_per_sec + end_per_sec)
         net = budget.net_per_sec(drain)
+        res_debuff = _f32_sum(f32(p[6] * min(1.0, f32(p[7] / cycle_time))) for p in picked if p[6] > 0.0)
         options.append(
             ChainOption(
                 rotation=tuple(p[0] for p in picked),
@@ -235,6 +245,7 @@ def plan_attack_chain(
                 net_end_per_sec=net,
                 time_to_empty=budget.time_to_empty(drain),
                 sustainable=net >= 0.0,
+                res_debuff=res_debuff,
             )
         )
 
@@ -242,10 +253,10 @@ def plan_attack_chain(
         return o.time_to_empty >= min_cycles * o.cycle_time  # a sustainable option's time to empty is inf
 
     def rank(o: ChainOption) -> tuple[bool, float, float, int, tuple[str, ...]]:
-        return (not affordable(o), -o.dps, o.gap, len(o.rotation), o.rotation)
+        return (not affordable(o), -o.score, o.gap, len(o.rotation), o.rotation)
 
     ranked = tuple(sorted(options, key=rank))
-    best_overall = min(ranked, key=lambda o: (-o.dps, o.gap, len(o.rotation), o.rotation), default=None)
+    best_overall = min(ranked, key=lambda o: (-o.score, o.gap, len(o.rotation), o.rotation), default=None)
     best_sustainable = next((o for o in ranked if o.sustainable), None)
     return ChainPlan(
         stance=stance,
