@@ -31,14 +31,13 @@ The pet damage enhancement is not computed (the engine has no Damage aspect hand
 
 from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass
-from json import loads
 from math import floor, inf
 from pathlib import Path
 from typing import Any
 
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.attack_chain import arcana_cast_time, plan_attack_chain
-from coh_engine.attack_profile import classify_attack, load_canonical_powers
+from coh_engine.attack_profile import classify_attack, load_canonical_powers, read_json
 from coh_engine.attribmod import AttribMods, get_modifier
 from coh_engine.damage_model import (
     SOURCE_PET,
@@ -161,15 +160,24 @@ def _damage_per_activation(
                 mods, classes.classes, pet_class, _table(mods, template["table"], power["full_name"]), level - 1
             )
         )
-        period, span = template["application_period"], _seconds(template["duration"])
+        period, span = template["application_period"], _seconds(template["duration"], power["full_name"])
         ticks = floor(span / period) + 1 if period > 0 and span > 0 else 1
         total += value * template["scale"] * template["magnitude"] * effect["chance"] * ticks
     return f32(total)
 
 
-def _seconds(text: str) -> float:
+def _seconds(text: str, power: str) -> float:
+    if text in ("", "UntilKilled"):  # no finite span: a single application
+        return 0.0
     number, _, unit = text.partition(" ")
-    return float(number) if unit == "seconds" else 0.0
+    try:
+        if unit == "seconds":
+            return float(number)
+    except ValueError:
+        pass
+    raise ValueError(
+        f"E62: {power} damage template duration is {text!r}, expected 'N seconds'; extend pet_damage._seconds"
+    )
 
 
 def _is_attack(power: Mapping[str, Any]) -> bool:
@@ -197,7 +205,7 @@ def build_pet_summons(
     Raises:
         ValueError: ``E60`` for a missing entity or pet power file; ``E61`` for an unknown modifier table
             or class, or a pet level below 1; ``E62`` for a summon with no usable Create_Entity data;
-            ``E64`` for a power whose role is not ``PET_SUMMON``.
+            ``E63`` for a corrupt JSON file; ``E64`` for a power whose role is not ``PET_SUMMON``.
     """
     overrides = damage_enhancement or {}
     result: list[PetSummon] = []
@@ -215,7 +223,7 @@ def build_pet_summons(
                 raise ValueError(
                     f"E60: entity {entity.name} (summoned by {name}) has no file {path}; restore the canonical entity"
                 )
-            data = loads(path.read_text(encoding="utf-8"))
+            data = read_json(path, "E63")
             pet_class = _class_index(data, classes)
             level = _pet_level(entity.table, caster_level, attribmod, classes, pet_class, name)
             names = data["defaults"]["power_full_names"]
@@ -238,7 +246,7 @@ def build_pet_summons(
                 for p in powers.values()
                 if _is_attack(p)
             )
-            pet_name = (data.get("levels") or [{}])[0].get("display_names", [entity.name])[0]
+            pet_name = ((data.get("levels") or [{}])[0].get("display_names") or [entity.name])[0]
             result.append(
                 PetSummon(
                     summon_name=name,
@@ -250,7 +258,7 @@ def build_pet_summons(
                     summon_recharge=summon.recharge_time,
                     summon_end_cost=summon.end_cost if position == 0 else 0.0,
                     damage_buff_baseline=f32(1.0 + enhancement),
-                    label=f"{entity.name} level {level}",
+                    label=f"{entity.name} level {level}" + ("" if attacks else " (no damaging attacks found)"),
                 )
             )
     return tuple(result)

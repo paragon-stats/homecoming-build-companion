@@ -18,13 +18,13 @@ Effect fields used. ``enhanced_powers.json`` effects carry ``Index``, ``EffectTy
 unenhanced scale, deliberately unused). Effects are joined on ``Index``.
 """
 
-import json
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from types import MappingProxyType
 from typing import Any
 
+from coh_engine.attack_profile import read_json
 from coh_engine.maths import f32
 
 #: The eight core damage types; Mids' positional types (Melee, Ranged, AoE, Special) are excluded.
@@ -67,8 +67,7 @@ class PowerDamageRef:
 
 
 def _read(path: Path) -> list[dict[str, Any]]:
-    with open(path, encoding="utf-8-sig") as stream:
-        records: list[dict[str, Any]] = json.load(stream)
+    records: list[dict[str, Any]] = read_json(path, "E43")
     return records
 
 
@@ -121,7 +120,7 @@ def load_damage_refs(build_dir: Path | str) -> Mapping[str, PowerDamageRef]:
 
     Raises:
         ValueError: E40 a file is missing; E41 a ``BuildIndex`` is in only one file; E42 an effect is
-            in ``powers_effects.json`` but not ``enhanced_powers.json``.
+            in ``powers_effects.json`` but not ``enhanced_powers.json``; E43 a file is not valid JSON.
     """
     root = Path(build_dir)
     for name in _FILES:

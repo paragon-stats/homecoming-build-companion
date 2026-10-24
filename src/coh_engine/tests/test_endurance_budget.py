@@ -53,10 +53,25 @@ def test_loader_populates_every_totals_field() -> None:
     """Every TotalStatistics field is mapped from the JSON, so none is silently left at default."""
     totals, _ = load_mids_totals(TOTALS_JSON)
     raw = _raw()["Totals"]
-    for key, attr in (*MIDS_TOTALS_VECTOR_FIELDS.items(), *MIDS_TOTALS_SCALAR_FIELDS.items()):
-        assert key in raw
-        assert hasattr(totals, attr)
+    for key, attr in MIDS_TOTALS_SCALAR_FIELDS.items():
+        assert getattr(totals, attr) == f32(raw[key]), key
+    for key, attr in MIDS_TOTALS_VECTOR_FIELDS.items():
+        assert getattr(totals, attr) == [f32(v) for v in raw[key]], key
     assert len(MIDS_TOTALS_VECTOR_FIELDS) + len(MIDS_TOTALS_SCALAR_FIELDS) == len(fields(TotalStatistics))
+
+
+@pytest.mark.parametrize("content", ["", '{"Totals": {', "not json"])
+def test_corrupt_totals_file_is_e33(tmp_path: Path, content: str) -> None:
+    path = tmp_path / "totals.json"
+    path.write_text(content, encoding="utf-8")
+    with pytest.raises(ValueError, match=r"E33: .*totals\.json is not valid JSON"):
+        load_mids_totals(path)
+
+
+def test_corrupt_archetype_file_is_e33(tmp_path: Path) -> None:
+    (tmp_path / "tanker.json").write_text("", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"E33: .*tanker\.json is not valid JSON"):
+        load_canonical_caps(tmp_path, "Class_Tanker")
 
 
 def test_loader_accepts_str_path() -> None:

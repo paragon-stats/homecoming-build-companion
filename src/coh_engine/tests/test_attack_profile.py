@@ -167,6 +167,38 @@ def test_empty_file_is_skipped_and_fallback_finds_the_real_one(tmp_path: Path) -
     assert load_canonical_powers(tmp_path, ["A.B.Both"])["A.B.Both"]["full_name"] == "A.B.Both"
 
 
+def test_bom_prefixed_file_loads(tmp_path: Path) -> None:
+    path = _write(tmp_path, "A.B.Bom", "")
+    path.write_bytes(b"\xef\xbb\xbf" + json.dumps({"full_name": "A.B.Bom"}).encode())
+    assert load_canonical_powers(tmp_path, ["A.B.Bom"])["A.B.Bom"]["full_name"] == "A.B.Bom"
+
+
+def test_corrupt_file_alone_is_e38_with_path(tmp_path: Path) -> None:
+    path = _write(tmp_path, "A.B.Bad", "{")
+    with pytest.raises(ValueError, match=r"E38: .*bad\.json is not valid JSON") as info:
+        load_canonical_powers(tmp_path, ["A.B.Bad"])
+    assert str(path) in str(info.value)
+
+
+def test_corrupt_unrelated_candidate_is_skipped_when_another_matches(tmp_path: Path) -> None:
+    _write(tmp_path, "A.B.Both", "")  # empty derived file forces the rglob fallback
+    unrelated = json.dumps({"full_name": "X.Y.Both"})
+    for folder, content in (("aaa", "{"), ("mmm", unrelated), ("zzz", json.dumps({"full_name": "A.B.Both"}))):
+        other = tmp_path / folder / "both.json"
+        other.parent.mkdir()
+        other.write_text(content, encoding="utf-8")
+    assert load_canonical_powers(tmp_path, ["A.B.Both"])["A.B.Both"]["full_name"] == "A.B.Both"
+
+
+def test_corrupt_candidate_with_no_match_is_e38(tmp_path: Path) -> None:
+    _write(tmp_path, "A.B.Both", "")
+    other = tmp_path / "aaa" / "both.json"
+    other.parent.mkdir()
+    other.write_text("{", encoding="utf-8")
+    with pytest.raises(ValueError, match="E38"):
+        load_canonical_powers(tmp_path, ["A.B.Both"])
+
+
 def test_empty_file_alone_is_e35(tmp_path: Path) -> None:
     _write(tmp_path, "A.B.Empty", "")
     with pytest.raises(ValueError, match="E35"):

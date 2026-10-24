@@ -19,12 +19,12 @@ canonical endurance cap when one is supplied (CLAUDE.md B5: canonical wins on nu
 Spec: docs/engine/mids-port-spec.md; error-output.md.
 """
 
-import json
 from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
 from coh_engine.archetypes import Archetype
+from coh_engine.attack_profile import read_json
 from coh_engine.base_totals import TotalStatistics
 from coh_engine.damage_model import EnduranceBudget
 from coh_engine.maths import f32
@@ -83,7 +83,7 @@ def load_canonical_caps(archetypes_dir: Path, class_name: str) -> tuple[float, f
     """The AT's hard caps at level 50 from canonical ``attrib_max_max``: (max endurance, max HP).
 
     Raises:
-        ValueError: ``E32`` if no canonical archetype file exists for ``class_name``.
+        ValueError: ``E32`` if no canonical archetype file exists for ``class_name``; ``E33`` if it is not valid JSON.
     """
     path = archetypes_dir / f"{class_name.removeprefix('Class_').lower()}.json"
     if not path.is_file():
@@ -91,7 +91,7 @@ def load_canonical_caps(archetypes_dir: Path, class_name: str) -> tuple[float, f
             f"E32: no canonical archetype file {path} for {class_name}; pass the AT class name "
             "(e.g. Class_Arachnos_Soldier) or restore data/canonical/archetypes"
         )
-    caps = json.loads(path.read_text(encoding="utf-8"))["attrib_max_max"]
+    caps = read_json(path, "E33")["attrib_max_max"]
     return f32(caps["endurance"][_LEVEL_50]), f32(caps["hit_points"][_LEVEL_50])
 
 
@@ -156,11 +156,10 @@ def load_mids_totals(path: Path | str) -> tuple[TotalStatistics, TotalStatistics
     dump carries that ``TotalStatistics`` has no field for are ignored.
 
     Raises:
-        ValueError: ``E31`` if a section or a field ``TotalStatistics`` needs is missing.
+        ValueError: ``E31`` if a section or a field ``TotalStatistics`` needs is missing; ``E33`` if the file is not valid JSON.
     """
     path = Path(path)
-    with open(path, encoding="utf-8-sig") as fh:
-        data: dict[str, Any] = json.load(fh)
+    data: dict[str, Any] = read_json(path, "E33")
     totals = _totals_from(_required(data, "Totals", "<file>", path), "Totals", path)
     capped = _totals_from(_required(data, "TotalsCapped", "<file>", path), "TotalsCapped", path)
     return totals, capped

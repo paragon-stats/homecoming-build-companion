@@ -408,3 +408,93 @@ def test_unusable_summon_data_is_e62(tmp_path: Path, effects: list[dict[str, Any
     summon = _tree(tmp_path, effects, entity=False, pets=False)
     with pytest.raises(ValueError, match=f"E62: .*{message}"):
         build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
+
+
+def test_unparseable_damage_duration_is_e62(tmp_path: Path) -> None:
+    summon = _tree(tmp_path, _create())
+    for text in ("5 minutes", "abc seconds"):
+        zap = _power("Tst.Set.Zap", [_effect(_damage(duration=text))])
+        _write(tmp_path, "powers", "Tst.Set.Zap", zap)
+        with pytest.raises(ValueError, match=f"E62: Tst.Set.Zap damage template duration is '{text}'"):
+            build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
+
+
+def test_empty_damage_duration_is_a_single_tick(tmp_path: Path) -> None:
+    summon = _tree(tmp_path, _create())
+    _write(tmp_path, "powers", "Tst.Set.Zap", _power("Tst.Set.Zap", [_effect(_damage(duration=""))]))
+    (pet,) = build_pet_summons(
+        [summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES, damage_enhancement={"Tst.Set.Summon": 0.0}
+    )
+    assert pet.pet_attacks[0].damage == pytest.approx(44.488, rel=1e-5)
+
+
+def test_chance_and_magnitude_scale_template_damage(tmp_path: Path) -> None:
+    summon = _tree(tmp_path, _create())
+    zap = _power("Tst.Set.Zap", [_effect(_damage(magnitude=2.0), chance=0.5)])
+    _write(tmp_path, "powers", "Tst.Set.Zap", zap)
+    (pet,) = build_pet_summons(
+        [summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES, damage_enhancement={"Tst.Set.Summon": 0.0}
+    )
+    assert pet.pet_attacks[0].damage == pytest.approx(44.488 * 2.0 * 0.5, rel=1e-5)
+
+
+def test_corrupt_entity_file_is_e63(tmp_path: Path) -> None:
+    summon = _tree(tmp_path, _create())
+    path = tmp_path / "entities" / "tst_pet.json"
+    path.write_text("{", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"E63: .*tst_pet\.json is not valid JSON"):
+        build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
+
+
+def test_empty_display_names_fall_back_to_entity_name(tmp_path: Path) -> None:
+    summon = _tree(tmp_path, _create())
+    path = tmp_path / "entities" / "tst_pet.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["levels"] = [{"display_names": []}]
+    path.write_text(json.dumps(data), encoding="utf-8")
+    (pet,) = build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
+    assert pet.pet_name == "Tst_Pet"
+
+
+@pytest.mark.parametrize("names", [[], ["Tst.Set.Aura"]])
+def test_pet_without_damaging_attacks_is_labelled(tmp_path: Path, names: list[str]) -> None:
+    summon = _tree(tmp_path, _create())
+    path = tmp_path / "entities" / "tst_pet.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["defaults"]["power_full_names"] = names
+    path.write_text(json.dumps(data), encoding="utf-8")
+    (pet,) = build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
+    assert pet.pet_attacks == ()
+    assert "no damaging attacks found" in pet.label
+
+
+def test_one_attack_pet_dps_matches_hand_derivation() -> None:
+    """100 damage, 1.0 s cast, 1.0 s recharge: cycle 1.188 + 1.0 = 2.188 s, so 100 / 2.188 per pet."""
+    result = pet_source(_ctx(_pet(duration=inf, count=3)))
+    assert result is not None
+    assert result.dps == pytest.approx(3 * 100.0 / 2.188, rel=1e-5)
+    timed = pet_source(_ctx(_pet(duration=240.0, count=3, recharge=600.0)))
+    assert timed is not None
+    assert timed.dps == pytest.approx(3 * 100.0 / 2.188 * 240.0 / (arcana_cast_time(2.03) + 600.0), rel=1e-5)
+
+
+def test_aoe_pet_attack_scales_with_scenario_targets() -> None:
+    profile = AttackProfile("P.Burst", Delivery.MELEE, Shape.PBAOE, Role.CHAIN, 0.0, 10.0, 0.0, 0)
+    aoe = PetSummon("S", "P", (ChainAttack("P.Burst", 100.0, 1.0, 1.0, 0.0, profile),), 1, inf, 0.0, 5.0, 0.0)
+
+    def dps(targets: int) -> float:
+        ctx = DamageContext(
+            attacks=(),
+            budget=UNLIMITED,
+            stance=Stance.MELEE,
+            scenario=Scenario(targets=targets),
+            movement=MOVEMENT,
+            archetype_class="Class_Test",
+            pets=(aoe,),
+        )
+        result = pet_source(ctx)
+        assert result is not None
+        return result.dps
+
+    assert dps(5) == pytest.approx(5 * dps(1), rel=1e-5)
+    assert dps(1) == pytest.approx(100.0 / 2.188, rel=1e-5)

@@ -112,9 +112,19 @@ def test_target_res_debuff_all_types(tmp_path: Path) -> None:
 
 def test_target_res_debuff_takes_weakest_type(tmp_path: Path) -> None:
     effects = _res(-0.3)
-    effects[0]["mag"] = -0.1
+    effects[-1]["mag"] = -0.1  # weakest type last, so "first" and "weakest" differ
+    effects[-1]["dur"] = 7
     ref = load_damage_refs(_dump(tmp_path, _power("P.Weak", effects)))["P.Weak"]
     assert ref.target_res_debuff == f32(0.1)
+    assert ref.target_res_debuff_duration == 7
+
+
+@pytest.mark.parametrize("name", ["enhanced_powers.json", "powers_effects.json"])
+def test_corrupt_dump_file_is_e43(tmp_path: Path, name: str) -> None:
+    root = _dump(tmp_path, _power("P.Any", []))
+    (root / name).write_text("", encoding="utf-8")
+    with pytest.raises(ValueError, match=f"E43: .*{name.replace('.', chr(92) + '.')} is not valid JSON"):
+        load_damage_refs(root)
 
 
 def test_partial_type_debuff_and_resistance_buff_are_ignored(tmp_path: Path) -> None:

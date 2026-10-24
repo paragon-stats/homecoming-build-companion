@@ -34,7 +34,7 @@ Spec: issue #67 (planner core). Novel to the port: no Mids parity reference.
 """
 
 from collections.abc import Iterable, Iterator, Mapping
-from json import loads
+from json import JSONDecodeError, loads
 from pathlib import Path
 from typing import Any
 
@@ -54,6 +54,16 @@ _MELEE_CATEGORIES = frozenset({"Melee Damage", "Melee AoE Damage"})
 _RANGED_CATEGORIES = frozenset({"Ranged Damage", "Ranged AoE Damage", "Sniper Attacks"})
 
 
+def read_json(path: Path, code: str) -> Any:
+    """Parse a JSON file (BOM tolerated); a corrupt file raises ``ValueError`` ``<code>`` naming the path."""
+    try:
+        return loads(path.read_text(encoding="utf-8-sig"))
+    except JSONDecodeError as error:
+        raise ValueError(
+            f"{code}: {path} is not valid JSON ({error}); re-run tools/mids-dump or restore the file"
+        ) from error
+
+
 def load_canonical_powers(powers_root: Path, full_names: Iterable[str]) -> Mapping[str, Mapping[str, Any]]:
     """Load canonical power JSON for each full name.
 
@@ -61,7 +71,8 @@ def load_canonical_powers(powers_root: Path, full_names: Iterable[str]) -> Mappi
     missing or empty (0-byte NTFS-stream placeholders) fall back to a file-name search of the tree.
 
     Raises:
-        ValueError: ``E35`` naming every full name with no non-empty canonical file.
+        ValueError: ``E35`` naming every full name with no non-empty canonical file; ``E38`` for a
+            corrupt file when no other candidate matches.
     """
     found: dict[str, Mapping[str, Any]] = {}
     missing: list[str] = []
@@ -70,9 +81,19 @@ def load_canonical_powers(powers_root: Path, full_names: Iterable[str]) -> Mappi
         candidates = [powers_root.joinpath(*segments).with_suffix(".json")]
         if not candidates[0].is_file() or candidates[0].stat().st_size == 0:
             candidates = [p for p in powers_root.rglob(f"{segments[-1]}.json") if p.stat().st_size > 0]
-        data = next(
-            (d for p in candidates if (d := loads(p.read_text(encoding="utf-8"))).get("full_name") == name), None
-        )
+        data = None
+        corrupt: ValueError | None = None
+        for p in candidates:
+            try:
+                parsed = read_json(p, "E38")
+            except ValueError as error:
+                corrupt = error  # a corrupt same-named file is skipped if another candidate matches
+                continue
+            if parsed.get("full_name") == name:
+                data = parsed
+                break
+        if data is None and corrupt is not None:
+            raise corrupt
         if data is None:
             missing.append(name)
         else:
