@@ -20,9 +20,10 @@ converts to miles per hour only for display (``Statistics.cs:141-143``: ``FeetPe
 
 import dataclasses
 import json
+import re
 from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, replace
-from math import isinf
+from math import isfinite, isinf
 from pathlib import Path
 from types import MappingProxyType
 from typing import Any
@@ -81,9 +82,10 @@ def parse_assumptions(items: Iterable[str]) -> dict[str, float]:
             value = float(raw)
         except ValueError:
             value = None
-        if value is None or not key.strip():
+        if value is None or not isfinite(value) or not key.strip():
             raise ValueError(
-                f"E67: assumption {item!r} is not KEY=VALUE with a numeric value; write e.g. --assume Brute.fury=0.5"
+                f"E67: assumption {item!r} is not KEY=VALUE with a finite numeric value; "
+                "write e.g. --assume Class_Brute.fury_level=50"
             )
         out[key.strip()] = value
     return out
@@ -98,7 +100,7 @@ def parse_target(text: str) -> Scenario:
     if text == "single":
         return Scenario(targets=1)
     head, _, count = text.partition(":")
-    if head == "spawn" and count.isdigit() and int(count) >= 1:
+    if head == "spawn" and re.fullmatch(r"\d+", count, re.ASCII) and int(count) >= 1:
         return Scenario(targets=int(count))
     raise ValueError(f"E68: target {text!r} is neither 'single' nor 'spawn:N' (N >= 1); write e.g. --target spawn:5")
 
@@ -107,7 +109,8 @@ def parse_target(text: str) -> Scenario:
 class ChainSetup:
     """Everything loaded once for a build; stance-specific contexts derive from ``context``.
 
-    ``clicks_always_on`` records that no clicks-off dump was found.
+    ``clicks_always_on`` records that no clicks-off dump was found. ``skipped`` holds the (power, reason)
+    of every power left out of the model other than virtual inherents and incarnates.
     """
 
     context: DamageContext
@@ -116,6 +119,7 @@ class ChainSetup:
     breakpoints: Mapping[str, Any]
     clicks_always_on: bool
     source: str
+    skipped: tuple[tuple[str, str], ...] = ()
 
 
 def _creates_entity(effects: Sequence[Mapping[str, Any]]) -> bool:
@@ -130,16 +134,25 @@ def _has_signal(ref: PowerDamageRef) -> bool:
     return bool(ref.damage_per_activation or click_buff or ref.target_res_debuff)
 
 
-def _candidates(refs: Mapping[str, PowerDamageRef], powers_root: Path) -> dict[str, Mapping[str, Any]]:
-    """Canonical files of the powers worth classifying.
+def _reportable(name: str) -> bool:
+    """Whether a skipped power is worth reporting: virtual inherents and incarnates are expected to be skipped."""
+    return not name.startswith(("Inherent.", "Incarnate."))
+
+
+def _candidates(
+    refs: Mapping[str, PowerDamageRef], powers_root: Path
+) -> tuple[dict[str, Mapping[str, Any]], tuple[tuple[str, str], ...]]:
+    """Canonical files of the powers worth classifying, and the (name, reason) of those skipped.
 
     A power with damage, a self damage buff or a target -Res debuff must have a canonical file (``E35``
-    propagates). Any other power is kept only if its file exists and creates an entity: virtual powers
-    such as ``Inherent.Inherent.Special_Set_Bonuses`` have no canonical file and are skipped.
+    propagates). Any other power is kept only if its file exists and creates an entity; one with no
+    canonical file is skipped and reported, except virtual inherents such as
+    ``Inherent.Inherent.Special_Set_Bonuses``.
     """
     # Incarnate summons and damage are out of scope here (#41).
     refs = {n: r for n, r in refs.items() if not n.startswith("Incarnate.")}
     found = dict(load_canonical_powers(powers_root, [n for n, r in refs.items() if _has_signal(r)]))
+    skipped: list[tuple[str, str]] = []
     for name, ref in refs.items():
         if _has_signal(ref):
             continue
@@ -147,17 +160,20 @@ def _candidates(refs: Mapping[str, PowerDamageRef], powers_root: Path) -> dict[s
             power = load_canonical_powers(powers_root, [name])[name]
         except ValueError as error:
             if str(error).startswith("E35"):
+                if _reportable(name):
+                    skipped.append((name, "no canonical file (E35)"))
                 continue
             raise
         if _creates_entity(power["effects"]):
             found[name] = power
-    return found
+    return found, tuple(skipped)
 
 
 def _attacks(
     refs: Mapping[str, PowerDamageRef], canonical_root: Path, melee_range_ft_max: float
-) -> tuple[ChainAttack, ...]:
-    powers = _candidates(refs, canonical_root / "powers")
+) -> tuple[tuple[ChainAttack, ...], tuple[tuple[str, str], ...]]:
+    powers, skipped = _candidates(refs, canonical_root / "powers")
+    skipped_list = list(skipped)
     attacks: list[ChainAttack] = []
     for name, ref in refs.items():
         if name not in powers:
@@ -166,6 +182,8 @@ def _attacks(
             profile = classify_attack(powers[name], melee_range_ft_max=melee_range_ft_max)
         except ValueError as error:
             if str(error).startswith("E37"):
+                if _reportable(name):
+                    skipped_list.append((name, f"not classifiable as an attack ({error})"))
                 continue
             raise
         attacks.append(
@@ -183,7 +201,7 @@ def _attacks(
                 target_res_debuff_duration=ref.target_res_debuff_duration,
             )
         )
-    return tuple(attacks)
+    return tuple(attacks), tuple(skipped_list)
 
 
 def _speed(capped: TotalStatistics, move: str) -> float:
@@ -252,7 +270,7 @@ def build_chain_setup(
         raise ValueError(f"E65: class {class_name!r} is not in {mids_dir / 'archetypes.json'}; re-dump the build")
     archetype: Archetype = classes.classes[index]
 
-    attacks = _attacks(load_damage_refs(source), canonical, float(universal["melee_range_ft_max"]))
+    attacks, skipped = _attacks(load_damage_refs(source), canonical, float(universal["melee_range_ft_max"]))
     if not any(a.profile.role is not Role.PET_SUMMON for a in attacks):
         raise ValueError(f"E71: no power in {source} deals damage or buffs damage; point the build at an attacker")
     summons = [a for a in attacks if a.profile.role is Role.PET_SUMMON]
@@ -291,6 +309,7 @@ def build_chain_setup(
         breakpoints=breakpoints,
         clicks_always_on=source == build_dir,
         source=str(source),
+        skipped=skipped,
     )
 
 
@@ -381,6 +400,18 @@ def _rule_chain_002(rc: RuleContext) -> Iterator[Diagnostic]:
             yield Diagnostic(rule_id="P-CHAIN-002", severity="info", message=message, path=rc.path)
 
 
+@chain_rule
+def _rule_chain_002_skipped(rc: RuleContext) -> Iterator[Diagnostic]:
+    for name, reason in rc.setup.skipped:
+        yield Diagnostic(
+            rule_id="P-CHAIN-002",
+            severity="info",
+            message=f"power {name} is not modelled: {reason}",
+            path=rc.path,
+            fix=f"check {name} against canonical data; its damage is missing from every layer until it is classified",
+        )
+
+
 @dataclass(frozen=True, slots=True)
 class StanceReport:
     """One stance's evaluated model, its rotation, and its diagnostics."""
@@ -397,13 +428,7 @@ def run_chain(setup: ChainSetup, stances: Sequence[Stance], *, path: str = "buil
     for stance in stances:
         ctx = replace(setup.context, stance=stance)
         report = evaluate_damage(ctx)
-        beside = [s for s in report.sources if s.source != SOURCE_CHAIN]
-        rest = replace(
-            ctx,
-            timeline_available=f32(ctx.timeline_available - sum(s.timeline_share for s in beside)),
-            other_drain_per_sec=f32(sum(s.end_per_sec for s in beside)),
-        )
-        chain = chosen_chain(rest)
+        chain = chosen_chain(report.remainder_context)
         rc = RuleContext(setup=setup, context=ctx, report=report, chain=chain, path=path)
         results.append(StanceReport(stance, report, chain, tuple(d for rule in _CHAIN_RULES for d in rule(rc))))
     return results

@@ -81,6 +81,10 @@ def chain_source(ctx: DamageContext) -> SourceResult | None:
 def _melee_share(ctx: DamageContext) -> float:
     """Fraction of time the character stands where a damage aura reaches foes.
 
+    Under the hybrid stance it is derived from the chosen rotation: 0 when no attack in it needs the
+    melee position, 1 when all do, otherwise the melee attacks' arcana cast time plus half the move
+    time, over the cycle. ``hybrid.melee_share`` in the assumptions overrides that.
+
     Raises:
         ValueError: ``E56`` if ``hybrid.melee_share`` lies outside [0, 1].
     """
@@ -88,10 +92,22 @@ def _melee_share(ctx: DamageContext) -> float:
         return 1.0
     if ctx.stance is Stance.RANGED:
         return 0.0
-    share = ctx.assumptions.get("hybrid.melee_share", 0.5)
-    if not 0.0 <= share <= 1.0:
-        raise ValueError(f"E56: assumption hybrid.melee_share={share} is outside [0, 1]; set it within that range")
-    return share
+    if "hybrid.melee_share" in ctx.assumptions:
+        share = ctx.assumptions["hybrid.melee_share"]
+        if not 0.0 <= share <= 1.0:
+            raise ValueError(f"E56: assumption hybrid.melee_share={share} is outside [0, 1]; set it within that range")
+        return share
+    chain = chosen_chain(ctx)
+    if chain is None:
+        return 0.0
+    melee = {a.full_name: a for a in ctx.attacks if a.profile.needs_melee_position}
+    melee_names = [n for n in chain.rotation if n in melee]
+    if not melee_names:
+        return 0.0
+    if len(melee_names) == len(chain.rotation):
+        return 1.0
+    in_melee = f32(sum(arcana_cast_time(melee[n].cast_time) for n in melee_names) + chain.move_time / 2.0)
+    return f32(in_melee / chain.cycle_time)
 
 
 @damage_source()
@@ -121,7 +137,7 @@ def aura_source(ctx: DamageContext) -> SourceResult | None:
         source=SOURCE_AURA,
         dps=f32(sum(d for _, d in detail)),
         detail=tuple(detail),
-        label=f"damage auras at melee share {share}; per-tick damage assumed",
+        label=f"damage auras at melee share {share:.2f}; per-tick damage assumed",
     )
 
 
@@ -134,7 +150,8 @@ def _cadence(a: ChainAttack) -> tuple[float, float]:
 @damage_source()
 def patch_source(ctx: DamageContext) -> SourceResult | None:
     """Location patches cast on cooldown; placeable at range, so every stance gets them."""
-    patches = ctx.by_role(Role.PATCH)
+    # Decoys and placed devices deal no damage here; debuff patches are modelled separately (Wave S).
+    patches = tuple(a for a in ctx.by_role(Role.PATCH) if a.damage > 0.0)
     if not patches:
         return None
     detail: list[tuple[str, float]] = []

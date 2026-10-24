@@ -116,22 +116,65 @@ def test_chain_label_names_an_affordable_draining_pick() -> None:
     assert "cycles" in result.label
 
 
-def test_aura_melee_ranged_hybrid() -> None:
-    """MELEE counts the aura fully, RANGED drops it, HYBRID uses melee_share (default 0.5)."""
-    aura = _aura()
-    full = aura_source(_ctx(aura))
+_AURA_FULL = 10.0 * 3 / 2.0  # damage x foes in reach / tick period
+
+
+def _melee_hit(name: str = "M") -> ChainAttack:
+    return _attack(name, delivery=Delivery.MELEE, recharge=10.0)
+
+
+def _ranged_hit(name: str = "R") -> ChainAttack:
+    return _attack(name, recharge=10.0)
+
+
+def test_aura_melee_counts_fully_and_ranged_drops_it() -> None:
+    """MELEE counts the aura fully; RANGED drops it."""
+    full = aura_source(_ctx(_aura()))
     assert full is not None
-    assert full.dps == pytest.approx(10.0 * 3 / 2.0)
+    assert full.dps == pytest.approx(_AURA_FULL)
     assert full.end_per_sec == 0.0
     assert full.timeline_share == 0.0
     assert full.detail == (("Aura", full.dps),)
-    assert aura_source(_ctx(aura, stance=Stance.RANGED)) is None
-    half = aura_source(_ctx(aura, stance=Stance.HYBRID))
-    assert half is not None
-    assert half.dps == pytest.approx(full.dps * 0.5)
-    quarter = aura_source(_ctx(aura, stance=Stance.HYBRID, assumptions={"hybrid.melee_share": 0.25}))
-    assert quarter is not None
-    assert quarter.dps == pytest.approx(full.dps * 0.25)
+    assert aura_source(_ctx(_aura(), stance=Stance.RANGED)) is None
+
+
+def test_hybrid_aura_share_is_zero_for_an_all_ranged_rotation() -> None:
+    """A rotation with no melee-position attack never stands where the aura reaches."""
+    assert aura_source(_ctx(_aura(), _ranged_hit(), stance=Stance.HYBRID)) is None
+
+
+def test_hybrid_aura_share_is_zero_without_any_chain_attack() -> None:
+    """With no chain attack there is no rotation to stand in melee for."""
+    assert aura_source(_ctx(_aura(), stance=Stance.HYBRID)) is None
+
+
+def test_hybrid_aura_share_is_one_for_an_all_melee_rotation() -> None:
+    """A rotation of melee-position attacks only keeps the character in melee all cycle."""
+    result = aura_source(_ctx(_aura(), _melee_hit(), stance=Stance.HYBRID))
+    assert result is not None
+    assert result.dps == pytest.approx(_AURA_FULL)
+
+
+def test_hybrid_aura_share_of_a_mixed_rotation_is_melee_time_over_cycle() -> None:
+    """Melee casts plus half the move time, over the cycle."""
+    ctx = _ctx(_aura(), _melee_hit(), _ranged_hit(), stance=Stance.HYBRID)
+    chain = chosen_chain(ctx)
+    assert chain is not None
+    assert chain.rotation == ("M", "R")
+    cast = arcana_cast_time(1.0)
+    expected = (cast + chain.move_time / 2.0) / chain.cycle_time
+    assert 0.0 < expected < 1.0
+    result = aura_source(ctx)
+    assert result is not None
+    assert result.dps == pytest.approx(_AURA_FULL * expected, rel=1e-4)
+
+
+def test_hybrid_melee_share_assumption_overrides_the_rotation() -> None:
+    """``hybrid.melee_share`` wins when present, even over an all-ranged rotation."""
+    ctx = _ctx(_aura(), _ranged_hit(), stance=Stance.HYBRID, assumptions={"hybrid.melee_share": 0.25})
+    result = aura_source(ctx)
+    assert result is not None
+    assert result.dps == pytest.approx(_AURA_FULL * 0.25)
 
 
 def test_aura_errors() -> None:
@@ -156,6 +199,19 @@ def test_patch_source_cadence() -> None:
     assert result.timeline_share == pytest.approx(cast / cycle, rel=1e-5)
     assert result.end_per_sec == pytest.approx(12.0 / cycle, rel=1e-5)
     assert result.detail[0][0] == "Patch"
+
+
+def test_patch_without_damage_is_not_charged_timeline_or_endurance() -> None:
+    """A decoy or placed device deals nothing here, so it takes no cast share or endurance."""
+    decoy = _attack("Decoy", Role.PATCH, Delivery.RANGED, Shape.LOCATION, damage=0.0, recharge=10.0, end=12.0)
+    assert patch_source(_ctx(decoy)) is None
+    real = _attack("Patch", Role.PATCH, Delivery.RANGED, Shape.LOCATION, damage=50.0, recharge=10.0, end=12.0)
+    both = patch_source(_ctx(decoy, real))
+    alone = patch_source(_ctx(real))
+    assert both is not None
+    assert alone is not None
+    assert both == alone
+    assert [n for n, _ in both.detail] == ["Patch"]
 
 
 def test_buff_cast_source() -> None:

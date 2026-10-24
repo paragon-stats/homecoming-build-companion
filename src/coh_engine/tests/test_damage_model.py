@@ -114,6 +114,8 @@ def test_runner_gives_the_chain_the_leftover_timeline_and_drain() -> None:
     assert report.total_dps == f32(110.0)
     assert report.total_drain_per_sec == f32(1.5)
     assert report.time_to_empty == inf
+    assert report.remainder_context.timeline_available == f32(0.75)
+    assert report.remainder_context.other_drain_per_sec == f32(0.5)
 
 
 def test_runner_applies_uptime_weighted_modifiers_to_their_targets() -> None:

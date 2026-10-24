@@ -237,7 +237,11 @@ class ModifierResult:
 
 @dataclass(frozen=True, slots=True)
 class DamageReport:
-    """The evaluated model: every source and modifier result, and the scaled total."""
+    """The evaluated model: every source and modifier result, and the scaled total.
+
+    ``remainder_context`` is the context the remainder-filling sources ran on (the timeline and drain
+    the other sources left), so a consumer asking for the chosen chain gets that exact pick.
+    """
 
     sources: tuple[SourceResult, ...]
     modifiers: tuple[ModifierResult, ...]
@@ -245,6 +249,7 @@ class DamageReport:
     total_dps: float
     total_drain_per_sec: float
     time_to_empty: float
+    remainder_context: DamageContext
 
 
 DamageSource = Callable[[DamageContext], SourceResult | None]
@@ -326,4 +331,5 @@ def evaluate_damage(
         total_dps=f32(sum(scaled.values())),
         total_drain_per_sec=total_drain,
         time_to_empty=ctx.budget.time_to_empty(total_drain),
+        remainder_context=rest_ctx,
     )

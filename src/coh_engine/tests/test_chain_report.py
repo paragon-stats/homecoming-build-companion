@@ -2,6 +2,8 @@
 
 import json
 import shutil
+import subprocess
+import sys
 from dataclasses import replace
 from pathlib import Path
 from typing import Any
@@ -9,7 +11,7 @@ from typing import Any
 import pytest
 
 from coh_engine import chain_report
-from coh_engine.attack_chain import ChainOption
+from coh_engine.attack_chain import ChainOption, arcana_cast_time
 from coh_engine.attack_profile import classify_attack
 from coh_engine.chain_report import (
     ChainSetup,
@@ -24,14 +26,16 @@ from coh_engine.chain_report import (
 )
 from coh_engine.damage_model import (
     AttackProfile,
+    ChainAttack,
     DamageContext,
+    Delivery,
     EnduranceBudget,
     Role,
+    Shape,
     Stance,
-    registered_damage_modifiers,
-    registered_damage_sources,
 )
 from coh_engine.damage_reference import PowerDamageRef
+from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
 MIDS = FIXTURES / "mids"
@@ -48,16 +52,48 @@ def _rules(results: list[chain_report.StanceReport]) -> list[str]:
 
 
 def test_plugins_are_registered_by_importing_chain_report() -> None:
-    """The manifest import populates every default registry."""
-    assert "chain_source" in registered_damage_sources()
-    assert "pet_source" in registered_damage_sources()
-    assert "click_buff_modifier" in registered_damage_modifiers()
-    assert "scrapper_critical_hit" in registered_damage_modifiers()
+    """In a fresh interpreter, importing only ``chain_report`` populates the default registries."""
+    src = Path(__file__).resolve().parents[2]
+    code = (
+        f"import sys; sys.path.insert(0, {str(src)!r}); "
+        "import coh_engine.chain_report; "
+        "from coh_engine.damage_model import registered_damage_modifiers as m, registered_damage_sources as s; "
+        "assert 'pet_source' in s() and 'chain_source' in s(), s(); "
+        "assert 'target_debuff_modifier' in m() and 'click_buff_modifier' in m(), m()"
+    )
+    done = subprocess.run([sys.executable, "-I", "-c", code], capture_output=True, text=True, check=False, cwd=src)
+    assert done.returncode == 0, done.stderr
+
+
+def test_reported_chain_is_the_one_the_chain_source_ran_on() -> None:
+    """With a patch and a buff click beside the chain, the reported rotation and DPS are the chain source's."""
+
+    def attack(name: str, role: Role, **kw: float) -> ChainAttack:
+        profile = AttackProfile(name, Delivery.RANGED, Shape.SINGLE, role, 80.0, 0.0, 0.0, 0)
+        return ChainAttack(name, 100.0, 1.0, 5.0, 4.0, profile, **kw)
+
+    setup = _setup()
+    attacks = (
+        attack("Bolt", Role.CHAIN),
+        attack("Patch", Role.PATCH),
+        attack("Buff", Role.BUFF_CLICK, self_damage_buff=0.5, self_damage_buff_duration=5.0),
+    )
+    setup = replace(setup, context=replace(setup.context, attacks=attacks))
+    result = run_chain(setup, [Stance.RANGED])[0]
+    (source,) = [s for s in result.report.sources if s.source == "chain"]
+    assert result.chain is not None
+    assert result.chain.dps == source.dps
+    assert list(result.chain.rotation) == [n for n, _ in source.detail]
 
 
 def test_registered_chain_rules() -> None:
-    """The three diagnostics are registered rules."""
-    assert registered_chain_rules() == ["_rule_end_002", "_rule_chain_001", "_rule_chain_002"]
+    """The diagnostics are registered rules."""
+    assert registered_chain_rules() == [
+        "_rule_end_002",
+        "_rule_chain_001",
+        "_rule_chain_002",
+        "_rule_chain_002_skipped",
+    ]
 
 
 def test_fixture_reports_every_stance_with_positive_dps() -> None:
@@ -88,9 +124,16 @@ def test_default_clicksoff_dir_is_used_and_silences_the_fallback(tmp_path: Path)
     build = tmp_path / "b"
     shutil.copytree(BUILD, build)
     shutil.copytree(BUILD, tmp_path / "b_clicksoff")
+    path = tmp_path / "b_clicksoff" / "enhanced_powers.json"
+    powers = json.loads(path.read_text(encoding="utf-8-sig"))
+    (smite,) = [p for p in powers if p["FullName"].endswith(".Smite")]
+    smite["DamagePerActivation"] = 1234.5
+    path.write_text(json.dumps(powers), encoding="utf-8")
     setup = _setup(build)
     assert not setup.clicks_always_on
     assert setup.source.endswith("b_clicksoff")
+    (loaded,) = [a for a in setup.context.attacks if a.full_name.endswith(".Smite")]
+    assert loaded.damage == 1234.5  # the edited clicks-off value, not the build dump's
     messages = [d.message for r in run_chain(setup, [Stance.MELEE]) for d in r.diagnostics]
     assert not any("always-on" in m for m in messages)
 
@@ -215,6 +258,39 @@ def test_only_e37_is_skipped_when_classifying(monkeypatch: pytest.MonkeyPatch) -
         _setup()
 
 
+def test_a_power_with_signal_that_fails_e37_is_recorded_as_skipped(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A damaging power the classifier rejects is dropped from the chain but named, with its reason."""
+    target = "Scrapper_Melee.Dark_Melee.Smite"
+
+    def classify(power: dict[str, Any], **kwargs: Any) -> AttackProfile:
+        if power["full_name"] == target:
+            raise ValueError("E37: no foe damage")
+        return classify_attack(power, **kwargs)
+
+    monkeypatch.setattr(chain_report, "classify_attack", classify)
+    setup = _setup()
+    reasons = dict(setup.skipped)
+    assert "E37" in reasons[target]
+    assert target not in [a.full_name for a in setup.context.attacks]
+
+
+def test_skipped_powers_are_reported_as_p_chain_002_with_a_fix() -> None:
+    """Each skipped power gets an info diagnostic naming it, its reason and a fix."""
+    setup = replace(_setup(), skipped=(("A.B.Gone", "no canonical file (E35)"), ("A.B.Odd", "not damaging (E37)")))
+    found = [d for d in run_chain(setup, [Stance.MELEE])[0].diagnostics if "A.B." in d.message]
+    assert [d.rule_id for d in found] == ["P-CHAIN-002", "P-CHAIN-002"]
+    assert {d.severity for d in found} == {"info"}
+    assert "A.B.Gone" in found[0].message
+    assert "no canonical file (E35)" in found[0].message
+    assert all(d.fix for d in found)
+
+
+def test_fixture_reports_its_non_damaging_signal_power_as_skipped() -> None:
+    """Moonbeam carries a debuff signal but no foe damage: dropped from the chain, named in the setup."""
+    names = [name for name, _ in _setup().skipped]
+    assert names == ["Epic.Stalker_Soul_Mastery.Moonbeam"]
+
+
 def _ref(name: str, damage: float = 0.0) -> PowerDamageRef:
     return PowerDamageRef(name, damage, 1.0, 1.0, 1.0, 0.0, "Click", True, 0.0, 0.0, 0.0, 0.0)
 
@@ -233,7 +309,17 @@ def test_candidates_keep_entity_creators_and_skip_missing_virtual_powers(tmp_pat
     _write_power(tmp_path, "A.B.Plain", plain)
     _write_power(tmp_path, "A.B.Hit", plain)
     refs = {n: _ref(n, 5.0 if n == "A.B.Hit" else 0.0) for n in ("A.B.Summon", "A.B.Plain", "A.B.Hit", "A.B.Virtual")}
-    assert sorted(chain_report._candidates(refs, tmp_path)) == ["A.B.Hit", "A.B.Summon"]
+    found, skipped = chain_report._candidates(refs, tmp_path)
+    assert sorted(found) == ["A.B.Hit", "A.B.Summon"]
+    # The virtual power has no file: recorded, with the reason. A power that exists but does nothing here is not.
+    assert [name for name, _ in skipped] == ["A.B.Virtual"]
+    assert "E35" in skipped[0][1]
+
+
+def test_candidates_do_not_record_inherent_or_incarnate_skips(tmp_path: Path) -> None:
+    """Virtual inherents (set bonuses, accolades) are expected to lack a file and are not reported."""
+    refs = {n: _ref(n) for n in ("Inherent.Inherent.Special_Set_Bonuses", "Incarnate.Lore.X")}
+    assert chain_report._candidates(refs, tmp_path) == ({}, ())
 
 
 def test_toggle_damage_buff_needs_no_canonical_file(tmp_path: Path) -> None:
@@ -246,9 +332,10 @@ def test_toggle_damage_buff_needs_no_canonical_file(tmp_path: Path) -> None:
     )
     click_buff = replace(_ref("A.B.Aim"), self_damage_buff=0.625, self_damage_buff_duration=10.0)
     _write_power(tmp_path, "A.B.Aim", [{"templates": [{"attribs": ["Smashing_Dmg"]}]}])
-    assert sorted(chain_report._candidates({"A.B.Assault": toggle_buff, "A.B.Aim": click_buff}, tmp_path)) == [
-        "A.B.Aim"
-    ]
+    found, skipped = chain_report._candidates({"A.B.Assault": toggle_buff, "A.B.Aim": click_buff}, tmp_path)
+    assert sorted(found) == ["A.B.Aim"]
+    # The toggle has no file here, so it is reported rather than silently dropped.
+    assert [name for name, _ in skipped] == ["A.B.Assault"]
 
 
 def test_incarnate_powers_are_never_candidates(tmp_path: Path) -> None:
@@ -256,7 +343,7 @@ def test_incarnate_powers_are_never_candidates(tmp_path: Path) -> None:
     _write_power(tmp_path, "Incarnate.Lore.Knives", [{"templates": [{"attribs": ["Create_Entity"]}]}])
     _write_power(tmp_path, "Incarnate.Judgement.Ion", [{"templates": [{"attribs": ["Energy_Dmg"]}]}])
     refs = {"Incarnate.Lore.Knives": _ref("Incarnate.Lore.Knives"), "Incarnate.Judgement.Ion": _ref("x", 300.0)}
-    assert chain_report._candidates(refs, tmp_path) == {}
+    assert chain_report._candidates(refs, tmp_path) == ({}, ())
 
 
 def test_candidates_propagate_non_e35_errors(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
@@ -272,11 +359,19 @@ def test_candidates_propagate_non_e35_errors(monkeypatch: pytest.MonkeyPatch, tm
         chain_report._candidates({"A.B.C": _ref("A.B.C")}, tmp_path)
 
 
-@pytest.mark.parametrize("items", [["a"], ["a=x"], ["=1"], ["a=1", "b"]])
+@pytest.mark.parametrize(
+    "items", [["a"], ["a=x"], ["=1"], ["a=1", "b"], ["a=nan"], ["a=inf"], ["a=-inf"], ["a=-Infinity"]]
+)
 def test_bad_assumptions_are_e67(items: list[str]) -> None:
-    """Missing ``=``, a non-numeric value or an empty key."""
+    """Missing ``=``, a non-numeric or non-finite value, or an empty key."""
     with pytest.raises(ValueError, match="E67"):
         parse_assumptions(items)
+
+
+def test_e67_hint_names_a_real_assumption_key() -> None:
+    """The example in the message is a key the engine reads."""
+    with pytest.raises(ValueError, match=r"--assume Class_Brute\.fury_level=50"):
+        parse_assumptions(["oops"])
 
 
 def test_assumptions_parse() -> None:
@@ -284,7 +379,7 @@ def test_assumptions_parse() -> None:
     assert parse_assumptions(["a.b=0.5", " c = 2"]) == {"a.b": 0.5, "c": 2.0}
 
 
-@pytest.mark.parametrize("text", ["many", "spawn", "spawn:0", "spawn:x", "spawn:-1"])
+@pytest.mark.parametrize("text", ["many", "spawn", "spawn:0", "spawn:x", "spawn:-1", "spawn:²", "spawn:٣"])
 def test_bad_targets_are_e68(text: str) -> None:
     """Anything but ``single`` or ``spawn:N`` with N >= 1."""
     with pytest.raises(ValueError, match="E68"):
@@ -312,6 +407,37 @@ def test_p_end_002_warns_when_nothing_is_affordable() -> None:
     assert warning.actual.endswith(" s")
 
 
+def _single_attack_setup(max_end: float) -> ChainSetup:
+    """One 10 s-cycle attack costing 0.5 end/s, no recovery or toggles: empties in exactly max_end / 0.5 s."""
+    profile = AttackProfile("Bolt", Delivery.RANGED, Shape.SINGLE, Role.CHAIN, 80.0, 0.0, 0.0, 0)
+    bolt = ChainAttack("Bolt", 100.0, 1.0, f32(10.0 - arcana_cast_time(1.0)), 5.0, profile)
+    setup = _setup()
+    budget = EnduranceBudget(max_end=max_end, recovery_per_sec=0.0, toggle_drain_per_sec=0.0)
+    return replace(setup, context=replace(setup.context, attacks=(bolt,), budget=budget))
+
+
+def test_chain_affordable_exactly_at_the_minimum_cycles() -> None:
+    """time_to_empty == min_cycles x the period (4 x 10 s): affordable, labelled so, no P-END-002."""
+    result = run_chain(_single_attack_setup(20.0), [Stance.MELEE])[0]
+    assert result.chain is not None
+    assert result.chain.cycle_time == 10.0  # exact in f32, so the boundary is exact
+    assert result.chain.time_to_empty == 40.0
+    assert "P-END-002" not in _rules([result])
+    (chain,) = [s for s in result.report.sources if s.source == "chain"]
+    assert "affordable: empties in" in chain.label
+    assert "not affordable" not in chain.label
+
+
+def test_chain_just_below_the_minimum_cycles_is_not_affordable() -> None:
+    """39 s against a 40 s floor: P-END-002 fires and the label says not affordable."""
+    result = run_chain(_single_attack_setup(19.5), [Stance.MELEE])[0]
+    assert result.chain is not None
+    assert result.chain.time_to_empty == 39.0
+    assert "P-END-002" in _rules([result])
+    (chain,) = [s for s in result.report.sources if s.source == "chain"]
+    assert "not affordable" in chain.label
+
+
 def test_p_end_002_is_silent_when_sustainable() -> None:
     """A sustainable chain raises no endurance warning."""
     assert "P-END-002" not in _rules(run_chain(_setup(), ALL_STANCES))
@@ -320,7 +446,22 @@ def test_p_end_002_is_silent_when_sustainable() -> None:
 def test_p_end_002_is_silent_when_empty_time_clears_the_minimum(monkeypatch: pytest.MonkeyPatch) -> None:
     """Not sustainable, but lasting at least the minimum cycles (500 s against 4 cycles of 1 s)."""
     setup = _setup()
-    option = ChainOption(("x",), Stance.MELEE, 1.0, 0, 0.0, 1.0, 0.0, True, 1.0, 1.0, 1.0, -1.0, 500.0, False)
+    option = ChainOption(
+        rotation=("x",),
+        stance=Stance.MELEE,
+        cast_sum=1.0,
+        switches=0,
+        move_time=0.0,
+        cycle_time=1.0,
+        gap=0.0,
+        gap_free=True,
+        damage_per_cycle=1.0,
+        dps=1.0,
+        end_per_sec=1.0,
+        net_end_per_sec=-1.0,
+        time_to_empty=500.0,
+        sustainable=False,
+    )
     monkeypatch.setattr(chain_report, "chosen_chain", lambda ctx: option)
     assert "P-END-002" not in _rules(run_chain(setup, [Stance.MELEE]))
 

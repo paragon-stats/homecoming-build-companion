@@ -62,7 +62,7 @@ Override it with `--assume chain.min_cycles=3`.
 Chains are ranked in this order:
 
 1. Affordable first.
-1. Then higher DPS, a smaller gap, and fewer attacks.
+1. Then higher debuff-adjusted DPS, DPS × (1 + stacked −Res), a smaller gap, and fewer attacks.
 
 Ranking "never drains" first would pick a near-idle chain whenever toggles already take most of recovery.
 The planner keeps the best affordable, best sustainable and best overall chains, so the trade between damage and endurance stays visible.
@@ -73,9 +73,9 @@ P-END-002 warns when no chain is affordable.
 | Layer | Kind | Uses cast time | Notes |
 | --- | --- | --- | --- |
 | Chain | source | yes | Runs last, on the timeline the other layers leave |
-| Auras | source | no | Count only while in melee; the toggle cost is already in the drain |
+| Auras | source | no | Count only while in melee; the toggle cost is already in the drain; the hybrid share comes from the rotation |
 | Patches | source | cast ÷ cycle | Placeable at range; fired on cooldown |
-| Pets | source | cast ÷ recharge (timed), none (permanent) | Each pet's own chain is planned with the same planner |
+| Pets | source | arcana cast ÷ (arcana cast + recharge) (timed), none (permanent) | Each pet's own chain is planned with the same planner |
 | Buff clicks | source and modifier | cast ÷ cycle | Additive damage buff, uptime weighted; self only, so pets are unaffected |
 | Target debuffs | modifier | from the host attack | Multiplies every layer, pets included |
 | AT inherents | modifier | no | One rule per playable AT; neutral ones are stated explicitly |
@@ -84,6 +84,15 @@ Damage buffs are additive in the game: they join the enhancement and global buff
 So an additive modifier scales damage by `1 + bonus × uptime ÷ baseline`, where the baseline is 1 plus the damage strength already applied.
 True multipliers such as Containment, critical hits and resistance debuffs scale damage directly.
 
+Under the hybrid stance an aura works only while the character stands in melee, so its share comes from the chosen rotation:
+
+- No melee-position attack in the rotation: the share is 0.
+- Only melee-position attacks: the share is 1.
+- A mix: the share is the time in melee over the cycle, the arcana cast times of the melee-position attacks plus half the move time, divided by the cycle time.
+- `--assume hybrid.melee_share=N` overrides the derived share when it is given.
+
+A patch that deals no damage, such as a decoy, takes no timeline share or endurance here; debuff patches are modelled separately.
+
 ## Inputs
 
 - **Damage per activation** is MidsReborn's own figure, read from the dump.
@@ -91,6 +100,10 @@ True multipliers such as Containment, critical hits and resistance debuffs scale
     It comes from the dump's clicks-off variant, because Mids counts every included click buff as permanently on.
 - **Attack geometry** comes from canonical power data.
 - **Caps** come from canonical archetype data.
+
+A power the model leaves out is never dropped silently.
+A power with no canonical file, or one the classifier rejects as not an attack, raises an info diagnostic `P-CHAIN-002` naming the power and the reason.
+Virtual inherents and incarnate powers are the exception: they are expected to be absent.
 
 ## Limits
 
