@@ -174,6 +174,13 @@ def test_timed_pet_uptime_and_amortisation() -> None:
     assert result.detail == (("P", result.dps),)
     assert result.damage_buff_baseline == pytest.approx(1.95)
     assert "approximate" in result.label
+    assert f"P x3 uptime {uptime:.0%}" in result.label
+
+
+def test_permanent_pet_label_says_permanent() -> None:
+    result = pet_source(_ctx(_pet(duration=inf)))
+    assert result is not None
+    assert "P x2 uptime 100% (permanent)" in result.label
 
 
 def test_long_lived_timed_pet_is_capped_at_full_uptime() -> None:
@@ -215,8 +222,12 @@ def test_pet_without_attacks_contributes_nothing() -> None:
     assert (result.dps, result.damage_buff_baseline) == (0.0, 1.0)
 
 
-def test_no_pets_gives_no_source() -> None:
-    assert pet_source(_ctx()) is None
+def test_no_pets_reports_zero_pet_dps() -> None:
+    """A build without pets still reports the pet layer, at 0, so its absence is visible."""
+    result = pet_source(_ctx())
+    assert result is not None
+    assert (result.dps, result.timeline_share, result.end_per_sec, result.detail) == (0.0, 0.0, 0.0, ())
+    assert result.label == "no pets summoned"
 
 
 def test_end_to_end_through_evaluate_damage() -> None:

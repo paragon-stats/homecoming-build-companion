@@ -302,9 +302,10 @@ def build_pet_summons(
 def pet_source(ctx: DamageContext) -> SourceResult | None:
     """Pets' own best chains, scaled by count and by how much of the time the pets are alive."""
     if not ctx.pets:
-        return None
+        return SourceResult(source=SOURCE_PET, dps=0.0, label="no pets summoned")
     detail: list[tuple[str, float]] = []
     weights: list[tuple[float, float]] = []
+    uptimes: list[str] = []
     share = end = 0.0
     for pet in ctx.pets:
         plan = plan_attack_chain(
@@ -322,6 +323,7 @@ def pet_source(ctx: DamageContext) -> SourceResult | None:
         dps = f32(f32(single * pet.pet_count) * uptime)
         detail.append((pet.pet_name, dps))
         weights.append((dps, pet.damage_buff_baseline))
+        uptimes.append(f"{pet.pet_name} x{pet.pet_count} uptime {uptime:.0%}" + ("" if timed else " (permanent)"))
         if timed and cycle > 0:
             share = f32(share + f32(arcana / cycle))
             end = f32(end + f32(pet.summon_end_cost / cycle))
@@ -333,6 +335,6 @@ def pet_source(ctx: DamageContext) -> SourceResult | None:
         timeline_share=share,
         end_per_sec=end,
         detail=tuple(detail),
-        label=_APPROXIMATION,
+        label=f"{_APPROXIMATION}; {', '.join(uptimes)}",
         damage_buff_baseline=baseline,
     )
