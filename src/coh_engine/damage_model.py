@@ -160,6 +160,27 @@ class Movement:
 
 
 @dataclass(frozen=True, slots=True)
+class PetSummon:
+    """A summon power with its pets' attacks precomputed (``pet_damage.build_pet_summons``).
+
+    ``pet_attacks`` hold one pet's attacks, damage already at the pet's level and enhancement;
+    ``duration`` is ``inf`` for a permanent pet. ``damage_buff_baseline`` is ``1 +`` the pet's
+    damage strength, which additive modifiers divide by.
+    """
+
+    summon_name: str
+    pet_name: str
+    pet_attacks: tuple[ChainAttack, ...]
+    pet_count: int
+    duration: float
+    summon_cast_time: float
+    summon_recharge: float
+    summon_end_cost: float
+    damage_buff_baseline: float = 1.0
+    label: str = ""
+
+
+@dataclass(frozen=True, slots=True)
 class DamageContext:
     """Everything a source or modifier reads, built once per evaluation."""
 
@@ -171,6 +192,7 @@ class DamageContext:
     archetype_class: str
     assumptions: Mapping[str, float] = field(default_factory=lambda: MappingProxyType({}))
     damage_buff_baseline: float = 1.0
+    pets: tuple[PetSummon, ...] = ()
     timeline_available: float = 1.0
     other_drain_per_sec: float = 0.0
 
