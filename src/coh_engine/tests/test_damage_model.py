@@ -140,6 +140,31 @@ def test_runner_applies_uptime_weighted_modifiers_to_their_targets() -> None:
     assert [m.modifier for m in report.modifiers] == ["debuff", "fury"]
 
 
+def test_additive_buffs_divide_by_the_strength_already_applied() -> None:
+    """A +100% buff on damage already at +100% strength adds half; a true doubling stays x2."""
+    buff = ModifierResult(modifier="fury", multiplier=2.0, additive=True)
+    double = ModifierResult(modifier="containment", multiplier=2.0)
+    assert buff.scale(2.0) == f32(1.5)
+    assert double.scale(2.0) == f32(2.0)
+
+
+def test_source_baseline_overrides_the_context_baseline() -> None:
+    """A source with its own enhancement (pets) is scaled against its own baseline."""
+
+    def chain(ctx: DamageContext) -> SourceResult:
+        return SourceResult(source="chain", dps=100.0)
+
+    def pet(ctx: DamageContext) -> SourceResult:
+        return SourceResult(source="pet", dps=100.0, damage_buff_baseline=1.0)
+
+    def buff(ctx: DamageContext) -> ModifierResult:
+        return ModifierResult(modifier="buff", multiplier=1.5, additive=True)
+
+    report = evaluate_damage(_ctx(damage_buff_baseline=2.0), sources=[(chain, True), (pet, False)], modifiers=[buff])
+    assert report.scaled_dps["chain"] == f32(125.0)
+    assert report.scaled_dps["pet"] == f32(150.0)
+
+
 def test_runner_rejects_an_overcommitted_timeline() -> None:
     """Non-chain shares summing past 1.0 are a modelling error and fail loud (E30)."""
 

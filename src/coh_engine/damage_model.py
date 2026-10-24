@@ -10,8 +10,12 @@ Timeline: sources that spend cast time outside the chain (summons, patches, clic
 report a ``timeline_share``. Sources registered with ``fills_remainder=True`` (the attack
 chain) run last, on the timeline the others left, and see the others' endurance drain.
 
-Modifiers multiply source DPS by ``1 + (multiplier - 1) * uptime``. A modifier with
-``applies_to`` set scales only the named sources; ``None`` scales every source.
+Modifiers multiply source DPS by ``1 + (multiplier - 1) * uptime``. Damage *buffs* (Fury,
+Build Up, Defiance) are additive in the game: they join the enhancement and global buffs
+already inside the per-power damage figure, so an ``additive`` modifier scales by
+``1 + bonus * uptime / baseline``, where ``baseline`` is ``1 +`` the damage strength already
+applied (``DamageContext.damage_buff_baseline``, or a source's own override). A modifier
+with ``applies_to`` set scales only the named sources; ``None`` scales every source.
 
 **Novel to the port — no Mids parity reference.** Mids has no layered damage model; its DPS
 calculator (``frmDPSCalc.cs``) sums one greedy chain. Per-power damage is an input here
@@ -166,6 +170,7 @@ class DamageContext:
     movement: Movement
     archetype_class: str
     assumptions: Mapping[str, float] = field(default_factory=lambda: MappingProxyType({}))
+    damage_buff_baseline: float = 1.0
     timeline_available: float = 1.0
     other_drain_per_sec: float = 0.0
 
@@ -184,22 +189,28 @@ class SourceResult:
     end_per_sec: float = 0.0
     detail: tuple[tuple[str, float], ...] = ()
     label: str = ""
+    damage_buff_baseline: float | None = None
 
 
 @dataclass(frozen=True, slots=True)
 class ModifierResult:
-    """One modifier: its multiplier at full uptime, its uptime, and the assumption behind it."""
+    """One modifier: its multiplier at full uptime, its uptime, and the assumption behind it.
+
+    ``additive`` marks a damage buff (it adds to the strength already in the damage figure);
+    otherwise the multiplier is a true damage multiplier (Containment, critical hits).
+    """
 
     modifier: str
     multiplier: float
     uptime: float = 1.0
     applies_to: frozenset[str] | None = None
     assumption: str = ""
+    additive: bool = False
 
-    @property
-    def effective(self) -> float:
-        """The uptime-weighted multiplier ``1 + (multiplier - 1) * uptime``."""
-        return f32(1.0 + (self.multiplier - 1.0) * self.uptime)
+    def scale(self, baseline: float = 1.0) -> float:
+        """The uptime-weighted factor; an additive buff is divided by ``baseline`` (1 + strength already applied)."""
+        bonus = f32((self.multiplier - 1.0) * self.uptime)
+        return f32(1.0 + bonus / baseline) if self.additive else f32(1.0 + bonus)
 
 
 @dataclass(frozen=True, slots=True)
@@ -275,10 +286,11 @@ def evaluate_damage(
     mods = tuple(m for fn in modifiers if (m := fn(ctx)) is not None)
     scaled: dict[str, float] = {}
     for r in results:
+        baseline = ctx.damage_buff_baseline if r.damage_buff_baseline is None else r.damage_buff_baseline
         factor = 1.0
         for m in mods:
             if m.applies_to is None or r.source in m.applies_to:
-                factor = f32(factor * m.effective)
+                factor = f32(factor * m.scale(baseline))
         scaled[r.source] = f32(r.dps * factor)
     total_drain = f32(sum(r.end_per_sec for r in results))
     return DamageReport(
