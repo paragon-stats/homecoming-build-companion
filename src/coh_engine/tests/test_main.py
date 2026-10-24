@@ -93,3 +93,45 @@ def test_emit_empty_json(capsys: pytest.CaptureFixture[str]) -> None:
     """An empty diagnostics list emits an empty JSON array and exits 0."""
     assert _emit([], as_json=True) == 0
     assert json.loads(capsys.readouterr().out) == []
+
+
+def test_chain_subcommand_text_covers_every_stance(capsys: pytest.CaptureFixture[str]) -> None:
+    """`chain` prints a block per stance and exits 0 when only info diagnostics are raised."""
+    assert main(["chain", str(BUILD_DIR)]) == 0
+    out = capsys.readouterr().out
+    for stance in ("melee", "ranged", "hybrid"):
+        assert f"== {stance} stance ==" in out
+
+
+def test_chain_subcommand_json_single_stance(capsys: pytest.CaptureFixture[str]) -> None:
+    """`chain --stance melee --format json --target spawn:3 --assume ...` emits one structured report."""
+    argv = ["chain", str(BUILD_DIR), "--stance", "melee", "--format", "json", "--target", "spawn:3"]
+    assert main([*argv, "--assume", "damage.enhancement_avg=0.5", "--move", "jump", "--standoff", "30"]) == 0
+    (report,) = json.loads(capsys.readouterr().out)
+    assert report["stance"] == "melee"
+    assert report["dps"]["total"] > 0.0
+
+
+@pytest.mark.parametrize(
+    ("extra", "code"), [(["--assume", "oops"], "E67"), (["--target", "crowd"], "E68"), (["--move", "fly"], "E69")]
+)
+def test_chain_subcommand_reports_errors_on_stderr(
+    capsys: pytest.CaptureFixture[str], extra: list[str], code: str
+) -> None:
+    """A ValueError carrying an E-code is printed to stderr and the exit code is 1."""
+    assert main(["chain", str(BUILD_DIR), *extra]) == 1
+    captured = capsys.readouterr()
+    assert code in captured.err
+    assert captured.out == ""
+
+
+def test_chain_subcommand_exit_2_on_warning(
+    capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A build whose pool empties before any chain's 4 cycles raises P-END-002 (warning) and exits 2."""
+    from coh_engine import chain_report
+    from coh_engine.damage_model import EnduranceBudget
+
+    monkeypatch.setattr(chain_report, "build_endurance_budget", lambda *a, **k: EnduranceBudget(100.0, 0.0, 50.0))
+    assert main(["chain", str(BUILD_DIR), "--stance", "melee"]) == 2
+    assert "P-END-002" in capsys.readouterr().out

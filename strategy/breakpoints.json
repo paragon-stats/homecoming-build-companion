@@ -15,7 +15,10 @@
     "max_levels": 50,
     "incarnate_unlock_level": 50,
     "ancillary_unlock_level": 35,
-    "tier9_primary_typical_unlock_level": 32
+    "tier9_primary_typical_unlock_level": 32,
+    "chain_min_cycles": 4,
+    "melee_range_ft_max": 20,
+    "ranged_standoff_ft": 40
   },
   "archetypes": {
     "Tanker": {
