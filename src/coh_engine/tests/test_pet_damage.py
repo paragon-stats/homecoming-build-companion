@@ -7,10 +7,11 @@ from typing import Any
 
 import pytest
 
+from coh_engine import pet_damage
 from coh_engine.archetypes import ArchetypeDb, load_archetypes
 from coh_engine.attack_chain import arcana_cast_time, plan_attack_chain
 from coh_engine.attack_profile import classify_attack, load_canonical_powers
-from coh_engine.attribmod import AttribMods, load_attribmod
+from coh_engine.attribmod import AttribMods, get_modifier, load_attribmod
 from coh_engine.damage_model import (
     SOURCE_PET,
     AttackProfile,
@@ -153,6 +154,8 @@ def test_mastermind_soldiers_resolve_two_entities() -> None:
         "Mastermind_Pets.Soldier.ASMG_Burst",
     }
     assert all(a.damage > 0 for p in (soldier, medic) for a in p.pet_attacks)
+    # A heal (Heal_Dmg on an ally) is not an attack: the Medic's Med Kit never enters its chain.
+    assert "Mastermind_Pets.Medic.Med_Kit" not in {a.full_name for a in medic.pet_attacks}
     # ASMG Burst: the conditional (requires_expression) group is skipped, only the Fallback group counts.
     burst = next(a for a in soldier.pet_attacks if a.full_name.endswith("ASMG_Burst"))
     assert burst.damage == pytest.approx(0.29 * 26.088 * 3 * 1.95, rel=1e-5)
@@ -315,9 +318,9 @@ def _tree(
                 _effect(_damage(duration="1 seconds", application_period=0.5)),
                 _effect(_damage(), requires_expression="Source.Mode?(x)"),
                 _effect(_damage(), ppm=3.5),
-                _effect(_damage(), is_pvp="PVP"),
+                _effect(_damage(), is_pvp="PVP_ONLY"),
                 _effect(_damage(duration="UntilKilled", application_period=0.5)),
-                _effect(_damage(), child_effects=[_effect(_damage(), is_pvp="PVP")]),
+                _effect(_damage(), child_effects=[_effect(_damage(), is_pvp="PVP_ONLY")]),
                 _effect(_template(["Smashing_Dmg"], aspect="Absolute", target="Self", params=None)),
             ],
         )
@@ -346,6 +349,60 @@ def test_synthetic_pet_counts_ticks_and_skips_non_attacks(tmp_path: Path) -> Non
     assert pet.pet_name == "Tst_Pet" and pet.duration == inf and pet.pet_count == 1
     (zap,) = pet.pet_attacks  # the toggle aura is not an attack
     assert zap.damage == pytest.approx(44.488 * 5, rel=1e-5)
+
+
+PHANTOM_ARMY = "Controller_Control.Illusion_Control.Decoy"
+
+
+def test_phantom_army_counts_one_costume_group_and_nets_its_heal_back() -> None:
+    """Phantom Army: 3 decoys (the 3 'Mirror' costume templates are alternates, not 3 more pets).
+
+    Fire Sword deals +1.32 psionic, then -1.02 under the PvE-always-true ``target>enttype eq 'critter'``
+    condition (illusory damage healing back), so it nets 0.30 x Melee_Damage x (1 + enhancement).
+    """
+    (decoy,) = _build(PHANTOM_ARMY, damage_enhancement={PHANTOM_ARMY: 0.0})
+    assert decoy.pet_count == 3
+    sword = next(a for a in decoy.pet_attacks if a.full_name == "Pets.Decoy.Fire_Sword")
+    entity = json.loads((CANONICAL / "entities" / "pets_decoy.json").read_text(encoding="utf-8-sig"))
+    pet_class = pet_damage._class_index(entity, CLASSES)
+    melee_damage = abs(get_modifier(MODS, CLASSES.classes, pet_class, MODS.nid_from_uid_attribmod("Melee_Damage"), 49))
+    assert sword.damage == pytest.approx(melee_damage * (1.32 - 1.02), rel=1e-5)
+
+
+def test_level_gated_pets_spawn_only_once_the_caster_reaches_the_level() -> None:
+    """Mercenaries: the 2nd Soldier is gated on combat level > 5 and the Medic on > 17."""
+    (soldier,) = _build(SOLDIERS, caster_level=5)
+    assert (soldier.pet_name, soldier.pet_count) == ("Soldier", 1)
+    soldier, medic = _build(SOLDIERS, caster_level=18)
+    assert (soldier.pet_count, medic.pet_count) == (2, 1)
+
+
+def test_pve_critter_condition_applies_and_heals_are_not_damage(tmp_path: Path) -> None:
+    """A group gated only on ``target>enttype eq 'critter'`` counts; any other condition and heals do not."""
+    zap = _power(
+        "Tst.Set.Zap",
+        [
+            _effect(_damage()),
+            _effect(_damage(scale=-0.5), requires_expression="target>enttype eq 'critter'"),
+            _effect(_damage(), requires_expression="Source.Mode?(x)"),
+            _effect(_template(["Heal_Dmg"], aspect="Absolute", table="Ranged_Damage", params=None)),
+        ],
+    )
+    summon = _tree(tmp_path, _create())
+    _write(tmp_path, "powers", "Tst.Set.Zap", zap)
+    (pet,) = build_pet_summons(
+        [summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES, damage_enhancement={"Tst.Set.Summon": 0.0}
+    )
+    (attack,) = pet.pet_attacks
+    assert attack.damage == pytest.approx(44.488 * 0.5, rel=1e-5)
+
+
+def test_a_malformed_pet_power_fails_loud_rather_than_being_skipped(tmp_path: Path) -> None:
+    """Only E37 (no foe damage) means "not an attack"; any other classifier error propagates."""
+    summon = _tree(tmp_path, _create())
+    _write(tmp_path, "powers", "Tst.Set.Zap", _power("Tst.Set.Zap", [_effect(_damage())], effect_area="Map"))
+    with pytest.raises(ValueError, match="E36"):
+        build_pet_summons([summon], canonical_root=tmp_path, attribmod=MODS, classes=CLASSES)
 
 
 def test_timed_duration_text_is_parsed(tmp_path: Path) -> None:

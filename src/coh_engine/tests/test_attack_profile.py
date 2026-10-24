@@ -8,9 +8,13 @@ from typing import Any
 import pytest
 
 from coh_engine.attack_profile import (
+    Resolver,
+    applies_in_pve,
     canonical_power_path,
+    canonical_resolver,
     category_disagreement,
     classify_attack,
+    foe_res_debuff_templates,
     load_canonical_powers,
 )
 from coh_engine.damage_model import AttackProfile, Delivery, Role, Shape
@@ -86,6 +90,52 @@ def _power(**over: Any) -> dict[str, Any]:
 def _effect(attrib: str, aspect: str, target: str, children: tuple[dict[str, Any], ...] = ()) -> dict[str, Any]:
     template = {"attribs": [attrib], "aspect": aspect, "target": target}
     return {"templates": [template], "child_effects": list(children)}
+
+
+@pytest.mark.parametrize(
+    "name",
+    ["Warshade_Offensive.Umbral_Blast.Shadow_Bolt", "Feral_Might.Feral_Might.Brutal_Swipe"],
+)
+def test_an_effectless_power_classifies_through_its_default_redirect(name: str) -> None:
+    """Kheldian blasts (``!Source.Mode?``) and Feral Might (``Always``) carry their effects on a redirect."""
+    resolve = canonical_resolver(POWERS)
+    power = resolve(name)
+    assert power is not None and not power["effects"]
+    assert classify_attack(power, resolve=resolve).role is Role.CHAIN
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(power)
+
+
+def test_a_redirect_on_an_undecidable_condition_is_not_followed() -> None:
+    """Shadow Recall redirects on ``target.isFriend?``, which no static reading can settle."""
+    resolve = canonical_resolver(POWERS)
+    power = resolve("Warshade_Defensive.Umbral_Aura.Shadow_Recall")
+    assert power is not None
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(power, resolve=resolve)
+
+
+def test_pve_applicability_rule() -> None:
+    """A group applies in PvE when unconditional or gated only on the critter test; PvP-only never applies."""
+    assert applies_in_pve({"requires_expression": ""})
+    assert applies_in_pve({"requires_expression": " target>enttype eq 'critter' "})
+    assert not applies_in_pve({"requires_expression": "Source.Mode?(x)"})
+    assert not applies_in_pve({"requires_expression": "", "is_pvp": "PVP_ONLY"})
+
+
+def test_foe_res_debuff_templates_follow_links_and_skip_pvp() -> None:
+    """Freezing Rain's -Res lives in its summoned patch; Melt Armor's is its own; Aim has none."""
+    resolve = canonical_resolver(POWERS)
+    rain = resolve("Defender_Buff.Storm_Summoning.Fog")
+    melt = resolve("Defender_Buff.Thermal_Radiation.Melt_Armor")
+    assert rain is not None and melt is not None
+    rain_res = foe_res_debuff_templates(rain, resolve)
+    assert rain_res and all(t["table"].endswith("Res_Dmg") for t in rain_res)
+    assert len({(t["table"], t["scale"], t["duration"]) for t in rain_res}) == len(rain_res)  # no PvP duplicate
+    assert foe_res_debuff_templates(melt, resolve)
+    assert foe_res_debuff_templates(melt, None)  # own templates need no resolver
+    aim = resolve("Arachnos_Soldiers.Crab_Spider_Soldier.Aim")
+    assert aim is not None and foe_res_debuff_templates(aim, resolve) == []
 
 
 def test_damage_in_child_effect_is_found() -> None:
@@ -227,3 +277,146 @@ def test_colon_name_loads_from_sanitized_file(tmp_path: Path) -> None:
 
 def test_real_colon_power_loads() -> None:
     assert load_canonical_powers(POWERS, [COLON])[COLON]["full_name"] == COLON
+
+
+# --- support roles, linked effects, modes_required ---------------------------------------------
+
+LINKED = [
+    ("Defender_Buff.Thermal_Radiation.Melt_Armor", Role.SUPPORT),
+    ("Defender_Buff.Kinetics.Siphon_Power", Role.BUFF_CLICK),
+    ("Defender_Buff.Kinetics.Kinetic_Transfer", Role.BUFF_CLICK),
+    # Rule 2 wins: the Freezing Rain entity also carries a 0.009-scale Cold_Dmg tick next to its -Res.
+    ("Defender_Buff.Storm_Summoning.Fog", Role.PATCH),
+    ("Defender_Buff.Dark_Miasma.Tar_Patch", Role.SUPPORT),
+    ("Defender_Buff.Radiation_Emission.Enervating__Field", Role.PERSISTENT_DEBUFF),
+    ("Defender_Buff.Poison.Venomous_Gas", Role.PERSISTENT_DEBUFF),
+    ("Corruptor_Buff.Sonic_Resonance.Sonic_Siphon", Role.SUPPORT),
+    ("Defender_Buff.Poison.Envenom", Role.SUPPORT),
+    ("Sentinel_Ranged.Archery.Aim", Role.BUFF_CLICK),
+    ("Scrapper_Melee.Katana.Build_Up", Role.BUFF_CLICK),
+    ("Peacebringer_Offensive.Luminous_Blast.Bright_Nova_Blast", Role.CHAIN),
+]
+
+
+@pytest.fixture(scope="module")
+def resolve() -> Resolver:
+    return canonical_resolver(POWERS)
+
+
+def _real(resolve: Resolver, name: str) -> Mapping[str, Any]:
+    power = resolve(name)
+    assert power is not None
+    return power
+
+
+@pytest.mark.parametrize(("name", "role"), LINKED)
+def test_real_support_power_roles(resolve: Resolver, name: str, role: Role) -> None:
+    assert classify_attack(_real(resolve, name), resolve=resolve).role is role
+
+
+def test_linked_buff_needs_the_resolver(resolve: Resolver) -> None:
+    """Siphon Power's own effects only debuff the foe's damage; the self buff sits behind Execute_Power."""
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(_real(resolve, "Defender_Buff.Kinetics.Siphon_Power"))
+
+
+def test_location_debuff_without_resolver_is_a_patch(resolve: Resolver) -> None:
+    assert classify_attack(_real(resolve, "Defender_Buff.Dark_Miasma.Tar_Patch")).role is Role.PATCH
+
+
+def test_nova_form_toggle_is_e37_and_nova_attack_carries_its_mode(resolve: Resolver) -> None:
+    form = _real(resolve, "Peacebringer_Offensive.Luminous_Blast.Bright_Nova")
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(form, resolve=resolve)
+    attack = classify_attack(_real(resolve, "Peacebringer_Offensive.Luminous_Blast.Bright_Nova_Blast"))
+    assert attack.modes_required == ("Peacebringer_Blaster_Mode",)
+    assert classify_attack(_real(resolve, "Sentinel_Ranged.Archery.Aim")).modes_required == ()
+
+
+def _tpl(attrib: str, aspect: str, target: str, table: str, scale: float = 1.0, **params: Any) -> dict[str, Any]:
+    template: dict[str, Any] = {"attribs": [attrib], "aspect": aspect, "target": target, "table": table, "scale": scale}
+    if params:
+        template["params"] = params
+    return {"templates": [template], "child_effects": []}
+
+
+def test_ally_resist_shield_is_not_a_debuff() -> None:
+    shield = _tpl("Smashing_Dmg", "Resistance", "AnyAffected", "Ranged_Res_Dmg", 2.0)
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(_power(effects=[shield]))
+
+
+def test_positive_scale_on_a_debuff_table_is_still_a_debuff() -> None:
+    debuff = _tpl("Smashing_Dmg", "Resistance", "AnyAffected", "Ranged_Debuff_Res_Dmg", 3.0)
+    assert classify_attack(_power(effects=[debuff])).role is Role.SUPPORT
+    assert classify_attack(_power(type="Auto", effects=[debuff])).role is Role.PERSISTENT_DEBUFF
+
+
+def test_heal_dmg_is_neither_damage_nor_resistance() -> None:
+    heal = _tpl("Heal_Dmg", "Resistance", "AnyAffected", "Ranged_Res_Dmg", -2.0)
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(_power(effects=[heal]))
+    healing_hit = _tpl("Heal_Dmg", "Absolute", "AnyAffected", "Ranged_Damage")
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(_power(effects=[healing_hit]))
+
+
+def test_team_damage_buff_click_is_support_and_toggle_is_e37() -> None:
+    team = _tpl("Fire_Dmg", "Strength", "AnyAffected", "Ranged_Buff_Dmg")
+    assert classify_attack(_power(effects=[team])).role is Role.SUPPORT
+    with pytest.raises(ValueError, match="E37"):
+        classify_attack(_power(type="Toggle", effects=[team]))
+
+
+def test_self_buff_click_with_pets_target() -> None:
+    mine = _tpl("Fire_Dmg", "Strength", "SelfAndPets", "Melee_Buff_Dmg")
+    assert classify_attack(_power(effects=[mine])).role is Role.BUFF_CLICK
+
+
+def test_entity_roles_follow_linked_effects() -> None:
+    spawn = _tpl("Create_Entity", "Current", "Self", "Ones", redirects=["L.Res"])
+    pets: dict[str, Mapping[str, Any]] = {
+        "L.Res": {"effects": [_tpl("Fire_Dmg", "Resistance", "AnyAffected", "Ranged_Debuff_Res_Dmg", -3.0)]},
+        "L.Dmg": {"effects": [_tpl("Fire_Dmg", "Absolute", "AnyAffected", "Ranged_Damage")]},
+    }
+    assert classify_attack(_power(effects=[spawn]), resolve=pets.get).role is Role.SUPPORT
+    both = _tpl("Create_Entity", "Current", "Self", "Ones", redirects=["L.Res", "L.Dmg", "L.Gone"])
+    assert classify_attack(_power(effects=[both]), resolve=pets.get).role is Role.PATCH
+
+
+def test_entity_def_powers_are_resolved_through_the_entity_file() -> None:
+    spawn = _tpl("Create_Entity", "Current", "Self", "Ones", entity_def="Ent_X")
+    lookup: dict[str, Mapping[str, Any]] = {
+        "Ent_X": {"defaults": {"power_full_names": ["L.Res"]}},
+        "L.Res": {"effects": [_tpl("Fire_Dmg", "Resistance", "AnyAffected", "Ranged_Debuff_Res_Dmg", -3.0)]},
+    }
+    assert classify_attack(_power(effects=[spawn]), resolve=lookup.get).role is Role.SUPPORT
+    assert classify_attack(_power(effects=[spawn]), resolve=lambda _: None).role is Role.PATCH
+
+
+def test_execute_power_self_buff_counts_whatever_its_target() -> None:
+    link = _tpl("Execute_Power", "Absolute", "Self", "Ranged_Ones", power_names=["L.Buff"])
+    lookup: dict[str, Mapping[str, Any]] = {
+        "L.Buff": {"effects": [_tpl("Fire_Dmg", "Strength", "AnyAffected", "Ranged_Buff_Dmg")]}
+    }
+    assert classify_attack(_power(effects=[link]), resolve=lookup.get).role is Role.BUFF_CLICK
+
+
+def test_resolver_returns_none_for_missing_empty_corrupt_and_caches(tmp_path: Path) -> None:
+    _write(tmp_path, "A.B.Good", json.dumps({"full_name": "A.B.Good"}))
+    _write(tmp_path, "A.B.Empty", "")
+    _write(tmp_path, "A.B.Bad", "{")
+    lookup = canonical_resolver(tmp_path)
+    assert lookup("A.B.Good") == {"full_name": "A.B.Good"}
+    assert (lookup("A.B.Gone"), lookup("A.B.Empty"), lookup("A.B.Bad")) == (None, None, None)
+    canonical_power_path(tmp_path, "A.B.Good").unlink()
+    assert lookup("A.B.Good") is not None
+
+
+def test_resolver_reads_entities_beside_the_powers_root(tmp_path: Path) -> None:
+    (tmp_path / "entities").mkdir()
+    (tmp_path / "entities" / "pets_x.json").write_text('{"defaults": {}}', encoding="utf-8")
+    (tmp_path / "entities" / "pets_bad.json").write_text("{", encoding="utf-8")
+    lookup = canonical_resolver(tmp_path / "powers")
+    assert lookup("Pets_X") == {"defaults": {}}
+    assert (lookup("Pets_Y"), lookup("Pets_Bad")) == (None, None)

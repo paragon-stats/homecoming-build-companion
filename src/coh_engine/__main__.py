@@ -127,7 +127,8 @@ def _chain(args: argparse.Namespace) -> int:
         assumptions=parse_assumptions(args.assume),
     )
     stances = list(Stance) if args.stance == "all" else [Stance(args.stance)]
-    results = run_chain(setup, stances, path=str(args.build_dir))
+    forms = None if args.form is None else [args.form]
+    results = run_chain(setup, stances, path=str(args.build_dir), forms=forms)
     if args.format == "json":
         print(json.dumps([stance_to_json(setup, r) for r in results], indent=2))
     else:
@@ -153,6 +154,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     c.add_argument("--canonical", type=Path, default=None, help="canonical data root (default: data/canonical)")
     c.add_argument("--mids-db", type=Path, default=None, help="directory with AttribMod.json (needed for pet builds)")
     c.add_argument("--stance", choices=(*(s.value for s in Stance), "all"), default="all", help="stance to plan")
+    c.add_argument("--form", default=None, help="plan one form only ('' is the base form); default: every form")
     c.add_argument("--target", default="single", help="'single' or 'spawn:N'")
     c.add_argument("--move", choices=MOVES, default="run", help="movement mode used to cross the standoff")
     c.add_argument("--standoff", type=float, default=None, metavar="FT", help="ranged standoff in feet")

@@ -110,6 +110,13 @@ def _chain_json(capsys: pytest.CaptureFixture[str], *flags: str) -> dict[str, An
     return dict(report)
 
 
+def test_chain_form_flag_restricts_the_run_and_rejects_unknown_forms(capsys: pytest.CaptureFixture[str]) -> None:
+    """`--form ''` keeps the base form (JSON carries the key); an unknown form is E65 on stderr."""
+    assert _chain_json(capsys, "--form", "")["form"] == ""
+    assert main(["chain", str(BUILD_DIR), "--form", "Nova"]) == 1
+    assert "E65" in capsys.readouterr().err
+
+
 def _crit_factor(report: dict[str, Any]) -> float:
     (crit,) = [m for m in report["modifiers"] if m["name"] == "scrapper_critical_hit"]
     return float(crit["factor"])

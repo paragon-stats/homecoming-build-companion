@@ -31,9 +31,37 @@ Each damaging power is classified once from canonical data into a delivery, a sh
 | --- | --- | --- |
 | Delivery | melee, ranged | `range` at or under the melee threshold (`melee_range_ft_max`, 20 ft) |
 | Shape | single, cone, targeted AoE, point-blank AoE, location | `effect_area` and `range` |
-| Role | chain, aura, patch, pet summon, buff click | entity creation, power type, foe damage, self damage buff |
+| Role | chain, aura, patch, pet summon, buff click, support, persistent debuff | entity creation, power type, foe damage, self damage buff, target -Res |
 
 The power's set categories cross-check the verdict. A melee verdict on a power whose sets are all ranged is reported, not silently accepted.
+
+The classifier follows `Execute_Power` and `Create_Entity` links through canonical data, so a power that only triggers or summons another power is classified by what that power does.
+Effect direction is decided by the effect's table name, not by the sign of its magnitude.
+A -Res debuff on foes and a +Res buff on the caster are told apart by the table, because a negative number alone does not say who it lands on.
+
+A power with no effects of its own, such as a Kheldian blast or a Stalker snipe, is classified through its `redirect`.
+The planner takes the redirect that applies with no mode active: `Always`, no condition, or a negated mode.
+A redirect gated on target state or distance cannot be read statically and is not followed.
+A click that damages on activation is a chain attack even when it also spawns an entity, such as Chain Induction's jump.
+
+Canonical effects are read for PvE.
+A PvP-only group never counts, and a group gated only on the target being a critter always counts.
+Phantom Army's decoys, for example, net their healing-back damage this way.
+Templates under a costume condition are alternates, so a summon counts only the largest group of them.
+A pet gated on the caster's level spawns only once the caster reaches that level.
+
+The Mids dump does not carry a -Res debuff that lives on a summoned entity, such as Freezing Rain's or Acid Mortar's.
+For a patch, support or persistent-debuff power whose dump value is 0, the planner reads it from canonical data for the build's archetype.
+It takes the weakest of the eight core damage types, at level 50, held for the entity's lifetime.
+Without `--mids-db` the power is reported in the skipped list rather than left at 0.
+
+Two roles cover powers that deal no damage themselves:
+
+- **Support** is a non-damaging click or location power that buffs the character's damage or puts -Res on foes, such as Melt Armor or Siphon Power. It is woven in on cooldown.
+- **Persistent debuff** is a toggle or auto power that holds -Res on foes, such as Enervating Field. It runs beside the chain and multiplies every layer.
+
+A persistent debuff that is a point-blank AoE toggle is gated by stance: melee counts it fully (1), ranged not at all (0), and hybrid uses the rotation's melee share.
+Self and team damage-buff toggles get no role, because Mids already counts them in every attack's damage.
 
 The planner evaluates each chain under a declared stance:
 
@@ -43,6 +71,19 @@ The planner evaluates each chain under a declared stance:
 
 A hybrid chain that mixes positions pays two switches per cycle.
 Each switch takes the standoff distance (`ranged_standoff_ft`, 40 ft) divided by the build's own speed for the declared travel mode.
+
+## Forms
+
+Some archetypes change form, such as the Kheldian Nova and Dwarf forms.
+A form power carries a required mode in canonical data, and only attacks whose mode matches are usable while in that form.
+The planner runs each stance once per form: the base (human) form, then every mode that some attack requires.
+Each run plans its own chain, endurance and diagnostics.
+
+Text output labels a base block `== melee stance ==` and a form block `== melee stance, Nova form ==`.
+JSON carries a `form` key, empty for the base form.
+`--form NAME` restricts the run to one form, and `--form ''` selects the base form.
+An unknown form is `E65` and names the forms the build has.
+When every attack is form-locked, the base-form block reports `rotation: none`.
 
 ## Choosing the chain
 
@@ -120,3 +161,8 @@ These are the model's known simplifications, not defects. Each one is labelled i
     Mastermind henchman damage stays unverified, because the Mids henchman damage table reads roughly six times the normal pet value.
 - Several AT inherents carry no magnitude in canonical data. Their defaults are labelled "approximate; verify in MidsReborn" and can be overridden with `--assume`.
 - Misses are not weighted yet. An attack's endurance is paid whether it hits or not.
+- Team buffs are not modelled.
+- Foe -Defense and to-hit effects are not modelled, so they do not change hit chance.
+- Pet debuffs are not modelled.
+- Form-locked auras are not modelled.
+- The cost of switching form is not modelled. A form's chain assumes the character stays in that form.

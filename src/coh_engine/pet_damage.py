@@ -29,6 +29,7 @@ The pet damage enhancement is not computed (the engine has no Damage aspect hand
 ``damage_enhancement`` mapping per summon, else :data:`DEFAULT_PET_DAMAGE_ENHANCEMENT`.
 """
 
+import re
 from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass
 from math import floor, inf
@@ -37,10 +38,11 @@ from typing import Any
 
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.attack_chain import arcana_cast_time, plan_attack_chain
-from coh_engine.attack_profile import classify_attack, load_canonical_powers, read_json
+from coh_engine.attack_profile import applies_in_pve, classify_attack, load_canonical_powers, read_json
 from coh_engine.attribmod import AttribMods, get_modifier
 from coh_engine.damage_model import (
     SOURCE_PET,
+    AttackProfile,
     ChainAttack,
     DamageContext,
     EnduranceBudget,
@@ -70,7 +72,7 @@ class _Entity:
 def _effects(effects: Sequence[Mapping[str, Any]]) -> Iterator[tuple[Mapping[str, Any], Mapping[str, Any]]]:
     """Every (effect group, template) pair, recursing through child effects; PVP-only groups are skipped."""
     for effect in effects:
-        if effect.get("is_pvp") != "PVP":
+        if effect.get("is_pvp") != "PVP_ONLY":
             for template in effect.get("templates", ()):
                 yield effect, template
         yield from _effects(effect.get("child_effects", ()))
@@ -90,9 +92,28 @@ def _duration(text: str, power: str) -> float:
     )
 
 
-def _summoned(power: Mapping[str, Any]) -> list[_Entity]:
+_LEVEL_GATE = re.compile(r"source>combatlevel\s*>\s*(\d+)")
+
+
+def _spawn_key(condition: str, caster_level: int) -> str | None:
+    """How a Create_Entity condition spawns for this caster.
+
+    ``""``: always (no condition, or a level gate the caster meets); ``None``: never (an unmet level
+    gate); otherwise the condition itself, an alternate group (e.g. a costume chosen by @CustomFX).
+    """
+    text = condition.strip()
+    gate = _LEVEL_GATE.fullmatch(text)
+    if gate is not None:
+        return "" if caster_level > int(gate.group(1)) else None
+    return text
+
+
+def _summoned(power: Mapping[str, Any], caster_level: int) -> list[_Entity]:
     found: dict[str, list[Any]] = {}
-    for _, template in _effects(power["effects"]):
+    # Unconditional and met level-gated templates all spawn (Mercenaries' 2nd Soldier at level 6).
+    # Other conditions (costume variants chosen by @CustomFX) are alternates: only the largest group spawns.
+    groups: dict[str, dict[str, int]] = {}
+    for effect, template in _effects(power["effects"]):
         if "Create_Entity" not in template["attribs"]:
             continue
         name = (template.get("params") or {}).get("entity_def")
@@ -101,11 +122,18 @@ def _summoned(power: Mapping[str, Any]) -> list[_Entity]:
                 f"E62: {power['full_name']} has a Create_Entity template with no params.entity_def; "
                 "check the canonical power file"
             )
-        row = found.setdefault(name, [0, _duration(template["duration"], power["full_name"]), template["table"]])
-        row[0] += 1
+        found.setdefault(name, [0, _duration(template["duration"], power["full_name"]), template["table"]])
+        by_condition = groups.setdefault(name, {})
+        key = _spawn_key(effect.get("requires_expression", ""), caster_level)
+        if key is not None:
+            by_condition[key] = by_condition.get(key, 0) + 1
     if not found:
         raise ValueError(f"E62: {power['full_name']} has no Create_Entity template; pass only pet summon powers")
-    return [_Entity(name, *row) for name, row in found.items()]
+    for name, row in found.items():
+        alternates = [n for c, n in groups[name].items() if c]
+        row[0] = groups[name].get("", 0) + max(alternates, default=0)
+    # An entity whose every template is gated above the caster's level never spawns.
+    return [_Entity(name, *row) for name, row in found.items() if row[0] > 0]
 
 
 def _class_index(entity: Mapping[str, Any], classes: ArchetypeDb) -> int:
@@ -121,7 +149,7 @@ def _class_index(entity: Mapping[str, Any], classes: ArchetypeDb) -> int:
     )
 
 
-def _table(mods: AttribMods, name: str, power: str) -> int:
+def modifier_table(mods: AttribMods, name: str, power: str) -> int:
     index = mods.nid_from_uid_attribmod(name)
     if index < 0:
         raise ValueError(
@@ -135,7 +163,7 @@ def _pet_level(
 ) -> int:
     if table.casefold().endswith("ones"):
         return caster_level
-    level = int(get_modifier(mods, classes.classes, pet_class, _table(mods, table, power), caster_level - 1))
+    level = int(get_modifier(mods, classes.classes, pet_class, modifier_table(mods, table, power), caster_level - 1))
     if level < 1:
         raise ValueError(
             f"E61: table {table} gives pet level {level} at caster level {caster_level}; pass a caster_level in 1-50"
@@ -151,13 +179,13 @@ def _damage_per_activation(
         foe_damage = (
             template["aspect"] == "Absolute"
             and template["target"] != "Self"
-            and any(a.endswith("_Dmg") for a in template["attribs"])
+            and any(a.endswith("_Dmg") and not a.startswith("Heal") for a in template["attribs"])
         )
-        if not foe_damage or effect["requires_expression"] or effect["ppm"] > 0:
+        if not foe_damage or not applies_in_pve(effect) or effect["ppm"] > 0:
             continue
         value = abs(
             get_modifier(
-                mods, classes.classes, pet_class, _table(mods, template["table"], power["full_name"]), level - 1
+                mods, classes.classes, pet_class, modifier_table(mods, template["table"], power["full_name"]), level - 1
             )
         )
         period, span = template["application_period"], _seconds(template["duration"], power["full_name"])
@@ -180,11 +208,17 @@ def _seconds(text: str, power: str) -> float:
     )
 
 
-def _is_attack(power: Mapping[str, Any]) -> bool:
-    return power["type"] == "Click" and any(
-        t["aspect"] == "Absolute" and t["target"] != "Self" and any(a.endswith("_Dmg") for a in t["attribs"])
-        for _, t in _effects(power["effects"])
-    )
+def _attack_profile(power: Mapping[str, Any]) -> AttackProfile | None:
+    """The pet power's profile when it is a chain attack; the classifier is the one decision (E37 means none)."""
+    if power["type"] != "Click":
+        return None
+    try:
+        profile = classify_attack(power)
+    except ValueError as error:
+        if str(error).startswith("E37"):
+            return None
+        raise
+    return profile if profile.role is Role.CHAIN else None
 
 
 def build_pet_summons(
@@ -217,7 +251,7 @@ def build_pet_summons(
             )
         enhancement = overrides.get(name, DEFAULT_PET_DAMAGE_ENHANCEMENT)
         power = load_canonical_powers(canonical_root / "powers", [name])[name]
-        for position, entity in enumerate(_summoned(power)):
+        for position, entity in enumerate(_summoned(power, caster_level)):
             path = canonical_root / "entities" / f"{entity.name.lower()}.json"
             if not path.is_file() or path.stat().st_size == 0:
                 raise ValueError(
@@ -240,11 +274,11 @@ def build_pet_summons(
                     cast_time=p["activation_time"],
                     recharge_time=p["recharge_time"],
                     end_cost=0.0,
-                    profile=classify_attack(p),
+                    profile=profile,
                     activate_period=p["activate_period"],
                 )
                 for p in powers.values()
-                if _is_attack(p)
+                if (profile := _attack_profile(p)) is not None
             )
             pet_name = ((data.get("levels") or [{}])[0].get("display_names") or [entity.name])[0]
             result.append(

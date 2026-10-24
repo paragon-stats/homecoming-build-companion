@@ -21,10 +21,12 @@ from coh_engine.damage_model import (
 )
 from coh_engine.damage_modifiers import click_buff_modifier, target_debuff_modifier
 from coh_engine.damage_sources import (
+    attacks_for_form,
     aura_source,
     buff_cast_source,
     chain_source,
     chosen_chain,
+    melee_share,
     patch_source,
 )
 
@@ -224,6 +226,51 @@ def test_buff_cast_source() -> None:
     assert result.dps == 0.0
     assert result.timeline_share == pytest.approx(cast / (cast + 10.0), rel=1e-5)
     assert result.end_per_sec == pytest.approx(8.0 / (cast + 10.0), rel=1e-5)
+
+
+def test_buff_cast_source_covers_support_powers() -> None:
+    """A SUPPORT power takes the same cooldown cast share and endurance, in the one buff_cast source."""
+    cast = arcana_cast_time(1.5)
+    melt = _attack("Melt", Role.SUPPORT, cast=1.5, recharge=100.0, end=10.0)
+    fury = _attack("Fury", Role.BUFF_CLICK, cast=1.0, recharge=10.0, end=8.0)
+    result = buff_cast_source(_ctx(melt, fury))
+    fcast = arcana_cast_time(1.0)
+    assert result is not None
+    assert result.source == "buff_cast"
+    assert result.timeline_share == pytest.approx(cast / (cast + 100.0) + fcast / (fcast + 10.0), rel=1e-5)
+    assert result.end_per_sec == pytest.approx(10.0 / (cast + 100.0) + 8.0 / (fcast + 10.0), rel=1e-5)
+
+
+def _form_attack(name: str, *modes: str, damage: float = 100.0) -> ChainAttack:
+    a = _attack(name, damage=damage)
+    return replace(a, profile=replace(a.profile, modes_required=modes))
+
+
+def test_attacks_for_form_filters_on_modes_required() -> None:
+    """The base form keeps mode-free attacks; a named form keeps attacks requiring that mode."""
+    human, nova = _form_attack("Blast"), _form_attack("Nova Bolt", "Nova")
+    assert attacks_for_form(_ctx(human, nova)) == (human,)
+    assert attacks_for_form(_ctx(human, nova, form="Nova")) == (nova,)
+
+
+def test_chain_plans_only_the_forms_attacks() -> None:
+    """Each form's chain picks only its own attacks, though the other form's hits harder."""
+    human = _form_attack("Blast", damage=100.0)
+    nova = _form_attack("Nova Bolt", "Nova", damage=500.0)
+    ctx = _ctx(human, nova)
+    chosen = chosen_chain(ctx)
+    assert chosen is not None
+    assert chosen.rotation == ("Blast",)
+    nova_ctx = replace(ctx, form="Nova")
+    chosen = chosen_chain(nova_ctx)
+    assert chosen is not None
+    assert chosen.rotation == ("Nova Bolt",)
+    assert chain_source(nova_ctx) is not None
+
+
+def test_melee_share_is_public() -> None:
+    """The melee share is the public helper other layers reuse."""
+    assert melee_share(_ctx(stance=Stance.MELEE)) == 1.0
 
 
 def test_end_to_end_fold() -> None:

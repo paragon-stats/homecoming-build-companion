@@ -110,6 +110,15 @@ def test_target_res_debuff_all_types(tmp_path: Path) -> None:
     assert ref.target_res_debuff_duration == 20
 
 
+def test_target_res_debuff_on_a_toggle_is_extracted_like_a_click(tmp_path: Path) -> None:
+    """A -Res toggle (Enervating Field, Venomous Gas) folds the same as a click; only PowerType differs."""
+    enhanced, structural = _power("P.Field", _res(-0.3))
+    structural.update(PowerType="Toggle", ActivatePeriod=2.0, StatInclude=True)
+    ref = load_damage_refs(_dump(tmp_path, (enhanced, structural)))["P.Field"]
+    assert (ref.power_type, ref.activate_period) == ("Toggle", 2.0)
+    assert (ref.target_res_debuff, ref.target_res_debuff_duration) == (f32(0.3), 20)
+
+
 def test_target_res_debuff_takes_weakest_type(tmp_path: Path) -> None:
     effects = _res(-0.3)
     effects[-1]["mag"] = -0.1  # weakest type last, so "first" and "weakest" differ

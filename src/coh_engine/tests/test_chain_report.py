@@ -11,8 +11,10 @@ from typing import Any
 import pytest
 
 from coh_engine import chain_report
+from coh_engine.archetypes import load_archetypes
 from coh_engine.attack_chain import ChainOption, arcana_cast_time
-from coh_engine.attack_profile import classify_attack
+from coh_engine.attack_profile import canonical_resolver, classify_attack
+from coh_engine.attribmod import get_modifier, load_attribmod
 from coh_engine.chain_report import (
     ChainSetup,
     build_chain_setup,
@@ -105,7 +107,7 @@ def test_fixture_reports_every_stance_with_positive_dps() -> None:
     assert melee.report.scaled_dps["chain"] > 0.0
     assert hybrid.report.scaled_dps["chain"] > 0.0
     assert melee.chain is not None
-    assert ranged.chain is None
+    assert ranged.chain is not None and ranged.chain.rotation == ("Epic.Stalker_Soul_Mastery.Moonbeam",)
     assert all(r.report.total_dps > 0.0 for r in results)
 
 
@@ -240,6 +242,120 @@ def test_pet_build_with_mids_db_builds_pets(monkeypatch: pytest.MonkeyPatch) -> 
     assert seen["attribmod"].tables
 
 
+CANONICAL_POWERS = Path(__file__).parents[3] / "data" / "canonical" / "powers"
+ACID_MORTAR = "Mastermind_Buff.Traps.Acid_Mortar"
+
+
+def _table_value(mods: Any, classes: Any, class_name: str, table: str) -> float:
+    index = classes.nid_from_uid_class(class_name)
+    return abs(get_modifier(mods, classes.classes, index, mods.nid_from_uid_attribmod(table), 49))
+
+
+def test_linked_res_debuff_reads_a_patch_entitys_minus_res() -> None:
+    """Acid Mortar: -2.0 x Ranged_Res_Dmg on every type, from its mortar entity, which lives 60 s."""
+    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    classes = load_archetypes(MIDS / "archetypes.json")
+    resolve = canonical_resolver(CANONICAL_POWERS)
+    power = resolve(ACID_MORTAR)
+    assert power is not None
+    index = classes.nid_from_uid_class("Class_Mastermind")
+    magnitude, duration = chain_report.linked_res_debuff(power, resolve, mods, classes, index)
+    assert magnitude == pytest.approx(2.0 * _table_value(mods, classes, "Class_Mastermind", "Ranged_Res_Dmg"), rel=1e-5)
+    assert duration == 60.0
+
+
+def test_linked_res_debuff_counts_freezing_rain_once() -> None:
+    """Freezing Rain's two identical templates are a PvP/PvE pair; the PvE one counts once."""
+    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    classes = load_archetypes(MIDS / "archetypes.json")
+    resolve = canonical_resolver(CANONICAL_POWERS)
+    power = resolve("Defender_Buff.Storm_Summoning.Fog")
+    assert power is not None
+    index = classes.nid_from_uid_class("Class_Defender")
+    magnitude, _ = chain_report.linked_res_debuff(power, resolve, mods, classes, index)
+    table = _table_value(mods, classes, "Class_Defender", "Ranged_Debuff_Res_Dmg")
+    assert magnitude == pytest.approx(4.0 * table, rel=1e-5)
+    melt = resolve("Defender_Buff.Thermal_Radiation.Melt_Armor")
+    assert melt is not None
+    melt_magnitude, melt_duration = chain_report.linked_res_debuff(melt, resolve, mods, classes, index)
+    assert melt_magnitude > 0.0 and melt_duration > 0.0  # its own templates, no summoned entity
+
+
+def test_linked_res_debuff_with_an_unknown_table_is_e61() -> None:
+    """A -Res template naming a table the AttribMod data lacks fails loud instead of counting 0."""
+    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    classes = load_archetypes(MIDS / "archetypes.json")
+    template = {
+        "attribs": ["Fire_Dmg"],
+        "aspect": "Resistance",
+        "target": "Foe",
+        "table": "No_Such_Debuff_Res_Dmg",
+        "scale": -1.0,
+        "duration": "10 seconds",
+    }
+    power = {"full_name": "Tst.Set.Melt", "effects": [{"templates": [template]}]}
+    with pytest.raises(ValueError, match=r"E61.*No_Such_Debuff_Res_Dmg"):
+        chain_report.linked_res_debuff(power, lambda _name: None, mods, classes, 0)
+
+
+def _with_patch(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Add a dump-zero Acid Mortar PATCH to the fixture build's attacks."""
+    real = chain_report._attacks
+
+    def attacks(*args: Any, **kwargs: Any) -> Any:
+        found, skipped = real(*args, **kwargs)
+        profile = AttackProfile(ACID_MORTAR, Delivery.RANGED, Shape.LOCATION, Role.PATCH, 60.0, 0.0, 0.0, 0)
+        mortar = ChainAttack(ACID_MORTAR, 50.0, 1.0, 60.0, 10.0, profile)
+        return (*found, mortar), skipped
+
+    monkeypatch.setattr(chain_report, "_attacks", attacks)
+
+
+def test_patch_minus_res_is_filled_from_canonical_with_the_mids_db(monkeypatch: pytest.MonkeyPatch) -> None:
+    """A dump-zero patch debuff is read from its linked templates for the build's own AT."""
+    _with_patch(monkeypatch)
+    setup = _setup(mids_db=FIXTURES / "attribmod")
+    mortar = next(a for a in setup.context.attacks if a.full_name == ACID_MORTAR)
+    assert mortar.target_res_debuff > 0.0
+    assert mortar.target_res_debuff_duration == 60.0
+
+
+def test_patch_minus_res_without_the_mids_db_is_reported_not_modelled(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Without the table data the gap is reported, never silently left at zero."""
+    _with_patch(monkeypatch)
+    setup = _setup()
+    mortar = next(a for a in setup.context.attacks if a.full_name == ACID_MORTAR)
+    assert mortar.target_res_debuff == 0.0
+    (skip,) = [s for s in setup.skipped if s[0] == ACID_MORTAR]
+    assert "--mids-db" in skip[1]
+
+
+def test_a_pet_data_gap_skips_that_summon_and_reports_it(monkeypatch: pytest.MonkeyPatch) -> None:
+    """E60-E62 (entity, class table or duration missing) skip one summon with a reason; the run carries on."""
+    _force_role(monkeypatch, Role.PET_SUMMON)
+
+    def gap(summons: list[Any], **kwargs: Any) -> tuple[str, ...]:
+        raise ValueError("E61: entity X has class 'minion_controllerpets' with no class in the archetype table")
+
+    monkeypatch.setattr(chain_report, "build_pet_summons", gap)
+    setup = _setup(mids_db=FIXTURES / "attribmod")
+    assert setup.context.pets == ()
+    (skip,) = [s for s in setup.skipped if s[0] == "Inherent.Inherent.Brawl"]
+    assert "E61" in skip[1] and "pet" in skip[1]
+
+
+def test_a_non_data_gap_pet_error_still_propagates(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Only the pet data-gap codes are tolerated; anything else fails loud."""
+    _force_role(monkeypatch, Role.PET_SUMMON)
+
+    def boom(summons: list[Any], **kwargs: Any) -> tuple[str, ...]:
+        raise ValueError("E36: unknown effect_area")
+
+    monkeypatch.setattr(chain_report, "build_pet_summons", boom)
+    with pytest.raises(ValueError, match="E36"):
+        _setup(mids_db=FIXTURES / "attribmod")
+
+
 def test_only_e37_is_skipped_when_classifying(monkeypatch: pytest.MonkeyPatch) -> None:
     """E37 drops a power; any other error propagates."""
 
@@ -285,10 +401,21 @@ def test_skipped_powers_are_reported_as_p_chain_002_with_a_fix() -> None:
     assert all(d.fix for d in found)
 
 
-def test_fixture_reports_its_non_damaging_signal_power_as_skipped() -> None:
-    """Moonbeam carries a debuff signal but no foe damage: dropped from the chain, named in the setup."""
-    names = [name for name, _ in _setup().skipped]
-    assert names == ["Epic.Stalker_Soul_Mastery.Moonbeam"]
+MOONBEAM = "Epic.Stalker_Soul_Mastery.Moonbeam"
+
+
+def _without_moonbeam(setup: ChainSetup) -> ChainSetup:
+    """The fixture with its one ranged attack removed, leaving the ranged stance nothing to cast."""
+    attacks = tuple(a for a in setup.context.attacks if a.full_name != MOONBEAM)
+    return replace(setup, context=replace(setup.context, attacks=attacks))
+
+
+def test_fixture_classifies_its_redirecting_snipe_and_skips_nothing() -> None:
+    """Moonbeam has no effects of its own; its default redirect makes it a ranged chain attack."""
+    setup = _setup()
+    assert setup.skipped == ()
+    (moonbeam,) = [a for a in setup.context.attacks if a.full_name == MOONBEAM]
+    assert (moonbeam.profile.role, moonbeam.profile.delivery) == (Role.CHAIN, Delivery.RANGED)
 
 
 def _ref(name: str, damage: float = 0.0) -> PowerDamageRef:
@@ -497,11 +624,14 @@ def test_json_view_is_serialisable_and_complete() -> None:
     assert "#31" in melee["dps"]["labels"]["chain"]
     # Drains, but lasts the default 4 cycles, so it is affordable.
     assert melee["endurance"]["time_to_empty_s"] >= 4 * melee["rotation"]["cycle_time_s"]
-    assert ranged["endurance"]["time_to_empty_s"] is None  # toggles alone: inf -> null
+    assert ranged["rotation"]["attacks"] == [MOONBEAM]
     assert melee["health"]["max_hp"] > 0.0
     assert melee["modifiers"][0]["factor"] > 1.0
     assert melee["diagnostics"][0]["rule_id"].startswith("P-")
-    assert ranged["rotation"] is None
+    melee_only = _without_moonbeam(setup)
+    (bare,) = [stance_to_json(melee_only, r) for r in run_chain(melee_only, [Stance.RANGED])]
+    assert bare["endurance"]["time_to_empty_s"] is None  # toggles alone: inf -> null
+    assert bare["rotation"] is None
 
 
 def test_text_view_for_sustainable_and_draining_builds() -> None:
@@ -521,7 +651,9 @@ def test_text_view_for_sustainable_and_draining_builds() -> None:
     assert "health: max" in text
     assert "P-CHAIN-001" in text
     assert "    Scrapper_Melee.Dark_Melee.Smite: " in text  # per-item detail under its layer
-    ranged_text = stance_to_text(setup, ranged)
+    assert f"rotation: {MOONBEAM}" in stance_to_text(setup, ranged)
+    melee_only = _without_moonbeam(setup)
+    ranged_text = stance_to_text(melee_only, run_chain(melee_only, [Stance.RANGED])[0])
     assert "rotation: none" in ranged_text
     assert "time to empty sustainable" in ranged_text
 
@@ -543,3 +675,80 @@ def test_modifier_without_assumption_text_is_labelled(monkeypatch: pytest.Monkey
     assert "no assumption" in stance_to_text(setup, blank)
     empty = replace(result, report=replace(result.report, modifiers=()))
     assert "modifiers:\n  none" in stance_to_text(setup, empty)
+
+
+def _two_form_setup() -> ChainSetup:
+    """The fixture build plus a Nova-locked copy of its first attack, so the build has two forms."""
+    setup = _setup()
+    base = setup.context.attacks[0]
+    nova = replace(base, full_name="Nova.Bolt", profile=replace(base.profile, modes_required=("Nova",)))
+    return replace(setup, context=replace(setup.context, attacks=(*setup.context.attacks, nova)))
+
+
+def test_classification_receives_a_canonical_resolver(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Every power is classified with ``resolve=`` so Execute_Power and Create_Entity links are followed."""
+    seen: list[Any] = []
+
+    def classify(power: dict[str, Any], **kwargs: Any) -> AttackProfile:
+        seen.append(kwargs.get("resolve"))
+        return classify_attack(power, **kwargs)
+
+    monkeypatch.setattr(chain_report, "classify_attack", classify)
+    _setup()
+    assert seen
+    assert all(callable(resolve) for resolve in seen)
+
+
+def test_a_build_without_forms_has_only_the_base_form() -> None:
+    """No attack names a mode: one block per stance, form empty, header unchanged."""
+    setup = _setup()
+    assert chain_report.available_forms(setup.context) == ("",)
+    results = run_chain(setup, ALL_STANCES)
+    assert [r.form for r in results] == ["", "", ""]
+    assert stance_to_json(setup, results[0])["form"] == ""
+    assert stance_to_text(setup, results[0]).startswith("== melee stance ==\n")
+
+
+def test_each_stance_runs_once_per_form() -> None:
+    """Stances run as before, each repeated for the base form and then every mode, in sorted order."""
+    setup = _two_form_setup()
+    assert chain_report.available_forms(setup.context) == ("", "Nova")
+    results = run_chain(setup, [Stance.MELEE, Stance.RANGED])
+    assert [(r.stance, r.form) for r in results] == [
+        (Stance.MELEE, ""),
+        (Stance.MELEE, "Nova"),
+        (Stance.RANGED, ""),
+        (Stance.RANGED, "Nova"),
+    ]
+
+
+def test_form_blocks_are_labelled_in_text_and_json() -> None:
+    """A form block reads ``== melee stance, Nova form ==`` and carries a ``form`` key."""
+    setup = _two_form_setup()
+    base, nova = run_chain(setup, [Stance.MELEE])
+    assert stance_to_text(setup, base).startswith("== melee stance ==\n")
+    assert stance_to_text(setup, nova).startswith("== melee stance, Nova form ==\n")
+    assert stance_to_json(setup, nova)["form"] == "Nova"
+
+
+def test_forms_can_be_restricted_to_one() -> None:
+    """``forms=`` runs only the named forms; the base form is the empty string."""
+    setup = _two_form_setup()
+    assert [r.form for r in run_chain(setup, [Stance.MELEE], forms=["Nova"])] == ["Nova"]
+    assert [r.form for r in run_chain(setup, [Stance.MELEE], forms=[""])] == [""]
+
+
+def test_unknown_form_is_e65_naming_the_available_forms() -> None:
+    """An unknown form lists what the build offers."""
+    with pytest.raises(ValueError, match=r"E65.*'Dwarf'.*base.*Nova"):
+        run_chain(_two_form_setup(), [Stance.MELEE], forms=["Dwarf"])
+
+
+def test_base_form_has_no_rotation_when_every_attack_is_form_locked() -> None:
+    """Only form-locked attacks: the base block prints ``rotation: none`` and the form block has a chain."""
+    setup = _setup()
+    locked = tuple(replace(a, profile=replace(a.profile, modes_required=("Nova",))) for a in setup.context.attacks)
+    setup = replace(setup, context=replace(setup.context, attacks=locked))
+    base, nova = run_chain(setup, [Stance.MELEE])
+    assert "rotation: none" in stance_to_text(setup, base)
+    assert nova.chain is not None

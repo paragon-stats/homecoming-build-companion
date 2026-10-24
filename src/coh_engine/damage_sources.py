@@ -29,10 +29,21 @@ from coh_engine.maths import f32
 SOURCE_BUFF_CAST = "buff_cast"
 
 
+def attacks_for_form(ctx: DamageContext) -> tuple[ChainAttack, ...]:
+    """The attacks usable in ``ctx.form``: mode-free ones in the base form, else those requiring the form.
+
+    The one place form gating happens, and only for the chain. Auras, patches and buff casts are
+    not filtered, so form-locked auras are not modelled.
+    """
+    if not ctx.form:
+        return tuple(a for a in ctx.attacks if not a.profile.modes_required)
+    return tuple(a for a in ctx.attacks if ctx.form in a.profile.modes_required)
+
+
 def chosen_chain(ctx: DamageContext) -> ChainOption | None:
     """The planner's pick for ``ctx``: best affordable rotation, else the best overall, else None."""
     plan = plan_attack_chain(
-        ctx.attacks,
+        attacks_for_form(ctx),
         stance=ctx.stance,
         movement=ctx.movement,
         scenario=ctx.scenario,
@@ -78,7 +89,7 @@ def chain_source(ctx: DamageContext) -> SourceResult | None:
     )
 
 
-def _melee_share(ctx: DamageContext) -> float:
+def melee_share(ctx: DamageContext) -> float:
     """Fraction of time the character stands where a damage aura reaches foes.
 
     Under the hybrid stance it is derived from the chosen rotation: 0 when no attack in it needs the
@@ -120,7 +131,7 @@ def aura_source(ctx: DamageContext) -> SourceResult | None:
     auras = ctx.by_role(Role.AURA)
     if not auras:
         return None
-    share = _melee_share(ctx)
+    share = melee_share(ctx)
     if share == 0.0:
         return None
     detail: list[tuple[str, float]] = []
@@ -173,8 +184,8 @@ def patch_source(ctx: DamageContext) -> SourceResult | None:
 
 @damage_source()
 def buff_cast_source(ctx: DamageContext) -> SourceResult | None:
-    """Buff clicks deal no damage but spend cast time and endurance."""
-    buffs = ctx.by_role(Role.BUFF_CLICK)
+    """Buff clicks and support powers deal no damage but spend cast time and endurance."""
+    buffs = (*ctx.by_role(Role.BUFF_CLICK), *ctx.by_role(Role.SUPPORT))
     if not buffs:
         return None
     share = drain = 0.0

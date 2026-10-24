@@ -29,10 +29,17 @@ from types import MappingProxyType
 from typing import Any
 
 from coh_engine import damage_plugins
-from coh_engine.archetypes import Archetype, load_archetypes
+from coh_engine.archetypes import Archetype, ArchetypeDb, load_archetypes
 from coh_engine.attack_chain import ChainOption
-from coh_engine.attack_profile import category_disagreement, classify_attack, load_canonical_powers
-from coh_engine.attribmod import load_attribmod
+from coh_engine.attack_profile import (
+    Resolver,
+    canonical_resolver,
+    category_disagreement,
+    classify_attack,
+    foe_res_debuff_templates,
+    load_canonical_powers,
+)
+from coh_engine.attribmod import AttribMods, get_modifier, load_attribmod
 from coh_engine.base_totals import TotalStatistics
 from coh_engine.damage_model import (
     SOURCE_CHAIN,
@@ -57,7 +64,7 @@ from coh_engine.endurance_budget import (
     load_mids_totals,
 )
 from coh_engine.maths import f32
-from coh_engine.pet_damage import build_pet_summons
+from coh_engine.pet_damage import build_pet_summons, modifier_table
 from coh_engine.profiles import load_breakpoints
 
 _ = damage_plugins  # imported first so the default registries are populated
@@ -174,12 +181,13 @@ def _attacks(
 ) -> tuple[tuple[ChainAttack, ...], tuple[tuple[str, str], ...]]:
     powers, skipped = _candidates(refs, canonical_root / "powers")
     skipped_list = list(skipped)
+    resolve = canonical_resolver(canonical_root / "powers")
     attacks: list[ChainAttack] = []
     for name, ref in refs.items():
         if name not in powers:
             continue
         try:
-            profile = classify_attack(powers[name], melee_range_ft_max=melee_range_ft_max)
+            profile = classify_attack(powers[name], melee_range_ft_max=melee_range_ft_max, resolve=resolve)
         except ValueError as error:
             if str(error).startswith("E37"):
                 if _reportable(name):
@@ -202,6 +210,96 @@ def _attacks(
             )
         )
     return tuple(attacks), tuple(skipped_list)
+
+
+# Pet data gaps: no entity file, no class damage table (e.g. Controller pets), an unreadable duration.
+_PET_DATA_GAPS = ("E60", "E61", "E62")
+
+_CORE_TYPES = (
+    "Smashing_Dmg",
+    "Lethal_Dmg",
+    "Fire_Dmg",
+    "Cold_Dmg",
+    "Energy_Dmg",
+    "Negative_Energy_Dmg",
+    "Psionic_Dmg",
+    "Toxic_Dmg",
+)
+# Roles whose -Res may live in a summoned entity or linked power the Mids dump does not carry.
+_LINKED_DEBUFF_ROLES = (Role.PATCH, Role.SUPPORT, Role.PERSISTENT_DEBUFF)
+
+
+def _seconds(text: str | None) -> float:
+    match = re.fullmatch(r"([\d.]+) seconds", (text or "").strip())
+    return float(match.group(1)) if match else 0.0
+
+
+def linked_res_debuff(
+    power: Mapping[str, Any], resolve: Resolver, mods: AttribMods, classes: ArchetypeDb, class_index: int
+) -> tuple[float, float]:
+    """The -Res a power puts on foes, read from its own and linked canonical templates for the build's AT.
+
+    Magnitude is |scale x magnitude x table value| at level 50, summed per damage type, then the smallest
+    of the eight core types (a partial-type debuff counts 0, as the dump reader does). Duration is the
+    longest template duration or the summoned entity's lifetime, since a patch re-applies while it lives.
+    Approximate: the planner's own reading of canonical data; Mids does not dump these linked effects.
+    """
+    totals: dict[str, float] = {}
+    duration = 0.0
+    for t in foe_res_debuff_templates(power, resolve):
+        table = modifier_table(mods, t.get("table", ""), power["full_name"])
+        value = abs(t["scale"] * t.get("magnitude", 1.0) * get_modifier(mods, classes.classes, class_index, table, 49))
+        for attrib in t["attribs"]:
+            totals[attrib] = totals.get(attrib, 0.0) + value
+        duration = max(duration, _seconds(t.get("duration")))
+    for effect in power.get("effects", ()):
+        for t in effect.get("templates", ()):
+            if "Create_Entity" in t["attribs"]:
+                duration = max(duration, _seconds(t.get("duration")))
+    return f32(min(totals.get(t, 0.0) for t in _CORE_TYPES)), f32(duration)
+
+
+def _fill_linked_debuffs(
+    attacks: tuple[ChainAttack, ...],
+    canonical: Path,
+    mods: AttribMods | None,
+    classes: ArchetypeDb,
+    class_index: int,
+) -> tuple[tuple[ChainAttack, ...], tuple[tuple[str, str], ...]]:
+    """Fill the -Res the dump left at 0 for patches and debuffs whose canonical data carries one.
+
+    Without the table data (``mods`` is None) such a power is reported, never silently left at 0.
+    """
+    resolve = canonical_resolver(canonical / "powers")
+    filled: list[ChainAttack] = []
+    skipped: list[tuple[str, str]] = []
+    for attack in attacks:
+        power = resolve(attack.full_name) if attack.profile.role in _LINKED_DEBUFF_ROLES else None
+        if power is None or attack.target_res_debuff > 0.0 or not foe_res_debuff_templates(power, resolve):
+            filled.append(attack)
+        elif mods is None:
+            filled.append(attack)
+            skipped.append((attack.full_name, "-Res not modelled, the dump lacks it; pass --mids-db to read it"))
+        else:
+            magnitude, duration = linked_res_debuff(power, resolve, mods, classes, class_index)
+            filled.append(replace(attack, target_res_debuff=magnitude, target_res_debuff_duration=duration))
+    return tuple(filled), tuple(skipped)
+
+
+def _build_pets(
+    summons: Sequence[ChainAttack], canonical: Path, attribmod: AttribMods, classes: ArchetypeDb
+) -> tuple[tuple[PetSummon, ...], tuple[tuple[str, str], ...]]:
+    """Build each summon's pets; a summon with a pet data gap is skipped and reported, the rest still build."""
+    pets: list[PetSummon] = []
+    skipped: list[tuple[str, str]] = []
+    for summon in summons:
+        try:
+            pets += build_pet_summons([summon], canonical_root=canonical, attribmod=attribmod, classes=classes)
+        except ValueError as error:
+            if not str(error).startswith(_PET_DATA_GAPS):
+                raise
+            skipped.append((summon.full_name, f"pet not modelled, data gap ({error})"))
+    return tuple(pets), tuple(skipped)
 
 
 def _speed(capped: TotalStatistics, move: str) -> float:
@@ -273,20 +371,19 @@ def build_chain_setup(
     attacks, skipped = _attacks(load_damage_refs(source), canonical, float(universal["melee_range_ft_max"]))
     if not any(a.profile.role is not Role.PET_SUMMON for a in attacks):
         raise ValueError(f"E71: no power in {source} deals damage or buffs damage; point the build at an attacker")
+    mods = load_attribmod(mids_db / "AttribMod.json") if mids_db is not None else None
+    attacks, debuff_skips = _fill_linked_debuffs(attacks, canonical, mods, classes, index)
+    skipped = (*skipped, *debuff_skips)
     summons = [a for a in attacks if a.profile.role is Role.PET_SUMMON]
     pets: tuple[PetSummon, ...] = ()
     if summons:
-        if mids_db is None:
+        if mods is None:
             raise ValueError(
                 f"E66: {[a.full_name for a in summons]} summon pets but --mids-db is not set; "
                 "pass --mids-db with the directory holding AttribMod.json"
             )
-        pets = build_pet_summons(
-            summons,
-            canonical_root=canonical,
-            attribmod=load_attribmod(mids_db / "AttribMod.json"),
-            classes=classes,
-        )
+        pets, pet_skips = _build_pets(summons, canonical, mods, classes)
+        skipped = (*skipped, *pet_skips)
 
     max_end_cap, _ = load_canonical_caps(canonical / "archetypes", class_name)
     merged = {"chain.min_cycles": float(universal["chain_min_cycles"]), **(assumptions or {})}
@@ -420,17 +517,39 @@ class StanceReport:
     report: DamageReport
     chain: ChainOption | None
     diagnostics: tuple[Diagnostic, ...]
+    form: str = ""
 
 
-def run_chain(setup: ChainSetup, stances: Sequence[Stance], *, path: str = "build") -> list[StanceReport]:
-    """Evaluate the damage model for each stance and fold the registered chain rules over it."""
+def available_forms(context: DamageContext) -> tuple[str, ...]:
+    """The base form (``""``) then every mode some attack requires, sorted."""
+    return ("", *sorted({m for a in context.attacks for m in a.profile.modes_required}))
+
+
+def run_chain(
+    setup: ChainSetup, stances: Sequence[Stance], *, path: str = "build", forms: Sequence[str] | None = None
+) -> list[StanceReport]:
+    """Evaluate the damage model for each stance and form and fold the registered chain rules over it.
+
+    ``forms`` defaults to every form of the build (see :func:`available_forms`).
+
+    Raises:
+        ValueError: ``E65`` when a requested form is not one of the build's forms.
+    """
+    known = available_forms(setup.context)
+    wanted = known if forms is None else tuple(forms)
+    unknown = [f for f in wanted if f not in known]
+    if unknown:
+        names = ", ".join(repr(f or "base") for f in known)
+        raise ValueError(f"E65: form {unknown[0]!r} is not a form of this build; choose one of {names} ('' is base)")
     results: list[StanceReport] = []
     for stance in stances:
-        ctx = replace(setup.context, stance=stance)
-        report = evaluate_damage(ctx)
-        chain = chosen_chain(report.remainder_context)
-        rc = RuleContext(setup=setup, context=ctx, report=report, chain=chain, path=path)
-        results.append(StanceReport(stance, report, chain, tuple(d for rule in _CHAIN_RULES for d in rule(rc))))
+        for form in wanted:
+            ctx = replace(setup.context, stance=stance, form=form)
+            report = evaluate_damage(ctx)
+            chain = chosen_chain(report.remainder_context)
+            rc = RuleContext(setup=setup, context=ctx, report=report, chain=chain, path=path)
+            diagnostics = tuple(d for rule in _CHAIN_RULES for d in rule(rc))
+            results.append(StanceReport(stance, report, chain, diagnostics, form))
     return results
 
 
@@ -444,6 +563,7 @@ def stance_to_json(setup: ChainSetup, result: StanceReport) -> dict[str, Any]:
     chain_drain = sum(s.end_per_sec for s in report.sources if s.source == SOURCE_CHAIN)
     return {
         "stance": result.stance.value,
+        "form": result.form,
         "rotation": None
         if chain is None
         else {
@@ -490,7 +610,8 @@ def stance_to_text(setup: ChainSetup, result: StanceReport) -> str:
     """One stance's report as the human-readable block."""
     data = stance_to_json(setup, result)
     rot, dps, end, hp = data["rotation"], data["dps"], data["endurance"], data["health"]
-    lines = [f"== {data['stance']} stance =="]
+    form = f", {data['form']} form" if data["form"] else ""
+    lines = [f"== {data['stance']} stance{form} =="]
     if rot is None:
         lines.append("rotation: none (no chain attack is usable in this stance)")
     else:
