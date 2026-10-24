@@ -89,6 +89,12 @@ def test_damage_in_child_effect_is_found() -> None:
     assert classify_attack(_power(effects=[outer])).role is Role.CHAIN
 
 
+def test_damaging_auto_power_is_an_aura_not_a_chain_attack() -> None:
+    """An Auto power is never activated, so its damage runs beside the chain like a toggle aura."""
+    burn = _effect("Fire_Dmg", "Absolute", "AnyAffected")
+    assert classify_attack(_power(type="Auto", range=0.0, effect_area="AoE", effects=[burn])).role is Role.AURA
+
+
 def test_chain_area_is_targeted_aoe() -> None:
     jump = _effect("Fire_Dmg", "Absolute", "AnyAffected")
     assert classify_attack(_power(effect_area="Chain", effects=[jump])).shape is Shape.TARGETED_AOE

@@ -22,7 +22,7 @@ Role precedence (first match wins):
 
 1. creates an entity (``Create_Entity``) and a boost-set category is a pet category -> ``PET_SUMMON``
 2. creates an entity otherwise (e.g. a location damage patch) -> ``PATCH``
-3. type ``Toggle`` with foe damage -> ``AURA``
+3. type ``Toggle`` or ``Auto`` with foe damage -> ``AURA`` (never activated, so never in the chain)
 4. foe damage (any ``*_Dmg`` attribute with aspect ``Absolute`` not aimed at ``Self``) -> ``CHAIN``
 5. type ``Click`` with a ``*_Dmg`` attribute of aspect ``Strength`` aimed at ``Self`` -> ``BUFF_CLICK``
 6. otherwise ``E37`` (the caller filters non-damaging, non-buff powers)
@@ -109,7 +109,7 @@ def _role(power: Mapping[str, Any]) -> Role:
     if any(a == "Create_Entity" for a, _, _ in attribs):
         return Role.PET_SUMMON if _PET_CATEGORIES & set(power["allowed_boostset_cats"]) else Role.PATCH
     if any(a.endswith("_Dmg") and aspect == "Absolute" and target != "Self" for a, aspect, target in attribs):
-        return Role.AURA if power["type"] == "Toggle" else Role.CHAIN
+        return Role.AURA if power["type"] in ("Toggle", "Auto") else Role.CHAIN
     if power["type"] == "Click" and any(
         a.endswith("_Dmg") and aspect == "Strength" and target == "Self" for a, aspect, target in attribs
     ):
