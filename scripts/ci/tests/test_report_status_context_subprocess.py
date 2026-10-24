@@ -59,6 +59,7 @@ class TestRunGh:
         proc = MagicMock(returncode=1, stdout="", stderr="boom\n")
         with (
             patch("scripts.ci.report_status_context.subprocess.run", return_value=proc),
+            patch("scripts.ci.report_status_context.time.sleep"),
             pytest.raises(RuntimeError, match=r"exit code 1[\s\S]*boom"),
         ):
             _run_gh(["gh", "api", "x"], env={})
@@ -67,6 +68,34 @@ class TestRunGh:
         proc = MagicMock(returncode=2, stdout="", stderr=None)
         with (
             patch("scripts.ci.report_status_context.subprocess.run", return_value=proc),
+            patch("scripts.ci.report_status_context.time.sleep"),
             pytest.raises(RuntimeError, match="exit code 2"),
         ):
             _run_gh(["gh", "api", "x"], env={})
+
+    def test_retries_after_a_transient_failure(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """One bad reply from the API (PR #74, #75) must not fail a job whose own work passed."""
+        failed = MagicMock(returncode=1, stdout="", stderr="invalid character 'S' looking for beginning of value\n")
+        ok = MagicMock(returncode=0, stdout="abc123\n", stderr="")
+        with (
+            patch("scripts.ci.report_status_context.subprocess.run", side_effect=[failed, ok]) as run,
+            patch("scripts.ci.report_status_context.time.sleep") as sleep,
+        ):
+            assert _run_gh(["gh", "api", "x"], env={}) == "abc123"
+        assert run.call_count == 2
+        sleep.assert_called_once_with(2.0)
+        err = capsys.readouterr().err
+        assert "retrying in 2 s (attempt 1 of 3)" in err
+        assert "invalid character 'S'" in err
+
+    def test_gives_up_after_the_last_attempt(self) -> None:
+        """A persistent failure still raises, naming the attempt count and the last stderr."""
+        proc = MagicMock(returncode=1, stdout="", stderr="still down\n")
+        with (
+            patch("scripts.ci.report_status_context.subprocess.run", return_value=proc) as run,
+            patch("scripts.ci.report_status_context.time.sleep") as sleep,
+            pytest.raises(RuntimeError, match=r"exit code 1 after 3 attempts[\s\S]*still down"),
+        ):
+            _run_gh(["gh", "api", "x"], env={})
+        assert run.call_count == 3
+        assert [c.args[0] for c in sleep.call_args_list] == [2.0, 4.0]
