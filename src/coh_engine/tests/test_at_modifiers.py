@@ -183,3 +183,16 @@ def test_rule_mapping_is_read_only() -> None:
     """The class-to-rule mapping cannot be mutated by callers."""
     with pytest.raises(TypeError):
         at_modifier_rules()["Class_X"] = "x"  # type: ignore[index]
+
+
+def test_character_damage_rules_spare_pets() -> None:
+    """Every damaging AT rule except Supremacy excludes the pet source; neutral rules scale nothing anyway."""
+    for cls in _PLAYABLE:
+        for r in _results(_ctx(cls)):
+            if "neutral," in r.assumption:
+                continue
+            if r.modifier == "mastermind_supremacy":
+                assert r.applies_to == frozenset({SOURCE_PET})
+            else:
+                assert r.applies_to is not None, r.modifier
+                assert SOURCE_PET not in r.applies_to, r.modifier

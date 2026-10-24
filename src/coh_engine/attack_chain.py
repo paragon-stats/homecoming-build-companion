@@ -223,12 +223,14 @@ def plan_attack_chain(
         move_time = f32(switches * switch_time) if switches else 0.0
         cast_sum = _f32_sum(p[2] for p in picked)
         cycle_time = max(f32(cast_sum + move_time), *(p[3] for p in picked))
-        gap = f32(cycle_time - cast_sum - move_time)
+        gap = f32(cycle_time - f32(cast_sum + move_time))
         damage = _f32_sum(p[4] for p in picked)
         end_per_sec = f32(f32(_f32_sum(p[5] for p in picked) / cycle_time) * scaled)
         drain = f32(other_drain_per_sec + end_per_sec)
         net = budget.net_per_sec(drain)
-        res_debuff = _f32_sum(f32(p[6] * min(1.0, f32(p[7] / cycle_time))) for p in picked if p[6] > 0.0)
+        # Scaling stretches the real gap between one attack's casts.
+        period = f32(cycle_time / scaled)
+        res_debuff = _f32_sum(f32(p[6] * min(1.0, f32(p[7] / period))) for p in picked if p[6] > 0.0)
         options.append(
             ChainOption(
                 rotation=tuple(p[0] for p in picked),
@@ -250,7 +252,8 @@ def plan_attack_chain(
         )
 
     def affordable(o: ChainOption) -> bool:
-        return o.time_to_empty >= min_cycles * o.cycle_time  # a sustainable option's time to empty is inf
+        # A sustainable option's time to empty is inf; the real period between casts is cycle_time / scaled.
+        return o.time_to_empty >= min_cycles * f32(o.cycle_time / scaled)
 
     def rank(o: ChainOption) -> tuple[bool, float, float, int, tuple[str, ...]]:
         return (not affordable(o), -o.score, o.gap, len(o.rotation), o.rotation)

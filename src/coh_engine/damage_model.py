@@ -13,8 +13,8 @@ chain) run last, on the timeline the others left, and see the others' endurance 
 Modifiers multiply source DPS by ``1 + (multiplier - 1) * uptime``. Damage *buffs* (Fury,
 Build Up, Defiance) are additive in the game: they join the enhancement and global buffs
 already inside the per-power damage figure, so an ``additive`` modifier scales by
-``1 + bonus * uptime / baseline``, where ``baseline`` is ``1 +`` the damage strength already
-applied (``DamageContext.damage_buff_baseline``, or a source's own override). A modifier
+``1 + sum(bonus * uptime) / baseline`` (one shared sum per source), where ``baseline`` is ``1 +``
+the damage strength already applied (``DamageContext.damage_buff_baseline``, or a source's own override). A modifier
 with ``applies_to`` set scales only the named sources; ``None`` scales every source.
 
 **Novel to the port — no Mids parity reference.** Mids has no layered damage model; its DPS
@@ -310,10 +310,13 @@ def evaluate_damage(
     scaled: dict[str, float] = {}
     for r in results:
         baseline = ctx.damage_buff_baseline if r.damage_buff_baseline is None else r.damage_buff_baseline
-        factor = 1.0
-        for m in mods:
-            if m.applies_to is None or r.source in m.applies_to:
-                factor = f32(factor * m.scale(baseline))
+        hit = [m for m in mods if m.applies_to is None or r.source in m.applies_to]
+        # Damage buffs share one strength sum; only true multipliers compound.
+        bonus = f32(sum(f32((m.multiplier - 1.0) * m.uptime) for m in hit if m.additive))
+        factor = f32(1.0 + bonus / baseline)
+        for m in hit:
+            if not m.additive:
+                factor = f32(factor * m.scale())
         scaled[r.source] = f32(r.dps * factor)
     total_drain = f32(sum(r.end_per_sec for r in results))
     return DamageReport(

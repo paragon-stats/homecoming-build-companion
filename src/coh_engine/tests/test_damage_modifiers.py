@@ -16,6 +16,7 @@ from coh_engine.damage_model import (
     Stance,
 )
 from coh_engine.damage_modifiers import click_buff_modifier, target_debuff_modifier
+from coh_engine.damage_sources import chosen_chain
 
 
 def _attack(name: str, role: Role, **kw: float) -> ChainAttack:
@@ -71,7 +72,7 @@ def test_target_debuff_default_and_resistant_target() -> None:
     assert not base.additive
     assert base.applies_to is None
     assert base.multiplier == pytest.approx(1.0 + d, rel=1e-5)
-    assert "Chain -20% res at 100% uptime" in base.assumption
+    assert "Chain -20% res" in base.assumption
     tough = target_debuff_modifier(_ctx(chain, patch, assumptions={"target.resistance": 0.5}))
     assert tough is not None
     assert tough.multiplier == pytest.approx((0.5 + d) / 0.5, rel=1e-5)
@@ -101,3 +102,16 @@ def test_target_resistance_out_of_range(bad: float) -> None:
     chain = _attack("Chain", Role.CHAIN, target_res_debuff=0.2, target_res_debuff_duration=10.0)
     with pytest.raises(ValueError, match="E57"):
         target_debuff_modifier(_ctx(chain, assumptions={"target.resistance": bad}))
+
+
+def test_chain_debuff_comes_from_the_chosen_option_under_a_reduced_timeline() -> None:
+    """The chain part is the chosen option's own res_debuff: a one-cycle debuff is up half the time at 0.5 timeline."""
+    chain = _attack("Chain", Role.CHAIN, target_res_debuff=0.4, target_res_debuff_duration=CYCLE)
+    ctx = _ctx(chain, timeline_available=0.5)
+    option = chosen_chain(ctx)
+    assert option is not None
+    assert option.res_debuff == pytest.approx(0.5 * 0.4, rel=1e-5)
+    result = target_debuff_modifier(ctx)
+    assert result is not None
+    assert result.multiplier == pytest.approx(1.0 + option.res_debuff, rel=1e-5)
+    assert "Chain" in result.assumption

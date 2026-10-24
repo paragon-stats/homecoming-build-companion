@@ -148,6 +148,28 @@ def test_additive_buffs_divide_by_the_strength_already_applied() -> None:
     assert double.scale(2.0) == f32(2.0)
 
 
+def test_additive_buffs_share_one_strength_sum() -> None:
+    """Two additive buffs add into one factor (1 + sum / baseline); a multiplicative modifier multiplies it."""
+
+    def chain(ctx: DamageContext) -> SourceResult:
+        return SourceResult(source="chain", dps=100.0)
+
+    def fury(ctx: DamageContext) -> ModifierResult:
+        return ModifierResult(modifier="fury", multiplier=2.5, additive=True)
+
+    def build_up(ctx: DamageContext) -> ModifierResult:
+        return ModifierResult(modifier="build_up", multiplier=2.0, additive=True)
+
+    def contain(ctx: DamageContext) -> ModifierResult:
+        return ModifierResult(modifier="contain", multiplier=1.5)
+
+    ctx = _ctx(damage_buff_baseline=2.5)
+    both = evaluate_damage(ctx, sources=[(chain, True)], modifiers=[fury, build_up])
+    assert both.scaled_dps["chain"] == f32(100.0 * 2.0)
+    mixed = evaluate_damage(ctx, sources=[(chain, True)], modifiers=[fury, build_up, contain])
+    assert mixed.scaled_dps["chain"] == f32(100.0 * 3.0)
+
+
 def test_source_baseline_overrides_the_context_baseline() -> None:
     """A source with its own enhancement (pets) is scaled against its own baseline."""
 
@@ -203,8 +225,9 @@ def test_registries_record_decorated_functions() -> None:
     try:
         assert "_probe_source" in registered_damage_sources()
         assert "_probe_modifier" in registered_damage_modifiers()
-        report = evaluate_damage(_ctx())
-        assert "_probe_source" not in report.scaled_dps
+        # Fold only the probes: the global registries hold the real sources and modifiers.
+        report = evaluate_damage(_ctx(), sources=[(_probe_source, True)], modifiers=[_probe_modifier])
+        assert report.scaled_dps == {}
     finally:
         damage_model._SOURCES.remove((_probe_source, True))
         damage_model._MODIFIERS.remove(_probe_modifier)

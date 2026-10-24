@@ -71,16 +71,16 @@ def target_debuff_modifier(ctx: DamageContext) -> ModifierResult | None:
     r = ctx.assumptions.get("target.resistance", 0.0)
     if not -1.0 <= r <= 0.95:
         raise ValueError(f"E57: assumption target.resistance={r} is outside [-1, 0.95]; set it within that range")
-    ups = [
-        min(1.0, f32(a.target_res_debuff_duration / chain.cycle_time))
-        if chain is not None and a.profile.role is Role.CHAIN
-        else _uptime(a, a.target_res_debuff_duration)
-        for a in debuffs
+    patches = [a for a in debuffs if a.profile.role is Role.PATCH]
+    ups = [_uptime(a, a.target_res_debuff_duration) for a in patches]
+    # The chain part is the chosen option's own figure (attack_chain.plan_attack_chain), not recomputed here.
+    chain_part = chain.res_debuff if chain is not None else 0.0
+    stacked = f32(chain_part + sum(f32(a.target_res_debuff * u) for a, u in zip(patches, ups, strict=True)))
+    parts = [f"{a.full_name} -{a.target_res_debuff:.0%} res" for a in debuffs if a.profile.role is Role.CHAIN]
+    parts += [
+        f"{a.full_name} -{a.target_res_debuff:.0%} res at {u:.0%} uptime" for a, u in zip(patches, ups, strict=True)
     ]
-    stacked = f32(sum(f32(a.target_res_debuff * u) for a, u in zip(debuffs, ups, strict=True)))
-    text = "; ".join(
-        f"{a.full_name} -{a.target_res_debuff:.0%} res at {u:.0%} uptime" for a, u in zip(debuffs, ups, strict=True)
-    )
+    text = "; ".join(parts)
     return ModifierResult(
         modifier="target_debuff",
         multiplier=f32(f32(1.0 - r + stacked) / f32(1.0 - r)),

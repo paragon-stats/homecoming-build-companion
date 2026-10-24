@@ -18,12 +18,23 @@ import functools
 from collections.abc import Callable, Mapping
 from types import MappingProxyType
 
-from coh_engine.damage_model import SOURCE_PET, DamageContext, DamageModifier, ModifierResult, damage_modifier
+from coh_engine.damage_model import (
+    SOURCE_AURA,
+    SOURCE_CHAIN,
+    SOURCE_PATCH,
+    SOURCE_PET,
+    DamageContext,
+    DamageModifier,
+    ModifierResult,
+    damage_modifier,
+)
 from coh_engine.maths import f32
 
 _CANON = "data/canonical/powers/inherent/inherent"
 _APPROX = "approximate; verify in MidsReborn"
 
+# The character's own damage; only Supremacy scales pets.
+_CHARACTER = frozenset({SOURCE_CHAIN, SOURCE_AURA, SOURCE_PATCH})
 _RULES: list[DamageModifier] = []
 _CLASS_RULE: dict[str, str] = {}
 
@@ -83,6 +94,7 @@ def brute_fury(ctx: DamageContext) -> ModifierResult:
     level = _param(ctx, "Class_Brute", "fury_level", 75.0, 0.0, 100.0)
     return ModifierResult(
         modifier="brute_fury",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + 0.02 * level),
         assumption=(
@@ -98,6 +110,7 @@ def controller_containment(ctx: DamageContext) -> ModifierResult:
     share = _param(ctx, "Class_Controller", "contained_share", 0.5, 0.0, 1.0)
     return ModifierResult(
         modifier="controller_containment",
+        applies_to=_CHARACTER,
         multiplier=f32(1.0 + share),
         assumption=(
             f"Class_Controller.contained_share={share} of damage lands on controlled foes (default 0.5, {_APPROX}); "
@@ -112,6 +125,7 @@ def corruptor_scourge(ctx: DamageContext) -> ModifierResult:
     chance = _param(ctx, "Class_Corruptor", "scourge_chance", 0.10, 0.0, 1.0)
     return ModifierResult(
         modifier="corruptor_scourge",
+        applies_to=_CHARACTER,
         multiplier=f32(1.0 + chance),
         assumption=(
             f"Class_Corruptor.scourge_chance={chance} averaged over the fight (default 0.10, {_APPROX}); "
@@ -126,6 +140,7 @@ def blaster_defiance(ctx: DamageContext) -> ModifierResult:
     bonus = _param(ctx, "Class_Blaster", "damage_bonus", 0.30, 0.0, 5.0)
     return ModifierResult(
         modifier="blaster_defiance",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + bonus),
         assumption=(
@@ -142,6 +157,7 @@ def defender_vigilance(ctx: DamageContext) -> ModifierResult:
     bonus = max(0.0, 0.3 - 0.1 * min(team - 1.0, 3.0))
     return ModifierResult(
         modifier="defender_vigilance",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + bonus),
         assumption=(
@@ -158,6 +174,7 @@ def scrapper_critical_hit(ctx: DamageContext) -> ModifierResult:
     mult = _param(ctx, "Class_Scrapper", "crit_damage_mult", 2.0, 1.0, 4.0)
     return ModifierResult(
         modifier="scrapper_critical_hit",
+        applies_to=_CHARACTER,
         multiplier=f32(1.0 + chance * (mult - 1.0)),
         assumption=(
             f"Class_Scrapper.crit_chance={chance} (default 0.10, {_APPROX}; rank-dependent), "
@@ -174,6 +191,7 @@ def stalker_assassination(ctx: DamageContext) -> ModifierResult:
     chance = min(1.0, 0.10 + 0.03 * team)
     return ModifierResult(
         modifier="stalker_assassination",
+        applies_to=_CHARACTER,
         multiplier=f32(1.0 + chance * (mult - 1.0)),
         assumption=(
             f"Class_Stalker.team_size={team} (default 1) gives crit chance {chance:.2f} = 0.10 + 0.03 per member "
@@ -189,6 +207,7 @@ def sentinel_opportunity(ctx: DamageContext) -> ModifierResult:
     sentinels = _param(ctx, "Class_Sentinel", "sentinels", 1.0, 0.0, 8.0)
     return ModifierResult(
         modifier="sentinel_opportunity",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + 0.05 * sentinels),
         assumption=(
@@ -220,6 +239,7 @@ def peacebringer_cosmic_balance(ctx: DamageContext) -> ModifierResult:
     allies = _param(ctx, "Class_Peacebringer", "damage_allies", 0.0, 0.0, 7.0)
     return ModifierResult(
         modifier="peacebringer_cosmic_balance",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + 0.2 * allies),
         assumption=(
@@ -235,6 +255,7 @@ def warshade_dark_sustenance(ctx: DamageContext) -> ModifierResult:
     allies = _param(ctx, "Class_Warshade", "damage_allies", 0.0, 0.0, 7.0)
     return ModifierResult(
         modifier="warshade_dark_sustenance",
+        applies_to=_CHARACTER,
         additive=True,
         multiplier=f32(1.0 + 0.2 * allies),
         assumption=(

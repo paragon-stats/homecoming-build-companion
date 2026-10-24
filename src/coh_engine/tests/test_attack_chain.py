@@ -234,8 +234,6 @@ def test_a_debuffing_attack_earns_its_slot_through_the_other_attacks() -> None:
     main = _atk("Main", damage=100, recharge=1.0)
     plain = _atk("Plain", damage=60, recharge=1.0)
     debuff = replace(_atk("Debuff", damage=40, recharge=1.0), target_res_debuff=0.5, target_res_debuff_duration=60.0)
-    best = _plan([main, plain, debuff], max_attacks=3).best_affordable
-    assert best is not None
     pair = [o for o in _plan([main, plain, debuff]).ranked if len(o.rotation) == 2]
     with_debuff = next(o for o in pair if "Debuff" in o.rotation and "Main" in o.rotation)
     with_plain = next(o for o in pair if "Plain" in o.rotation and "Main" in o.rotation)
@@ -377,3 +375,41 @@ def test_twelve_attacks_search_all_subsets() -> None:
     """12 attacks (4095 subsets) are all searched."""
     plan = _plan([_atk(f"P{i:02d}", damage=10.0 + i, recharge=2.0 + i) for i in range(12)])
     assert len(plan.ranked) == 4095
+
+
+def test_debuff_uptime_uses_the_effective_period_under_a_reduced_timeline() -> None:
+    """Half the timeline doubles the real gap between casts, so a debuff lasting one cycle is up half as often."""
+    atk = replace(_atk("A"), target_res_debuff=0.5, target_res_debuff_duration=3.0)
+    full = _plan([atk]).best_overall
+    half = _plan([atk], timeline_available=0.5).best_overall
+    assert full is not None
+    assert half is not None
+    assert half.res_debuff == pytest.approx(full.res_debuff / 2.0, rel=1e-5)
+
+
+def test_affordability_uses_the_effective_period_under_a_reduced_timeline() -> None:
+    """With constant outside drain, half the timeline stretches each cycle, so fewer cycles fit before empty."""
+    budget = EnduranceBudget(max_end=100.0, recovery_per_sec=0.0, toggle_drain_per_sec=0.0)
+    atk = _atk("A", end=10.0)
+    assert _plan([atk], budget=budget, other_drain_per_sec=1.0, min_cycles=7.0).best_affordable is not None
+    half = _plan([atk], budget=budget, other_drain_per_sec=1.0, min_cycles=7.0, timeline_available=0.5)
+    assert half.best_affordable is None
+
+
+def test_cast_bound_hybrid_option_is_gap_free_exactly() -> None:
+    """When casting plus moving sets the cycle, the gap is exactly zero (no double-precision residue)."""
+    for switch in (0.7, 1.1, 1.3, 1.7, 2.3, 3.1):
+        move = Movement(speed_ft_per_sec=10.0, standoff_ft=10.0 * switch)
+        plan = _plan([_atk("M", recharge=0.1), _atk("R", melee=False, recharge=0.1)], Stance.HYBRID, movement=move)
+        mixed = next(o for o in plan.ranked if o.switches == 2)
+        assert mixed.gap == 0.0, switch
+        assert mixed.gap_free
+
+
+def test_a_large_switch_time_prefers_a_pure_subset() -> None:
+    """When crossing the standoff is slow, the best chain stays on one side instead of mixing."""
+    slow = Movement(speed_ft_per_sec=1.0, standoff_ft=60.0)
+    plan = _plan([_atk("M"), _atk("R", melee=False)], Stance.HYBRID, movement=slow)
+    assert plan.best_overall is not None
+    assert plan.best_overall.switches == 0
+    assert len(plan.best_overall.rotation) == 1
