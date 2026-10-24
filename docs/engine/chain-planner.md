@@ -98,7 +98,9 @@ These are the model's known simplifications, not defects. Each one is labelled i
 
 - A chain fires each attack once per cycle, so a chain that repeats a fast filler (A B A C) is undercounted.
 - Movement is a straight line at full speed. Gap-closing attacks and knockback chasing are not modelled.
-- Buffs and debuffs are assumed fired on cooldown, even when the chosen chain fires them less often.
+- Click buffs are assumed fired on cooldown.
+    A chain attack's debuff counts only when the attack is in the chosen chain, once per cycle.
+    Ranking scores debuff-adjusted DPS against a 0%-resistance target, so it undervalues debuffs against resistant ones.
 - Aura damage assumes the Mids figure for a toggle is per tick. A damage-aura fixture has not yet confirmed this.
 - Area attacks hit min(target cap, foes in the scenario). Cone and sphere geometry is not modelled.
 - Pet AI, accuracy and endurance are not modelled.
