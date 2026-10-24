@@ -7,7 +7,12 @@ from typing import Any
 
 import pytest
 
-from coh_engine.attack_profile import category_disagreement, classify_attack, load_canonical_powers
+from coh_engine.attack_profile import (
+    canonical_power_path,
+    category_disagreement,
+    classify_attack,
+    load_canonical_powers,
+)
 from coh_engine.damage_model import AttackProfile, Delivery, Role, Shape
 
 type Powers = Mapping[str, Mapping[str, Any]]
@@ -203,3 +208,22 @@ def test_empty_file_alone_is_e35(tmp_path: Path) -> None:
     _write(tmp_path, "A.B.Empty", "")
     with pytest.raises(ValueError, match="E35"):
         load_canonical_powers(tmp_path, ["A.B.Empty"])
+
+
+COLON = "Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault"
+
+
+def test_canonical_power_path_maps_colon_and_lowercases(tmp_path: Path) -> None:
+    expected = tmp_path / "training_gadgets" / "training_and_gadgets" / "tactical_training__assault.json"
+    assert canonical_power_path(tmp_path, COLON) == expected
+
+
+def test_colon_name_loads_from_sanitized_file(tmp_path: Path) -> None:
+    path = canonical_power_path(tmp_path, COLON)
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps({"full_name": COLON}), encoding="utf-8")
+    assert load_canonical_powers(tmp_path, [COLON])[COLON]["full_name"] == COLON
+
+
+def test_real_colon_power_loads() -> None:
+    assert load_canonical_powers(POWERS, [COLON])[COLON]["full_name"] == COLON

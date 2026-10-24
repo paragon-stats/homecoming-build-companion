@@ -64,10 +64,22 @@ def read_json(path: Path, code: str) -> Any:
         ) from error
 
 
+def canonical_power_path(powers_root: Path, full_name: str) -> Path:
+    """Return the canonical file path for a power full name. THE naming rule; every tool must agree.
+
+    Each dot segment is lower-cased and becomes a directory (the last a ``.json`` file). ':' in a
+    segment becomes '_' because NTFS reads 'name:stream' as an alternate data stream, which left
+    empty placeholder files. ``scripts/lane-b/run.ps1`` and ``scripts/check-overrides.ps1`` apply
+    the same mapping.
+    """
+    segments = [s.lower().replace(":", "_") for s in full_name.split(".")]
+    return powers_root.joinpath(*segments[:-1], f"{segments[-1]}.json")
+
+
 def load_canonical_powers(powers_root: Path, full_names: Iterable[str]) -> Mapping[str, Mapping[str, Any]]:
     """Load canonical power JSON for each full name.
 
-    The path is derived from the lower-cased name segments; only names whose derived file is
+    The path comes from :func:`canonical_power_path`; only names whose derived file is
     missing or empty (0-byte NTFS-stream placeholders) fall back to a file-name search of the tree.
 
     Raises:
@@ -77,10 +89,10 @@ def load_canonical_powers(powers_root: Path, full_names: Iterable[str]) -> Mappi
     found: dict[str, Mapping[str, Any]] = {}
     missing: list[str] = []
     for name in full_names:
-        segments = [s.lower() for s in name.split(".")]
-        candidates = [powers_root.joinpath(*segments).with_suffix(".json")]
-        if not candidates[0].is_file() or candidates[0].stat().st_size == 0:
-            candidates = [p for p in powers_root.rglob(f"{segments[-1]}.json") if p.stat().st_size > 0]
+        derived = canonical_power_path(powers_root, name)
+        candidates = [derived]
+        if not derived.is_file() or derived.stat().st_size == 0:
+            candidates = [p for p in powers_root.rglob(derived.name) if p.stat().st_size > 0]
         data = None
         corrupt: ValueError | None = None
         for p in candidates:

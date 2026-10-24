@@ -1,23 +1,23 @@
 <#
 .SYNOPSIS
-  Cross-check data/diff/current_overrides.json against the canonical zip
-  data and write a drift report.
+    Cross-check data/diff/current_overrides.json against the canonical zip
+    data and write a drift report.
 
 .DESCRIPTION
-  Override entity names follow patch-notes display style (e.g.
-  "Tanker.Battle_Axe.Cleave"). Canonical zip files use snake_case paths
-  (e.g. data/canonical/powers/tanker_melee/battle_axe/cleave.json).
+    Override entity names follow patch-notes display style (e.g.
+    "Tanker.Battle_Axe.Cleave"). Canonical zip files use snake_case paths
+    (e.g. data/canonical/powers/tanker_melee/battle_axe/cleave.json).
 
-  Resolver:
+    Resolver:
     1. Build a search index from data/canonical/all_power_search.json,
-       keyed by lowercase display fullname → file path.
+        keyed by lowercase display fullname → file path.
     2. For each override (entity, field), find candidate canonical files
-       by matching either an exact display fullname or by suffix
-       (powerset.power last two segments) within an AT-category subtree.
+        by matching either an exact display fullname or by suffix
+        (powerset.power last two segments) within an AT-category subtree.
     3. Read each candidate's value for the field; compare against the
-       override's "value".
+        override's "value".
     4. Emit per-power markdown reports under data/diff/powers/ when there's
-       a drift, and a top-level data/diff/SUMMARY.md.
+        a drift, and a top-level data/diff/SUMMARY.md.
 #>
 [CmdletBinding()]
 param(
@@ -127,6 +127,7 @@ function Initialize-PowerIndex {
     foreach ($f in Get-ChildItem -Path (Join-Path $CanonRoot 'powers') -Recurse -Filter '*.json') {
         $rel = $f.FullName.Substring((Join-Path $CanonRoot 'powers').Length + 1).Replace('\','/')
         # rel = "tanker_melee/battle_axe/cleave.json" — last two components are key.
+        # File names already carry ':' as '_' (attack_profile.canonical_power_path); Resolve-CanonPath maps lookups the same way.
         $parts = $rel -split '/'
         if ($parts.Count -ge 2) {
             $key = ($parts[-2] + '/' + ($parts[-1] -replace '\.json$','')).ToLower()
@@ -148,7 +149,7 @@ function Resolve-CanonPath {
     # Try AT-prefix routing first (most specific)
     $head = $segs[0]
     if ($AtSubdirs.ContainsKey($head)) {
-        $tail = $segs[1..($segs.Count - 1)] | ForEach-Object { $_.ToLower() }
+        $tail = $segs[1..($segs.Count - 1)] | ForEach-Object { $_.ToLower().Replace(':', '_') }
         $candidates = @()
         foreach ($sub in $AtSubdirs[$head]) {
             $relPath = ($tail -join '/') + '.json'
@@ -162,8 +163,8 @@ function Resolve-CanonPath {
     # patches whose entity prefix doesn't include an AT (e.g. parsed from a
     # "Powerset Revamp" section header where the AT is implicit).
     if ($segs.Count -ge 2) {
-        $power    = $segs[-1].ToLower()
-        $powerset = $segs[-2].ToLower()
+        $power    = $segs[-1].ToLower().Replace(':', '_')
+        $powerset = $segs[-2].ToLower().Replace(':', '_')
         $key = "$powerset/$power"
         if ($Script:PowerIndex.ContainsKey($key)) {
             return @($Script:PowerIndex[$key])
@@ -327,13 +328,13 @@ $unresolved_table
 
 - When override and canonical agree → no action.
 - When they disagree → the **override wins**; the canonical zip is older than
-  the patch. Per-power detail in data/diff/powers/<entity>.<field>.md.
+    the patch. Per-power detail in data/diff/powers/<entity>.<field>.md.
 - When unresolved → the override entity name didn't map to a canonical file.
-  Likely causes: (a) patch refers to an inherent or non-power feature
-  (e.g. "Tanker_AT_inherent_changes"), (b) parsed entity prefix is a date or
-  section heading that wasn't filtered out, (c) typo in the patch notes
-  (e.g. "Shadwo Maul" misspelled). Walk the unresolved list and fix scripts/
-  parse-patches.ps1's Build-EntityPath skip list, or add manual aliases.
+    Likely causes: (a) patch refers to an inherent or non-power feature
+    (e.g. "Tanker_AT_inherent_changes"), (b) parsed entity prefix is a date or
+    section heading that wasn't filtered out, (c) typo in the patch notes
+    (e.g. "Shadwo Maul" misspelled). Walk the unresolved list and fix scripts/
+    parse-patches.ps1's Build-EntityPath skip list, or add manual aliases.
 "@
 Set-Content -Path (Join-Path $DiffDir 'SUMMARY.md') -Value $summary -Encoding UTF8
 Write-Host ("Wrote {0}" -f (Join-Path $DiffDir 'SUMMARY.md')) -ForegroundColor Green
