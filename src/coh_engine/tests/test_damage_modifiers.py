@@ -77,6 +77,24 @@ def test_target_debuff_default_and_resistant_target() -> None:
     assert tough.multiplier == pytest.approx((0.5 + d) / 0.5, rel=1e-5)
 
 
+def test_debuff_from_an_attack_outside_the_chosen_chain_does_not_count() -> None:
+    """A debuffing attack the planner leaves out is never cast, so its debuff is never applied."""
+    hitter = ChainAttack("Hitter", 100.0, 1.0, 1.0, 1.0, _attack("Hitter", Role.CHAIN).profile)
+    slow = _attack("Slow", Role.CHAIN, target_res_debuff=0.2, target_res_debuff_duration=10.0)
+    slow = ChainAttack(
+        "Slow", 1.0, 1.0, 60.0, 1.0, slow.profile, target_res_debuff=0.2, target_res_debuff_duration=10.0
+    )
+    assert target_debuff_modifier(_ctx(hitter, slow)) is None
+
+
+def test_chain_debuff_uptime_is_duration_over_the_chosen_cycle() -> None:
+    """A picked debuff fires once per chosen cycle: uptime = duration / cycle time."""
+    chain = _attack("Chain", Role.CHAIN, target_res_debuff=0.2, target_res_debuff_duration=4.0)
+    result = target_debuff_modifier(_ctx(chain))
+    assert result is not None
+    assert result.multiplier == pytest.approx(1.0 + 0.2 * 4.0 / CYCLE, rel=1e-5)
+
+
 @pytest.mark.parametrize("bad", [-1.5, 0.99])
 def test_target_resistance_out_of_range(bad: float) -> None:
     """A target resistance outside -1..0.95 is E57."""

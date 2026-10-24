@@ -305,7 +305,8 @@ def evaluate_damage(
     rest_ctx = replace(ctx, timeline_available=f32(ctx.timeline_available - share), other_drain_per_sec=drain)
     results = (*first, *(r for fn, rest in sources if rest and (r := fn(rest_ctx)) is not None))
 
-    mods = tuple(m for fn in modifiers if (m := fn(ctx)) is not None)
+    # Same context as the chain source, so a modifier asking for the chosen chain gets that exact pick.
+    mods = tuple(m for fn in modifiers if (m := fn(rest_ctx)) is not None)
     scaled: dict[str, float] = {}
     for r in results:
         baseline = ctx.damage_buff_baseline if r.damage_buff_baseline is None else r.damage_buff_baseline

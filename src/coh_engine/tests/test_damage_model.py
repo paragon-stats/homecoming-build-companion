@@ -165,6 +165,20 @@ def test_source_baseline_overrides_the_context_baseline() -> None:
     assert report.scaled_dps["pet"] == f32(150.0)
 
 
+def test_modifiers_see_the_context_the_chain_source_sees() -> None:
+    """Modifiers run on the leftover timeline and drain, so one that asks for the chosen chain gets the same pick."""
+    seen: list[tuple[float, float]] = []
+
+    def patch(ctx: DamageContext) -> SourceResult:
+        return SourceResult(source="patch", dps=1.0, timeline_share=0.25, end_per_sec=0.5)
+
+    def probe(ctx: DamageContext) -> None:
+        seen.append((ctx.timeline_available, ctx.other_drain_per_sec))
+
+    evaluate_damage(_ctx(), sources=[(patch, False)], modifiers=[probe])
+    assert seen == [(f32(0.75), f32(0.5))]
+
+
 def test_runner_rejects_an_overcommitted_timeline() -> None:
     """Non-chain shares summing past 1.0 are a modelling error and fail loud (E30)."""
 

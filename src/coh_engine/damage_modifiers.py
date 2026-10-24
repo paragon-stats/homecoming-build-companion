@@ -2,8 +2,10 @@
 
 Each modifier is one ``@damage_modifier`` function (``.claude/rules/check-registry.md``).
 
-**Novel to the port — no Mids parity reference.** Both assume the buff or debuff power is fired on
-cooldown. Known simplification: that holds even if the chosen chain fires the power less often.
+**Novel to the port — no Mids parity reference.** Click buffs and location-patch debuffs are fired on
+cooldown, since their casts are charged to the timeline as such. A chain attack's debuff counts only
+when the attack is in the chosen chain (``damage_sources.chosen_chain``), once per chosen cycle: an
+attack the planner leaves out is never cast, so its debuff is never applied.
 
 Spec: issue #67.
 """
@@ -19,6 +21,7 @@ from coh_engine.damage_model import (
     Role,
     damage_modifier,
 )
+from coh_engine.damage_sources import chosen_chain
 from coh_engine.maths import f32
 
 
@@ -55,13 +58,25 @@ def target_debuff_modifier(ctx: DamageContext) -> ModifierResult | None:
     Raises:
         ValueError: ``E57`` if ``target.resistance`` lies outside [-1, 0.95].
     """
-    debuffs = [a for a in ctx.attacks if a.profile.role in (Role.CHAIN, Role.PATCH) and a.target_res_debuff > 0.0]
+    chain = chosen_chain(ctx)
+    rotation = set(chain.rotation) if chain is not None else set()
+    debuffs = [
+        a
+        for a in ctx.attacks
+        if a.target_res_debuff > 0.0
+        and (a.profile.role is Role.PATCH or (a.profile.role is Role.CHAIN and a.full_name in rotation))
+    ]
     if not debuffs:
         return None
     r = ctx.assumptions.get("target.resistance", 0.0)
     if not -1.0 <= r <= 0.95:
         raise ValueError(f"E57: assumption target.resistance={r} is outside [-1, 0.95]; set it within that range")
-    ups = [_uptime(a, a.target_res_debuff_duration) for a in debuffs]
+    ups = [
+        min(1.0, f32(a.target_res_debuff_duration / chain.cycle_time))
+        if chain is not None and a.profile.role is Role.CHAIN
+        else _uptime(a, a.target_res_debuff_duration)
+        for a in debuffs
+    ]
     stacked = f32(sum(f32(a.target_res_debuff * u) for a, u in zip(debuffs, ups, strict=True)))
     text = "; ".join(
         f"{a.full_name} -{a.target_res_debuff:.0%} res at {u:.0%} uptime" for a, u in zip(debuffs, ups, strict=True)
@@ -71,6 +86,6 @@ def target_debuff_modifier(ctx: DamageContext) -> ModifierResult | None:
         multiplier=f32(f32(1.0 - r + stacked) / f32(1.0 - r)),
         uptime=1.0,
         applies_to=None,
-        assumption=f"debuffs fired on cooldown against {r:.0%} resistance, stacked -{stacked:.1%}: {text}",
+        assumption=f"debuffs from the chosen chain and patches against {r:.0%} resistance, stacked -{stacked:.1%}: {text}",
         additive=False,
     )
