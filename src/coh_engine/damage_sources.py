@@ -39,9 +39,9 @@ def chosen_chain(ctx: DamageContext) -> ChainOption | None:
         budget=ctx.budget,
         timeline_available=ctx.timeline_available,
         other_drain_per_sec=ctx.other_drain_per_sec,
-        time_to_empty_min_s=ctx.assumptions.get("chain.time_to_empty_min_s", 120.0),
+        min_cycles=ctx.assumptions.get("chain.min_cycles", 4.0),
     )
-    return plan.best_sustainable or plan.best_overall
+    return plan.best_affordable or plan.best_overall
 
 
 @damage_source(fills_remainder=True)

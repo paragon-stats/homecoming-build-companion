@@ -130,12 +130,16 @@ class ChainOption:
 
 @dataclass(frozen=True, slots=True)
 class ChainPlan:
-    """The planner's result: every usable option ranked, the two headline picks, and what was left out.
+    """The planner's result: every usable option ranked, the headline picks, and what was left out.
 
+    ``best_affordable`` is the highest-DPS option that is sustainable or lasts at least ``min_cycles``
+    of its own cycles before the pool empties; ``best_sustainable`` never drains; ``best_overall``
+    ignores endurance.
     ``dropped`` names the attacks excluded by ``max_attacks`` (not those excluded by stance).
     """
 
     stance: Stance
+    best_affordable: ChainOption | None
     best_sustainable: ChainOption | None
     best_overall: ChainOption | None
     ranked: tuple[ChainOption, ...]
@@ -151,15 +155,19 @@ def plan_attack_chain(
     budget: EnduranceBudget,
     timeline_available: float = 1.0,
     other_drain_per_sec: float = 0.0,
-    time_to_empty_min_s: float = 120.0,
+    min_cycles: float = 4.0,
     max_attacks: int = 12,
 ) -> ChainPlan:
-    """Search every subset of the chain attacks and rank them by sustainability, then damage.
+    """Search every subset of the chain attacks and rank them by affordability, then damage.
 
     Each attack fires once per cycle (the :func:`build_attack_chain` model) using arcana cast
     times. A hybrid subset mixing melee-position and other attacks pays two stance switches per
-    cycle. Options rank sustainable first, then those lasting ``time_to_empty_min_s``, then higher
-    DPS, smaller gap, fewer attacks and rotation names. ``best_overall`` is the highest-DPS option.
+    cycle. An option is affordable when it is sustainable or runs ``min_cycles`` full cycles before
+    the pool empties: on a team, recovery buffs cover the rest, so the test is whether the chain
+    survives a few rotations, not whether it runs forever solo. Affordable options rank first, then
+    higher DPS, smaller gap, fewer attacks and rotation names. Ranking "never drains" first would pick
+    near-idle chains whenever toggles already take most of recovery. ``best_overall`` is the
+    highest-DPS option.
 
     Raises:
         ValueError: ``E45`` if ``timeline_available`` is outside ``(0, 1]``.
@@ -230,14 +238,18 @@ def plan_attack_chain(
             )
         )
 
-    def rank(o: ChainOption) -> tuple[bool, bool, float, float, int, tuple[str, ...]]:
-        return (not o.sustainable, o.time_to_empty < time_to_empty_min_s, -o.dps, o.gap, len(o.rotation), o.rotation)
+    def affordable(o: ChainOption) -> bool:
+        return o.time_to_empty >= min_cycles * o.cycle_time  # a sustainable option's time to empty is inf
+
+    def rank(o: ChainOption) -> tuple[bool, float, float, int, tuple[str, ...]]:
+        return (not affordable(o), -o.dps, o.gap, len(o.rotation), o.rotation)
 
     ranked = tuple(sorted(options, key=rank))
     best_overall = min(ranked, key=lambda o: (-o.dps, o.gap, len(o.rotation), o.rotation), default=None)
     best_sustainable = next((o for o in ranked if o.sustainable), None)
     return ChainPlan(
         stance=stance,
+        best_affordable=next((o for o in ranked if affordable(o)), None),
         best_sustainable=best_sustainable,
         best_overall=best_overall,
         ranked=ranked,

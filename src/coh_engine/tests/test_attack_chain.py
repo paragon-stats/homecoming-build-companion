@@ -140,7 +140,7 @@ def _plan(
     scenario: Scenario | None = None,
     timeline_available: float = 1.0,
     other_drain_per_sec: float = 0.0,
-    time_to_empty_min_s: float = 120.0,
+    min_cycles: float = 4.0,
     max_attacks: int = 12,
 ) -> ChainPlan:
     return plan_attack_chain(
@@ -151,7 +151,7 @@ def _plan(
         budget=budget,
         timeline_available=timeline_available,
         other_drain_per_sec=other_drain_per_sec,
-        time_to_empty_min_s=time_to_empty_min_s,
+        min_cycles=min_cycles,
         max_attacks=max_attacks,
     )
 
@@ -205,6 +205,25 @@ def test_best_sustainable_differs_from_best_overall() -> None:
     assert plan.ranked[0] == plan.best_sustainable
 
 
+def test_affordable_draining_chain_outranks_a_sustainable_idle_one() -> None:
+    """A chain lasting its minimum cycles beats a never-draining one with less DPS (no near-idle picks).
+
+    Toggles take most of recovery, so every multi-attack chain drains; ranking "never drains" first
+    would pick the single cheap attack with a long gap.
+    """
+    budget = EnduranceBudget(max_end=100.0, recovery_per_sec=2.0, toggle_drain_per_sec=1.0)
+    # Cycle 3.188 s: A+B drains 5.2 / 3.188 = 1.63/s against 1.0 free (empty in ~158 s); A alone drains 0.82/s.
+    plan = _plan([_atk("A", damage=200, end=2.6), _atk("B", damage=200, end=2.6)], budget=budget)
+    assert plan.best_affordable is not None
+    assert plan.best_sustainable is not None
+    assert plan.best_affordable.rotation == ("A", "B")
+    assert plan.best_affordable.sustainable is False
+    assert plan.best_affordable.time_to_empty >= 4 * plan.best_affordable.cycle_time
+    assert len(plan.best_sustainable.rotation) == 1
+    assert plan.best_affordable.dps > plan.best_sustainable.dps
+    assert plan.ranked[0] == plan.best_affordable
+
+
 def test_no_sustainable_option() -> None:
     """With recovery below every option's drain, best_sustainable is None and best_overall still reports."""
     budget = EnduranceBudget(max_end=100.0, recovery_per_sec=0.1, toggle_drain_per_sec=0.0)
@@ -213,13 +232,24 @@ def test_no_sustainable_option() -> None:
     assert plan.best_overall is not None
 
 
-def test_time_to_empty_floor_outranks_dps() -> None:
-    """Among unsustainable options, one that lasts past the minimum outranks a faster one that does not."""
+def test_cycle_floor_outranks_dps() -> None:
+    """Among unsustainable options, one that lasts its minimum cycles outranks a faster one that does not.
+
+    Hot empties the pool in ~3.2 s, under 4 cycles of 3.188 s; Cool lasts ~318 s.
+    """
     budget = EnduranceBudget(max_end=100.0, recovery_per_sec=0.0, toggle_drain_per_sec=0.0)
     plan = _plan([_atk("Hot", damage=500, end=100.0), _atk("Cool", damage=10, end=1.0)], budget=budget)
     assert plan.ranked[0].rotation == ("Cool",)
     assert plan.best_overall is not None
     assert plan.best_overall.rotation == ("Cool", "Hot")
+
+
+def test_min_cycles_sets_the_bar() -> None:
+    """Raising min_cycles past a draining chain's endurance makes it unaffordable."""
+    budget = EnduranceBudget(max_end=100.0, recovery_per_sec=0.0, toggle_drain_per_sec=0.0)
+    attack = _atk("A", end=10.0)  # cycle 3.188 s, drains 3.137/s -> empty in ~31.9 s, about 10 cycles
+    assert _plan([attack], budget=budget, min_cycles=4.0).best_affordable is not None
+    assert _plan([attack], budget=budget, min_cycles=12.0).best_affordable is None
 
 
 def test_other_drain_makes_options_unsustainable() -> None:
