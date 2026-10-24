@@ -28,6 +28,12 @@ from types import MappingProxyType
 
 from coh_engine.maths import f32
 
+# Source names a ModifierResult.applies_to may target; each source reports exactly one of these.
+SOURCE_CHAIN = "chain"
+SOURCE_AURA = "aura"
+SOURCE_PATCH = "patch"
+SOURCE_PET = "pet"
+
 
 class Delivery(Enum):
     """Where an attack is delivered from: within melee reach, or at range."""
@@ -104,7 +110,11 @@ class EnduranceBudget:
 
 @dataclass(frozen=True, slots=True)
 class ChainAttack:
-    """A damaging power with its cadence, its damage per activation and its profile."""
+    """A damaging or damage-buffing power: cadence, damage per activation, profile, buff/debuff riders.
+
+    ``cast_time`` is the raw Mids cast time; the chain planner applies ArcanaTime itself.
+    Buff and debuff fields are fractions (0.25 = +25% damage, 0.2 = -20% resistance on the target).
+    """
 
     full_name: str
     damage: float
@@ -113,6 +123,10 @@ class ChainAttack:
     end_cost: float
     profile: AttackProfile
     activate_period: float = 0.0
+    self_damage_buff: float = 0.0
+    self_damage_buff_duration: float = 0.0
+    target_res_debuff: float = 0.0
+    target_res_debuff_duration: float = 0.0
 
 
 @dataclass(frozen=True, slots=True)
