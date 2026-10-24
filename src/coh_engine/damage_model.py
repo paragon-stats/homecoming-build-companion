@@ -57,13 +57,21 @@ class Shape(Enum):
 
 
 class Role(Enum):
-    """How a damaging power participates: in the chain, beside it, or as a buff."""
+    """How a power shapes the play cycle: in the chain, woven in on cooldown, or running beside it.
+
+    ``SUPPORT`` is a non-damaging click or location power that buffs the character's damage or puts
+    -Res on foes (Melt Armor, Siphon Power, Freezing Rain); it is woven in on cooldown.
+    ``PERSISTENT_DEBUFF`` is a toggle or auto power holding -Res on foes (Enervating Field, Venomous Gas).
+    Self/team damage-buff toggles get no role: Mids already counts them in every attack's damage.
+    """
 
     CHAIN = "chain"
     AURA = "aura"
     PATCH = "patch"
     PET_SUMMON = "pet_summon"
     BUFF_CLICK = "buff_click"
+    SUPPORT = "support"
+    PERSISTENT_DEBUFF = "persistent_debuff"
 
 
 class Stance(Enum):
@@ -87,6 +95,8 @@ class AttackProfile:
     arc_rad: float
     max_targets: int
     set_categories: tuple[str, ...] = ()
+    # Canonical ``modes_required``: a Kheldian form power needs its form's mode (e.g. Nova).
+    modes_required: tuple[str, ...] = ()
 
     @property
     def needs_melee_position(self) -> bool:
@@ -195,6 +205,8 @@ class DamageContext:
     pets: tuple[PetSummon, ...] = ()
     timeline_available: float = 1.0
     other_drain_per_sec: float = 0.0
+    # The form the chain runs in: "" is the base (human) form, otherwise a mode name such as a Nova form.
+    form: str = ""
 
     def by_role(self, role: Role) -> tuple[ChainAttack, ...]:
         """The context's attacks with the given role, in input order."""
