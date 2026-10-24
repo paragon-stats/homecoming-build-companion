@@ -41,9 +41,9 @@ body:
     attributes:
       label: Deployed version
       description: >-
-        Incident-rca only — CalVer tag of the deployed release when the
-        incident occurred (vYYYY.0M.MICRO, e.g. v2026.03.1)
-      placeholder: "v2026.03.0"
+        Incident-rca only — release tag deployed when the incident
+        occurred (vMAJOR.MINOR.PATCH, e.g. v0.10.0)
+      placeholder: "v0.10.0"
 
   - type: textarea
     id: affected_paths
