@@ -30,46 +30,15 @@ from coh_engine.base_totals import (
 )
 from coh_engine.buildfile.mbd import load_mbd
 from coh_engine.effect import load_powers_effects
+from coh_engine.endurance_budget import MIDS_TOTALS_SCALAR_FIELDS, MIDS_TOTALS_VECTOR_FIELDS
 from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
 MIDS = FIXTURES / "mids"
 BUILDS = ["shield_scrapper_noslots", "arsenal_dominator_noslots"]
 
-VECTOR_FIELDS = {
-    "Def": "def_",
-    "Res": "res",
-    "Mez": "mez",
-    "MezRes": "mez_res",
-    "DebuffRes": "debuff_res",
-    "Elusivity": "elusivity",
-}
-SCALAR_FIELDS = {
-    "HPRegen": "hp_regen",
-    "HPMax": "hp_max",
-    "Absorb": "absorb",
-    "EndRec": "end_rec",
-    "EndUse": "end_use",
-    "EndMax": "end_max",
-    "RunSpd": "run_spd",
-    "MaxRunSpd": "max_run_spd",
-    "JumpSpd": "jump_spd",
-    "MaxJumpSpd": "max_jump_spd",
-    "FlySpd": "fly_spd",
-    "MaxFlySpd": "max_fly_spd",
-    "JumpHeight": "jump_height",
-    "StealthPvE": "stealth_pve",
-    "StealthPvP": "stealth_pvp",
-    "ThreatLevel": "threat_level",
-    "Perception": "perception",
-    "BuffHaste": "buff_haste",
-    "BuffAcc": "buff_acc",
-    "BuffToHit": "buff_to_hit",
-    "BuffDam": "buff_dam",
-    "BuffEndRdx": "buff_end_rdx",
-    "BuffRange": "buff_range",
-    "BuffHeal": "buff_heal",
-}
+VECTOR_FIELDS = MIDS_TOTALS_VECTOR_FIELDS
+SCALAR_FIELDS = MIDS_TOTALS_SCALAR_FIELDS
 
 
 @pytest.fixture(scope="module")

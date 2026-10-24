@@ -1,6 +1,7 @@
 # Attack Chains
 
-An **attack chain** is a recurring sequence of attacks that fires back-to-back without gaps — every attack comes off cooldown by the time you need to fire it again. Designing one is a math exercise: total recharge per attack must be ≤ the sum of every other attack's animation time.
+An **attack chain** is a recurring sequence of attacks that fires back-to-back without gaps — every attack comes off cooldown by the time you need to fire it again.
+Designing one is a math exercise: total recharge per attack must be ≤ the sum of every other attack's animation time.
 
 ---
 
@@ -8,15 +9,18 @@ An **attack chain** is a recurring sequence of attacks that fires back-to-back w
 
 ### Animation time vs. arcanatime
 
-Every power has an `CastTime` (animation time in seconds). City of Heroes uses **server ticks** of 0.132 seconds; animations round _up_ to the next tick boundary. The rounded-up time is **arcanatime**, named for the player who documented it.
+Every power has a `CastTime` (animation time in seconds). City of Heroes uses **server ticks** of 0.132 seconds.
+An animation rounds _up_ to the next tick boundary, and the server adds one more tick before the next power can start.
+The result is **arcanatime**, named for the player who documented it.
 
-Formula:
+Formula, as MidsReborn implements it (`Power.ArcanaCastTime`, `Power.cs:603`):
 
+```text
+arcanatime = (ceil(CastTime / 0.132) + 1) × 0.132
 ```
-arcanatime = ceil(CastTime / 0.132) × 0.132
-```
 
-A 1.5-second animation has arcanatime of 1.584 seconds (12 ticks). A 1.6-second animation has arcanatime of 1.716 seconds (13 ticks). The 0.116-second jump is real.
+A 1.0-second animation has an arcanatime of 1.188 seconds (9 ticks).
+A 1.5-second animation has 1.716 seconds (13 ticks), and a 1.6-second animation has 1.848 seconds (14 ticks).
 
 For chain math, **always use arcanatime**, not the displayed CastTime.
 
@@ -24,7 +28,7 @@ For chain math, **always use arcanatime**, not the displayed CastTime.
 
 A power's recharge after enhancement and global +Recharge:
 
-```
+```text
 effective_recharge = base_recharge / (1 + enhancement_recharge + global_recharge)
 ```
 
@@ -38,7 +42,7 @@ A power with 20-second base recharge, fully slotted (95% rech), with +200% globa
 
 For a chain `[A, B, C, ...]` to fire gaplessly, the cycle time per attack must be:
 
-```
+```text
 cycle_time(A) = arcanatime(A) + arcanatime(B) + arcanatime(C) + ...
 ```
 
@@ -162,6 +166,7 @@ Alternative: **drop KB from the chain**, use it on cooldown (every 6.94 sec at p
 
 ## Tools and resources
 
+- **The engine's chain planner** — `python -m coh_engine chain <dump>` picks the best chain a build can afford under its endurance budget and stance. See [`engine/chain-planner.md`](./engine/chain-planner.md).
 - **Mids' Reborn in-app DPS calculator** — shows attack-chain DPS in the build view.
 - **Sythlin DPS Tool** — bundled with MidsReborn at `%APPDATA%\LoadedCamel\MidsReborn\Sythlin_DPS_Tool.exe`. Standalone DPS analyzer for chain math.
 - **City of Data v2.0** — exact recharge / cast / arcanatime values per power.

@@ -264,39 +264,43 @@ internal static class Program
             var name = Path.GetFileNameWithoutExtension(mbdPath);
             byName[name] = mbdPath;
             DumpOneBuild(Path.Combine(outDir, "builds", name), toon);
-            DumpForumExport(Path.Combine(outDir, "builds", name), name);
+            failures += DumpForumExport(Path.Combine(outDir, "builds", name), name);
         }
 
         failures += DumpExemplarVariants(byName, outDir);
+        failures += DumpClicksOffVariants(byName, outDir);
         return failures;
     }
 
     // The forum export is MidsReborn's own emitter (ClsOutput.Build), so the markdown a build
     // proposal ships is generated rather than hand-transcribed — the format is a spec, not a
     // style choice (.claude/rules/build-creation.md P1).
-    private static void DumpForumExport(string buildDir, string name)
+    // Returns the failure count so Main's non-zero exit covers a failed export too.
+    private static int DumpForumExport(string buildDir, string name)
     {
         try
         {
-            if (MidsContext.Config.Export.FormatCode.Length == 0) MidsContext.Config.Export.ResetCodesToDefaults();
             if (MidsContext.Config.Export.ColorSchemes.Length == 0) MidsContext.Config.Export.ResetColorsToDefaults();
-            // Pick the plain-text format code when one exists; BBCode markup is noise in markdown.
-            var codes = MidsContext.Config.Export.FormatCode;
-            for (var i = 0; i < codes.Length; i++)
+            // The plain-text format is named "No Codes" (ExportConfig.ResetCodesToDefaults); every
+            // other code is BBCode, which is noise in markdown. A loaded config may lack it, so reset.
+            var plain = Array.FindIndex(MidsContext.Config.Export.FormatCode, c => c.Name == "No Codes");
+            if (plain < 0)
             {
-                if (!codes[i].Name.Contains("Forum", StringComparison.OrdinalIgnoreCase)) continue;
-                MidsContext.Config.ExportTarget = i;
-                break;
+                MidsContext.Config.Export.ResetCodesToDefaults();
+                plain = Array.FindIndex(MidsContext.Config.Export.FormatCode, c => c.Name == "No Codes");
             }
 
+            MidsContext.Config.ExportTarget = plain;
             var text = new ClsOutput().Build("", true);
             Directory.CreateDirectory(buildDir);
             File.WriteAllText(Path.Combine(buildDir, "forum_export.txt"), text);
             Console.WriteLine($"wrote {Path.Combine(buildDir, "forum_export.txt")}");
+            return 0;
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine($"E22: forum export failed for {name}: {ex.Message}");
+            return 1;
         }
     }
 
@@ -504,6 +508,71 @@ internal static class Program
         }
 
         MidsContext.Config.ForceLevel = savedForceLevel;
+        return failures;
+    }
+
+    // Clicks-off baseline for the chain planner: Mids treats every StatInclude'd click as
+    // always-on, so Aim / Build Up damage buffs sit permanently in DamagePerActivation and
+    // totals. Each build is reloaded with StatInclude cleared on its self-targeted DamageBuff
+    // click powers; the planner then applies buff uptime itself. Fresh toon per variant, so
+    // no global state needs restoring.
+    private static int DumpClicksOffVariants(IReadOnlyDictionary<string, string> byName, string outDir)
+    {
+        var failures = 0;
+        foreach (var (name, mbdPath) in byName)
+        {
+            // Clear any previous run's output first so a failure below can never leave
+            // stale data for the Python side to pick up.
+            var variantDir = Path.Combine(outDir, "builds", $"{name}_clicksoff");
+            if (Directory.Exists(variantDir))
+            {
+                Directory.Delete(variantDir, true);
+            }
+
+            var toon = new clsToonX();
+            MainModule.MidsController.Toon = toon;
+            if (!BuildManager.Instance.LoadFromFile(mbdPath))
+            {
+                Console.Error.WriteLine($"E23: LoadFromFile failed for {mbdPath} (clicks-off variant)");
+                failures++;
+                continue;
+            }
+
+            var off = new List<string>();
+            foreach (var entry in toon.CurrentBuild.Powers)
+            {
+                if (entry?.Power == null || !entry.StatInclude || entry.Power.PowerType != Enums.ePowerType.Click)
+                {
+                    continue;
+                }
+
+                if (!entry.Power.Effects.Any(e => e.ToWho == Enums.eToWho.Self && e.EffectType == Enums.eEffectType.DamageBuff))
+                {
+                    continue;
+                }
+
+                entry.StatInclude = false;
+                off.Add(entry.Power.FullName);
+            }
+
+            try
+            {
+                toon.GenerateBuffedPowerArray();
+                Console.WriteLine($"clicksoff {name}: [{string.Join(", ", off)}]");
+                DumpOneBuild(variantDir, toon);
+                failures += DumpForumExport(variantDir, name);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"E23: clicks-off dump failed for {mbdPath}: {ex.Message}");
+                failures++;
+                if (Directory.Exists(variantDir))
+                {
+                    Directory.Delete(variantDir, true);
+                }
+            }
+        }
+
         return failures;
     }
 

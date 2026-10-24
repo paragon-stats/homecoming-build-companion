@@ -69,7 +69,13 @@ Non-incarnate builds are byte-identical patched or not — only race-carrying bu
 | `builds/<name>/set_bonus_virtual_power.json` | Per parity build: the assembled `SetBonusVirtualPower` effects (structural key + `Mag`) — the golden for the port's set-bonus assembly |
 | `builds/<name>/incarnates.json` | Per parity build: each StatInclude `Incarnate.*` power resolved to its GrantPower-granted sub-powers (`fx.nSummon` → `db.Power[nSummon]`), with each sub-power's accept-gate `Enhancements` class list and its `Enhancement`/`DamageBuff` effects (the `IgnoreED` pre/post-ED split). Empty `[]` for a build with no incarnate |
 | `builds/<name>/totals.json` | Per parity build: `Totals` + `TotalsCapped` after `GenerateBuffedPowerArray()` |
+| `builds/<name>_clicksoff/*` | Every parity build reloaded with `StatInclude` cleared on its self-targeted `DamageBuff` click powers (Aim, Build Up, ...) and recomputed — the clicks-off baseline |
 | `builds/<name>_exemplar<N>/*` | A designated build recomputed at a lowered `ForceLevel` (N) — the exemplar-parity fixtures; the set-bonus gate keys on `PickLevel`, not the DB minimum, so bonuses from powers picked above N drop |
+
+Mids treats every `StatInclude`d click power as always-on, so `DamagePerActivation` and `totals.json` of a build
+with Aim or Build Up carry that damage buff permanently. The `_clicksoff` variant switches those clicks off (toggles,
+Hasten and other powers stay untouched; one stdout line per build lists what was switched off), so the chain planner
+can apply buff uptime itself on top of a clicks-off baseline.
 
 Each build power in `powers_effects.json` also carries `Chosen` (`PowerEntry.Chosen` — false
 for every power Mids auto-adds rather than the player picking: inherents, incarnates, and

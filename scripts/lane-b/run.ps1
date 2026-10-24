@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-  Lane B — extract canonical Homecoming game data from the City of Data
-  raw-data zip distribution.
+    Lane B — extract canonical Homecoming game data from the City of Data
+    raw-data zip distribution.
 
 .DESCRIPTION
-  Replaces the original Pigg Wrangler / Bin Crawler pipeline. The CoD project
-  publishes pre-extracted JSON for the entire Homecoming dataset as a single
-  zip (~97 MB compressed, ~44,000 JSON files). We unzip it into
-  homecoming-build-companion\data\canonical\ and write a manifest.
+    Replaces the original Pigg Wrangler / Bin Crawler pipeline. The CoD project
+    publishes pre-extracted JSON for the entire Homecoming dataset as a single
+    zip (~97 MB compressed, ~44,000 JSON files). We unzip it into
+    homecoming-build-companion\data\canonical\ and write a manifest.
 
-  Source structure (top-level dirs in the zip):
+    Source structure (top-level dirs in the zip):
     archetypes/        — every class record (player ATs + enemy ranks)
     tables/            — per-class tables (damage scalars, level curves)
     powers/            — every power, in subdirs by powerset/group
@@ -18,18 +18,18 @@
     entity_tags/, tags/, exclusion_groups/, recharge_groups/ — categorization
 
 .PARAMETER Zip
-  Path to the raw-data zip. Default: %USERPROFILE%\Downloads\raw_data_homecoming-*.zip
-  (most recent match).
+    Path to the raw-data zip. Default: %USERPROFILE%\Downloads\raw_data_homecoming-*.zip
+    (most recent match).
 
 .PARAMETER OutDir
-  Destination directory. Default: <repo>\..\homecoming-build-companion\data\canonical
+    Destination directory. Default: <repo>\..\homecoming-build-companion\data\canonical
 
 .PARAMETER Force
-  Overwrite existing canonical data even if zip SHA256 matches the manifest.
+    Overwrite existing canonical data even if zip SHA256 matches the manifest.
 
 .NOTES
-  Idempotent: skips re-extraction when the zip's SHA256 matches the cached
-  hash in OutDir\manifest.json.
+    Idempotent: skips re-extraction when the zip's SHA256 matches the cached
+    hash in OutDir\manifest.json.
 #>
 [CmdletBinding()]
 param(
@@ -40,6 +40,34 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $OutDir = [System.IO.Path]::GetFullPath($OutDir)
+
+# Extract a zip, mapping ':' to '_' in each path segment. Same rule as
+# coh_engine.attack_profile.canonical_power_path: NTFS reads 'name:stream' as an alternate
+# data stream, which Expand-Archive turned into empty files.
+function Expand-ZipSanitized {
+    param([string]$ZipPath, [string]$Destination)
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $seen = @{}
+    $archive = [System.IO.Compression.ZipFile]::OpenRead($ZipPath)
+    try {
+        foreach ($entry in $archive.Entries) {
+            if ($entry.FullName.EndsWith('/')) { continue }
+            $rel = ($entry.FullName -split '/' | ForEach-Object { $_.Replace(':', '_') }) -join '/'
+            if ($seen.ContainsKey($rel)) {
+                throw "E41: zip entries '$($seen[$rel])' and '$($entry.FullName)' both map to '$rel'; rename one in the extractor"
+            }
+            $seen[$rel] = $entry.FullName
+            $target = [System.IO.Path]::GetFullPath((Join-Path $Destination $rel))
+            if (-not $target.StartsWith($Destination, [System.StringComparison]::OrdinalIgnoreCase)) {
+                throw "E42: zip entry '$($entry.FullName)' resolves outside $Destination; refusing to extract"
+            }
+            [void][System.IO.Directory]::CreateDirectory([System.IO.Path]::GetDirectoryName($target))
+            [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $target, $true)
+        }
+    } finally {
+        $archive.Dispose()
+    }
+}
 
 # --- 1. Locate the zip ---
 if (-not $Zip) {
@@ -88,7 +116,7 @@ if ($Force -and (Test-Path $OutDir)) {
 # --- 4. Extract ---
 Write-Host "Extracting (this takes ~30-60 sec for ~44k files)..." -ForegroundColor Cyan
 $swExtract = [System.Diagnostics.Stopwatch]::StartNew()
-Expand-Archive -Path $Zip -DestinationPath $OutDir -Force
+Expand-ZipSanitized -ZipPath $Zip -Destination $OutDir
 $swExtract.Stop()
 Write-Host "  Extracted in $([math]::Round($swExtract.Elapsed.TotalSeconds,1)) sec"
 

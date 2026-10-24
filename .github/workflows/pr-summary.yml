@@ -1,0 +1,66 @@
+---
+
+name: PR Summary
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  # A generated body goes stale when a linked issue changes, because the
+  # workflow otherwise runs only on pull_request events. Dispatch refreshes one
+  # pull request without an empty commit.
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: PR number to refresh
+        required: true
+        type: string
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-summary-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+
+jobs:
+  summary:
+    name: Regenerate the pull request summary
+    # Same-repo PRs only; a fork PR gets a read-only token and cannot edit the body.
+    # A dispatch needs write access to the repository, so it is already gated.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      # The tool reads the PR's commits and linked issues, then edits the PR body.
+      pull-requests: write
+      issues: read
+    steps:
+      # The tool reads the PR's commits from the API, so the checkout only has to
+      # provide the tool itself: no history, no base ref.
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      # Event data reaches the shell through env, never `${{ }}` inside `run`,
+      # because a branch name is attacker-controlled text. The dispatch input is
+      # validated here as well: the tool hands `--pr` to `gh`, so a bad value
+      # belongs in an error rather than an API call.
+      - name: Regenerate the summary
+        shell: bash
+        run: |
+          case "$PR_NUMBER" in
+            '' | *[!0-9]* | 0*)
+              echo "::error::PR number must be a positive integer, got '$PR_NUMBER'"
+              exit 1
+              ;;
+          esac
+          python -m scripts.github.pr_summary --pr "$PR_NUMBER"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pr }}

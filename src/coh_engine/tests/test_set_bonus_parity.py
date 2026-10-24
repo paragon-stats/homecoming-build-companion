@@ -32,6 +32,7 @@ from coh_engine.base_totals import (
     load_server_data,
 )
 from coh_engine.effect import effect_mag, load_powers_effects
+from coh_engine.endurance_budget import MIDS_TOTALS_SCALAR_FIELDS, MIDS_TOTALS_VECTOR_FIELDS
 from coh_engine.enhancement import EnhancementRecord, load_build_slots, load_enhancement_effects
 from coh_engine.maths import MathTables, f32, load_maths
 from coh_engine.set_bonuses import SetBonusDb, build_set_bonus_power, load_set_bonus_db
@@ -45,34 +46,10 @@ GLOBAL_ENDRDX_BUILD = "shield_scrapper_global_endrdx"
 SET_BONUS_BUILDS = [SET_BONUS_BUILD, MIXED_SETS_BUILD, GLOBAL_ENDRDX_BUILD]
 NO_SET_BONUS_BUILDS = ["shield_scrapper_slotted", "hasten_2rech", "shield_scrapper_noslots"]
 
-VECTOR_FIELDS = {
-    "Def": "def_",
-    "Res": "res",
-    "Mez": "mez",
-    "MezRes": "mez_res",
-    "DebuffRes": "debuff_res",
-    "Elusivity": "elusivity",
-}
-SCALAR_FIELDS = {
-    "HPRegen": "hp_regen",
-    "HPMax": "hp_max",
-    "Absorb": "absorb",
-    "EndRec": "end_rec",
-    "EndUse": "end_use",
-    "EndMax": "end_max",
-    "RunSpd": "run_spd",
-    "JumpSpd": "jump_spd",
-    "FlySpd": "fly_spd",
-    "JumpHeight": "jump_height",
-    "Perception": "perception",
-    "BuffHaste": "buff_haste",
-    "BuffAcc": "buff_acc",
-    "BuffToHit": "buff_to_hit",
-    "BuffDam": "buff_dam",
-    "BuffEndRdx": "buff_end_rdx",
-    "BuffRange": "buff_range",
-    "BuffHeal": "buff_heal",
-}
+VECTOR_FIELDS = MIDS_TOTALS_VECTOR_FIELDS
+# Speed caps, stealth and threat are not compared for these builds.
+_NOT_COMPARED = {"MaxFlySpd", "MaxJumpSpd", "StealthPvE", "StealthPvP", "ThreatLevel", "MaxRunSpd"}
+SCALAR_FIELDS = {k: v for k, v in MIDS_TOTALS_SCALAR_FIELDS.items() if k not in _NOT_COMPARED}
 
 
 @pytest.fixture(scope="module")

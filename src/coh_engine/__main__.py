@@ -12,10 +12,20 @@ lands with the build-eval pipeline that wires the DTO loader to the engine modul
 import argparse
 import json
 import sys
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from pathlib import Path
 
 from coh_engine.base_totals import load_server_data
+from coh_engine.chain_report import (
+    MOVES,
+    build_chain_setup,
+    parse_assumptions,
+    parse_target,
+    run_chain,
+    stance_to_json,
+    stance_to_text,
+)
+from coh_engine.damage_model import Stance
 from coh_engine.diagnostics import Diagnostic, exit_code, format_json, format_text
 from coh_engine.effect import load_powers_effects
 from coh_engine.enh_aspects import registered_aspect_handlers
@@ -80,6 +90,52 @@ def _emit(diagnostics: list[Diagnostic], as_json: bool) -> int:
     return exit_code(diagnostics)
 
 
+def _guarded(run: Callable[[], int]) -> int:
+    """Run a subcommand; an input error prints one ``error:`` line on stderr and exits 1, with no traceback.
+
+    A ``ValueError`` already carries its ``E<NN>`` message. A ``KeyError`` or ``OSError`` is an input whose
+    shape or location is wrong, reported as ``E72``.
+    """
+    try:
+        return run()
+    except ValueError as error:
+        message = str(error)
+    except OSError as error:
+        where = error.filename or "an input file"
+        message = f"E72: cannot read {where}: {error.strerror or error}; check that the path exists and is readable"
+    except KeyError as error:
+        message = f"E72: an input is missing the key {error}; re-dump the build or check the data matches its schema"
+    print(f"error: {message}", file=sys.stderr)
+    return 1
+
+
+def run_chain_command(args: argparse.Namespace) -> int:
+    """Run the ``chain`` subcommand; input errors print to stderr and exit 1 (see :func:`_guarded`)."""
+    return _guarded(lambda: _chain(args))
+
+
+def _chain(args: argparse.Namespace) -> int:
+    setup = build_chain_setup(
+        args.build_dir,
+        mids_dir=args.mids_dir or args.build_dir.parent.parent,
+        clicksoff_dir=args.clicksoff_dir,
+        canonical=args.canonical,
+        mids_db=args.mids_db,
+        scenario=parse_target(args.target),
+        move=args.move,
+        standoff_ft=args.standoff,
+        assumptions=parse_assumptions(args.assume),
+    )
+    stances = list(Stance) if args.stance == "all" else [Stance(args.stance)]
+    forms = None if args.form is None else [args.form]
+    results = run_chain(setup, stances, path=str(args.build_dir), forms=forms)
+    if args.format == "json":
+        print(json.dumps([stance_to_json(setup, r) for r in results], indent=2))
+    else:
+        print("\n\n".join(stance_to_text(setup, r) for r in results))
+    return exit_code([d for r in results for d in r.diagnostics])
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Dispatch the CLI. ``rules`` introspects the registries; ``validate`` runs them."""
     parser = argparse.ArgumentParser(prog="coh_engine", description="MidsReborn build-math port.")
@@ -91,6 +147,19 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--mids-dir", type=Path, default=None, help="directory with the shared DB dumps (default: build_dir/../..)"
     )
     v.add_argument("--format", choices=("text", "json"), default="text", help="output format")
+    c = sub.add_parser("chain", help="plan the attack chain and layered damage of a dumped build")
+    c.add_argument("build_dir", type=Path, help="Mids dump build directory")
+    c.add_argument("--mids-dir", type=Path, default=None, help="shared DB dumps (default: build_dir/../..)")
+    c.add_argument("--clicksoff-dir", type=Path, default=None, help="clicks-off dump (default: <build_dir>_clicksoff)")
+    c.add_argument("--canonical", type=Path, default=None, help="canonical data root (default: data/canonical)")
+    c.add_argument("--mids-db", type=Path, default=None, help="directory with AttribMod.json (needed for pet builds)")
+    c.add_argument("--stance", choices=(*(s.value for s in Stance), "all"), default="all", help="stance to plan")
+    c.add_argument("--form", default=None, help="plan one form only ('' is the base form); default: every form")
+    c.add_argument("--target", default="single", help="'single' or 'spawn:N'")
+    c.add_argument("--move", choices=MOVES, default="run", help="movement mode used to cross the standoff")
+    c.add_argument("--standoff", type=float, default=None, metavar="FT", help="ranged standoff in feet")
+    c.add_argument("--assume", action="append", default=[], metavar="KEY=VALUE", help="override an assumption")
+    c.add_argument("--format", choices=("text", "json"), default="text", help="output format")
     args = parser.parse_args(argv)
 
     if args.command == "rules":
@@ -98,9 +167,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.command == "validate":
         mids_dir = args.mids_dir or args.build_dir.parent.parent
-        return _emit(run_validate(args.build_dir, mids_dir), args.format == "json")
+        return _guarded(lambda: _emit(run_validate(args.build_dir, mids_dir), args.format == "json"))
+    if args.command == "chain":
+        return run_chain_command(args)
     print("coh_engine: MidsReborn build-math port.")
-    print("Spec: docs/engine/mids-port-spec.md. Commands: rules, validate (score lands with the build-eval pipeline).")
+    print(
+        "Spec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain (score lands with the build-eval pipeline)."
+    )
     return 0
 
 
