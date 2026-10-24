@@ -10,10 +10,17 @@ uncapped ``Totals``. Recovery reuses :func:`coh_engine.scoring.endurance_recover
 (``Statistics.cs:33``, capped totals); toggle drain is ``Totals.EndUse`` (uncapped), as in
 :func:`coh_engine.scoring.endurance_diagnostic`.
 
+Recovery scales with max endurance (``EndMax / 100 + 1``), and HP regeneration with max HP
+(``Statistics.cs:51``), so a permanent pool increase also raises the per-second tick. Mids
+caps HP (``hp_cap``) but never max endurance; the canonical AT data carries both hard caps
+(``attrib_max_max``), so the planner clamps the pool -- and the recovery scaling -- at the
+canonical endurance cap when one is supplied (CLAUDE.md B5: canonical wins on numbers).
+
 Spec: docs/engine/mids-port-spec.md; error-output.md.
 """
 
 import json
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -24,6 +31,8 @@ from coh_engine.maths import f32
 from coh_engine.scoring import endurance_recovery_per_sec
 
 _BASE_END = 100.0  # Statistics.cs:31
+_REGEN_MAGIC = f32(1.66666662693024)  # Statistics.cs:51
+_LEVEL_50 = 49  # canonical per-level arrays are 0-based
 
 # Mids totals.json key -> TotalStatistics field: the single source the parity tests import.
 MIDS_TOTALS_VECTOR_FIELDS = {
@@ -62,8 +71,35 @@ MIDS_TOTALS_SCALAR_FIELDS = {
 }
 
 
+@dataclass(frozen=True, slots=True)
+class HealthBudget:
+    """Max HP (AT-capped) and the HP regenerated per second, which scales with it."""
+
+    max_hp: float
+    regen_per_sec: float
+
+
+def load_canonical_caps(archetypes_dir: Path, class_name: str) -> tuple[float, float]:
+    """The AT's hard caps at level 50 from canonical ``attrib_max_max``: (max endurance, max HP).
+
+    Raises:
+        ValueError: ``E32`` if no canonical archetype file exists for ``class_name``.
+    """
+    path = archetypes_dir / f"{class_name.removeprefix('Class_').lower()}.json"
+    if not path.is_file():
+        raise ValueError(
+            f"E32: no canonical archetype file {path} for {class_name}; pass the AT class name "
+            "(e.g. Class_Arachnos_Soldier) or restore data/canonical/archetypes"
+        )
+    caps = json.loads(path.read_text(encoding="utf-8"))["attrib_max_max"]
+    return f32(caps["endurance"][_LEVEL_50]), f32(caps["hit_points"][_LEVEL_50])
+
+
 def build_endurance_budget(
-    totals: TotalStatistics, totals_capped: TotalStatistics, archetype: Archetype
+    totals: TotalStatistics,
+    totals_capped: TotalStatistics,
+    archetype: Archetype,
+    max_end_cap: float | None = None,
 ) -> EnduranceBudget:
     """The endurance pool, recovery/sec and toggle drain/sec a build starts from.
 
@@ -71,15 +107,31 @@ def build_endurance_budget(
         totals: Uncapped ``Totals`` (``EndMax`` and ``EndUse`` are read from here).
         totals_capped: ``TotalsCapped`` (recovery is computed over these).
         archetype: The build's class record (``BaseRecovery``).
+        max_end_cap: The AT's hard max-endurance cap (:func:`load_canonical_caps`); the pool and
+            the recovery scaling are both clamped to it. ``None`` applies no cap, as Mids does.
 
     Returns:
         The :class:`EnduranceBudget`; ``max_end`` is ``100 + Totals.EndMax`` (``Statistics.cs:31``).
     """
+    max_end = f32(_BASE_END + totals.end_max)
+    if max_end_cap is not None and max_end > max_end_cap:
+        max_end = f32(max_end_cap)
+        totals_capped = replace(totals_capped, end_max=f32(max_end_cap - _BASE_END))
     return EnduranceBudget(
-        max_end=f32(_BASE_END + totals.end_max),
+        max_end=max_end,
         recovery_per_sec=endurance_recovery_per_sec(totals_capped, archetype),
         toggle_drain_per_sec=totals.end_use,
     )
+
+
+def build_health_budget(totals_capped: TotalStatistics, archetype: Archetype) -> HealthBudget:
+    """Max HP and HP regenerated per second -- ``Statistics.cs:51`` ``HealthRegenHPPerSec``.
+
+    ``(HPRegen + 1) * BaseRegen * 1.6666666 * HPMax / 100`` over the capped totals, so the
+    tick grows with max HP, which is already clamped to the AT ``hp_cap`` in ``TotalsCapped``.
+    """
+    rate = f32(f32(totals_capped.hp_regen + 1.0) * f32(archetype.base_regen * _REGEN_MAGIC))
+    return HealthBudget(max_hp=totals_capped.hp_max, regen_per_sec=f32(rate * totals_capped.hp_max / 100.0))
 
 
 def _totals_from(section: dict[str, Any], name: str, path: Path) -> TotalStatistics:

@@ -14,11 +14,14 @@ from coh_engine.endurance_budget import (
     MIDS_TOTALS_SCALAR_FIELDS,
     MIDS_TOTALS_VECTOR_FIELDS,
     build_endurance_budget,
+    build_health_budget,
+    load_canonical_caps,
     load_mids_totals,
 )
 from coh_engine.maths import f32
 from coh_engine.scoring import endurance_recovery_per_sec
 
+CANONICAL_ARCHETYPES = Path(__file__).parents[3] / "data" / "canonical" / "archetypes"
 MIDS = Path(__file__).parent / "fixtures" / "mids"
 TOTALS_JSON = MIDS / "builds" / "shield_scrapper_set_bonuses" / "totals.json"
 
@@ -100,3 +103,42 @@ def test_draining_case_has_exact_time_to_empty(scrapper: Archetype) -> None:
     budget = build_endurance_budget(replace(totals, end_use=drain), capped, scrapper)
     net = f32(recovery - drain)
     assert budget.time_to_empty() == f32(100.0 / -net)
+
+
+def test_canonical_caps_are_read_per_archetype() -> None:
+    """``attrib_max_max`` at level 50: 365 endurance for every AT; HP cap per AT."""
+    end_cap, hp_cap = load_canonical_caps(CANONICAL_ARCHETYPES, "Class_Arachnos_Soldier")
+    assert end_cap == f32(365.0)
+    assert hp_cap == f32(2409.5176)
+    assert load_canonical_caps(CANONICAL_ARCHETYPES, "Class_Tanker")[1] == f32(3533.958984375)
+
+
+def test_unknown_class_has_no_canonical_caps() -> None:
+    with pytest.raises(ValueError, match="E32"):
+        load_canonical_caps(CANONICAL_ARCHETYPES, "Class_Nobody")
+
+
+def test_max_end_cap_clamps_the_pool_and_the_recovery_scaling(scrapper: Archetype) -> None:
+    """Recovery scales with max endurance, so the clamp applies to both the pool and the income."""
+    totals, capped = load_mids_totals(TOTALS_JSON)
+    over = build_endurance_budget(
+        replace(totals, end_max=300.0), replace(capped, end_max=300.0), scrapper, max_end_cap=365.0
+    )
+    assert over.max_end == f32(365.0)
+    assert over.recovery_per_sec == endurance_recovery_per_sec(replace(capped, end_max=265.0), scrapper)
+    under = build_endurance_budget(
+        replace(totals, end_max=20.0), replace(capped, end_max=20.0), scrapper, max_end_cap=365.0
+    )
+    assert under.max_end == f32(120.0)
+    assert under.recovery_per_sec == endurance_recovery_per_sec(replace(capped, end_max=20.0), scrapper)
+
+
+def test_hp_regen_scales_with_capped_max_hp(scrapper: Archetype) -> None:
+    """Statistics.cs:51: (HPRegen + 1) * BaseRegen * 1.6666666 * HPMax(capped) / 100."""
+    _, capped = load_mids_totals(TOTALS_JSON)
+    health = build_health_budget(capped, scrapper)
+    expected = f32(f32(f32(capped.hp_regen + 1.0) * f32(scrapper.base_regen * 1.6666666)) * capped.hp_max / 100.0)
+    assert health.max_hp == capped.hp_max
+    assert health.regen_per_sec == expected
+    bigger = build_health_budget(replace(capped, hp_max=f32(capped.hp_max * 2.0)), scrapper)
+    assert bigger.regen_per_sec == pytest.approx(health.regen_per_sec * 2.0, rel=1e-6)
