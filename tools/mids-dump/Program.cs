@@ -518,6 +518,14 @@ internal static class Program
         var failures = 0;
         foreach (var (name, mbdPath) in byName)
         {
+            // Clear any previous run's output first so a failure below can never leave
+            // stale data for the Python side to pick up.
+            var variantDir = Path.Combine(outDir, "builds", $"{name}_clicksoff");
+            if (Directory.Exists(variantDir))
+            {
+                Directory.Delete(variantDir, true);
+            }
+
             var toon = new clsToonX();
             MainModule.MidsController.Toon = toon;
             if (!BuildManager.Instance.LoadFromFile(mbdPath))
@@ -544,10 +552,22 @@ internal static class Program
                 off.Add(entry.Power.FullName);
             }
 
-            toon.GenerateBuffedPowerArray();
-            Console.WriteLine($"clicksoff {name}: [{string.Join(", ", off)}]");
-            DumpOneBuild(Path.Combine(outDir, "builds", $"{name}_clicksoff"), toon);
-            DumpForumExport(Path.Combine(outDir, "builds", $"{name}_clicksoff"), name);
+            try
+            {
+                toon.GenerateBuffedPowerArray();
+                Console.WriteLine($"clicksoff {name}: [{string.Join(", ", off)}]");
+                DumpOneBuild(variantDir, toon);
+                DumpForumExport(variantDir, name);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"E23: clicks-off dump failed for {mbdPath}: {ex.Message}");
+                failures++;
+                if (Directory.Exists(variantDir))
+                {
+                    Directory.Delete(variantDir, true);
+                }
+            }
         }
 
         return failures;
