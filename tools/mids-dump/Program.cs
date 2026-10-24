@@ -264,7 +264,7 @@ internal static class Program
             var name = Path.GetFileNameWithoutExtension(mbdPath);
             byName[name] = mbdPath;
             DumpOneBuild(Path.Combine(outDir, "builds", name), toon);
-            DumpForumExport(Path.Combine(outDir, "builds", name), name);
+            failures += DumpForumExport(Path.Combine(outDir, "builds", name), name);
         }
 
         failures += DumpExemplarVariants(byName, outDir);
@@ -275,29 +275,32 @@ internal static class Program
     // The forum export is MidsReborn's own emitter (ClsOutput.Build), so the markdown a build
     // proposal ships is generated rather than hand-transcribed — the format is a spec, not a
     // style choice (.claude/rules/build-creation.md P1).
-    private static void DumpForumExport(string buildDir, string name)
+    // Returns the failure count so Main's non-zero exit covers a failed export too.
+    private static int DumpForumExport(string buildDir, string name)
     {
         try
         {
-            if (MidsContext.Config.Export.FormatCode.Length == 0) MidsContext.Config.Export.ResetCodesToDefaults();
             if (MidsContext.Config.Export.ColorSchemes.Length == 0) MidsContext.Config.Export.ResetColorsToDefaults();
-            // Pick the plain-text format code when one exists; BBCode markup is noise in markdown.
-            var codes = MidsContext.Config.Export.FormatCode;
-            for (var i = 0; i < codes.Length; i++)
+            // The plain-text format is named "No Codes" (ExportConfig.ResetCodesToDefaults); every
+            // other code is BBCode, which is noise in markdown. A loaded config may lack it, so reset.
+            var plain = Array.FindIndex(MidsContext.Config.Export.FormatCode, c => c.Name == "No Codes");
+            if (plain < 0)
             {
-                if (!codes[i].Name.Contains("Forum", StringComparison.OrdinalIgnoreCase)) continue;
-                MidsContext.Config.ExportTarget = i;
-                break;
+                MidsContext.Config.Export.ResetCodesToDefaults();
+                plain = Array.FindIndex(MidsContext.Config.Export.FormatCode, c => c.Name == "No Codes");
             }
 
+            MidsContext.Config.ExportTarget = plain;
             var text = new ClsOutput().Build("", true);
             Directory.CreateDirectory(buildDir);
             File.WriteAllText(Path.Combine(buildDir, "forum_export.txt"), text);
             Console.WriteLine($"wrote {Path.Combine(buildDir, "forum_export.txt")}");
+            return 0;
         }
         catch (Exception ex)
         {
             Console.Error.WriteLine($"E22: forum export failed for {name}: {ex.Message}");
+            return 1;
         }
     }
 
@@ -557,7 +560,7 @@ internal static class Program
                 toon.GenerateBuffedPowerArray();
                 Console.WriteLine($"clicksoff {name}: [{string.Join(", ", off)}]");
                 DumpOneBuild(variantDir, toon);
-                DumpForumExport(variantDir, name);
+                failures += DumpForumExport(variantDir, name);
             }
             catch (Exception ex)
             {
