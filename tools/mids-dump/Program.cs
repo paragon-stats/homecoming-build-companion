@@ -268,6 +268,7 @@ internal static class Program
         }
 
         failures += DumpExemplarVariants(byName, outDir);
+        failures += DumpClicksOffVariants(byName, outDir);
         return failures;
     }
 
@@ -504,6 +505,51 @@ internal static class Program
         }
 
         MidsContext.Config.ForceLevel = savedForceLevel;
+        return failures;
+    }
+
+    // Clicks-off baseline for the chain planner: Mids treats every StatInclude'd click as
+    // always-on, so Aim / Build Up damage buffs sit permanently in DamagePerActivation and
+    // totals. Each build is reloaded with StatInclude cleared on its self-targeted DamageBuff
+    // click powers; the planner then applies buff uptime itself. Fresh toon per variant, so
+    // no global state needs restoring.
+    private static int DumpClicksOffVariants(IReadOnlyDictionary<string, string> byName, string outDir)
+    {
+        var failures = 0;
+        foreach (var (name, mbdPath) in byName)
+        {
+            var toon = new clsToonX();
+            MainModule.MidsController.Toon = toon;
+            if (!BuildManager.Instance.LoadFromFile(mbdPath))
+            {
+                Console.Error.WriteLine($"E23: LoadFromFile failed for {mbdPath} (clicks-off variant)");
+                failures++;
+                continue;
+            }
+
+            var off = new List<string>();
+            foreach (var entry in toon.CurrentBuild.Powers)
+            {
+                if (entry?.Power == null || !entry.StatInclude || entry.Power.PowerType != Enums.ePowerType.Click)
+                {
+                    continue;
+                }
+
+                if (!entry.Power.Effects.Any(e => e.ToWho == Enums.eToWho.Self && e.EffectType == Enums.eEffectType.DamageBuff))
+                {
+                    continue;
+                }
+
+                entry.StatInclude = false;
+                off.Add(entry.Power.FullName);
+            }
+
+            toon.GenerateBuffedPowerArray();
+            Console.WriteLine($"clicksoff {name}: [{string.Join(", ", off)}]");
+            DumpOneBuild(Path.Combine(outDir, "builds", $"{name}_clicksoff"), toon);
+            DumpForumExport(Path.Combine(outDir, "builds", $"{name}_clicksoff"), name);
+        }
+
         return failures;
     }
 
