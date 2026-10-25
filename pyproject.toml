@@ -70,8 +70,8 @@ allowed_tags = [
 ]
 minor_tags = ["feat"]
 patch_tags = ["fix", "perf", "security", "revert"]
-# Merge commits carry the PR title, which repeats a commit already counted from the same
-# PR. Without this a single feature would bump twice.
+# The parser's default, pinned: the bump is read from the branch commits a merge brings
+# in, never from the merge commit, whose subject is the PR title.
 ignore_merge_commits = true
 
 [tool.coverage.run]

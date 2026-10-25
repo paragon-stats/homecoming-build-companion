@@ -97,8 +97,9 @@ Because a release is cut on every merge to `main`, that range is exactly one PR'
 in practice each PR produces one version. Skipping a release for a no-release merge means the
 next release covers more than one PR and they collapse into a single bump.
 
-The mapping matches `commit-types.yml` in the `ci-templates` repository, which is the
-cross-repo source of truth for commit types and their release levels.
+The mapping is declared in `pyproject.toml` under `[tool.semantic_release.commit_parser_options]`
+and restates `commit-types.txt` in `paragon-stats/github-actions`, the org's source of truth for
+commit types and their release levels. The commitlint workflow fails a pull request when the two drift.
 
 ## Version history
 
@@ -149,4 +150,5 @@ change that satisfies both goals; signature enforcement is untouched.
 - [`.claude/rules/gitops.md`](../../.claude/rules/gitops.md) — the binding conventions.
 - [`scripts/testing/hooks/check_commit_message.py`](../../scripts/testing/hooks/check_commit_message.py) — the single validator all three gates call.
 - [`.github/workflows/commitlint.yml`](../../.github/workflows/commitlint.yml) — the three gates.
-- [`cliff.toml`](../../cliff.toml) — commit type to changelog group mapping and the bump rules.
+- [`pyproject.toml`](../../pyproject.toml) `[tool.semantic_release]` — the bump rules the release workflow applies.
+- [`scripts/testing/hooks/check_release_policy.py`](../../scripts/testing/hooks/check_release_policy.py) — the drift check against the org's `commit-types.txt`.

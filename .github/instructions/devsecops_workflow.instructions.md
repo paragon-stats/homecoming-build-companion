@@ -24,7 +24,7 @@ python3 -m scripts.github.<module> ...
 
 - Do not use `python` on Linux nodes; it may not be installed or may not point to Python 3.
 
-- Assume squash merges; verify merges using diffs, not git ancestry.
+- Merges are merge commits (squash and rebase are disabled); verify merges using diffs, not git ancestry.
 - Release tagging is automated: every push to `main` runs `release.yml`, which cuts a semver tag when a release-triggering commit landed. Do not create version tags manually.
 
 ## Start work on issue #X (ordered steps)
