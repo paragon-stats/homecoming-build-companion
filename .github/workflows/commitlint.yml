@@ -32,6 +32,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -65,14 +66,17 @@ jobs:
 
   # pyproject.toml restates the bump mapping for the release tooling; the org's
   # commit-types.txt (paragon-stats/github-actions, pinned to the same SHA as the
-  # release action) stays the source of truth, and drift between them fails here
-  # rather than cutting the wrong version on main.
+  # release action) stays the source of truth. Drift fails this job, which reports
+  # the required context `Commit Message Lint / release-policy`; the ruleset makes
+  # that context block the merge, so a drifted policy cannot reach main.
   release-policy:
     name: Verify the release bump mapping matches the org fact-set
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      pull-requests: read
+      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -94,6 +98,16 @@ jobs:
           # its package, which needs the repository root on sys.path.
           python3 -m scripts.testing.hooks.check_release_policy "$RUNNER_TEMP/commit-types.txt" pyproject.toml
 
+      - name: Report required status context
+        if: ${{ always() }}
+        uses: ./.github/actions/report-status-context
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-number: ${{ github.event.pull_request.number }}
+          job-status: ${{ job.status }}
+          status-context: Commit Message Lint / release-policy
+          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
   # The PR title is load-bearing: with merge_commit_title = PR_TITLE it becomes the
   # subject of the merge commit on main, which the changelog and the version bump both
   # read. Nothing validated it until this job existed, so a badly-typed title could put
@@ -109,6 +123,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -154,6 +170,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       # Pinned for the same reason the other two jobs pin it: all three run the same
       # validator, so they must run it on the same interpreter. On the runner default

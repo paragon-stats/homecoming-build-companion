@@ -59,6 +59,8 @@ jobs:
           #   game data, must stay byte-identical to MidsReborn/Homecoming.
           # - docs/engine/: generated extraction output (lint-exempt per
           #   .claude/rules/markdown.md).
+          # - community/: captured third-party forum guides and builds, kept
+          #   byte-identical to their source.
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
           FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|src/coh_engine/tests/fixtures/|data/canonical/|docs/engine/|community/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
