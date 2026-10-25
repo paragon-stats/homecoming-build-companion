@@ -50,6 +50,31 @@ def test_load_fact_set_rejects_a_row_without_a_bump(tmp_path: Path) -> None:
         load_fact_set(f)
 
 
+def test_load_fact_set_rejects_an_unknown_bump(tmp_path: Path) -> None:
+    """A fact-set fault is reported as such, not as pyproject drift (which would point at the wrong file)."""
+    f, _ = _write(tmp_path, facts="feat majr\n")
+    with pytest.raises(ValueError, match="majr"):
+        load_fact_set(f)
+
+
+def test_load_fact_set_rejects_a_repeated_type(tmp_path: Path) -> None:
+    f, _ = _write(tmp_path, facts="feat minor\nfeat patch\n")
+    with pytest.raises(ValueError, match="feat"):
+        load_fact_set(f)
+
+
+def test_pyproject_missing_the_section_or_a_key_is_e81(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    f, p = _write(tmp_path / "nosection", pyproject="[tool.other]\nx = 1\n")
+    assert main([str(f), str(p)]) == 2
+    assert "E81" in capsys.readouterr().err
+    f2, p2 = _write(
+        tmp_path / "nokey", pyproject=PYPROJECT.replace('patch_tags = ["fix", "perf", "security", "revert"]\n', "")
+    )
+    assert main([str(f2), str(p2)]) == 2
+    err = capsys.readouterr().err
+    assert "E81" in err and "patch_tags" in err
+
+
 def test_matching_policy_has_no_errors(tmp_path: Path) -> None:
     f, p = _write(tmp_path)
     assert policy_errors(f, p) == []

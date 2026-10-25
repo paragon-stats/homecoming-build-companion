@@ -11,7 +11,7 @@ runs this against the fact-set pinned to the same SHA as the release action.
 Exit codes:
     0: both copies match the fact-set
     1: a copy drifted (one ``H-REL-001`` line per difference)
-    2: the fact-set itself is unreadable (``E80``)
+    2: the fact-set itself is unreadable (``E80``), or pyproject lacks the policy (``E81``)
 
 Usage (as a module, so the package import of the allowlist resolves from the repo root):
     python -m scripts.testing.hooks.check_release_policy <commit-types.txt> <pyproject.toml>
@@ -26,9 +26,15 @@ from pathlib import Path
 
 from scripts.testing.hooks import check_commit_message
 
+_BUMPS = frozenset({"minor", "patch", "none"})
+
 
 def load_fact_set(path: Path) -> dict[str, str]:
-    """``{type: bump}`` from the fact-set file; ``#`` starts a comment, blank lines are skipped."""
+    """``{type: bump}`` from the fact-set file; ``#`` starts a comment, blank lines are skipped.
+
+    A malformed row raises ``ValueError`` so the fault is reported against the fact-set,
+    never as drift in the local copies.
+    """
     facts: dict[str, str] = {}
     for line in path.read_text(encoding="utf-8").splitlines():
         cols = line.split("#", 1)[0].split()
@@ -36,8 +42,24 @@ def load_fact_set(path: Path) -> dict[str, str]:
             continue
         if len(cols) != 2:
             raise ValueError(f"{path}: row {cols[0]!r} must be '<type> <bump>'")
-        facts[cols[0]] = cols[1]
+        type_, bump = cols
+        if bump not in _BUMPS:
+            raise ValueError(f"{path}: type {type_!r} has bump {bump!r}, expected one of {sorted(_BUMPS)}")
+        if type_ in facts:
+            raise ValueError(f"{path}: type {type_!r} is listed twice")
+        facts[type_] = bump
     return facts
+
+
+def _parser_options(pyproject: Path) -> dict[str, list[str]]:
+    """The three tag lists from ``[tool.semantic_release.commit_parser_options]``; ``KeyError`` names what is missing."""
+    with pyproject.open("rb") as fh:
+        data = tomllib.load(fh)
+    try:
+        options = data["tool"]["semantic_release"]["commit_parser_options"]
+        return {key: list(options[key]) for key in ("allowed_tags", "minor_tags", "patch_tags")}
+    except KeyError as exc:
+        raise KeyError(f"{pyproject}: [tool.semantic_release.commit_parser_options] lacks {exc.args[0]!r}") from exc
 
 
 def _diff(where: str, key: str, got: list[str], want: list[str]) -> str | None:
@@ -52,8 +74,7 @@ def _diff(where: str, key: str, got: list[str], want: list[str]) -> str | None:
 def policy_errors(fact_set: Path, pyproject: Path) -> list[str]:
     """Every difference between the fact-set and the two local copies of the policy."""
     facts = load_fact_set(fact_set)
-    with pyproject.open("rb") as fh:
-        options = tomllib.load(fh)["tool"]["semantic_release"]["commit_parser_options"]
+    options = _parser_options(pyproject)
     wanted = {
         "allowed_tags": sorted(facts),
         "minor_tags": sorted(t for t, bump in facts.items() if bump == "minor"),
@@ -76,6 +97,13 @@ def main(argv: list[str]) -> int:
     except ValueError as exc:
         print(
             f"{args.fact_set}:1:1: error: E80: fact-set unreadable: {exc}; fix the row in commit-types.txt",
+            file=sys.stderr,
+        )
+        return 2
+    except KeyError as exc:
+        print(
+            f"{args.pyproject}:1:1: error: E81: release policy incomplete: {exc.args[0]}; "
+            "declare allowed_tags, minor_tags and patch_tags under [tool.semantic_release.commit_parser_options]",
             file=sys.stderr,
         )
         return 2
