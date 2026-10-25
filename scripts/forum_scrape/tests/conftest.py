@@ -1,5 +1,7 @@
 """Shared fixtures: a fake network so no test ever reaches the real forum."""
 
+from __future__ import annotations
+
 import gzip
 import io
 import urllib.error

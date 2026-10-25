@@ -49,7 +49,7 @@ function Get-CrawlProcess {
         } | Sort-Object Name -Unique
 }
 
-function Read-LedgerLines {
+function Read-Ledger {
     <#
         Stream a ledger the crawler may be appending to, right now, from another process.
 
@@ -83,7 +83,7 @@ function Get-LedgerProgress {
     $threads = [Collections.Generic.HashSet[string]]::new()
     $ledger = Join-Path $Dir 'topics.jsonl'
     if (Test-Path $ledger) {
-        foreach ($line in Read-LedgerLines (Resolve-Path $ledger)) {
+        foreach ($line in Read-Ledger (Resolve-Path $ledger)) {
             if ($line -match '"topic_url":\s*"([^"]+)"') { [void]$threads.Add($Matches[1]) }
         }
     }
@@ -93,7 +93,7 @@ function Get-LedgerProgress {
     $sizes = Join-Path $Dir 'section_sizes.jsonl'
     $bySection = [ordered]@{}
     if (Test-Path $sizes) {
-        foreach ($line in Read-LedgerLines (Resolve-Path $sizes)) {
+        foreach ($line in Read-Ledger (Resolve-Path $sizes)) {
             if ($line -match '"forum_url":\s*"([^"]+)".*?"topics":\s*(\d+)') {
                 $bySection[$Matches[1]] = [int]$Matches[2]
             }
@@ -105,10 +105,11 @@ function Get-LedgerProgress {
 
 function Get-LineCount {
     param([string]$Path)
-    if (Test-Path $Path) { @(Read-LedgerLines (Resolve-Path $Path)).Count } else { 0 }
+    if (Test-Path $Path) { @(Read-Ledger (Resolve-Path $Path)).Count } else { 0 }
 }
 
 function Show-CrawlStatus {
+    param([string]$Root)
     $live = @(Get-CrawlProcess)
     $rows = Get-ChildItem $Root -Directory -ErrorAction SilentlyContinue |
         Where-Object { Test-Path (Join-Path $_.FullName 'topics.jsonl') } |
@@ -141,10 +142,10 @@ function Show-CrawlStatus {
 }
 
 do {
-    # Swallowed rather than guarded: there is no console to clear when this runs as a
-    # job or through a pipe, and that is not a reason to stop reporting.
-    if ($Watch) { try { Clear-Host } catch { } }
-    Show-CrawlStatus
+    # Not a reason to stop reporting: there is no console to clear when this runs as a
+    # job or through a pipe.
+    if ($Watch) { try { Clear-Host } catch { Write-Verbose "no console to clear: $_" } }
+    Show-CrawlStatus -Root $Root
     $stillRunning = @(Get-CrawlProcess).Count -gt 0
     if ($Watch -and $stillRunning) { Start-Sleep -Seconds $Every }
 } while ($Watch -and $stillRunning)
