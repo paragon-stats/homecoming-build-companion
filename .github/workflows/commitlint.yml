@@ -90,7 +90,9 @@ jobs:
           set -euo pipefail
           base="https://raw.githubusercontent.com/paragon-stats/github-actions/8e164c6001e7a28bf2b06e6c528f97cda9af37cb"
           curl -fsSL --proto '=https' "$base/commit-types.txt" -o "$RUNNER_TEMP/commit-types.txt"
-          python3 scripts/testing/hooks/check_release_policy.py "$RUNNER_TEMP/commit-types.txt" pyproject.toml
+          # As a module, not a file: the checker imports the commit-lint allowlist from
+          # its package, which needs the repository root on sys.path.
+          python3 -m scripts.testing.hooks.check_release_policy "$RUNNER_TEMP/commit-types.txt" pyproject.toml
 
   # The PR title is load-bearing: with merge_commit_title = PR_TITLE it becomes the
   # subject of the merge commit on main, which the changelog and the version bump both

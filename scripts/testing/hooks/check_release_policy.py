@@ -13,8 +13,8 @@ Exit codes:
     1: a copy drifted (one ``H-REL-001`` line per difference)
     2: the fact-set itself is unreadable (``E80``)
 
-Usage:
-    python scripts/testing/hooks/check_release_policy.py <commit-types.txt> <pyproject.toml>
+Usage (as a module, so the package import of the allowlist resolves from the repo root):
+    python -m scripts.testing.hooks.check_release_policy <commit-types.txt> <pyproject.toml>
 """
 
 from __future__ import annotations
