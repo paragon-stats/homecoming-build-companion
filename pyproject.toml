@@ -48,6 +48,10 @@ exclude = ["scripts.*.tests*", "scripts.*.fixtures*", "coh_engine.tests*"]
 # has to satisfy the signed-commit ruleset.
 [tool.semantic_release]
 tag_format = "v{version}"
+# The tagger identity. GitHub shows a tag as Verified only when the signature's key is
+# registered to an account and the tagger email is one of that account's; the release
+# key carries this noreply address as a UID and is registered to the same account.
+commit_author = "paragon-stats release bot <35460307+pkloehn1@users.noreply.github.com>"
 # Below 1.0.0 a breaking change bumps the minor, not the major. The `!` marker is still
 # written on breaking commits; it just does not force 1.0.0 while the checkpoint ladder
 # is unfinished. Flip to true when cutting 1.0.0.
