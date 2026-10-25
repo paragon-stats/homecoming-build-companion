@@ -12,6 +12,9 @@ from scripts.forum_scrape.dedupe import (
     load_index_maps,
 )
 
+# The engine's tracked Mids reference dump, so these tests run without a local tools/mids-dump/out.
+DUMP = Path("src/coh_engine/tests/fixtures/mids")
+
 BUILD = {
     "BuiltWith": {"App": "Mids Reborn", "Version": "3.8.6.0"},
     "Level": "49",
@@ -138,7 +141,7 @@ def test_load_index_maps_reports_an_absent_dump(tmp_path: Path) -> None:
 
 
 def test_load_index_maps_reads_a_real_dump() -> None:
-    powers, enhancements = load_index_maps(Path("tools/mids-dump/out"))
+    powers, enhancements = load_index_maps(DUMP)
     assert powers and enhancements
 
 
@@ -223,7 +226,7 @@ def test_identity_from_a_real_mxd_block(tmp_path: Path) -> None:
 
     path = tmp_path / "1-a.txt"
     path.write_text(block, encoding="utf-8")
-    powers, enhancements = load_index_maps(Path("tools/mids-dump/out"))
+    powers, enhancements = load_index_maps(DUMP)
     identity = artifact_identity({"path": str(path), "chunk_format": "mxd"}, powers, enhancements)
     assert not identity.startswith(("bytes:", "missing:"))  # a real parse, not the fallback
 
@@ -310,4 +313,4 @@ def test_dedupe_uses_the_index_maps_when_a_dump_is_given(tmp_path: Path) -> None
         "posted_at": "2026-01-01",
         "post_url": "u#1",
     }
-    assert len(dedupe([row], Path("tools/mids-dump/out"))) == 1
+    assert len(dedupe([row], DUMP)) == 1

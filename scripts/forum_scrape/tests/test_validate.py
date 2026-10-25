@@ -18,9 +18,11 @@ from scripts.forum_scrape.validate import (
     validate_mbd,
 )
 
-DUMP = Path("tools/mids-dump/out")
+# The engine's tracked Mids reference dump, so these tests run anywhere, not only on a
+# machine that has generated tools/mids-dump/out.
+DUMP = Path("src/coh_engine/tests/fixtures/mids")
 CANONICAL = Path("data/canonical")
-TIDGE = Path("samples/builds/generated/Tidge Bots-Traps - Mastermind (Robotics - Traps).mbd")
+TIDGE = Path(__file__).parent / "fixtures" / "tidge_bots_traps.mbd"
 
 
 @pytest.fixture(scope="module")
