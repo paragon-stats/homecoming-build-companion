@@ -132,7 +132,7 @@ class TestValidateCommitMessage:
     def test_breaking_change_marker_accepted(self, subject: str) -> None:
         """The `!` breaking-change marker is valid after the type and after the scope.
 
-        cliff.toml and the release flow both key the version bump off this marker, so
+        The release policy in pyproject.toml keys the version bump off this marker, so
         rejecting it would block the one message shape the release process asks for.
         """
         assert mod.validate_commit_message(subject)[0]

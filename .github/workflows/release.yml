@@ -1,0 +1,60 @@
+---
+
+name: Release
+on:
+  push:
+    branches:
+      - main
+  # A deliberate cut when a push did not release, for instance after a seed tag
+  # was placed by hand. The bump is still computed from the commits; there is
+  # no input that names a version.
+  workflow_dispatch:
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Cut a release from the merged commits
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      # The tag push and the GitHub Release need write access on this job only.
+      contents: write
+    steps:
+      # The one checkout in this repository that keeps its credentials: the
+      # release action pushes the signed tag over git with them. Every other
+      # workflow checks out with persist-credentials: false.
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # semantic-release needs the full tag history
+
+      # Tag-only python-semantic-release, the org's release tool and the GitHub
+      # form of the GitLab ci-templates release component: main is PR-only with
+      # required signatures, so no bot commit ever lands. Merging a feat:, fix:,
+      # perf:, security: or revert: commit cuts one release; other types cut
+      # nothing. The bump policy lives in pyproject.toml [tool.semantic_release];
+      # the action fails closed when it is missing, when the clone is shallow, or
+      # when no vX.Y.Z tag exists.
+      - name: Release
+        id: release
+        uses: paragon-stats/github-actions/release@8e164c6001e7a28bf2b06e6c528f97cda9af37cb  # v2.2.1
+        with:
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          vcs-release: 'true'
+
+      - name: Report
+        shell: bash
+        env:
+          RELEASED: ${{ steps.release.outputs.released }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          if [ "$RELEASED" = "true" ]; then
+            echo "released $TAG"
+          else
+            echo "no release-triggering commit since $TAG; nothing cut"
+          fi

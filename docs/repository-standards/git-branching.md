@@ -76,26 +76,31 @@ Rationale:
 
 ## Versioning
 
-This repository uses Calendar Versioning (CalVer). CI creates an
-annotated tag on every squash merge to `main`, excluding the automated release commits produced by the workflow itself.
+This repository uses semantic versioning derived from Conventional Commits.
+On every push to `main`, `.github/workflows/release.yml` runs python-semantic-release
+through `paragon-stats/github-actions/release`: it reads the commits since the last `vX.Y.Z`
+tag, pushes a signed annotated tag on the merge commit when one is due, and creates the
+GitHub Release. Nothing is committed back.
 
 REQUIRE:
 
-- CalVer tags apply to `main` only, after squash merge.
+- Tags apply to `main` only, after the merge.
 - Feature branches carry no version information.
+- Version tags are created by the workflow. A tag placed by hand is for seeding the series
+  or back-filling a release the workflow did not see, in the same form.
 
 Guidance:
 
-- Tag format: `v{YYYY.0M.MICRO}` (e.g., `v2026.03.0`).
-- `MICRO` resets to `0` each calendar month and increments per
-  merge within a month.
-- Each squash merge into `main` triggers CI to create an automated
-  version-bump commit; the CalVer tag points to that release commit.
+- Tag format: `v{MAJOR}.{MINOR}.{PATCH}` (e.g., `v0.10.0`).
+- A `feat` commit cuts a minor; `fix`, `perf`, `security` and `revert` cut a patch; every
+  other type cuts nothing. A breaking-change marker bumps the minor while the major is 0.
+- The policy lives in `pyproject.toml` under `[tool.semantic_release]` and is drift-checked
+  against the org's `commit-types.txt` in the commitlint workflow.
 
 ### Namespace separation
 
 Branch names use a `type/` prefix (e.g., `docs/301-...`). Tags
-use a `v` prefix (e.g., `v2026.03.0`). These namespaces do not
+use a `v` prefix (e.g., `v0.10.0`). These namespaces do not
 collide.
 
 ## Local cleanup after merge (squash merges)

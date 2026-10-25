@@ -22,6 +22,9 @@ dev = [
     "ruff>=0.8.0,<1.0.0",
     "mypy>=1.0.0,<2.0.0",
     "types-PyYAML>=6.0.12",
+    # The release action pins 10.6.2; the same major here keeps `semantic-release version
+    # --print` usable locally for previewing the next version.
+    "python-semantic-release>=10.6.0,<11.0.0",
 ]
 
 [tool.setuptools.package-dir]
@@ -33,6 +36,47 @@ include = ["scripts*", "coh_engine*"]
 exclude = ["scripts.*.tests*", "scripts.*.fixtures*", "coh_engine.tests*"]
 
 [tool.setuptools-scm]
+
+# Releases: semver derived from Conventional Commits, cut by python-semantic-release
+# through paragon-stats/github-actions/release (.github/workflows/release.yml), tag-only.
+#
+# There is no version literal to write. `project.dynamic = ["version"]` plus
+# setuptools-scm above means the package version comes from the git tag, so the tool
+# only has to create the tag. No `version_variables` / `version_toml`: pointing the tool
+# at a file would create a second source of truth that setuptools-scm would then ignore.
+# Nothing is committed back either: a version-bump commit would be a no-op that also
+# has to satisfy the signed-commit ruleset.
+[tool.semantic_release]
+tag_format = "v{version}"
+# The tagger identity. GitHub shows a tag as Verified only when the signature's key is
+# registered to an account and the tagger email is one of that account's; the release
+# key carries this noreply address as a UID and is registered to the same account.
+commit_author = "paragon-stats release bot <35460307+pkloehn1@users.noreply.github.com>"
+# Below 1.0.0 a breaking change bumps the minor, not the major. The `!` marker is still
+# written on breaking commits; it just does not force 1.0.0 while the checkpoint ladder
+# is unfinished. Flip to true when cutting 1.0.0.
+major_on_zero = false
+allow_zero_version = true
+
+[tool.semantic_release.branches.main]
+# The release runs on `main` only; the bump comes from the commits that merge into it.
+match = "main"
+prerelease = false
+
+[tool.semantic_release.commit_parser_options]
+# The release level per commit type. The list restates paragon-stats/github-actions
+# commit-types.txt, which stays the source of truth: the commitlint workflow diffs the
+# two and fails on drift. A type in `allowed_tags` that is in neither `minor_tags` nor
+# `patch_tags` cuts nothing, so a docs-only or chore-only merge produces no release.
+allowed_tags = [
+    "feat", "fix", "perf", "security", "revert",
+    "docs", "test", "ci", "chore", "style", "refactor", "build",
+]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf", "security", "revert"]
+# The parser's default, pinned: the bump is read from the branch commits a merge brings
+# in, never from the merge commit, whose subject is the PR title.
+ignore_merge_commits = true
 
 [tool.coverage.run]
 relative_files = true
