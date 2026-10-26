@@ -12,12 +12,15 @@ A claim in a `community/` capture is dated by its `date_posted`; any change to t
 | `paragonwiki` | The Paragon Wiki Archive's dated pages, `https://archive.paragonwiki.com/wiki/Patch_Notes/YYYY-MM-DD` | Launch (May 2004) to the 2012 sunset | one per dated page |
 
 The live application wins: a beta series it also covers, or an interim beta thread dated inside its coverage, is not written.
-Beta release candidates other than the final one are not stored; they are drafts of the same text.
+Of a labelled Issue/Page series, only the last candidate in each beta section is fetched; a candidate whose title carries no series label counts as an interim patch.
 Within the beta and wiki sources a change line is dated by its first appearance.
 Staging reposts the beta notes days later, each beta thread restates the ones before it, and the wiki republished pages with corrections.
 A later entry therefore keeps only the lines no earlier entry of its source recorded.
 An entry left with no lines is indexed with an empty `file` and a `repeat_of` naming the file that holds them.
 Both archive sources are frozen, so a re-run writes nothing new from them; it costs only the listing and index fetches.
+
+The one span no source covers is the 2012 sunset to the 2019 relaunch.
+Between the last beta series (Issue 27 page 5, October 2022) and the application's first entry (April 2023) the only beta cycle is Issue 27 page 6, which the application's entries cover.
 
 ## File shape
 

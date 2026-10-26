@@ -280,6 +280,15 @@ def test_main_captures_guides_skips_chatter_and_resumes(tmp_path: Path, fake_net
     assert "0 guide(s) written from 2 thread(s)" in capsys.readouterr().out
     assert calls.count(TOPIC) == fetched
 
+    # A reply moves the listing's last-post time: the thread is refetched, the file is not rewritten.
+    routes[FORUM] = (pagination + row(TOPIC, "2020-03-03T10:00:00Z")).encode()
+    before = (out / files[0]).read_bytes()
+    assert main(args) == 2
+    fetched += 1
+    assert calls.count(TOPIC) == fetched
+    assert (out / files[0]).read_bytes() == before
+    assert "0 guide(s) written" in capsys.readouterr().out
+
     # --force refetches, but an unchanged opener rewrites nothing.
     before = (out / files[0]).read_bytes()
     assert main([*args, "--force"]) == 2
