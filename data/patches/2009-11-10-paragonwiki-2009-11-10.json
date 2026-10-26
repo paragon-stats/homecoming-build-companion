@@ -8,102 +8,6 @@
   "source": "paragonwiki",
   "changes": [
     {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1 11.10.2009 Version 1600.20091102.1T"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1 COMBINED"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.1 Macintosh Client"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.2 Mission Architect"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.3 Tasks"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.4 Powers"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.4.1 General"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.4.2 Tailor"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.4.3 Tasks"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.2 CITY OF HEROES"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.2.1 Tasks"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.3 CITY OF VILLAINS"
-    },
-    {
       "category": "COMBINED",
       "subsection": "Macintosh Client",
       "archetype": "",
@@ -126,14 +30,6 @@
       "powerset": "",
       "power": "",
       "text": "Arcs using high level bosses from villain groups with non-continuous level ranges (The Family, Banished Pantheon, etc), were being incorrectly detected as invalid when characters tried to enter the mission door, after the mission was accepted. These arcs are now playable again."
-    },
-    {
-      "category": "COMBINED",
-      "subsection": "Tasks",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed a bug that was causing many hostage mission maps to crash, making it impossible to enter those maps and complete those missions."
     },
     {
       "category": "COMBINED",

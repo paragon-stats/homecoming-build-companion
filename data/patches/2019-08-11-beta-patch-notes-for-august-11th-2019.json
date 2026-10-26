@@ -13,7 +13,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Mac OS X 10.15, codename Catalina, removes support for 32-bit applications. We have been hard at work for the last couple of months upgrading the client and all server components to 64-bit, while Manga has been working on a new version of Island Rum that uses the 64-bit version of Wine to run the game in Mac and Linux. This patch﻿, fingers crossed, is the culmination of those efforts."
+      "text": "Mac OS X 10.15, codename Catalina, removes support for 32-bit applications. We have been hard at work for the last couple of months upgrading the client and all server components to 64-bit, while Manga has been working on a new version of Island Rum that uses the 64-bit version of Wine to run the game in Mac and Linux. This patch, fingers crossed, is the culmination of those efforts."
     },
     {
       "category": "64-Bit Client",
@@ -69,7 +69,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Because the new client requires some libraries that are no longer compatible with the existing client, they are housed in two new folders: hc-bin32 and hc-bin64, while the data files are in hc-beta. I get that the folder spam is getting a bit annoying, but we honestly don't have a better solution right now. We're working on it.﻿"
+      "text": "Because the new client requires some libraries that are no longer compatible with the existing client, they are housed in two new folders: hc-bin32 and hc-bin64, while the data files are in hc-beta. I get that the folder spam is getting a bit annoying, but we honestly don't have a better solution right now. We're working on it."
     },
     {
       "category": "Bug Fixes",
@@ -109,7 +109,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Fixed joints (for all bones that don't have a spherical or hinge joint with special parameters) are apparently not working correctly, so replace them with a hinge joint that has a very small range of motion.﻿﻿"
+      "text": "Fixed joints (for all bones that don't have a spherical or hinge joint with special parameters) are apparently not working correctly, so replace them with a hinge joint that has a very small range of motion."
     },
     {
       "category": "General",
@@ -125,7 +125,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Sentinels will now receive the Power of Scirocco clickie in the Barracuda SF.﻿"
+      "text": "Sentinels will now receive the Power of Scirocco clickie in the Barracuda SF."
     },
     {
       "category": "Costumes",
@@ -149,7 +149,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Enabled 676 items for the base editor. You can find them by searching for \"New\" in the Place Item view.﻿"
+      "text": "Enabled 676 items for the base editor. You can find them by searching for \"New\" in the Place Item view."
     },
     {
       "category": "Powers - Snipes",
@@ -181,7 +181,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Note ﻿that PvP scale is based only around the PvP damage formula. ToHit buffs and debuffs do not change quick snipe damage in PvP.﻿﻿"
+      "text": "Note that PvP scale is based only around the PvP damage formula. ToHit buffs and debuffs do not change quick snipe damage in PvP."
     },
     {
       "category": "Powers - Snipes",
@@ -189,7 +189,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "The following fast snipe﻿ animations have﻿ been synced with the﻿ir FX, no cast time changes: Moonbeam, Zapp, Sniper Blast, Proton Volley (they all remain at their original 1.33 second duration.)"
+      "text": "The following fast snipe animations have been synced with their FX, no cast time changes: Moonbeam, Zapp, Sniper Blast, Proton Volley (they all remain at their original 1.33 second duration.)"
     },
     {
       "category": "Powers - Snipes",
@@ -237,7 +237,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Slow form will do 4.5 scale damage.﻿﻿﻿"
+      "text": "Slow form will do 4.5 scale damage."
     },
     {
       "category": "Powers - Snipes",
@@ -270,14 +270,6 @@
       "powerset": "",
       "power": "",
       "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 3.56 scale damage with +22% ToHit buff."
-    },
-    {
-      "category": "Powers - Snipes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Slow form will do 4.5 scale damage.﻿﻿﻿"
     },
     {
       "category": "Powers - Snipes",
@@ -341,7 +333,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "﻿ Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
+      "text": "Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
     },
     {
       "category": "Powers - Dominator Assault Sets",
@@ -389,14 +381,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
-    },
-    {
-      "category": "Powers - Dominator Assault Sets",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Total Focus: Cast time shortened from 3.30 to 2.50 seconds."
     },
     {
@@ -414,14 +398,6 @@
       "powerset": "",
       "power": "",
       "text": "Icy Assault"
-    },
-    {
-      "category": "Powers - Dominator Assault Sets",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
     },
     {
       "category": "Powers - Dominator Assault Sets",
@@ -621,7 +597,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Thorn Barrage: Recharge time increased from 11 to 14 seconds. Damage increased from 112 to 137 damage.﻿"
+      "text": "Thorn Barrage: Recharge time increased from 11 to 14 seconds. Damage increased from 112 to 137 damage."
     },
     {
       "category": "Powers - Devices",
@@ -749,7 +725,7 @@
       "archetype": "",
       "powerset": "Kheldians",
       "power": "Inherent",
-      "text": "Should now see Sentinels the same way they see Blasters﻿ and Scrappers, for the purpose of their inherent powers."
+      "text": "Should now see Sentinels the same way they see Blasters and Scrappers, for the purpose of their inherent powers."
     },
     {
       "category": "Powers - Misc Changes & Bug Fixes",
@@ -829,7 +805,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "All versions of Beam Rifle's Pene﻿trating Ray now has ﻿a 55% chance of spreading disintegration."
+      "text": "All versions of Beam Rifle's Penetrating Ray now has a 55% chance of spreading disintegration."
     },
     {
       "category": "Powers - Misc Changes & Bug Fixes",
@@ -845,7 +821,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Fixed a bug in the no-redraw version of fast-Archery's﻿ Snipe."
+      "text": "Fixed a bug in the no-redraw version of fast-Archery's Snipe."
     },
     {
       "category": "Powers - Misc Changes & Bug Fixes",
@@ -853,7 +829,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Psionic Lance's quick FX was completely broken and out of sync. FX has been resync but this required a slightly slower animation (1.33 secon﻿ds.)﻿﻿﻿﻿﻿"
+      "text": "Psionic Lance's quick FX was completely broken and out of sync. FX has been resync but this required a slightly slower animation (1.33 seconds.)"
     }
   ]
 }

@@ -8,158 +8,6 @@
   "source": "paragonwiki",
   "changes": [
     {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1 COMBINED NOTES"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1 Feature - Combat Attribute Window"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.2 Attribute Monitor"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.3 Game"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.4 Tasks"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.5 Bases"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.6 Powers"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.7 User Interface"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.8 Veteran Rewards"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.9 Inventions"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.10 Server Transfer"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.11 Graphical Effects"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.12 Zones"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "2 CITY OF HEROES"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "2.1 Powers"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "2.2 Animations"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "3 CITY OF VILLAINS"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "3.1 Powers"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "3.2 Graphical / Sound Effects"
-    },
-    {
       "category": "COMBINED NOTES",
       "subsection": "Feature - Combat Attribute Window",
       "archetype": "",
@@ -821,14 +669,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Blasters"
-    },
-    {
-      "category": "CITY OF HEROES",
-      "subsection": "Powers",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Energy Blast Power Bolt for Blasters had a 5% chance to not deal the smashing portion of its damage. This has been corrected -- it should now always do the smashing damage, assuming the power hits a target."
     },
     {
@@ -870,14 +710,6 @@
       "powerset": "",
       "power": "",
       "text": "Blaster Fire Sword Circle was inadvertently doing considerably too much damage in PVP after the unresistible damage change. This has been corrected."
-    },
-    {
-      "category": "CITY OF HEROES",
-      "subsection": "Powers",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Defenders"
     },
     {
       "category": "CITY OF HEROES",

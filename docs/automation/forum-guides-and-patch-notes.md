@@ -79,7 +79,9 @@ Reads three sources into one dated JSON file per entry, the shape and coverage i
 (April 2023 onward), the forum's beta and staging patch-note threads (2019 to 2023, the final
 release candidate of each Issue/Page series plus interim patches, skipped wherever the live
 application covers the same series or date), and the Paragon Wiki Archive's dated pages
-(2004 to 2012). `--source` selects one; the default is all three. Re-runs write only entries
+(2004 to 2012). Within those two sources a change line is dated by its first appearance, so a
+later entry keeps only what no earlier one recorded and a word-for-word repost is indexed
+without a file. `--source` selects one; the default is all three. Re-runs write only entries
 not yet in the index, so the two archive sources cost nothing after their first run.
 
 ## Sections

@@ -1152,142 +1152,6 @@
       "text": "Fixed incorrect power order."
     },
     {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mastermind pets which have been commanded to Stay or to Go To a location will hold that position and will not chase after targets or move closer to use powers that are out of range. Be aware this also means they will not move out of damage patches on their own."
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mastermind pets in Follow mode will now always stay within a 100' radius of their owner, regardless if they are in Defensive or Aggressive stance. Pets that are primarily ranged attackers will try to stay in the Supremacy radius."
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "The pet AI now ignores the aggro cap. This should prevent pets from standing around twiddling their thumbs in Incarnate Trials and other situations where many pets are attacking the same target."
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Pets now give a strong preference to selecting targets that are within 50' of the pet's owner. This helps melee-oriented Mastermind pets stay in Supremacy range more often, while still allowing them to move and effectively engage targets outside the range."
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "A number of pets have been classified as \"Ranged Only\" pets. The AI for these pets will no longer change position in order to use melee powers such as Brawl. They still possess these powers and will use them opportunistically if a target is in range, but will not move in order to do so."
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "The pets that no longer move in to use melee attacks are:"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mercenaries > Soldiers"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mercenaries > Medic"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mercenaries > Spec Ops"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Mercenaries > Commando"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Necromancy > Lich"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Robotics > Battle Drones"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Robotics > Protector Bots"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Robotics > Assault Bot"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Thugs > Thugs"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Thugs > Arsonist"
-    },
-    {
-      "category": "Pets & Henchmen Updates",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Thugs > Enforcers"
-    },
-    {
       "category": "Powers",
       "subsection": "",
       "archetype": "",
@@ -2693,14 +2557,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Epic > Flame Mastery > Char"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Epic > Earth Mastery > Salt Crystals"
     },
     {
@@ -2741,14 +2597,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Epic > Flame Mastery > Char"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Epic > Munitions Mastery > Cryo Freeze Ray"
     },
     {
@@ -2758,14 +2606,6 @@
       "powerset": "",
       "power": "",
       "text": "Epic > Munitions Mastery > Sleep Grenade"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Epic > Psionic Mastery > World of Confusion"
     },
     {
       "category": "PvP Powers Changes",
@@ -2845,14 +2685,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Epic > Weapon Mastery > Web Grenade"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Temporary Powers > Temporary Powers > Stun Grenade"
     },
     {
@@ -2886,22 +2718,6 @@
       "powerset": "",
       "power": "",
       "text": "Temporary Powers > Temporary Powers > Hand Clap"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
     },
     {
       "category": "PvP Powers Changes",
@@ -2950,22 +2766,6 @@
       "powerset": "",
       "power": "",
       "text": "Temporary Powers > Temporary Powers > Psionic Activator"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
     },
     {
       "category": "PvP Powers Changes",
@@ -3030,22 +2830,6 @@
       "powerset": "",
       "power": "",
       "text": "Pets > Seeker 1 > FlashPulse"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Pets > Seeker 1 > FlashPulse"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Pets > Seeker 2 > FlashPulse"
     },
     {
       "category": "PvP Powers Changes",
@@ -3133,14 +2917,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Pets > Seeker 1 > FlashPulse"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Knockback Suppression rules have been enforced for the following powers:"
     },
     {
@@ -3221,14 +2997,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Smite"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Strike"
     },
     {
@@ -3254,14 +3022,6 @@
       "powerset": "",
       "power": "",
       "text": "Staker Melee > Spines > Ripper"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Smite"
     },
     {
       "category": "PvP Powers Changes",
@@ -3597,14 +3357,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Pets > Tech Lab > Explosion"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Pets > Thug Minion > Dual Wield"
     },
     {
@@ -3653,23 +3405,7 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Kinetic Combat: Chance for Knockdown"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Ragnarok: Chance for Knockdown"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Stupefy: Chance for Knockback"
     },
     {
       "category": "PvP Powers Changes",
@@ -3686,14 +3422,6 @@
       "powerset": "",
       "power": "",
       "text": "Superior Avalanche: Recharge/Chance for Knockdown"
-    },
-    {
-      "category": "PvP Powers Changes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Ragnarok: Chance for Knockdown"
     },
     {
       "category": "Bases",
@@ -4062,14 +3790,6 @@
       "powerset": "",
       "power": "",
       "text": "Fixed the team window showing \"On mission map\" when a teammate is in their Supergroup Base and vice versa."
-    },
-    {
-      "category": "Bug Fixes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Prevent immediate crash when passing a -patchdir parameter to a nonexistent directory. This seems to be happening on certain Macs."
     },
     {
       "category": "Bug Fixes",

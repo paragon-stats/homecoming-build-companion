@@ -13,6 +13,10 @@ A claim in a `community/` capture is dated by its `date_posted`; any change to t
 
 The live application wins: a beta series it also covers, or an interim beta thread dated inside its coverage, is not written.
 Beta release candidates other than the final one are not stored; they are drafts of the same text.
+Within the beta and wiki sources a change line is dated by its first appearance.
+Staging reposts the beta notes days later, each beta thread restates the ones before it, and the wiki republished pages with corrections.
+A later entry therefore keeps only the lines no earlier entry of its source recorded.
+An entry left with no lines is indexed with an empty `file` and a `repeat_of` naming the file that holds them.
 Both archive sources are frozen, so a re-run writes nothing new from them; it costs only the listing and index fetches.
 
 ## File shape

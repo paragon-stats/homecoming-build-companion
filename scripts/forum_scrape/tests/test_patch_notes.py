@@ -6,8 +6,11 @@ from pathlib import Path
 
 from scripts.forum_scrape.patch_notes import (
     WIKI_BASE,
+    Change,
     PatchEntry,
+    _write_dated,
     beta_candidates,
+    dedupe_lines,
     list_categories,
     list_entries,
     main,
@@ -75,6 +78,12 @@ def test_parse_entry_reads_date_hierarchy_and_change_lines() -> None:
     assert (avoid.category, avoid.power) == ("Powers", "")
     assert all(c.category for c in entry.changes)
     assert len(entry.changes) >= 40
+
+
+def test_parse_changes_drops_zero_width_marks_and_folds_unicode_spaces() -> None:
+    marks = f"This{chr(0xFEFF)} patch,{chr(0xA0)}fingers{chr(0x2009)}crossed, ships."  # BOM, NBSP, thin space
+    changes = parse_changes(_h("Powers", 18) + f"<ul><li>{marks}</li></ul>")
+    assert changes[0].text == "This patch, fingers crossed, ships."
 
 
 def test_parse_changes_files_items_before_any_heading_under_general() -> None:
@@ -242,9 +251,35 @@ def test_parse_beta_thread_reads_the_opener() -> None:
     assert parse_beta_thread("<html><head><title>e - s - Homecoming</title></head></html>", RC2).changes == []
 
 
+def test_dedupe_lines_keeps_first_appearance_and_names_the_origin() -> None:
+    first = Change("Powers", "", "", "Dark Melee", "Smite", "Buffed.")
+    again = Change("Powers", "", "", "Dark Melee", "Smite", "Buffed.")
+    new = Change("Powers", "", "", "Dark Melee", "Siphon Life", "Heals more.")
+    entry = PatchEntry("t", "u", "2021-01-01", "", "", 0, "forum-beta", [first, again, new])
+    assert dedupe_lines(entry, {}) == "" and entry.changes == [first, new]  # the in-entry repeat is gone
+    later = PatchEntry("t", "u2", "2021-02-01", "", "", 0, "forum-beta", [again, new])
+    assert dedupe_lines(later, {("Powers", "", "", "Dark Melee", "Smite", "Buffed."): "a.json"}) == "a.json"
+    assert later.changes == [new]
+
+
+def test_write_dated_records_an_entry_that_parsed_to_nothing(tmp_path: Path) -> None:
+    empty = PatchEntry("t", "u", "2021-01-01", "", "", 0, "forum-beta", [])
+    assert _write_dated([empty], tmp_path, [], set()) == 1
+    (written,) = tmp_path.glob("2021-01-01-*.json")
+    assert json.loads(written.read_text(encoding="utf-8"))["changes"] == []
+
+
+REPOST = f"{BASE}/topic/8-staging-patch-notes-for-november-25th-2021/"
+
+
 def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path: Path, fake_net, capsys) -> None:
     routes, calls = fake_net
     body = _h("Powers", 18) + "<ul><li>Dark Melee &gt; Smite: Buffed.</li></ul>"
+    body_rc2 = (
+        _h("Powers", 18)
+        + "<ul><li>Dark Melee &gt; Smite: Buffed.</li><li>Dark Melee &gt; Siphon Life: Heals more.</li>"
+        "<li>Dark Melee &gt; Touch of Fear: Wider cone.</li></ul>"
+    )
     gone = f"{BASE}/topic/6-patch-notes-for-june-8th-2019/"  # no route: the fetch fails
     # Three listing pages declared; page 3 has no route, so a failed listing page is skipped, not fatal.
     pagination = f"<ul class='ipsPagination' data-pages='3'><li><a href='{BETA}page/2/'>2</a></li></ul>"
@@ -259,8 +294,10 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
         + _row(INTERIM_NEW, "2026-03-03T00:00:00Z")
         + _row(LIVE_SERIES, "2024-07-22T00:00:00Z")
     ).encode()
-    # The staging section has no route: an unreadable listing contributes nothing.
-    routes[RC2] = _thread("RC2", "2021-11-24T10:00:00Z", body)
+    # The staging section reposts the final candidate's notes a day later, word for word.
+    routes[STAGING] = _row(REPOST, "2021-11-25T00:00:00Z").encode()
+    routes[REPOST] = _thread("Staging repost", "2021-11-25T10:00:00Z", body_rc2)
+    routes[RC2] = _thread("RC2", "2021-11-24T10:00:00Z", body_rc2)
     routes[INTERIM_OLD] = _thread("Aug 2019", "2019-08-11T10:00:00Z", body)
     routes[INTERIM_NEW] = _thread("Mar 2026", "2026-03-03T10:00:00Z", body)
     routes[LIVE_SERIES] = _thread("i28p1", "2024-07-22T10:00:00Z", body)
@@ -285,14 +322,27 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
     assert "2 entries written" in capsys.readouterr().out
     names = sorted(p.name for p in tmp_path.glob("*.json"))
-    assert (
-        "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json"
-        in names
-    )
-    assert "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
+    rc2_file = "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json"
+    assert rc2_file in names and "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
     assert calls.count(RC1) == 0  # the earlier candidate of the series is never fetched
+    # The 2019 patch recorded Smite first; the 2021 candidate keeps only its two new lines.
+    rc2 = json.loads((tmp_path / rc2_file).read_text(encoding="utf-8"))
+    assert [c["power"] for c in rc2["changes"]] == ["Siphon Life", "Touch of Fear"]
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
     assert {row.get("source", "release-notes") for row in rows} == {"release-notes", "forum-beta"}
+    repost = next(row for row in rows if row["url"] == REPOST)
+    assert repost["file"] == "" and repost["repeat_of"] == rc2_file  # the word-for-word repost has no file
+
+    # A later run: the staging listing is unreachable, and one new interim thread repeats a recorded line.
+    late = f"{BASE}/topic/9-patch-notes-for-january-4th-2020/"
+    del routes[STAGING]
+    routes[BETA] = (pagination + _row(RC2, "2021-11-24T00:00:00Z") + _row(late, "2020-01-04T00:00:00Z")).encode()
+    routes[late] = _thread("Jan 2020", "2020-01-04T10:00:00Z", body)
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
+    assert "0 entries written" in capsys.readouterr().out
+    rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
+    late_row = next(row for row in rows if row["url"] == late)
+    assert late_row["file"] == "" and late_row["repeat_of"] == "2019-08-11-beta-patch-notes-for-august-11th-2019.json"
 
     fetched = calls.count(RC2)
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
@@ -313,6 +363,7 @@ WIKI_PAGE = """<html><head><title>Patch Notes/2005-10-27 - Paragon Wiki Archive<
 <div class="mw-content-ltr mw-parser-output" lang="en">
 <h1><span class="mw-headline" id="x">10/27/05 Patch Notes - Issue 6: Along Came a Spider</span></h1>
 <ul><li>Early note before any section.</li></ul>
+<div id="toc"><h2 id="mw-toc-heading">Contents</h2><ul><li>1.1 PvP Zones:</li><li>1.2 Powers:</li></ul></div>
 <h2><span class="mw-headline" id="PvP_Zones">PvP Zones</span></h2>
 <ul><li>Recluse's Victory opens.</li></ul>
 <h2><span class="mw-headline" id="Powers">Powers</span></h2>
@@ -344,6 +395,7 @@ def test_parse_wiki_page_reads_headings_items_and_the_issue() -> None:
     assert rows[2] == ("Powers", "Tankers", "Improved Damage DeBuff of Tanker/Ice Armor/Chilling Embrace.")
     assert rows[3][2] == "Sonic Repulsion and Sonic Dispersion:" and rows[4][2] == "Switched in pick order."
     assert all("footer" not in c.text for c in entry.changes)
+    assert all(c.category != "Contents" for c in entry.changes)  # the wiki's table of contents is not a change
     assert (
         parse_wiki_page(
             "<html><head></head><body>no body</body></html>", f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11"
@@ -357,13 +409,17 @@ def test_main_paragonwiki_writes_each_dated_page_and_reports_a_missing_index(tmp
     routes[f"{WIKI_BASE}/robots.txt"] = ROBOTS_OK
     routes[f"{WIKI_BASE}/wiki/Patch_Notes"] = WIKI_INDEX.encode()
     routes[f"{WIKI_BASE}/wiki/Patch_Notes/2005-10-27"] = WIKI_PAGE.encode()
-    routes[f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11"] = WIKI_PAGE.replace("2005-10-27", "2004-05-11").encode()
+    # The earlier page carries the same notes but for one line, as a republished page does.
+    earlier = WIKI_PAGE.replace("2005-10-27", "2004-05-11").replace("Recluse's Victory opens.", "Grandville opens.")
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11"] = earlier.encode()
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 0
     assert "2 entries written" in capsys.readouterr().out
     assert sorted(p.name for p in tmp_path.glob("*.json")) == [
         "2004-05-11-paragonwiki-2004-05-11.json",
         "2005-10-27-paragonwiki-2005-10-27.json",
     ]
+    later = json.loads((tmp_path / "2005-10-27-paragonwiki-2005-10-27.json").read_text(encoding="utf-8"))
+    assert [c["text"] for c in later["changes"]] == ["Recluse's Victory opens."]  # only the line the 2004 page lacked
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 0
     assert (
         "0 entries written" in capsys.readouterr().out

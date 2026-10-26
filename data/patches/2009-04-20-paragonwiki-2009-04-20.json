@@ -8,78 +8,6 @@
   "source": "paragonwiki",
   "changes": [
     {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1 04.20.2009 Version 18.20090324.19T2"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1 COMBINED"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.1 Mission Architect"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.2 Powers"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.3 Bases"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.4 Tailor"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.1.5 Multiple Builds"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.2 City of Heroes"
-    },
-    {
-      "category": "Contents",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "1.3 City of Villains"
-    },
-    {
       "category": "COMBINED",
       "subsection": "Mission Architect",
       "archetype": "",
@@ -94,22 +22,6 @@
       "powerset": "",
       "power": "",
       "text": "Removed Sky Raider Force Field Generators and Engineers from the list of creatures that could be placed in missions as allies. Any missions that become invalid after this change will have to be edited. Do NOT “Unpublish” your mission, or you will lose your Arc ID and ratings."
-    },
-    {
-      "category": "COMBINED",
-      "subsection": "Mission Architect",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed a bug that caused some missions to falsely appear with the Invalid icon"
-    },
-    {
-      "category": "COMBINED",
-      "subsection": "Mission Architect",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed a bug that caused some Invalid missions to simply disappear from Search."
     },
     {
       "category": "COMBINED",
@@ -134,22 +46,6 @@
       "powerset": "",
       "power": "",
       "text": "Fixed bug that caused various buff powers and Invention Set bonuses to suppress after zoning."
-    },
-    {
-      "category": "COMBINED",
-      "subsection": "Bases",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed bug that made it impossible to enter some SG bases (the base map would keep crashing)."
-    },
-    {
-      "category": "COMBINED",
-      "subsection": "Bases",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed rare bug that would cause base data to be damaged when saved."
     },
     {
       "category": "COMBINED",

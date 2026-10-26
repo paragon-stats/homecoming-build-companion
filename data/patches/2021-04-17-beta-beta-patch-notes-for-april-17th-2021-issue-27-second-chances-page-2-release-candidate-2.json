@@ -2101,22 +2101,6 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Inspirations",
-      "text": "This inspiration now applies to the caster and all henchmen (MM pets)"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Inspirations",
-      "text": "The buff will also apply to newly summoned (or resummoned henchmen) until it expires"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Inspirations",
       "text": "Now only applies to Henchmen, not all pets (this was always intended to be a MM-specific change)"
     },
     {
@@ -2149,14 +2133,6 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Demon Summoning",
-      "text": "Cast time reduced from 4s to 2s"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Demon Summoning",
       "text": "Hell on Earth"
     },
     {
@@ -2174,14 +2150,6 @@
       "powerset": "Power Animation & Rooting Update",
       "power": "Demon Summoning",
       "text": "Summon Demon Prince"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Demon Summoning",
-      "text": "Cast time reduced from 4s to 2s"
     },
     {
       "category": "Pool Powerset Update: Sorcery",
@@ -2357,39 +2325,7 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Ninjitsu",
-      "text": "This power no longer grants movement buffs (as they would be absorbed into the new stacking mechanics)"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Ninjitsu",
-      "text": "This power no longer accepts Jump, Run and Universal Travel enhancements"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Ninjitsu",
-      "text": "The buff has been toned down and moved to Kuji-In Rin"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Ninjitsu",
       "text": "Stealth damage buff has been doubled from +20% to +40%"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Ninjitsu",
-      "text": "Power icon updated"
     },
     {
       "category": "Pool Powerset Update: Sorcery",
@@ -2884,14 +2820,6 @@
       "subsection": "",
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
-      "power": "Gravity Control > Singularity",
-      "text": "The visual FX for this power has been changed to alleviate headaches being induced by the old VFX"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
       "power": "The Graveyard Shift (Agent Watkins, Blueside)",
       "text": "Intro"
     },
@@ -3309,14 +3237,6 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "The Graveyard Shift (Agent Watkins, Blueside)",
-      "text": "ALWAYS:"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "The Graveyard Shift (Agent Watkins, Blueside)",
       "text": "+Regen, +MaxHP, +Def, 60s (Double what the debuff was taking away, 4x the duration of the debuff)"
     },
     {
@@ -3685,14 +3605,6 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Freakish Lab of Dr. Vahzilok (Doc Buzzsaw, Redside)",
-      "text": "Ranged attacks should be seen more often in rotation"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Freakish Lab of Dr. Vahzilok (Doc Buzzsaw, Redside)",
       "text": "Fixed bug causing loop between just Initial Strike and Barrage"
     },
     {
@@ -4021,14 +3933,6 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Other PvP Power Changes",
-      "text": "This power now grants 20% Elusivity(AoE/Melee/Ranged) in PvP"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Other PvP Power Changes",
       "text": "Pool > Experimentation > Jaunt"
     },
     {
@@ -4085,23 +3989,7 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Other PvP Power Changes",
-      "text": "In PvP, this power grant Heal over Time instead of +Regen, same way it does in PvE"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Other PvP Power Changes",
       "text": "Time Manipulation > Temporal Mending (All Versions)"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Other PvP Power Changes",
-      "text": "In PvP, this power grant Heal over Time instead of +Regen, same way it does in PvE"
     },
     {
       "category": "Pool Powerset Update: Sorcery",
@@ -4117,23 +4005,7 @@
       "archetype": "",
       "powerset": "Power Animation & Rooting Update",
       "power": "Other PvP Power Changes",
-      "text": "In PvP, this power grant Heal over Time instead of +Regen, same way it does in PvE"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Other PvP Power Changes",
       "text": "Nature Affinity > Regrowth (All Versions)"
-    },
-    {
-      "category": "Pool Powerset Update: Sorcery",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Power Animation & Rooting Update",
-      "power": "Other PvP Power Changes",
-      "text": "In PvP, this power grant Heal over Time instead of +Regen, same way it does in PvE"
     },
     {
       "category": "Pool Powerset Update: Sorcery",

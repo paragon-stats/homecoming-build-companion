@@ -13,14 +13,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "This is a Release Candidate. It means that we expect this patch to go to the live servers, unless we find a severe issue that blocks its release. Because this patch contains data files as they would go to the Live servers, several Justin features like all the Merit recipes being free and a bunch of badges being awarded at character creation are disabled. They will come back once we start the next round of experimental patches."
-    },
-    {
-      "category": "General",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Fix memory management library erroneously using SRW locks in the 32-bit built, which breaks Windows XP compatibility."
     },
     {
@@ -61,14 +53,6 @@
       "archetype": "",
       "powerset": "",
       "power": "",
-      "text": "Energy Assault:"
-    },
-    {
-      "category": "Powers",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
       "text": "Attempt at preventing multiple Energy Releases back to back."
     },
     {
@@ -86,14 +70,6 @@
       "powerset": "",
       "power": "",
       "text": "Added an Energy Stored message upon successfully generating Energy Focus."
-    },
-    {
-      "category": "Powers",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Icy Assault:"
     },
     {
       "category": "Powers",
