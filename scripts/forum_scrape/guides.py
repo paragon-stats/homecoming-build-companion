@@ -47,8 +47,13 @@ GUIDE_MIN_STRUCTURE = 6
 # A thread that is a conversation rather than a guide: a request (the scorer's list), a
 # showcase, or roleplay. Captured for the information in it, tagged so it never poses as a guide.
 DISCUSSION_TITLE = re.compile(r"\b(rp|roleplay|role-play|showcase|favou?rite|your most|post your|what are you)\b", re.I)
-# A concept, theme or roleplay thread feeds the Theme/RP build type (docs/build-types-and-goals.md).
-THEME_TITLE = re.compile(r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be)\b", re.I)
+# A concept, theme, costume, customization or roleplay thread feeds the Theme/RP build type
+# (docs/build-types-and-goals.md). It needs no build vocabulary: its value is the look and the idea.
+THEME_TITLE = re.compile(
+    r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be|costumes?|"
+    r"colou?rs?|customi[sz]ation|customi[sz]ing|auras?|tailor|appearance|looks?)\b",
+    re.I,
+)
 # Frontmatter a reviewer owns; a refresh never overwrites these.
 REVIEWER_KEYS = ("trust", "contradicts_data")
 # Ledger outcomes that do not settle a thread: it is looked at again next run.
@@ -362,11 +367,12 @@ def _capture(
     text = render_html(opener.html)
     if not is_guide(opener.html, text):
         return "", "", "not guide-shaped"
-    if build_relevance(text) < BUILD_VOCAB_MIN_PER_100:
-        return "", "", "not build-related"
     title = page_title(page)
-    folder, lead = classify(title, section_slug, powersets)
-    kinds = [*(["discussion"] if is_discussion(title) else []), *(["theme-rp"] if is_theme(title) else [])]
+    theme = is_theme(title)
+    if not theme and build_relevance(text) < BUILD_VOCAB_MIN_PER_100:
+        return "", "", "not build-related"
+    folder, lead = ("theme", "theme-rp") if theme else classify(title, section_slug, powersets)
+    kinds = ["discussion"] if is_discussion(title) else []
     tags = [lead, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
     digest = content_hash(text)
     path = out / folder / f"{slugify(title)}.md"

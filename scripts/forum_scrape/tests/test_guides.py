@@ -158,11 +158,27 @@ def test_is_discussion_matches_requests_showcases_and_roleplay() -> None:
     assert not is_discussion("Movement Speed: A Quick Guide")
 
 
-def test_is_theme_matches_concept_and_roleplay_threads() -> None:
+def test_is_theme_matches_concept_costume_and_roleplay_threads() -> None:
     assert is_theme("RP crossover build: Fallout meets Paragon City")
     assert is_theme("Power sets that can be flavored as light elemental")
     assert is_theme("What would Spider-Man be?")
+    assert is_theme("A guide to costume design for villains")
+    assert is_theme("Power colour customization: matching auras to your look")
     assert not is_theme("Movement Speed: A Quick Guide")
+
+
+def test_main_captures_theme_guides_without_build_vocabulary(tmp_path: Path, fake_net) -> None:
+    routes, _ = fake_net
+    costume = f"{BASE}/topic/8-a-guide-to-costume-design/"
+    routes[FORUM] = (
+        f"<li class='ipsDataItem'><a href='{costume}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+    ).encode()
+    routes[costume] = page("A guide to costume design", article("1", "Tailor", "2024-01-01T00:00:00Z", HOWTO)).encode()
+    out = tmp_path / "community"
+    assert main(["--forum", FORUM, "--out", str(out), "--canonical", str(tmp_path), "--delay", "0"]) == 0
+    text = (out / "theme" / "a-guide-to-costume-design.md").read_text(encoding="utf-8")
+    assert 'topic_tags: ["theme-rp"' in text and "discussion" not in text.split("---")[1]
 
 
 def test_content_hash_is_stable_and_short() -> None:
