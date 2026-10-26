@@ -1,0 +1,187 @@
+{
+  "title": "Patch Notes/2005-02-02",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-02-02",
+  "published": "2005-02-02",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 02/02/05 Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Game Stability"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Powers"
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed memory leak in client that caused framerate to decrease over time."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High level bosses (25+) reduced to the toughness they had before Update 3."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Experience and Influence awards for defeating high level bosses (25+) reverted to pre-Update 3 levels."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Experience bonus for groups of 4 or more has been increased."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The “Help” button was removed from all character creation screens and the enhancement management screen."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused female and huge characters who had not logged on since Update 1 to become male when they logged on."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Change to Devouring Earth pet beacons. They will no longer buff each other of the same type (i.e. cairns will no longer buff other cairns)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Controller/Ancillary/Stone Armor from making you invisible."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Dark Armor/Dark Regeneration from animating before it recharges."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Defender/Adrenaline Boost. It was not increasing targets recharge time correctly (Controller version was ok)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Force Field/Deflection Shield resistance to Toxic damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem in Burn and Ignite that was causing villains to not be afraid of the fire. Villain behavior to Burn and Ignight should, once again, work as it used to work."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Jurrasik Giant Monster so he uses the new Giant Monster combat technology (giant monsters are always scary)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered damage done by exploding barrels when they are destroyed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary powers can now be used regardless of the level at which they were earned (for exemplars)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Melee attacks with effects on the target (disorient, knockdown, etc.). These attacks weren't working with the new melee prediction system that allows you to hit villains while they are running away."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Elude having an activation animation if you try to use it before it is recharged."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Tanker Stone Melee/Stone Mallet and Heavy Mallet which made the mallet invisible."
+    }
+  ]
+}

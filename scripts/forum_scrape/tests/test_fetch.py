@@ -36,6 +36,26 @@ def test_fetcher_honours_robots_and_returns_text(fake_net) -> None:
     assert calls == ["https://forums.homecomingservers.com/robots.txt", TOPIC]
 
 
+def test_fetcher_reads_robots_from_its_own_base(fake_net) -> None:
+    routes, calls = fake_net
+    other = "https://archive.example.org"
+    routes[f"{other}/robots.txt"] = b"User-agent: *\nDisallow: /private/\n"
+    routes[f"{other}/wiki/Page"] = b"<html>wiki</html>"
+    fetcher = Fetcher("test-agent", delay=0.0, base=other)
+
+    assert fetcher.get(f"{other}/wiki/Page") == "<html>wiki</html>"
+    assert fetcher.get(f"{other}/private/x") is None
+    assert calls[0] == f"{other}/robots.txt"
+
+
+def test_fetcher_treats_a_missing_robots_file_as_no_rules(fake_net) -> None:
+    routes, _ = fake_net
+    archive = "https://forumarchive.example.org"  # no robots.txt route: the request 404s
+    routes[f"{archive}/index.php?/topic/1-x/"] = b"<html>old</html>"
+    fetcher = Fetcher("test-agent", delay=0.0, base=archive)
+    assert fetcher.get(f"{archive}/index.php?/topic/1-x/") == "<html>old</html>"
+
+
 def test_fetcher_gunzips_and_waits_between_requests(fake_net, monkeypatch: pytest.MonkeyPatch) -> None:
     routes, _ = fake_net
     routes[TOPIC + "#gzip"] = b"compressed body"
@@ -180,6 +200,11 @@ def test_unclosed_content_div_returns_the_rest_of_the_post() -> None:
 
 def test_page_title_absent() -> None:
     assert page_title("<html>no title element</html>") == ""
+
+
+def test_page_title_strips_the_archived_board_suffix_too() -> None:
+    assert page_title("<title>Guide to Guides - Player Guides - Invision Community</title>") == "Guide to Guides"
+    assert page_title("<title>Movement Speed - Guides - Homecoming</title>") == "Movement Speed"
 
 
 def test_strip_html_unescapes_entities() -> None:

@@ -1,0 +1,1259 @@
+{
+  "title": "Patch Notes/2006-11-28",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-11-28",
+  "published": "2006-11-28",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 11.28.06"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Issue 8: To Protect and Serve"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Headlines"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.1 Veteran Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.2 Updater"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.3 Pocket D Changes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.4 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.5 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.6 Titles"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.7 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.8 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.9 List of new or updated emotes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Changes specific to CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.1 Faultline Redux"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.2 Police Band Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.3 Safeguard Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.4 Giant Monster Spawns Increased"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.5 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.6 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.7 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.8 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Changes specific to CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.1 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.2 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.3 Dominators"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.4 Tasks"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Updater",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the update client fails to connect, it will cycle through ports 13094, 6994, 80 and 23094 until it connects. Alternatively the ‘-port’ command line parameter can be used to specify one of these ports (for example: CohUpdater.exe –port 23094)."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Pocket D Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arena Kiosks: These Kiosks will allow Heroes and Villains to fight against each other more easily if they want to settle personal issues."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Pocket D Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In front of the bars are two arena officials, an \"Arena Information Operator\", who will provide information on how to use the kiosks; and a \"Games Information Operator\", who will provide detailed information on each of the game types of the arena."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Pocket D Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Monkey Fight Club: Due to a combination of the Family cutting in to the RMFC profits in Sharkhead, and an offer from DJ Zero to expand their enterprise, Joe Young and Cornelius have moved their \"entertainment concern\" on up to the Pocket D. They have set up a new \"Lounge\" on the hero side of the club. “It’s a lot classier than the old place”, says Joe Young."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Pocket D Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It’s loud in Pocket D! Local chat in Pocket D will only be heard by players within 50ft of each other now."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many objects in the game which were meant to be immune to Teleportation have been made so. This affects several powers in the Traps Secondary and Devices secondary for players."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A large number of powers, most those that involved ground hugging or wall crawling type visual effects, were adjusted to perform better."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma's Tar Patch, Dark Miasma's Dark Servant, and Dark Blast's Life Drain will now play animation and effects when cast."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Altered Moment of Glory to insure that the -Regen portion goes away at the end of the duration of the power."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added -Fly to Gravity Control Gravity Distortion power."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jump Kick from the Leaping pool set now does Knock Up instead of Knockback. The chance of Knock Up occurring has increased to 20% (from 15%.)"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed hesitation from the Mental Blast animation. There was a pause that prevented the character from acting, even after the power had finished animating."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing animation for Ice Sword when used with Fly."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Various ‘Build Up’ and ‘Aim’ powers now have a new look."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the base flight speed of Hover by 10%."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a slight delay to the usage of Team Teleport. This should alleviate the issue of Teammates randomly being left behind after a Teleport."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Storm is now escapable. There is still a bit of delay after you escape before you can move or attack again, but it’s much less of an ‘I win’ power."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti ambushers will once again show teleportation FX."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Helmet enhancement (Mutation/Magic - Range) was giving twice the bonus of other Range DOs. It has been reduced to match."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rebalanced the powers used by some of the high end Longbow critters to make them less frustrating to fight."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some animation issues with the Jump Jet Pack power granted from the Good vs. Evil Edition."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters can have tails and wear trenchcoats at the same time"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chest patterns added to have as backdrop for chest emblems"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Blend"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Circle"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Diamond"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Heart"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Shield"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Square"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Star 1"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emblem Star 2"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hair Style \"ice\" added to huge and male"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hair style \"Buzz cut\" revamped and added to huge and male"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zombie texture added to the monstrous legs"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jackets and Robes have had there shoulder geometry unified to work better with cape mantles"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Over Shoulder Cape\" is available for all types"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Cellular\" pattern added to gloves and boots"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Military coat for huge and female revamped to fit better, prevent clipping, and to better work with other costume pieces"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some broaches moved to prevent hovering"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Samurai belt added to all huge categories"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hoods and Hair reweighed to prevent bald spots when head scaling"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New costume pieces are available at the Tailor and at Character Generation:"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male/Huge/Female"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Head – Detail 1): Galactic Glasses, Government Glasses, Blast Goggles up"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Head – Ears): Floppy, Bunny, Cat, Rat, Teddy, Wildcat"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Upper Body - Chest - Tops with Skin): Angelic, Assassin, Excess, Savage, Tanker"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Lower body - Legs - Bottoms with Skin): Angelic, Assassin, Excess, Savage"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Face masks revamped to prevent texture neck streaking."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Face masks \"Ghost\" & \"Neck Cover\""
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A few female hair styles tweaked to fit better."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Ponytails Fat\" added to female hair styles."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thin stripes 1 & 2 added."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin pattern added to gloves and boots."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Titles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players may now change their title at levels 15, 25, 35, and 45. These title changes do not stack (if you do not use the one you get at level 25 when you reach level 35, you only have the level 35 change, and lose the level 25 one). At 50, players may change their title without restriction. Talk to any trainer to change your title in this manner."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Titles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that prevented players from being able to reset their second title to \"none\"."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Autonomous Expert System can now take a Mission Computer as an Aux Item, and Mystic Orrery can now take an Oracle as an Aux Item. These changes will allow Supergroups that only have those Control sources to run the Cathedral of Pain."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An icon will appear on a Contact in the Contact Window when you are on a Story Arc with that Contact. This will let you better manage the Story Arcs you are doing."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set all PvP zone mission rewards down to the normal mission completion levels."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Invent"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance1"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance2"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance3"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance4"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance5"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Dance6"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote EatDonut"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Donut"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote EatFood"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Eat"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Food"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote ListenPoliceBand (Heroes only)"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitChair1"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitChair2"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitChair3"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitBench1"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitBench2"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitBench3"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitBench4"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitExecutiveChair"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitStool"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitTable1"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote SitTable2"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "List of new or updated emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emote Teabag"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Transition from Trial Zone to a City Zone (with Overbrook Dam as a Hazard area)"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level range has been adjusted to 15 – 25"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Missions have been added (see Jim Temblor in New Overbrook at the Memorial statue in the park as your initial contact)"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Villain groups added: Arachnos, Freakshow, The Lost, Sky Raiders…and something lurking in the water."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More plaques and badges"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entrance to Pocket D"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Faultline Redux",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stores, Trainer (Mirror Spirit), and a hospital have been added to Faultline"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Police Band Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once you talk to a PPD Contact, your contact list will have a \"Police Band Tuner\" added to the top of the list. Clicking this will bring up an assortment of crimes-in-progress."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Police Band Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You will fight level-appropriate Villain Groups in random maps and random mission objectives. Once you have outlevelled a zone, however, you will no longer be able to get Police Band missions in that zone."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Safeguard Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Safeguard missions will issue a door in the zone the player is in when mission is accepted (i.e Kings Row Safeguard mission will lead the player to the Kings Row PPD truck door)."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Safeguard Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When you enter the instance, the bank is immediately being robbed. Don’t delay in getting to the bank, or the crooks could get away with the cash, failing the mission."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Safeguard Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A 15 minute timer starts once the bank heist has been stopped and the mission is completed. At this point you can use the given time to secure the map, explore and fight for additional badges and rewards. This allows the players to end the mission quickly, or hunt for additional XP and rewards if they choose."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Safeguard Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There are several goals and multiple side missions that can be unlocked and played once the bank robbery has been thwarted. Completing any section of goals or each side mission rewards the players with a special bonus (such as extra XP, temp powers, or unique salvage) and will add some time back to the counter. The more they complete the longer they have to try and complete more goals, so the better they do the higher their rewards."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Giant Monster Spawns have had their frequency increased:"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kraken - Perez Park"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Babbage - Boomtown"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jack in Irons (non-scripted, individual) - Croatoa"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eochai (non-scripted, individual) - Croatoa"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adamastor - Dark Astoria"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Giant Monster Spawns Increased",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jurassik - Crey's Folly"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The team mission completion option now works for heroes as well as villains."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Crash Site: Taking the portal from Rikti Crash Site to Peregrine Island will no longer get you stuck in the portal ramp."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Independence Port: Only one Lusca will spawn at a time from now on."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peregrine Island: Portal Corp interior portal doors will no longer cause players to get stuck on exit."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skyway City: The Lobby to the PPD station can be accessed correctly."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controllers Fossilize power will now properly have ‘critical hold’ effects versus critters. This is a bug fix -- this aspect of the power already existed, but was set to always fail."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Short Help text on Stone Cages to properly reflect the powers usage."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trains will now stay at station longer, there will be shorter times between trains and the doors of the trains will be clickable while the train is in the station."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash in Independence Port."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mercy Isle: Fixed hole in the map players could get stuck in."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Port Oakes: Fixed hole in the map players could get stuck in."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Scorpion Shield text on the Patron Powers plaques in Grandville."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many Darkness powers have a new look attached."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Double Stacked ‘Super Jump’ from Ninja Mastermind Pets."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added slightly increased running speed to all Mastermind pets."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated the power description on Thermal Radiation."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Night Widow Bosses have had their Defense values slightly reduced."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Arachnos Arch Villain Nocturne has been rebalanced."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added -Fly to the Ninja Mastermind Oni Pet's Ring of Fire Power."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominators will now build Domination faster depending on the size of the Team they are grouped with. Each member of the team (aside from the Dominator himself) increases the speed of Domination gain by approximately 16%. Note that this bonus does NOT apply to the existing bonus Assault powers gain in PvP. The maximum bonus to Domination will happen in a full 8 person group."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base Domination gain increased by 50% (to 3 points per attack up from 2 points per attack.)"
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heroes in the Lord Recluse Strike Force have been slightly reduced in level. Vindicators are now level 51 and the Freedom Phalanx are level 53."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the Level Range on the Freakshow Elite Boss Metal Shift. He should no longer show up green to players at higher levels of the mission."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed interior minimaps for several Arachnos mission maps."
+    },
+    {
+      "category": "Issue 8: To Protect and Serve",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brokers in Cap au Diable now correctly tell low level characters to come back and talk to them at level 10 rather than level 5."
+    }
+  ]
+}

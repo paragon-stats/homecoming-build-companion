@@ -1,0 +1,99 @@
+{
+  "title": "Patch Notes for September 12th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/10125-patch-notes-for-september-12th-2019/",
+  "published": "2019-09-12T08:07:51Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Rikti Mothership raid can now be started from the LFG queue. This is a very rough version that I spent all of yesterday putting together, and it has issues. It is not final. To make testing easier, all characters on Pineapple will receive the Member of Vanguard badge on login."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "How it works:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Queue like any normal trial. It requires you to be level 35 or higher and have the Member of Vanguard badge."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For testing purposes the trial will start with 8 players, and has a maximum of 48. The mimimum players can be tweaked as requested."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All enemies inside the mission map are level 54, including the ones that are lower level in the zone. This is normal and expected."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Patrol Ship will always spawn on the first pylon that is destroyed, rather than a 15% chance per pylon. Subject to feedback."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once the time on the ship is over, the shield will not come back up. The trial ends with the shield still down and no enemies on the dish."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Known issues:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The trial is listed as \"LFG_Mission_RiktiPylonMission\" in the LFG queue."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There are no navigation beacons in the mission map. This means that all enemies (and pets) will stay where they spawned."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There's no minimap."
+    }
+  ]
+}

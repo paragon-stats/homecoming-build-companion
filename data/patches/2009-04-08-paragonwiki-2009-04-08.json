@@ -1,0 +1,1539 @@
+{
+  "title": "Patch Notes/2009-04-08",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-04-08",
+  "published": "2009-04-08",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 04.08.2009 Version 18.20090324.9T2"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Issue 14: Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Architect Overview"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Find / Browse Other Stories"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Mission Architect Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Code of Conduct Reminders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Architect Reward System"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Architect Custom Critter Creation"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Arena"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7.1 New Arena Features"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7.2 Improved Victory Conditions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7.3 New Arena Matches"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.9 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.10 Black Market / Wentworth's Consignment House"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.11 Day Jobs"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.12 Gameplay"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.13 Help Command"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.14 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.15 Macintosh Version"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.16 Merit Vendor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.17 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.18 PVP Changes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.19 Additional PvP Changes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.20 PVP Origin Enhancements"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.21 Additional PVP IO Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.22 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.23 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.24 Trial Account Restrictions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25 CITY of HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1.1 Blasters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1.2 Controllers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1.3 Defenders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1.4 Tankers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.1.5 Warshades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.25.2 Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26 CITY of VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1.1 Arachnos Soldiers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1.2 Dominators"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1.3 Mastermind"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1.4 Stalkers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.1.5 Widows"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.2 PVP"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.26.3 Badges"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Architect Entertainment Buildings are located at Atlas Park, Galaxy City, King's Row, Steel Canyon, Skyway City, Faultline, Talos Island, Independence Port, Founder's Falls, Brickstown, Peregrine Island, the Rikti War Zone, Mercy Island, Port Oakes, Cap au Diable, Sharkhead Isle, Nerva Archipelago, and St. Martial. All Architect Entertainment buildings have \"AE\" map icons."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Ticket award system: Each type of enemy has a chance to drop a small, medium and large number of tickets. Harder enemies will grant more tickets than weaker enemies. Also, enemies that you defeat that are higher level than you will drop more tickets than enemies that are lower level than you. (Example: Bosses drop more tickets than minions)."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters with pets will get credit for their pets' kills in architect missions."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Player created Mission Architect missions are listed by a player's @Global Chat Handle as the \"author\"."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft will be granting a @Global Chat Handle rename token with the Issue 14 launch. To change your global chat handle, type /change_handle \"Player Name\" in the chat line or click on \"Chat Handle (X)\" from the drop down \"Menu\" option."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Find / Browse Other Stories",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Profanity filter works on all aspects of the Mission Architect. Please make use of the \"report\" function if you spot anything reprehensible."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mission Architect Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft reserves the right to ban or remove any mission at any time for any reason."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mission Architect Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Mission Architect System is a \"Global\" System that links all servers in North America and Europe."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mission Architect Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Mission Architect System may be brought offline for maintenance during server \"up\" time. During this time, \"Unclaimed\" tickets, Published missions and Unlocked Items may be inaccessible."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mission Architect Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If a player is online when the Mission Architect Server is brought back into service, the player may need to log out and log back in to see any \"unlocked\" content from the Ticket Reward system."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft has the right to ban any mission that violates the Rules of Conduct or User Agreement."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Please click on the aforementioned links for full details."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Parodies and derivative works are not allowed."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft has the right to ban any mission that contains words that attempt to bypass the Profanity filter. Repeated violations by an \"author\" may result in account closure."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft has the right to ban any mission and author that use the Mission Architect system for solicitation of business or advertisement of commercial services or activities."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft reserves the right to ban any missions that contain any exploits that provide unintended statistical advantages. Players and/or \"authors\" that advertise exploitable missions through our forums, in-game chat system or through the Mission Architect system may be banned from the Mission Architect System or may have their game account closed."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NCsoft reserves the right to remove or modify any item, NPC, Mission Map or any other element related to the Mission Architect system for any reason."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Code of Conduct Reminders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission Architect changes may invalidate \"Published\" mission, in which case the author should \"edit\" their Published mission to preserve its rating. \"Unpublishing\" an invalid mission will result in loss of any earned ratings."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Account wide architect rewards have been implemented. You can buy tokens in the store which will unlock architect options for every character on your account."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the mission server is not running, you will not be able to access this content (you can tell the mission server is down if you cannot search for published missions or publish new missions)."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Random recipe drop rewards have been implemented and can be purchased from the Architect Ticket Vendors with Architect Tickets. These random rolls come in 3 categories:"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bronze Reward Roll: This random reward will award both uncommon and rare recipes that are normally dropped from defeating enemies. The likelihood of receiving an uncommon recipe is 8 times greater than that of a rare recipe. This is consistent with rewards granted from defeating enemies. This reward table does not include purple reward drops, nor does it include temporary powers or respec recipes. The Bronze Reward Roll is the least expensive of the three random reward categories."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Silver Reward Roll: This random reward will award both rare recipes that are normally dropped from defeating enemies and recipes earned upon completing missions. The likelihood of receiving a rare recipe is 50% greater than that of a mission complete recipe. This reward table does not include temporary powers or respec recipes. The Silver Reward Roll is the second most expensive of the three random reward categories."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gold Reward Roll: This random reward will award recipes that were previously dropped by completing taskforces/trials, very rare boss drops, and recipes that are purchasable with merits. The Gold Reward Roll is the most expensive of the random reward categories as the rewards granted are very powerful."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note that ticket prices for awards from the ticket vendor are subject to change. These random reward tables are \"weighted\" differently than tables from defeating enemies and completing missions. Recipes that can be slotted into more powers and/or are slotted more often by players will have a greater chance of dropping. (Example: the Devastation ranged damage IO recipe set would be more likely to drop than the Trap of the Hunter immobilize IO recipe set. This is because Devastation can be slotted into a greater percentage of existing powers and is more often slotted by players than Trap of the Hunter.)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unlockable costume pieces and items are now available through ticket redemption at Architect Entertainment Vendors. Please Note that Unlocked content from the Architect Entertainment Vendors is solely for use within the Mission Architect system, and NOT for a Player's character's use."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Reward System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A pop up window should appear upon earning your first ticket. This window will explain what tickets are for."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Custom Critter Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters' Toggle powers should suppress when Held, Stunned, or Slept, exactly the same as player powers."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Custom Critter Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defense/Resist and other aspects of powers suppress. Status protection aspects of powers do not."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Custom Critter Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind pets to mastermind sets: When an Mastermind NPC that has access to Mastermind pets is attacked, their Mastermind pets are immediately summoned."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Custom Critter Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minion Masterminds Summon 1 minion at -1 level, LT masterminds summon 2 minions at -1, and a LT at -1. Boss Masterminds and above summon all henchmen as normal."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Architect Custom Critter Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controllers summon pets when attacked."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Features",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swiss Draw: An 8 to 64 player tournament that will have players duking it out 1 vs 1 until the top 8 combatants are chosen. After this point there will be three rounds of single elimination to determine the winner of the tournament."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Features",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pre-Match Buffing Period: Upon entering an arena map a \"Waiting for Players\" period will begin. It will wait until all players are on the map or until 1 minute has passed, whatever happens first. After this there is a brief \"Buff Players\" phase which allows players to turn on their toggles and buff themselves and their teammates. During this phase all players can only affect and be affected by their allies."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Features",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Respawn: Arena matches now have a 15 second global respawn timer. When that timer is up, all defeated players respawn at the same time. After respawning players will be phased out and can only affect and be affected by friendly players, just like during the Buff Players period. In addition to this all teams have a static spawn location. This means that each time a team member is defeated they will respawn at the same location."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Improved Victory Conditions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Individual Kills: Each player has a number of times they must defeat another player. The first player to reach this set number of kills is declared the winner."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Improved Victory Conditions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Individual Lives: Each individual entering this type of Arena Match will be assigned a specified number of \"Lives\". The match ends when all but one player or team has had their lives depleted. The player or team with the most kills is declared the winner."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villain Pentad: This match is much like the Hero Pentad; however it instead allows two teams of villains consisting of 1 member from each core archetype (Brute, Corruptor, Dominator, Mastermind and Stalker.)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villain Septad: The Villain Septad match is just like the Villain Pentad except that it requires each team to have 7 members. One of each archetype villain side including members of the Villain Epic Archetypes (Arachnos Soldiers and Widows)."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero Septad: This match is similar to the Hero Pentad except that it now requires each team to have 7 members. One of each archetype hero side including members of the Epic Archetypes (Warshades and Peacebringers)."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Versus Pentad/Septad: These matches will have 2 teams: the first consisting of 1 member of each hero archetype the second consisting of 1 member of each villain archetype. The Versus Pentad match will have 5 members on each side, 1 member for each core archetype. The Septad match will have 7 members on each side, 1 member for each archetype including epic archetypes."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scheduled Matches: These matches have had their start requirements clarified. These matches require a minimum of 8 players to start. Mousing over the number of players for each match will display the number of players needed to begin the match. Once the minimum number of players has been met all players will be moved into a waiting room for two minutes while it waits for more players to join the match."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where players weren't always being dropped from their Arena teams when leaving an Arena match."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where players weren't always being dropped from their normal teams when entering an Arena match."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the Arena teaming code to group players on the same side into the fewest teams possible, maximizing the size of any team before starting a new team."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where arena matches that lasted 30 minutes didn't display their timers in the nav window."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Altered the arena list User Interface to default to displaying \"Best Fit\" matches instead of \"Eligible\" matches."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "New Arena Matches",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added more stat tracking under the hood to keep track of unrated wins, losses, and draws. Later issues will take advantage of this data."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Badges earned through Mission Architect that are granted to all characters on the same account will state this in their badge description."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of required kills for the final badge in the Virtual Victor line of badges while in test mode: 50000."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of story arcs a player must play in order to earn the Gamer line of badges: 1, 10, 25, 50 and 100."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of tickets a player must earn to obtain the Ticket Taker line of badges: 100, 500, 1,000, 5,000 and 25000."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of times a player must play an author's content in order to earn the Author line of badges: 10, 25, 50, 100 and 250."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of clickable mission objectives a player must interact with to earn the Poor Impulse Control Badge: 10, 25, 50, 100 and 250."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of overflow tickets a player must earn to obtain the Virtual Ticket Taker line of badges: 10, 50, 100, 250 and 1000."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of non-required mission objectives required to earn the Workaholic line of badges: 5, 10, 25, 50 and 100."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of rescue/kidnappings required for the Extractor/Kidnapper line of badges: 1, 5, 10, 25 and 50."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of destructible objects required for the Destructive line of badges: 1, 5, 10, 25 and 50."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of custom enemy defeats required for the Eliminator line of badges: 50, 100, 500, 1000 and 5000."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Energized Badge now requires 500 inspirations."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader has all permissions available to leaders."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader can modify permissions of leaders, and can demote or promote any rank."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader can promote another leader to their position, and self demote themselves back to Leader rank."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader position can be named to be in line with SG/VG tastes and motif."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader position will always be filled by an active user and Rank 5 leaders will no longer be demoted unless the SL designates."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader will be auto-demoted if inactivity period set by permissions is reached."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The highest ranking member with the most recent log-in time will be auto-promoted once Super Leader position is vacated."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Leader can pass leadership to a Rank 5 Leader at any time as long they are online, this transfer of leadership occurs in the SG/VG screen."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a confirmation screen before this transaction occurs to eliminate errors."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Customer Service can promote any on-line player to the Super Leader position, if the petition warrants such action"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is only one Super Leader."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Last leader to log out will be promoted when I14 goes live."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a 24 hour tie-breaker, if multiple leaders log out at the same time."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If multiple leaders log out within 24 hours of each other, the leader with the earliest join date will be promoted."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Black Market / Wentworth's Consignment House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters (on active accounts) who have inventories, bids or items for sale in the Black Market or in Wentworth's Consignment House will no longer have to log into the game within 60 days to avoid item or influence/infamy expiration."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Black Market / Wentworth's Consignment House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In-game Black Market and Wentworth employees will still give their friendly reminder, however if your account is \"active\", they won't take your \"stuff\"."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Architect and Experienced Architect Day Job powers should be granting additional time by logging out in an Architect Entertainment Building."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new Loading Screen Tips"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Help Command",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The /help command will now bring up the in-game Help Menu System. This essentially replicates choosing \"Help\" from the drop down Menu option. We found that many players did not know that we had an in-game Help system."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Help Command",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players wishing to chat on the server wide \"Help Channel\" will now have to type in /hc"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Please refer to the \"PVP Origin Enhancements\" section below for a list and description of the new PVP Origin Enhancements introduced with Issue 14."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enhancement: Touch of the Nictus: Chance for Negative Energy Damage - Fixed a bug where this enhancement would cause damage to the player and his allies."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause the Achilles Heel proc to show the resist buff continuing effects instead of the resistance debuff continuing effects."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge Intensive Pet Invention Origin sets will now correctly boost the damage of Tornado and Phantom Army."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Macintosh Version",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Architect Missions - Known Issue] Mac players may not being able to see their Architect missions immediately after publishing them. While looking for a permanent solution, we have added a 'Refresh' button to the mission search window. Using it will cause your missions to appear without having to log out and back in."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Merit Vendor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Random Large Inspirations are purchasable from levels 5 to 50."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight: Made adjustments to Hover and Flight powers. The minimum speed for these powers is now higher. This includes Kheldian Flight powers."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control / Carrion Creepers - Now properly affected by enhancements."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pet Powers Change:"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge times on pet attack powers will no longer be affected by any outside source. This includes buffs and debuffs. What this means is that pets can no longer have the recharge time on their powers increased by player buffs (like Speed Boost) or their recharge time decreased by player or NPC debuffs. This change was made to allow pets to correctly cycle through their attacks instead of getting locked on using the same attack over and over and neglecting to use other available powers."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phase Shift"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quantum Flight"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nebulous Form"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Black Hole"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manifold Resonator"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hyper Phase"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phase Flight"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ethereal Shift"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players under the Ghost effects of Spirit Potions can only attack other players under the effects of Spirit Potions."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PVP Elusivity bonus: The elusivity bonus on Melee Defense Armors and Personal Force field has been reduced slightly. We are adjusting this carefully since the elusivity bonus is intended to keep Aim, Build-up, or To-hit bonus from negating defense armors. Overall, Defense armors are performing well when compared to Resist based armors, and the intention is to keep them a strong contender in PVP."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Melee AT Ranged Attacks: Melee archetypes (Tankers, Brutes, Scrappers and Stalkers) had their ranged attacks in their primary, secondary and Epic (Hero Ancillary/Villain Patron power) pools reduced slightly. Since Melee archetypes use ranged attacks that are set on the melee damage table, they do much more damage then they should with ranged attacks. We're reducing this slightly, but overall we're comfortable with the range attacks being very useful."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PvP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleportation Resistance was being affected by Diminishing Returns in PVP. This was an oversight and has been corrected."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PvP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nectar Temp power in PVP, now only has a 2 second duration."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PvP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adding a forced respawn to players in pvp zones after two minutes have passed from when they died."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PvP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widows and Arachnos Soldiers PVP damage on all powers slightly reduced to correct for it using an incorrect high modifier."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PvP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker, Brute, and Scrapper versions of taunt now display a message when the taunt portion of the power misses in PVP. Stalker taunt is unchanged."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fury of the Gladiator (Melee AoE Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Javelin Volley (Ranged AoE Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Armor (Resistance Buff Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Javelin (Ranged Damage Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Net (Hold Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Strike (Melee Damage Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Panacea (Healing Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP Origin Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Wall (Defense Buff Set) (Recipe Level Range 10-50)"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PVP IO Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Armor: +Defense and Teleport Resist now has a 20% chance to grant immunity to teleportation for 10 seconds instead of always on total immunity."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PVP IO Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Wall: +Resistance and Teleport Resist now has a 20% chance to grant immunity to teleportation for 10 seconds instead of always on total immunity."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Additional PVP IO Notes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Panacea: Chance for Heal/Endurance: This enhancement will function normally in PvE zones, however in PvP zones this power will grant a regeneration bonus much like Numina's Convalescence: +Regen/Recovery. This was done to prevent healing suppression from being triggered by this effect."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the case where in the final fight in the second mission of Lady Grey's Task Force (Four Horsemen), the Famine rider spawns stuck in the geometry."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Waist Capes for Female Arachnos Widow costumes."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many gloves now have an offset value associated with them to allow shields to fit better with them and have fewer clipping issues."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "With the \"City of Heroes Mac Special Edition\" version or the \"City of Heroes Mac Special Edition In-Game Item Pack\" purchased - Valkyrie Swords will now be available to Archetypes with the Dual Blades powerset."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Trial Account Restrictions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players using Trial Accounts may not access Mission Architect terminals. Trial Account users can be invited to teams that are using the Mission Architect Missions, but cannot create, rate or start any published Mission Architect Missions until they \"upgrade\" their account with either:"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Trial Account Restrictions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "an online serial code purchased from the online NCsoft store,"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Trial Account Restrictions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "an NCsoft Game Card (purchased from a participating retailer) or"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Trial Account Restrictions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "a serial code from a City of Heroes / Villains boxed retail product."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Blast/Telekinetic Blast: Corrected a bug that would cause this power's damage to ignore resistance in PvP."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Mastery/EM Pulse: Fixed a bug that would display that this power could be slotted with Hold IO sets"
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Illusion Control - Superior Invisibility no longer detoggles when player is held."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Resonance - Sonic Dispersion no longer detoggles when player is held."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a minor issue with Illusion Control Phantasm which could cause it to spend time toggling on a power which has no effect."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination / Arctic Fog : Volume of looping sound effect will now fade."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Mastery/Soul Drain: Increased this power's recharge from 120 to 240 seconds."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pyre Mastery / Char: Damage Vs NPCs increased slightly, and damage in PVP decreased slightly. This is a bug fix rather than a deliberate rebalancing of the power (part of the damage that was supposed to be applied in PVE only was being applied in PVP)."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Warshades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Umbral Aura / Orbiting Death does not detoggle when mezzed."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"The Break Up the Clockwork and the Skulls\" mission had its rewards reduced from 4 to 2 merits."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wolf Spider / Single Shot - This power's short help will now state that it has a -Defense component."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Mastery/Soul Drain: Increased this power's recharge from 120 to 240 seconds."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind/Thugs/Call Bruiser: The Bruiser's Hand Clap power was using the wrong table for Knockdown, so it was still doing Knockback. This has been corrected, and he should always do Knock 'DOWN'."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ninjas / Call of Jonin - Jonin henchmen, when fully upgraded, are now always in Hide, except for immediately after attacking."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mercenaries / Spec-Ops - Spec-Ops henchmen, when fully upgraded, are now always stealthed, except for immediately after attacking."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker/Dual Blades/Thousand Cuts: Increased this power's range from 7 to 10."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Widow Training - Strike incorrectly had a X2 damage multiplier on its stealth critical in both PvP and PvE. Now fixed."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Practiced Brawler now correctly grants status resistance instead of status protection in PvP."
+    },
+    {
+      "category": "Issue 14: Architect",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that allowed villains to get a progress bar for the Spellbinding badge"
+    }
+  ]
+}

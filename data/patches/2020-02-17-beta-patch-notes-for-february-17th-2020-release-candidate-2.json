@@ -1,0 +1,315 @@
+{
+  "title": "Patch Notes for February 17th, 2020 (Release Candidate 2)",
+  "url": "https://forums.homecomingservers.com/topic/15469-patch-notes-for-february-17th-2020-release-candidate-2/",
+  "published": "2020-02-17T20:53:48Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "This is a Release Candidate. Changes since the last patch are highlighted in cyan.",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug introduced last build that would make some procs like Theft of Essene not trigger."
+    },
+    {
+      "category": "This is a Release Candidate. Changes since the last patch are highlighted in cyan.",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug introduced last build that would make Interface Confuse, Immobilize and -MaxHP procs not trigger."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Player Buffing Procs like Chance for Build Up should no longer proc on pseudo-pets, most of the time they did nothing and simply added confusion."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Panacea no longer grants +Regen in PvP, instead it has the same Chance for +Heal as in PvE"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doc Buzzsaw was not aware of the decreased level range for Positron Part 1. She now spawns all the way down to level 8."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Tanker and Brute Global Taunt Proc not triggering on aura powers."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Gauntlet not triggering main-hit taunt messages."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork Reassembly power should again calculate the chance for each individual spawned Gear, instead of only once at death. Average spawn count over time will not change, but it will be rare to get no Gears out of a defeated boss."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed many missing PStrings on crafting windows and mail attachments."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proton Volley's Fast-Snipe sphere FX should now tint properly in the Dark Theme."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with many powers displaying duplicate effects in their power info window."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed a bug where sometimes, after zoning, Bio Armor would have two both, offensive and defensive Adaptations active simultaneously."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many Lore Pet powers were not subject to PvP Mez suppression, this has been fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer see a debuff icon when Carnival Master Illusionists summons pets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer see a debuff icon when Tuatha Bosses use Animated Stone."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed short tool tip for Sirocco's Dervish to clarify it is a chance for damage."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Mind Control",
+      "power": "Terrify",
+      "text": "This power no longer states it accepts Accurate ToHit Debuff sets. This power has never had a ToHit Debuff component."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Fiery Melee",
+      "power": "Breath of Fire",
+      "text": "Fixed an animation bug when the power is used with Shield Defense."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Energy Blast",
+      "power": "Sniper Blast",
+      "text": "Fixed sound sync issues with the tintable fast cast version of the power."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Dark Blast",
+      "power": "Antumbral Beam",
+      "text": "Fixed missing sound FX."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Martial Assault",
+      "power": "Masterful Throw (Quick Version)",
+      "text": "Adjusted the projectile and hit timing."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Blaster",
+      "powerset": "Devices",
+      "power": "Caltrops",
+      "text": "Enhancements and Procs should now work on this power."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator > Assault",
+      "powerset": "Martial Assault",
+      "power": "Caltrops",
+      "text": "Enhancements and Procs should now work on this power."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator > Assault",
+      "powerset": "Thorns",
+      "power": "Thorntrops",
+      "text": "Enhancements and Procs should now work on this power."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Brute",
+      "power": "Fury",
+      "text": "Fixed a bug where some auras would passively grant the brute small amounts of +Fury."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster > Sonic Attack > Fixed PString messages on Power Customization."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Targeting Drone's Up-Front damage would not always cancel out in combat."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Incarnate",
+      "power": "Interface (All Damage over Time Procs)",
+      "text": "Fixed a bug that resulted in lower than expected chance (thanks @Bopper & @Gulbasaur!)"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Short Tooltip for the following procs for the following procs changed to clarify they provide a chance for damage:"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator's Net"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Javelin Volley"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mako's Bite"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Defender & Corruptor > Epic",
+      "powerset": "Power Mastery",
+      "power": "Power Build Up",
+      "text": "This power should no longer have it's strength enhanced by other Power Build Up powers."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Stalker",
+      "power": "Ice Melee",
+      "text": "Attacks in this powerset should now properly display CRITICAL float messages when they crit."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Stalker",
+      "powerset": "Ice Melee",
+      "power": "Frost",
+      "text": "This power should now take range enhancements, same as other versions of Ice Melee > Frost"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Sorcery",
+      "power": "Rune of Protection",
+      "text": "Clicking on this power should not trigger the animation if the power has not recharged."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Pool",
+      "power": "Hasten",
+      "text": "Clicking on this power should not trigger the animation if the power has not recharged."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Peacebringer",
+      "power": "Light Form",
+      "text": "Clicking on this power should not trigger the animation if the power has not recharged."
+    }
+  ]
+}

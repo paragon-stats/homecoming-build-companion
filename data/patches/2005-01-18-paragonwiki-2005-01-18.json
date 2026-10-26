@@ -1,0 +1,347 @@
+{
+  "title": "Patch Notes/2005-01-18",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-01-18",
+  "published": "2005-01-18",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 01/18/05 Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 Game"
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"Paragon Dance Party\" lighting has returned to normal."
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crey's Folly is once again cursed by the Jurassik."
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issues with strange fog in City Zones (in particular outside of the Magic shops) has been fixed."
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several \"Black Wall\" bugs"
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed many of the \"Warping Villains\" issues"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper and Tanker Invincibility now also offer some defense to Ranged attacks."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tornado will now knock back foes the same distance, regardless of the level of the target. This is to prevent Tornado from endlessly juggling higher level foes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Toxic damage type to all Damage Enhancements and Damage Resist Enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added inherent Taunt to Pool attack powers for Tankers only: Air Superiority; Boxing; Kick; Jump Kick; Flurry."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Taunt to the following Tanker Defensive powers that attack or affect foes: Blazing Aura, Consume, Chilling Embrace, Icicles, Energy Absorption, Mud Pots. These powers also now accept Taunt Enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Dark Melee/Touch of Fear Acc Debuff."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Kheldian Group Energy Flight description."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Tanker/Battle Axe/Cleave so it Knocks Down properly instead of Knock Back."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was giving Stone Armor/Granite Armor a Damage Buff instead of a DeBuff."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed text error in Invincibility system chat."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed DoT from Mind Control/Terrify, and replaced it with a 1 shot damage. The new Fear changes would cause the Feared target to keep attacking (and not tremble in Fear) because it was constantly getting attacked by the DoT."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Arctic Air Short Help (power is unchanged)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added some safeguards to ensure Invincibility DEF and ACC bonus improved with Enhancements for each affected foe."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slight increase to Kheldian base damage (human form)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emissions/Fallout now accepts Accuracy Enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Scrapper Spined Text to reflect new Toxic Damage type."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly increased Invincibility defense bonus."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Rooted should not longer be mutually exclusive with Granite Armor."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor Set: All new Stone armor f/x! Rock Armor, Rooted, Brimstone Armor, Crystal Armor, and Mineral Armor are no longer Mutually Exclusive."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Mineral Armor has been renamed to Minerals."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Rooted no longer makes you immobilized. Decreased its recharge time. However, you will walk extremely slow. Rooted can no longer be activated at the same time as Fly, Speed, or Flying powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Granite Armor will now transform your body."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armors are no longer Mutually Exclusive (New Art f/x!)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength/Rage: Removed Disorient effect after power expires. Instead, Rage will drain your Endurance when it expires. * Reduced its Endurance cost to activate the power, and slightly reduced its Defense Debuff."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected a bug with Tanker Defense Energy Absorption which was only giving buffs based on a single enemy instead of the number affected by the attack."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Moment of Glory: If Moment of Glory is activated a second time while currently active, the Buffs will no longer Stack."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that allowed players to turn on toggle powers that target foes while the player was phase-shifted"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug causing shape-changed Kheldians to sometimes appear as mekmen for a short bit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor f/x changed slightly to improve appearance while stacking multiple armors."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defense bonuses no longer stack against attacks with more then one damage type. For example, Dark Melee/Shadow Punch does both Smashing and Dark damage. If the attack is used against an opponent with defense bonuses that apply to both damage types, only the largest single defense bonus will be used. This change also applies to villains that do more than one type of damage to heroes."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several general server stability issues."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clickable Mission Objectives (Glowies) once again make noise."
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+{
+  "title": "Patch Notes/2008-08-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-08-05",
+  "published": "2008-08-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 8.5.08 Version 17.20080723.3T"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.4 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.5 Badges and Accolades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.6 Compatibility"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.7 Gameplay"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY of HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.1 Blasters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.2 Defenders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.3 Scrappers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.4 Peacebringers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.5 Warshades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 CITY of VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1.1 Arachnos Soldiers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1.2 Brutes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1.3 Masterminds"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2 Tasks"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coalition Base Storage change – To correct an issue with access rights, it is no longer possible to store salvage or enhancements within storage bins of an allied base in a Coalition."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where a player would not receive tells or see team chat messages as they were zoning."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stupefy: Chance for Knockback: This recipe’s description should now be consistent with the enhancement’s description, describing both as being knockback not knockdown."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gaussian's Synchronized Fire-Control: Chance for Build Up should now properly be a Unique enhancement."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Location targeted powers slotted with Pacing of the Turtle, Dark Watcher’s Despair or Induced Coma enhancement sets chance for -recharge will no longer affect the caster."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several typos in IO Set enhancement descriptions which stated “this enhancement my be”, which should have been “this enhancement may be.”"
+    },
+    {
+      "category": "Bases",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set bonuses that state they increase “Movement Speed” will now boost the base movement of the character instead of enhancing movement speed boosting powers."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Control / Cinders - This power was allowing for range enhancements even though it’s a PBAoE power, this has been corrected. Cinders can no longer be slotted for range enhancements."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated info description of Minotaurs."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Omega Device is no longer targetable by players"
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control/Entangle: This power will now correctly knock flying targets out of the air only if they are close to the ground."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control/Roots: This power will now correctly knock flying targets out of the air only if they are close to the ground."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Warburg Nuke Chemical Burn power now correctly states that it reduces the target’s defense and not accuracy in its long help."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted the animation for Energy Transfer."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ouroboros missions will now issue a gold star and the proper badge upon completion"
+    },
+    {
+      "category": "Bases",
+      "subsection": "Badges and Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the name of the badge granted from Flashback challenges by buffing enemies from Valorous to Fearless."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Badges and Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demonic Aura and Eye of the Magus: These powers had their short help changed. They previously stated these powers had a self debuff, however this was incorrect. The erroneous data in the short help was removed."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Compatibility",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved issue of certain geometry displaying black textures with Nvidia GeForce 8+ series video cards."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash when rapidly transferring salvage to Base Storage."
+    },
+    {
+      "category": "Bases",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash when chatting in a Supergroup channel."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters / Psychic Blast / Psionic Dart - This power’s long help should now accurately state that this power deals moderate damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters / Psychic Blast / Mental Blast - This power’s long help should now accurately state that this power deals high damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters Secondary Powers now give the correct Defiance Bonus. Honest."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination/Heat Loss: The endurance recovery buff portion of this power was granting ten times greater recovery than was intended. This has been corrected."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts/Dragon’s Tail: Corrected the critical hit portion of this power so that it is equal to the power’s normal damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Peacebringers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Peacebringer attacks that have a -def component will now show the debuff defense effects."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Peacebringers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Luminous Blast/Radiant Strike: This power’s long help stated it dealt high damage, this was corrected to state that it deals Superior damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Warshades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshades / Umbral Aura / Eclipse: Use of inspirations of damage buffs will no longer increase the resistance granted by this power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bane Spider Armor Upgrade should no longer have brief “double application” of the Health bonus applied. This means you won’t have your Max health fluctuating any longer."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wide Area Webgrenade: This power should now have target and caster hit messages."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes/Evasion: The brute version of this power will no longer have its defense affected by attacker’s level."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Invulneraiblity/Invincibility: This power was generating substantially more threat than was intended. It has been brought down to generate a similar amount of threat as generated by a tanker."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds / Ninjas / Call Genin - Removed Quiver FX from Mastermind Genin pets when upgraded."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved damage of Mastermind Genin Shuriken powers. They now recharge more slowly, and take slightly more endurance, as well."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Ninja Jounin should work as they did with I12 Launch -- all changes to their AI since have been reverted out."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Ouroboros Portal will now have a description in its info if selected by a Mastermind."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Robotics/Pulse Rifle Blast: This power can no longer be slotted with knockback enhancements as it doesn’t have a knockback component."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Soldier Medics now lose their Brawl attack when their Tier 1 upgrade is applied. This makes them less likely to rush forward into combat."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Soldier Medics no longer throw their frag grenades. Instead, they are launched from their submachinegun."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Necromancy Liches Torrent power should now only do Knockdown, unless slotted with Knockback Enhancements or otherwise buffed."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Find and Assist Barracuda mission in the Temple of Waters Strike Force will fail if you let Barracuda get defeated."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dr. Vimes will now appear in the “Kidnap Dr. Franklin Vimes” Mission."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The contact Darrin Wade now sells enhancements"
+    }
+  ]
+}

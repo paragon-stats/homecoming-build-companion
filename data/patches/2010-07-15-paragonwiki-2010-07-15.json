@@ -1,0 +1,147 @@
+{
+  "title": "Patch Notes/2010-07-15",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-07-15",
+  "published": "2010-07-15",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 07.15.2010 Version 1800.201006040036.8T."
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Mutant Pack Fixes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Global Email"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Gameplay"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The attack powers in the Earth Assault, Mercenaries, Ninjas, Necromancy, Robotics and Thugs power sets were not scaling correctly for custom Archvillains. This has been fixed. The attacks will do considerably more damage at lower levels and slightly less damage at high levels."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In Mission Architect, the rewards granted for defeating Archvillain class enemies has been changed as follows: Any Archvillains of level 25 or less will grant the same rewards as a Boss."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The restriction against putting existing AVs into missions at below their minimum level has been removed. Any existing AV that appears in a mission at below their minimum level will grant the same rewards as a Boss."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mutant Pack Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The costume change emotes Dimensional Shift, Rapid Boil and Energy Morph were not playing correctly for characters that were running some toggle powers. This has been fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mutant Pack Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the slash command of the Energy Morph costume change emote from \"/cce # podperson\" to \"/cce # energymorph\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with global emails expiring before the 60 day limit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several rare crash bugs."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None."
+    }
+  ]
+}

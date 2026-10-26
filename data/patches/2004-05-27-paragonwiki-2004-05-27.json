@@ -1,0 +1,27 @@
+{
+  "title": "Patch Notes/2004-05-27",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2004-05-27",
+  "published": "2004-05-27",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "5/27/04",
+      "subsection": "City Zones:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixes mapserver crash involving Storyarcs/Taskforces. Given the right conditions, a team leader could repeatedly crash a City Zone by repeatedly talking to their contact (crashing the mapserver), logging back in, talking to their contact, etc."
+    },
+    {
+      "category": "External Links",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archive.org"
+    }
+  ]
+}

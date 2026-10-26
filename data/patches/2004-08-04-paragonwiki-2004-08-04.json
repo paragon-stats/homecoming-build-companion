@@ -1,0 +1,43 @@
+{
+  "title": "Patch Notes/2004-08-04",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2004-08-04",
+  "published": "2004-08-04",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Server Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed various instability issues."
+    },
+    {
+      "category": "Various",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where SuperGroup names were being limited to 15 characters. SuperGroup names can once again be 64 characters long."
+    },
+    {
+      "category": "Various",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the skin color for a hero’s additional costumes could be reset to the initial skin color."
+    },
+    {
+      "category": "Various",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Inspirations would not automatically slide down to fill empty slots."
+    }
+  ]
+}

@@ -1,0 +1,923 @@
+{
+  "title": "Patch Notes/2006-12-07",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-12-07",
+  "published": "2006-12-07",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 12.7.06"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 PvP"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Veteran Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.9 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Powers – PvP specific"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 Emotes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.4 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.5 Critters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.6 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Badges"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Imps: Summoned Fire Imps level will now be 1 below that of their caster. For instance, if you are level 39 and cast Fire Imps, each Fire Imp will be level 38."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker and Scrapper versions of Impale have had their range reduced to 40 feet. This change is being made to bring the power more in line with Blast power sets' short range, high damage attacks."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker and Brute Fiery Aura: Healing Flames: Recharge reduced to 40 seconds, healing scale increased to 2.5."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the duration of the rooted portion of the Burn animation and normalized the duration for Male, Female, and Huge models (the Female and Huge models were ~1.25 seconds longer before you could move or attack than the Male)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn graphical effects were changed slightly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Blast Aim was boosting the damage of Negative Energy powers twice, while not giving any benefit to Toxic damage attacks at all, due to a duplicated entry. Both issues are now fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added secondary effects to Enervating Field and Radiation Infection to help identify the anchor."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minor tweaks to Radiation Control power graphical effects for performance related issues."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jump Kick will now only play a knockback/up animation when the target is actually affected by knockback/up."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nemesis Staff (Veteran Reward and Temp Power) will now have the correct delay for the sound and visual FX when it is drawn and fired."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Broadsword, Claws and Katana powers which debuff Defense have had a visual effect added to the debuff."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers with Flight will no longer permanently suppress Flight Speed if you have a toggle debuff on a target."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue that made extra enhancement slots in Sprint and Rest disappear after a respec."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restored bonus awards to PvP missions. However, the bonus reward can only be given to a player once every 30 minutes. Otherwise, the player will receive a standard mission reward."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly reduced footprint for arcane teleporter base items: teleporters can now be placed side by side to maximum capacity of each teleporter room."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with the Arcane Force Field. It should now grant Defense to those within its area of effect."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "PvP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All members of a team now share the timer for how long after defeating an enemy before they can gain reputation for defeating that same enemy again."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that disconnected players from global chat when entering a new map, until an enemy was defeated on that map."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added text to the Long help descriptions of the Veteran Reward powers explaining that damage enhancing powers will not apply to them."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Short Help text for Veteran Reward Powers so they better match the Long Help descriptions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Turned off floater text for base details when claimed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claiming Prestige Sprints should now remove the option to claim them. If you already have these sprints claimed, you may claim it one last time to get rid of it off your Veteran badge list."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Ghosts in Croatoa are now properly affected by the Ghost Slaying Axe Veteran Reward Power and are affected by the bonus damage versus undead."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified the Veteran Reward powers Nemesis Staff and Blackwand. The temp powers gained through missions are unchanged."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Nemesis staff no longer has a Disorient function; however it will deal bonus damage in the hands of any character of the Technology, Science or Natural origins."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blackwand's bonus damage is now usable by Magic, Mutant and Natural origin characters. Additionally, Blackwand has had a minor To Hit debuff added."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emotes for /eat food and /eat donut should work a bit more consistently."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sit emotes should work more consistently. They should always reposition you at ground height and be interruptible by flight."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wings will now animate while falling. For example: running off of something and falling or turning flight off while in air and falling."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wings will now animate while jumping."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enhancements once again con based on combat level rather than security level."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed typo in Bad Luck badge."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Big Afro added to male and huge"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin & Angelic patterns added to male & huge"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Samurai belts are now available for huge"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skull face option now scales properly with huge"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Huge now has the option for putting chest details over trenchcoats"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female now has the option of No Sleeves with trenchcoats."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with many chest details clipping through huge characters."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts belts should be available when wearing a Jacket"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epsilon, Zeta and Eta no longer repeat in the chest detail listing."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These changes are all aimed towards addressing sets based on feedback from players. These changes also affect Defender and Corruptor versions of these powers where applicable."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Manipulation: Fire Sword: Bonus damage increased."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Manipulation: Combustion: Bonus damage increased."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Manipulation: Fire Sword Circle: Bonus damage increased."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Blast Powerset: Bonus damage increased by 50% for all appropriate powers."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Blast: Blaze: Increased Range to 40'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle Ignite: Increased Range to 40'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Blast Power Burst: Increased Range to 40'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Attack Cosmic Burst: Increased Range to 40'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Attack Shout: Increased Range to 40'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices Taser: Increased Range to 20'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices Smoke Grenade: No longer requires a 'to hit' check for the Perception Debuff. The other effects of the power still require a successful to hit check."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Archery Fistful of Arrows: corrected an issue which could prevent the power from damaging foes."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Archery Blazing Arrow: corrected an issue that could limit the DoT portion of the power from doing more than one tick of damage."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Assault Rifle Flamethrower: Range increased slightly and recharge time changed so it now matches the range and recharge of the Corruptor version of this power."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Electrical Blast Aim should now display the proper look, and match the other powers in the power set."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All of these powers may now affect Archvillains and Giant Monsters once again. However, they must pass a 'To Hit' check at -20% for the taunt to effect these targets, even for powers such as Invincibility which are normally 'Always Hit'"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invincibility was looking at the wrong table for it’s inherent taunt ability. It now looks at the correct table, which will bring its taunt functionality more in line with other Taunt Auras. Additionally, the Magnitude of the Taunt was increased so that it matches the other Taunt Aura powers."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The damage of these powers was made artificially high originally, to make them desirable. In general, the damage was set to be roughly equivalanet to that of a Blaster. When Containment was added later, this was not taken into account. As such, these powers all do roughly twice the desired damage under Containment conditions. This series of changes is aimed at bringing these powers closer to balance."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Mastery Hurl Boulder: Base damage reduced from scale 3 to scale 1.64"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Mastery: Fire Blast: Base damage reduced from scale 2 to scale 1.1"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Mastery: Fire Ball: Base damage reduced from scale 1.6 to scale 1.05"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Mastery: Ice Blast: Smashing damage reduced from scale 0.8 to scale 0.2, Cold damage reduced from scale 1.2 to 0.8"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Primal Forces: Power Blast: Smashing damage reduced from scale 0.8 to scale 0.2, Energy damage reduced from scale 1.2 to 0.8"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Mastery: Psionic Blast: Base damage reduced from 2 to 1."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Mastery: Psionic Tornado: Base damage reduced from 0.35 to 0.175."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Electrical Blast Charged Bolt has had the amount of endurance drained in PvP increased. There was a decimal shift error which had this aspect of the power underperforming."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly increased the PvE Endurance Drain for Defender Electrical Blast Short Circuit to bring it in line with other versions of this power. It now drains 35% endurance if unresisted, compared to 33% previously."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly increased the PvE Endurance Drain for Defender Electrical Blast Thunderous Blast to bring it in line with other versions of this power. It now drains 55% endurance if unresisted, compared to 50% previously."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Lingering Radiation powers -Regen was operating at 1/5th the scale of the equivalent Corruptor or Controller version. The base scale now matches across all three Archetypes."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Revamped the Effects for Trick Arrow/Glue Arrow. Should cause fewer frame rate errors, appear more visible, and accurately reflect the radius of the glue patch."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers – PvP specific",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Energy Blast Power Push now has a portion of it's damage unresisted in PvP. Additionally, the Knockback portion of the power now follows standard suppression rules in PvP."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most of the emotes that were not working properly for Kheldian Dwarf form were either modified, replaced, or disabled. Most of these changes were made to resolve issues with the Dwarf sinking into the groundplane or registration issues (i.e., shoving a hot dog into their noggin). The effect emotes include:"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sit (and all of the new sitting poses)"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ledgesit"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lotus/Yoga"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kneel"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eat Donut/Eat Food/Drink"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Read Newspaper/Listen to Police Band"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Grief"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Batsmash"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that sometimes assigned players to a mission location with no door in Atlas Park."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeated Vahzilok in Faultline once again are counted properly for the Numina Task Force."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Undead status from the Infected villain group. They are diseased...not zombies!"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Croatoa: Fixed Red Cap spawns in the zone and in missions so that Red Caps below level 35 appear again."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brutes attack powers will now generate Fury faster against high ranking enemies (including players in PvP)"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps: Poison Gas Trap should play the vomit animation on targets occasionally"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Bitter Freeze Ray's Scourge attributes were set up incorrectly. As a result, it did not handle Scourge in PvE properly, resulting in lower damage output. This is now fixed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Dreadful Wail's Scourge was missing the Delay variable which made the Scourge damage appear before the animations were complete. This is now fixed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the Long Help description on Lightning Rod so it no longer states you must target the ground for this power to work"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Thug Henchmen: Some improvements made to the change in costumes when fully upgraded."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains were not supposed to be able to earn the \"Villain Disruptor\" badge. Villains who earned this badge will have it revoked, and they will be unable to earn it any more."
+    }
+  ]
+}

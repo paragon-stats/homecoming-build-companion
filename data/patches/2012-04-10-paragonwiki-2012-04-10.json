@@ -1,0 +1,499 @@
+{
+  "title": "Patch Notes/2012-04-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2012-04-10",
+  "published": "2012-04-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 12.04.10 build 2230.201203280247.1.0"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 USER INTERFACE"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1.1 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1.2 Team-Up Teleporter"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 INCARNATE TRIALS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2.1 Dilemma Diabolique"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 CHARACTER CREATION / TAILOR"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 POWERS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.1 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.2 Controllers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.3 Flying Disc"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.4 Liger Vanity Pet"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.5 Enhancements"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4.6 Enhancement Converters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 TASKS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.1 Signature Story Arc 1: Episode 7"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.2 Dr Kahn Task Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.3 Citadel Task Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.4 Terra Volta Respec Trial"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.5 Dark Astoria"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.6 Alignment Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.7 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 BADGES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6.1 General"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "German language client's quick emote list will no longer freeze the client when clicking it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Additional power trays should now bend properly on the top and left sides of the screen."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Astoria now appears in the zone list for player search on villain side."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing a bug that could cause players to be left out of the proper team when the Team-up Teleporter creates a league when starting an event."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will now be properly teleported to the contact from inside a mission map or on another task force when starting a task force via the Team-up Teleporter."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dilemma Diabolique",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Non-controllable pets will now attack the Repulsive Spines found in Stage 1."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "CHARACTER CREATION / TAILOR",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Upper Body category name, \"Magic Bolero\" to \"Bolero\" and sub-category name, \"Shoulder Fur\" to \"Shoulder Detail\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "CHARACTER CREATION / TAILOR",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed a purchasable eye aura that was present in the Elemental Armor costume set. This aura was causing problems with the new costume piece checkbox."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team teleport powers now teleport teammates that are in a different vision phase."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inner Inspiration: Fixed a bug that caused the 30 minute lockout period of Inner Inspiration to track in-game time. Instead it now correctly uses in or out of game time."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toggle Powers no longer drop after having been logged out for 15 minutes or more."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing a bug that would cause sleep resistance to sometimes make its owner immune to some sleep powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing a bug that was causing proc per minute enhancements to proc too often in cone powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Illusion Control/Spectral Wounds: Fixed a bug that would prevent this power from healing the target for a small amount of health after 10 seconds."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Flying Disc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted the animation so that it works in close range without the catcher showing two discs in hand"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Liger Vanity Pet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spawn FX now plays on liger spawn."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the procs per minute on the Store version of Performance Shifter: Chance for +End from 3 to 1.5 to be consistent with the Invention Origin version."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slotting Scrapper's Strike: Rech/+Critical Hit Chance or Superior Scrapper's Strike: Rech/+Critical Hit Chance will now display a more appropriate power icon."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancement Converters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would prevent this special salvage from showing up on Hero/Villain Merit vendors and Astral/Empyrean Merit vendors."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancement Converters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enhancement Converters now have a small chance to drop off of Archvillains. Previously Archvillains had no chance to award Enhancement Converters."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancement Converters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Paragon Market icon should no longer appear on the enhancement conversion window."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancement Converters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where To Hit Buff IOs could be converted into To Hit Debuff IOs and vice versa."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Enhancement Converters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an exploit that would allow enhancement converters to convert a level 50 Hold IO into a very rare Hold IO."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Signature Story Arc 1: Episode 7",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Faathim the Kind's targeting box now extends through his entire body to fix an issue with some players not being able to talk to him."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Signature Story Arc 1: Episode 7",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where mission progress would reset if all players left the instance when doing the \"Defeat Rula-Wade, once and for all\" mission in the Signature Story Arc."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dr Kahn Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a client crash that would occur when a player walked into the Transportation Portal in Dr. Kahn's Task Force."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Citadel Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission 9 of the Citadel Task Force will now send players to Talos Island instead of Dark Astoria."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Terra Volta Respec Trial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Coolant temp power will again heal the Reactor Core when used on it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing a server crash that could sometimes occur when summoning Adamastor."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilante to Villain - The Dragon's Whelp - Fixed the issue where no dialog options would display when you talk to Flamespout for the second time."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilante - Warm Brass and Cold Bodies - Fixed an issue where talking to Sarah Winters did not cause the dialog tree to advance."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the office tray piece that transitioned into caves had several wall object spawns embedded in the walls."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Dark Astoria achievement badges will now reward to all members of the team if the team leader is eligible to receive them."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The badge for defeating all four Repulsive Spines in the first stage of Dilemma Diabolique has been renamed from \"Gate Crasher\" to \"Spinebreaker\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The text description for the Master of Dilemma Diabolique badge replaces reference to a \"Rescued and Recovered\" badge with the correct name, \"Spinebreaker\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Steel Canyon - Deadly Combatant and Dignified Combatant will now reward to all members of the team who are on the mission map."
+    }
+  ]
+}

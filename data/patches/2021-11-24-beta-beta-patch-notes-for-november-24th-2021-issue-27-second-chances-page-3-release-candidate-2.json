@@ -1,0 +1,91 @@
+{
+  "title": "[Beta] Patch Notes for November 24th, 2021 - Issue 27: Second Chances, Page 3 (Release Candidate 2)",
+  "url": "https://forums.homecomingservers.com/topic/32722-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2/",
+  "published": "2021-11-24T10:26:14Z",
+  "issue": "issue-27",
+  "page": "page-3",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Tasks",
+      "subsection": "Cavern of Transcendence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Revamped spawns to scale with team size."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Cavern of Transcendence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The obelisks now drop Take a Breather again."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Cavern of Transcendence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The map now has a minimap. Known issue: didn't get pigged. Will be on the Staging patch later today."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Minions of Igneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tweaked the FX of the critters slightly to add variety; previously, minion/lieutenant Magmites and lieutenant/boss Pumicites looked identical."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Seismic Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Descriptions of Seismic Blast attacks to state they grant two stacks of seismic pressure."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Seismic Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added ShowInInventory and ShowInManage parameters to Seismic Blast's Redirect powerset (both set to False). This should stop showing the list of redirect powers in the Power Management screen."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Seismic Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the duration of the CancelMods effects in Seismic Stress Release to match the Lifetime of Shockwaves Buff (45s). This should prevent Seismic Pressure from building up while Shockwaves is active."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Seismic Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set Free to True and DoNotSave to False for Shockwaves Buff. This should fix the Training bug experienced when Shockwaves is active while leveling up."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Stone Armor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the description of Geode."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Temporary Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coral Amulet (reward from the Renault SF) now summons the correct entity. It was using the actual villain critter, limited to levels 24-31, instead of the pet critter which covers the whole 1-54 range."
+    }
+  ]
+}

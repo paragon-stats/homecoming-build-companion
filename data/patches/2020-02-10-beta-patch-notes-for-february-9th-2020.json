@@ -1,0 +1,147 @@
+{
+  "title": "Patch Notes for February 9th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/15192-patch-notes-for-february-9th-2020/",
+  "published": "2020-02-10T02:15:23Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doc Buzzsaw was not aware of the decreased level range for Positron Part 1. She now spawns all the way down to level 8."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork Reassembly power should again calculate the chance for each individual spawned Gear, instead of only once at death. Average spawn count over time will not change, but it will be rare to get no Gears out of a defeated boss."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed many missing PStrings on crafting windows and mail attachments."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proton Volley's Fast-Snipe sphere FX should now tint properly in the Dark Theme."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Further fixes to the Taunt global proc."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with many powers displaying duplicate effects in their power info window."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed a bug where sometimes, after zoning, Bio Armor would have two both, offensive and defensive Adaptations active simultaneously."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many Lore Pet powers were not subject to PvP Mez suppression, this has been fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer see a debuff icon when Carnival Master Illusionists summons pets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer see a debuff icon when Tuatha Bosses use Animated Stone."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed short tool tip for Sirocco's Dervish to clarify it is a chance for damage."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Mind Control",
+      "power": "Terrify",
+      "text": "This power no longer states it accepts Accurate ToHit Debuff sets. This power has never had a ToHit Debuff component."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Fiery Melee",
+      "power": "Breath of Fire",
+      "text": "Fixed an animation bug when the power is used with Shield Defense"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Energy Blast",
+      "power": "Sniper Blast",
+      "text": "Fixed sound sync issues with the tintable fast cast version of the power."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Dark Blast",
+      "power": "Antumbral Beam",
+      "text": "Fixed missing sound FX."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Sorcery",
+      "power": "Rune of Protection",
+      "text": "Clicking on this power should not trigger an animation if the power has not recharged."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Martial Assault",
+      "power": "Masterful Throw (Quick Version)",
+      "text": "Adjusted the projectile and hit timing."
+    }
+  ]
+}

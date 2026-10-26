@@ -1,0 +1,163 @@
+{
+  "title": "[Staging] Patch Notes for September 29th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/22749-staging-patch-notes-for-september-29th-2020/",
+  "published": "2020-09-29T20:43:29Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Halloween",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Halloween event is active!"
+    },
+    {
+      "category": "Halloween",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eternal night will now only be active later on in October, rather than for the whole event"
+    },
+    {
+      "category": "Halloween",
+      "subsection": "Dr Kane's House of Horror",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed two options (Bats Aura and the Costume Change Emote) from the reward table for Dr. Kane's House of Horror as these items are unlocked automatically on character creation"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainers should no longer talk about certain free / prestige powers gaining enhancement slots when you level up"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved a compatibility issue with Intel graphics chips on Windows 10 - the game no longer requires an external workaround involving dark rituals to function"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you're currently using the Intel OpenGL shim fix, you don't need to anymore"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you're currently using the Intel OpenGL shim fix and the game no longer functions for you, please post a dxdiag log"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you don't know what this is, you probably don't need to worry"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Visited Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some changes have been made to the way information on visited maps is stored"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Visited Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now stored in a per-account subdirectory of the installation folder rather than in /appdata/"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Visited Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now stored in a single file per character, rather than per map per character"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Visited Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Legacy map data from /appdata/ will be automatically imported"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Visited Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the performance impact of saving this data"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The command line arguments -patchdir and -patchversion no longer exist"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For use with existing installs, you should always include the -legacylayout command line argument, or the client won't be able to find certain files"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This only applies if you aren't launching the game with Tequila or Island Rum"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The new command line argument -assetpath will point the client to the piggs folders, in load order"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The default is -assetpath piggs -assetpath homecoming for live, and -assetpath piggs -assetpath hc-beta for beta"
+    },
+    {
+      "category": "Technical Stuff",
+      "subsection": "Command Line Parameter Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Files in the data folder (eg: a standard vidiotmaps install) will still be applied as before"
+    }
+  ]
+}

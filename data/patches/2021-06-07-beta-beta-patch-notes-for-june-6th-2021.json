@@ -1,0 +1,227 @@
+{
+  "title": "[Beta] Patch Notes for June 6th, 2021",
+  "url": "https://forums.homecomingservers.com/topic/29456-beta-patch-notes-for-june-6th-2021/",
+  "published": "2021-06-07T00:56:42Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All travel power speed cap increases from Issue 27, Page 2 now also apply in PvP"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified the PvP diminishing return curves for travel speeds for testing purposes"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "SpeedRunning set to 0.45, SpeedFlying set to 0.60, SpeedJumping set to 0.45"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sorcery > Arcane Bolt / Arcane Power"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Power can now trigger in PvP"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage bonus in PvP is 50% of the base damage rather than 100%"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fortunata Hypnosis (IO proc): PvP placate effect reduced from 5.336s to 4s"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This puts it in line with the Presence pool's Pacify, which also does 8s PvE and 4s PvP"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Affinity:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "",
+      "text": "Rejuvenating Circuit: Increased the Main Target heal to do an extra 0.41 scale in PvP only. This makes the main target get the equivalent of a 1.96 scale heal (same as Heal Other from Empathy). The chain heal still works off of the 1.55 scale heal, so no change for the healing of secondary targets."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "",
+      "text": "Faraday Cage: Increased the duration of PvP-only effects to 20s (up from 5s). This includes mez protection, mez resistance, kb protection and repel protection. The other effects (PvE and Both) still use 5s. This increase in duration is to allow PvPers to have more time outside of the faraday cage bubble before wearing off."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "",
+      "text": "Faraday Cage: Decreased the activation period from 1 second to 0.2 second. The faster rate should allow for the Faraday Cage buffs to apply more quickly/reliably when moving through the Faraday Cage bubble. Note: This does not affect Static build up, that will still use a 5s activation period."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "",
+      "text": "Super Reflexes PvP tweaks (All ATs):"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "Lowered the activation period of powers with scaling resistance from 2s to 0.5s (all ATs)"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "Increased PvP Elusivity in Focused Fighting, Focused Senses and Evasion to 20%."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "Reverted scaling resistance and scaling elusivity changes from last patch."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "Added Toxic Resistance to all scaling resistance powers (all ATs)"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "Bug Fix: Corrected Brute's Evasion elusivity duration. It was set to 0.75s when it was supposed to be 2.25s. This resulted in AoE elusivity dropping out between each 2s tick application."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "Super Reflexes PvP tweaks (All ATs)",
+      "text": "EMP Arrow PvP tweaks:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Increased the duration of all PvP effects to 20s (up from 0.65s). This will allow players to buff themselves inside the EMP field, then exit for up to 20s of protection. These effects only include the following:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Resistance to Mez, Teleport"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Protection to Mez, Knock, and Repel"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Power Surge and Unstoppable PvP tweaks (All ATs):"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Removed the HP crash"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Added Psionic Resistance (2.45 scale). The amount of psionic resistance is 35% of what the T9 typically gives to other damage types."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Granite Armor PvP tweaks (All ATs):"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Electrical Affinity",
+      "power": "EMP Arrow PvP tweaks",
+      "text": "Added Psionic Resistance (1.75 scale). The amount of psionic resistance is 35% of what Granite Armor gives to other damage types."
+    }
+  ]
+}

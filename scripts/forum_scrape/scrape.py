@@ -108,7 +108,9 @@ _TITLE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
 # separate thread. Listings normally append "#comments" to those, which the old pattern
 # happened to reject, but relying on the fragment made it one markup change from
 # harvesting every paginated thread twice.
-_TOPIC_LINK = re.compile(r"""['\"](https://forums\.homecomingservers\.com/topic/(\d+)-[^'\"#?/]*/)['\"]""")
+# Host-agnostic so the same listing parser reads any Invision board, such as the archived
+# pre-sunset forums, whose topic URLs carry an ``index.php?`` prefix.
+_TOPIC_LINK = re.compile(r"""['\"](https://[a-z0-9.-]+/(?:index\.php\?/)?topic/(\d+)-[^'\"#?/]*/)['\"]""", re.I)
 _LINE_BREAK = re.compile(r"<br\s*/?>|</(?:p|li|div|tr|h[1-6]|pre)\s*>", re.I)
 _TAG = re.compile(r"<[^>]+>")
 
@@ -125,7 +127,7 @@ _EXPORT_LINE = re.compile(r"^Level\s+\d+:\s+\S", re.M)
 _PAGINATION_COUNT = re.compile(r"""<ul[^>]*class=['\"]ipsPagination['\"][^>]*data-pages=['\"](\d+)['\"]""", re.I)
 _PAGINATION_HREF = re.compile(
     r"""class=['\"]ipsPagination['\"].{0,4000}?href=['\"]"""
-    r"""(https://forums\.homecomingservers\.com/forum/\d+-[^'\"]*?)/page/\d+/['\"]""",
+    r"""(https://[a-z0-9.-]+/(?:index\.php\?/)?forum/\d+-[^'\"]*?)/page/\d+/['\"]""",
     re.I | re.S,
 )
 # A forum section link, as opposed to its .xml feed or a /page/N/ variant of it.
@@ -465,7 +467,9 @@ def page_title(page: str) -> str:
     if not match:
         return ""
     title = html_mod.unescape(match.group(1)).strip()
-    return re.sub(r"\s*-\s*[^-]+\s*-\s*Homecoming$", "", title).strip()
+    # "<thread> - <section> - <site>": the site is Homecoming on the live board and the
+    # software's own name on the archived one.
+    return re.sub(r"\s*-\s*[^-]+\s*-\s*(Homecoming|Invision Community)$", "", title).strip()
 
 
 def last_page_number(page: str) -> int:
@@ -528,13 +532,20 @@ class Fetcher:
     the load on the site is ``delay``.
     """
 
-    def __init__(self, user_agent: str, delay: float) -> None:
+    def __init__(self, user_agent: str, delay: float, base: str = BASE) -> None:
         self.user_agent = user_agent
         self.delay = delay
+        self.base = base
         self._last = 0.0
         self._pace_lock = threading.Lock()
         self._robots = RobotFileParser()
-        self._robots.parse(self._raw(f"{BASE}/robots.txt")[0].decode("utf-8", "replace").splitlines())
+        try:
+            rules = self._raw(f"{base}/robots.txt")[0].decode("utf-8", "replace").splitlines()
+        except urllib.error.URLError, TimeoutError:
+            # No robots.txt (the forum archive serves none): nothing is disallowed, the same
+            # reading every crawler gives a missing file.
+            rules = []
+        self._robots.parse(rules)
 
     def _pace(self) -> None:
         """Block until this thread is allowed to start the next request."""

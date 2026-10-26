@@ -1,0 +1,2603 @@
+{
+  "title": "Patch Notes for October 1st, 2019",
+  "url": "https://forums.homecomingservers.com/topic/11008-patch-notes-for-october-1st-2019/",
+  "published": "2019-10-01T23:17:01Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Damage cap lowered to 5.0"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Damage cap lowered to 7.0"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tanker Max End has been removed."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered Tanker's -Res and +Buff Damage modifiers."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug introduced last patch where Melt Armor for Tankers and Brutes was doing more -res than intended."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug introduced in a previous patch where Kinetic Attack had the T1 and T2 inverted, something that generated invalid characters."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery > Ranged Shot Fixed a bug where would not animate in the character customization screen."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Electric Blast > Corrected an FXGEO feedback error with this power's FX."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Beta Decay",
+      "text": "Text should no longer state it taunts enemies."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Electron Shackles",
+      "text": "Should no longer accept Endurance Modification enhancements or sets."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Psoinic Manipulation",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Dark Control",
+      "power": "Umbra Beast",
+      "text": "Should now accept Fear Enhancement and Sets."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Devices",
+      "power": "Targeting Drone",
+      "text": "The power description for Targeting Drone has been fixed."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Fire Control",
+      "power": "Fire Imps",
+      "text": "Should now always summon 3 imps."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Psionic Assault",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Savage Assault",
+      "power": "Call hawk & Feral Charge",
+      "text": "Should no longer accept Dominator Archetype Enhancement sets."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force of Will's Takeoff effect can now be canceled."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force of Will's Weaken Resolve: Fixed typos. Now accepts Accurate ToHit Debuff enhancements."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravity Control > Singularity should now apply and take advantage of the Impact mechanic."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Melee > Frozen Fists (Brute/Stalker/Scrapper) Power Description should no longer say it adds -res."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Incarnate",
+      "power": "Hybrid",
+      "text": "Should no longer fail to shut down after zoning."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Martial Arts",
+      "power": "Crippling Axe Kick",
+      "text": "now accepts defense debuff enhancements and sets."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Weaken and Cold Domination -Special powers should no longer be boosted by +Special powers like Power Boost. As a rule, Str effects should not be affected by other Str effects."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Concealment",
+      "power": "Stealth and Invisibility",
+      "text": "translucency issues should now, FINALLY be fixed."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Leaping",
+      "power": "Spring Attack",
+      "text": "should now do damage when used by Sentinels"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proton Volley's Fast-Snipe sphere FX should now tint properly."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Radiation Armor",
+      "power": "Beta Decay",
+      "text": "Taunt magnitude should now always be Mag 4"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Melee > Contamination AoE should now reliably trigger when hitting a contaminated target."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Bio Armor",
+      "power": "Athletic Regulation",
+      "text": "Should no longer accept travel enhancement sets."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Energy Aura",
+      "power": "Power Armor",
+      "text": "Should now accept Healing Enhancement Sets"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Fire Blast",
+      "power": "Blazing Blast",
+      "text": "Should now do 13 ticks of damage over time."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Ethereal Shift should shut down automatically as other Phase Shift powers."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "Boosts",
+      "powerset": "Performance Shifter",
+      "power": "Chance for +Endurance",
+      "text": "Should now have a chance to grant the caster Endurance if used on an offensive attack."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Summoned Spiders should no longer play a teleport fx every 10 seconds."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AE Critter Powers"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Sonic Resonance",
+      "power": "Liquefy",
+      "text": "This power had a range of zero. It has been changed to 60ft."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Pain Domination",
+      "power": "Soothing Aura",
+      "text": "This power is now an Auto, as most AE versions of Toggle powers."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Fields > Personal Force Fields now lasts 30 seconds instead of 0.75 seconds."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Assault Rifle",
+      "power": "Ignite",
+      "text": "Should now properly do damage."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed PvP damage for Archery and other Snipes that were reported to be doing too little damage in slow form."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster > Immobilizing Dart > Should no longer have a Hold in PvP."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Hurricane should now apply it's -Range to everyone."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > O2 Boost should now provide stun resistance instead of protection in PvP"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Gale (controllers) should no longer list double mag knockbacks in pvp."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Damage Procs like Hybrid Double Hit, Plant Manipulation's Toxins and Bio Armor's Offensive Adaptation should now use PvP damage formula in PvP instead of the PvE damage formula."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller versionof Storm Summoning > O2 Boost no longer grants Stun or Sleep protection in PvP, it should now grant Stun and Sleep resistance."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "PvP:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PvP damage for many epic pool powers have been fixed to obey the PvP damage formula (Will attempt to compile a full list but pay attention to any potentially erroneous changes.)"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debilitative Action: Disorient Bonus"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devastation: Chance for Hold"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Manipulator: Chance to Stun"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioners Contract: Disorient Bonus"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravitational Anchor: Chance for Hold"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lockdown: Chance for +2 Mag Hold"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pounding Slugfest: Disorient Bonus"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Razzle Dazzle: Chance for Immobilize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Mez Duration and Suppression rules have been enforced for the following enhancements:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unspeakable Terror: Disorient Bonus"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Bash"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Pulverize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Electron Shackles"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Positron Cell"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Darkness Manipulation > Midnight Grasp"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Electricity Manipulation > Electric Fence"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ice Manipulation > Frozen Aura"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Mental Manipulation > World of Confusion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Blinding Powder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Immobilizing Dart"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Shift"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Stop"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Wall"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Energy Melee > Bone Smasher"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Impale"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Lunge"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Quills"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Ripper"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Darkness Affinity > Howling Twilight"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Radiation Emission > EM Pulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Earth Control > Salt Crystals"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Ranged > Assault Rifle > Beanbag"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Earth Assault > Mud Pots"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Energy Assault > Whirling Hands"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Chain Fences"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Electric Fence"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Tesla Cage"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Confuse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Mass Confusion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Plant Control > Seeds of Confusion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Dark Miasma > Fearsome Stare"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Storm Summoning > Thunder Clap"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Pets > Jounin > Blinding Powder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Smite"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Dark Melee > Midnight Grasp"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Impale"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Lunge"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Quills"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Ripper"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Energy Melee > Barrage"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Greater Psi Blade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Psi Blade Sweep"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Impale"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Lunge"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Quills"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Ripper"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Smite"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Inky Aspect"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Boxing"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Cross Punch"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Intimidate"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Invoke Panic"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Speed > Flurry"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Arctic Mastery > Chilblain"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Blaze Mastery > Ring of Fire"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Charge Mastery > ESD"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Chill Mastery > Flash Freeze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Cold Mastery > Flash Freeze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Netherworld Grasp"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Soul Transfer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Salt Crystals"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Stone Prison"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > EM Pulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > Shocking Bolt"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electricity Mastery > Electric Fence"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Flame Mastery > Char"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Mace Mastery > Pulverize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Cryo Freeze Ray"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Sleep Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > Dominate"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > World of Confusion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > Telekinesis"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > World of Confusion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Pyre Mastery > Ring of Fire"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Fissure"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Seismic Smash"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Weapon Mastery > Web Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Fiendish Glare"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Seduction"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Duplicity"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Hand Clap"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Minor Mutation"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Nectar"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Power of Scirocco"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Atomic Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Cosmic Burst"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Psionic Activator"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Vanguard Psi-Bomb"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "And the following player pet powers:"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Bone Smasher"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Energy Punch"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Sergeant > Force Brawl"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Resistance_Rifle > Power Punch"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Tech Lab > Explosion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 2 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 2 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 3 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Coral Guardian Warder > Fossilize"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fly Trap > Entangle"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Psychic Wail"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Scramble Thoughts"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Adept > EM Pulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Guardian > EM Pulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Striker > EM Pulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Shade > Scare"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "And the following powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Archery > Explosive Arrow"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Psychic Blast > Psionic Tornado"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Electricity Manipulation > Thunder Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Golden Dragonfly"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Katana > Golden Dragonfly"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Stone Melee > Fault"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Electric Control > Jolting Chain"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Gravity Control > Wormhole"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Flare"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Smite"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Offensive > Luminous Blast > Solar Flare"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Dual Blades > Typhoon's Edge"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Staker Melee > Spines > Ripper"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Smite"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Offensive > Umbral Blast > Dark Nova Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Offensive > Umbral Blast > Dark Nova Detonation"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Field Mastery > Power Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Leviathan Mastery > Arctic Breath"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Primal Forces Mastery > Power Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > Psionic Tornado"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Leaping > Jump Kick"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Advanced Assault Rifle Slug"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Arachnos Shotgun Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Electron Haze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Energy Smash"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Focused Burst"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Gabriel's Hammer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Holy Shotgun Shells"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Laser Beam Eyes"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Nictus Gravitic Emanation"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Plasmatic Taser"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > PPD Grenade Launcher"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Rikti Rifle"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Sawed-off Shotgun"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Haze"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Smash"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Strike"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shotgun Launched Frag Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > St > Louis Slammer"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Synaptic Whirlwind"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Arachnobot Blaster > Energy Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Bomb > Time Bomb"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > High Explosives > High Explosives"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > High Explosives Tech > High Explosives"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > LightningStorm_NPC > Lightning"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Energy Barrage"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Grenade"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Plasma Blast"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mine > Trip Mine"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Phantasm > Energy Torrent"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Phantasm > Power Bolt"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Singularity > Lift"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Stone > Hurl Boulder"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Tech Lab > Explosion"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following powers were ignoring pvp knockback suppression. This has been fixed.:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Thug Minion > Dual Wield"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avalanche: Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Combat: Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Overwhelming Force: Damage/Chance for Knockdown/Knockback to Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stupefy: Chance for Knockback"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Combat: Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ragnarok: Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stupefy: Chance for Knockback"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Might of the Empire: Damage/Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Avalanche: Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "The following enhancement procs were ignoring PvP knockback suppression, that has been fixed:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ragnarok: Chance for Knockdown"
+    }
+  ]
+}

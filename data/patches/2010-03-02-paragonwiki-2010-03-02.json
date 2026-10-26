@@ -1,0 +1,427 @@
+{
+  "title": "Patch Notes/2010-03-02",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-03-02",
+  "published": "2010-03-02",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 03.02.2010 Version 1600.20100114.8T"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 New Power Set: Dual Pistols"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2.1 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2.2 Power Customization"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2.3 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2.4 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2.5 Stores"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.1 Peacebringers/Warshades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.2 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1.1 Arachnos Soldiers"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pistols"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Wield"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empty Clips"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swap Ammo"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bullet Rain"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Suppressive Fire"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioner's Shot"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Piercing Rounds"
+    },
+    {
+      "category": "New Power Set: Dual Pistols",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hail of Bullets"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters: Rewards for Mastermind Boss Pets used as custom critters have been reduced."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused some Hold powers to trigger Disorient animations on the target, allowing the target to walk around while held. Fix includes Char, Cinder, Block of Ice, Strangler, Fossilize, and Freezing Touch"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed animation used by Nemesis Staff and Blackwand in Shield Combat mode"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed minor sound issue with jumping while using the Ninja Run power."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Walk where Increase Slow IO set bonuses were affecting walking speed"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invulnerability (all ATs) - Invincibility: restored some missing/incorrect FX"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Fortune: The buffs granted by this power should no longer allow stacking under any circumstances."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that caused windup animations (like Snipe powers) to loop while flying."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed animation issue with resting while in Shield Combat mode while Ninja Run is active"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue that caused some falling animations to loop when in Shield Combat mode"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed jittering flight/hover animations with Shield mode"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Natural Super Booster pack costume change emotes should now play if in a weapon combat mode."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Redcaps should no longer spontaneously play their spawn animations when hit with powers such as Chain Induction."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Walk and Ninja Run animations now properly interruptable by sliding animations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coralax Minion Costume should now be compatible with Ninja Run."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invulnerability sets - updated FX for Invincibility"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Color Palette was not defined for Martial Arts - Eagle's Claw"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Custom Animations for Super Strength and Martial Arts that would prevent them from playing while in Shield Combat mode."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause Numina's Convalescence: +Regen/+Recovery to have its effects boosted by being slotted in a power with enhancements that would increase regeneration or recovery rates."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix for Early Bird badge status getting lost from some players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vanguard Katana can now be purchased for use with the Dual Blades and Broadsword power sets."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vanguard Broadsword can now be purchased for use with the Dual Blades power set."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vanguard Dual Blades can now be purchased for use with the Broadsword power set."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Peacebringers/Warshades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animated body parts on Kheldian Novas should no longer disappear when using SuppressCloseFX"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manticore Task Force: Fixed a bug that sometimes caused level 40 Paragon Protector Elites to spawn, even though the TF caps at level 35."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some minor animation issues with Crab Spider backpacks/arms when walking or swimming."
+    }
+  ]
+}

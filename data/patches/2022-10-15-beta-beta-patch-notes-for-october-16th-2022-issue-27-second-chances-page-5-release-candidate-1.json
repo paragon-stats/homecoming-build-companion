@@ -1,0 +1,3731 @@
+{
+  "title": "[BETA] Patch Notes for October 16th, 2022 - Issue 27: Second Chances, Page 5 (Release Candidate 1)",
+  "url": "https://forums.homecomingservers.com/topic/38371-beta-patch-notes-for-october-16th-2022-issue-27-second-chances-page-5-release-candidate-1/",
+  "published": "2022-10-15T22:29:00Z",
+  "issue": "issue-27",
+  "page": "page-5",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "RELEASE CANDIDATE 1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most changes from the previous beta build are listed in green."
+    },
+    {
+      "category": "RELEASE CANDIDATE 1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Green text will become white text in the next set of patch notes."
+    },
+    {
+      "category": "RELEASE CANDIDATE 1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any changes or fixes that are only relevant to the beta builds (ie: fixes / tweaks to new features) are listed in blue."
+    },
+    {
+      "category": "RELEASE CANDIDATE 1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blue text will be deleted in the next set of patch notes as it is only relevant to highlight changes between beta builds, not a changes from live."
+    },
+    {
+      "category": "RELEASE CANDIDATE 1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Known issues are listed in purple"
+    },
+    {
+      "category": "Sentinels",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Icons for Opportunity and Vulnerability."
+    },
+    {
+      "category": "Sentinels",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Sentinel's AT description."
+    },
+    {
+      "category": "Masterminds",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed root time for Pulse Rifle Blast/Burst."
+    },
+    {
+      "category": "Masterminds",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updates to numerous descriptions."
+    },
+    {
+      "category": "Masterminds",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Serum's endurance cost to match other Tier 7s"
+    },
+    {
+      "category": "Battle Axe",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updates to numerous descriptions."
+    },
+    {
+      "category": "Battle Axe",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Brute's Cleave. Now ignores Range buffs."
+    },
+    {
+      "category": "Force Fields",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updates to numerous descriptions."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Irradiated Ground now does proper damage (was using old Tanker scalar)."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Sword Circle no longer claims to do -defense and no longer accepts defense debuff sets (this is a Beta fix only, does not affect Live)"
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalagmites and Gleam now do correct endurance cost."
+    },
+    {
+      "category": "Holstered Weapon System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Female Retro SciFi rifles using the wrong child draw FX."
+    },
+    {
+      "category": "Holstered Weapon System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the back placement of the Retro Rifle on Male/Huge body types."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Tin Mage's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All of the defeat objectives in Mission 2 must now be cleared in order for the mission to complete."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Archetype Revamp"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Proliferation: Seismic Blast & Stone Armor"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Proliferation: Illusion Control"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PvP in Supergroup Bases"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powerset Revamps:"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds: Mercenaries, Necromancy, Ninjas, and Robotics."
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Melee: Battle Axe and Fiery Melee"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Armor: Fiery Aura"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Support: Force Fields"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quality of Life Changes:"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level Availability Changes"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stealth Toggle Exclusivity Removal"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Holstered Weapon System (Arachnos, Assault, Munition, Mercenary Mastermind Rifles)"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wave 2 Aether Prestige Rewards:"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 1 - Standard Costume Selection Expanded"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 2 - Legacy Costumes Enabled + Selection Expanded"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 3 - Premium Costumes Enabled + 'Effect' Reward Additions"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 4 - Deluxe Costumes Added"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pet Functionality added to Aether accolade macro"
+    },
+    {
+      "category": "Various Additions & Enhancements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Mini Signature vanity pet additions"
+    },
+    {
+      "category": "Various Additions & Enhancements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "...and much more!"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Attributes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranged and Melee Damage Modifiers increased from 0.95 to 1.10 (15.8% base damage increase to all attacks)."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Attributes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed PvP Ranged Damage Modifier (50% stronger). Adjusted any damage scales that were set 50% too high to compensate."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Attributes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base Perception increased from 500' to 550' (10% base perception increase, all other ATs are 500')."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Attributes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Max Perception increased from 1153' to 1268.3' (10% max perception increase, matches Soldiers of Arachnos)."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinels have an inherent resistance to Perception and ToHit debuffs (10%)."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Opportunity builds automatically at a rate of 100% per minute."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinels now have an inherent power called Vulnerability:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vulnerability consumes 50% of your Opportunity to debuff a single target for 15 seconds."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vulnerability is Auto-Hit and ignores level differences."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vulnerability debuffs the following:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage Resistance"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defense"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Resistance"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stealth"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resistance to Endurance, Endurance Discount, Recovery, Regeneration, ToHit, and Recharge"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed old Opportunity Debuff Effects/Modes from T1/T2 powers."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed old Inherent Proc."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Changes to Sentinel Inherent:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed old Offensive/Defensive Opportunity Modes."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Other changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Consistency pass completed on powers not following Sentinel design rules."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Other changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Opportunity Strikes proc now ignores combat mods (purple patch)."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Other changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To normalize the changes made to the Sentinel inherent, Opportunity Strikes proc now grants 7.5 opportunity for Regular and 10.0 opportunity for Superior."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Other changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New primary for Sentinels. This version does not have the Tombstone power. Instead it is replaced with Gravestone."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Encase Ranged, DMG(Smash), Foe -Jump, -Fly, -DEF"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Encase a foe in stone for a short moment, dealing damage and lowering their defense. They will also become heavy, limiting their ability to jump and fly for a short time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Encase grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shatter Ranged, DMG(Smash), Foe -Jump, -Fly, -DEF"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cover a foe in stone shards and shatter them, inflicting light damage and lowering their defense. They will also become heavy, limiting their ability to jump and fly for a short time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shatter grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rock Shards Ranged Cone, DMG(Lethal), -Defense, Special"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You launch a volley of stone shards at your target in a sweeping cone. These shards stab into the target, causing lethal damage. They will also continue to suffer additional lethal damage over time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If affected by Seismic Shockwaves, this power will halt the shockwaves, the up front damage will be increased and damage over time accelerated, foes will be knocked down, range will be increased to 60ft and arc to 40 degrees."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rock Shards grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entomb Ranged, DMG(Smash), Foe -Jump, -Fly, -DEF"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entomb foes in a big boulder, dealing high damage and lowering their defense. They will also become heavy, limiting their ability to jump and fly for a short time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entomb grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Seismic Force Self +To Hit, +DMG, +Range, +Special"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greatly increases the chance to hit of your attacks for a few seconds. Slightly increases damage and range."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If affected by Seismic Shockwaves, this power will halt the shockwaves and will decrease the cooldown of all recharging Seismic Blast attacks by a moderate amount."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Upthrust Targeted AoE, DMG(Smashing), -Fly, -Defense, Chance to Knockdown"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You channel seismic energy into the earth, causing a micro-fault to erupt under your target. This causes a shard of rock to thrust upward out of the ground, dealing smashing damage and lowering their defense. Affected foes will become heavy, limiting their ability to jump and fly for a short time. The force of the eruption can knockback enemies."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Upthrust grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravestone Ranged, DMG(Smash), Foe -Jump, -Fly"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Create a giant pillar of stone, creating a Gravestone around your target dealing extreme damage and limiting their ability to jump and fly for a short time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravestone grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalagmite Ranged, DMG(Smash), Foe Disorient, Special"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can cause a Stalagmite to erupt under an enemy dealing minimal Lethal damage and Disorienting them for a good while. You must be on the ground to activate this power."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If affected by Seismic Shockwaves, this power will halt the shockwaves and deal extreme damage."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalagmite grants two stacks of Seismic Pressure."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Meteor Ranged (Location AoE), DMG(Smashing) Foe Knockback"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You call down a meteor strike from the sky at a specified location. All targets within 30' are caught in the blast radius, taking extreme damage and being knocked back."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: This power uses the knock vector system. You'll notice the foes will be knocked up and back."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New secondary for Sentinels. This version of the set does not get access to Mud Pots. Instead, it has a new power called Terra Firma."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rock Armor Toggle: Self +DEF(Lethal, Smashing), Res(DeBuff DEF)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your skin becomes stone while this power is active. Stone Armor protects you from Smashing and Lethal attacks. They are less likely to land and affect you. Stone Armor also grants you resistance to Defense DeBuffs."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Skin Auto: Self +Res(All but Psionics), +DEF(All but Psionics)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your tough skin is naturally resistant to most types of damage. This power is always on and costs no Endurance."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth's Embrace Self +HP, Res(Toxic)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You are so connected to the Earth, you can draw upon its power to add to your health. Activating this power increases your maximum Hit Points, and grants you resistance to Toxic Damage."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Terra Firma Auto: Self + To Hit, +ACC, +Range, Res(ToHit)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Being on solid ground allows you to more carefully aim your attack for optimal range. This power increases your chance to hit, accuracy, and range of your attacks and makes you more resistant to To-Hit debuffs, but only applies when you are near the ground."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rooted Toggle: Self +Res(Knockback, Sleep, Disorient, Hold, End Drain, DeBuff DEF), +Regeneration"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While this power is active, you merge with the Earth and draw forth its power to become resistant to Knockback, Sleep, Hold, Disorient and Endurance Drain effects, and increase your Hit Point Regeneration rate. Rooted also grants you resistance to Defense DeBuffs."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crystal Armor Toggle: Self +Recovery, +DEF(Energy, Negative), Res(DeBuff DEF)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While this power is active, your skin becomes encrusted in various quartz crystals. Crystal Armor makes Energy and Negative Energy attacks less likely to hit. This power also grants you an Endurance recovery buff and resistance to Defense DeBuffs."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crystal Armor also adds an Elusivity defense bonus to Energy and Negative Energy Attacks in PVP zones."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minerals Toggle: Self +Recharge, +DEF(Psionic), Res(Confuse), +Perception"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Activating this power summons several rare earth rock Minerals to orbit around you. These Minerals can disperse thought patterns and make Psionic attacks less likely to hit. They also bring clarity of the mind increasing the recharge time of your powers, increasing your perception, and making you resistant to Confusion."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brimstone Armor Toggle: Self +Res(Fire, Cold, Toxic), +Special"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While this power is active, your skin becomes encrusted in cracked magma. Brimstone Armor makes you highly resistant to Fire, Cold and Toxic damage, and helps your attacks set enemies on fire, delivering damage over time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Notes on the damage over time from Brimstone Proc:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The DoT damage uses AT modifiers: Ranged_Damage for attacks with base ranges > 20 ft and Melee_Damage otherwise."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The DoT damage is scaled based on the attack's cast time (scales between 0 and 3 seconds). This mostly ensures a constant DPS increase despite the speed of one's attacks."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Geode Toggle: Self +Regeneration, +Recovery, Invulnerable; Self Hold"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When you activate this power, you encase yourself in various protective mineral layers that can absorb incoming damage while you heal and recover endurance at an incredible rate. You can emerge at will by deactivating the power, but you cannot stay in this Geode for more than 30 seconds. If enemies inflict enough damage, they might break you out of this effect."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If Brimstone Armor is owned, this power will also grant Geothermal Power every 2 seconds, increasing the damage inflicted by Brimstone's Fire by 8% per stack."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: The Geothermal Powers should last for 60s and can stack up to 15 times. This gives the Brimstone Proc damage a 2.2x boost at max strength."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New primary for Dominators. This version of the set does not get access to Spectral Wounds nor Group Invisibility. Instead, it has new powers called Spectral Wall and Gleam. Also, Dominator's version of Phantom Army has its pets not taunt, but rather have attacks utilizing mez and soft control effects."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blind Ranged (Targeted AoE), DMG(Psionic), Foe Hold/Sleep"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Painfully Blinds a single targeted foe so severely that they are rendered helpless. Blind is so bright that additional foes may also be blinded, though they will not take any damage, and attacking them will free them from the effects."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spectral Wall Ranged, DoT (Psionic), Foe Immobilize, -ToHit"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Creates an illusionary wall of specters that prevents enemies from moving. As the foe is surrounded, they take psionic damage over time."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deceive Ranged, Foe Confuse"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can Deceive an enemy into believing their friends are not who they appear to be. If successful, the enemy will ignore you and attack their own allies. If you Deceive someone before they have noticed you, your presence will continue to be masked. You will not receive any Experience Points for foes defeated by a Deceived enemy."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spectral Terror Summon Terror: Ranged Fear, -ToHit"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can create an illusion of unspeakable Terror. The manifestation is so horrible that it caused most foes to tremble helplessly in terror. The Spectral Terror may also Terrify individual foes, causing them to run away in panic."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Invisibility Toggle: Self Stealth, +DEF(All)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can bend light around yourself to become completely Invisible. While this power is active, you are all but impossible to detect, and have an extremely high Defense bonus to all attacks. Superior Invisibility is the only toggle invisibility power that allows you to attack while it is active, although you will lose some of your defense bonus if you do so."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gleam Ranged (Targeted AoE), DMG(Psionic), Foe Disorient"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Multiple flashing lights go off around enemies, disorienting and damaging them. Gleam deals minimal Psionic damage, and can Disorient all affected targets for a good while."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phantom Army Summon Decoys: Ranged DMG(Psionic)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can fabricate 3 Phantom heroes around a targeted foe. These Phantoms are not real, and are indestructible. Though they deal damage, it is illusory and will heal if the victim survives long enough. Phantoms are short lived and cannot be buffed or healed."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flash PBAoE, Foe Hold"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Generates a brilliant flash of light around you that blinds nearby foes. Flashed foes are rendered helpless and unable to defend themselves."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phantasm Summon Phantasm: Ranged, DMG(Smash/Energy/Psionic)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can construct a powerful entity composed of pure light. Although made of light, the Phantasm is tangible and has powerful Energy attacks. The Phantasm can also fly and summon duplicates of itself. The duplicates are intangible, and cannot be harmed. The duplicates' attacks deal illusory damage similar to that dealt by Spectral Wounds. Only the original Phantasm can be healed and buffed. Type ''/release_pets'' in the chat window to release all your pets."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "( Big thanks to @CR Americas Angel for the guide / write-up! )",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PvP raid functionality has been added to supergroup bases."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "( Big thanks to @CR Americas Angel for the guide / write-up! )",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is not the same legacy base raiding that existed briefly back in Issue 6, but rather the ability to initiate PvP activities within supergroup bases."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "( Big thanks to @CR Americas Angel for the guide / write-up! )",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Below is a how-to guide for setting it up:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "First pick the type of raid:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team Deathmatch = Win points by defeating players."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Capture The Flag = Not active on Beta yet."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Control Points = Not active on Beta yet."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Then pick the settings:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Free-For-All (FFA) = FFA, but you can team up with other players and they will con friendly. (Functions the same way the Warburg PVP zone works.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you've done that, you can select from the following options:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders vs. Attackers = Supergroup members (and people they are teamed with) vs everyone else."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you click \"Begin Raid\" a 30s countdown will begin:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can start hitting people from the 10 min mark."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you click \"Begin Raid\" a 30s countdown will begin:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The timer box thing will also have a dynamic scorecard that updates as you play."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Once you click \"Begin Raid\" a 30s countdown will begin:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The number of kills each player has scored is on the left hand side, and the highest possible score on the right hand side. (Set by whoever is currently leading the kill-count.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Two new revive rings have been added to the base editor under Arcane Medical and Tech Medical settings:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They allow you to set respawn points:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Revive Rings (Raid) = Attackers in Attackers vs Defenders"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Revive Rings (Regular) = Defenders in Attackers vs. Defenders or Everyone in regular Free-For-All"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If no revive rings are placed, players will respawn at the base portal."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heroes and villains can now team in bases."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When PvP is active in a base, the following commands are disabled:"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/stuck"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/enterbasefrompasscode"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/editbase"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/arenalist, using the LFG queue, and using the \"teleport to contact\" feature have not been disabled. (As these all still work in Arena/PvP zones just fine.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NPCs that sell inspirations should be disabled. (As in, you cannot have the store open during a raid.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All storage (enhancement bins, salvage bins, etc) except the Vault has been disabled. (As they allow players to force a mapserver in high item bases.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Dimensional Shard and Base Portal have been tweaked a little to stop them from interfering with revive rings. I'd advise base builders to check that these items aren't misbehaving. (They seemed to work fine from all my testing.)"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Items that can be destroyed (turrets, etc) respawn when the base resets. A \"base reset\" is when the base has been empty for 15 minutes and the zone unloads."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vandalism to bases is not possible."
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "Building for PvP in Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Placed NPCs can be hit, but they are indestructible. This is working as intended."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burst, Slug, and M30 Grenade",
+      "power": "",
+      "text": "Each of these attacks applies a Focused Fire tag on the target for 30s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burst, Slug, and M30 Grenade",
+      "power": "",
+      "text": "Each power's tag will increase Mercenary ranged damage by 3.33%, up to a maximum of 10%."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Equip Mercenary",
+      "power": "",
+      "text": "Henchmen passive resistances have been moved to this upgrade."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Equip Mercenary",
+      "power": "",
+      "text": "Equip Mercenary now accepts Resistance sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Equip Mercenary",
+      "power": "",
+      "text": "By slotting this power with resistance enhancements, players will be able to improve the henchmen's passive resistances."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Tactical Upgrade",
+      "power": "",
+      "text": "This power now grants henchmen passive Ranged and AoE defenses."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Tactical Upgrade",
+      "power": "",
+      "text": "Now accepts Defense sets and enhancements, will boost henchmen defenses."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Tactical Upgrade",
+      "power": "",
+      "text": "By slotting this power with defense enhancements, players will be able to improve the henchmen's passive defenses."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Serum",
+      "power": "",
+      "text": "Power can now only be activated when targeting a mercenary, can no longer be accidentally wasted by targeting a different pet like Dark Servant"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Serum",
+      "power": "",
+      "text": "Power now buffs all henchmen (animation only plays on main target)."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Serum",
+      "power": "",
+      "text": "Recharge reduced from 1000 seconds to 250 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Serum",
+      "power": "",
+      "text": "Power no longer has a crash."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Serum",
+      "power": "",
+      "text": "The power now grants strong defensive and offensive buffs that slowly decay over a one minute window."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Their entire power repertoire revamped."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Powers have been added, adjusted, and replaced."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Blast, Gloom, Life Drain",
+      "power": "",
+      "text": "These powers now have a 70% chance to summon a Spectral Minion to your side!"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Blast, Gloom, Life Drain",
+      "power": "",
+      "text": "These Specters are temporary, lasting a maximum of 90 seconds as their health fades away by the second."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Blast, Gloom, Life Drain",
+      "power": "",
+      "text": "These Specters cannot be healed or regenerate, but have decent resistance to all damage and defense against AoE attacks."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Blast, Gloom, Life Drain",
+      "power": "",
+      "text": "These Specters cannot be commanded or upgraded, but slotting your personal attacks will improve their attack stats."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Blast, Gloom, Life Drain",
+      "power": "",
+      "text": "Each attack can only summon one Specter, for a maximum of 3 if all attacks are used."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen (general)",
+      "power": "",
+      "text": "Powers have been adjusted for area and duration."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Zombie Horde",
+      "power": "",
+      "text": "Can no longer be slotted with heal enhancements or sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Grave Knights",
+      "power": "",
+      "text": "Can no longer be slotted with heal enhancements or sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Lich",
+      "power": "",
+      "text": "Can no longer be slotted with heal enhancements or sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Lich",
+      "power": "",
+      "text": "Henchmen passive resistances have been moved to this upgrade."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Lich",
+      "power": "",
+      "text": "Enhant Undead now accepts Resistance sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Lich",
+      "power": "",
+      "text": "Lich's Petrifying Gaze has been moved to this upgrade, no longer grants Life Drain to the Lich."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Lich",
+      "power": "",
+      "text": "Resistances now grant mag 1 Hold and Immobilize protection, as well as 50% resistance to Stun/Hold/Immobilize."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Empowerment",
+      "power": "",
+      "text": "Now accepts Healing sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Empowerment",
+      "power": "",
+      "text": "Lich's Life Drain have been moved to this upgrade, no longer grants Petrifying Gaze to the Lich."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Empowerment",
+      "power": "",
+      "text": "Slotting this power with heal enhancements will enhance Life Drain's heal."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Empowerment",
+      "power": "",
+      "text": "Dark Empowerment range increased from 30' to 50'."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Empowerment",
+      "power": "",
+      "text": "Grants a 15% max HP (half enhanceable) to all henchmen."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Soul Extraction",
+      "power": "",
+      "text": "Recharge lowered form 600s to 300s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Soul Extraction",
+      "power": "",
+      "text": "Only works on active Henchmen, not Specters."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Soul Extraction",
+      "power": "",
+      "text": "Will extract the soul from each Henchman for 60s before the Souls vanish."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Soul Extraction",
+      "power": "",
+      "text": "The extracted souls are still linked to their bodily hosts, if the host of a soul is defeated, the soul will also be defeated."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Extracted Souls",
+      "power": "",
+      "text": "Phase Shift's heal has been increased to a 12s duration from 6s. Scale lowered to 0.5 per tick from 1.0."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Extracted Souls",
+      "power": "",
+      "text": "Now have 13% positional defenses, not enhanceable."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Snap Shot, Aimed Shot, and Fistful of Arrows",
+      "power": "",
+      "text": "Each of these attacks now grants a 3% chance for henchmen to crit for 30s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Snap Shot, Aimed Shot, and Fistful of Arrows",
+      "power": "",
+      "text": "The chance does not stack from the same power but each power can stack together, for up to +9% chance if all powers are used."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Smoke Flash",
+      "power": "",
+      "text": "Recharge increased to 90s from 20s"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Smoke Flash",
+      "power": "",
+      "text": "Duration lowered from 10s to 3s"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Smoke Flash",
+      "power": "",
+      "text": "No longer requires a target"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Smoke Flash",
+      "power": "",
+      "text": "Now hides all Ninja Henchmen, providing 100% chance to crit to the squad for 3s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Kuji-In Zen (now Kuji-In Sha)",
+      "power": "",
+      "text": "This power now grants Kuji-In Sha (self heal) to all ninjas."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Kuji-In Zen (now Kuji-In Sha)",
+      "power": "",
+      "text": "This power can be slotted with heal sets and enhancements, those will enhance your ninja's passives."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Kuji-In Zen (now Kuji-In Sha)",
+      "power": "",
+      "text": "This power increases ninjas chance to crit by an additional 3% at all times."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Train Ninjas",
+      "power": "",
+      "text": "This power now grants +defense passives to ninjas."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Train Ninjas",
+      "power": "",
+      "text": "This power can now be slotted with defense sets and enhancements, those will enhance your ninja's passives."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Train Ninjas",
+      "power": "",
+      "text": "This power increases ninja's chance to crit by an additional 3% at all times."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "All ninjas now have a chance to crit at all times"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "This chance starts at 0% but can be increased via upgrades and personal attacks"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Maximum crit chance outside of smoke flash is 15%"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Pulse Rifle Blast, Pulse Rifle Burst, and Photon Grenade",
+      "power": "",
+      "text": "These powers all now apply a -200% regeneration debuff"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Pulse Rifle Blast, Pulse Rifle Burst, and Photon Grenade",
+      "power": "",
+      "text": "Pulse Rifle Blast cast time lowered from 1.87s to 1s"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Pulse Rifle Blast, Pulse Rifle Burst, and Photon Grenade",
+      "power": "",
+      "text": "Pulse Rifle Burst cast time lowered from 1.87s to 1.1s"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repair (now Maintenance Drone)",
+      "power": "",
+      "text": "Power has been replaced by Maintenance Drone."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repair (now Maintenance Drone)",
+      "power": "",
+      "text": "Maintenance Drone will use its own health to heal your other robots. It can't be healed and does not regenerate HP."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repair (now Maintenance Drone)",
+      "power": "",
+      "text": "Once it depletes its health, it will self destruct dealing minor damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repair (now Maintenance Drone)",
+      "power": "",
+      "text": "This power no longer accepts Endurance Modification enhancements or sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Equip Robot",
+      "power": "",
+      "text": "Now grants passive resistances to henchmen."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Equip Robot",
+      "power": "",
+      "text": "Can be enhanced by slotting the power with resistance sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Upgrade Robot",
+      "power": "",
+      "text": "Now grants Repair to Protector Bots"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Upgrade Robot",
+      "power": "",
+      "text": "Can be enhanced by slotting the power with Healing sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Cast Times trimmed across the board (including personal attacks)"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Assault Bot no longer applies -regen, this effect is now applied by the Mastermind personal attacks."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Henchmen have had their list of powers revamped, adding a few new powers to improve overall damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Protector Bots summon power no longer accept heal enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Henchmen",
+      "power": "",
+      "text": "Henchmen no longer have resistances out of the box, Equip Robot is needed to get them."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Power Order",
+      "power": "",
+      "text": "Brutes/Scrappers: Beheader, Chop, Gash, Build Up, Pendulum, Taunt/Confront, Swoop, Axe Cyclone, Cleave."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Power Order",
+      "power": "",
+      "text": "Tankers: Beheader, Chop, Gash, Taunt, Build Up, Pendulum, Swoop, Axe Cyclone, Cleave."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Beheader",
+      "power": "",
+      "text": "Now have a chance to apply a defense debuff, chance is tied to the chance to knockdown."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Beheader",
+      "power": "",
+      "text": "Cast Time lowered from 1.33 seconds to 1.0 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Chop",
+      "power": "",
+      "text": "Now have a chance to apply a defense debuff, chance is tied to the chance to knockdown."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Chop",
+      "power": "",
+      "text": "Cast Time lowered from 1.33 seconds to 1.2 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Gash",
+      "power": "",
+      "text": "Cast Time lowered from 1.5 seconds to 1.27 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Gash",
+      "power": "Swoop",
+      "text": "Cast Time lowered from 1.83 seconds to 1.23 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "Renamed Axe Cyclone."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "New visual FX."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "Now has a tractor effect that pulls enemies into melee range."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "Cooldown increased to 18 seconds. (Damage remains unchanged)"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "Radius is 15ft for all ATs."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "",
+      "text": "Cast Time lowered from 2.67 seconds to 1.76 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Whirling Axe (now Axe Cyclone)",
+      "power": "Pendulum",
+      "text": "Changed from a cone to a targeted AoE sphere attack with a 7ft radius."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Cleave",
+      "power": "",
+      "text": "Changed from a cone to a targeted AoE sphere attack with a 3ft radius."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Cleave",
+      "power": "",
+      "text": "Range increased to 40ft (not enhanceable)."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "This power should no longer summon multiple burn patches."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "This power should now hit 5 enemies instead of 4."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Procs should no longer trigger multiple times per target when using this power."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Burn Flames should now inherit the power Accuracy enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Burn Flames now inherit AT classes, caps, and modifiers."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Upfront damage now match all other versions."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "",
+      "text": "Cast Time lowered from 3 seconds to 2.4 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now does pure fire damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now grants a small defense debuff."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now accepts accurate defense debuff and defense debuff enhancements and sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "",
+      "text": "Cast Time lowered from 3 seconds to 2.4 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Cremate",
+      "text": "Now can knockdown foes."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Cremate",
+      "text": "Now can be slotted with knockback enhancements and sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now does pure fire damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now grants a small defense debuff."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword",
+      "text": "Now accepts accurate defense debuff and defense debuff enhancements and sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Greater Fire Sword",
+      "text": "Cast Time lowered from 2.33 seconds to 1.37 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Greater Fire Sword",
+      "text": "Now does pure fire damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Greater Fire Sword",
+      "text": "Now grants a small defense debuff."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Greater Fire Sword",
+      "text": "Now accepts accurate defense debuff and defense debuff enhancements and sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword Circle",
+      "text": "Now does pure fire damage."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword Circle",
+      "text": "Now grants a small defense debuff."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Combustion",
+      "power": "Fire Sword Circle",
+      "text": "Now accepts accurate defense debuff and defense debuff enhancements and sets."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "Renamed Phoenix Rising."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "This power can now be used when alive."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "The effects of this power (damage, healing, endurance) will be stronger the closer the user is to death."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "The player power can't be used if the player has more than 75% health."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "The power will only make the player invulnerable and grant XP protection if the power is used after death."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Rise of the Phoenix (now Phoenix Rising)",
+      "power": "",
+      "text": "Damage increased when used while dead, relative to Live."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "This power should no longer summon multiple burn patches."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "This power should now hit 5 enemies instead of 4."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Procs should no longer trigger multiple times per target when using this power."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Burn Flames should now inherit the power Accuracy enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "Burn Flames now inherit AT classes, caps, and modifiers."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "",
+      "text": "While under the effect of Fiery Embrace, Burn will spawn a second burn patch for 4.5 seconds"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Consume",
+      "power": "",
+      "text": "Power now grants a small Max HP buff even if no targets are available or hit."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Consume",
+      "power": "",
+      "text": "Power no longer needs a target to grant End Drain protection. (+End still requires targets)"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Consume",
+      "power": "",
+      "text": "Power is now auto-hit. Damage still requires a to-hit check."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Consume",
+      "power": "",
+      "text": "This power now takes Healing sets and enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Temperature Protection",
+      "power": "",
+      "text": "This power now grants Mag 1 Knock protection in PvE. (This is strong enough to prevent most knockdowns and some weak knockback)."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Temperature Protection",
+      "power": "",
+      "text": "This power now grants unenhanceable +regeneration."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Healing Flames",
+      "power": "",
+      "text": "Cast Time lowered from 1.5 seconds to 0.73 seconds."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bolt (now Repulsion Bolt)",
+      "power": "",
+      "text": "Now applies -20% (Defender Values) Resistance to all damage for 30s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dispersion Bubble",
+      "power": "",
+      "text": "Dispersion buff lasts for 15s, allowing it to apply if you leave its radius or the toggle drops briefly."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Field",
+      "power": "",
+      "text": "Combined with Force Bubble, now includes a 25ft radius Repel aura alongside a 9ft radius Knockback aura."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Field",
+      "power": "",
+      "text": "The larger repel area acts just as Force Bubble does."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Field",
+      "power": "",
+      "text": "No longer drains endurance per target hit in PvE."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Field",
+      "power": "",
+      "text": "If slotted for KB2KD, the repel is also disabled."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Bomb (now Force Bomb)",
+      "power": "",
+      "text": "Activation time lowered to 1.67s from 3.07s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Bomb (now Force Bomb)",
+      "power": "",
+      "text": "Damage lowered to Scale 0.6 from Scale 1."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Bomb (now Force Bomb)",
+      "power": "",
+      "text": "Stun chance lowered to 10% from 40%"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Bomb (now Force Bomb)",
+      "power": "",
+      "text": "Now uses Vectored Knockdown"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Repulsion Bomb (now Force Bomb)",
+      "power": "",
+      "text": "Now applies -15% (Defender Values) Resistance to all damage for 30s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "Now a Click power with 90s rech, and 5.2 Endurance cost."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "Summons a Pseudopet at your location that casts a 55ft radius Dampening Bubble for 45s."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "Applies +Special Resistance to yourself and allies (Defender Values):"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "43.25% res to ToHit, Accuracy, Perception, Slow, Recharge, and Regeneration debuffs"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "21.63% res to Defense Debuffs. This is enhanceable with Defense enhancements."
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "Applies -Special to a max of 16 enemies inside the field:"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "-43.25% ToHit, Slow, Perception, Regeneration"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "-23.63% Defense"
+    },
+    {
+      "category": "Powerset Revamps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Force Bubble (now Damping Bubble)",
+      "power": "",
+      "text": "The Damping Bubble will move to your location if summoned again during it's duration."
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Primary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 8 powers moved from level 26 to level 22"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Primary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 9 powers moved from level 32 to level 26"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Secondary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 2 powers moved from level 2 to level 1 (character creation)"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Secondary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 7 powers moved from level 28 to level 24"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Secondary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 8 powers moved from level 35 to level 28"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Secondary Sets (non-Epic ATs)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 9 powers moved from level 38 to level 30"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Epic Pools",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 3 powers moved from level 41 to level 38"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nova moved from level 6 to level 4"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inner Light and Sunless Mire moved from level 12 to level 10"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incandescent Strike and Gravity Well moved from level 18 to level 16"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Glowing Touch and Gravitic Emanation moved from level 26 to level 20"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Solar Flare and Unchain Essence moved from level 26 to level 22"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Photon Seekers and Dark Extraction moved from level 32 to level 24"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dawn Strike and Quasar moved from level 32 to level 26"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shining Shield and Gravity Shield moved from level 2 to level 1 (character creation)"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quantum Acceleration and Shadow Slip moved from level 24 to level 26"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restore Essence and Stygian Return moved from level 25 to level 30"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Hero Epic ATs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Light Form and Eclipse moved from level 38 to level 32"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Placate and Frenzy moved from level 26 to level 22"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crowd Control and Omega Maneuver moved from level 32 to level 26"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Call Reinforcements moved from level 38 to level 30"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Surveillance and Serum moved from level 28 to level 24"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Web Cocoon and Summon Spiderlings moved from level 35 to level 28"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eviscerate moved from level 26 to level 22"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Placate and Confuse moved from level 28 to level 24"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Scream moved from level 32 to level 24"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Wail moved from level 32 to level 28"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vengeance moved from level 35 to level 28"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "Arachnos Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aura of Confusion and Elude moved from level 38 to level 30"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arctic Fog"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cloak of Darkness"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cloaking Device"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Cloak"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Field Operative"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Infiltration"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mask Presence"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Fall"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shinobi"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shinobi-Iri"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stealth"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Steamy Mist"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Speed"
+    },
+    {
+      "category": "Quality of Life Changes",
+      "subsection": "List of Stealth Toggles",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Invisibility"
+    },
+    {
+      "category": "Various Power Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All/Radiation Melee/Irradiated Ground: This power can now only proc once every 10 seconds. Can now accept ATOs."
+    },
+    {
+      "category": "Various Power Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Call to Arms: No longer grants base defense. Now it grants defense to all types."
+    },
+    {
+      "category": "Various Power Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Edict of the Master: Now grants toxic defense."
+    },
+    {
+      "category": "Various Power Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel/Bio Armor: Updated descriptions of powers to better reflect what they do."
+    },
+    {
+      "category": "Various Power Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel/Shinobi-Iri Updated description"
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller/Symphony Control/Impassioned Serenade: Removed an extra 0.25s delay from its confuse effect."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator/Sonic Assault/Shriek: Can no longer be used while mezzed."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator/Sonic Assault/Scream: Can no longer be used while mezzed."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Control/Stalagmites: Endurance cost fixed. Now costs 15.6 endurance."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enhancement/Coercive Persuasion/Contagious Confusion: Added a 0.5s delay to confuse proc. This should allow some time for confuse effects from the slotted power to apply prior to checking for the spreading confusion proc."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Prestige Utility/Renewal of Light and Return to Battle: These powers now share a Recharge Group and should no longer cause doubly long cooldowns when used."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Procs from Bombardment, Sudden Acceleration, and Power Transfer: No longer boostable."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Munitions Mastery/Freeze Ray: Tintable version FX now always fires from the correct point of the rifle."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind/Traps/Web Grenade: This power should now accept slow enhancements"
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel/Bio Armor/Rebuild DNA: Offensive Adaptation now grants +perception and +res(perception). Efficient Adaptation now grants additional endurance."
+    },
+    {
+      "category": "Power Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers/Nullifier (all versions): Now disabled in PvP Arena"
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters with Arachnos, Assault, Munitions, or Mercenary Mastermind custom rifles now have access to the option to display their character's rifle model on their costume. This is controlled via a toggle button next to the weapon just like Sheathed Custom Weapons."
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The remaining ranged weapon sets will be added to the Holstered Weapon system in a future update."
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "Custom Weapon Adjustments & Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Rifles renamed from \"A\", \"B\", \"C\" to \"Rifle\", \"SMG\", and \"Shotgun\" to better describe what they look like."
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "Custom Weapon Adjustments & Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where Mercenary Mastermind Rifles were missed for the firing point desync fixes."
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "Custom Weapon Adjustments & Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Female Retro SciFi rifles using the wrong child draw FX."
+    },
+    {
+      "category": "Character Customization Improvements",
+      "subsection": "Custom Weapon Adjustments & Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the back placement of the Retro Rifle on Male/Huge body types."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Prestige Costume icons have been simplified and now there are only four, and they correspond to the Tier / Rarity of the costume."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 1 / Common / White"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 2 / Uncommon / Yellow"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 3 / Rare / Orange"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 4 / Very Rare / Purple"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Mode' has been dropped from the names of costumes that change based on the body type of the user and they no longer incur a price increase on the BenevoLabs vendor."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costumes that change based on the user's body type have been noted in BenevoLab vendor's offerings and in the costume power's descriptions."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some specific Prestige Costumes have had sheathed/holstered weapon displays enabled on them for specific body types."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This means your normal costume's body type must match the costume's in order for the weapon to display. The type that inherits is noted in the description."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costumes that are compatible have been noted in the BenevoLab vendor's offerings and in the costume power's descriptions."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The two Vanguard costumes are now considered Tier 1 and match all standard specifics of that tier."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The missing Wave 1 - Tier 1 costumes that changed based on the body type of the user have been enabled and priced at 10 Prismatic Aether Particle salvage each:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Crey Agent'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Olympian Guard'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Paragon Protector'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Praetorian Clockwork'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Vahzilok Eidolon'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Look for these on the vendor if you're interested!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Forty-one new Wave 2 - Tier 1 costumes have been added to the selection on the BenevoLabs costume vendors:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Tier 2 - Legacy Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tier 2 costumes have been enabled on the BenevoLabs vendors, priced at 100 Prismatic Aether Particles each."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Tier 2 - Legacy Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These costumes feature discontinued appearances."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Tier 2 - Legacy Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The initial Wave 1 - Tier 2 costume offerings can be found in the Issue 27, Page 4's patch notes."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Tier 2 - Legacy Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Legacy Circle Mage' has been renamed to 'Costume: Legacy Circle Ruin Mage'."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Tier 2 - Legacy Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Five new Wave 2 - Tier 2 Prestige Costumes have been added to the selection on the BenevoLabs costume vendors:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tier 3 rewards have been enabled on the BenevoLabs vendors, priced at 250 Prismatic Aether Particles each:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This tier features rewards that can change or enhance the looks of your costumes."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 3 rewards are advanced customization offerings that are limited for social and/or game performance reasons."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect powers are their own category of costume enhancement and only one can be active at a time, but they can be used at the same time as a costume power."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The pop-menu accolade 'Disable Costumes' option will also disable these Effect powers."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As of Issue 27, Page 5's release, there are three Tier 3 rewards featured:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Mini Mode' that featured in last Page's notes and makes your costume's model very small."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mini Mode costume cannot be used in PvP."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Effect: Ghost' which makes makes your model transparent and adds a spectral glow."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tint of the glow can be customized and the transparency turned off in the power customization menu."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Effect: Shadow' which darkens your model's lighting and adds glowing eyes."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Some old-school looks for sure!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tint of the eyes be customized or the eyes turned off in the power customization menu."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tier 4 costumes have been added to the BenevoLabs vendors, priced at 1500 Prismatic Aether Particles each:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This tier features costumes that have bizarre looks and are oddities you won't see anywhere else."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As of Page 5's release, the first offered Tier 4 costumes will be 'Costume: Undefined Mode' which was formerly named 'Mode Costume: Blobby' that featured previously. Another will be made available in a few months."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Undefined Mode' automatically also comes with 'Costume: Mini Undefined Mode' for free when purchased!"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The mini version of this costume cannot be used in PvP."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Should be some creative concepts you can realize with this!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This costume's functionality has been upgraded and it now inherits various elements from your normal costume when used, making it possible to create some interesting and unique looks with it!"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Seasonal Prestige Costume Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Seasonal Prestige Costumes are now considered Tier 1 and match all standard specifics of that tier."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Seasonal Prestige Costume Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Two new Halloween Prestige Costume rewards have been added to the various Halloween salvage vendors, priced at 10 Prismatic Aether Particles + 50 of each Halloween salvage type each:"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Seasonal Prestige Costume Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Ancient Vampire'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Seasonal Prestige Costume Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Costume: Arisen Mummy'"
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Prestige Costume Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an error with costumes using PlayerBeast's standard movement animations not using the correct set."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Prestige Costume Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Male Eidolon's costume having an extra boot."
+    },
+    {
+      "category": "Wave 2 Aether Prestige Rewards",
+      "subsection": "Prestige Costume Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing belt on Nemesis Lieutenant costume."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "Costume Additions & Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All > Special Helmets > Arachnos Helmets:"
+    },
+    {
+      "category": "Costumes",
+      "subsection": "Costume Additions & Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tintable variants of all the Arachnos helmets have been added."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "Costume Additions & Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Mystic Helm' renamed to 'Mu Mystic Helm' in the editor."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Badge Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 'Womp Womp' badge for defeating Immature Paragon Protectors has been renamed to 'Ankle Biter'."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Vanity Pets Additions & Updates",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There are three new vanity pets offered by Luna corresponding to the various City of Heroes retail release anniversary months. These pets will be available for purchase each year during these months:"
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Vanity Pets Additions & Updates",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "May, City of Heroes anniversary: 'Pet: Mini Statesman' vanity pet power for 2004 Reward Merits."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Vanity Pets Additions & Updates",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "November, City of Villains anniversary: 'Pet: Mini Lord Recluse' vanity pet power for 2005 Reward Merits."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Vanity Pets Additions & Updates",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "August, Going Rogue anniversary: 'Pet: Mini Tyrant' vanity pet power for 2010 Reward Merits."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "They're so iconic! ...and they can be yours!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Pet: Mini Hero 1' vanity pet power has been added to the Vanguard crafting table offerings under 'Vanity Pets' priced at 10,000 Vanguard Merits."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Hero 1 always looks so cool, even when tiny!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All older vanity pets have been given the improved movement speed that the newer vanity pets received, which should help them keep up with their owners."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Hero 1 always looks so cool, even when tiny!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The naming scheme for vanity pets has been standardized to 'Pet: Name'."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "Hero 1 always looks so cool, even when tiny!",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Like Prestige Costumes, Vanity Pets will also now display on a character's info window so players with large collections can show them off."
+    },
+    {
+      "category": "Proliferated Emotes",
+      "subsection": "New Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added '/em kneel2'."
+    },
+    {
+      "category": "Proliferated Emotes",
+      "subsection": "New Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added '/em kneel3'."
+    },
+    {
+      "category": "Proliferated Emotes",
+      "subsection": "New Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added '/em kneel4'."
+    },
+    {
+      "category": "Proliferated Emotes",
+      "subsection": "New Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added '/em kneel5'."
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When setting up an arena match, there are now four more options listed under more options:"
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No Passive Resist Bonuses - Allows players to switch on/off the bonus resist everyone gets in PvP."
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No Incarnates (Alpha Slot Enabled) - Switches on/off all incarnates except alpha."
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No Incarnates (Alpha Slot Disabled) - Switches on/off all incarnates including alpha."
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sudden Death Tiebreaker Phase - Switches on/off the sudden death mechanic at the end of draw games. (Default's to off.)"
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rated Matches will also now function properly. (I.e. No longer forcing any arena options.)"
+    },
+    {
+      "category": "Arena Options",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: you may need to set up the arena options you want before clicking the \"rated\" button."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "New Base Items",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Basic Reclaimator (Raid) and Resurrection Circle (Raid) base items which allow for Attackers during supergroup base PvP to revive at those locations rather than at the supergroup entrance portal."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed badge requirements that prevented Praetorians from running arcs from Ambassador Kuhr'Rekt and Johnny Sonata in Ouroboros."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Imperious Task Force - Advanced Difficulty",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vandal is now using more advanced AI and should be no longer be prone to go on running away sprees."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Imperious Task Force - Advanced Difficulty",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vandal's ambush now spawns closer to the player team's location meaning he should arrive sooner and be less prone to getting lost on his way there."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Imperious Task Force - Advanced Difficulty",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When Nictus Romulus escapes to the Chamber of the Emperor, he will take any living Barrier Novas with him."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Tin Mage's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All of the defeat objectives in Mission 2 must now be cleared in order for the mission to complete."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Arachnos",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that was causing Lord Recluse to only use Spider Strike when specifically between 50%-25% HP instead of any time below 50%."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Arachnos",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The eye glow FX on Crab Spider and Bane Spider NPCs has been improved."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Devouring Earth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an error with the Dr Aeon's Strike Force's Devoured's tentacles not being tinted the right color."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Hero Corps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Major has been given powers and is no longer incapable of defending himself against players."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Trolls",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skyway City's Supa Troll ravers have paid for Paragon City's finest facial reconstruction plastic surgeons and now their heads do not morph wildly while they are moving. They are free to rave uninhibited (until heroes come to stop them)."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Atlas Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added automatic seasonal map switchover; The October / Halloween variation of Atlas Park should now be active."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Atlas Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In November it should automatically transition to the Autumn map variant."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Atlas Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In December it should automatically transition to the Winter map variant."
+    },
+    {
+      "category": "Task Updates & Adjustments",
+      "subsection": "Atlas Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In January it should return to the standard non-seasonal map variant."
+    }
+  ]
+}

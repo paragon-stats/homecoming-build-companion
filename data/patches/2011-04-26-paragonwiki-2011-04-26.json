@@ -1,0 +1,923 @@
+{
+  "title": "Patch Notes/2011-04-26",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-04-26",
+  "published": "2011-04-26",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 04.26.11 build 2010.201104210057.1"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 League"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Auction House"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Costume"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.1 Animal Pack"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3.2 Other"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Currency"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Incarnate Trials"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.1 Incarnate Trial - Lambda Sector"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.2 Incarnate Trial - Behavioral Adjustment Facility"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.3 Incarnate Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5.4 Incarnate Components"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Alignment Mission"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Critters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.9 User Interface"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.10 German Client"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.1 Admiral Sutter Task Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.2 Lady Grey Task Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.3 Dr. Kahn Task Force / Barracuda Strike Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.4 Story Arcs"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Hero Epic Archetypes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.4 Critters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Trainers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2.1 Ice Mistral Strike Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2.2 Dr. Kahn Task Force / Barracuda Strike Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2.3 Silver Mantis Strike Force"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2.4 Story Arcs"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 PRAETORIA"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1.1 Story Arcs"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The command \"/league\" can now be used as an alias to send chat to the League channel."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Attempting to invite a 7th team to your league should no longer spam an error message 6 times."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now a sound played when receiving messages on the League chat channel."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected a debug message appearing when Leagues are broken up under certain circumstances."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bidding the same items separately causing a sold stack to lock with greater than 2 billion INF should is no longer possible."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contact Customer Service if you still have any such stacks locked in your Auction House UI"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animal Pack",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animal Fur texture is now available for Flat feet."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animal Pack",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On Cat Claw feet, the claws themselves no longer inherit a color tinting."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animal Pack",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A tintable striped version of the Animal Cat tail has been added as \"Animated - Cat Tail 2\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Other",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Monstrous Fur texture is now available for Flat feet."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Currency",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reward Merits, Vanguard Merits, Architect Tickets, Astral & Empyrean Merits, Incarnate Components and Discount Coupons can no longer be deleted."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reward tables for endgame events have been adjusted based upon collected data."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will now find their chance of being awarded higher tier rewards has been slightly increased."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers can now be used during Incarnate Trials and other instances where Temporary Powers were disabled"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Event Costume Powers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Halloween Costume Powers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Travel-Only Temp Powers such as the Raptor Pack (these are still unavailable during Arena matches)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Objective section of an Incarnate Trial should now display When the Zone Event UI is minimized"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed checks on the number of players present in Lambda Sector's first two stages."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer be able to get stuck on the door leading to the interior of Lambda Sector."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The mini-map location inside Lambda Sector where player markers first appear should no longer be missing room graphics."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lambda Sector's forces fixed a problem with their jump boots. IDF and Warworks forces will now be able to assist Marauder if he is fought on the roof of Lambda Sector."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Behavioral Adjustment Facility",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Grounded a pair of floating bivouac buildings"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ion Judgement jumps are now properly set to ignore the effect of player buffs like the rest of the Judgement powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The ice shards in Judgement - Cryonic should now always aim in the same direction as the rest of the effect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets should now apply the Reactive Interface DoT as expected."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Lore support pets now provide positional defense as well as typed defense."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mk. VI Essence attacks now appear in the Pets Combat Log."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conversions have been added to the Incarnate Creation interface which allow the following:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Freely downgrade Incarnate Components into a component of lesser rank of your choice. (Very Rare->Rare, Rare->Uncommon, Uncommon->Common)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Side-grade Incarnate Components into a component of equal rank of your choice. This conversion requires expending 2 Incarnate Threads for a conversion between Common Components, 6 Incarnate Threads for a conversion between Uncommon Components, 30 Incarnate Threads for a conversion between Rare Components, and 150 Incarnate Threads for a conversion between Very Rare Components."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The previous Breakdown conversions have been reorganized into the new Common, Uncommon, Rare and Very Rare tabs in the crafting window to keep them together."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Today's Newspaper - Frostfire is now on trial for killing nearly an entire \"detachment\" of Longbow rather than a \"dispatchment\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recruitment Flyer - This mission should no longer complete prematurely."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Strange Mystical Trinket - You now must defeat Raveshna and the other captors around Orsen Greenfield before you can talk to him."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Strange Mystical Trinket - The epilogue window when you leave the mission now has appropriate text."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wanted Poster with Your Face - Doppelgangers will no longer premature attack the Longbow holding them hostage on the Vigilante version of this mission."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Mission",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Morality Mission \\ With Honors - Doc Quantum will not converse with the player until he is rescued."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who are defeated when Bobcat is defeated will still receive the Kitty's Got Claws badge if the conditions have been met."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 5th Column Gladiator badge is now also awarded to anyone who completes the Dr. Khan TF or Barracuda SF. This award will be retroactive"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Malta gas swarm missiles were being created at inappropriate level ranges."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnight Squad Living Armor has made a return to the appropriate places in the game."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Pylons' Swarm Missiles now correctly check against AoE Defense, instead of Ranged Defense."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The option to hide buff numbers will now function at the league level."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An internal debug menu has been edited so that it should no longer have a chance to randomly appear on the User Interface."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "German Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an error in the log message for receiving Incarnate XP."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "German Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text should no longer get cut off from certain chat bubbles in the Behavioral Adjustment Facility, B.A.F., cut scenes."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When you talk to Admiral Sutter he will immediately give you his cell phone."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Col. Duray's Air Strike should no longer target players in the buried section of Destroyed Skyway City."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significantly increased the radius of Jane Temblor and Fusion's signature powers as well as properly adjusted their special mechanics which make knockback/knockup protection inapplicable under certain conditions."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Harbinger's Bombs now have much reduced HP as originally intended."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The target area has been increased for Praetorian Drones"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Lady Grey Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Penelope Yin cannot be attacked by players if left stranded or recaptured."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Dr. Kahn Task Force / Barracuda Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The merit rewards for the Dr. Khan Task Force and the Barracuda Strike Force had been mistakenly reversed. This is now corrected to the pre-I19 values."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Roy Cooling - The longbow skiff is now replaced by a jump bot incinerator, which has an easier time navigating the environment than the skiff."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Roy Cooling - Mission 2: The mini map is now visible when exiting the office building."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tina Macintyre - The Instant Army now gives out its proper souvenir clue."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Numina - Some text on The Unity Plague story arc has been restored to its original state."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Hero Epic Archetypes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldians should no longer encounter Crey Nictus Hunters spawning at inappropriate levels."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Mastery \\ Ice Blast no longer incorrect states it accepts To-Hit Debuff and Accurate To-Hit Debuff sets."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aid Other no longer uses the Nova animation when used twice from a combat stance."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Inspirations - Ultimate Super Inspiration now states in its description that its effects last for 180 seconds."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaze Mastery \\ Char Scrapper crits now do the proper amount of damage in PVP."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Mastery \\ Frozen Armor now has correct toggle info text"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Energy Ring Toss power used by the Attendants of the Carnival of Shadows will now be checked against Ranged Defense rather than Melee Defense."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Trainers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arbiters will no longer refer to the old Lackey system in leveling up messages."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Ice Mistral Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On mission \"Destroy the Crystals\", all enemies now spawn above-ground, can be defeated, and allowing successful completion of the strike force."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dr. Kahn Task Force / Barracuda Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The merit rewards for the Dr. Khan Task Force and the Barracuda Strike Force had been mistakenly reversed. This is now corrected to the pre-I19 values."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Silver Mantis Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies in the Sky Raider ship interior during the final mission will no longer vanish when attacked."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Diviner Maros - Legacy Chain which would randomly attack each other have settled their differences and stopped infighting."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Kinetic Melee \\ Concentrated Strike now will automatically refresh Build Up as its critical effect when used from the Hidden state. In additional a Build Up message will be displayed over the player when this effect is triggered."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mu Mastery \\ Electric Shackles, Soul Mastery \\ Soul Drain, Soul Storm, Levithan Mastery \\ School of Sharks, Spirit Shark Jaws should no longer perform Scourge bonus damage when used by Defenders."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Ice Mastery \\ Sleet is no longer affected by the no-phase timer."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Transmuter Mission 3 Task 2 - This map no longer has a black occlusion wall separating a hallway from a room."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "IVY - Task 2 - The option to Abandon Mission has been removed from the appropriate Neuron dialogue window."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Praetorian) Dr. Hetzfeld - A door that players could fall through has been closed in the last mission."
+    }
+  ]
+}

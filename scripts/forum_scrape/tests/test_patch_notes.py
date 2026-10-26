@@ -1,21 +1,29 @@
-"""The Release Notes application reader: categories, listings, entries, and the dated records it writes."""
+"""Patch notes from three sources: the Release Notes application, the beta forum threads, the wiki archive."""
 
 import json
 import urllib.error
 from pathlib import Path
 
 from scripts.forum_scrape.patch_notes import (
+    WIKI_BASE,
     PatchEntry,
+    beta_candidates,
     list_categories,
     list_entries,
     main,
+    parse_beta_thread,
+    parse_changes,
     parse_entry,
+    parse_wiki_page,
+    series_of,
+    wiki_pages,
     write_entry,
 )
 
 FIXTURE = Path(__file__).parent / "fixtures" / "patch_entry_sample.html"
 BASE = "https://forums.homecomingservers.com"
 ENTRY_URL = f"{BASE}/patch-notes/issue-28/page-4/october-20-update-r48/"
+ROBOTS_OK = b"User-agent: *\nAllow: /\n"
 
 CATEGORIES = f"""
 <a href="{BASE}/patch-notes/">Patch Notes</a>
@@ -34,6 +42,14 @@ LISTING = f"""
 """
 
 
+def _h(label: str, px: int = 0) -> str:
+    size = f' style="font-size:{px}px;"' if px else ""
+    return f"<p><span{size}><strong>{label}</strong></span></p>"
+
+
+# --- the Release Notes application ------------------------------------------------------
+
+
 def test_list_categories_returns_page_categories_once_in_order() -> None:
     assert list_categories(CATEGORIES) == [
         f"{BASE}/patch-notes/issue-28/page-4/",
@@ -50,55 +66,69 @@ def test_parse_entry_reads_date_hierarchy_and_change_lines() -> None:
     entry = parse_entry(FIXTURE.read_text(encoding="utf-8"), ENTRY_URL)
     assert entry.title == "October 20 Update"
     assert entry.published == "2026-10-20T14:05:01Z"
-    assert (entry.issue, entry.page, entry.revision) == ("issue-28", "page-4", 48)
+    assert (entry.issue, entry.page, entry.revision, entry.source) == ("issue-28", "page-4", 48, "release-notes")
     clarity = next(c for c in entry.changes if c.power == "Clarity")
     assert (clarity.category, clarity.subsection) == ("Powers", "Adjustments")
     assert (clarity.archetype, clarity.powerset) == ("All", "Sonic Resonance")
     assert clarity.text.startswith("Increased splash mez protection from scale 5 to 15")
-    # A line with no "AT > Set > Power -" prefix is still a change, under its headings.
     avoid = next(c for c in entry.changes if c.text.startswith("Removed Avoid from"))
     assert (avoid.category, avoid.power) == ("Powers", "")
-    # Headings never become changes; every change carries a category.
     assert all(c.category for c in entry.changes)
     assert len(entry.changes) >= 40
 
 
-def _entry(body: str) -> str:
-    return f'<html><head><title>x - Page 4 - Homecoming</title></head><body><section class="ipsType_richText">{body}</section></body></html>'
-
-
-def test_parse_entry_files_items_before_any_heading_under_general() -> None:
-    page = _entry(
-        "<ul><li>orphan</li></ul><p>prose, not a heading</p>"
-        '<p><span style="font-size:18px;"><strong>System</strong></span></p><ul><li>Fixed a thing.</li></ul>'
+def test_parse_changes_files_items_before_any_heading_under_general() -> None:
+    changes = parse_changes(
+        "<ul><li>orphan</li></ul><p>prose, not a heading</p>" + _h("System", 18) + "<ul><li>Fixed a thing.</li></ul>"
     )
-    entry = parse_entry(page, ENTRY_URL)
-    assert [(c.category, c.text) for c in entry.changes] == [("General", "orphan"), ("System", "Fixed a thing.")]
+    assert [(c.category, c.text) for c in changes] == [("General", "orphan"), ("System", "Fixed a thing.")]
 
 
-def test_parse_entry_reads_the_older_layouts() -> None:
+def test_parse_changes_reads_the_older_layouts() -> None:
     """16px-only headings, items wrapped in <p> with nested lists, and plain-text colon paths."""
-    page = _entry(
-        '<p><span style="font-size:16px;"><strong>Winter Event</strong></span></p>'
-        "<ul><li><p>Ambushes spawn at player level.</p>"
+    changes = parse_changes(
+        _h("Winter Event", 16) + "<ul><li><p>Ambushes spawn at player level.</p>"
         "<ul><li><p><em><strong>Elemental Guardian:</strong> 20% defense to Fire.</em></p></li></ul></li></ul>"
-        '<p><span style="font-size:18px;"><strong>Powers</strong></span></p>'
-        "<ul><li>Arsenal Control &gt; Auto Turret: No longer has teleport protection</li>"
+        + _h("Powers", 18)
+        + "<ul><li>Arsenal Control &gt; Auto Turret: No longer has teleport protection</li>"
         "<li>Epic &gt; Arsenal Mastery &gt; LRM: Range reduced from 150ft to 80ft</li>"
         "<li><strong>Energy Mastery &gt; Energy Torrent: </strong>Fixed hit FX.</li><li></li></ul>"
     )
-    changes = parse_entry(page, ENTRY_URL).changes
-    assert len(changes) == 5  # the empty item is not a change
+    assert len(changes) == 5
     assert [(c.category, c.subsection) for c in changes[:2]] == [("Winter Event", ""), ("Winter Event", "")]
     assert changes[1].text == "Elemental Guardian: 20% defense to Fire."
     assert (changes[2].archetype, changes[2].powerset, changes[2].power) == ("", "Arsenal Control", "Auto Turret")
-    assert changes[2].text == "No longer has teleport protection"
     assert (changes[3].archetype, changes[3].powerset, changes[3].power) == ("Epic", "Arsenal Mastery", "LRM")
     assert (changes[4].powerset, changes[4].power, changes[4].text) == (
         "Energy Mastery",
         "Energy Torrent",
         "Fixed hit FX.",
     )
+
+
+def test_parse_changes_reads_beta_thread_headings() -> None:
+    """A beta opener: a 20px banner, 18px categories, 16px subsections or powersets, unsized power names."""
+    changes = parse_changes(
+        _h("RELEASE CANDIDATE 3 CHANGES:", 20)
+        + _h("Powers", 18)
+        + _h("Adjustments", 16)
+        + _h("Light Affinity,", 16)
+        + _h("Radiance")
+        + "<ul><li>Recharge reduced to 8s.</li></ul>"
+        + _h("Blinding Beam")
+        + "<ul><li>Now a cone.</li></ul>"
+        + _h("Fixes", 16)
+        + "<ul><li>Fixed a typo.</li></ul>"
+        + _h("Costumes", 18)
+        + _h("New Costume Parts (62)", 16)
+        + "<ul><li>Male &gt; Head &gt; Detail 1 &gt; Blackwing</li></ul>"
+    )
+    rows = [(c.category, c.subsection, c.powerset, c.power, c.text) for c in changes]
+    assert rows[0] == ("Powers", "Adjustments", "Light Affinity", "Radiance", "Recharge reduced to 8s.")
+    assert rows[1] == ("Powers", "Adjustments", "Light Affinity", "Blinding Beam", "Now a cone.")
+    assert rows[2] == ("Powers", "Fixes", "", "", "Fixed a typo.")
+    # Outside a Powers category a 16px label is a subsection, and a ">" path that is not a power stays text.
+    assert rows[3][:2] == ("Costumes", "New Costume Parts (62)")
 
 
 def test_parse_entry_without_a_body_yields_no_changes() -> None:
@@ -111,45 +141,234 @@ def test_write_entry_names_the_file_by_date_and_slug(tmp_path: Path) -> None:
     path = write_entry(entry, tmp_path)
     assert path.name == "2026-10-20-october-20-update-r48.json"
     document = json.loads(path.read_text(encoding="utf-8"))
-    assert document["url"] == ENTRY_URL
-    assert document["changes"][0]["category"]
-    # The index row is appended once per written entry.
+    assert document["url"] == ENTRY_URL and document["source"] == "release-notes"
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
-    assert rows == [{"url": ENTRY_URL, "published": "2026-10-20T14:05:01Z", "revision": 48, "file": path.name}]
+    assert rows == [
+        {
+            "url": ENTRY_URL,
+            "published": "2026-10-20T14:05:01Z",
+            "revision": 48,
+            "source": "release-notes",
+            "issue": "issue-28",
+            "page": "page-4",
+            "file": path.name,
+        }
+    ]
 
 
 def test_write_entry_without_a_date_falls_back_to_the_revision(tmp_path: Path) -> None:
-    entry = PatchEntry(title="t", url=ENTRY_URL, published="", issue="issue-28", page="page-4", revision=48, changes=[])
+    entry = PatchEntry("t", ENTRY_URL, "", "issue-28", "page-4", 48)
     assert write_entry(entry, tmp_path).name == "undated-october-20-update-r48.json"
 
 
-def test_main_walks_categories_and_skips_entries_already_written(tmp_path: Path, fake_net, capsys) -> None:
+def test_main_release_notes_walks_categories_and_skips_written_entries(tmp_path: Path, fake_net, capsys) -> None:
     routes, calls = fake_net
     routes[f"{BASE}/patch-notes/?show=categories"] = CATEGORIES.encode()
     routes[f"{BASE}/patch-notes/issue-28/page-4/"] = LISTING.encode()
-    routes[f"{BASE}/patch-notes/issue-28/page-3/"] = b"<html></html>"
-    routes[f"{BASE}/patch-notes/issue-27/page-7/"] = b"<html></html>"
-    routes[ENTRY_URL] = FIXTURE.read_bytes()
-    routes[f"{BASE}/patch-notes/issue-28/page-4/issue-28-page-4-r47/"] = FIXTURE.read_bytes()
     routes[f"{BASE}/patch-notes/issue-28/page-3/"] = (
         f"<a href='{BASE}/patch-notes/issue-28/page-3/gone-r1/'>x</a>".encode()
     )
+    routes[f"{BASE}/patch-notes/issue-27/page-7/"] = b"<html></html>"
+    routes[ENTRY_URL] = FIXTURE.read_bytes()
+    routes[f"{BASE}/patch-notes/issue-28/page-4/issue-28-page-4-r47/"] = FIXTURE.read_bytes()
 
-    assert main(["--out", str(tmp_path), "--delay", "0"]) == 0
+    args = ["--out", str(tmp_path), "--delay", "0", "--source", "release-notes"]
+    assert main(args) == 0
     assert "2 entries written" in capsys.readouterr().out
     assert sorted(p.name for p in tmp_path.glob("*.json")) == [
         "2026-10-20-issue-28-page-4-r47.json",
         "2026-10-20-october-20-update-r48.json",
     ]
     fetched = calls.count(ENTRY_URL)
-
-    assert main(["--out", str(tmp_path), "--delay", "0"]) == 0
+    assert main(args) == 0
     assert "0 entries written" in capsys.readouterr().out
-    assert calls.count(ENTRY_URL) == fetched  # the second run did not refetch a written revision
+    assert calls.count(ENTRY_URL) == fetched
 
 
 def test_main_reports_an_unreachable_browser(tmp_path: Path, fake_net, capsys) -> None:
     routes, _ = fake_net
     routes[f"{BASE}/patch-notes/?show=categories"] = urllib.error.URLError("boom")
-    assert main(["--out", str(tmp_path), "--delay", "0"]) == 1
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "release-notes"]) == 1
     assert "E60" in capsys.readouterr().err
+
+
+# --- the beta forum threads -------------------------------------------------------------
+
+BETA = f"{BASE}/forum/73-open-beta-patch-notes/"
+STAGING = f"{BASE}/forum/100-staging-patch-notes/"
+RC1 = f"{BASE}/topic/1-beta-patch-notes-for-november-5th-2021-issue-27-second-chances-page-3-build-1/"
+RC2 = f"{BASE}/topic/2-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2/"
+INTERIM_OLD = f"{BASE}/topic/3-patch-notes-for-august-11th-2019/"
+INTERIM_NEW = f"{BASE}/topic/4-open-beta-patch-notes-for-march-3rd-2026/"
+LIVE_SERIES = f"{BASE}/topic/5-open-beta-patch-notes-for-july-22nd-2024-issue-28-legacy-page-1-release-candidate-2/"
+
+
+def _row(topic: str, when: str) -> str:
+    return f"<li class='ipsDataItem'><a href='{topic}'>t</a><time datetime='{when}'></time><time datetime='{when}'></time></li>"
+
+
+def _thread(title: str, when: str, body: str) -> bytes:
+    return (
+        f"<html><head><title>{title} - Open Beta Patch Notes - Homecoming</title></head><body>"
+        f"<article id='elComment_1'><a href='{BASE}/profile/1-curator/' title=\"Go to The Curator's profile\"></a>"
+        f"<time datetime='{when}'></time><div data-role='commentContent'>{body}</div></article></body></html>"
+    ).encode()
+
+
+def test_series_of_and_beta_candidates_keep_the_latest_of_a_series_and_every_interim_patch() -> None:
+    assert series_of(RC2) == ("issue-27", "page-3") and series_of(INTERIM_OLD) == ("", "")
+    rc0 = f"{BASE}/topic/0-staging-patch-notes-issue-27-page-3-build-0/"
+    rows = {
+        RC1: "2021-11-05T00:00:00Z",
+        RC2: "2021-11-24T00:00:00Z",
+        INTERIM_OLD: "2019-08-11T00:00:00Z",
+        rc0: "2021-11-01T00:00:00Z",
+    }
+    assert beta_candidates(rows) == [RC2, INTERIM_OLD]
+
+
+def test_parse_beta_thread_reads_the_opener() -> None:
+    page = _thread(
+        "Beta notes", "2021-11-24T10:00:00Z", _h("Powers", 18) + "<ul><li>Dark Melee &gt; Smite: Buffed.</li></ul>"
+    )
+    entry = parse_beta_thread(page.decode(), RC2)
+    assert (entry.source, entry.issue, entry.page, entry.published) == (
+        "forum-beta",
+        "issue-27",
+        "page-3",
+        "2021-11-24T10:00:00Z",
+    )
+    assert entry.changes[0].power == "Smite"
+    assert parse_beta_thread("<html><head><title>e - s - Homecoming</title></head></html>", RC2).changes == []
+
+
+def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path: Path, fake_net, capsys) -> None:
+    routes, calls = fake_net
+    body = _h("Powers", 18) + "<ul><li>Dark Melee &gt; Smite: Buffed.</li></ul>"
+    gone = f"{BASE}/topic/6-patch-notes-for-june-8th-2019/"  # no route: the fetch fails
+    # Three listing pages declared; page 3 has no route, so a failed listing page is skipped, not fatal.
+    pagination = f"<ul class='ipsPagination' data-pages='3'><li><a href='{BETA}page/2/'>2</a></li></ul>"
+    routes[BETA] = (
+        pagination
+        + _row(RC1, "2021-11-05T00:00:00Z")
+        + _row(RC2, "2021-11-24T00:00:00Z")
+        + _row(gone, "2019-06-08T00:00:00Z")
+    ).encode()
+    routes[f"{BETA}page/2/"] = (
+        _row(INTERIM_OLD, "2019-08-11T00:00:00Z")
+        + _row(INTERIM_NEW, "2026-03-03T00:00:00Z")
+        + _row(LIVE_SERIES, "2024-07-22T00:00:00Z")
+    ).encode()
+    # The staging section has no route: an unreadable listing contributes nothing.
+    routes[RC2] = _thread("RC2", "2021-11-24T10:00:00Z", body)
+    routes[INTERIM_OLD] = _thread("Aug 2019", "2019-08-11T10:00:00Z", body)
+    routes[INTERIM_NEW] = _thread("Mar 2026", "2026-03-03T10:00:00Z", body)
+    routes[LIVE_SERIES] = _thread("i28p1", "2024-07-22T10:00:00Z", body)
+    # The live index already covers issue-28 page-1 and starts in April 2023; its row predates the
+    # source and series columns, as the first release-notes run wrote them.
+    tmp_path.mkdir(exist_ok=True)
+    old_row = {
+        "url": f"{BASE}/patch-notes/issue-28/page-1/x-r22/",
+        "published": "2023-04-25T00:00:00Z",
+        "revision": 22,
+        "file": "x",
+    }
+    (tmp_path / "index.jsonl").write_text(json.dumps(old_row) + "\n", encoding="utf-8")
+    # A row in the current shape names its series directly.
+    write_entry(
+        PatchEntry(
+            "live2", f"{BASE}/patch-notes/issue-27/page-7/y-r11/", "2024-02-20T00:00:00Z", "issue-27", "page-7", 11
+        ),
+        tmp_path,
+    )
+
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
+    assert "2 entries written" in capsys.readouterr().out
+    names = sorted(p.name for p in tmp_path.glob("*.json"))
+    assert (
+        "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json"
+        in names
+    )
+    assert "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
+    assert calls.count(RC1) == 0  # the earlier candidate of the series is never fetched
+    rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert {row.get("source", "release-notes") for row in rows} == {"release-notes", "forum-beta"}
+
+    fetched = calls.count(RC2)
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
+    assert "0 entries written" in capsys.readouterr().out
+    assert calls.count(RC2) == fetched  # written entries are not refetched
+
+
+# --- the wiki archive --------------------------------------------------------------------
+
+WIKI_INDEX = """
+<a href="/wiki/Patch_Notes/2005-10-27">Oct 27 2005</a>
+<a href="/wiki/Patch_Notes/2004-05-11">May 11 2004</a>
+<a href="/wiki/Patch_Notes/2012-08-23_Beta">Beta</a>
+<a href="/wiki/Patch_Notes/2005-10-27#Powers">anchor</a>
+<a href="/wiki/Patch_Notes">index</a>
+"""
+WIKI_PAGE = """<html><head><title>Patch Notes/2005-10-27 - Paragon Wiki Archive</title></head><body>
+<div class="mw-content-ltr mw-parser-output" lang="en">
+<h1><span class="mw-headline" id="x">10/27/05 Patch Notes - Issue 6: Along Came a Spider</span></h1>
+<ul><li>Early note before any section.</li></ul>
+<h2><span class="mw-headline" id="PvP_Zones">PvP Zones</span></h2>
+<ul><li>Recluse's Victory opens.</li></ul>
+<h2><span class="mw-headline" id="Powers">Powers</span></h2>
+<h3><span class="mw-headline" id="Tankers">Tankers</span></h3>
+<ul><li>Improved Damage DeBuff of Tanker/Ice Armor/Chilling Embrace.</li>
+<li>Sonic Repulsion and Sonic Dispersion:<ul><li>Switched in pick order.</li></ul></li><li></li></ul>
+<div class="printfooter">Retrieved from</div><ul><li>ignored footer item</li></ul></div></body></html>"""
+
+
+def test_wiki_pages_lists_dated_pages_once_oldest_first() -> None:
+    assert wiki_pages(WIKI_INDEX) == [
+        f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11",
+        f"{WIKI_BASE}/wiki/Patch_Notes/2005-10-27",
+        f"{WIKI_BASE}/wiki/Patch_Notes/2012-08-23_Beta",
+    ]
+
+
+def test_parse_wiki_page_reads_headings_items_and_the_issue() -> None:
+    entry = parse_wiki_page(WIKI_PAGE, f"{WIKI_BASE}/wiki/Patch_Notes/2005-10-27")
+    assert (entry.source, entry.published, entry.issue, entry.title) == (
+        "paragonwiki",
+        "2005-10-27",
+        "issue-6",
+        "Patch Notes/2005-10-27",
+    )
+    rows = [(c.category, c.subsection, c.text) for c in entry.changes]
+    assert rows[0] == ("General", "", "Early note before any section.")
+    assert rows[1] == ("PvP Zones", "", "Recluse's Victory opens.")
+    assert rows[2] == ("Powers", "Tankers", "Improved Damage DeBuff of Tanker/Ice Armor/Chilling Embrace.")
+    assert rows[3][2] == "Sonic Repulsion and Sonic Dispersion:" and rows[4][2] == "Switched in pick order."
+    assert all("footer" not in c.text for c in entry.changes)
+    assert (
+        parse_wiki_page(
+            "<html><head></head><body>no body</body></html>", f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11"
+        ).changes
+        == []
+    )
+
+
+def test_main_paragonwiki_writes_each_dated_page_and_reports_a_missing_index(tmp_path: Path, fake_net, capsys) -> None:
+    routes, _ = fake_net
+    routes[f"{WIKI_BASE}/robots.txt"] = ROBOTS_OK
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes"] = WIKI_INDEX.encode()
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes/2005-10-27"] = WIKI_PAGE.encode()
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes/2004-05-11"] = WIKI_PAGE.replace("2005-10-27", "2004-05-11").encode()
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 0
+    assert "2 entries written" in capsys.readouterr().out
+    assert sorted(p.name for p in tmp_path.glob("*.json")) == [
+        "2004-05-11-paragonwiki-2004-05-11.json",
+        "2005-10-27-paragonwiki-2005-10-27.json",
+    ]
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 0
+    assert (
+        "0 entries written" in capsys.readouterr().out
+    )  # written pages are skipped; the unrouted beta page fails quietly
+
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes"] = urllib.error.URLError("down")
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 1
+    assert "E64" in capsys.readouterr().err

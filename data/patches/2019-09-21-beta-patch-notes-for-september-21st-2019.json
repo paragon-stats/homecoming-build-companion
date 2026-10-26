@@ -1,0 +1,347 @@
+{
+  "title": "Patch Notes for September 21st, 2019",
+  "url": "https://forums.homecomingservers.com/topic/10565-patch-notes-for-september-21st-2019/",
+  "published": "2019-09-21T09:36:06Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The LFG queue will now wait until you have the Recommended number of players for a Trial or Task Force before teleporting you to the contact or mission if the league is not locked."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the league is locked, Trials and Task Forces will ignore the minimum players and start even solo. You can invite more players into the League once the Trial starts, but not to a Task Force."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate and Holiday Trials continue to always require the minimum number of players, whether the league is locked or not."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "However, Incarnate trials will no longer automatically fail if a locked league drops below the minimum players. They will still fail if they drop below the minimum players in an unlocked league."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This setup is an attempt to satisfy both players who want to start Trials and Task Forces solo or with small teams (lock the league) and those who want to use the LFG queue to find teams for Trials and Task Forces (don't lock the league)."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Workaround for the mapserver connection issues where the client gets stuck trying to get into a zone."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many fixes to UI scaleing scrollbars, listviews, text outlines and compass elements."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix an issue preventing base item rotation in the 64-bit client."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The instanced version of the Rikti Mothership raid now has navigation beacons and a minimap."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The instanced version should now match the zone spawns. While investigating this I noticed that Rikti Priests weren't spawning in the zone version at all, and enabled them."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The compass will display a progress bar with pylons remaining when the shield is up, and a timer until the end while the shield is down."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The flavor text for the trial in the LFG description and the compass has changed to reflect the lore reason why the shield doesn't come back up at the end."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The zone version of the Rikti Mothership raid now displays a timer in the compass when the shield is down."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This timer is only visible when characters are inside the shield volume."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Pylons were accidentally spawning as Level 54 in the zone, they have been reverted to their level-less version."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Known issue: The timer on the shield is not perfect and it can be off by up to a minute."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The power patch notes are a bit of a mess and might be incomplete. @Captain Powerhouse will update them later with anything I missed."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Romulus was consuming all the Nictus in a single resurrect, among other similar issues throughout the game."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed internal issues with most chain attacks hitting multiple targets per jump (Ion Judgment no longer crashes zones.)"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength Rage"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed many timing issues with the crash."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power should no longer show multiple icons unless there is an active crash."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Weakened message should only pop up if there is a crash."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rage is now safe to reactivate without triggering the crash 5 seconds before it expires."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rage Highlight ring should now show up when it's safe to reactivate rage."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Changes"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Judgment powers should no longer be boosted by tanker's area buff."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Damage Cap is now 550% instead of 600%"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Radius Buff is now 60% (taking 10ft radius powers to 16ft radius, 8ft ones to 12.8ft.)"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker modifiers to debuff enemy ToHit and Damage and Resistance with support abilities in epic pools have been increased, in addition to their modifiers to buff other's damage, to-hit and defense have been increased, making Leadership Assault stronger when used by the AT."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The T1/T2 swaps have been reverted back to their live status."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Stone Melee> Fault moved back to level 20. Tremor is now lvl 28, Hurl Boulder lvl 35"
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Spines > Spine Burst target cap lowered to 10. Throw Spines now ignores Arc boosts."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gauntlet's radius lowered to 10ft."
+    },
+    {
+      "category": "Powers [Experimental Changes]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt's target cap lowered to 7 targets."
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Player vs. Player"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Tank Updates"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Rage"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Bug Fixes"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Rikti Mothership Raid"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Feedback: Pineapple vs. Pizza"
+    },
+    {
+      "category": "Focused Feedback",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This continues to be the most important topic of discussion and I am very pleased with the feedback received. @Jimmy's reign of Pineapple-less pizza shall never come to pass."
+    }
+  ]
+}

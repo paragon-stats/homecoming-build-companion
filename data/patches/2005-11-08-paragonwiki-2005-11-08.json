@@ -1,0 +1,227 @@
+{
+  "title": "Patch Notes/2005-11-08",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-11-08",
+  "published": "2005-11-08",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 11/08/05 Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Change to Drain and Recovery Enhancements - Combined"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Powers - Combined"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Supergroups - CoH"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 UI - Combined"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5 Tasks - CoH"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6 City Zones - CoH"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7 Supergroups - CoV"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.8 Tasks - CoV"
+    },
+    {
+      "category": "Change to Drain and Recovery Enhancements - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recovery enhancements and Endurance Drain enhancements have been consolidated into one type of enhancement, Endurance Modification. It was discovered that putting either a Recovery or Endurance Drain enhancement into powers that accept both enhancements (Transference, Energy Drain, Power Sink, and Heat Loss) was actually modifying both the Recovery and Endurance Drain of that power. They were doing double duty for those particular powers due to the nature of those enhancements. These powers will now be able to accept Endurance Modification enhancements only which will boost both the Recovery and Endurance Drain of this power."
+    },
+    {
+      "category": "Change to Drain and Recovery Enhancements - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Existing Endurance Drain and Endurance Recovery enhancements will be converted to the new Endurance Modification enhancements."
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Several Destructable Objects that erroneously exploded on destruction should no longer do so. Desks and Statues are much safer now!"
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed numerous typos and minor errors in Power descriptions for critters."
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Siphon Speed no longer accepts Run Speed enhancements. It was discovered that putting either a Run Speed or Slow enhancement in Siphon Speed was actually boosting both properties of that power. Putting a Slow enhancement in this power will affect both the run speed increase and the slow debuff."
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a text bug with Overload and Elude. Changed the recharge description from Slow to Very Long."
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurricane for Player AT's and Critters was debuffing the range of Stalkers and Brutes. Essentially, the exception for Tankers and Scrappers was not updated to include these two ATs. This has been corrected."
+    },
+    {
+      "category": "Powers - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your enhancements will now properly boost powers that you grant to your henchmen. (CoV)"
+    },
+    {
+      "category": "Supergroups - CoH",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug where Prestige gained by converting Influence would not appear on the Supergroup Status screen until after the player had earned some more Prestige from defeating enemies. The Prestige was not lost, but the display would not update. The Prestige total display should now change immediately when Influence is converted."
+    },
+    {
+      "category": "UI - Combined",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in Keymapping Options tab where Cancel Changes would save changes."
+    },
+    {
+      "category": "Tasks - CoH",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Sister Psyche TF will no longer send TF groups with members of level 20 to missions in Dark Astoria, which has a minimum level of 21."
+    },
+    {
+      "category": "City Zones - CoH",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Croatoa: Sally will now stay in the water where she belongs."
+    },
+    {
+      "category": "Supergroups - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Flunky who is the only remaining member of a Supergroup will now be properly promoted to Overlord."
+    },
+    {
+      "category": "Supergroups - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made Prestige awards given in Mission maps not always update in Supergroup stats after players exit the mission."
+    },
+    {
+      "category": "Supergroups - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug where Prestige gained by converting Influence would not appear on the Supergroup Status screen until after the player had earned some more Prestige from defeating enemies. The Prestige was not lost, but the display would not update. The Prestige total display should now change immediately when Influence is converted."
+    },
+    {
+      "category": "Supergroups - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lost Prestige from before the patch will be restored in a later maintenance."
+    },
+    {
+      "category": "Tasks - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Temple of the Waters Strike Force should now grant a Badge upon completion."
+    },
+    {
+      "category": "Tasks - CoV",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In Broker missions, all characters in a group that completes the mission will get credit towards being given a Heist mission by that Broker, not just the mission owner."
+    }
+  ]
+}

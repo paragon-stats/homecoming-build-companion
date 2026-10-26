@@ -1,0 +1,59 @@
+{
+  "title": "Patch Notes/2008-03-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-03-05",
+  "published": "2008-03-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Task Force/Strike Force and Trial Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The size of spawns in Task Force/Strike Force missions will always be based on the number of players in a Strike Force/Task Force, regardless of whether they are logged on or not."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Task Force/Strike Force and Trial Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spawns for Task Forces/Strike Forces no longer have a minimum size that they will not scale below."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Task Force/Strike Force and Trial Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "8 players begin an 8 player Task Force and then 7 people LOG OFF. The spawns in the Task Force will still scale to the 8 players attached to the Task Force (regardless of whether they are logged on or not)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Task Force/Strike Force and Trial Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If instead of logging off, 6 of the players QUIT the 8 person Task Force, then the Spawns will scale down to the remaining 2 players on the Task Force."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster PVP Damage for some attacks was still off after the fix in the previous build. They are now corrected. This includes Explosive Arrow, Havoc Punch, Ice Bolt, and Fireball."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Homeworld Portal should no longer be targetable via pet exploitation"
+    }
+  ]
+}

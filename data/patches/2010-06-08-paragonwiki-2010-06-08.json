@@ -1,0 +1,491 @@
+{
+  "title": "Patch Notes/2010-06-08",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-06-08",
+  "published": "2010-06-08",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 06.08.2010 Version 1800.201005212331.2T"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1.1 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1.2 PVP"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1.3 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Flashback"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.9 Arenas"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.10 Emotes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.11 Gameplay"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.1 Controllers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.2 Defenders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.3 Scrappers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.1 Masterminds"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Tasks"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused many critters with ranged attacks to change behavior and prefer melee range, including Rikti Drones and most Mastermind pets. Critters should behave as they used to again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with the Blackwand power drawing from the ground and planting the player vs. just drawing the weapon normally."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players may once again choose to not accept or decline the Mystic Fortune buff power."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Defense (all) - characters will no longer walk on air when jumping with a shield drawn."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Aura Fiery Embrace will no longer cause Travel Suppression in PVP"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teamwork/Mind Link will no longer cause Travel Suppression in PVP"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinesis in the Ancillary pools should now behave the same in PVP as standard versions and no longer repel players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Backup Radio temp power now has only 5 charges as intended."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with enemies disappearing when using \"The Fab\" unique map."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where pets would malfunction when using \"The Fab \" and \"Grandville\" unique maps."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed pathing problems in the first room in the Vanguard Base (Interior) map."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Guest Author: Quest for Magic: The last objective map icon will now work."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is no longer possible to create an un-completable mission with defendable objects."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Guest Author: Stolen Legacy Part 2 and Part 3: Correct some typos in the contact text."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that allowed players to get mission completion awards multiple times."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lady Grey Task Force: Reduced the Green Mitos' hold protection from magnitude 53 to magnitude 10."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the last objective of a mission will still be marked if the player resets the mission and starts over."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused only Wolf Spider minions to count towards the Spider Smasher badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Put back the Braided Buns hairstyle option from the Martial Arts pack, which had temporarily gone missing."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnighter Club - Fixed a bug that sometimes caused characters to get stuck in the ground when moving between the Midnighter Club and Cimerora. The previous fix stopped working as soon as a player took a pet through the portal, and would not start working again until the shard was restarted."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some players using the \"chat hidden\" setting were getting chat banned without knowing it when auto-replies to other players were sent out too rapidly. Players with the \"chat hidden\" setting turned on will no longer auto-reply to other players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Arenas",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Observer camera now properly flies again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The drink emote will no longer cause female characters to slide back and forth."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a rare crash bug in Supergroup bases."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dispersion Bubble inadvertently set to affect a maximum of 16 targets. Corrected to a max of 255."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dispersion Bubble inadvertently set to affect a maximum of 16 targets. Corrected to a max of 255."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Broadsword and Shield Defense - the Head Splitter power will no longer play the Air Superiority attack animation when flying with a shield readied."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Katana - Weapon draw animations now work correctly again."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Faultline - The Safeguard mission in this zone now correctly starts at a PPD van instead of a cave entrance."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Positron Task Force Part 1: The final mission door is now located in trams instead of an office building."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Katie Hannon Task Force - in the \"Defeat Mary MacComber\" mission, the successive waves attacks did not increase in difficulty as intended. This has been fixed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demon Summoning/Crack Whip - the description was corrected to state Knockdown instead of Knockback."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Good Villains Never Die (Part 2): Fixed a bug where the name for the final boss in the task, \"Find Thomas Mane\" was labeled incorrectly."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Good Villains Never Die: Adjusted Leonard's location to make him slightly easier to get to."
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+{
+  "title": "Patch Notes/2008-12-09",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-12-09",
+  "published": "2008-12-09",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 12.09.2008 Version 18.20081105.9T4"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Combined Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Leveling Pacts"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 User Interface"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5 Merit Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7 City of Heroes Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.8 City of Villains Powers"
+    },
+    {
+      "category": "Combined Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue when an attack power was in animation, you were unable to turn off a toggle. The fix now allows for all toggles to be turned off except costume changing powers."
+    },
+    {
+      "category": "Combined Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor/Soul Transfer: This power's stun effect now correctly has 2 second duration in a PvP zone instead of 10 seconds."
+    },
+    {
+      "category": "Combined Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary toggle powers with no offensive effects should now suppress instead of being de-toggled."
+    },
+    {
+      "category": "Leveling Pacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Experience messaging has been fixed so that players are told the correct amount of experience they have earned from their group, and are reminded that the amount mentioned will be split by their group."
+    },
+    {
+      "category": "Leveling Pacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incorrect \"Wait for your pact to catch up...\" error messages have been fixed. You should now only get these messages when you are out of sync due to starting the pact with different amounts of experience."
+    },
+    {
+      "category": "Leveling Pacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Occasional bug where extra experience is awarded during map transfers has been fixed."
+    },
+    {
+      "category": "Invention",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused the +recharge components from Recharge Intensive Pet enhancements to carry over to the pet attack speed. These enhancement sets are designed to speed up the power's recharge time, not the pets' attacks."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where help files were not displayed in French or German languages. (EU NOTE ONLY - NOT FOR NORTH AMERICA)"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a localization issue with the Researcher and Agile badges (EU NOTE ONLY - NOT FOR NORTH AMERICA)"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Commuter and Clubber Day Job badges should no longer have P-string errors."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed P-String errors in the following Day Job powers:"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Monitor Duty"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Monitor Duty Specialist"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Law Enforcer"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Seasoned Law Enforcer"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Agent"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Veteran Arachnos Agent"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mortician"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Practiced Mortician"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Mission Selection button now appears while you are solo or the leader of a team that allows you to pick the current active mission."
+    },
+    {
+      "category": "Merit Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is now possible to purchase Hold, Intangibility, Interrupt Time, Slow and Taunt Duration SO enhancements from the Merit Vendors."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug for players using German or French languages where they were unable to move while editing their base.(EU NOTE ONLY - NOT FOR NORTH AMERICA)"
+    },
+    {
+      "category": "City of Heroes Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where players could cause Lord Recluse to get stuck behind the tower during Statesman's Task Force mission."
+    },
+    {
+      "category": "City of Villains Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the Megalomaniac accolade's potency by 33% and removed its ability to enhance knockback powers, this puts it in line with the hero equivalent Vanguard Medal accolade power."
+    }
+  ]
+}

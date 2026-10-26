@@ -1,0 +1,523 @@
+{
+  "title": "Patch Notes/2006-06-27",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-06-27",
+  "published": "2006-06-27",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 6.27.06"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Combined"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Graphics"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 UI"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 City of Villains"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 City of Heroes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Tasks"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with CoT Portals that required players to destroy the Portals to complete \"Defeat All\" missions."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in 'Running Boss' missions that caused any knockback or immobilization on the Boss to count as an immediate escape."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trip Mines from all player sets have had their Detoggle ability set to 10%."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monster, Arch Villain and Hero class entities' regeneration levels reduced considerably."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police Drones (and Arachnos Arbiter Drones) can now destroy Phase Shifted and other untouchable targets (like Phantom Army), as long as the target is targetable."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with building lights not fading correctly if you have your world texture detail settings lowered."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved server stability"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All commands to make pets speak (/petsay, /petsayall, /petsayname, /petsaypow) are working again."
+    },
+    {
+      "category": "Combined",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recluse's Victory: Signature Heroes and Villains will no longer give experience or debt. They will continue to give badges. Temporal points for defeating them increased."
+    },
+    {
+      "category": "Combined",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recluse's Victory: Fixed bug that caused player controlled heavies to persist after the player controlling them logged off or zoned."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added female-style names to many male-oriented Badge Titles."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added meters and hints to many badges that did not have them previously."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed 'Media Junkie' badge to 'Couch Potato'. 'Media Junky' badge remains unchanged."
+    },
+    {
+      "category": "Combined",
+      "subsection": "UI",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now set themselves to automatically decline super group and trade invites. Under the Options/General/Chat, there are now two additional options to turn this functionality on or off. By default it is set to off, which will prompt players whenever they receive a super group or trade invite."
+    },
+    {
+      "category": "Combined",
+      "subsection": "UI",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If a player is currently hidden from his global friends using the /ghide command, all global friend invites and global chat channel invites will automatically be declined."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female, Male and Huge costume creator clean up."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unified naming conventions."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gloves and boots reordered for less confusion."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More Chest textures in every available category."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hip and Chest textures alphabetized."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reptilian texture revamped."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Armored Pads added to chests and hips."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crey Tech added to chests, hips, boots, and gloves."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rough Leather added to hips."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Chaos leather\" revamped."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shorts legs geometry fixed."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "V belt revamped."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skirts and Shorts revamped to fit tighter and prevent clipping with belts."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some belts revamped to better fit revamped skirts."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Plain long skirt\" added."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Long skirts revamped so geometry doesn’t clip with V and lone skull belt"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Matte boot texture added"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hive Spires no longer give Bonus XP."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The high level Respec Trial now has level appropriate enemies."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed mission in Black Scorpion story arc \"Thwart Black Scorpion's plans - timed\". The mission was not completing properly"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed graphics bugs in several Arachnoid Cave maps."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue that prevented brokers and newspapers from assigning Malta and Carnival missions."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some text errors in Beast of the Mountain strike force."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added badge reward to Mission 3 of the Future of Freedom Strike Force."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Icy Assault Ice Sword Circle has had the long pause after casting removed."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Kinetics Transfusion was inadvertantly increasing a target's regeneration rate in PvP, instead of decreasing it. This has been corrected."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed typos in Thugs powerset description"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in the Mastermind Mercenaries Spec-Ops description."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor Grounded will now have its protection from Knockback and Knockup scale per level at the same rate that Knockback powers scale by level. This should result in consistent protection throughout a characters lifetime."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Longbow Spec-Ops EMP Grenade power has had the amount of Endurance Drained per use reduced."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Psionic Activator Temporary Power should work correctly now."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Grandville: The plaques describing Patron Powers have been updated to give much more detailed information."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eden Trial: Rock Beast Lts. should properly spawn Cairns again."
+    }
+  ]
+}

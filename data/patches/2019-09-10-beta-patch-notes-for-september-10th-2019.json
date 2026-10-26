@@ -1,0 +1,2259 @@
+{
+  "title": "Patch Notes for September 10th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/10041-patch-notes-for-september-10th-2019/",
+  "published": "2019-09-10T22:54:10Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Justin has been wiped; it had a good run testing all the changes to Snipes and Dominators, but it's time to have a clean slate and push new experimental changes for feedback. Just like the first patch of the Snipes beta, remember that this is experimental. This is not a live candidate and it is not going to be patched to the live shards anytime soon. Feedback is required."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As part of the experimental patching cycle, all Incarnate slots, Patron pools and Accolade powers are unlocked at character creation. In addition, all recipes have had their salvage cost removed this time around; this means you can craft any enhancement without using any salvage."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to the PvP nature of these changes, this new server now has a name better suited for the combative nature of the update, in which the clash of powerful forces threaten to the the world apart: say hi to the Pineapple server. Does it belong on pizza? Only you can provide the answer."
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Damage Procs like Hybrid Double Hit, Plant Manipulation's Toxins and Bio Armor's Offensive Adaptation should now use PvP damage formula in PvP instead of the PvE damage formula."
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller versionof Storm Summoning > O2 Boost no longer grants Stun or Sleep protection in PvP, it should now grant Stun and Sleep resistance."
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppressions rules have been enforced for the following enhancements:"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debilitative Action: Disorient Bonus"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devastation: Chance for Hold"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Manipulator: Chance to Stun"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioners Contract: Disorient Bonus"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravitational Anchor: Chance for Hold"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lockdown: Chance for +2 Mag Hold"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pounding Slugfest: Disorient Bonus"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Razzle Dazzle: Chance for Immobilize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unspeakable Terror: Disorient Bonus"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppressions rules have been enforced for the following powers:"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Bash"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Pulverize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Electron Shackles"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Positron Cell"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Darkness Manipulation > Midnight Grasp"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Electricity Manipulation > Electric Fence"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ice Manipulation > Frozen Aura"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Mental Manipulation > World of Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Blinding Powder"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Immobilizing Dart"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Shift"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Wall"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Energy Melee > Bone Smasher"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Darkness Affinity > Howling Twilight"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Radiation Emission > EM Pulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Earth Control > Salt Crystals"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Ranged > Assault Rifle > Beanbag"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Earth Assault > Mud Pots"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Energy Assault > Whirling Hands"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Chain Fences"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Electric Fence"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Tesla Cage"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Confuse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Mass Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Plant Control > Seeds of Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Dark Miasma > Fearsome Stare"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Storm Summoning > Thunder Clap"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Pets > Jounin > Blinding Powder"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Smite"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Dark Melee > Midnight Grasp"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Energy Melee > Barrage"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Greater Psi Blade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Psi Blade Sweep"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Smite"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Inky Aspect"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Boxing"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Cross Punch"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Intimidate"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Invoke Panic"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Speed > Flurry"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Arctic Mastery > Chilblain"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Blaze Mastery > Ring of Fire"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Charge Mastery > ESD"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Chill Mastery > Flash Freeze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Cold Mastery > Flash Freeze"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Flame Mastery > Char"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Soul Transfer"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Flame Mastery > Char"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Salt Crystals"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Stone Prison"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > EM Pulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > Shocking Bolt"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electricity Mastery > Electric Fence"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Flame Mastery > Char"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Cryo Freeze Ray"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Sleep Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > World of Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > World of Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > Telekinesis"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > World of Confusion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Pyre Mastery > Ring of Fire"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Netherworld Grasp"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Mace Mastery > Pulverize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Fissure"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Seismic Smash"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Weapon Mastery > Web Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Weapon Mastery > Web Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Fiendish Glare"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Seduction"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Duplicity"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Hand Clap"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Minor Mutation"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Nectar"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Power of Scirocco"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Atomic Blast"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Cosmic Burst"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Psionic Activator"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Vanguard Psi-Bomb"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppressions rules have been enforced for the following player pet powers:"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Bone Smasher"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Energy Punch"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Sergeant > Force Brawl"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Resistance_Rifle > Power Punch"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Tech Lab > Explosion"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 2 > FlashPulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 2 > FlashPulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 3 > FlashPulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Coral Guardian Warder > Fossilize"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fly Trap > Entangle"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Psychic Wail"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Scramble Thoughts"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Adept > EM Pulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Guardian > EM Pulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Striker > EM Pulse"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Shade > Scare"
+    },
+    {
+      "category": "PvP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "Combat Log",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combat log output has been standardized. Many powers used to report the wrong damage type and effects in the combat log, this process has fixed that, in addition to making the combat log a lot easier to parse."
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rage will now only crash if stacked. If the power is stacked, crashes will occur at every expiration until it expires completely."
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rage crash has been changed to 10 seconds of:"
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-999% damage irresistible"
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-10 defense irresistible"
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-20% resist irresistible"
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-20% elusiveness irresistible"
+    },
+    {
+      "category": "Rage [Experimental change]",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The endurance crash has been removed, the power now instead drains 25 endurance on activation."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Damage Scale",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker: Ranged damage modifier increased from 0.5 to 0.8, Melee damage modifier increased from 0.8 to 0.95"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Damage Scale",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bruise has been removed in favour of a flat damage scale increase"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Damage Scale",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute : Ranged and Melee damage modifiers are now equal."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Damage Scale",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic Pools: All Brute and Tanker Epic pools now use ranged damage modifiers"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Damage Scale",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to the above changes, Epic Pools should see no damage change at all."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker base endurance has been increased to 120, to reflect the fact that they kill slower, but last longer in combat."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker damage cap to 600%, this would increase the max Tanker damage potential when grouped."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most Tanker Melee AoE powers have had their target caps increased. Most cones are now 10 target cap. Most PBAoE are now 16 target cap."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most Tanker AoE powers now extend to inflict damage and other effects beyond their radius or arcs."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Taunts now have a 10 target cap."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is now applied via a global proc. Any single target power that takes accuracy enhancements will trigger an AoE taunt. Every AoE power that takes accuracy enhancements will taunt the enemies it hit."
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius is now the same for all attacks (15ft, 5 targets max)"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt scale is now 10% higher than Brute's"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute PunchVoke is now also applied via a global proc. Any power that either inflicts damage or takes accuracy enhancements will be able to punch-voke.)"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In an attempt to help tanker progression, Tanker T1 and T2 powers have been exchanged for the following sets:"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Katana"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Attack"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Savage Melee"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Staff Fighting"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Street Justice"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To improve Tanker AoE capability during level up progression, the following powers had their acquisition levels changed:"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe > Whirling Axe = 20, Swoop = 28"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts > Dragon Tail = 20, Focus Chi = 28, Crippling Axe Kick = 34"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Melee > Tremor = 20, Fault = 35"
+    },
+    {
+      "category": "Tank Updates [Experimental Changes]",
+      "subsection": "Power Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace > Whirling Mace = 20, Clobber = 28"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Electron Shackles",
+      "text": "Should no longer accept Endurance Modification enhancements or sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Beta Decay",
+      "text": "Text should no longer state it taunts enemies."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Blaster Support",
+      "powerset": "Psoinic Manipulation",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Electric Blast > Corrected an FXGEO feedback error with this power's FX."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Dominator",
+      "powerset": "Fire Control",
+      "power": "Fire Imps",
+      "text": "Should now always summon 3 imps."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Dominator",
+      "powerset": "Savage Assault",
+      "power": "Call hawk & Feral Charge",
+      "text": "Should no longer accept Dominator Archetype Enhancement sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Dominator",
+      "powerset": "Psionic Assault",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Bio Armor",
+      "power": "Athletic Regulation",
+      "text": "Should no longer accept travel enhancement sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Energy Aura",
+      "power": "Power Armor",
+      "text": "Should now accept Healing Enhancement Sets"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Fire Blast",
+      "power": "Blazing Blast",
+      "text": "Should now do 13 ticks of damage over time."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Concealment",
+      "power": "Stealth and Invisibility",
+      "text": "translucency issues should now, FINALLY be fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Leaping",
+      "power": "Spring Attack",
+      "text": "should now do damage when used by Sentinels"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Melee > Contamination AoE should now reliably trigger when hitting a contaminated target."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Radiation Armor",
+      "power": "Beta Decay",
+      "text": "Taunt magnitude should now always be Mag 4"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Weaken and Cold Domination -Special powers should no longer be boosted by +Special powers like Power Boost. As a rule, Str effects should not be affected by other Str effects."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proton Volley's Fast-Snipe sphere FX should now tint properly."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Boosts",
+      "powerset": "Performance Shifter",
+      "power": "Chance for +Endurance",
+      "text": "Should now have a chance to grant the caster Endurance if used on an offensive attack."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Incarnate",
+      "power": "Hybrid",
+      "text": "Should no longer fail to shut down after zoning."
+    }
+  ]
+}

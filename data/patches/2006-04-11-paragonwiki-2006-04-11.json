@@ -1,0 +1,483 @@
+{
+  "title": "Patch Notes/2006-04-11",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-04-11",
+  "published": "2006-04-11",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 4/11/06 Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Graphics"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.4 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.5 Installation"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leadership/Vengeance will no longer stack from multiple casters. In other words, only one application of Vengeance buffs can enhance a group at a time."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed combat Spam for IR Goggles. They no longer report that they increase your resistances."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed To Hit Debuffs to use the 5/10/20 Enhancement progression."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurricane's Repel effect is now slightly less abusive in PvP situations. Hurricane will still interrupt Asssassin Strikes, but it should no longer be possible to pin a player in a corner during Base Raids."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PvP Taunt changes: When a player is being taunted, the effect can now be broken by running a good distance away. Additionally, hiding out of LOS of the taunter will cause the effect to expire sooner."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can now string multiple teleports in a row w/out delay of actual teleport function (does not wait for animation to finish). This fixes a bug that would sometimes cause skips in animation when stringing together multiple teleports."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Whirlwind no longer overrides the animations of other powers. If another power is activated while Whirlwind is running, the animation for that power will play normally and then the Whirlwind animation will resume."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The maximum mission reward that a character can receive is now character level +3. Example: A level 10 character (not sidekicked) in a group running a level 20 mission will receive the equivalent reward of a level 13 mission upon completion."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spider Smasher badge is now granted properly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fortunata Seer badge is now granted properly"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Not all Ancestor Spirits were counting toeards the Swift Steel badge. This has been fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Longbow Tanker gladiator is now properly unlocked when the Politician badge is granted."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female Paragon Protectors defeated now count towards the 7th Generation Paragon Protector gladiator badge."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Madness Mages now count towards the Soul Binder badge."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Firebase Zulu Security Detail/Shadow Shard Sovereign is now being correctly awarded."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Troll Task Force Member is now being correctly awarded."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coldblooded now has a progress bar."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rocketman now has a progress bar."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters in base raids are now set to an effective level of 50 rather than 40. (Preparation for 41-50 villain content)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Base Items are now level 50. This should make them more sturdy, and in the case of Base Defenses, more effective."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with sleeveless jackets that caused sleeves to be changed by default when players begin a Tailor session."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Help Channel: New players will receive a new tab called \"help\" which defaults to a new server-wide help channel. We encourage experienced players to share their wisdom."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chat spam limiter: You are now allowed one message per second, You are allowed to break the rule 5 times. Every second you don't chat one rule break is forgotten. If you break the rule more than 5 times you will be banned from chat for 2 minutes. If you continue to try to spam while chat banned, you will continually reset your 2 minute timer."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with ATI cards not getting window lights on some buildings at night time."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard: Rebalanced the Kora Fruit award. Harvested fruit are now medium-sized inspirations rather than large-sized."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heroes can earn a badge by defeating Mu Guardians."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was causing Longbow Wardens with the Gravity Distortion power to do too much damage."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Void Hunter Rifle no longer does extra damage to Kheldians. The Stun and Knockback effect against Kheldians has also been removed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Longbow Boss, Romulus, has had his resistances increased."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers' Placate ability no longer grants the same strength Stealth in PvP as Hide. It is now roughly 75\\p of that value. This should reduce the ability of Stalkers to fade out of view of an entire group of players after attacking."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Lethal portion of Dominator Plant Control Roots—it was doing unresistable damage and should not have been. Also, the lethal damage will no longer report as smashing in the combat log."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Heat Loss power was not modified for PvP, allowing it to drain 4 times as much endurance from players as intended. This has been corrected."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind/Force Field/Personal Force Field now has a 2 minute cooldown after use. Other versions of Personal Force Field are unchanged."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Psimon Omega missions to span 30-35 (to match contact level range)."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed re-spec trials so that they go 24-33 and 34-40 (Preparation for 41-50 villain content)"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now Arbiter Leery will always be willing to talk to you after you've done the respec trial."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing Mongoose's mission arc once again grants a souvenir."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing Billy Heck's mission arc grants a souvenir."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Goon Squad is now being awarded."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bloody Bay: Patrol missions now correctly award experience upon completion."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Installation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue when launching City of Villains for the first time (from a fresh install) in 98/ME. An error message appeared stating that 1024x768 is not supported in fullscreen mode and that the resolution is being switched to 800x600. 1024x768 resolution was and is supported."
+    }
+  ]
+}

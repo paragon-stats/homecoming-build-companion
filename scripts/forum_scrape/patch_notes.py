@@ -1,17 +1,24 @@
-"""Read the Homecoming Release Notes application into dated change records.
+"""Read Homecoming's patch notes, from three sources, into dated change records.
 
-Live patch notes are not forum threads. They live in Invision's records application at
-``/patch-notes/``, browsed as Issue > Page categories, one entry per update with a publish
-date and change lines grouped under headings such as ``Powers > Adjustments``. Each entry
-becomes one JSON file under ``data/patches/`` so a captured guide's claims can be dated
-against the changes that followed them.
+Each entry becomes one JSON file under ``data/patches/`` so a captured guide's claims can
+be dated against the changes that followed them. The sources, by the span they cover:
+
+- ``release-notes``: Invision's records application at ``/patch-notes/``, browsed as
+    Issue > Page categories, one entry per update with a publish date. Issue 27 page 6
+    (April 2023) onward. Live patch notes are not forum threads.
+- ``forum-beta``: the beta and staging patch-note sections of the forum, 2019 to 2023. Each
+    release candidate re-posts a page's full notes, so one series keeps only its final
+    thread; interim patches without an Issue/Page label are kept one per thread. Threads
+    dated inside the live application's coverage are skipped: the live entry wins.
+- ``paragonwiki``: the Paragon Wiki Archive's dated ``Patch_Notes/YYYY-MM-DD`` pages,
+    2004 to 2012.
 
 Usage::
 
     python -m scripts.forum_scrape.patch_notes --out data/patches
+    python -m scripts.forum_scrape.patch_notes --source paragonwiki --out data/patches
 
-Re-runs fetch only entries whose URL (which carries the revision number) is not yet in the
-output index.
+Re-runs fetch only entries whose URL is not yet in the output index.
 """
 
 from __future__ import annotations
@@ -23,20 +30,44 @@ import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
-from scripts.forum_scrape.scrape import BASE, DEFAULT_UA, Fetcher, page_title, strip_html
+from scripts.forum_scrape.scrape import (
+    BASE,
+    DEFAULT_UA,
+    Fetcher,
+    iter_posts,
+    last_page_number,
+    listing_base,
+    page_title,
+    strip_html,
+    topic_rows,
+)
 
+SOURCES = ("release-notes", "forum-beta", "paragonwiki")
 CATEGORIES_URL = f"{BASE}/patch-notes/?show=categories"
+BETA_SECTIONS = (f"{BASE}/forum/73-open-beta-patch-notes/", f"{BASE}/forum/100-staging-patch-notes/")
+WIKI_BASE = "https://archive.paragonwiki.com"
+WIKI_INDEX_URL = f"{WIKI_BASE}/wiki/Patch_Notes"
+
 _PAGE_CATEGORY = re.compile(rf"""['\"]({re.escape(BASE)}/patch-notes/issue-\d+/page-\d+/)['\"]""")
 _ENTRY = re.compile(rf"""['\"]({re.escape(BASE)}/patch-notes/(issue-\d+)/(page-\d+)/([a-z0-9-]+)-r(\d+)/)['\"]""")
 _PUBLISHED = re.compile(r"""<time\s[^>]*datetime=['\"]([^'\"]+)['\"]""", re.I)
 _BODY = re.compile(
     r"""<section\s[^>]*class=['\"][^'\"]*ipsType_richText[^'\"]*['\"][^>]*>(.*?)</section>""", re.I | re.S
 )
-# The body is paragraphs (headings, when they hold only a bold label) and list items (the
-# changes). Heading level is the label's font size: 18px and up is a category, smaller a
-# subsection under it; an entry that uses one size throughout gets that as its category.
-# A list item's text runs to the next item or the end of its list, so nested items become
-# their own change lines under the same headings.
+# A thread slug names its series: "...-issue-27-second-chances-page-3-release-candidate-1".
+_SERIES = re.compile(r"issue-(\d+).*?page-(\d+)")
+_WIKI_PAGE = re.compile(r"""href=['\"](/wiki/Patch_Notes/(\d{4}-\d{2}-\d{2})[^'\"#?]*)['\"]""")
+_WIKI_BODY = re.compile(r"""class=['\"][^'\"]*mw-parser-output[^'\"]*['\"][^>]*>(.*)""", re.S)
+_WIKI_TOKEN = re.compile(r"<h([1-6])\b[^>]*>(.*?)</h\1>|<li\b[^>]*>", re.I | re.S)
+_WIKI_HEADLINE = re.compile(r"""<span\s[^>]*class=['\"]mw-headline['\"][^>]*>(.*?)</span>""", re.I | re.S)
+_WIKI_ISSUE = re.compile(r"issue\s*(\d+)", re.I)
+_WIKI_FOOTER = "printfooter"
+
+# The forum-side body is paragraphs (headings, when they hold only a bold label) and list
+# items (the changes). Heading level is the label's font size: 18px and up is a category, 16px
+# a subsection, or inside a Powers category a powerset unless it is one of the usual
+# subsection words; an unsized bold label under a powerset names the power. A list item's
+# text runs to the next item or the end of its list, so nested items become their own lines.
 _TOKEN = re.compile(r"<p\b[^>]*>(.*?)</p>|<li\b[^>]*>", re.I | re.S)
 _ITEM_END = re.compile(r"<li\b|</[uo]l>", re.I)
 _FONT_SIZE = re.compile(r"font-size:\s*(\d+)px", re.I)
@@ -45,6 +76,9 @@ _BOLD = re.compile(r"<(?:strong|b)\b[^>]*>(.*?)</(?:strong|b)>", re.I | re.S)
 # "Epic > Arsenal Mastery > LRM: text": one to three ">" separators, then "-" or ":".
 _POWER_PATH = re.compile(r"^([^:>\n]{1,80}(?:\s*>\s*[^:>\n]{1,80}){1,3}?)\s*[-:]\s+(.+)$", re.S)
 _CATEGORY_FONT_PX = 18
+SUBSECTION_WORDS = frozenset(
+    {"additions", "adjustments", "fixes", "bug fixes", "changes", "new", "removed", "removals", "notes", "known issues"}
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -61,7 +95,7 @@ class Change:
 
 @dataclass(slots=True)
 class PatchEntry:
-    """One Release Notes entry: where it sits in the Issue > Page tree, when, and what changed."""
+    """One patch-notes entry: where it sits in the Issue > Page tree, when, from which source, and what changed."""
 
     title: str
     url: str
@@ -69,6 +103,7 @@ class PatchEntry:
     issue: str
     page: str
     revision: int
+    source: str = "release-notes"
     changes: list[Change] = field(default_factory=list)
 
 
@@ -91,33 +126,108 @@ def _heading(inner: str) -> str:
     return text
 
 
-def _change(text: str, category: str, subsection: str) -> Change:
+def _change(text: str, category: str, subsection: str, powerset: str = "", power: str = "") -> Change:
     path = _POWER_PATH.match(text)
     if not path:
-        return Change(category, subsection, "", "", "", text)
+        return Change(category, subsection, "", powerset, power, text)
     parts = [" ".join(p.split()) for p in path.group(1).split(">")]
-    power, powerset = parts[-1], parts[-2]
-    return Change(category, subsection, " > ".join(parts[:-2]), powerset, power, " ".join(path.group(2).split()))
+    return Change(category, subsection, " > ".join(parts[:-2]), parts[-2], parts[-1], " ".join(path.group(2).split()))
 
 
-def parse_entry(page: str, url: str) -> PatchEntry:
-    """Parse one entry page into its dated change records."""
-    match = _ENTRY.match(f'"{url}"')
-    issue, page_name, revision = (match.group(2), match.group(3), int(match.group(5))) if match else ("", "", 0)
-    published = _PUBLISHED.search(page)
-    entry = PatchEntry(page_title(page), url, published.group(1) if published else "", issue, page_name, revision)
-    body = _BODY.search(page)
-    if body is None:
-        return entry
-    html = body.group(1)
-    category = subsection = ""
+def parse_changes(html: str) -> list[Change]:
+    """The change lines of a forum-side body (an application entry or a beta thread's opener)."""
+    changes: list[Change] = []
+    category = subsection = powerset = power = ""
     for token in _TOKEN.finditer(html):
         if token.group(1) is not None:
             label = _heading(token.group(1))
             if not label:
                 continue
             size = _FONT_SIZE.search(token.group(1))
-            if (size and int(size.group(1)) >= _CATEGORY_FONT_PX) or not category:
+            px = int(size.group(1)) if size else 0
+            if px >= _CATEGORY_FONT_PX or not category:
+                category, subsection, powerset, power = label, "", "", ""
+            elif px == 0 and powerset:
+                power = label.rstrip(",:")
+            elif label.lower() in SUBSECTION_WORDS or "power" not in category.lower():
+                subsection, powerset, power = label, "", ""
+            else:
+                powerset, power = label.rstrip(",:"), ""
+            continue
+        end = _ITEM_END.search(html, token.end())
+        text = " ".join(strip_html(html[token.end() : end.start() if end else len(html)]).split())
+        if text:
+            changes.append(_change(text, category or "General", subsection, powerset, power))
+    return changes
+
+
+def parse_entry(page: str, url: str) -> PatchEntry:
+    """Parse one Release Notes application entry page into its dated change records."""
+    match = _ENTRY.match(f'"{url}"')
+    issue, page_name, revision = (match.group(2), match.group(3), int(match.group(5))) if match else ("", "", 0)
+    published = _PUBLISHED.search(page)
+    entry = PatchEntry(page_title(page), url, published.group(1) if published else "", issue, page_name, revision)
+    body = _BODY.search(page)
+    if body is not None:
+        entry.changes = parse_changes(body.group(1))
+    return entry
+
+
+def series_of(topic_url: str) -> tuple[str, str]:
+    """``("issue-27", "page-3")`` from a beta thread's slug, or ``("", "")`` for an interim patch."""
+    match = _SERIES.search(topic_url.rstrip("/").rsplit("/", 1)[-1])
+    return (f"issue-{match.group(1)}", f"page-{match.group(2)}") if match else ("", "")
+
+
+def beta_candidates(rows: dict[str, str]) -> list[str]:
+    """The threads worth reading from a beta listing: the latest of each labelled series, and every interim patch."""
+    latest: dict[tuple[str, str], tuple[str, str]] = {}
+    interim: list[str] = []
+    for topic_url, last_activity in rows.items():
+        series = series_of(topic_url)
+        if series == ("", ""):
+            interim.append(topic_url)
+        elif series not in latest or last_activity > latest[series][0]:
+            latest[series] = (last_activity, topic_url)
+    return [url for _, url in latest.values()] + interim
+
+
+def parse_beta_thread(page: str, url: str) -> PatchEntry:
+    """Parse a beta patch-notes thread's opening post into its dated change records."""
+    issue, page_name = series_of(url)
+    opener = next(iter(iter_posts(page)), None)
+    entry = PatchEntry(page_title(page), url, opener.posted_at if opener else "", issue, page_name, 0, "forum-beta")
+    if opener is not None:
+        entry.changes = parse_changes(opener.html)
+    return entry
+
+
+def wiki_pages(index_html: str) -> list[str]:
+    """Every dated ``Patch_Notes/YYYY-MM-DD`` page the archive's index links, once each, oldest first."""
+    found = {match.group(1): match.group(2) for match in _WIKI_PAGE.finditer(index_html)}
+    return [f"{WIKI_BASE}{path}" for path, _ in sorted(found.items(), key=lambda item: (item[1], item[0]))]
+
+
+def parse_wiki_page(page: str, url: str) -> PatchEntry:
+    """Parse one archived wiki patch-notes page: h2 headings are categories, deeper ones subsections."""
+    date = url.rstrip("/").rsplit("/", 1)[-1][:10]
+    entry = PatchEntry(page_title_wiki(page), url, date, "", "", 0, "paragonwiki")
+    body = _WIKI_BODY.search(page)
+    if body is None:
+        return entry
+    html = body.group(1)
+    footer = html.find(_WIKI_FOOTER)
+    html = html[:footer] if footer >= 0 else html
+    category = subsection = ""
+    for token in _WIKI_TOKEN.finditer(html):
+        if token.group(1) is not None:
+            headline = _WIKI_HEADLINE.search(token.group(2))
+            label = " ".join(strip_html(headline.group(1) if headline else token.group(2)).split())
+            level = int(token.group(1))
+            if level == 1:
+                issue = _WIKI_ISSUE.search(label)
+                entry.issue = f"issue-{issue.group(1)}" if issue else entry.issue
+            elif level == 2 or not category:
                 category, subsection = label, ""
             else:
                 subsection = label
@@ -129,44 +239,52 @@ def parse_entry(page: str, url: str) -> PatchEntry:
     return entry
 
 
+def page_title_wiki(page: str) -> str:
+    """The wiki page's own title, without the site suffix."""
+    match = re.search(r"<title>(.*?)</title>", page, re.I | re.S)
+    return " ".join(match.group(1).split()).split(" - ")[0] if match else ""
+
+
+def _slug(entry: PatchEntry) -> str:
+    tail = entry.url.rstrip("/").rsplit("/", 1)[-1]
+    if entry.source == "paragonwiki":
+        return "paragonwiki-" + tail.lower().replace("_", "-")
+    if entry.source == "forum-beta":
+        return "beta-" + tail.split("-", 1)[-1]
+    return tail
+
+
 def write_entry(entry: PatchEntry, out_dir: Path) -> Path:
-    """Write ``<date>-<slug>-r<rev>.json`` and append the entry to ``index.jsonl``; return the file."""
+    """Write ``<date>-<slug>.json`` and append the entry to ``index.jsonl``; return the file."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    slug = entry.url.rstrip("/").rsplit("/", 1)[-1]
-    path = out_dir / f"{entry.published[:10] or 'undated'}-{slug}.json"
+    path = out_dir / f"{entry.published[:10] or 'undated'}-{_slug(entry)}.json"
     path.write_text(json.dumps(asdict(entry), indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
-    row = {"url": entry.url, "published": entry.published, "revision": entry.revision, "file": path.name}
+    row = {
+        "url": entry.url,
+        "published": entry.published,
+        "revision": entry.revision,
+        "source": entry.source,
+        "issue": entry.issue,
+        "page": entry.page,
+        "file": path.name,
+    }
     with (out_dir / "index.jsonl").open("a", encoding="utf-8", newline="\n") as fh:
         fh.write(json.dumps(row, ensure_ascii=False) + "\n")
     return path
 
 
-def _written(out_dir: Path) -> set[str]:
+def _index(out_dir: Path) -> list[dict[str, object]]:
     index = out_dir / "index.jsonl"
     if not index.exists():
-        return set()
-    return {json.loads(line)["url"] for line in index.read_text(encoding="utf-8").splitlines() if line.strip()}
+        return []
+    return [json.loads(line) for line in index.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
-def main(argv: list[str] | None = None) -> int:
-    """CLI entry point: walk every category and write the entries not yet on disk."""
-    parser = argparse.ArgumentParser(
-        prog="python -m scripts.forum_scrape.patch_notes",
-        description="Collect Homecoming's live patch notes as dated change records.",
-    )
-    parser.add_argument(
-        "--out", type=Path, default=Path("data/patches"), help="output directory (default data/patches)"
-    )
-    parser.add_argument("--delay", type=float, default=2.0, help="minimum seconds between requests (default 2)")
-    parser.add_argument("--user-agent", default=DEFAULT_UA)
-    args = parser.parse_args(argv)
-
-    fetcher = Fetcher(args.user_agent, args.delay)
+def _collect_release_notes(fetcher: Fetcher, written: set[str], out: Path) -> int:
     categories = fetcher.get(CATEGORIES_URL)
     if categories is None:
         print(f"E60: could not read the patch-notes category browser at {CATEGORIES_URL}", file=sys.stderr)
-        return 1
-    written = _written(args.out)
+        return -1
     count = 0
     for category_url in list_categories(categories):
         listing = fetcher.get(category_url) or ""
@@ -176,12 +294,112 @@ def main(argv: list[str] | None = None) -> int:
             page = fetcher.get(entry_url)
             if page is None:
                 continue
-            path = write_entry(parse_entry(page, entry_url), args.out)
+            print(f"wrote {write_entry(parse_entry(page, entry_url), out).name}")
             written.add(entry_url)
             count += 1
-            print(f"wrote {path.name}")
-    print(f"{count} entries written to {args.out}")
-    return 0
+    return count
+
+
+def _walk(fetcher: Fetcher, forum_url: str) -> dict[str, str]:
+    first = fetcher.get(forum_url)
+    if first is None:
+        return {}
+    base = listing_base(first, forum_url)
+    rows = dict(topic_rows(first))
+    for number in range(2, last_page_number(first) + 1):
+        listing = fetcher.get(f"{base}/page/{number}/")
+        if listing is not None:
+            for topic, last in topic_rows(listing).items():
+                rows.setdefault(topic, last)
+    return rows
+
+
+def _live_series(row: dict[str, object]) -> tuple[str, str]:
+    if row.get("issue") or row.get("page"):
+        return str(row.get("issue", "")), str(row.get("page", ""))
+    match = _ENTRY.match(f'"{row["url"]}"')
+    return (match.group(2), match.group(3)) if match else ("", "")
+
+
+def _collect_forum_beta(fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]) -> int:
+    """Beta threads not covered by the live application: the live entry wins on the same series or date."""
+    live = [row for row in rows if row.get("source", "release-notes") == "release-notes"]
+    # Index rows written before the source and series columns existed carry the series in the URL.
+    live_series = {_live_series(row) for row in live}
+    live_from = min((str(row["published"]) for row in live), default="9999")
+    count = 0
+    for section in BETA_SECTIONS:
+        for topic_url in beta_candidates(_walk(fetcher, section)):
+            if topic_url in written:
+                continue
+            page = fetcher.get(topic_url)
+            if page is None:
+                continue
+            entry = parse_beta_thread(page, topic_url)
+            labelled = entry.issue != ""
+            if (labelled and (entry.issue, entry.page) in live_series) or (
+                not labelled and entry.published >= live_from
+            ):
+                continue
+            print(f"wrote {write_entry(entry, out).name}")
+            written.add(topic_url)
+            count += 1
+    return count
+
+
+def _collect_wiki(fetcher: Fetcher, written: set[str], out: Path) -> int:
+    index = fetcher.get(WIKI_INDEX_URL)
+    if index is None:
+        print(f"E64: could not read the wiki patch-notes index at {WIKI_INDEX_URL}", file=sys.stderr)
+        return -1
+    count = 0
+    for page_url in wiki_pages(index):
+        if page_url in written:
+            continue
+        page = fetcher.get(page_url)
+        if page is None:
+            continue
+        print(f"wrote {write_entry(parse_wiki_page(page, page_url), out).name}")
+        written.add(page_url)
+        count += 1
+    return count
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI entry point: collect every requested source and write the entries not yet on disk."""
+    parser = argparse.ArgumentParser(
+        prog="python -m scripts.forum_scrape.patch_notes",
+        description="Collect Homecoming's patch notes as dated change records.",
+    )
+    parser.add_argument(
+        "--out", type=Path, default=Path("data/patches"), help="output directory (default data/patches)"
+    )
+    parser.add_argument(
+        "--source", action="append", choices=SOURCES, default=[], help="a source to collect (repeatable; default all)"
+    )
+    parser.add_argument("--delay", type=float, default=2.0, help="minimum seconds between requests (default 2)")
+    parser.add_argument("--user-agent", default=DEFAULT_UA)
+    args = parser.parse_args(argv)
+    sources = args.source or list(SOURCES)
+
+    rows = _index(args.out)
+    written = {str(row["url"]) for row in rows}
+    total = 0
+    failed = False
+    forum = Fetcher(args.user_agent, args.delay)
+    if "release-notes" in sources:
+        count = _collect_release_notes(forum, written, args.out)
+        failed |= count < 0
+        total += max(count, 0)
+        rows = _index(args.out)
+    if "forum-beta" in sources:
+        total += _collect_forum_beta(forum, written, args.out, rows)
+    if "paragonwiki" in sources:
+        count = _collect_wiki(Fetcher(args.user_agent, args.delay, base=WIKI_BASE), written, args.out)
+        failed |= count < 0
+        total += max(count, 0)
+    print(f"{total} entries written to {args.out}")
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

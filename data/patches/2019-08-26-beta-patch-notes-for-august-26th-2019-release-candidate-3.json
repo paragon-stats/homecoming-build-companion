@@ -1,0 +1,35 @@
+{
+  "title": "Patch Notes for August 26th, 2019 (Release Candidate 3)",
+  "url": "https://forums.homecomingservers.com/topic/9133-patch-notes-for-august-26th-2019-release-candidate-3/",
+  "published": "2019-08-26T20:02:17Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is a Release Candidate. It means that we expect this patch to go to the live servers, unless we find a severe issue that blocks its release. Because this patch contains data files as they would go to the Live servers, several Justin features like all the Merit recipes being free and a bunch of badges being awarded at character creation are disabled. They will come back once we start the next round of experimental patches."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Assault: Energy Focus Store/Release should now [finally] work correctly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Blaster",
+      "power": "Assault Rifle",
+      "text": "Removed old bonus damage from Sniper Rifle that was supposed to be removed when Targeting Drone gained a damage buff."
+    }
+  ]
+}

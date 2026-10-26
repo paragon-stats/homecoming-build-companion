@@ -1,0 +1,211 @@
+{
+  "title": "Patch Notes/2011-10-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-10-05",
+  "published": "2011-10-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 10.05.11 build 2110.201110031805.1"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Character Creation"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Influence Caps"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 TASKS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Incarnate Trial - The Underground"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 First Ward - Seed of Hamidon"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 Alpha Incarnate - Mender Ramiel Arc"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.4 Hero Signature Story Arc I"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.5 Sewer Trial"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 POWERS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Mastermind - Incarnate Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Ultra Tailor"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a possible client crash when switching between Archetypes"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Influence Caps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Premium Players who are above the influence cap should no longer have a chance to leak influence when trading."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Influence Caps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who attempt to take part in a trade would put either side of the trade above their influence cap will now get the following message:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Influence Caps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Influence now shows up red in email interface if it is too much for a character to claim"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Influence Caps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who were stuck with too much influence in a pending claim should now be able to spend down to get out of their current state."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Trial - The Underground",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The final encounter in the Underground Incarnate Trial now properly ends the trial in failure if the enrage timer is reached."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "First Ward - Seed of Hamidon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the range at which badge credit for defeating the Seed of Hamidon can be awarded to participants."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Alpha Incarnate - Mender Ramiel Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters should no longer be able to get themselves into a state where they can no longer obtain missions to continue Mender Ramiel's arc. Players whose characters are currently stuck on this arc should submit an in-game petition for resolution."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Hero Signature Story Arc I",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue in mission 3 where Lemkin was called a different name in a clue received."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Sewer Trial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer have the chance to get stuck in a mound of dirt when exiting to Mercy Island from the Sewer Trial."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Mastermind - Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supremacy's Incarnate Shifts to Mastermind Minion and Lieutenant ranked pets on Incarnate Trials should now be working again."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ultra Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue which could cause gender deformation during Ultra Tailor sessions for players with weapon based powersets."
+    }
+  ]
+}

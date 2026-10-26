@@ -1,0 +1,859 @@
+{
+  "title": "Patch Notes for August 11th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/7806-patch-notes-for-august-11th-2019/",
+  "published": "2019-08-11T17:50:54Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mac OS X 10.15, codename Catalina, removes support for 32-bit applications. We have been hard at work for the last couple of months upgrading the client and all server components to 64-bit, while Manga has been working on a new version of Island Rum that uses the 64-bit version of Wine to run the game in Mac and Linux. This patch﻿, fingers crossed, is the culmination of those efforts."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When launching the game you will have the option for 32-bit of 64-bit clients in Tequila."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "32-bit is (and will remain) compatible all the way back to Windows XP."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "64-bit is highly recommended, and will be required for Mac users once OS X 10.15 is released."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DirectInput, the library used to handle mouse, keyboard and joystick input, did not work correctly under 64-bit Catalina; it has been replaced with standard Windows messages. In general you should not notice any difference, but make sure all your binds work, and if you have a strange gaming mouse with too many buttons, make sure they all work."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you have a Mac, even if you're not currently running Catalina, please contact Manga if you want to help test the Island Rum Beta. We have been conducting tests with a small pool of Mac users, and all the obvious issues have been fixed, but we do not want to push the Island Rum update for everybody until we know it won't break anything."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Linux users can still run the 32-bit client under Wine so they're less of a concern, but if you want to test the 64-bit client, be aware that it is dynamically linked and you will need to install the Visual Studio 64-bit runtime. The 32-bit version is statically linked to maximize compatibility."
+    },
+    {
+      "category": "64-Bit Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Because the new client requires some libraries that are no longer compatible with the existing client, they are housed in two new folders: hc-bin32 and hc-bin64, while the data files are in hc-beta. I get that the folder spam is getting a bit annoying, but we honestly don't have a better solution right now. We're working on it.﻿"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters that crash on the first login after creation and become corrupted will now be cleared out by the dbserver instead of staying in the character list."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed crash when clicking Accept on the SG Settings interface when no fields where editable."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Make it somewhat less likely for defeated enemies to be twisted into pretzels:"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Overhaul ragdoll parameters. The spring and dampen settings must have been different in older versions of PhysX, because the ones in NwRagdoll did almost nothing; which is why everything was so limp."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed joints (for all bones that don't have a spherical or hinge joint with special parameters) are apparently not working correctly, so replace them with a hinge joint that has a very small range of motion.﻿﻿"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambassador Kuhr'Rekt no longer requires the Native badge, which is unavailable to former Praetorians."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinels will now receive the Power of Scirocco clickie in the Barracuda SF.﻿"
+    },
+    {
+      "category": "Costumes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the following costume patterns from Derek Brown: Chisel, Crosshair, Grid, Oculus, Tech Shield, Trident and Widget."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Re-enabled the Malaise pattern for players."
+    },
+    {
+      "category": "Base Editor",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enabled 676 items for the base editor. You can find them by searching for \"New\" in the Place Item view.﻿"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "General Changes"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit is no longer required to achieve fast-snipe. Now, combat status determines if snipes are fast or slow, and ToHit buffs increase how much damage fast-snipe inflicts."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The snipe will be fast if you have attacked or been attacked in the last 8 seconds; this is the same time as Stalker's Hide."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note ﻿that PvP scale is based only around the PvP damage formula. ToHit buffs and debuffs do not change quick snipe damage in PvP.﻿﻿"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following fast snipe﻿ animations have﻿ been synced with the﻿ir FX, no cast time changes: Moonbeam, Zapp, Sniper Blast, Proton Volley (they all remain at their original 1.33 second duration.)"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a new PVP IO Snipe set \"Experienced Marksman\"; includes proc that will always turn your Snipes into the fast version."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster/Defender/Corruptor Snipes"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "12 second recharge and 14.352 end cost."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base 2.28 scale damage in their \"quick\" form, down from 2.76 scale."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 2.76 scale damage with +22% ToHit buff."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form will do 4.5 scale damage.﻿﻿﻿"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Snipes"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "20 second recharge and 18.512 end cost."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base 2.67 scale damage in their \"quick\" form, down from 3.56 scale."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 3.56 scale damage with +22% ToHit buff."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form will do 4.5 scale damage.﻿﻿﻿"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic Snipes"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Will now have a base 1.75 scale damage in their quick form."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 2.3 scale damage with +22% ToHit buff."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form will do 3.56 scale damage"
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form crits will do 3.56 + 1.78 scale damage."
+    },
+    {
+      "category": "Powers - Snipes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers should now properly crit 10% of the time, instead of using Stalker requirements."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "﻿ Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Spears: Cast time reduced from 2.10 seconds to 1.00 second."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tremor: Cast time reduced from 3.30 to 2.50 seconds."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurl Boulder: Cast time reduced from 2.50 seconds to 1.50 second. Recharge increased from 8 seconds to 12 seconds. Damage increased from 86.64 to 120.5 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heavy Mallet: Recharge increased from 12 to 14 seconds. Damage increased from 133.1 to 151.8 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total Focus: Cast time shortened from 3.30 to 2.50 seconds."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Burst: Cast time shortened from 2.00 to 1.67 seconds."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Icy Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Boost is now Power Up. (90s recharge, +34% damage, +75% str to other effects for 10 seconds.)"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Bolt: Recharge increased from 4 seconds to 5 seconds. Damage increased from 52.9 to 61.3 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Sword: Recharge increased from 8 seconds to 10 seconds. Damage increased from 95.8 to 114.5 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Slash: Recharge increased from 10 to 20 seconds. Damage increased from 114.5 to 207.8 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Dart: Cast time reduced from 1.33 to 0.83 seconds."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinetic Thrust: Cast time reduced from 2.07 to 1.00 seconds."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radioactive Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contaiminated Strike: Recharge increased from 5 seconds to 8 seconds. Damage increased from 67.7 to 95.7 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "X-Ray Beam: Recharge from 10 seconds to 11 seconds. Damage increased from 103.5 to 112.0 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devastating Blow: Recharge 18 seconds to 20 seconds. Damage increased from 189.2 to 207.9"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Savage Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spot Prey: This power now grants +68% damage buff and +17 Tohit. Before: +42.5% damage buff and +42.5 ToHit. No longer grants a perception buff."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vicious Slash: Recharge increased from 9 seconds to 11 seconds. Damage increased from 105.1 to 123.8 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Call Hawk: Recharge increased from 12 seconds to 15 seconds. Damage increased accordingly (variable damage, aprox +14.4% damage increase.)"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Envenomed Blades: Fixed a bug where this power would sometimes proc more than once."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thunder Kick: Recharge lowered from 8 seconds to 6 seconds. Damage lowered from 95.8 to 77.1 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Shot is now a proper chain attack, hits up to 10 targets."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spinning Kick: Target cap reduced to 5, same as all other melee cones. This power was also doing Single Target damage despite it being a cone. This has been fixed and damage has been lowered."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Explosive Shuriken should no longer state it's an AoE, but still will do splash fire dot damage to foes around the main target."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thorny Assault"
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aim replaced with Build Up."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skewer: Cast time reduced from 1.63 seconds to 0.83 seconds. Recharge time lowered from 10 seconds to 8 seconds. Damage lowered from 114.45 to 95.8 damage. Chance for DoT increased from 80% to 85%."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impale: Cast time reduced from 2.43 seconds to 1.43 seconds. Recharge increased from 8 to 12 seconds. Damage increased from 86.6 to 120.5 damage."
+    },
+    {
+      "category": "Powers - Dominator Assault Sets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thorn Barrage: Recharge time increased from 11 to 14 seconds. Damage increased from 112 to 137 damage.﻿"
+    },
+    {
+      "category": "Powers - Devices",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Web Grenade to Toxic Web Grenade, now deals scale 1 toxic DoT and can be slotted for damage"
+    },
+    {
+      "category": "Powers - Devices",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taser: Recharge reduced from 20 to 10 seconds, duration reduced from scale 10 to scale 5, damage increased from 0.25 to 1.96 (same damage as Energy Punch)"
+    },
+    {
+      "category": "Powers - Devices",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Time Bomb: Animation is now 2.77 seconds, interrupt time removed, countdown reduced to 5 seconds, defiance values reduced to match (this only applies to this set, not to the Traps support set versions.)"
+    },
+    {
+      "category": "Powers - Devices",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trip Mine: Interrupt removed. Cast time is now 2.77 seconds. Recharge increased to 30 seconds."
+    },
+    {
+      "category": "Powers - Devices",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Targeting Drone now gives your first attack from out of combat a Built-Up effect (80% damage) and continues to provide a 20% damage buff while in combat."
+    },
+    {
+      "category": "Powers - Stealth",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All self-stealth toggles should now recharge in 2 seconds."
+    },
+    {
+      "category": "Powers - Stealth",
+      "subsection": "",
+      "archetype": "Pools",
+      "powerset": "Concealment",
+      "power": "Stealth",
+      "text": "No longer slows the user down."
+    },
+    {
+      "category": "Powers - Stealth",
+      "subsection": "",
+      "archetype": "Pools",
+      "powerset": "Concealment",
+      "power": "Invisibility",
+      "text": "Endurance cost lowered from 0.65 to 0.2275. You are now be able to attack while this power is active, but should you attack, most your defense will suppress."
+    },
+    {
+      "category": "Powers - Stealth",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Illusion Control",
+      "power": "Superior Invisibility",
+      "text": "Endurance cost lowered from 0.52 to 0.182."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Gravity Control",
+      "power": "Propel",
+      "text": "Adjusted physics parameters on objects to make them feel solid and not bounce around like rubber toys."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Night Widow & Fortunata Vengeance: Now triggers on league members. The buff will still only apply to teammates."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn: should no longer ignore accuracy enhancements."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Beta Decay: FX now anchors on the player and not the world."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Leaping",
+      "power": "Spring Attack",
+      "text": "now does Containment damage when used by Controllers."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Sorcery",
+      "power": "Enflame",
+      "text": "Should now do damage for Sentinels"
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Kheldians",
+      "power": "Inherent",
+      "text": "Should now see Sentinels the same way they see Blasters﻿ and Scrappers, for the purpose of their inherent powers."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Controller",
+      "powerset": "Ice Control",
+      "power": "Flash Freeze",
+      "text": "should be properly flagged as a Targeted AoE, not a Point Blank AoE."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Stalker",
+      "powerset": "Savage Melee",
+      "power": "Shred",
+      "text": "This power erroneously said it consumed Blood Frenzy stacks. The text has been corrected. This power generates one Blood Frenzy stacks instead. All other AT versions of the power had the correct text for Shred."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dominator",
+      "power": "Feral Charge",
+      "text": "Fixed a bug where sometimes it would do no damage if executed from maximum distance."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Dominator",
+      "powerset": "Savage Assault",
+      "power": "Unkindness",
+      "text": "This power erroneously said it consumed Blood Frenzy stacks. The text has been corrected. This power generates one Blood Frenzy stack, and it's DoT becomes stronger the more Blood Frenzy the caster has. This bonus to Unkindness makes up for the set's lack of Savage Leap and Hemorrage."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Ice Blast",
+      "power": "Chilling_Ray",
+      "text": "Should now accept Slow enhancements."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Regeneration",
+      "power": "Dismiss Pain",
+      "text": "Increased amount of MaxHP granted to 24% from 6%, should had not been that low to begin with."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Beam Rifle",
+      "power": "Disintegration",
+      "text": "Should [hopefully] never linger after the target dies."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Control",
+      "power": "Animate Stone",
+      "text": "should no longer stop to reconsider it's life choices for about 6 seconds after using Hurl."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mu Mastery Epic Pool: Zap now uses Melee Damage Modifiers"
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Beam Rifle's Pene﻿trating Ray now has ﻿a 55% chance of spreading disintegration."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Beam Rifle's Lancer Shot now has a 100% chance of spreading disintegration."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in the no-redraw version of fast-Archery's﻿ Snipe."
+    },
+    {
+      "category": "Powers - Misc Changes & Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Lance's quick FX was completely broken and out of sync. FX has been resync but this required a slightly slower animation (1.33 secon﻿ds.)﻿﻿﻿﻿﻿"
+    }
+  ]
+}

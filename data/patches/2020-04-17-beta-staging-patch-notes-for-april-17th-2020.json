@@ -1,0 +1,75 @@
+{
+  "title": "[Staging] Patch Notes for April 17th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/18080-staging-patch-notes-for-april-17th-2020/",
+  "published": "2020-04-17T16:19:41Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Leadership",
+      "power": "Maneuvers",
+      "text": "fixed a bug where Melee, AoE, Lethal and Cold def were only being granted to the caster."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Spines",
+      "power": "Spine Burst",
+      "text": "This power erroneously had it's Radius increased to 16 instead of its Target Cap. This has been fixed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Blaster",
+      "power": "Dual Pistols",
+      "text": "Fixed an issue where the set was not granting blasters Defiance +Damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dual Pistols",
+      "power": "Hail of Bullets",
+      "text": "Fixed an issue where the power DoT chance was calculated only once at the activation of the power instead of once per tick when non standard ammo was active."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set Bonus > Synapse Shock should no longer show a buff icon."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Synthetic Hamidon enhancements for Accuracy/Mez and Damage/Mez will now combine with their Titan, Hydra and Hamidon counterparts."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with some procs not working on Dual Pistols > Hail of Bullets."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected \"Chance for Fire Damage\" text in Sentinel's Ward: Recharge/Chance for Absorb."
+    }
+  ]
+}

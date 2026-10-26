@@ -1,0 +1,3123 @@
+{
+  "title": "Patch Notes/2005-05-04",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-05-04",
+  "published": "2005-05-04",
+  "issue": "issue-4",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 05/04/05 Patch Notes - Issue 4: Colosseum"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Arenas!"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Character Creation"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 Power Changes (PvE and PvP)"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5 Changes that Affect PvP Only"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6.1 Coalition Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7 Global Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.8 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9 New Commands"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.10 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.11 Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.12 General UI"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.13 Graphics"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.14 Maps"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.15 Contacts"
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arenas are located in Galaxy City, Talos Island, and Peregrine Island."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All events are interlinked. This means players joining events in Galaxy City’s arena can play against players who joined in Talos Island or Peregrine Island."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Joining events is as easy as entering the arena lobbies and clicking on any available Battle Terminal."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Events are broken down into Weight Classes, ensuring a more even fight between the heroes involved."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can join events in weight classes lower than your current Security Level allows. Doing this will automatically Exemplar you down to the appropriate level for the Weight Class."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stores inside the arenas sell small Inspirations as well as some useful Temporary Powers. These powers can only be used during Arena matches."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Event Creators can set their own ground rules for events that they initiate. These include No Travel Powers, No Pool Powers, Max Recovery (extremely fast Endurance recovery), Limit Stealth Powers, and Tactical Start (all players start the match with 0 Endurance). Some ground rules will disable PVP Rating."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Duels are one on one battles. These do not count towards PVP Rating."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team Duels are battles with 2 or more people per side."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Royals and Team Battle Royals are battles with three or more sides."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pentad Challenges are Team Duels that require one Blaster, one Controller, one Defender, one Scrapper, and one Tanker on each team (no more, no less)."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supergroup Rumbles are set up between the leaders of two Supergroups, and limit combatants to belonging to one or the other Supergroup in order to participate. This means that the largest possible battle is 65 people versus 65 people. Once we fix a technical problem, we want to increase this to 75 vs 75 to match the maximum supergroup size."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The default Arena matches are 10 minute Deathmatch. You have 10 minutes to defeat your opponent(s) as many times as possible. 20 and 30 minute matches are also available."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Other Arena possibilities are Last Man Standing, which are single elimination matches or Domination Matches, where teams share a pool of “lives”, and when they are all used up, the entire team loses the match."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When you are defeated in a Last Man Standing match, you can come back as a floating camera and watch the action. Cameras are invisible to other players, and intangible (so they can pass through you without incident). Outside observers can also watch matches in progress as cameras, as long as the Event Creator allows it. Cameras are not allowed to chat to any other player in the game."
+    },
+    {
+      "category": "Arenas!",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Chess-style ranking system has been implemented to track your skill in PvP. All players begin with a 1500 Rating. Defeating someone of a higher rating than you will give you more points added on your Rating than defeating someone of a lower rating than yourself. Inversely, losing to someone of a lower rating than you will cost you more points off your rating than losing to someone of a higher rating than yourself. You can see any other player’s rating on the Battle Terminals or by right clicking on them."
+    },
+    {
+      "category": "Character Creation",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New body scaling feature allows you much more ability to customize your character’s appearance."
+    },
+    {
+      "category": "Character Creation",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Body scaling can be modified at Icon stores, along with your costume. This costs influence (rate varies depending on character’s Combat Level)."
+    },
+    {
+      "category": "Character Creation",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New costume pieces have been added to give your character a wider range of choices."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Numerous changes have been made to powers specifically for player-vs-player situations, as well as many changes that affect all parts of the game."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Max Stealth capability (High stealthy powers like Superior Invisibility can now better protect against foes with high Perception, like Snipers)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gives more improvement to powers like Superior Invisibility."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can now knock you back, instead of just knocking you down."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Makes for more comic-book like gameplay."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the base -30% Damage Resistance debuff from Kheldians and decreased their base HP by 12.5% (this gives them an effective net increase in HP)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This was to solve an issue with non-grouped Kheldians taking too much damage."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Kheldians Base Range Damage. This gives them 4% less base damage than Defenders when solo."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This was to increase the damage potential of a solo Kheldian."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the Damage Bonus Kheldians get from the appropriate teammates to +20% each. This makes their damage equivalent to Blasters with 3 teammates of the appropriate archetype, and +50% greater damage than Blasters with 7 teammates of the appropriate archetype."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gives a better incentive for Kheldians to group."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders and Controllers will now drain more Endurance when using powers that drain Endurance. More specifically, Defenders will drain more Endurance when using Electricity Blast than a Blaster using the same power. Controllers will now drain more endurance with powers such as Transfusion, but Defenders will still drain more than Controller."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders Secondary Effects (debuffs) should be better than a Blaster’s or a Controller’s."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Damage resistance of Singularity, and decreased the Endurance cost."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bring Singularity more in-line with other pets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Damage resistance of Animate Stone."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bring Animate Stone more in-line with other pets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Jack Frost's resistance to Cold. Jack Frost now has a permanent Chilling Embrace. Jack Frost Power now accepts Slow Enhancements. Jack Frost is now highly resistant to Slow effects (recharge and movement)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bring Jack Frost more in-line with other pets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased the Endurance cost of Jack Frost."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bring Jack Frost more in-line with other pets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Fear visual f/x to Manipulation fear powers."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphical improvement"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Gravity Control/Propel damage."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To compensate for its long activation time."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significantly increased the Max HP of Kheldians while in Dwarf form."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To make them more Tanker-like in this form."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emission/EM Pulse now also drains Endurance and accepts Endurance Drain Enhancements."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Normalizing what EMP powers should do."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emission/EM Pulse now also debuffs targets’ Regeneration rate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Normalizing what EMP powers should do."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the Damage buff of Leadership/Assault and Vengeance by 50%."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the powers to compensate for the fact that it can not take Enhancements."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doubled the effectiveness of the Recharge Boost of Empathy/Adrenaline boost."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the power to make it better than previous ones in the set."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldian Dwarf Form now resists Confuse and Fear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modification to Perception attribute: Increased Perception will now allow you to see stealthy foes or resist powers that reduce your Perception (like Smoke Grenade)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accuracy Inspirations now increase Perception."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leadership/Tactics now offers increased Perception and resistance to Confuse."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can now Confuse and Fear and reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leadership/Vengeance now offers resistance to Fear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medicine/Stimulant now offers resistance to Fear and Confuse."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor/Glacial Armor now offers increased Perception."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Minerals now offers increased Perception and resistance to Confuse."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Resistance Enhancements from Crystal Armor, as they had no effect."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It’s a Defense power, it was never supposed to take Resistance Enhancements."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor/Obsidian Shield now offer resistance to Fear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor/Cloak of Darkness now offers increased Perception."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes/Focused Fighting now offers resistance to Confuse."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes/Focused Senses now offers increased Perception."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies can reduce your Perception, so characters will get some resistance to such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Shadow Fall now offer resistance to Fear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empathy/Clear Mind now offer resistance to Fear and Confuse, and grants increased Perception."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning/Steamy Mist now offers resistance to Confuse."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Hasten that was allowing its attack rate boost to be resisted. The result was powers like Wet Ice and Energy Absorption were resisting the recharge boost of Hasten."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Short and system help of Hoarfrost (no power change)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text change"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased base movement of pets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So they can keep up with you better."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Spectral Terror attack power so it tends to make foes run away less."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To reduce the “scatter” effect."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Confuse and Fear protection to Kheldian Cosmic Balance and Dark Sustenance."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains can now Confuse and Fear players, so characters will get some resistance to them."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Super Strength/Rage animation."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animation bug fix"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause a bad shield graphic f/x error to appear if you used Unyielding and Stone Mallet."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Cryonic Armor missing ice armor f/x."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Earthquake (hero and villain version) from continuing to affect foes even if they leave the affected area"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravity Control/Wormhole is now an AoE (Wormhole applied a Disorient, so now Gravity Control has another AoE Control power). Recharge Time was increased to compensate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gives Gravity Controllers another AoE control power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bad Disorient Duration for Assault Rifle/Beanbag (duration was twice as long as normal at higher levels)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Howling Twilight now restores Full Hit Points and Endurance to those you resurrect. This power no longer accepts Heal and Recovery Enhancements (it already restores the maximum HP and END, so there is nothing to Enhance)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power was hard enough to pull off in combat already. Increased its effectiveness appropriately."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly reduced the Fear Time of Invoke Panic."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Fear effect is more powerful, this reduction is to compensate for the power increase."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spectral Terror now only targets one foe when it uses its Terrify attack."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To reduce the “scatter” effect that could happen."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some bad Disorient durations on Warshade powers (Gravitic Emanation and Unchain Essence)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolve, Strength of Will, and Sheer Willpower Inspiration are now removed from the game. Break Free, Emerge, and Escape Inspirations will now protect you from all effects including Sleep, Hold, Immobilization, Disorient, Fear, Knockback and Confuse, and can be activated even while under such effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Inspiration consolidates all effects into one Inspiration. Can be used while under such effects. Old Inspirations now all act like the new ones."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the duration of Break Free, Emerge, and Escape Inspirations."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Since the Inspiration is now all-encompassing, we reduced the duration to compensate for the power increase."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the invulnerable time after you cast Rise of the Phoenix (Tanker and Ancillary versions)"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the power to prevent you from dying immediately after you rez yourself."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified powers that protect you from controlling effects. They will all now generally improve over level."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Protection Powers scale more effectively over level."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Ice Blast/Blizzard Duration and increased its Damage."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to Blizzard."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Tar Patch now also debuffs affected targets’ damage resistance and prevents foes from jumping and flying. Recharge time has been increased."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power, now gets a Damage Resistance debuff. The increase to the recharge time prevents stacking of the effect."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Twilight Grasp now debuff the targeted foes’ Regeneration Rate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Howling Twilight now debuff the targeted foes’ Regeneration Rate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Transfusion now debuffs the targeted foes’ Regeneration Rate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Siphon Speed now also transfers attack rate (debuffs targets attack rate and buffs the casters)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emission/Lingering Radiation now also debuffs targets’ Regeneration rate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the duration of the Freezing Rain’s debuffs."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Defender’s Freezing Rain Slow debuff."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To make it better than the Controller’s version. Defender’s increased more."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Control/Quicksand now debuffs a target’s defense and prevents foes from flying or jumping."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Hurl and Hurl Boulder and Scrapper/Spines/Impale can now knock flyers down."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed rank of Devouring Earth beacons. They should be easier to destroy now."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Beacons were too difficult to destroy."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved/decreased the cast time of siphon speed."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the END cost of Dark Nova Bolt and Dark Nova Blast."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To bring these more in-line with other comparable powers."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the amount of Regeneration Buff that can be enhanced in Instant Healing and Integration (base values were not changed)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A step in bringing Regeneration powerset more in-line with other equivalent powersets."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Put a cap on the max defense you can gain from Energy Absorption."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There was no cap. Allowed you to have infinite defense."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increase Time Bomb Accuracy."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor/Murky Cloud, Stone Armor/Rooted, Storm Summoning/O2 Boost, Radiation Emission/Accelerate Metabolism, and Force Field/Insulation Field now offer resistance to Endurance Drain effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Immobilization Protection in Combat Jumping. Also, Protection now increases over level."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increase Range and Decreased Interrupt times of Medicine/Aid Other and Stimulant."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Hit rate of Choking Cloud."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added some Immobilization protection to Cloak of Darkness."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor was missing Immobilization Protection."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Shadow Cloak now somewhat protects you from Immobilization, and Stealth."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade/Stygian Circle: Added Endurance gain per defeated foe drained. Significantly reduced its Endurance activation cost."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Rage defense debuff."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Was giving a defense buff after Rage wore off instead of a debuff"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the effect Duration of Terrorize powers."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Terrorize improved significantly, so the durations needed to be reduced to compensate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Accuracy Enhancements to Rain of Fire, Freezing Rain, Ice Storm, and Blizzard."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug Fix"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased recharge time (less often) for Yellow Ink Men Holds and Sleeps."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Chance for DE Fungi men to put you to sleep with their Spores."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the recharge time (less often) for Malta Tasers and Web Grenades."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Knives of Artemis stealth."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They got better."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the recharge time (less often) for Modified Knives of Artemis sleep dart."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased chance Dominatrix minion can sleep you."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased chance Dominatrix Boss can hold you."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They got better."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased chance Carnival Attendant Energy Rings can Disorient you."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased chance Rularuu Brute minions can knock you down."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased chance Rularuu Wisp minions can Immobilize you."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased amount Rularuu Sentry minions can slow you."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "So you are not perma-held by Minions."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blizzard, Ice Slick, Ice Patch, Earthquake, and Freezing Rain will no longer knock lower level minions out of the affected area."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix to prevent lower level enemies being knocked out of the area of effect."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Hydra Head powers. Fixed bug that allowed attacks to get through without taking out the shield generators."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Sewer Kraken collision/selection."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can now attack targets while Superior Invisibility is on. Superior Invisibility is the only self toggle invisibility power that allows you to attack while it is active."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the Power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix to ensure you remain immobile while in Hibernate."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing attack types to Gravity powers (defense now applies to all gravity attacks). (Player and Villain versions)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix so you can defend against the powers properly."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Recharge time for Dimension Shift, Black hole and Detention Field."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brings these powers to be more in-line with being a situational defense power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Endurance cost of Black Hole, Dimension Shift and Detention Field. ."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brings these powers to be more in-line with being a situational defense power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the recharge time of Phase Shift."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduce its ability to be exploited."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes/Quickness now also resists slow effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Ice Armor/Wet Ice resistance to slow effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused high level Portal mission Clockworks to summon other Clockworks at the wrong level."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empathy/Adrenaline Boost now also grants the target resistance to slow effects."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in Earth Controller Power Set description."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text correction."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hibernate can now be used in the air. You will fall to the ground if you do so."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused Hibernate f/x to be left behind if you were moving while activating the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hibernate now accepts Heal Enhancements."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that meant Dropping Dull Pain at the same time Unstoppable falls could cause character death"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased recharge time of Peacebringer/Quantum Flight and Warshade/Nebulous Form."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To bring it in-line with Phase Shift."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the Regeneration Boost of the temp power “Dimensional Shield”"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quantum Flight will now accept Recharge Enhancements"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arctic Air will now debuff foes’ Stealth"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech labs (destructible objects) can no longer be teleported."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Cloak of Fear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Based on recent improvements to the Fear effect, Cloak of Fear has been modified. Accuracy and duration of fear was reduced so that the power will terrify 50% of nearby foes at any given time. This can be improved with Accuracy Enhancements (more affected), or Fear Enhancements (affected targets will be terrified longer). Duration of fear f/x increases over level."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mini Hamidon Buds now have a limited lifespan."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To make it possible for Hamidon to respawn"
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Disorient time for Wormhole."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To make it comparable to other AoE stuns."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Shadow Shard Council reflection powers."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed continuing cold f/x (debuff) for freezing rain (this is a visual f/x change only. the debuff f/x was not always playing)."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified how foes run out of Freezing rain. They will avoid it slightly less."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased (nearly doubled) the Regeneration buff of Fast Healing."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To insure that it was better than the Pool Power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added continuing f/x attached to target for Peacebringer Nova And Dwarf powers that debuff Defense."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thunder Strike AoE damage will now scale up if you are buffed. Modified the description text to make the power more clear."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rooted now offers protection from Immobilize."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Indomitable Will will no longer play its animation if the player attempts to activate it before it has finished recharging."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Group Invisibility will no longer play its animation if the player attempts to activate it before it has finished recharging."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphic bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the Regeneration buff of Fitness/Health."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improvement to the power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue that was preventing Tsoo Bosses from having proper defensive abilities."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug fix."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed taunt powers so they will cause fleeing villains to return, unless they are affected by a Fear power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AI Change to improve Taunt."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the target of a toggle power moves out of maximum perception range, the toggle power is dropped from the target."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Change made to prevent affecting a target without any risk to yourself."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Moment of Glory, Elude, and Light Form to have a Duration of 180 seconds and a base recharge time of 1000 seconds."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This prevents these powers from being 'Permanent', making it comparable to Unstoppable."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elude now also offers a Recovery boost."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To bring it in line with Moment of Glory and Unstoppable."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Recovery debuff at the end of Elude."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bug Fix. It didn’t always debuff your Recovery."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After Moment of Glory wears off, you will be unable to regenerate HP for 15 seconds."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is to keep MoG consistent with the drawbacks associated with other high-end defense powers like Elude and Unstoppable."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 50% ToHit debuff to Super Speed and Super Leap."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To bring these travel powers in line with Flight."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the effect area of the Nemesis Staff Temporary Power. Increased the recharge time of Nemesis Staff temp power."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power was bugged. It was doing Single-Target scale of damage to a large Area of Effect."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hamidon Enhancements are reduced in effectiveness more when Exemplaring below level 45."
+    },
+    {
+      "category": "Power Changes (PvE and PvP)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Because of the formula used, the powerful Hamidon Enhancements were not being reduced in effectiveness enough when Exemplaring down."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some powers have a chance to turn off one or more of a target’s Toggle powers. These powers include:"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inherent: Brawl (33% chance of dropping one toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Devices: Time Bomb (100% chance of dropping one toggle, 75% chance of dropping a second toggle, 50% chance of dropping a third toggle, and 25% chance of dropping a fourth toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Devices: Trip Mine (75% chance of dropping one toggle, 37% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Electrical Manipulation: Charged Brawl (100% chance of dropping one toggle, 20% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Electrical Manipulation: Havok Punch (100% chance of dropping one toggle, 75% chance of dropping a second toggle 50% chance of dropping a third toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Energy Manipulation: Bone Smasher (100% chance of dropping one toggle, 75% chance of dropping a second toggle 50% chance of dropping a third toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Energy Manipulation: Energy Punch (100% chance of dropping one toggle, 20% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Fire Manipulation: Fire Sword (100% chance of dropping one toggle, 20% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Fire Manipulation: Fire Sword Circle (75% chance of dropping one toggle, 38% chance of dropping a second toggle 19% chance of dropping a third toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Ice Manipulation: Frozen Fists (100% chance of dropping one toggle, 20% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster: Ice Manipulation: Ice Sword (100% chance of dropping one toggle, 40% chance of dropping a second toggle 15% chance of dropping a third toggle,"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field: Force Bolt (33% chance of dropping one toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field: Repulsion Bomb (100% chance of dropping one toggle, 75% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field: Repulsion Field (10% chance of dropping one toggle, 5% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics: Repel (5% chance of dropping one toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer: White Dwarf Strike (50% chance of dropping one toggle, 5% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning: Lightning Storm (50% chance of dropping one toggle, 25% chance of dropping a second toggle 10% chance of dropping a third toggle, 5% chance of dropping a fourth toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning: Thunder Clap (100% chance of dropping one toggle, 75% chance of dropping a second toggle 25% chance of dropping a third toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade: Black Dwarf Strike (50% chance of dropping one toggle, 5% chance of dropping a second toggle)"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Granite Armor, Bright Nova, White Dwarf, Dark Nova and Black Dwarf have been made immune to Toggle Drop effects brought on by Brawl and similar De-Toggle abilities. These powers are still vulnerable to being shut down by Holds and Stuns."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These are crucial powers that should be immune to toggle drops."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Suppression: You cannot chain control your opponent. If you are affected by any controlling effect (Sleep, Hold, Disorient, Immobilize, Fear, Confuse), you will be immune to such effects for some time after the effect wears of (approx. 15 seconds, but this time may vary)."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is so you can not perma-control opponents in PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockdown and Knockback powers also have a Suppression effect to protect players from chain knockdowns. This is a separate from the Suppression timer for controlling effects, and is shorter (approx. 10 seconds)."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is so you can not perma-control opponents in PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Primary, Secondary and Ancillary Powers now do triple damage in PvP if the target is already Held, Stunned, Slept or Immobilized."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To give Controllers a fighting chance."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most Defender debuffs are not resistible in PvP"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To give Defenders a chance against Scrappers and Tankers."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "33% of damage from Blaster Primary, Secondary and Ancillary Powers cannot be resisted."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To give Blasters a chance against Scrappers and Tankers."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage from Scrapper Critical hits in PvP cannot be resisted."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Making Criticals worthwhile."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the effect of Endurance Drain in End Draining powers in PvP (1/4 PvE values) – Defenders still drain more than other Archetypes."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Because Endurance Drain is extremely powerful in PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced duration of Dimension shift, Black hole and Detention Field in PvP"
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Because these powers are extremely powerful in PVP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the Arena, the Ground Rule “Disable Travel” Ground Rule grays-out the following powers: Teleport, Team Teleport, Shadow Step, White Dwarf Step, Black Dwarf Step and Manifold Resonator (a temp power). It disallows flight, but does not disable Fly powers (you can still activate Hover for the defense bonus for example). Also, it sets a Max Jump Height, Jump Speed and Run Speed."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This option allows characters without range powers can level the playing field."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the Arena, the Ground Rule “Disable Stealth” Ground Rule allows you to turn on your Stealth Powers, so you can still gain the defense bonus, but your opponents can still see you."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This option allows characters without stealth-defeating powers to level the playing field."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Knockdown chance in PvP for Blizzard, Ice Slick, Ice Patch, Earthquake, and Freezing Rain (separate PvP attribmod)."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is so you can not perma-control opponents in PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set smoke and smoke grenade to cancel on damage."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is to emulate the PVE effect."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinesis will now Suppress if the target is damaged. That is, if the PvP Target is damaged, the hold will Suppress, but you can keep pushing him back."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is so you can not perma-control opponents in PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Control/Smoke will not auto hit players."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It was too good."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Stealth to Trip Mines and Time Bombs for PvP."
+    },
+    {
+      "category": "Changes that Affect PvP Only",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made them emulate the same behavior as PVE."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coalition chat can be accessed by clicking on the Coalition button in your Supergroup menu, or via slash commands."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invites a player's Supergroup to form a coalition. You must be the leader of your Supergroup to do this."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Also accessible by right clicking on the player."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sends the invite to the leader of <player_name>'s Supergroup that has been online the longest."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your Supergroup can be in a coalition with a maximum of 10 other Supergroups."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chats in the coalition channel."
+    },
+    {
+      "category": "Chat",
+      "subsection": "Coalition Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If Supergroup A and Supergroup B have a coalition, and Supergroup A and Supergroup C have a coalition, then anything members of A say will be heard by members of A, B, and C. Anything members of C say will be heard only by members of A and C. Anything members of B say will be heard only by members of A and B."
+    },
+    {
+      "category": "Global Chat",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you use the /ghide command, your name will no longer disappear from other players' friends lists when you zone."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "With this feature on, left click on a target point or object and your character will move to that point"
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Click to Move is turned off by default. It can be turned on in the Options menu."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On-Demand Use: hold down a key (default is V) to temporarily enable the feature for as long as the key is held. If the feature is set to run all the time, holding down the key will temporarily disable click to move."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Autorun: hold down both left and right mouse buttons for 2 seconds to enable autorun. hold buttons down again to turn autorun off."
+    },
+    {
+      "category": "New Commands",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added \"Suppress Extra Player FX\" to the Options Menu, which will disable rendering of \"unimportant\" player FX systems (any PBAoE or continuing FX not affecting the player or a teammate)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Atlas Park , Galaxy City : There are new story arcs for Kheldian heroes available from Sunstorm and Shadowstar. There are a total of 7 new arcs available only to Kheldians spanning the course of their careers, starting at level 15. A new story arc will open and the previous one close every 5 levels thereafter."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to both story and technical reasons, players will not be able to go back and complete story arcs they've out-leveled with their Kheldian at this time."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced reward for defeating a Sewer Trial Kraken"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The reward was inadvertently too high for the risk involved."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you have not damaged a villain and are farther than 300ft from where the villain is defeated by a teammate, you will receive no reward. If you did no damage yourself, and are defeated, and have been so for more than a minute, you will receive no reward. These limits do not apply when on any Mission Map. This is to make sure that party members who participated in the battles are the ones who get the rewards."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hamidon Enhancements no longer are able to be generated at a level over 50."
+    },
+    {
+      "category": "General UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can now completely delete the character description."
+    },
+    {
+      "category": "General UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battlecry can no longer occupy two lines, making it fail."
+    },
+    {
+      "category": "General UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tooltip Delay option in Options window now fits correctly in the UI."
+    },
+    {
+      "category": "General UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Buff Icons on the team window will now flip sides as necessary (move window to the right, and buffs will appear on the left)."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that degraded performance for systems using Geforce 2 or Geforce 4 MX cards unless shadows were turned off."
+    },
+    {
+      "category": "Maps",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Construction on University Campuses has begun in Steel Canyon and Founder’s Falls. This is for an upcoming game feature."
+    },
+    {
+      "category": "Contacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bastion has received a substantial upgrade to his systems, courtesy of DATA. In honor of his greatly enhanced capabilities, Paragon City's android hero has renamed himself \"Citadel.\""
+    },
+    {
+      "category": "Contacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sister Psyche has been returned to her own body, thanks to the efforts of the many heroes who assisted Task Force contact Calvin Scott. Sadly, the spell that restored her also caused her to lose control over the twisted mind of her protégé, Malaise. He has gone rogue, but in his place stands Aurora Borealis, Sister Psyche's former host and current protégée. Sister Psyche hopes that one day Malaise's good personality may be brought to the forefront again, and he can reclaim his place among the heroes of Paragon City. As for Calvin Scott, he has retired from the contact business, content that his work is complete. (The Calvin Scott Task Force is no longer available)"
+    },
+    {
+      "category": "Contacts",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainers (NPCs who you see to Level Up) now have a lot of things to tell players about various game systems."
+    }
+  ]
+}

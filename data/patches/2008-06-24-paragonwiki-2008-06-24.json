@@ -1,0 +1,251 @@
+{
+  "title": "Patch Notes/2008-06-24",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-06-24",
+  "published": "2008-06-24",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 6.24.08 Version 17.20080612.1"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 User Commands"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY of HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.1 Blasters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY of VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.1 Corruptors"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.2 Dominators"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1.3 Stalkers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Tailor"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Circle of Thorns Behemoth Invincibility toned down slightly. It now provides roughly 8% defense per target."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected animation time issues with Drain Psyche and Energy Absorption."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a minor delay for the hit effects/damage on Martial Arts - Crippling Axe Kick"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Willpower / Rise to the Challenge will now root the player while activating. This was done to ensure it follows the same rules as other toggle powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The animation used by Spine Burst and Thorn Burst will no longer prevent the next attack animation from playing."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Commands",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added /sync command which attempts to get the client and server back in sync when the client allows movement but it isn't reflected on the server. (When out of sync, the player will be able to move around, but cannot see other players or NPCs, and other players cannot see them)."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters / Defiance - Found a bug in the formula used for calculating Blaster Defiance buffs. The following powers have been altered as listed:"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fistful of Arrows (slightly weaker)"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rain of Arrows (slightly stronger)"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zapp (slightly stronger"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Burst (stronger)"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bitter Freeze Ray (slightly stronger)"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shout (stronger)"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor / Electric Blast / Voltaic Sentinel - Corruptor version of Voltaic Sentinel now benefits from Enhancements."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator / Electric Assault / Thunder Strike: This power should no longer accept endurance modification sets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Stealth Suppression from Assassination Attacks"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Weapon customization: Rularuu bow should now be obtainable by Villains"
+    }
+  ]
+}

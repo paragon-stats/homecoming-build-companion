@@ -1,0 +1,299 @@
+{
+  "title": "Patch Notes for January 25th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/14490-patch-notes-for-january-25th-2020/",
+  "published": "2020-01-23T23:10:57Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Brute Melee",
+      "powerset": "Battle Axe",
+      "power": "Cleave",
+      "text": "Max targets reduced from 10 to 5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Scrapper Melee",
+      "powerset": "Battle Axe",
+      "power": "Cleave",
+      "text": "Max targets reduced from 10 to 5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Tanker Melee",
+      "powerset": "Battle Axe",
+      "power": "Cleave",
+      "text": "Max targets reduced from 16 to 10"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker and Brute inherent taunt procs now generate a combat message for the caster, to help determine if the taunt proc is currently working."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Adamastor summoning ritual not actually summoning Adamastor"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Marauder spamming Nova Fist at every opportunity"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed scripting issues in The Magisterium iTrial"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed scripting issues in the Dilemma Diabolique iTrial"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that caused cutscenes to not play"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed scripting issues with the Propaganda event"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A strange Fury power should no longer show up in the Brute enhancement slotting screen."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix bug where Brute PunchVoke was not triggering on aura powers."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Tanker Melee",
+      "powerset": "Katana",
+      "power": "Sting of the Wasp",
+      "text": "Power description no longer shows Ice Melee power description."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following procs were accidentally set to 100% chance for PvE in the previous patch, this has been fixed:"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avalanche > Chance for Knockdown"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Manipulator > Chance to Stun"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Combat > Chance for Knockdown"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Might of the Empire > Damage/Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Overwhelming Force > Damage/Chance for Knockdown/Knockback to Knockdown"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ragnarok > Chance for Knockdown"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stupefy > Chance for Knockback"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Warshade",
+      "power": "Dark Nova",
+      "text": "Default color theme activation was not triggering the transformation fx. This has been fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some Kheldian powers were usable while shape-shifted even if the power icon was disabled. This has been fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Pool",
+      "power": "Grant Invisibility",
+      "text": "This power's effect would completely cancel out in combat, requiring buff being re-applied. Now the buff only suppresses in combat, and returns automatically after 10 seconds out of combat, so long the buff has not naturally expired."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel > Willpower > Up To The Challenge> fixed terrible grammar."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Incarnate",
+      "powerset": "Lore",
+      "power": "Banished Pantheon Radial Superior Ally",
+      "text": "Recharge buff should no longer be resisted by player recharge resist buffs."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Sonic Attack",
+      "power": "Shockwave",
+      "text": "Tooltip no longer states -Res. This power has never had -Res."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Staff Melee",
+      "power": "Sky Splitter",
+      "text": "Self Buffs should no longer be affected by the level of the target."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Staff Melee",
+      "power": "Precise Strike",
+      "text": "Brute version should no longer list twice that it accept Taunt enhancements."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Energy Assault",
+      "power": "Bone Smasher",
+      "text": "Energy Focus debuff should now apply to the target, not the caster."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Dominator",
+      "powerset": "Electricity Assault",
+      "power": "Voltaic Sentinel",
+      "text": "Fixed a bug where the pet was ignoring enhancements."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Impervious Skin",
+      "power": "Status Resistance, +Regeneration",
+      "text": "Text now clarifies the regeneration rate bonus is unique."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Arachnos Soldiers and Widows",
+      "power": "Tactical Training",
+      "text": "Assault: Fixed an issue where their version of this power was not granting Taunt/Placate resistance."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Pools",
+      "powerset": "Sorcery",
+      "power": "Arcane Bolt",
+      "text": "Should no longer knock foes back."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Dual Pistols",
+      "power": "Hail of Bullets",
+      "text": "Fixed a bug where Lethal DoT chances where being calculated up front instead of on every tick."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "Inherent",
+      "power": "Rest",
+      "text": "Should no longer spam the user with Phase messages."
+    }
+  ]
+}

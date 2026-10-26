@@ -1,0 +1,1787 @@
+{
+  "title": "Patch Notes/2009-09-15",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-09-15",
+  "published": "2009-09-15",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 09.15.2009 Version 1600.20090902.4T2"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Animation"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 Arena"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Accolades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Character Creation"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Co-Op Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Email"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.9 Emotes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.10 Flashback"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.11 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.12 Graphics/FX"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.13 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.14 NPCs"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.15 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.16 PVP Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.17 Rewards"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.18 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.19 User Interface"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.20 XP Curve Adjustment"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.1 Blasters"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.2 Controllers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.3 Defenders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.4 Peacebringers and Warshades"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.5 Scrappers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1.6 Tankers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.1 Brutes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.2 Corruptors"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.3 Dominators"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.4 Masterminds"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.5 Soldiers of Arachnos and Widows"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3.6 Stalkers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devices/Targeting Drone now uses the wristband activation animation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Blast - Blazing Bolt attack animation should properly interrupt the windup animation while flying."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Shockwave – Fixed minor error in particle scripts (Rings that emanate from character’s body weren’t moving towards the ground)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Strafing Left or Right with a 'club' weapon equipped (Stone Mallets, Blackwand, Nemesis Staff, etc) will now play the proper animation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Activating Willpower/Heightened Senses while flying should no longer play the Martial Arts/Dragon's Tail animation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the ability to enable and disable inspirations by size class to the Arena."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Sudden Death in Arenas. Now, instead of setting everyone to 1 health at the start of the sudden death, all participants' maximum health is slowly reduced over the one minute of Sudden Death."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players may now use the /arenalist command to access the Arenas from any location."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Back From the Future: Reduced this badge's requirements from taking over 1000 pillboxes to taking over 100 pillboxes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coldhearted: Reduced this badge's requirements from defeating 200 cold demons to 100 cold demons."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Celebrity/Bling: Reduced this badge's requirements from earning 1,000,000 inf to 500,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confined: Reduced this badge's requirements from being mezzed for 20 hours to being mezzed for 3 hours."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Caged: Reduced this badge's requirements from being mezzed for 40 hours to being mezzed for 6 hours."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deathless: Reduced the amount of required paid off XP debt to earn this badge from 1,200,000 to 400,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demolitionist: Reduced this badge's required 25 bombs placed to 10 bombs placed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrician: Reduced the number of required 200 defeated Cap au Diable Gremlins to 100 Gremlins."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empath: Reduced this badge's requirements from healing others for 100,000,000 points of damage to 10,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entangled/Sleepy: Reduced this badge's requirements from being mezzed for 120 minutes to being mezzed for 30 minutes"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Exalted: Reduced the amount of required paid off XP debt to earn this badge from 10,000,000 to 1,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fabricator: Reduced this badge's requirements from 10,000 crafted enhancements to 2,000 crafted enhancements."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero Slayer: Reduced this badge's required defeats of 100 named Paragon Heroes to 25 defeats to be on par with the hero badge \"Villain Disruptor\"."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Illusionist: This badge now requires the player to defeat 100 Illusionists and Phantasms summoned by the Carnival Master Illusionist. NOTE: Phantasm defeats were not tracked until this patch. Previous defeats of these enemies will not count toward the total defeats required for this badge. However, defeating summoned illusionists and phantasms going forward WILL earn credit toward this badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invulnerable: Reduced the amount of damage taken required to earn this badge from 500,000,000 to 50,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Immortal: Reduced the amount of damage taken required to earn this badge from 1,000,000,000 to 100,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impounder: Reduced the number of destroyed cars necessary to unlock this badge from 200 to 100, updated progress bar text to match this."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imprisoned/Dazed and Confused: Reduced this badge's requirements from being mezzed for 600 minutes to being mezzed for 60 minutes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jailed: Reduced this badge's requirements from being mezzed for 80 hours to being mezzed for 12 hours."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leader: Reduced this badge's requirements from earning 2,000,000,000 influence/infamy to 500,000,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medical Specialist: Reduced this badge's requirements from healing others for 10,000,000 points of damage to 3,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medicine Man/Woman: Reduced this badge's requirements from healing others for 50,000,000 points of damage to 5,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nigh Indestructible: Reduced the amount of damage taken required to earn this badge from 100,000,000 to 25,000,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Popular: Reduced this badge’s requirements from earning 1,000,000,000 influence/infamy to 250,000,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Protectorate: Reduced this badge's required 500 defeated Devouring Earth emanators to 100 defeated emanators."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restrained/Slacker: Reduced this badge's requirements from being mezzed for 30 minutes to being mezzed for 10 minutes"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sensation/Mr. Big/Ms. Big: Reduced this badge's requirements from earning 10,000,000 influence/infamy to 2,500,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superstar/Midas Touch: Reduced this badge's requirements from earning 20,000,000 influence/infamy to 10,000,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Somewhere in Time: Reduced this badge's requirements from taking over 100 pillboxes to taking over 50 pillboxes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Unwavering/Punch Drunk: Reduced the amount of required paid off XP debt to earn this badge from 100,000 to 50,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Unyielding/Unbroken: Reduced the amount of required paid off XP debt to earn this badge from 400,000 to 100,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Unbroken Spirit/Relentless: Reduced the amount of required paid off XP debt to earn this badge from 800,000 to 200,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toy Collector: Reduced this badge's requirements from opening 200 presents during the winter event to 100 presents."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trendsetter: Reduced this badge's requirements from earning 100,000,000 influence/infamy to 50,000,000 influence/infamy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Undying: Reduced the amount of required paid off XP debt to earn this badge from 2,000,000 to 600,000."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Untouchable: This badge now requires the player to defeat 100 Consiglieres and Underbosses."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vanguard Recruit day job badge now requires the user to be level 35 or greater, to unlock this badge. NOTE: Players who already have this badge and are lower than level 35 will not lose the badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Venomous: Reduced this badge's required 200 defeated Toxic Tarantulas to 50 Toxic Tarantulas."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Born in Battle: This Villain Accolade now requires:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earn the Ironman badge (1,000,000 points of damage taken) instead of the Unbreakable badge (10,000,000 points of damage taken)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earn the Hammer Down badge instead of the Raider badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No long requires the Lanista badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NOTE: Even though this badge’s requirements are changing, players who already have this Accolade should keep this Accolade even if they don’t have the Hammer Down badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conspiracy Theorist: Fixed a bug that caused this Accolade to unlock at level 35 instead of 30."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Returning to the Body Type screen at any time during the character creation process will no longer reset body scale changes made to the character"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Minimum Entry Level has been removed from many Hazard and Trial Zones in order to support upgrades to the Sidekicking System."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zones Affected:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Abandoned Sewers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boomtown"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crey's Folly"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Astoria"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eden"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Perez Park"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard – Cascade Archipelago"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard – Firebase Zulu"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard – The Chantry"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard – The Storm Palace"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Striga Isle"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Terra Volta"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hollows"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Sewers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tunnels"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Co-Op Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Minimum Entry Level of the Rikti War Zone has been removed in order to support upgrades to the Sidekicking System"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now an in-game email setting to block all email except from those on your friends list or in your supergroup."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Science Pack: The Drink Formula costume change emote (/cce # CCDrinkFormula) now behaves consistently (the flash and smoke animations used to be out of sync with each other depending on your character model)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flashback Missions now use combat level instead of security level."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Longbow Wardens' Lingering Radiation has been reduced to a more reasonable debuff"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics/FX",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Display issues with Stone Prison and Plasma Shield fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics/FX",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jump Jet Pack should fit the Female and Huge player types better now"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics/FX",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Brimstone Armor now use the correct geometry"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics/FX",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Ice Sword using the wrong geometry"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Experience rewards for custom mobs in Mission Architect have been changed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies created using the Standard setting will reward 75% of normal experience."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies created using the Hard and Extreme setting will reward 100% of normal experience."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The total amount of experience an enemy is worth is split evenly between their two power set choices. Their primary set adds an amount to the experience, and then the secondary set adds an amount."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The specifics numbers for individual sets are as followed:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standard: 37.5%"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hard/Extreme: 50%"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If a mob is created that has a standard primary and a hard secondary, it will be worth 87.5% of the normal experience (37.5% + 50%)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A mob created with a hard primary and a hard secondary will be worth 100% experience (50% + 50%)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom villain groups will suffer an experience penalty if they do not have at least one minion, lieutenant, and boss within them."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If one rank is missing, there will be a 50% experience penalty applied to all enemies in the group."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If two ranks are missing, there will be a 75% experience penalty applied to all enemies in the group."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will still receive full experience for an enemy in their own unique groups if they are spawned in the \"Fight a Boss\" objective. This only applies to the specific enemy spawned in this manner and not the group spawned along with them."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now select any powers for custom mobs to have. However, if the minimal amounts of powers required for them to be considered standard difficulty are removed on either power set, the mob will be worth 0 experience."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As an example, a standard minion with Broadsword has Slash and Throwing Knives. If either of those two powers are removed, that minion will be worth 0 experience, even if a secondary power set has all powers selected."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will not cause any custom mobs currently on live to be worth zero experience."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Enemy Groups"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rogue Isles Villain (1-54) - Players can now use the villains you fight at the end of Safeguard missions in Mission Architect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Paragon Hero (1-54) - The heroes that are fought at the end of Mayhem missions are now usable in Mission Architect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Anti-Matter's Robots (40-54) - Anti-Matter and his minions are now available to use within Mission Architect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcs containing Bosses have a warning flag again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters – As with player characters, Claws and Stone Armor are now mutually exclusive at critter creation due to animation issues"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Kinetics - Transference should now correctly drain endurance from players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender: Oil Slick Arrow no longer cons friendly and can again be targeted by player in a MA mission."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash that sometimes occurred when editing a published mission."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the waypoints for players to exit the map in the Carnival - Commercial map in Mission Architect and also to allow for escorts to be completed on it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Freakshow Sonic Bombs, and Hamidon's Mitochondria Electrolytes and Antibodies have been pulled from the Mission Architect due to exploits with these mobs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the option to select location for ambushes - it wasn’t doing anything."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed a number of enemies from multiple enemy groups within Mission Architect that only had the Quantum Gun as a viable attack power."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "NPCs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where generic spawns of The Lost at level 30 or higher spawn as Rikti using The Lost animations. Level 30 or higher Lost spawns now spawn as Rikti with correct Rikti animations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All dismissable pets will now zone with you, but will lose their buffs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brawl no longer accepts Endurance Discount Enhancements."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brawl no longer costs Endurance when used."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee (All versions) - Removed erroneous reference to Fury from Chain Inductions Long Help"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Endurance cost of Origin Based powers Apprentice Charm, Taser Dart, Tranq Dart, Throwing Knives, and Mutagen from 6.5 per activation to 2.08 per activation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shields/Against All Odds: Detailed Info now shows Dmg debuff numbers that are applied to foes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed PVP duration of Ninjitsu/Blinding Powder's confuse."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powers with knockback and repel protection should no longer suppress knockback or repel protection when held, stunned, or slept."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Includes all Brute, Scrapper, Stalker, and Tanker versions of Entropy Shield, Unyielding, Active Defense, Rooted, Granite Armor, Integration, Wet Ice, and Indomitable Will. Acrobatics also will not suppress the knockback portion."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters must be level 35 or greater to earn Vanguard Merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hero and Villain Respec Trials, Terra Volta Trial, Eden Trial, Sewer Trial, Hamidon Raid, Statesman Taskforce and Lord Recluse Strikeforce had their Merit Reward diminishing return timer reduced from 24 hours to 18 hours to be consistent with other taskforce diminishing return timers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minion and Lieutenant Freakshow entities in the level 20-38 range have had their XP multiplier lowered to 0.95."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters created before Issue 16 will no longer need to change a costume piece in order for customized power changes to update"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted tailor costs for powers customization changes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The cost for changing each individual power's theme is 1/9th the cost of changing your upper or lower body."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a Power Fee for changing powers customization. It is the same amount as the Tailor Fee for changing costume pieces."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changing the primary or secondary color for a power charges 1/10th the Powers Fee for each power changed. This is only charged once per power, instead of once for each color."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed \"Suppress Extra Player FX\" option. It wasn’t actually doing anything"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause players to sometimes lose their Global Friends list."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Items in the Options Menu have been slightly reorganized and contain tool tip buttons."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On the login screen, players will see their current costume instead of costume 1."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Character Creation – Moved Save/Load Costume buttons so they don’t get blocked by other buttons"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "XP Curve Adjustment",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To go along with our new changes to sidekicking and exemplaring, we've made some adjustments to the experience awarded from minions, lieutenants and bosses in the level 5 to 24 range. In short these enemies are on average receiving a 20% experience and influence increase. This will slightly speed up the pace at which heroes and villains advance through the 5 to 24 range."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Blast – All AoE powers in this set will no longer give a damage bonus per target hit. Like other Blaster AoE powers, only a single damage buff will be granted per use of the power"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Blast/Neutrino Bolt – This power now has a 4 second recharge, which increases base damage from scale 0.6 to scale 1.0 and increases endurance cost from 3.12 to 5.2"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Blast/X-Ray Beam – This power now has an 8 second recharge, which increases base damage from scale 1.0 to scale 1.64 and increases endurance cost from 5.2 to 8.53"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electricity Manipulation - Power Sink: This power should no longer have a lingering icy effect on the caster."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Fulcrum Shift: This power will now correctly use Controller buff modifiers instead of Defender buff modifiers, resulting in a 20% damage buff per target and a 40% damage buff on self, instead of a 25% damage buff per target and a 50% damage buff on self."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination: All of these powers should now accept the correct IO Sets."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps - Trip mine - Fixed repeating animation"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Peacebringers and Warshades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players in White or Black Dwarf form will now play the updated version of the AlakazamReact emote"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Removed the ability to slot powers within this set with Taunt enhancements as these powers do not have a taunt component."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor - Lightning Field: Removed the ability to slot this power with Taunt enhancements as this power does not have a taunt component."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor/ Power Sink: This power should no longer accept taunt enhancements."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines – Ripper: Removed extraneous sound effect from Barb Swipe."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Chain Induction correctly jumps to additional targets when slotted with proc IOs."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines - Quills. The body spines will now appear when this toggle is activated. However, they will go away if the player enters and then exits spines combat mode while the toggle is on."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor - Lightning Field: This power will no longer accept Taunt IO sets to be consistent with other taunt auras."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Chain Induction correctly jumps to additional targets when slotted with proc IOs."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invulnerability - Invincibility no longer accepts Taunt IO sets. This makes it match similar powers available to other ATs."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Fixed Gauntlet for Charged Brawl, Havoc Punch, and Chain induction to not allow procing on all nearby targets."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sharkhead Isle: Council turrets and some Council spawns will no longer attack each other"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pocket D: War Witch will once again talk to and train villains"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would prevent a Villain from being able to trade with other Villains after a respec."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Corrected a decimal shift error in the Recharge Time of Slash. Now recharges in 6.4 seconds, not 0.64 seconds."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws/Slash - Slightly increased this power’s damage to be in line with its recharge time"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Eviscerate: Corrected this power's long help, it erroneously stated that this power had a chance to critically hit, which it does not"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Powers in this set are now slottable for Taunt enhancements and Taunt IO sets."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws and Stone Armor are now mutually exclusive at character creation due to animation issues."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee – Jacob's Ladder: Re-enabled FX for this power."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Chain Induction correctly jumps to additional targets when slotted with proc IOs."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery/Rain of Arrows – This power will now correctly Scourge enemies allowing for critical hits on enemies with low health"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Fulcrum Shift: This power will now correctly use Corruptor buff modifiers instead of Defender buff modifiers, resulting in a 20% damage buff per target and a 40% damage buff on self, instead of a 25% damage buff per target and a 50% damage buff on self."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow/Acid Arrow - Fixed a bug that caused this power to deal additional damage to immobilized, held, or disoriented targets"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination - Soothing Aura is properly suppressed when the recipient is mezzed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow - Glue Arrow: This power’s ground based glue effect will no longer fade once the initial target is defeated, instead it will last its full intended duration."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault/Mud Pots - This power’s long help will no longer get cut off at the end"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault/Fissure - This power’s long help will no longer get cut off at the end"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Tremor, Slightly reduced chance of knockdown."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Fissure, Adjusted damage, recharge, and endurance cost down moderately. Slightly reduced chance of knockdown and stun."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Fissure: This power’s disorient effect is now enhanced by Domination."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Seismic Smash - Corrected normal hold magnitude to 3, and the hold is now affected by Domination"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma - Removed erroneous Jump Speed slow effect from Shadow Fall."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Pets now correctly keep their level 6 and level 32 upgrade power buffs when zoning"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets will now zone with their Mastermind owner and will keep their buffs"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Necromancy - Zombies, Skeletons and Lich should use the selected custom colors for their enchanted and empowered particle effects."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination - Soothing Aura is properly suppressed when the recipient is mezzed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thugs/Gang War now summons the Posse correctly"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow - Glue Arrow: This power’s ground based glue effect will no longer fade once the initial target is defeated, instead it will last its full intended duration."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Soldiers of Arachnos and Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery - Focused Accuracy: This power was replaced with a new power called Shatter Armor."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Soldiers of Arachnos and Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery - Shatter Armor (NEW): This power has replaced Focused Accuracy in the Villain Epic Archetype Mace Mastery epic power set. Shatter Armor is a heavy hitting melee Arachnos Melee attack that reduces the target’s damage resistance."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - Chain Induction correctly jumps to additional targets when slotted with proc IOs."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee/Broad Sword/Head Splitter – Fixed a bug that caused this power to have a 100% chance to critically hit while hidden. This power will now critically hit 50% of the time"
+    }
+  ]
+}

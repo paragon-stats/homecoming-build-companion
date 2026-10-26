@@ -1,0 +1,3675 @@
+{
+  "title": "Patch Notes/2010-08-16",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-08-16",
+  "published": "2010-08-16",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 08.16.2010 Version 1850.201007290124.9T2"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 Issue 18: Shades of Gray / Going Rogue Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 COMBINED"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Merging Hero and Villain Economies"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.2 Auction House"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.3 Global Email"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.4 Chat"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.5 Pop Help"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.6 Team Search Improvements"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.7 Costume Sets"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.8 Combat Auras"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 GOING ROGUE"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Alignment System"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.2 Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.3 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.4 Super Groups"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 POWERS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.1 Ancillary/Patron Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2 New Power Sets"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2.1 Kinetic Melee"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2.2 Electric Control"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2.3 Dual Pistols"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.2.4 Demon Summoning"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.3 Fiery Embrace Change"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.4 Electric Melee"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.5 Shield Charge Changes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.6 Fiery Aura"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.7 Martial Arts"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.8 Brutes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.9 Controllers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.10 Defenders"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.11 Dominators"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.12 Scrappers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.13 Stalkers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.14 Tankers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.15 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4.16 PVP"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5 Mission Architect"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.1 Introducing: the Designated Helper"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.2 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.3 Invention"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.4 Arena"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.5 Tailor"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5.6 Combat Mode Auras"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6 TASKS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6.1 Cathedral of Pain"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6.2 General"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7 OPTIONS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7.1 Alienware Lighting Support"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7.2 Razer Naga Mouse Tray"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.8 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.8.1 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9 PRAETORIA"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1 ZONES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.1 Nova Praetoria"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.2 Underground - Nova Praetoria"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.3 Imperial City"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.4 Vista Zoning Tech"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.5 Underground - Imperial City"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.1.6 Neutropolis"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.2 New Villain Groups"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.3 Critter Leashing"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.9.4 Invention"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Merging Hero and Villain Economies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Influence, Infamy, and Information are being combined into a unified currency called 'INF'. All characters will be able to trade 'inf.', salvage, recipes and enhancements between each other."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Merging Hero and Villain Economies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wentworth's Consignment House and the Black Market now share inventories. Capitalism at its best."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Merging Hero and Villain Economies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All outstanding Buy and Sell orders will be cancelled as part of the market merge. All items and bids will be refunded and stored in the auction inventory. Listing fees for unsold items will be refunded."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can now tab forward and back (shift-tab) through stored items. The price text gets reset when you move to a new item."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can tab forward and back through the search field, min level, max level, bid price and bid quantity fields. Their text auto-selects so you can type to replace it. Similarly the bid price and quantity auto-select when you click on them (the others already did)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any player can claim enhancements, inf, inspiration, recipes, and salvage regardless of alignment."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global attachments can no longer be claimed while in an Arena match."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you send a tell to a player with a Trial account, an auto-reply will be sent explaining that players with Trial accounts cannot send tells."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You should no longer see the message \"You can now receive global emails from any player not on your ignore list\" spamming your chat. It's still true, though."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The channel admin command /chan_timeout is working correctly now. The minimum time that can be set for timeout has been increased from 7 days to 30 days. Channels that have already been set to a timeout period of less than 30 days will be unchanged."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now right-click another player, and if that other player is in a group, the player can select to send a \"Tell\" to the team leader."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Pop Help",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pop help adds exclamation point icons to the side of your screen as you play, providing useful help and information."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Pop Help",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Left clicking on the icons will display a window with the information."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Pop Help",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The icon will disappear after the information has been displayed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Pop Help",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You may have more than 5 pop help items available at any one time, but only 5 will display on the side of your screen at any one time."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This color scheme came about along with other behind-the-scenes work to make searching more useful in Going Rogue. It used to be that heroes could see heroes and villains could see villains and that was that. With Vigilantes going to Rogue Isles and so on, we needed a more sophisticated approach. Now the people you see are people you could team with, and who are in the same part of the game world as you (eg. people in the Rogue Isles can't see people in Paragon City and vice versa, regardless of their alignment)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The new color scheme works like this:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jade green: Same team as you"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Red: They have 'not looking for group' set"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Yellow: They can't be invited to team with you because they're on a mission map or in an arena match"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Orange: They're the opposite faction to you and not on a mixed team, so you have to go to their map to team with them"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Violet: They're the leader of a team with less than 8 people on it"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pale blue: They're not on a team and you can invite them"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Search Improvements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Green/grey: They're on a team but not the leader, so you can't invite them and they can't invite you"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following costume sets are available as part of the Going Rogue expansion:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sports"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Overguard"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Syndicate"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resistance"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetorian Police"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These additional sets are available through purchase of the City of Heroes Going Rogue(TM) Complete Collection."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alpha"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Costume Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Omega"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Combat Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All in-game Auras can now be set to only activate while in combat."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Going Rogue Alignment System is a new feature that allows you to change your faction from Hero to Villain and from Villain to Hero. The Going Rogue Alignment System allows you to experience all sides of the game content with a single character. It introduces two additional alignments, Vigilantes and Rogues. These new factions represent the moral gray line between Hero and Villain, and will benefit from unique rewards."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Upon reaching Level 20, defeated enemies that are Level 20 or higher will now have the chance to \"drop\" a Contact Tip. These Contact Tips are similar to existing contacts except they have a dialog tree attached to the front of it. You can investigate Tips by clicking the \"Investigate\" button. This opens a description of the Tip and then leads into a dialog tree where you can choose how you want to act upon this information. All Tips will have two flavors to them, either Vigilante and Heroes for characters based in Paragon City or Rogue and Villains for characters based in the Rogue Isles. Depending on the choice you make with the information you're given, you will receive a specific alignment mission of that flavor. Once the mission is complete, you're another notch closer towards reaching that alignment and the Tip is cleared out of the contact window."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Tip will be written as if it was information picked up off of a defeated enemy. For Example: \"You found a small torn piece of paper that appears to have some interesting information on it.\""
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can work on multiple different alignment missions at any given time. After completing 10 Tip missions towards a chosen alignment, a Morality mission is unlocked. This mission is also tied to the \"Contact Tip Drop\" system. Once you've done enough Alignment Tip Missions to qualify for a Morality mission, the Morality mission drop will be an alignment drop of that type. The Morality missions make the actual hard switch from one alignment to the next."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters that change their alignment from Hero to Vigilante or Villain to Rogue may choose to switch back to their original alignment (i.e. Vigilante to Hero / Rogue to Villain), however once a character makes the final switch to the polar opposite alignment, characters must move forward to redeem their Villain to become a Hero, or fall from grace as a Hero to a Villain."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For example, a Hero can become a Vigilante, and return back to a Hero. If the Vigilante falls from grace to become a Villain, that Villain character must go on the path of redemption to a Rogue alignment before becoming a Hero again."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can defeat enemies and collect Tips that they can act upon, making adjustments to the character's alignment."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Change sides from Hero to Vigilante to Villain or Villain to Rogue to Hero."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After 10 Alignment Points are earned in an Alignment Pool, a Morality mission drop becomes possible."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilantes and Rogues that visit the other cities will con \"friendly\" to native Heroes and Villains in all PvE areas."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tourists: Vigilantes can travel to the Rogue Isles, and Villains turning Rogues can travel to Paragon City. While there, the Vigilante or Rogue is considered a moral 'Tourist'."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilantes and Rogues must become 'Tourists' to earn the alignment points needed to complete their switch to Villains or Heroes."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can earn a limited amount of fame for their alignment-related deeds. To earn more fame, the public has to first lose interest in your old deeds. The public will hold interest in no more than five deeds, and their interest will last for 20 hours after the deed occurred."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The player also has the option to reinforce their standing as their current alignment. Continuing to complete Tips tied to the player's current alignment will give them the chance to complete the Moral mission once again, thereby reinforcing their existing moral beliefs. This cycle of reinforcement can be completed as many times as the player likes."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This can earn them Hero Award Merits or Villain Award Merits."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heroes will earn Hero Award Merits for reinforcing their alignment, redeemable at the vendor found within Fort Trident."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains will earn Villain Award Merits for reinforcing their alignment, redeemable at the vendor found within The Crucible."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can earn alignment powers after they have spent a certain amount of time as a Vigilante or Rogue."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who make the switch from Villain all the way to Hero or Hero all the way to Villain will no longer be able to lead their previous alignment's Super Group."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In PvP zones or Arena matches, Vigilantes are considered \"Heroes\" and Rogues are considered \"Villains\"."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stores, Tailors, and Respec contacts will interact with tourists."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some exceptions to this are Store NPCs in Brickstown, Founders Falls, and Peregrine Island."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These NPCs require a mission completion to unlock their stores but NPCs do not grant missions to tourists."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tourists in Paragon City can travel to the Midnighter Club, Rikti War Zone or back to Rogue Isles to purchase Single Origin Enhancements."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tourists may run radio or newspaper missions. They can complete Safeguard or Mayhem missions and gain new contacts, but they cannot interact with those new contacts until they complete the switch to Hero in Paragon City or Villain in Rogue Isles."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alignment Merits:"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero and Villain reinforcing Morality Missions will now award 50 Reward Merits on the first reinforcement and 1 Hero or Villain Merit on the second and subsequent reinforcements."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Conversion cost for Hero and Villain Merits is 50 Reward Merits and 20 Million Inf."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tips do not transfer from Villain side to Hero side and vice versa."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They will go into Escrow when a character moves from the Rogue Isles to Paragon City and back."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players cannot read Tips in Hazard, Trial, or PVP zones."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tips will not drop while in missions from Architect Entertainment."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tips will continue to drop in Co-Op zones, but cannot be investigated unless the player is within a standard Hero/Villain area."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When in Task Force mode (Task Forces, Strike Forces, Flashback missions), Tips will drop for players, but they will not show up in the Tips tab until they leave Task Force mode."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Pocket D Teleporter will prompt you to verify your wish to teleport if you would switch from Hero to Villain content in doing so."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team members assisting on a Morality Mission who are not eligible for an alignment switch or reinforcement will receive an alignment point towards the alignment of the Morality Mission instead, as long as they have an available alignment slot."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tourists may use either Consignment House (Paragon City) or Black Market (Rogue Isles) Transporters, providing they are in the appropriate city at the time."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All alignment switch opportunities present a choice table which includes additional warnings of consequences for alignment switching."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You should not immediately receive the same Alignment tip after just recently completing or discarding it."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters may join and remain in leveling pacts regardless of alignment."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When a Supergroup leader tries to switch sides, a popup appears telling them the consequences of the alignment shift, which is that they will be removed from their leader rank if they switch their alignment to the opposing side."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If they do switch alignment all the way to polar opposite of the SG, leadership will pass to the next highest ranking/senior member of the SG."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilantes and Rogues should now see progress meters for side-restricted Day Job badges. However, side-restricted Day Jobs do require a full switch to Hero or Villain to actually earn the badge and/or accolade. Vigilantes cannot become full fledged Arachnos Agents, etc. though they can start making headway."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alignment Guides: When a player receives their first tips, a new contact will show up on the Tips menu who can be contacted via cell phone. They do not give missions, but will explain Tips, Morality Missions, and how to change alignments."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These guides can be reached in person from inside Pocket D"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fort Trident and The Crucible"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who maintain either a Hero or Villain alignment through reinforcement will now find they are welcome to enter Fort Trident (Hero) or The Crucible (Villain). Located in Atlas Park and Cap au Diable, these zones allow the Hero or Villain to relax, meet well known signature characters, teleport to their Task Force/Strike Forces, and also purchase purple recipes and PVP recipes from special vendors with earned Hero or Villain Merits."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When you open the Badge menu after changing alignment, a popup will appear to explain the changes to your badge names."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No badges or accolade powers are lost."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who possess Hero or Villain specific accolade powers will now automatically be granted the other side's corresponding badge and accolade power when they switch sides. Only one side's accolade powers are enabled at any one time."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many Badges which were previously side-specific (and now accessible to both sides after Going Rogue) have had the previously inaccessible titles and/or texts updated to reflect the effects of side-switching and provide a new side's take on your past actions and experiences."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Hero/Villain Requirements from the following Badges:"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Firebug"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero Slayer"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impounder"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Outlaw"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Safecracker"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vandal"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swashbuckler"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Rising"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villain Disruptor"
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue where the icons for Clothes Horse, Fashionable, and Ostentatious were not showing up properly."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hero title of The Justicar badge for defeating a Rogues Gallery boss has been renamed to Judge & Jury."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mother Mayhem has been added to the requirements for Dimensional Warder."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players remain in their Super Group if they change alignments to the opposing side."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero and Vigilante are considered blue-side, and Villain and Rogue are considered red-side for this purpose, no matter where they happen to be."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players that are in a Super Group of the opposing side are considered to have \"gone dark\"."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark members aren't allowed to access their Super Group base."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark members aren't given most Super Group permissions."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark members are allowed to pay base rent and to talk in Coalition chat."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the Super Group leader goes dark, the leader will then be demoted from their rank."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A different non-dark member will be automatically promoted to the leadership position."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Super Group leader will be notified with a pop-up if they attempt to complete a Morality mission that would change their alignment such that they would go dark. The leader must confirm that they are fine with going dark and getting demoted before being allowed to switch to the new alignment."
+    },
+    {
+      "category": "GOING ROGUE",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If they do switch alignment all the way to polar opposite of the SG, leadership will pass to the next highest ranking/senior member of the SG."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ancillary Power Pools are now available to all characters that reach Level 41, regardless of Hero or Villain status."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once a Patron Pool has been unlocked as a Villain, it remains unlocked even if you later switch sides."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patron and Ancillary equivalencies are as follows:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers get Stalker Patron Powers, and vice versa."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers get Brute Patron Powers, and vice versa"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters get Mastermind Patron Powers, and vice versa"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders get Corruptor Patron Powers, and vice versa"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controllers get Dominator Patron Powers, and vice versa"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ancillary/Patron Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Specific power instances were altered to eliminate duplication of powers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Melee is a melee attack set based upon siphoning your opponent's energy and using it to power your own attacks. Each individual attack adds a damage debuff to the target (strength and duration dependent upon the tier of the power used) and Tankers inflict even stronger debuffs than the other ATs. Additionally, if Power Siphon is active, the caster gains a damage buff."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Kinetic Melee powers are intended for Scrappers, Tankers and Brutes:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quick Strike"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Body Blow"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smashing Blow"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Repulsing Torrent"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Siphon"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burst"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Burst"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Concentrated Strike"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Kinetic Melee powers are intended for Stalkers:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quick Strike"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Body Blow"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smashing Blow"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassins Strike"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Build Up"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Placate"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burst"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Burst"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Concentrated Strike"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Control is a power set that can be used by Dominators and Controllers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Control offers a mastery of using electricity to negate enemy attacks and keep them off balance. Many effects will arc from one nearby enemy to another, creating dazzling chains of electrical energy. It offers a wide variety of short duration soft controls in the form of stuns, confuses, and knockback."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcing controls tend to be short duration, but can hit multiple foes and recharge quickly."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All arcing controls will be able to use enhancements, allowing players to enhance the Damage, Stun, Immobilize or other effects of the power."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Electric Control Power Set is composed of the following powers:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Fence"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tesla Cage"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chain Fences"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jolting Chain"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conductive Aura"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Static Field"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Paralyzing Blast"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Synaptic Overload"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Generate Gremlins"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This set is a primary power choice for Blasters and Corruptors and a secondary choice for Defenders. Dual Pistols is also the power set of choice for the Going Rogue signature character Maelstrom."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "What differentiates Dual Pistols from the Assault Rifle power set is the ability to modify every attack's secondary damage and the effect that has on your target. 70% of damage dealt by most attacks is lethal, the other 30% is modifiable from pure damage to cold, toxic, or fire. This versatility comes at the cost of slightly weaker secondary effects when compared to other power sets. In short, Dual Pistols is a set that can adapt to most situations by bringing a wide variety of debuffs and damage types."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Dual Pistols Power Set is composed of the following powers:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pistols"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Wield"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empty Clips"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swap Ammo"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bullet Rain"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Suppressive Fire"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioner's Shot"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Piercing Rounds"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dual Pistols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hail of Bullets"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demon Summoning is a primary power choice for the Mastermind archetype and is also the power set used by the Going Rogue signature character Desdemona."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power set allows the player to summon elemental demons that can manipulate flame, cold and hellfire. However, what truly sets this power set apart from other Mastermind primary power sets are the summoner's Hellfire Whip attacks that deal both fire and toxic damage and reduce the target's damage resistance."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Demon Summoning Power Set is composed of the following powers:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruption"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demonlings"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lash"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enchant Demon"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crack Whip"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demons"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hell of Earth"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demon Prince"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Demon Summoning",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Abyssal Empowerment"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Embrace Change",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Embrace power now adds bonus fire damage for all Melee Power Set attacks instead of being a normal damage Buff. All Melee Power Set attacks made for 20 seconds after activating Fiery Embrace will do bonus damage based on that attack's damage. This bonus damage IS affected by enhancements and outside buff/debuff effects. At low levels, this means Fiery Embrace will have lower impact than the old implementation, while at high levels or on teams with lots of +Damage effects, you will see increased damage output."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Embrace Change",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Critical damage is not affected by the new Fiery Embrace"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Embrace Change",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines Toxic Damage Over Time effect is not affected by the new Fiery Embrace"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Embrace Change",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In PvP, Fiery Embrace uses the previous Damage Buff version."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Embrace Change",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Thunder Strike Fiery Embrace bonus - it was not properly applying the split radius effect."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Electric Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected combat spam for Lightning Rod"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Shield Charge Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made several changes to correct balance problems introduced a few months back:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Shield Charge Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Version: Damage broken into 2 stages—stage one has a 5' radius and does scale 1.8 Stage 2 has a 20' radius and does scale 1.275"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Shield Charge Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Version: Damage broken into 2 stages—stage one has a 5' radius and does scale 2.04 Stage 2 has a 20' radius and does scale 1.445"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Shield Charge Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Version: Damage broken into 2 stages—stage one has a 5' radius and does scale 2.7 Stage 2 has a 20' radius and does scale 1.9125"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn - changed power substantially:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added initial hit damage"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Fear effect"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased tick rate by 4 (now ticks every 0.8 seconds, instead of 0.2 seconds)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Consume: Added Recovery boost per target hit and flat Endurance Drain Resistance value."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cobra Strike:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Recharge Time from 20 seconds to 10 seconds"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Endurance Cost from 10.14 to 10.19"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased damage scale from 0.25 to 1.96"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Stun chance from 100% to 75%"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers Eagle Claw: Increased Recharge time from 12 seconds to 16 seconds, increased damage from 2.28 to 2.92, increased End Cost from 11.86 to 15.18"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers Eagle Claw: Eagles Claw now increases the Critical Chance of Martial Arts attacks by 33% for 2 seconds after it has been activated."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Arts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crippling Axe Kick - increased recharge to 11 seconds, and increased damage and endurance cost appropriately. Added 10 second scale 1 Defense Debuff."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Aura/Fiery Embrace - The Brute version of this power had a 30 second duration on the Fire Damage buff. This was inconsistent with the Tanker and Scrapper versions and has been reduced to 20 seconds. Note with the changes above, this only applies in PVP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor/Aura of Fear - The Brute version of this power has a magnitude was set to 3. This was inconsistent with the Tanker and Scrapper versions and has been reduced to 2."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Brute Damage Cap from 850% to 775%."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified the Brute Fury Formula so that there is a more gradual degradation of Fury Build Up while attacking/being attacked instead of a sharp fall off at 80%. The fall off begins at 30%."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Fury Decay Rate from 2 points per second to 0.75 points per second."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The overall result of these two changes to Fury Generation is that it will be easier to maintain low levels of Fury, while gaining very high levels of Fury will be more difficult."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug which prevented bonus Fury generation when attacking other players or very difficult targets such as Archvillains. The bonus is a flat 5 points per qualifying target hit by the attack, up to 70% Fury. Note that unlike standard Fury generation, this bonus only applies if the attack hits the target."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Controller Kinetics Siphon Power which caused it to spam the Combat Log. It now matches other versions of the power and will only report the initial hit."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added continuing FX to Defender version of Hail of Bullets while using Toxic ammunition to match other versions of the power"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue which prevented Dominators with the Primal Forces APP from taking the final 3 powers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed display name of Fiery Embrace for Dominators to Embrace of Fire"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers will no longer \"Drift\" more than other AT's when coming to a stop while Flying or Hovering."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers will no longer \"Drift\" more than other AT's when coming to a stop while Flying or Hovering."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Offensive Toggle powers will now affect no targets while the Stalker is Hidden. As soon as the Stalker becomes unhidden, the toggle will begin to affect targets as normal. This means these toggles can be run while in Hide and they will not break the Hide state, because they will not hit anything until Hide is broken by some other event."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Includes Dark Armor/Cloak of Fear, Dark Armor/Oppressive Gloom, and Energy Aura/Repulse."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Broadsword/Head Splitter now correctly accepts Melee AoE IO Sets instead of Melee Damage IO Sets."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Bruising effect to Tanker Secondary Tier 1 powers. Bruising is a 20% resistible damage resistance debuff which lasts for 10 seconds. Note: only one application of this effect on a given target is possible at a time."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Tanker Maximum Health multiplier from 2 to 2.2. At level 50, this means a Tanker's maximum health when buffed increases from 3213 to 3534."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery/Trick Arrow (All) - Cast Time and Animation Changes"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Explosive Arrow cast time reduced from 1.83s to 1.00s"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stunning Shot cast time reduced from 1.83s to 1.00s"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flash Arrow cast time reduced from 1.83s to 1.00s"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Arrow cast time reduced from 1.83s to 1.67s"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery/Trick Arrow (All) - Improved the lighting reliability of Oil Slick Arrow."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps (All) - Corrected an error with the animations for Triage Beacon, Poison Trap and Acid Mortar. The result of this is the reported animation time has been increased from 2.17 seconds to 2.77 seconds. The *actual* animation time has been reduced from 2.83 seconds to 2.77 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Pools/Fitness/Health - Fixed a bug that made this power selectable at level 12 instead of level 14."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Purchasable Raptor Packs are no longer usable on 'Master of' attempts"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To reduce the travel times involved in larger zones, we've made a couple QOL changes to some movement powers:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased base Flight Speeds by 50%"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sprint now improves Runspeed by an additional unenhancable portion equal to its previous value (0.5 scale enhancable + 0.5 scale unenhanceable buff)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Cast Time for Enforced Morale and Clear Mind to 1.00 seconds to match the new animation"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Trick Arrows, Entangling Arrow, and Freezing Arrow PVP durations set to the correct value."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Widow Indomitable Will immobilize protection will no longer suppress in PVP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ancillary version of Telekinesis now behaves the same in PVP as non-ancillary versions."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker and Scrapper versions of Fiery Embrace were set to cause Travel Suppression in PVP, while Brute and Dominator versions were not. The Tanker and Scrapper versions have had the Travel Suppression flag removed."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleportation Resistance is no longer subject to Diminishing Returns in PVP."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "We are removing the reduction to rewards based on the number of allied NPCs in a mission, since that had undesirable side effects and limited legitimate story telling options."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instead, a team can only get assistance in the form of buffs and debuffs (and Autopowers) from a single ally in the amission. That ally becomes \"The Designated Helper\"."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There can only be one Designated Helper in a map."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If there are multiple candidates for Helper, the FIRST eligible ally the team encounters that uses its powers will become the Designated Helper."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In order for an entity to be a candidate for Designated Helper, the following rules need to be true:"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The candidate must Follow the player:"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added via choosing an Advanced Mission Goal of:"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add an Ally"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add An Escort"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NOTE: If the Author chooses \"Release a Captive,\" the Captive will not follow players and is not a candidate for Designated Helper."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The candidate must have the \"Follow \" behavior set in the goal Settings"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ally: \"Ally Behavior\" is \"Follow\""
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Escort: \"Arrival Behavior\" is \"Follow\""
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The candidate must have its combat abilities set to either:"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aggressive"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fight Defensive"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The ally becomes the Designated Helper once it USES its powers, and Defensive allies only use powers defensively, so if the team meets an Aggressive ally before the Defensive ally uses its powers, the Defensive entity will NOT become the Designated Helper."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is possible for the team to end up with a Designated Helper with no buff/debuff powers if the first candidate the player meets does not have Buff/Debuff powers but is set to Aggressive or Fight Defensive."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NOTE: Allies with combat abilities set to \"Non Combat\" or \"Pacifist\" will not be the Designated Helper"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No other allies in the map will use their buff/debuff abilities. They also won't use any Autopowers, summon any pets or use location-based attacks (like Rain of Fire) or chaining attacks (like Chain Induction)."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Including any friendly bosses, patrols, ambushes, etc."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Including any Designated Helper candidates after the first"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Introducing: the Designated Helper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the author adds more than one buffing ally to the map, and sets those allies to follow the team, after the first ally they will not use their buffing powers. They will still follow the team so goals can be completed and will use offensive powers to attack enemies, but only one ally will use their non-offensive abilities. If the non-DH allies do not have offensive capabilities, they will not do anything other than follow, much like a non-combat escort/ally."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now fight Doppelganger versions of themselves. This can be found in the Boss Enemy Group \"Doppelganger\". Players can mix and match to create different types of doppelgangers. The following choices are available:"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demon"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reverse"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Random Powers"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ghost"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inverse"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Angel"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Black and White"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - fixed several small errors in the amount of XP weight certain powers were awarding in the custom XP calculations."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alignment Tips will not drop in missions from Architect Entertainment."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smoothed the INF cost to create Set IOs across various levels. Previous instances where a recipe cost more to create than a recipe of the same enhancement at higher level have been corrected by reducing the outlying costs. All Set IO creation costs should only now increase with level."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where rated Gladiator matches could not be started."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused the Swiss Draw Arena option to be unselectable."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where the Arena scoreboard didn't update while open during an Arena match."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters will no longer be granted additional costume slots if they already have 5 or more."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can no longer switch to any costume beyond the first 5."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soldiers of Arachnos and widows are still able to unlock a 6th slot."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Combat Mode Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players now have the ability to set all Auras to \"Combat Mode\"."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Combat Mode Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combat Mode Only versions of all auras have been added to the Tailor and Facemaker. These auras will only turn on when your character engages in combat. They are selectable from Aura -> Effect menu. (Note: The option for persistent Auras (always on) is still available.)"
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "Combat Mode Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pocket D - The Tiki Room - Trina the Body Sculptress has looked into a mirror and didn't like what she saw. She's undergone a fabulous makeover."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issue 18: Shades of Gray reintroduces the long-awaited Cathedral of Pain Trial. The Cathedral of Pain is the name of one of the strongholds of Rularuu the Ravager, a cosmic entity with unimaginable powers. Inside the heavily defended Cathedral of Pain, Rularuu is attempting to pierce the barrier between his realm and our reality. If he succeeds, Rularuu gains ultimate power, and our dimension will be obliterated."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Only you and your allies can stop Rularuu."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Cathedral of Pain is one of the most challenging trials in City of Heroes. Up to 24 Level 35 to 50 characters can work together to take down the Soldiers of Rularuu, Psionic Resonators, and ultimately an aspect of Rularuu himself. You have only one hour to complete your mission."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If your group manages to stop Rularuu's insane scheme, your courage will be rewarded! You can earn Merit Rewards, or even earn a rare badge to celebrate this epic victory. But be on guard—Rularuu will return."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Cathedral of Pain is available to Supergroups equipped with a Mission Computer or an Oracle and a Raid Telepad or Raid Portal for play."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This Trial is balanced for 3 teams of level 50 players, though players as low as level 35 can participate."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each Team Leader must be in the hosting Supergroup, but the remaining team members may be visitors, so long as your base is set to allow them."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Cathedral of Pain",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rewards for completing the Cathedral successfully include Temporary Powers and badges."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police Band missions and Newspaper missions are available to players regardless of alignment. So Rogues can pick up Police Band missions and Vigilantes can pick up Newspaper missions."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mayhem/Safeguard missions will grant new contacts to Tourists, even though they cannot talk to those contacts yet."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rogues can participate in Task Forces"
+    },
+    {
+      "category": "TASKS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilantes can participate in Strike Forces."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Alienware Lighting Support",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a new AlienFX section under Menu -> Options -> Graphics and Audio."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Alienware Lighting Support",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AlienFX support is defaulted to \"on\" so any player with the AlienFX Command Center and appropriate hardware will instantly see color changes."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Alienware Lighting Support",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In City of Heroes / City of Villains, the lights will change as a player's character changes their alignment from Hero to Vigilante to Villain to Rogue."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Alienware Lighting Support",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In Praetoria the lights will change as players make moral choices between Resistance or Loyalist."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Razer Naga Mouse Tray",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An extra custom power tray can be enabled under Menu -> Options -> Controls -> Mouse"
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Razer Naga Mouse Tray",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This tray is set up to match the layout of the Razer Naga(TM) Expert MMO Gaming Mouse with 11 and 12 used to toggle between trays."
+    },
+    {
+      "category": "OPTIONS",
+      "subsection": "Razer Naga Mouse Tray",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When this power tray is active, it becomes the default, #, followed by the lowest tray for alt+#"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Steel Canyon - Montague Castanella: During the \"Craft Lost cure\" mission, the temp power 'The Lost Cure' will continue to work if temp powers are disabled in the mission, making it able to be completed.."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tina Macintyre's missions that involve Praetorians have been updated, story-wise, to make more sense to characters with more knowledge of Praetoria and its politics. The old Story Arc (The Praetorian War) is accessible through Ouroboros."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Maria Jenkins' missions have received the same treatment. The old Story Arc (A Hero's Hero) is accessible through Ouroboros."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level Range 1 to 10"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Access to Nova Praetoria:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players arrive in Nova Praetoria following the tutorial. They will also start here when the tutorial is bypassed."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Buildings:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cole Transport Authority (CTA)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players travel between zones at the CTA subway system."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imperial Bank of Praetoria"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players are able to store salvage at the Imperial Bank"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Loyalist Lounge"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is the lounge for those most dear to Emperor Cole and his senators. Only the most trusted of his citizenry may venture here."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Contacts"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetor Duncan - Located in the Magisterium courtyard."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendors"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendor 56-925 and Merit Vendors are located in the Magesterium."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendors may also be found in the north and south ends of the island."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission Contacts"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetor White - Located in the Magesterium, this is the first contact for all members of the Powers Division (Resistance and Loyalist)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Provost Marchand and Calvin Scott are your handlers as members of the Loyalists or Resistance."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At level 5, Calvin Scott will lead you to Robert Flores; or Santiago, who directs you to meet Ricochet in the Underground. At this point you may choose the path of a Warden or Crusader."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At level 5, Provost Marchand will offer you a choice between the Deputy Assistant of Information and Chief Interrogator Washington. This will start you down the paths of Power or Responsibility."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Locations"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resistance Hub"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Contacts - All located in the Resistance Hub."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vanessa DeVore"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission Contacts"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ricochet"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jack Hammer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Nova Praetoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Splice"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level Range 9 to 15"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Access to Imperial City:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can reach this zone via the CTA subway system, the Underground, or by simply travelling towards the city seen in the distance from Nova Praetoria."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In Pocket D, Praetorians can return to Imperial City's Studio 55 where they can continue their party in their own dimension."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Buildings:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cole Transport Authority (CTA)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players travel between zones at the CTA subway system."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cultural Direction and Education Center (CDEC)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The CDEC is where all of Emperor Cole's \"propaganda\" is created and distributed and where Praetorian citizens gather for higher learning and cultural wisdom. The CDEC is also where they are able to access invention tables to create all things for the glory of Cole."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imperial Bank of Praetoria"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players are able to store salvage at the Imperial Bank"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Studio 55"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Studio 55 is the place to see and be seen."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trading House"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Trading House allows players to buy and sell in Praetoria.."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Contacts:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightstar - Located in front of the CTA Building (near People's Park)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Respec Trainer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "John Snow - Located in Studio 55"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tailor"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rita Mayfair - Located outside of the Tailor shop in Aureas"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inventions"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Relations Expert Verna Arcola - Invention Tutorial starting contact at Level 10."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Vista Zoning Tech",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your character can reach Imperial City by flying, running, teleporting, jumping, swimming or walking to it from any point along the border of the two zones."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Vista Zoning Tech",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Expected behavior: Your character should appear at a similar location on the \"opposite\" side of the zone border. (For example, if your character crosses a bridge to Imperial City, the character should not appear in the water on the other side.)."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Locations"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resistance Hub"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Contacts (Resistance Hub)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storage Assistant - you can store your salvage"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Marcus / Cerys - Resistance who have secretly tapped into the Trading House pipeline."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Underground - Imperial City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tailor - Tailor 4-5264"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level Range 16 to 20"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Access to Neutropolis:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can reach this zone via the CTA subway system or by simply travelling towards the city seen in the distance to the west of Imperial City."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Buildings:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cole Transport Authority (CTA)"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players travel between zones at the CTA subway system."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Neuron Technologies Unlimited"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The headquarters of Neuron is quite something to behold. He has money and lots of it and it has not gone to waste here. His building is the second tallest in Praetoria, the shiniest, and is the center of technological innovation in Praetoria."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Keyes Reactor"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The source of the city's power, this island is devoted solely to supporting the reactor and everyone who works there."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The most notable feature of the anti-matter reactor are the cooling towers. Nearly ten stories in height, these high-tech marvels bear the singular design aesthetic common to all of Anti-Matter's structures. At the base of the towers are the industrial installations essential to the reactor's functioning: platforms sandwiched atop each other, threaded with pipes and conduits, while catwalks connect to other ancillary structures."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imperial Bank of Praetoria"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players are able to store salvage at the Imperial Bank"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significant Contacts can be found beneath Neuron's Tower"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainer"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Maiden"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendors:"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendors 36-287"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Merit Vendors"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ghouls"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetorian Police Department"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetorian Clockwork"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Resistance"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Seers"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Syndicate"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "New Villain Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Destroyers"
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critter Leashing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All spawns in Nova Praetoria, Imperial City and Neutropolis will now 'leash' to their spawn locations after 210 ft, when engaged in combat."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critter Leashing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies which leash to their location will cease attacking players, will return to full health and endurance, and will become untargetable and unselectable while returning to the vicinity of their spawn location."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critter Leashing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leashed spawns cannot be re-engaged until they have reached their spawn area, at which point they will become targetable and selectable again."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critter Leashing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leashing is used in these three zones only and in no other zones."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Backup Radio Invention Temporary Power summons a Resistance Veteran for Resistance Members and a Praetorian PD Sergeant for Loyalists."
+    }
+  ]
+}

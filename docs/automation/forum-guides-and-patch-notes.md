@@ -45,15 +45,42 @@ stub to fill in on review, and the opening post verbatim with tables kept as row
 After a run, regenerate `community/INDEX.md` with `scripts/regen-index.ps1` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
 
+### The pre-sunset forum archive
+
+The 2004 to 2012 official boards survive in full at `https://forumarchive.cityofheroes.dev/`, an
+Invision import with the original sections (`index.php?/forum/44-player-guides/`, one section per
+archetype). The same command reads it; the board is named with `--base`, which also sets the
+capture's `source`, and the era is kept apart by its own output root and a tag:
+
+```bash
+python -m scripts.forum_scrape.guides --base https://forumarchive.cityofheroes.dev \
+  --forum "https://forumarchive.cityofheroes.dev/index.php?/forum/44-player-guides/" \
+  --tag pre-sunset --out community/pre-sunset
+```
+
+- The archive publishes no `robots.txt` and no terms; its operator is unnamed. A full crawl
+  waits on one contact through the site's contact page, recorded here with its outcome.
+- The content is frozen, so a second run costs the listing walk and writes nothing: no thread
+  shows new activity and no opening post's hash changes.
+- Old guides explain how a set plays; their numbers are dated by the patch timeline below, which
+  is why `date_posted` carries the original post date, not the import date.
+- The Wayback Machine also holds `boards.cityofheroes.com` (2009 to 2012), under session-id URLs
+  with missing deep pages and heavy rate limiting: a fallback for a single missing thread, not a
+  crawl target.
+
 ## Patch timeline
 
 ```bash
 python -m scripts.forum_scrape.patch_notes --out data/patches
 ```
 
-Reads the Release Notes application (not the forum's beta patch-note threads, which re-post
-every release candidate in full) into one dated JSON file per entry; the shape is in
-[`data/patches/README.md`](../../data/patches/README.md). Re-runs write only new entries.
+Reads three sources into one dated JSON file per entry, the shape and coverage in
+[`data/patches/README.md`](../../data/patches/README.md): the Release Notes application
+(April 2023 onward), the forum's beta and staging patch-note threads (2019 to 2023, the final
+release candidate of each Issue/Page series plus interim patches, skipped wherever the live
+application covers the same series or date), and the Paragon Wiki Archive's dated pages
+(2004 to 2012). `--source` selects one; the default is all three. Re-runs write only entries
+not yet in the index, so the two archive sources cost nothing after their first run.
 
 ## Sections
 
@@ -62,3 +89,5 @@ every release candidate in full) into one dated JSON file per entry; the shape i
 | Mechanics and general guides | `/forum/44-guides/`, `/forum/43-archetypes/` |
 | Archetype guides and build threads | `/forum/13-blaster/` through `/forum/24-arachnos-soldier-amp-widow/` |
 | Live patch notes | `/patch-notes/` (Issue 27 page 6 onward) |
+| Beta patch notes, 2019 to 2023 | `/forum/73-open-beta-patch-notes/`, `/forum/100-staging-patch-notes/` |
+| Pre-sunset patch notes, 2004 to 2012 | `https://archive.paragonwiki.com/wiki/Patch_Notes` |

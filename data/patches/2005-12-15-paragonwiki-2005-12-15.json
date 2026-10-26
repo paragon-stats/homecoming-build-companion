@@ -1,0 +1,435 @@
+{
+  "title": "Patch Notes/2005-12-15",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-12-15",
+  "published": "2005-12-15",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 12/15/05 Patch Notes"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 COMBINED NOTES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.2 UI"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.3 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.4 Game"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.5 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.6 Arena"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.7 Tasks"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1.8 Bases"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 CITY OF HEROES"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2.1 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 CITY OF VILLAINS"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3.1 Powers"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police Drones and Arbiter Drones can now see Stealthed entities and enemy players."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aspect of Rularuu in the Cathedral of Pain cannot be harmed if there are any other critters in the Cathedral with him."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Council Sniper can shoot properly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phenomenal Luck Inspirations now use the correct Icon."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hot Feet (all archetypes) damage used to deal their damage 75% of the time each tick (regardless of the casters ToHit or Accuracy value or targets defense). Now, this power will make standard ToHit Rolls, and will accept Accuracy Enhancements. The debuff attributes of this power will still auto hit. However, the text on this power still indicates that it auto-hits. This is incorrect and will be corrected in a future update."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mud Pots (all archetypes) damage used to used to auto hit (regardless of the casters ToHit or Accuracy value or targets defense). Now, this power will make standard ToHit Rolls, and will accept Accuracy Enhancements. The debuff attributes of this power will still auto hit. Damage was increased +33%. However, the text on this power still indicates that it auto-hits. This is incorrect and will be corrected in a future update."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Repulsion Bomb has changed in several ways. It no longer requires you to cast the power on a Friendly Target, meaning it is now usable while Soloing. However, we increased the Recharge time to 30 seconds (from 10 seconds) and reduced the chance to Stun by 60%. The text on this power has not been changed to reflect the adjustments. This is incorrect and will be corrected in a future update."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Erroneous 'Detoggle' messages in PvE for Repulse, Repulsion Field and Repulsion bomb."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The chance for Seismic Smash to hold a target has been modified from 40% to 100% for both Tankers and Brutes. In addition, a bug was found that would prevent the hold from working unless the target was on the ground. This has been fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the Short Help for Claws/Eviscerate to make it more consistent with other power descriptions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gambler's Cut for Katana and Ninja Blade was only doing half the damage on critical hits as intended. This has been corrected."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration Revive now uses Healing Enhancements to increase the amount of health you are resurrected with."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated text on several Item of Power descriptions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Torment Monument so that the Debt Reduction works properly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "UI",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added simple graphics slider to toggle between minimum, recommended, and maximum graphics settings. This option is only available if you toggle \"Advanced Graphics Settings\" off (the default for new users, but existing users will not have their settings changed)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "UI",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Revamped supergroup list window, added prestige column."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bloody Bay, Siren's Call, Warburg: When players in a PVP zone are revived at the hospital, they will be immune to PVP for 30 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Siren's Call: PvP buff and debuff missions will now properly award bonuses."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug that could cause a player's reputation to reset to 0.0 after zoning."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved game stability."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed requirements for the Mentoring series of badges."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players in Arena events are listed as \"In Arena\" instead of \"On mission map.”"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing mini maps on the second floor of several mission maps."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now a “Move Room” option under base editing."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Circle of Thorns Air Casters in the Chantry were not using their Ranged powers. This has been corrected."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shuriken and Exploding Shuriken ancillary powers now properly show damage in the Combat window, however, the Combat window says “Player Name” instead of player’s name. This is incorrect and will be corrected in a future patch."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Controller Lightning Storm. It was doing damage based on a Defender’s scale rather than a Controller’s however, the damage it does to the target is not listed in the combat window. This will be corrected in a future patch."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with O2 Boost in Storm Summoning. The status protection it provided had a gap when used on a single target repeatedly."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Essence Boost for Peacebringers with +Heal Enhancements will now generate a greater Maximum Hit Point boost."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with Scrapper/Katana - if you used the power Golden Dragonfly right after using the power Soaring Dragon, the Golden Dragonfly did not work."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Mu Mystics have undergone retraining and will now use their ranged attacks by preference, rather than closing to melee range."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in Dominator/Thorny Assault/Impale long description."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in the short help description of Kinetic Shield for Energy Aura."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the Damage listed in the Long Help Description for Psionic Dart for Dominators."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Goldbricker Rocket Pack from a 90 minute lifetime to a 90 minute usage time. This is a bug fix."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the chance for Stalker/Repulse to knock off a target's Toggles."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Goldbrickers Sonic attacks were debuffing player attack damage, rather than player damage resistance. This has been corrected. Goldbricker minions have only a very minor Resistance debuff, while Lieutenants and Bosses have stronger effects."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Workshop Client Crash"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Stability in Base Building"
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "title": "Patch Notes/2004-09-30",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2004-09-30",
+  "published": "2004-09-30",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 9.30.04"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.1 City Zones"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.2 Badges"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.3 Powers"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.4 Chat UI"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.5 Game Stability"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.6 Missions"
+    },
+    {
+      "category": "Contents",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.7 Respec"
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hollows: Changed the position of the contacts Julius the Troll and Flux. They should be easier to get to now."
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boomtown: the Monster Babbage is now spawning correctly in this zone."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Head of the Hydra badge. It is now awarded correctly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Devouring Earth Plant resistance (was taking double damage to fire)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Devouring Earth Mushroom resistance (was taking double damage to lethal)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified (toned down) Outcast powers (Lts and Bosses)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified (toned down) Troll powers (Lts and Bosses)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Limited Tsoo's availability of Caltrops"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Clear Mind duration to 90 seconds. Allowed stacking and improvement over level. (updated help text)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Medicine/Stimulant. Duration was longer than Clear Mind and is now 60 seconds. Allowed stacking and improvement over level. (updated help text)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced duration of Rikti communications officer\\ss portal."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed (Increased) Hamidon Heal and Travel Enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Spines/Ripper system chat message. System chat reported Ripper did smashing damage, but it really does Lethal."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed short help for Elude (it still said it was a toggle though it is a Click power now)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Hamidon."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Sewer Kraken Defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doubled the Duration of Discipline, Strength of Will and Iron Will Inspirations."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More f/x changes to Blizzard (no change to power with this change, just visual f/x)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an inaccuracy in damage calculation which could give pet owners who heal their pets XP when their pets are killed"
+    },
+    {
+      "category": "Chat UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Split Combat and System channels into multiple new channel categories."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug which caused players to occasionally crash out of the game when trading with Ghost."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Info window which could crash the client if the user requested target had changed before the server got the request (dying villain, mapmoving player)."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash which could occur if the Search Window was in use."
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the first task of the Sister Psyche Task Force mission."
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the first task of the Synapse Task Force mission."
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the first task of the Bastion Task Force mission"
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug affecting some missions that prevented players other than the one originally assigned the mission from being given rewards for completing the mission."
+    },
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bugs causing villains to jump through walls on many mission maps, often making missions impossible to complete."
+    },
+    {
+      "category": "Respec",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that prevented players with certain network configurations from being able to complete the Respec procedure."
+    },
+    {
+      "category": "Respec",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that could cause the client to crash after a player completed the Respec procedure."
+    }
+  ]
+}
