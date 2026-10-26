@@ -1,0 +1,4050 @@
+{
+  "title": "Issue 28, Page 3",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/issue-28-page-3-r38/",
+  "published": "2025-11-25T15:45:00Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 38,
+  "changes": [
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Expanded +5 & Incarnate +6/+7 Difficulty Options!"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kallisti Wharf Task Force - Marigold 'Zoe' Langston's Task Force!"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog Expansion + Repeatable Rank-Shifted Missions!"
+    },
+    {
+      "category": "Marquee Features",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Story Arc in Kallisti Wharf!"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Powerset - Sonic Melee!"
+    },
+    {
+      "category": "Powers & Gameplay Adjustments",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds - Even-Con Minion and Lieutenant Pets!"
+    },
+    {
+      "category": "Various Adjustments, Improvements & Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Badge Progress Tracker!"
+    },
+    {
+      "category": "Various Adjustments, Improvements & Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Character Info Window Customization!"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New higher difficulty options +5/+6/+7 have been added."
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+6 and +7 difficulty will only function when on Incarnate content such as Dark Astoria or Cimerora Incarnate repeatables, otherwise it will default to +5 anywhere else."
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Difficulty change options have been moved from the chat pop-menu to the Mission/Task tab found under the Navigation window."
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Visibility of the new higher difficulties require the following:"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+5 - if you have Apha, Destiny or Lore + Well Drinker or Incarnate"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+6 - if you have Destiny or Lore + Well Drinker or Incarnate"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+7 - if you have Destiny + Well Drinker or Incarnate"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can still use /setdifficultylevel 7 to ignore those checks, but don't say we didn't warn you!"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemy groups that spawned at Level 54 have had their base level range extended up to Level 55."
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission modifiers can sometimes swing this to spawn to +1s!"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate enemy groups (higher base ToHit%) have had their level range extended up to Level 60."
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Existing content that is not impacted by the difficulty changes:"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Trials"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "LFG Trials"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mothership Raids"
+    },
+    {
+      "category": "New Expanded +5 & Incarnate +6/+7 Difficulty Options",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog"
+    },
+    {
+      "category": "The Golden Rule - Marigold 'Zoe' Langston's Task Force (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "CONTACT: Marigold 'Zoe' Langston /thumbtack 477 -279 3903"
+    },
+    {
+      "category": "The Golden Rule - Marigold 'Zoe' Langston's Task Force (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "LOCATION: Kallisti Wharf"
+    },
+    {
+      "category": "The Golden Rule - Marigold 'Zoe' Langston's Task Force (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ALIGNMENT / LEVEL: Hero (+Co-op), Level 40-50."
+    },
+    {
+      "category": "Death Resurrected - Wylie Galloway (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "CONTACT: Wylie Galloway /thumbtack 3564 84 3295"
+    },
+    {
+      "category": "Death Resurrected - Wylie Galloway (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "LOCATION: Kallisti Wharf"
+    },
+    {
+      "category": "Death Resurrected - Wylie Galloway (Level 40-50)",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ALIGNMENT / LEVEL: Hero, Level 40-50"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every Level Shift at +10 refreshes the decay timer back to the full 5 minutes. This means filling the bar at max level resets the timer."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Benefactor in the Fog has become much more chatty recently, and has a number of new dialog options for those who have reached him inside the mysterious True Core of the Labyrinth."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many strange masses of foggy growths have begun to appear in the zone, they writhe with a supernatural malevolence and possess the ability to infect and corrupt the Labyrinth's phantoms."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiators in the Fog can now spawn corrupted 25% of the time, come at Level 55, and will attack on approach with a new powers."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monsters that spawn in this zone are now using more Fog-corrupted visuals and unique names."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All zone Giant Monsters now spawn with an internal Level of 54, equalizing their health pools."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Example: Kronos Titan will no longer take more time to kill than Jack In Irons."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monsters that spawn in this zone no longer drop their specific individual monster badges in order to promote more diversity without sacrificing other content offerings."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On Orange floors, new Fog Arch-villains now appear (3 always spawned concurrently in the zone at any given time). When one is defeated, another spawns instantly somewhere else."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These AVs have more health than normal, but standard regen. They spawn at Level 55, and scale to higher HP when more than 8 players are present."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They scale with the Labyrinth Shifts of the zone."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating one of these AVs grants 2 Labyrinth Shifts to the zone meter."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These AVs can be one of over 70+ different recognizable signature characters!"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each AV drops 1 Unstable Aether and 2 Reward Merits per defeat. (Not zone-wide, players must hit the AV once for credit.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When the Minotaur In The Fog is currently dead, all critters on floors other than Orange despawn to off-load zone critter logic stress to improve performance during raids."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The main door inside the zone has been converted into the Phantom Gateway, a monorail-style door with multiple destinations, depending on what's available to you:"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnighter's Club"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Lobby (Requires being Level 45+ to enter the zone)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Random (Same effect as going through a randomizer door, always available)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Core (Requires the 'Slayer of the Minotaur' defeat or 'Greek Philospher' history badge. No longer requires 'Conqueror of the Labyrinth' accolade badge.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Colonnade (Requires the 'Hidden In The Fog' exploration badge.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Font; Will show locked if the Minotaur is alive. (Requires owning the Mini Avatar of Achlys vanity pet.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth of Fog - Origin (Requires the new 'Lucid Dreamer' exploration badge.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 'Conqueror of the Labyrinth' accolade badge no longer grants a teleport power."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instead it now grants a Labyrinth content exclusive accolade buff power that grants +MaxHP and +MaxEnd, and is seen on your tray when in the zone:"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Essentially a second copy of Portal Jockey to buff your stats even higher while in the Labyrinth!"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Return From Fog is now available from everywhere in the zone."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Core of the Labyrinth is now a low-gravity area to make traversal possible without travel powers."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Core of the Labyrinth area is now excluded from the zone-in safety check that moves you to the Lobby, meaning you can safely log out in there and not be moved upon logging back in. This is to ensure players can run the new repeat mission content without issue."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Visuals on the core have received polish such as lighting on torches and additional detail work."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Violet Portal has been moved to the back and a new Chromatic Portal has taken its place."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new trainer NPC has been added to the area: Warmaster Pentalabyrs /thumbtack 558 10 2639"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Does not provide tailoring services."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added an infinitely-respawning NPC who servers the purpose of a pylon DPS test and will report defeat times."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new shop NPC has been added to the area: Dealer of Death /thumbtack 446 -254 2441"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Provides START vendor services."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sells inspirations out of a coffin."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can sell items to them to open inventory space."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Has a special shop that exchanges goods for a new currency"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new repeat mission NPC has been added: The Watcher, Teleute /thumbtack 412 -205 2783"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is added to your contacts upon first interaction and can be called at any time after."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Located near where the Violet portal used to be."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Core of the Labyrinth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Offers repeat missions that scale on difficulty and feature Rank-shifted enemies."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rewrote how the Mythic Fog anchors are handled, now spawned and despawned by Lua, off-loading power system stress to hopefully improve zone performance during raids."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The weighting on the Font's Giant Monster spawn chances has been standardized."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following have been added to the possible spawn pool, bringing the total GMs found up to 9:"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Keeper"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kraken"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Babbage"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eochai"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At 1000 total points a foggy version of Lusca and eight tentacles will spawn."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All the tentacles must be defeated before the head can be damaged."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Font of Malevolence Raid",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating the new fog Lusca grants a bonus 1000 points to the score counter."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightmare Obol: New currency exclusive to Labyrinth activities that serves a purpose analogous to Vanguard Merits."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The currency drops from the following at these specific amounts:"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Gladiator In The Fog -> 1 Obol"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Corrupted Gladiator In The Fog -> 2 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Fog Arch-villain -> 3 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Labyrinth Guardian > 3 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Corrupted Labyrinth Guardian -> 4 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating a Fog Giant Monster -> 5 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing a Trial of Combat mission (R/B/G/Y) -> 10 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating the Minotaur in the Fog / Avatar of Achlys -> 10 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing a Trial of Combat mission (V/O) -> 15 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing a Trial of Combat mission (W) -> 25 Obols"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These are then spent in a shop offered by the Dealer of Death from his ship in the Core of the Labyrinth to purchase the following items:"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator Mote Attunement: 1 Obol (Requires the Costume: Gladiator In the Fog power. Lasts until you leave the zone.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Draught of Fog: Inspirations in bulk for 2 Obols each."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Convert to Reward Merits: 50 Obols -> 5 Reward Merits."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phantom Costume Parts: 10 Obols each, 19 costume pieces total."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Oathsworn Gladiator: 1 summon charge for 200 Obols, 5 charges max (Labyrinth of Fog zone only.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pull Through Fog: 5 uses of an Auto-hit Fold Space-like power for 100 Obols, 50 charges max. (Labyrinth of Fog zone and missions only.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shroud of Shadows: 30 minutes of Stealth toggle for 5 Obols, 5 hour charge max. (Labyrinth of Fog zone and missions only.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soulbound Armor: 30 minutes of +Def(Negative) and +Res(Negative) toggle for 20 Obols, 5 hour charge max. (Labyrinth of Fog zone and missions only.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Currency - Nightmare Obols",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pet: Mini Dealer of Death: Vanity pet reward for 10,000 Obols."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New infinitely repeatable missions are offered by the new NPC added to the Core of the Labyrinth: The Watcher, Teleute"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once spoken to, is added to the player's contact list and can receive missions from them via call button."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Offers two missions, one from the Red/Blue/Yellow/Green pool, and the other from the Orange/Violet/White pool."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each colored Test of Combat corresponds to enemies found on the various Labyrinth floors, and you'll encounter the same color-grouped enemies mixed together with Rank-shifts when playing these missions."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These Test of Combat missions respect players difficulty settings and will spawn at the size and level of the team leader."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At the end of each Test of Combat mission is one of the Four Generals of Achlys who serve as the mission's boss."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These spawn at Arch-villain rank, but can be lowered to Elite Boss via difficulty settings."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All of these missions use the prismatic portal door found behind Teleute, The Watcher."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Meant as a means to farm Nightmare Obols that doesn't involve raiding and to be an alternative repeat content offering."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Test of Apathy offered by The Watcher, Teleute in the Core of the Labyrinth."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is added to the bottom rotation of Tests offered once the player owns the new 'Tested By Combat' badge for completing the first six Test types."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can be on any of the maps seen in all Tests of Combat."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This mission sees you fight all four Generals of Achlys at the same time. (They should respect difficulty settings.)"
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All enemies in the mission are Rank-Shifted to Boss or Elite Boss rank."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiators In The Fog spawn at x8 Difficulty. These count for the badge/vanity pet, drop 1 Obol per player, and a Drought of Fog Inspiration."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completing this mission awards the new 'Chromatic Combatant' badge."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "New Labyrinth Repeat Missions - Tests of Combat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rewards 25 Obols for completion."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players cannot Follow Through Fog to targets who are in darkness."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Escape From Fog power cannot be activated if you're already in the Entrance."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A tailor has been added to the Core of the Labyrinth near the fountain."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Door has been added that takes players from the lower terrace to the upper terrace in the Core."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taking the Hospital from inside a Test of Combat repeat mission places you back in the Core, instead of the Lobby."
+    },
+    {
+      "category": "New Labyrinth of Fog Expansion",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Draughts of Fog are no longer usable in PvP."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Ouroboros",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Incarnate missions (that allow +3 Incarnate Shifts) are now in their own bucket in Ouroboros."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Task Forces",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In all Task Force mission content, all enemies will respect the difficulty setting, no longer occasionally spawning +1's from room to room."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized the rank names of the super AVs found in Advanced Mode and their reward payout amounts:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Monster -> Monstrosity"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arch-Villain -> Super Villain"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero -> Super Hero"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This visual change impacts the following AVs on Advanced Mode:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emperor Requiem (Aeon Strike Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Terra, The All-Mother (Aeon Strike Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero 1 (Aeon Strike Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ripplesurge (Aeon Strike Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "King Midas (Aeon Strike Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Emperor Romulus Augustus (Imperious Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork King (Lady Grey Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Delta K'ong (Lady Grey Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Omega K'ong (Lady Grey Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hro'Dohtz (Lady Grey Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flashfreeze (Zoe Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Golden Roller (Zoe Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ye'ti (Zoe Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Paragon Subjugator 'Enlightenment' (Zoe Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nemesis (Zoe Task Force)"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Lady Grey's Task Force - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the check on the final mission that was misbehaving and removing the Hamidon Essence power."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Citadel's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The three Council missions in Independence Port are now assigned doors that are closer to the tram."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap's Story Arc - 'Mergers & Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed graphical fallback on Dinner Spoon's chrome textures if reflections were turned off."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mazebreaker - Obtain the following badges: Tested By Combat and Chromatic Combatant."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accolades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self: +Max Endurance (Labyrinth of Fog Only)"
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accomplishments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heart of Gold - Complete Marigold 'Zoe' Langston's Task Force to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accomplishments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tested By Combat - Complete all six standard Tests of Combat offered by The Watcher, Teleute in the Core of the Labyrinth of Fog."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accomplishments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chromatic Combatant - Complete the Test of Apathy offered by The Watcher, Teleute in the Core of the Labyrinth of Fog."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Accomplishments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychopomp - Complete Wylie Galloway's Story Arc to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Snow Warning - Defeat Flashfreeze in Marigold 'Zoe' Langston's Task Force on Advanced Mode without anybody on the team being hit by her Cryonic Judgement special attack.Complete Marigold 'Zoe' Langston's Task Force to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jailbreaker - Defeat all five unique CHB prisoner arch-villains encountered during Marigold 'Zoe' Langston's Task Force to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Subterranean Striker - Defeat all three arch-villain enemies while exploring underground in Marigold 'Zoe' Langston's Task Force on Advanced Mode to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockback King / Queen - Defeat 50 enemies via [CRUNCH] on the final mission of Marigold 'Zoe' Langston's Task Force."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Master of Zoe's Task Force - Achieve the following special achievements during Marigold 'Zoe' Langston's Task Force: Snow Warning, Jailbreaker, Subterranean Striker, and Knockback King/Queen."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Defeats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mutated Marauder - Defeat 100 Hydra enemies to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Exploration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lucid Dreamer - Reach the Origin of Apotheosis inside the Labyrinth of Fog to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conqueror of the Labyrinth - Adjusted perk description in badge text to mention its new perk."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self: +Max HP, +Max Endurance (Labyrinth of Fog Only)"
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Badge Tracker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New functionality added to track the progress of individual badges has been added via new window."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Badge Tracker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This can be accessed by selecting a badge you don't own and then clicking the track button."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Badge Tracker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pin badge art to Personal Info window."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Badge Tracker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hinted badges no longer show their name as \"Unknown\"."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clicking on a badge in the Badges window no longer sets it as a title."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the \"Clear Badge Title\" button to a Set/Clear toggle."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pin the selected badge art to your Personal Info window."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If no badge is selected, displays the City of Heroes promotional Origin images for the character!"
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add /info_pin_badge to pick a specific badge."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "0 to follow the selected one"
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-1 to always use the origin art"
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-2 to remove the art entirely."
+    },
+    {
+      "category": "Badge Tracker & Profile Customization",
+      "subsection": "Profile Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The badge title of a targeted character will now update when their Info window is opened."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "New Costume Parts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Huge > Hats > Face > Troll*"
+    },
+    {
+      "category": "Costumes",
+      "subsection": "New Costume Parts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "*Hats and details that clip too much with this head are mutually exclusive when selecting it."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Four Generals of Achlys drop mini pet recipes of themselves at 1% (1 in 100) chance per defeat."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These recipes are tradeable on the Auction House."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Giant Monster Nemesis that spawns during Nemesis Invasion zone events now drops 2 Unstable Aether and a 10% (1 in 10) drop chance at a mini pet recipe for a Mini Nemesis."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This recipe is tradeable on the Auction House."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nemesis Bosses now drop a mini pet recipe for a Nemesis Jaeger at 0.1% (1 in 1000) chance per defeat."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This recipe is tradeable on the Auction House."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed 'Enhancement Converters' shop category to 'Enhancement Salvage' on Merit Vendors for clarity."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Invention Salvage have had their icons tweaked so that no salvage from the same category reuses the same icon twice:"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporal Sands"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mathematic Proof"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chemical Formula"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conspiratorial Evidence"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spell Scroll"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demonic Blood Sample"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blood of the Incarnate"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Monstrous Aether salvage has been renamed to -> Unstable Aether and now primarily serves the purpose of being a sub-currency (3 to 1) of Prismatic Aether."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Salvage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Benevolabs vendor option for Monster Pet recipes has been retired as the buffed drop rates on recipes has rendered this option unneeded."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Combat Dummies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combat Dummies are now their own category of power, and display on the player's information page."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Combat Dummies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The existing combat dummy accolade, the Vanguard MDC has already been converted into this new category."
+    },
+    {
+      "category": "Events",
+      "subsection": "Nemesis Invasion",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Invasion Nemesis Giant Monster that spawns during the Nemesis Invasion event is now a Nemesis Cavalier."
+    },
+    {
+      "category": "Events",
+      "subsection": "Nemesis Invasion",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invasion Nemesis drops a mini pet recipe for a Mini Nemesis at a 10% (1 in 10) drop rate like other Giant Monsters."
+    },
+    {
+      "category": "Events",
+      "subsection": "Nemesis Invasion",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recipe can be traded and sold on the Auction House."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "5th Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reichsman's Fist of Tyranny now only targets players."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnos",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Ghost Widow's Etherealise with bad AIFlag (kHeal instead of kHealAlly)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnos",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some Arachnos weapon attacks desynced FX on initial attack."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Carnival of Shadows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When Illusionists and Master Illusionists are Held, they now lose access to Phase Shift with a float that says 'Power Lost!'."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Carnival of Shadows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is visualized with a black 'World of Confusion' bubble popping on them after being held."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Circle of Thorns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mage Archus, the finale Arch-villain for the Ice Mistral Strike Force, now has a wholly unique powerset, instead of using a generic Mage boss powerset."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Coralax",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Calystix the Shaper now has a new unique powerset when encountered at higher level such as in Captain Mako's Patron Arc."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When Ascendants are Held, they now lose access to Shield with a float that says 'Power Lost!'"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freedom Phalanx",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Numina now has the Ghost and Undead power tags."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Nemesis Rifle animation from 3.83s to 2.17s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Bayonet animation from 2s to 1.67s, decreased recharge from 6s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed interrupt from Triage, increased recharge from 8s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Storm Rifle animation from 3.83s to 2.17s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Flamethrower animation from 6s to 2.33s, decreased recharge from 10s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Gatling Gun from single target to cone, decreased damage from scale 2.856 to scale 1.989, decreased recharge from 10s to 6s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Cutlass melee attack to Cuirasseur/Hussar/Dragoon critters."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Soldiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Surgeon variants to Cuirasseur/Hussar/Dragoon critters with Triage, spawnlimit 4."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Jaeger Mace disorient from mag 1 to mag 2."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Jaeger Saw checking melee instead of AoE defense, decreased recharge from 14s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Jaeger Gun animation from 2s to 1.83s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Jaeger Cannon animation from 2s to 1.83s, decreased recharge from 10s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Gas Grenade animation from 2s to 1.83s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Explode knockback not targeting foes."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Resistance to 20% Lethal/Fire resistance, 30% Psionic resistance, 20% Smashing/Cold vulnerability."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Jaegers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed 10% reward scale penalty."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Officers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Lance Rifle animation from 3.83s to 2.17s, fixed checking lethal instead of fire defense, decreased recharge from 6s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Officers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Lance from pseudopet to primary/secondarytarget setup, reduced animation from 2s to 1.67s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Officers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vengeance now only affects Nemesis and Nemesis Automatons, added AoE type to defense, decreased defense buff from scale 2.0 to scale 1.75, decreased tohit and damage buffs from scale 3.0 to scale 1.75, added scale 1.0 heal."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Snipers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased range of all sniper ranged attacks to 310 ft."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Snipers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Gas Grenade animation from 3.83s to 2.17s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Snipers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed 10% reward scale penalty."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "War Hulks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Pummel from single target to cone, fixed checking smashing instead of lethal defense, decreased recharge from 4s to 3s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "War Hulks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Explode damage from scale 1.4 to scale 1.5."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "War Hulks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Resistance to 20% Lethal/Fire resistance, 30% Psionic resistance, 20% Smashing/Cold vulnerability."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fake Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Refined Nemesis Staff power suite; added resistance debuffs to Staff Bolt and Staff Bomb."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fake Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Protection Shield to buff up to 3 ally targets, added scale 4.0 Toxic resistance, added end drain resistance."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fake Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Dispersion Bubble defense from 30% to 15%, increased mez protection from mag 2.0 to mag 5.19."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fake Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Personal Force Field from Untouchable/OnlyAffectSelf to 75% Smashing/Lethal/Fire/Cold/Energy/Negative defense, 40% resistance to all, added recovery and regeneration, now can be cancelled with mez."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fake Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Resistance to 30% Psionic resistance, 20% Cold vulnerability, mag 4.0 sleep protection, mag 2.0 confuse/terrorize protection."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "All",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased melee range to 7ft standard."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "All",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected endurance costs and clarified power descriptions, short help."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Paragon Heroes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Witch in her ghostly incarnation now has the Ghost and Undead power tags."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorians",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Diabolique now has the Ghost and Undead power tags."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rikti",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restored Rikti enemy costume variety at lower levels."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rogues Gallery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dr. Quatrexin now displays as Rogues Gallery, as they were never an actual member of Arachnos."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rogues Gallery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dr. Quatrexin now has a more unique powerset to set him further apart from Black Scorpion."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Sky Raiders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crimson Prototype's Support now only targets players."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Talons Of Vengeance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Siren missing custom continuing/conditional FX in various attacks."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Talons Of Vengeance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some Talons of Vengeance Snake women sequencers not having proper weapon draw into attack animations, fixed some attacks having shorter animation time displays than the minimum allowed sequencers."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Brown Ink Men",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Created new Brown Ink Men as minions for levels 40+, with kinetic melee attacks as an evolution of Green Ink Men."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Ancestor Spirit, Chi Master, Sorcerer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased max levels from 40 to 54."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Copper Crane, Lightning Leopard, River Dragon, Steel Serpent",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Expanded power suites to be proper bosses for level 35+."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Sky Fall unable to cast Lightning Storm."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing AI flag to Sorcerer Darkest Night."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed legacy archetype exclusion from Sorcerer Hurricane debuff."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Brawl from 40+ Sorcerers, gain Punch and Wolf Punch."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added scale 1.0 psionic damage to Yellow Ink Man Dominate, decreased recharge from 20s to 16s, increased accuracy from 1.0x to 1.2x."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Yellow Ink Man Mesmerize damage from scale 0.8 to scale 1.0, decreased recharge from 16s to 12s, increased accuracy from 1.0x to 1.1x."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Poison Dart animation from 2s to 1.5s, decreased recharge from 15s to 8s, standardized debuffs and DoT to be same duration."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Caltrops recharge from 30s to 45s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Kama animation from 2.87s to 2.17s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Sai animation from 2.87s to 1.7s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Siphon Power recharge from 8s to 20s, updated to use redirect instead of pseudopet."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Siphon Speed recharge and duration from 60s to 20s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added inherent flavor resistance to all human Tsoo; 20% smashing resistance, 20% lethal vulnerability."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Ink Men/boss toxic resistance from 50% to 30%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed some powers from Tub Ci's power suite to reduce bloat for the AI."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All 100% chance hold and disorient effects from powers like Dominate, Petrifying Gaze and -- Cobra Strike now use experimental formula more closely resembling PVP scales; high magnitude, low duration (typically 2-3 scale duration, 4-6 magnitude)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed up melee ranges, defense checks, endurance costs, short help and description texts for all powers."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All single target powers now use traditional damage formula at a 20% damage penalty (AoEs use normal formula)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced Brawl with Thunder Kick for Blue Ink Men."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced Brawl with Wolf Punch for Sorcerers/Sorceresses."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing damage debuff to Ancestral Warden and Ancestral Sorcerer Quick Strike."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed ToHit and Damage buffs from Ancestral Guardian Sky Splitter, added Form bonus energy damage."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Tsoo Endgame/Dark Astoria",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spirit Ink Archer Poison Gas Arrow now applies sleep instead of hold."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added all new Tsoo to Architect Entertainment."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tsoo can now spawn in dealings and arrests in southwest Kallisti Wharf."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted legacy Tsoo mission spawndefs to incorporate Chi Masters to not predominantly spawn Sorcerers as the only lieutenant."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added spawnlimit 1 to each Yellow Ink Man variant (4 total)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quantum Ink Men can now spawn up to 54, and now visually match the other Ink Men in their level range instead of only being Red Ink Men."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vindicators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Woodsman now has the Ghost and Undead power tags."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Kings Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New zone gate leading to Perez Park added to the north-east corner of the zone."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Kings Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Galaxy City connecting tunnel has been restored. Secured by Vanguard, some familiar-looking heroes fight to ensure the danger brewing in Galaxy City can't leak out onto the streets of King's Row!"
+    },
+    {
+      "category": "Zone",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Perez Park destination to the freeway sign near the King's Row exit for this zone."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Skyway City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed freeway sign heading to King's Row stating it goes to Overbrook and added the Perez Park exit marker."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Langston Corp Factory has received numerous visual enhancements and updates, and can now be entered!"
+    },
+    {
+      "category": "Zone",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added three new submarine doors to the zone for future content purposes."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Perez Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New zone gate leading to King's Row added to the south-west corner of the zone."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Rikti War Zone",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a new 'Vanguard IDC' combat dummy temporary power to the Vanguard Worktables for 50 Vanguard Merits per charge, 10 charges max."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Rikti War Zone",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Works identically to the Vanguard MDC accolade dummy power."
+    },
+    {
+      "category": "Zone",
+      "subsection": "Grandville",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The CHB area brought up to same detail level as the ZTF mission."
+    },
+    {
+      "category": "Maps",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing end room minimap on Tech_45_Layout_07_04."
+    },
+    {
+      "category": "Maps",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed out of bounds mission spawn on the IOM_Farm_Land_Destroyed map."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the star texture from the Surface Tile (Col) base objects."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base editor items have been reorganized and re-categorized."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Base Editor Help and Search keywords."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Control Points for base raids and enhanced Lua raid functionality added."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Search now works off DisplayHelp and uses a comma-separated list of tokens."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Search field now has a placeholder text to indicate its purpose."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add Help and Tips to the Options menu"
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix the \"Category\" display for items always showing an error string."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add a Help button to the Base Raid window."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supergroup Raid window has been revamped."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Disabling Large Inspirations also disables Super Inspirations."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Architect Entertainment enemies have been extended up to a cap of 55."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Added Enemies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Page 3's Tsoo additions added to AE."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Added Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Map \"Containment Tech Lab\" added to AE map offerings."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Added Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Map \"Inactive Tech Lab\" added to AE map offerings."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Added Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Map \"Port Oakes - Docks & Ship\" added to AE map offerings."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Added Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Map \"Port Oakes - Fort Hades\" added to AE map offerings."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Map Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing beacons generator on the lowest floor of the 'Rikti Space Station' map."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Sentinel AT icon from appearing slightly blurry in the League UI window due to texture size."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Highlight active task in the Mission window."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The button panel in the Missions window remains visible, but dimmed, when the player is not the team leader. This allows players to change their difficulty or abandon a mission when they are not the leader."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Melee Set for Brutes, Tankers, Scrappers and Stalkers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Melee lets you use the power of sound waves to damage your foes with devastating close range sonic attacks that can inflict Migraines, debuffing their resistance to multiple debuffs, and holding foes for a short hold. This can be dramatically increased by using Sound Booster. With the ability to Attune your frequency to your target's, your single target attacks can trigger powerful reverberating damage over time, helping you quickly bring enemies to their knees."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Thrust - Melee, DMG(Energy/Smash), Foe Knockdown, -Res(Debuffs)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A focused attack of intense sonic power with high chance to violently knock a nearby foe off their feet. Deals minimal damage, but can be very effective. This power will inflict a strong additional damage over time effect against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power's highlight icon indicates the last application of its effects is about to expire or has expired."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Strident Echo - Melee, DMG(Energy/Smash), Foe -Res(Debuffs), Chance for Hold"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Strident Echo deals minor damage over time. It has a low chance of causing a migraine, leaving the target shaking in pain and helpless. This power will inflict a strong additional damage over time effect against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power's highlight icon indicates the last application of its effects is about to expire or has expired."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Attune - Melee Toggle, DMG(Energy), +Special"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A high-intensity sound wave that matches the resonant frequency of your target. This power inflicts continuous damage over time as well as making the target vulnerable to to additional effects from all your attacks."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sound Booster [Tanker/Brute/Scrapper only] - Self +DMG, +To Hit, +Special"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greatly boosts your attacks for a few seconds. Slightly increases chance to hit. Moderately increases the duration of mez effects. Moderately increases the chance for Sound Manipulation powers to induce migraines."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Build Up [Stalker only] - Self +DMG, +To Hit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greatly increases the amount of damage you deal for a few seconds, as well as slightly increasing your chance to hit."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Clap - Melee (Cone), DMG(Energy), Foe Disorient, Knockdown"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You generate a powerful sonic wave that damage foes in front of you with a decent chance to stun and knock them down. This power will inflict 10% bonus damage against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sandman's Whisper [Tanker/Brute/Scrapper only] - Melee, DMG(Smashing/Energy), Foe Sleep, -Res(DMG)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You whisper on your foe's ear with a slumbering effect. Affected foe might fall asleep and will have their damage resistance lowered. This power will inflict 10% bonus damage against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power's highlight icon indicates the last application of its effects is about to expire or has expired."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin's Whisper [Stalker only] - Melee, DMG(Energy/Smashing), Sleep, -Res(DMG)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A signature Stalker attack. This attack does superior energy and smashing damage on its own as a frontal attack and cannot be interrupted. However, if it is executed while you are Hidden, this attack will do tremendous damage, as you whisper at your unsuspecting foe. Affected target is likely to fall asleep and have their damage resistances lowered. This attack may be interrupted if you move or are attacked while executing this power and are hidden. Using this power while not hidden has a chance to critically hit equal to 33.3% times the number of stacks of Assassin's Focus. Using Assassin's Strike when not hidden will remove all stacks of Assassin's Focus regardless if you critically hit or not."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deafening Wave - PBAoE Melee, DMG(Energy/Smash), Foe Chance for Hold"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You create a large field of sonic waves, causing damage to all foes around you. It has a moderate chance of causing migraines, leaving them shaking in pain and helpless. This power will inflict 10% bonus damage against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earsplitter - Melee, DMG(Energy/Smash), Foe -Res(Debuffs), Chance for Hold"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You generate an earsplitting sound wave right in the face of your foe, inflicting great damage. It has a good chance of causing a migraine, leaving them shaking in pain and helpless. This power will inflict 10% bonus damage against Attuned targets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Scrapper Stalker Tanker 1: Sonic Thrust 1: Strident Echo 2: Attune 6: Sound Booster 8: Sonic Clap 12: Taunt 18: Sandman's Whisper 22: Deafening Wave 26: Earsplitter 1: Sonic Thrust 1: Strident Echo 2: Attune 6: Sonic Clap 8: Sound Booster 12: Confront 18: Sandman's Whisper 22: Deafening Wave 26: Earsplitter 1: Sonic Thrust 1: Strident Echo 2: Attune 6: Assassin's Whisper 8: Build Up 12: Placate 18: Sonic Clap 22: Deafening Wave 26: Earsplitter 1: Sonic Thrust 1: Strident Echo 4: Attune 10: Taunt 16: Sonic Clap 20: Sound Booster 24: Sandman's Whisper 28: Deafening Wave 30: Earsplitter"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Set Bonuses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standard Set Bonuses should now last for the full duration of most summoned pseudopets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Set Bonuses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "40% of your Standard Set Bonuses now applies to henchmen that are within range of Supremacy."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Set Bonuses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standard Set Bonuses are those granted by multiple enhancements of a set."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind summon powers no longer ignore recharge buffs (they still don't accept recharge enhancements, Henchmen still ignore recharge buffs)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "40% of your Set Bonuses now applies to henchmen that are within range of Supremacy"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Henchmen now all spawn even level"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen modifiers and stat values have been adjusted in order of keeping them about as effective as before on +2 encounters."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "T1 and T2 henchmen proc damage modifiers have been adjusted in order of keeping them about as effective as before on +3 foes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 1 and 2 henchmen should be expected to have lower DPS against even level and +1, about the same against +2 and perform much better against anything +3 and higher."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 1 and 2 henchmen should be somewhat more survivable as they will be hit less often and for less damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supremacy now grants a bonus to lower level T1 and T2 henchmen regardless of distance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "T1 between lvl 1 and 5: +17 ToHit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "T1 between lvl 6 and 17: +9 ToHit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "T2 between lvl 1 and 23: +8 ToHit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen -res debuff modifiers have been adjusted"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bosses from 0.1250 to 0.075 at level 50"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lts from 0.1 to 0.609 at level 50"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minions from 0.075 to 0.045 at level 50"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note many other modifiers and stats will have also changed due to the class level adjustments"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fortify Pack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer locks out Pack Mentality stack gain"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a highlight ring when Pack Mentality stacks reach 10"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Call Ravens"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power can now only grant one stack of Pack Mentality"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Personal attacks Call Swarm, Call Hawk, Call Ravens"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grant a 30 second +3% accuracy buff to summoned beasts and the caster when used."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grant a 30 second +32.128 Max HP buff to summoned beasts and the caster when used."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Dire Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Resistance enhancements or sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Healing enhancements or sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Lions"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Defense Enhancements or sets (no Lioness power ever accepted Defense enhancements)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Healing enhancements or sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Wolves"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Healing enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts ToHit enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Train Beasts"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now Accepts ToHit enhancements and sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a recharge time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Lick Wounds to Lioness"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Growl to Alpha Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Ferocious Growl to Lioness"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Howl to Howler Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Howl to Alpha Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit enhancements in this power should improve ToHit buffs in Howl of Alpha and Howler Wolves"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tame Beasts"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now Accepts Healing and Resistance enhancements and sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a recharge time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Howl to Howler Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Howl to Alpha Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Ferocious Growl to Lioness"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Lick Wounds to Lioness"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Growl to Alpha Wolf"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dire Wolf Will of the Wild now can be enhanced for resistance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Healing enhancements in this power should improve Healing of Alpha Wolf and Lioness' Lick Wounds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Healing enhancements in this power should improve Healing of Dire Wolf's Will of the Wild"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resistance enhancements in this power should improve Resistances of Dire Wolf's Will of the Wild"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruption"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 4s to 3s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 6.5 to 4.368."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage has not been changed, the power had higher recharge than intended."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toxic DoT should properly display its percentage chance in the power window"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lash"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 8s to 5s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 10.66 to 6.032."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage has not been changed, the power had higher recharge than intended."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toxic DoT should properly display its percentage chance in the power window"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crack Whip"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 15s to 11s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 17.94 to 11.024."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage has not been changed, the power had higher recharge than intended."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toxic DoT should properly display its percentage chance in the power window"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demons"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer accepts Heal enhancements or sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer accepts Resist enhancements or sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enchant Demons"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now takes Resistance enhancement and Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a recharge time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants Abyssal Mending to the Ember Demon"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resist enhancements in this power should improve Ember Demon's Ember Shield"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Abyssal Empowerment"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now takes Healing Enhancements and Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a recharge time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Abyssal Mending to the Ember Demon"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Demons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Healing enhancements in this power should improve Ember Demon's Abyssal Mending and Abyssal Reconstruction"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Specters summoned by personal attacks now last a maximum of 30s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Personal attacks now have a 100% chance to summon Specters if the specter summoned by that power is dead or expired."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Personal attacks should now have a discrete highlight ring when they are able to summon a specter"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enchant Undead"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Empowerment"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Necromancy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pistols"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge increased from 3s to 4s, damage has not changed"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pistols, Dual Wield and Empty Clips"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using these powers will now build Street Cred."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each attack can build Street Cred every 30 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can have up to 10 stacks of Street Cred"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As you accumulate Street Cred:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The recharge of Gang War is reduced by 5s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The chance of summoning additional Posses increases."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A posse will show to assist for up to 30s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each stack of Street Cred increases the chances to summon Posses by +9%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At 10 stacks, using Gang War will result in all 13 possies showing up"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All stacks are consumed when Gang War is activated."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Street Cred requires owning Gang War and being level 18 or higher"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gang War"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "7th, 8th and 9th possies now have a 75% chance to show up (down from 100%)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 600s to 300s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Duration lowered from 120s to 60s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Punks"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They now have minor resistances against Smash, Lethal, Cold, Toxic and Psionic damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arsonist"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has resistances against Lethal, Fire, Cold and Toxic damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enforcers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "They now have minor resistances against Smashing and Lethal damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Call Enforcer"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer takes ToHit Enhancements or Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer takes Defense Enhancements or Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Equip Thugs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now takes ToHit Enhancements and Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit enhancements and sets should now improve the Enforcer's Tactics"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Upgrade Equipment"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now takes Defense Enhancements and Sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Thugs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defense enhancements and sets should now improve the Enforcer's Maneuvers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mercenaries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Henchmen should now have some base damage resistances even before enhancing them via upgrade Equip"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mercenaries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Equip Mercenary"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mercenaries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mercenaries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tactical Upgrade"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mercenaries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ninjas",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Train Ninjas"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ninjas",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ninjas",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kuji In Zen"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ninjas",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Equip Robot"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Upgrade Robot"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer has a recharge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "Temporary Powers/Prestige",
+      "power": "Nemesis Staff",
+      "text": "Cast time reduced from 2.5 seconds to 2 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "Temporary Powers",
+      "power": "Divining Rod",
+      "text": "Does not deal bonus damage against Arch-Villain class enemies."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "Ice Mastery",
+      "power": "Frozen Spear",
+      "text": "Fixed this power's projectile firing from the wrong hand."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Miscellaneous",
+      "archetype": "Force Field",
+      "powerset": "Damping Bubble",
+      "power": "Excelsion",
+      "text": "Fixed using wrong sized bubble FX."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "Temporary Powers",
+      "power": "Power Analyzer",
+      "text": "Can now be used in all content types except PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Energy Aura",
+      "power": "Overload (Sentinels)",
+      "text": "Fixed a bug where the Sentinel version of this power was not applying it's crash"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "Epic",
+      "powerset": "Electricity Mastery",
+      "power": "Shocking Field",
+      "text": "Fixed a bug that claimed this power could take Healing enhancement sets. The power does not heal and the set could never be slotted on the power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Gravity Control",
+      "power": "Gravity Distortion Field",
+      "text": "Fixed the power's icon."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Plant Control",
+      "power": "Spirit Tree",
+      "text": "Fixed a bug in the duration of the pet's status resistances"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Poison",
+      "power": "Venomous Gas",
+      "text": "Power info should no longer claim it has 70ft range, the power is a PBAoE"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Psionic Armor",
+      "power": "Aura of Insanity",
+      "text": "Fixed a PvP bug where suppression was not properly being triggered by Held or Sleep events"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Psionic Armor",
+      "power": "Aura of Madness",
+      "text": "Fixed a PvP bug where suppression was not properly being triggered by Held or Sleep events"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Psionic Armor",
+      "power": "Mask Presence",
+      "text": "Fixed power description"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Radiation Melee",
+      "power": "Atom Smasher",
+      "text": "Fixed a bug where the Scrapper version of this power had a target cap of 16 instead of 10"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Radiation Melee",
+      "power": "Proton Sweep",
+      "text": "Fixed a bug where the Scrapper version of this power had a target cap of 10 instead of 5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Regeneration",
+      "power": "Integration (Tanker/Brute)",
+      "text": "Fixed an issue where this power was only affecting 9 targets, as the caster counted as a target"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Regeneration",
+      "power": "Second Wind",
+      "text": "Fixes to the combat spam text"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Thermal Radiation",
+      "power": "Power of the Phoenix (Defenders)",
+      "text": "Fixed a bug that was preventing this power from activating while targeting an ally player"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Titan Weapons",
+      "power": "All ATs & Enemies",
+      "text": "Fixed some Titan Weapons hit fx desynced from animations, causing damage to lag after animation completed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "Critters",
+      "powerset": "Malta",
+      "power": "Titan",
+      "text": "Plasma Blast and Quad Plasma Blast should now properly be resisted by magnitude instead of duration (note the high debuff is still intended in these enemies)"
+    }
+  ]
+}

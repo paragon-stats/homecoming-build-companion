@@ -1,0 +1,618 @@
+{
+  "title": "September 17 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/september-17-update-r24/",
+  "published": "2024-09-17T14:01:50Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 24,
+  "changes": [
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Malevolent Fog given more fitting sounds and death FX."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Time-Bound Artificer info NPC in the Midnighter Club has new dialog options that tells you which Minotaur weapon defeats the current character talking to them has."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Additional flavor dialog also added regarding the Benefactor In The Fog."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New unique sound cue added to the zone reset when the Minotaur re-spawns."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating the Minotaur automatically now includes a random Incarnate Salvage roll for Level 50 players with their Alpha slot unlocked."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Option added to Minotaur in The Fog's reward table choices for 4 Empyrean Merits as alternative for those uninterested in vanity rewards. 3 Fog Inspiration reward option replaced with 3 Ultimate Inspiration reward option."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empyrean payout half for repeat rewards within 18 hours, like the Aether reward choice."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Orange 5th Column floor has been expanded."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Orange now has a secret door to be found leading to a new area: ???: The Font of Malevolence"
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This secret's door can only be crossed when the Minotaur is dead and the zone timer is running."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Font of Malevolence is a location where larger leagues (3+ teams) can grind large numbers of Elite Bosses that re-spawn infinitely."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elite Bosses defeated in the Font of Malevolence do not count for the zone wide level shift progress."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elite Bosses in this area come from all villain groups present in the zone, like orange floors."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth enemies reduced to Level 54 at base down from 54(+1) which starts them at a difficulty level / with power numbers that players plan their builds for."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth enemy packs now contain 4 Elite Bosses, down from 6."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Level Shift-scaling Damage Resistance buff from Labyrinth enemies to make them much less bulky at higher shift counts."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Point value of Elite Boss defeats doubled when league is at 24+ players."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minotaur's movement speed increased to reduce wait times during the end phase of the raid."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When the Minotaur In The Fog summons players to the Colosseum of Minos for Trial By Combat, invites will be skipped for players in the entrance lobby, the Core, or a secret area."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unholy Plague Howl, Netted Pilum Toss, and Hoof Stomp are now unaffected by Recharge buffs/debuffs."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minotaur purple triangle up-time increased from 66% to 80%."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Colosseum of Minos arena transition now triggered when The Minotaur In The Fog is at <85% HP instead of <75% HP."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator In The Fog reinforcement wave now triggered at <45% HP instead of <25% HP."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambient drum SFX when the Minotaur is nearby increased in volume."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Draught of Fog: When used in the Labyrinth of Fog, this inspiration now also provides a stacking minor PvE Stealth buff for 15 minutes."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combined with a Stealth IO this should allow all players to participate in hunting for Malevolent Fog."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Draught of Fog: Condensed the description to try and save on space when in storage bins."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Follow Through Fog: Now applies a strong PvE Stealth buff on arrival for 5 seconds."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Follow Through Fog: Target must now be a player."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Core Attunement: Accolade tray power can now be used anywhere in the zone."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Takes those outside the Core in; Takes those inside the Core to the lobby."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Core Attunement: Power tool tip now says 'Core Teleport'."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frequency of random Giant Monster spawns increased from every 4-6 hours to 3-4 hours."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monsters are now worth a full zone-wide Level Shift upon defeat."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Giant Monster found in the Forbidden Server Closet secret now cons yellow/neutral until attacked, allowing players to explore the easter egg."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mote's clickable text now matches the mote's color."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spawns near the orange mote have been moved further away."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Orange 5th Column floor's randomizer point has been relocated."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a scenario where the Minotaur could be challenged to combat, teleported to the arena, but then the attempt abandoned which would cause the Minotaur's setup to become bugged."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many typo and text fixes."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed a door in Orange 5th Column floor that was randomizing unintentionally."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjustments to Minotaur's power stances to prevent the AI from getting stuck in stance transition."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Candles near the entrance to the Labyrinth of Fog now using fog candles."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invention worktable added to the hall with the Merit Vendor."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a tree to an empty planter."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Monkey Vultures & Psi-Protector Primate's bodies now despawn quicker to reduce ent render limit strain during the encounter. No changes to how long the Monkey Gas that spawns after their defeat persists."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced the gold skylight with a gold beam FX originating from the gas centrifuge. This should make locating and defeating Psi-Protectors more reasonable during the encounter:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Psi-Protector Primates were not receiving their Psi-Network buffs as intended."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed misspelling of 'annihilation' in Hro'Dtohz cut scene."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dr. Aeon's Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Becky in the final mission should now properly attach to and be command-able by Vigilante players."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mender Ramiel - 'Power Overwhelming'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Echo of Minos now using a Minotaur model that links the echo to the Labyrinth of Fog."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Mini Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Existing mini pet recipes have had their rarity shifted down (Very Rare -> Rare; Rare -> Uncommon)."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Mini Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Uncommon Mini Pet recipes vendor sell value set at 10,000 influence."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Mini Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rare Mini Pet recipes continue to sell at their previous 100,000 influence."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Mini Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hamidon Bud recipe standardized to the same drop rate as other Rare pet recipes. Now 0.1% chance, down from 0.4%."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing 'Fire' and 'Ice' options to Flat Boot category on all three body types."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Null the Gull",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer mentions sending players to a luau in Talos Island as that location is no longer instanced."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Incarnates",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed incorrect Minion rank on Madam Bellerose, correctly set to Boss rank per their critter class."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Midnighters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dream Doctor no longer uses sheathed Staff Fighting FX."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Midnighters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing staff weapon model on Dream Doctor when fighting."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Midnighters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dream Doctor's description on his trainer no longer mentions details from any story arcs."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Midnighters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Time-Bound Artificer's sword FX made non-translucent."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assembler Lord's summons to no longer grant rewards."
+    },
+    {
+      "category": "NPCS",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Tesla Bishops to properly stop their FX animations when defeated like other Clockwork."
+    },
+    {
+      "category": "Maps",
+      "subsection": "Praetorian Tech Lab",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a hole in the ceiling of the large assembly line rooms."
+    },
+    {
+      "category": "Maps",
+      "subsection": "Tech Lab",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a glowie that was inside of a wall and unclickable."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Long Range Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Midnighter Club, The Crucible, and Fort Trident to the LRT destination check pop menu."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Long Range Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed 'Going Rouge' not unlocking Imperial City in the LRT."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Long Range Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed LRT still checking for 'Silent Sentinel' badge in Atlas Park instead of 'Rookie'."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mark & Recall: Fixed an issue where certain scripted teleport functions would move player's Mark, causing the recalled location to change unintentionally."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: Barrier Reef",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Barrier Reef's rename feature would not stick after re-summoning."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: Barrier Reef",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has the correct \"Disable All\" flag to prevent it being used when other powers cannot."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: Barrier Reef",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer displays the \"Tempest\" power on it's buff bar."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: AE and Dopplegangers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "NPC versions of Marine Affinity should now have the correct level requirements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: AE and Dopplegangers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Barrier Reef is set to not spawn as often and can be interrupted"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes: Sentinel Radiation Blast - Irradiate",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Irradiate could slot Single Target Ranged enhancement sets."
+    }
+  ]
+}

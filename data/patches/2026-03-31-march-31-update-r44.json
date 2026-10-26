@@ -1,0 +1,114 @@
+{
+  "title": "March 31 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/march-31-update-r44/",
+  "published": "2026-03-31T15:01:01Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 44,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Broadsword (Brute)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Headsplitter now correctly accepts Melee AoE sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee (Tanker)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lightning Clap now correctly accepts Universal Damage sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Power Siphon stacks not buffing psionic or toxic damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee (Stalker)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deafening Wave will now correctly grant Assassin's Focus"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Serpent Drummer no longer can summon Fire Spirits indefinitely."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Recluse's Victory",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed one of the extents warps placing players outside of bounds."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Recluse's Victory",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that was causing the Arachnos signature villains to be hostile to villains."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was causing the trainer to not grant level-ups properly."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Nova Praetoria / Imperial City / Neutropolis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Praetorian zone events not starting."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Marigold 'Zoe' Langston Task Force - 'The Golden Rule'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing synopsis and souvenir clues."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Marigold 'Zoe' Langston Task Force - 'The Golden Rule'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Mage Archus would spawn non-functional crystal emanators on normal difficulty mode."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Gordon Stacey - 'The Doctor's Ally'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed this badge mission not marking complete correctly in Ouroboros after earning the badge."
+    },
+    {
+      "category": "Customization",
+      "subsection": "Costume Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix the Seer Collar for Arachnos Widows using the NPC texture."
+    }
+  ]
+}

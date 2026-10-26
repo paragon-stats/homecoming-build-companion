@@ -1,0 +1,626 @@
+{
+  "title": "July 8 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-2/july-8-update-r37/",
+  "published": "2025-07-08T14:38:27Z",
+  "issue": "issue-28",
+  "page": "page-2",
+  "revision": 37,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Plant Control",
+      "power": "Spirit Tree",
+      "text": "Fixed a bug where this power could be repelled moving it away from its visual fx."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Thermal Radiation",
+      "power": "Power of the Phoenix",
+      "text": "Fixed a bug where the Defender version of this power was only usable on foes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Soul Consumption:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the Defender version of this power was recharging in 1000s instead of 600s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the endurance drain and +end of the Defender version of the power was scale 2 instead of scale 1, as the other versions."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Regeneration",
+      "power": "Second Wind",
+      "text": "Fix for an issue where refreshing this power before it has expired would result in no refreshing of the self resurrect effect."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Psionic Armor",
+      "power": "Impose Presence",
+      "text": "Fixed an issue where this power was available at level 10 instead of level 8."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confuse: Fixed an issue where most AVs and GMs became highly resistant to confuse."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration > Reactive Regeneration:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Corrected a bug where only Brutes got the base +regen reduction change, change now also applies to Scrappers, Stalkers and Tankers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Reduced +regeneration stacks from scale 0.25 to scale 0.08."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Regen Resistance granted by stacks in this power has been removed in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Reverted the removal of -Regen Resistance, as it was removed from the incorrect power."
+    },
+    {
+      "category": "Costume",
+      "subsection": "Costumes Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Asymmetrical Gloves on Huge Robe and Jacket that were using the wrong models and rendering incorrectly."
+    },
+    {
+      "category": "Costume",
+      "subsection": "Costumes Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Asymmetrical Gloves on Female Sleeveless Jacket that were using the wrong models and rendering incorrectly."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed errant spawn exit points on the Kallisti Wharf supergroup base portal causing players to become stuck."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an area on the east side that caused pedestrians to accumulate without escape."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed pathing beacons to indoor locations."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved a plaque out of the pedestrian walking path."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a variable error that caused the Minotaur's 'moo' sound effect to not play."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Aether Reward Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Luminous - Restored previous customization, labeled 'Eyes and Body' for clarity."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Aether Reward Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Umbral - Restored previous customization, labeled 'Eyes and Body' for clarity."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers/Arachnos Widows who own the Bane/Night Widow stealth powers are not targeted by map-wide DoT effects."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Erin West - 'Cutting Back Old Growth'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed the Alpha Team members."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Erin West - 'Cutting Back Old Growth'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removing need for players to turn in the final mission."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Alexander the Great - 'Know They Enemy'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added visual clarity to the last portal the player needs to take in the finale mission."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Alexander the Great - 'Know They Enemy'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text clean up."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed badge not granting at arc completion."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Those who previously completed the arc will receive the badge retroactively."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed dialog tags and arcvars."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removing need for players to turn in the final mission."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing moral choice rewards to Kogan."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a gender reference in Kogan."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sunlight and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing Major Benjamin's dialog so it doesn't fire all at once."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission 1: Glowie that is tied to Skulls arc completion is now what unlocks the back door, allowing full team access without teleportation from team leader."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission 2: Glowie added that depends on team leader owning the Illusionist badge, unlocks secret room, allowing full team access without teleportation from team leader."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission 5: Additional script redundancy awarding the ArcVar for the Dreck Ambush scenario and awarding the bonus mission."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixes to mini maps for various missions."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in the lab turrets."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changes to finale to prevent softlock."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Dap-Dap the Deal Maka' - 'Mergers and Acquisitions'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changes Dap-Dap's behaviors to go back to Combat once he's recovered from being downed."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "The Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered Conduit Psychic Battery from 40% to-hit to 10%, 20% damage buff to 16%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "The Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered Psionic Blast damage from scale 2.12 to scale 1.8."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "The Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized Psionic Wounds to scale 1.64 DoT."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Coordinator Mind Link defense from 10% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Psionic Coordination defense from 5% to 7.5%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Accelerate Metabolism from Freaklok Eidolon."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Freaklok Eidolon Focus defense from 20% to 30%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Heart of Darkness from Freaklok Eidolon."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Focus from Shambling Luminous Eidolon."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Dark Regeneration from Shambling Mire Eidolon."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Oppressive Gloom from Shambling Murk Eidolon."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freaklok",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some versions of Immolation with mismatched effects from other versions (all should now be a ToHit/Damage/Recharge buff)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis Automatons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed General Automaton with 300% instead of 30% Psionic resistance."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault and Tactics updated to pseudotoggles that can be suppressed with mez or End drain."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Bayonet animation time from 1.17s to 1.67s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Burst animation time from 2.2s to 1s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plasma Blast given its own FX (was using Willie Pete Round's), increased recharge from 4s to 8s, decreased regeneration debuff from 500% for 30s to 200% for 15s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased SIGIL Round animation time from 3.83s to 2.17s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Defense Aura having an activateperiod of 20s instead of 4s, missing an endurance cost and recharge time."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Freezing Sphere being a ranged attack instead of a melee AoE."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Ice Blast damage from scale 1.64 to scale 1.32, increased recharge from 5s to 6s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Life Drain damage from scale 1.0 to scale 1.64."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Vanguard Rifles and Claws having desynced attack FX on initial weapon draw."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Focus and Shockwave having swapped attack FX."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Vanguard Claws attack ranges being copied from endurance costs."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Warriors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Reflexes defense from 15% to 10%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Warriors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Practiced Brawler defense from 15% to 30%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Warriors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Heightened Senses defense from 15% and 5% to 30% and 10%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Wyvern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Talon Flash Arrow from Wing Raptor Agent."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Wyvern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Eagle Eye from all Wyvern that appear in missions (still retained in overworld)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Wyvern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Sting Agent and Raptor Agent piercing arrow resistance debuff from 5% to 10%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Wyvern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed disorient protection/resistance from Body Armor, added perception debuff resistance."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Wyvern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a few Wyvern units missing Body Armor."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Various",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased reward scales for various Awakened, Freaklok, Gold Brickers, Paragon Police, Skulls, Vanguard, Warriors, and Wyvern to be more appropriate for their respective difficulty levels."
+    },
+    {
+      "category": "Mission Maps",
+      "subsection": "Igneous Lava Cave",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a minimap extents error on this mission map."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Name Tags",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When using a name tag such as Helper, Help Me, or Roleplayer, your name color is no longer changed."
+    }
+  ]
+}

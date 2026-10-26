@@ -1,0 +1,34 @@
+{
+  "title": "October 14 Hotfix",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/october-14-hotfix-r26/",
+  "published": "2024-10-14T16:19:59Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 26,
+  "changes": [
+    {
+      "category": "Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a workaround to mitigate a client crash in third-party PhysX code often seen under heavy graphical load (i.e. Peregrine Island trick-or-treat leagues)."
+    },
+    {
+      "category": "Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There was already a partial workaround for this crash in place that would prevent the client from crashing immediately, but it could still crash later when attempting to unload PhysX objects -- typically when leaving the zone to go somewhere else."
+    },
+    {
+      "category": "Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The new workaround should mitigate this secondary crash as well. However, due to the PhysX engine being in an unstable state, clientside debris objects will be disabled for the rest of the game session, until the client is restarted."
+    }
+  ]
+}

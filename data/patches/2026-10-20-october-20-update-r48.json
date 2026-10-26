@@ -1,0 +1,394 @@
+{
+  "title": "October 20 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-4/october-20-update-r48/",
+  "published": "2026-10-20T14:05:01Z",
+  "issue": "issue-28",
+  "page": "page-4",
+  "revision": 48,
+  "changes": [
+    {
+      "category": "Tasks",
+      "subsection": "Mission 2A",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an error with 'Some Assembly Required' badge only granting to the first person who entered the mission. Should now grant to everybody present on the map when the robot is fully assembled."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Erin West - Cutting Back Old Growth",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a potential crash after choosing specific dialog options in a certain order."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Otherworldly Offensive - Fixed a typo in this badge's name."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some Assembly Required - Now grants to the entire team when the robot is completed."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Knight - Fixed Tech Knight Bow Small shooting animation doubling the bow on Female."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Malta Hercules Titan:"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Costume: Malta Hercules Titan:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed incorrect texture on the hands of this costume."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Costume: Malta Hercules Titan:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed incorrect size on this costume."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Costume: Malta Hercules Titan:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing eye FX on this costume."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Atlas Park - Halloween/Autumn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed a grime decal that was floating above the road."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Skyway City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a floating billboard."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Skyway City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a geometry gap."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Skyway City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved an oil drum that was clipping into the wall."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Skyway City",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered some floating posts."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Talos Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered a disjointed hill."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed boxes inside a wall."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered a disjointed hill."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an exposed geometry gap."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an incomplete crane foundation."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Independence Port",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved an oil drum that was clipping into the wall."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Brickstown",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a clipping building."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Brickstown",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a clipping hill."
+    },
+    {
+      "category": "Zones",
+      "subsection": "'Boomtown'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a geometry gap in the ground near Council base."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Faultline",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a geometry gap."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Terra Volta",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed hill geometry clipping into the war wall on one edge of the map."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Port Oakes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed floating power poles."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Port Oakes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a hill geometry gap."
+    },
+    {
+      "category": "Zones",
+      "subsection": "St. Martial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a pipe that was clipping through a wall."
+    },
+    {
+      "category": "Zones",
+      "subsection": "St. Martial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a wrong-facing decal."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Grandville",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a broken cliff ledge."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Grandville",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The door behind Lord Recluse now takes you to the top of the tower."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Grandville",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Top of tower is now a neighborhood called 'The Apex of Arachnids'."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a zone crash due to Mythic Fogs spawning and never de-spawning when the zone has no players in it."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed broken combat log entry that plays when you're standing in Unrefined Fog."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Teleute incorrectly delivering Ios' line when Blepharon taunts and mentions Ios."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Additions",
+      "archetype": "All",
+      "powerset": "Flight",
+      "power": "Group Fly",
+      "text": "Added an opt out toggle when affected by this power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Additions",
+      "archetype": "Peacebringers",
+      "powerset": "Luminous Aura",
+      "power": "Group Energy Flight",
+      "text": "Added an opt out toggle when affected by this power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Avoid from Sleet, Freezing Rain, Rain of Fire, Ice Storm, Blizzard, Oil Slick Burn, and Whirlpool."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "All",
+      "powerset": "Sonic Resonance",
+      "power": "Clarity",
+      "text": "Increased splash mez protection from scale 5 to 15 (same as Clear Mind)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "Scrappers",
+      "powerset": "Sonic Aura",
+      "power": "Harmonic Distortion",
+      "text": "Fixed missing KB resistance (it had protection but not resistance)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "All",
+      "powerset": "Sonic Aura",
+      "power": "Harmonic Distortion",
+      "text": "Fixed AE and Doppelganger usage and description."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "All",
+      "powerset": "Force Field",
+      "power": "Detention Field",
+      "text": "Fixed not respecting global recharge."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "All",
+      "powerset": "Sonic Resonance",
+      "power": "Sonic Cage",
+      "text": "Fixed not respecting global recharge."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "All",
+      "powerset": "Sonic Resonance",
+      "power": "Sonic Repulsion",
+      "text": "Removed damage enhancement slotting and corrected power description text to clarify that it's a Hold."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "Defenders",
+      "powerset": "Traps",
+      "power": "Force Field Generator",
+      "text": "Fixed missing updates to Defender version of this pet."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed proc rate on Trip Mine for Devices and Arsenal Assault to match Traps."
+    },
+    {
+      "category": "System",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed backspace incorrectly starting a reply to the last person you sent a tell rather than the last person who sent you a tell."
+    },
+    {
+      "category": "System",
+      "subsection": "Stability",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several reported client crashes."
+    }
+  ]
+}

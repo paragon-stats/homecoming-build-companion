@@ -60,6 +60,10 @@ jobs:
             test_path: scripts/testing/hooks/tests
             cov_path: scripts/testing/hooks
             display: TESTING_HOOKS
+          - package: forum-scrape
+            test_path: scripts/forum_scrape/tests
+            cov_path: scripts/forum_scrape
+            display: FORUM_SCRAPE
           - package: coh-engine
             test_path: src/coh_engine/tests
             cov_path: src/coh_engine

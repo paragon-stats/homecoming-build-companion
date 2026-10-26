@@ -1,0 +1,162 @@
+{
+  "title": "March 26 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/march-26-update-r18/",
+  "published": "2024-03-26T14:46:28Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 18,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "Tanker / Brute",
+      "powerset": "Fiery Aura",
+      "power": "Fiery Embrace",
+      "text": "Added Fiery Embrace effects to Psionic Mastery."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "Tanker / Brute",
+      "powerset": "Epic",
+      "power": "Psionic Mastery",
+      "text": "Fixed PvP Damage to use the correct tables."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "Stalker > Patron",
+      "powerset": "Soul Mastery",
+      "power": "Moonbeam",
+      "text": "Fixed 100% chance to crit from Hide."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "Peacebringer / Warshade",
+      "power": "Dwarf Form",
+      "text": "Now accepts outside recharge buffs."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected typo in Hamidon Ectosome enhancement's description."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The values of the -Defense and -Resistance inflicted by the Neural Nullification debuff bubbles now scale with difficulty star count, up to the original value at 4* difficulty:"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1-Star: -30% Defense, -75% Resistance"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "2-Star: -45% Defense, -100% Resistance"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "3-Star: -60% Defense, -125% Resistance"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "4-Star: -75% Defense, -150% Resistance"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will make the debuff weaker on lower difficulties, allowing players to better form counter-play before the failure penalty is steep at the highest difficulty."
+    },
+    {
+      "category": "NPC Enemies",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed all Council Vortex Cor Leonis bosses spawning outside their level ranges."
+    },
+    {
+      "category": "Custom Weapons",
+      "subsection": "Staff Fighting",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that caused NPCs using sheathed staves to have their weapon flicker between hand and back in-between attacks."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Key bindings saved through the options menu and slash commands now create a file that properly reproduces the binds exactly when loaded."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is accomplished through an optional UnbindAll keyword that may be included in a bind file, which causes any existing binds to be reset before loading the file."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Files which do not have this keyword work the same as currently and just create or replace bindings only for the keys listed in them."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added two commands to restore the ability to export a list of the default keybindings for offline editing:"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/show_bind_all - Prints a list of all apparent key bindings (defaults with per-character saved binds applied on top)."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/show_bind_all_file [filename] - Same as /show_bind_all but saves the results to a file."
+    }
+  ]
+}

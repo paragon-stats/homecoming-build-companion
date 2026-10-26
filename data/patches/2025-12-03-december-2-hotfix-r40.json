@@ -1,0 +1,26 @@
+{
+  "title": "December 2 Hotfix",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/december-2-hotfix-r40/",
+  "published": "2025-12-03T00:46:29Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 40,
+  "changes": [
+    {
+      "category": "Stability & Performance",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix a client crash that could occur when attempting to edit custom villain groups in the Mission Architect."
+    },
+    {
+      "category": "Stability & Performance",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix inadvertent regression of linker flags on the 32-bit client executable in the last update that caused it to not be able to address more than 2GB of memory. This caused frequent unexpected shutdowns due to running out of memory, especially when loading into more graphically intensive areas. The 64-bit client was not affected."
+    }
+  ]
+}

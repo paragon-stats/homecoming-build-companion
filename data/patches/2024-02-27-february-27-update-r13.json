@@ -1,0 +1,442 @@
+{
+  "title": "February 27 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/february-27-update-r13/",
+  "published": "2024-02-27T15:01:00Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 13,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with some powers not triggering Domination"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Arsenal Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Liquid Nitrogen: Damage should now require a hit check, and would sometimes tick multiple times per pulse"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Savage Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Savage Leap (Stalker): Power should now grant Assassin's Focus"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mind Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinesis: Recharge lowered from 120s to 90s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Traps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Trap: No longer accepts Slow enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fire Mastery (Epic)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bonfire: Fixed duration (was not meant to be lowered to 30s)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Mastery (Epic)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spirit Drain: Typo correction"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Mastery (Epic)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tar Patch: Fixed a bug that could cause the power to sometimes fail to summon the patch."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Mastery (Epic)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Nexus: Typo correction"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Mastery (Epic)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinesis: Recharge lowered from 240s to 180s"
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power timers default to 'Always' rather than 'Only powers recharging longer than 15 seconds'."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modern input profile: changed left mouse button drag to freelook without snapping back to center. Quick look function moved to middle mouse button, swapping the two. The Classic input profile retains the original controls."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power tray numbers default to locked, as the trays now have sensible presets for the tray numbers instead of all coming up '1'. This prevents players from accidentally clicking the tiny arrows. Advanced players who want in-depth customization can unlock the trays from the right-click menu or options window."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Free camera setting enabled by default."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tooltip delay reduced to 0.1 seconds (from 0.6)."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blink Certifications option that makes the Email tab red if character items are available disabled by default."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Icon Shrinking animation is enabled by default when the power timer is in the Top or Bottom position, as was intended."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Subtle power icon animation added for icons behind the timer in the Center position -- shrinks but not as much as the standard animation and has \"heartbeat\" pulses at regular intervals to provide peripheral visual cues for power recharging."
+    },
+    {
+      "category": "New Player Experience Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The option controlled by the /tray_always_shrink command still overrides this with the standard animation if it is enabled. We are planning in a future update to make several different power icon animations selectable through the options menu."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The team's leader no longer requires the Master of Lady Grey's Task Force badge to overload the Rikti Psi-Network on 4-star difficulty."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Number of reinforcement Rikti Magus that spawn with Omega K'ong reduced from 4 to 2."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Trebuchet Dropship now fires in intervals of 12 seconds, up from 3 seconds."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Trebuchet Dropship now spawns a little earlier reflexively to the progression of the mission objectives instead of at a static set point."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hospital point on this mission moved behind the rock so it cannot be shot by the Trebuchet Dropship."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dropship spawned reinforcements will only appear on players who are inside the bowl housing Hamidon."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frequency of reinforcements lowered and made more sporadic vs. at set intervals."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a volume scene change error that was causing the new finale area to not display with the proper ambient fog."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hro'Dtohz and The Honoree have had the AoE defenses removed from their shields."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "HP totals on Hro'Dtohz and The Honoree have been reduced by 10% each."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Overcharged Plasma Turret heads floating above their turret bases."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved an issue with Hero 1 & Vanguard stacking Tactics & Assault powers to reach much higher than intended +DMG and +ToHit values."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This was making them far more difficult than intended, this change should revert them to Page 6's difficulty."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 4:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bugged map volume in the water pools of the Chamber of the Emperor."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Ms. Liberty's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Arachnos Flyer in this content was using the incorrect zone-critter definition, changed to use the special mission-critter variant of the Flyer that was intended for this mission."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Ms. Liberty's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This version of the enemy still drops the same defeat rewards / defeat badge."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Striga Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that could occasionally cause male Striga Ghosts to be named \"Mek Man\"."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Striga Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Striga arcs fixed to be playable with mixed alignment teams."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Various - Outdoor Grandville",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved issue with some mission maps that used outdoor Grandville having rendering issues, such as the Red Widow valentines arc finale."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Ghost of Scrapyard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ghost of Scrapyard's Reward Merits and Monstrous Aether now have an 18-hour cool-down to reward on the same character."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mirror Image: Fixed an issue that would cause this check to succeed on the first mission, but fail on subsequent missions. Should now succeed and stay completed."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Variety Act: Fixed an issue that could sometimes cause the completion icon to not display."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue which prevented characters from receiving new Tour Guide tips when collecting an Exploration badge if they already had Passport / Long Range Teleporter before Issue 27, Page 7 went live."
+    },
+    {
+      "category": "Vanity Pets",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Vanity Pets",
+      "power": "Mini Lusca",
+      "text": "Can now fly."
+    },
+    {
+      "category": "Alignment System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alignment tips and Valentines event tips can no longer be replaced when your tips are full. We may revisit this in the future depending on plans for use of the tip system in upcoming content."
+    },
+    {
+      "category": "Alignment System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Exploration (Tour Guide) tips still have this functionality enabled and will auto-dismiss the oldest tip, but this is subject to the limitations of these tips dropping. Particularly that they do not drop if you already have a tour guide tip for the current zone."
+    },
+    {
+      "category": "Consignment House",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "User interface for the consignment house / black market updated to be better about refreshing item status and history without having to resort to tricks to force things to load."
+    },
+    {
+      "category": "Consignment House",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mini pet recipe listings on the consignment house were mistakenly bucketed together, this has been resolved and each listing should now only bid & purchase the specific pet's recipe."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapped the gamma correction integrated into the fragment programs. This caused unforeseen issues with a couple shaders not behaving correctly and resulted in some graphical glitches related to scene fog not always rendering at the correct distance."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Re-implemented gamma correction as a postprocessing shader. There are a few advantages and disadvantages of doing it this way:"
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Interacts better with SSAO (Screen Space Ambient Occlusion)."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Very slightly reduced color fidelity at high gamma settings. The final 8-bit framebuffer values are being mapped to new colors rather than it being done with higher precision during the lighting pipeline."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Does not affect the user interface, only the game world."
+    },
+    {
+      "category": "Graphics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Other than the UI not changing brightness when the gamma slider is adjusted, there should be no visible change from the player perspective other than elimination of rendering issues."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cleaned up a few items in the options menu that were applying clientside immediately, but not saving to the server unless some other option changed that triggered a sync."
+    }
+  ]
+}

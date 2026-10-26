@@ -1,0 +1,458 @@
+{
+  "title": "March 5 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/march-5-update-r14/",
+  "published": "2024-03-05T15:03:12Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 14,
+  "changes": [
+    {
+      "category": "Costumes",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Female top with skin using the Huge geometry for Illium + Skull shoulder."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Auto Turret",
+      "text": "This pet should no longer have teleport protection"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Cloaking Device",
+      "text": "No Fade option should now work as expected"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Flash Bang",
+      "text": "Typo fix"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Liquid Nitrogen",
+      "text": "Fixed power info while right clicking on its icon in the buff bar. Power now accepts slow enhancements and sets. Addressed an issue that was making power info exaggerate the amount of damage generated"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dark Melee",
+      "power": "Touch of Fear",
+      "text": "This power should now grant Assassin's Focus"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Devices",
+      "power": "Remote Bomb",
+      "text": "Should now display power attributes in the power info window"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Manipulation",
+      "power": "Mud Bath",
+      "text": "Fixed a bug where this power would continue to affect enemies even while mezzed"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Fire Manipulation",
+      "power": "Cauterizing Aura",
+      "text": "Fixed a bug where this power would not properly display all its attributes in the power info"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Ice Manipulation",
+      "power": "Chilling Embrace",
+      "text": "Fixed a bug where this power would not properly display all its attributes in the power info"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Ice Melee",
+      "power": "Assassin's Ice Sword",
+      "text": "Fixed power description"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Martial Combat",
+      "power": "Reaction Time",
+      "text": "Fixed a bug where this power would not properly display all its attributes in the power info"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Savage Melee",
+      "power": "Rending Flurry",
+      "text": "This power should now grant Assassin's Focus"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Seismic Blast",
+      "power": "Gravestone",
+      "text": "Fixed a bug where the hit debris would ignore customization"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Seismic Blast",
+      "power": "Tombstone",
+      "text": "Fixed a bug where the hit debris would ignore customization"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Sonic Resonance",
+      "power": "Liquefy",
+      "text": "Fixed a bug where this power would not inherit tinting correctly"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Super Strength",
+      "power": "Foot Stomp",
+      "text": "Fixed a bug that locked the player in animation until another power was used if executed while flying"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Traps",
+      "power": "Force Field Generator",
+      "text": "Fixed pet's text description"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Traps",
+      "power": "Poison Trap",
+      "text": "This power now accepts accuracy enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Traps",
+      "power": "Temporal Bubble",
+      "text": "Should now display power attributes in the power info window"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Epic",
+      "powerset": "Arsenal Mastery",
+      "power": "LRM",
+      "text": "Quick form range reduced from 150ft to 80ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Epic",
+      "powerset": "Dark Mastery",
+      "power": "Murky Cloud",
+      "text": "MinimalFX theme renamed No Fade"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Epic",
+      "powerset": "Dark Mastery",
+      "power": "Posses",
+      "text": "Power can now stack with itself, now also apply a -special effect to confused targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Epic",
+      "powerset": "Dark Mastery",
+      "power": "Spirit Drain",
+      "text": "Fixed power description (for realsies this time)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > Harmonic Mind (Scrapper/Stalker) Fixed text description's level of availability."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Inherent",
+      "power": "Domination",
+      "text": "Should no longer continue to replay the deactivation effect every 90 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Secondary Mutation",
+      "power": "Devolution",
+      "text": "This effect should now properly expire if the affected player dies. Temporary power icons have been adjusted."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Potential fix for not being able to train after activating long range teleport until zoning."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thunder Strike (all versions but dominators): Fixed a bug where the knockback was not using the full radius (removed all inner/outer radius since its using primary/secondary only flags)"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Advanced Mode - General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized all hard mode non-AV critter taunts: 1.4x Acc, 30s Rech, 5 Targets, No -Range, Mag 5 w/ 6.5s on players, ~35s on critters."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Advanced Mode - General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized all hard mode AV critter taunts: Autohit, 40s Rech, 16 Targets, No -Range, Mag 5 w/ 6.5s on players, ~40s on critters."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a marginal scenario where one might be dead, have escaped the LGTF finale, die and take the hospital, and miss mission complete rewards."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Advanced Mode - Imperious Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Antagonize from boss-class Dark Dwarves in HM ITF."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Advanced Mode - Dr. Aeon's Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed one stack of Tactics from Hero 1 and Assault from Lady Grey."
+    },
+    {
+      "category": "Trials",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a long-standing bug in Incarnate trials that prevented random selection of enemies for spawn variety from working properly, causing every group in the trial to contain the same enemies."
+    },
+    {
+      "category": "Trials",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This bug resulted in different enemies appearing after Page 7 released due to changes in the RNG algorithm, but the root of the bug was that it should have been random selection all along, not always the same one."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Striga Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Striga storyarcs are now only playable by the correct alignments in Ouroboros."
+    },
+    {
+      "category": "Giant Monsters",
+      "subsection": "Adamastor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adamastor's Monstrous Aether now shares cooldown with their merit rewards."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Vanguard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vanguard faction's normal mode auto Leadership powers now only stack up to once on allies."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Circle of Thorns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Master of Death not being granted high level powers at correct level."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Circle of Thorns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Master of Death and Master of Ruin AI to only cast one Tar Patch or Earthquake per spawn."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Tesla Clockwork having improper AI flag to activate Lightning Field."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some Council bosses spawning at the wrong level ranges in the mid-20s."
+    },
+    {
+      "category": "Enemy Factions",
+      "subsection": "Various",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Miscellaneous description/short help text fixes, some icon bug fixes, some AI fixes."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clarified wording on AT Duplication challenge instructions."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add Mini Jurassik to the accolade hologram pop menu."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix some lingering issues with the options window:"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix changes being lost when zoning quickly after changing options."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Options that have serverside effects (like Disable XP or Team Mission Completion) always send immediately when they are changed rather than being batched."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slash commands that change options always send immediately rather than being batched."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix an issue with character creation where certain options could \"bleed over\" from the last character that was logged in rather than being set to their defaults. This does not affect overrides from the saved options.txt file -- those are always applied after the defaults are reset."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjust the tooltip delay slider to show the actual number of milliseconds rather than an ambiguous percentage."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix consignment house UI to not show \"No History\" if the server sends an empty history response after it has already sent the item history. Make it a bit more aggressive about requesting updates."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This does not (yet) solve the issue with wrong history sometimes being displayed but gave us insight into a larger scope of work that needs to be done on the backend."
+    },
+    {
+      "category": "System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Switch memory allocator on 32-bit build back to a less performant one but with somewhat less aggressive use of virtual address space. This isn't an issue on 64-bit, but especially when running on 32-bit operating systems with the 2GB process hard limit we need every bit of it we can get."
+    },
+    {
+      "category": "System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This by itself may not be enough to solve the out of memory issues on 32-bit operating systems as the data that needs to be loaded into memory at all times was already well over 1GB. Future work to optimize some in-memory structures is planned but must be done carefully for stability reasons."
+    }
+  ]
+}

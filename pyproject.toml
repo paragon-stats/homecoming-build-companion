@@ -12,6 +12,10 @@ description = "Claude project for designing City of Heroes (Homecoming) characte
 requires-python = ">=3.14"
 dependencies = [
     "PyYAML>=6.0.2",
+    # Mids' current .mbd share blocks are base64 + Brotli (Core/Utils/Compression.cs).
+    # There is no stdlib Brotli, and scripts/forum_scrape decodes those blocks.
+    # coh_engine itself stays stdlib-only; this is a scripts-layer dependency.
+    "Brotli>=1.1.0,<2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -171,6 +175,12 @@ warn_redundant_casts = true
 [[tool.mypy.overrides]]
 module = "tests.*"
 disallow_untyped_defs = false
+
+# Brotli ships no type stubs and no py.typed marker. It is used only by
+# scripts/forum_scrape to decode Mids' .mbd share blocks.
+[[tool.mypy.overrides]]
+module = "brotli"
+ignore_missing_imports = true
 
 # The build-calculation engine is held to mypy strict (issue #4 enables strict
 # repo-wide; the engine is strict from the start since it is written fully typed).

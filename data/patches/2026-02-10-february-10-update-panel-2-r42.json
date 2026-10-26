@@ -1,0 +1,6362 @@
+{
+  "title": "February 10 Update - Panel 2",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/february-10-update-panel-2-r42/",
+  "published": "2026-02-10T16:32:00Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 42,
+  "changes": [
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Home Sweet Home - Spend 60 seconds in your own Supergroup base."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Based - Visit a super group base to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A visit means you spend 60 seconds in a base from a Supergroup other than your own. You can enter bases via leader teammates, coalition permissions, base passcodes, or the public base listing in the Supergroup Registrar. Once you visit a base, it will not give you credit for a visit again until it resets."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Truly Based - Visit 10 super group bases to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Actually Based - Visit 50 super group bases to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Achievements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unfathomably Based - Visit 100 super group bases to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Surveyor of Mazes - Spend 100 hours offline in the Labyrinth of Fog to earn this badge. Logging out within the Labyrinth of Fog will earn you a bonus to the number of Nightmare Obols you receive, when you log back in, each time you complete a mission for a short time."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Defeats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dreamcatcher - Defeat 100 of the Labyrinthine Nightmare to earn this badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ten Times The Victor - The nine badges leading up to this badge are now kept and with new badge art."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated the art of the villain \"badge count\" badges to be more in-line with their original look from Retail."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Malevolent Intoxication - This badge now unlocks Phantom Gateway destination access to the Core of the Labyrinth. Badge is now hinted at Level 35. Hint mentions the badge unlocks Core access."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slayer of the Minotaur - Badge is now hinted at Level 35. Hint mentions the badge unlocks Core access."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greek Philosopher - Badge hint mentions the badge unlocks Core access."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hidden In The Fog - Badge is now hinted at Level 35. Badge hint mentions the badge unlocks Colonnade access."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lucid Dreamer - Badge is now hinted after obtaining Core access. Badge hint mentions the badge unlocks Origin access."
+    },
+    {
+      "category": "Badges",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The various badges rewarded for completing the Shining Stars/Hearts of Darkness tutorial arcs now also awards to team members, instead of being owner-only."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement Slot Moving",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When attempting to add an enhancement to a power with no empty slots, the game will try to reassign an empty slot from another power, if one is available. This allows for moving slots between powers without doing a full blown respec."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invention Set enhancements now have a different border color depending on their rarity."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PVP enhancements are red."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hide the level of the Going Rogue pre-order enhancements."
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ensure that all Invention Set recipes match the rarity of their conversion set:"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Achilles_Heel_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted_Targeting_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cacophany_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Commanding_Presence_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dampened_Spirits_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark_Watchers_Despair_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debiliative_Action_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decimation_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deflated_Ego_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Edict_of_the_Master_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Efficacy_Adaptor_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy_Manipulator_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entropic_Chaos_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Explosive_Strike_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force_Feedback_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gaussians_Synchronized_FireControl_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gift_of_the_Ancients_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impeded_Swiftness_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impervious_Skin_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impervium_Armor_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Induced_Coma_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic_Combat_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic_Crash_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kismet_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Miracle_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mocking_Beratement_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Neuronic_Shutdown_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Perfect_Zinger_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crafted_Performance_Shifter_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pounding_Slugfest_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pulverizing_Fisticuffs_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Razzle_Dazzle_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rectified_Reticle_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regenerative_Tissue_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Salvo_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tempest_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Touch_of_Death_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Touch_of_Lady_Grey_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Triumphant_Insult_A | Uncommon to Rare"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Undermined_Defenses_F | Rare to Uncommon"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Enhancement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unspeakable_Terror_A | Uncommon to Rare"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Broadsword:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pirate Rapier"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Dual Blade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Roman - Gladiator"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Dual Blade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Roman - Savage"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Dual Blade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Romulus Augustus"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Dual Blade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Romulus Nictus"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Dual Blade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pirate Rapier"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Power Theme Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slash"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Power Theme Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hack"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Power Theme Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slice"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Power Theme Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boomerang Slice"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Power Theme Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Whirling Sword"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the following costume pieces to the Dealer of Death's shop in the Labyrinth of Fog for 10 Nightmare Obol salvage per piece."
+    },
+    {
+      "category": "Customization",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Helmet Detail 2 - Phantom Cheekguard III"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boots - Phantom Winged Boots"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Back - Phantom Wings"
+    },
+    {
+      "category": "Customization",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shortened names on 'Awakened' costume pieces to reduce their text length in the menu."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "New Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added recipe for Pet: Rikti Monkey Vulture that drops from Rikti Bosses and Elite Bosses at a 1 in 1000 (0.1%) drop chance."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "New Prestige Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New costumes added to the Benevolabs vendor in exchange for Prismatic Aether:"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Civilian Casual Female"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Civilian Casual Male"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Civilian Officer Female"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Coralax Grey Hybrid"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Dark Council Vampyr"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Fake Nemesis Berserker"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Golden Chocolatier"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Langston Bruiser"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Langston Burner"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Langston Phaser"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Nemesis Gasmeister"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Nemesis General"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Nemesis Tactician"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Nemesis War Chasis"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Neo Shivan"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: PPD Hardsuit (Old power was using the wrong costume and has been renamed to PPD Shell)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Cold)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Energy)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Fire)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Negative)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Psionic)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Monkey Vulture (Toxic)"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 1:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Rikti Shield Simian"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 2:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Costume: Goldbricker Zenith Goldbrand - Customization options for smaller robot and no-flight."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Force Field - Currently same customization options as Personal Force Field (Original/Bright/Dark/Excelsion)."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Power of Hamidon"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Chill - New customization added for 'Alternate' (Icicles)."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Tier 3:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effect: Fog - New customizations added for 'Tentacle' and 'Arm'."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix missing eye aura on Vampyr costume."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix missing combat aura on Goldbricker Smelter costume."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Malevolent Intoxication - This badge now also unlocks Phantom Gateway destination access to the Core of the Labyrinth."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level minimum for the Labyrinth lowered to 35 to allow people to use the Tests of Combat missions for leveling."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add a display pop-up when a player earns the Inert Fog Dummy power."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Change the rotational implementation of Inert Fog dummy so the skull faces the player."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force the Labyrinth pylon test critter to re-spawn promptly."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swapped out existing Cimeroran flags for new Labyrinth themed flags."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coagulated Pollution Archvillains now have one possible spawn point on every Labyrinth floor, always found nearby that floor's fog growths."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spawns on Orange floors have been reduced to one point per floor, nearby their floor's fog growths."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total number of concurrent Coagulated Pollution AVs that are alive at any given time increased from 3 to 10."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "IDF, Talons of Vengeance, and Tsoo are no longer using their Incarnate variants in the Labyrinth."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some script optimizations to improve zone performance."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Test of Combat missions are now always set to combat Level 50, like the Labyrinth. Difficulty +/- settings are still respected."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow resists given to Font GMs and Fog AVs to make them a little easier to position for tanks."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Coagulated Pollution Archvillains missing zapping fog FX."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Labyrinth Obol shop powers being usable in scenarios that should disable Temporary Powers."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightmare Seed is now disabled anywhere that Temporary Powers are."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Magnitude reduction on Pull Through Fog when used outside the Labyrinth zone; High magnitude retained when used inside zone."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "5th Column & Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lycanthrope Transformation: When a critter transforms, the resulting transformation will respect the original rank instead of always being a Boss rank."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "5th Column & Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "IE: Lieutenant rank lycanthropes will result in Lieutenant rank warwolves after transforming."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnoids",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Venom Barb 1 damage from scale 1.212 to scale 1.6, increased recharge from 4.8s to 6s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnoids",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Venom Barb 2 damage from scale 0.842 to scale 1.05, fixed checking toxic instead of lethal defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnoids",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Claw 1 accuracy from 1.4x to 1.2x, increased recharge from 1.5s to 2.2s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Arachnoids",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Claw 2 accuracy from 1.4x to 1.2x, increased recharge from 3s to 3.2s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Scirocco",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slice has been replaced with Boomerang Slice."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Various: The -Healing/-Regen debuffs from the group's Cold/Toxic rifle & pistol attacks now only apply to players"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Ballistier: Only has Assault when spawned at Level 51 or higher."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Heavy: Only has Tactics when spawned at Level 51 or higher."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Neutralizer: Only has Assault when spawned at Level 51 or higher."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Medic: Only has Fortitude when spawned at Level 51 or higher."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Commander"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Excelsion Crushing Uppercut damage from scale 3.975 to scale 2.92, decreased hold and disorient duration by 60%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Excelsion Spinning Strike damage from scale 1.9252 to scale 1.55."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Only has Assault when spawned at Level 51 or higher."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "P.E.A.C.E. Phantom"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased various Toxic DoT tick chances from 80% to 25%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flashfreeze"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Blackwing Industries",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an error with Brain Freeze inflicting Hold when intended to do Deep Sleep per power description."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Feather",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Blazing Arrow total damage from scale 1.425 to scale 2.265, fixed continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Feather",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Crystal Arrow damage from scale 0.75 to scale 1.0, increased hold chance from 25% to 50%, decreased hold duration by 65%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Feather",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Knock Away recharge from 10s to 6s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Feather",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Nether Arrow damage from scale 1.1 to scale 1.0, increased immobilize chance from 60% to 100%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Hack damage from scale 1.1 to scale 1.32."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Head Splitter damage from scale 1.4 to scale 2.08, decreased recharge from 20s to 14s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Nether Blade total damage from scale 1.05 to scale 1.62."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Slice damage from scale 0.7 to scale 1.23, decreased recharge from 10s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Whirling Sword damage from scale 0.9 to scale 1.48, decreased recharge from 16s to 14s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Armiger / Dread Templar",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed all Broad Sword attacks having 99% chance for one-tenth scale defense debuffs."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Warden",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Tenebrous Tentacles damage from scale 2.4 to scale 1.16, decreased recharge from 12s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Warden",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Torrent damage from scale 0.9 to scale 1.0."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Warden",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Nether Void damage from scale 1.2 to scale 1.0, increased recharge from 14s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Eternal Guard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Innocuous Strikes damage from scale 1.5 to scale 1.66."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Eternal Guard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Mercurial Blow damage from scale 0.72 to scale 0.84."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Eternal Guard",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Serpent's Reach damage from scale 1.2 to scale 1.8."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Chevalier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Crushing Blow damage from scale 0.96 to scale 1.32, added 10% defense debuff, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Chevalier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Defensive Sweep damage from scale 0.6 to scale 0.67, removed self tohit buff, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Chevalier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Follow Through damage from scale 1.375 to scale 1.57, removed fly debuff, added 33% chance for disorient, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Black Chevalier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Penumbral Strike damage from scale 0.5 to scale 0.85, increased recharge from 8s to 10s, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Signature Cimeroran characters are now combat NPCs and will defend themselves against Cimeroran Traitors in the zone:"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imperious"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Daedalus"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sister Solaris"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sister Airlia"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Cimerorans",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sister Valeria"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Hooded Lantern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Fire damage from scale 0.65 to scale 1.01."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Hooded Lantern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Burn damage from scale 1.1 to scale 1.4, decreased patch duration from 15s to 10s, decreased patch DoT by 50%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Hooded Lantern",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Blaze damage from scale 1.65 to scale 2.56."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Patrolman",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Smash damage from scale 0.7 to scale 1.0, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Patrolman",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Slam damage from scale 1.5 to scale 2.04."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Patrolman",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Crush damage from scale 1.65 to scale 2.04, decreased recharge from 12s to 8s, no longer ignores range debuffs."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Spirit Guide",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Soul Bolt damage from scale 0.8 to scale 0.6, increased defense debuff from -0.8% to -8%, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Spirit Guide",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Soul Stream damage from scale 1.1 to scale 0.96, increased defense debuff from -1.6% to -8%, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Spirit Guide",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Strike damage from scale 1.4 to scale 1.96, increased recharge from 8s to 10s, increased defense debuff from -1.6% to -8%, fixed checking negative instead of energy defense, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamplighter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enlightenment now uses maintargetonly/secondarytargetsonly instead of pseudopet, hold and damage now only affect main target, decreased damage from scale 1.1 to scale 1.0, decreased recharge from 12s to 9s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamplighter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing endurance cost to Haunt."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamplighter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Soul Staff Bolt damage from scale 1.7 to scale 1.4, decreased tohit debuff from 15% to 7.5%, added missing continuingfx"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamplighter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Field summoning is now autohit, added missing endurance cost, increased recharge from 30s to 120s, no longer deals negative damage to main target."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Watcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Corruption damage from scale 0.67 to scale 1.36, DoT is now correctly cancel-on-miss, fixed checking melee instead of ranged defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Watcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Whip damage from scale 0.87 to scale 1.66."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Watcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing endurance cost to Soul Shadows, decreased damage from scale 0.45 to scale 0.39, increased tohit debuff from -1% to -7.5%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Watcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Soul Lash damage from scale 0.82 to scale 1.74, DoT is now correctly cancel-on-miss."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Watcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing endurance cost to Soul Beast summon, Soul Beast's Claw Swipe damage increased from scale 0.7 to scale 1.3."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Taskmaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Dusk's Embrace damage from scale 2.1 to scale 1.3, no longer only hits ground targets, increased defense debuff from 12.5% to 20%, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Taskmaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elucidate now uses maintargetonly/secondarytargetsonly instead of pseudopet, decreased damage from scale 1.4 to scale 1.0, fixed using wrong continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Taskmaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Radiance to a true chain AoE, increased damage on main target from scale 0.4 to scale 1.2."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Taskmaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing endurance cost to Summon Lantern."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Taskmaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Trap Soul damage from scale 0.9 to scale 1.0."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Hitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Buckshot recharge from 7s to 8s, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Hitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Burst damage from scale 4.95 to scale 1.38, increased recharge from 3s to 4s, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Hitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased M30 Grenade recharge from 12s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Hitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Slug damage from scale 1.79 to scale 1.94, increased recharge from 5s to 8s, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Beamer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Charged Shot damage from scale 1.15 to scale 1.64, increased recharge from 5s to 8s, removed recovery debuff, added chance for scale 0.246 energy damage."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Beamer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Cutting Beam recharge from 6s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Beamer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Piercing Beam damage from scale 1.84 to scale 2.17, increased recharge from 7s to 14s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Beamer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Single Shot damage from scale 0.9 to scale 1.0."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Marcone Consigliere / Underboss Prizefighter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Crushing Field damage from scale 2.46 to scale 1.0, removed controller overpower."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Consigliere",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Crushing Field damage from scale 2.4 to scale 1.0, decreased recharge from 10s to 8s, removed controller overpower."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Consigliere",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Haymaker damage from scale 1.15 to scale 1.64, decreased recharge from 10s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Consigliere",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Jab damage from scale 0.75 to scale 0.68, decreased recharge from 7s to 2s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Consigliere",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Propel damage from scale 1.5 to scale 1.96, decreased recharge from 12s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Consigliere",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Punch damage from scale 0.9 to scale 1.0, decreased recharge from 9s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Heavy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased AP Round damage from scale 1.4 to scale 1.48, energy DoT is now cancel-on-miss, decreased resistance debuff from 20% to 15%, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Heavy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated HE Shot damage from energy/smashing to fire/lethal, energy/fire DoT is now cancel-on-miss, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Heavy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Snap Shot recharge from 3s to 5s, updated damage from energy to lethal, energy DoT is now cancel-on-miss, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Brawler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Agile Cross damage from scale 1.15 to scale 1.99, increased recharge from 6s to 8s, fixed checking melee instead of AoE defense, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Brawler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Assault Strike damage from scale 0.35 to scale 1.14, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Brawler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Heavy Blow damage from scale 0.7 to scale 1.46, increased recharge from 4s to 5s, removed throwing knife continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Button Man Brawler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Throwing Knvies damage from scale 0.85 to scale 1.95, increased recharge from 3s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Foot Stomp damage from scale 0.95 to scale 1.42, increased recharge from 10s to 20s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Frag Grenade damage from scale 0.45 to scale 1.32, increased recharge from 8s to 12s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Haymaker damage from scale 0.75 to scale 1.64, increased recharge from 6s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Jab damage from scale 0.5 to scale 0.68."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Knockout Blow damage from scale 1.05 to scale 2.56, increased recharge from 12s to 25s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Capo Strongarm",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Punch damage from scale 0.65 to scale 1.0."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Agile Sweep damage from scale 0.5 to scale 0.67, removed self tohit buff, added missing continuingfx, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Arc of Devastation damage from scale 1.2 to scale 1.95, decreased recharge from 20s to 16s, removed disorient and tohit debuffs, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Crushing Blow damage from scale 0.86 to scale 1.64, increased recharge from 6s to 8s, added 10% defense debuff."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Overpower damage from scale 1.475 to scale 1.96, removed fly debuff, added 33% chance for disorient, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shatter Armor damage from scale 1.6 to scale 2.92, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Prima Capo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shockwave Strike damage from scale 0.65 to scale 1.16, fixed checking ranged instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Freedom Phalanx",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed all versions of Statesman missing purple triangles FX on their Resistance power."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Goldbrickers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smelter - Fixed their combat FX not playing correctly."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Goldbrickers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Langston Burner - Fixed their combat FX not playing correctly."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleute, The Watcher - Empathy power FX are now tinted white."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinthine Nightmare",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed texture of Nightmare mouths so teeth texture don't bleed onto sides of mouth."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinthine Nightmare",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightmare Walker - Are now larger and with a fluffier darkness aura."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinthine Nightmare",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightmare Walker - Now spawns with female variants."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinthine Nightmare",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Skitterer - Reduced from Lieutenant to Minion rank."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Labyrinthine Nightmare",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth Giant Monsters, Corrupted Gladiators, and Corrupted Guardians now belong to the Labyrinthine Nightmare group."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gasmeister - Backpacks now emit poison gas rather than steam."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tactician - Given costume coloration based on the level bracket to better match their fellows."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Gleaming Bolt, Glinting Eye, and Gleaming Blast defense debuffs by 50%, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing continuingfx to Proton Scatter and Luminous Detonation."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Radiant Strike damage from scale 0.5 to scale 1.16, increased recharge from 4s to 5s, decreased defense debuff from 10% to 5%, replaced disorient continuingfx with defense debuff continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Incandescent Strike damage from scale 1.64 to scale 1.96, increased recharge from 8s to 10s, decreased hold chance from 100% to 50%, decreased knockdown chance from 80% to 40% (this power is effectively the player version at 50% effectiveness)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Pulsar recharge from 30s to 45s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Photon Seekers recharge from 75s to 180s, no longer shows icon in player buff bar."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Nova transformation damage buff by 50%, now properly revokes and grants Incandescence auto power (was double dipping energy/negative resistance)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "White Dwarf transformation now properly revokes and grants Incandescence, Restore Essence, and Leadership (was adding energy/negative resistance in Dwarf form, was keeping leadership buffs through transformation, and was improperly double-granting Restore Essence)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed White Dwarf form unable to use White Dwarf Step to teleport."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased White Dwarf Antagonize recharge from 10s to 30s, decreased taunt duration by 40%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Essence Boost recharge from 60s to 360s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Glowing Touch recharge from 12s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added float text to Restore Essence to signal revive will occur."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing activation fx and endurance cost to Light Form, decreased recharge from 1000s to 300s, decreased mez protection by 80%, decreased recovery buff from 100% to 30%, now crashes to 25% HP instead of 10% and 50% endurance instead of 0%"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Condensed Assault, Maneuvers, Tactics into one power named Leadership, now suppressible with endurance drain and mez, updated from 6.25% melee/ranged defense to 3.5% defense to all types."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Proton Scatter from PPD Unleashed."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Gleaming Bolt and Restore Essence from PPD Unleashed (healer version)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Photon Seekers and Essence Boost from PPD Transcended."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed White Dwarf and Restore Essence from PPD Quantum."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "SWAT Grenadier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Heavy Grenade damage from scale 0.78 to scale 1.32, increased recharge from 10s to 12s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "SWAT Grenadier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Incendiary Grenade damage from scale 0.242 to scale 0.8, decreased recharge from 30s to 14s, increased accuracy from 0.85x to 1.15x, now only creates fire patch on main target."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Bone Smasher damage from scale 1.0 to scale 1.64, increased recharge from 4s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Foot Stomp damage from scale 0.7 to scale 1.42, increased recharge from 10s to 20s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Laser Burst damage from scale 1.32 to scale 1.0, decreased recharge from 6s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Laser Spray damage from scale 1.12 to scale 2.04, decreased recharge from 12s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Total Focus damage from scale 2.67 to scale 2.56."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Minigun Burst damage from scale 0.42 to scale 1.08, decreased recharge from 6s to 4s, added missing endurance cost."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Armored Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Minigun Heavy Burst damage from scale 2.31 to scale 2.03, decreased recharge from 12s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Robots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Laser Burst recharge from 6s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Robots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Laser Spray damage from scale 0.68 to scale 2.04, decreased recharge from 12s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Robots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Barrage from cone to targeted AoE, decreased damage from scale 2.54 energy/smashing to scale 1.97 energy, decreased recharge from 25s to 30s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Robots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Plasma Blast damage from scale 1.0 to scale 1.64, increased recharge from 4s to 8s, added missing continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Robots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Tear Gas recharge from 16s to 120s, smashing damage now requires a tohit check."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Psi-Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Dominate recharge from 20s to 8s"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Psi-Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Psionic Tornado damage from scale 0.5 to scale 0.89, increased recharge from 10s to 20s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD Psi-Cops",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Psychic Scream damage from scale 0.6 to scale 1.06, increased recharge from 8s to 12s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased SCAR Snipe recharge from 16s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Wild Shot damage from scale 0.67 to scale 0.7599, decreased recharge from 12s to 8s, replaced chance for defense debuff to knockdown, damage now lines up with burst fx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Double Shot damage from scale 1.48 to scale 1.32, decreased recharge from 7s to 6s, replaced chance for defense debuff to knockdown."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Single Shot damage from scale 1.216 to scale 1.0, decreased recharge from 5s to 3s, removed chance for defense debuff."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Assault Rifle Spray Lead damage from scale 1.5 to scale 1.02, increaased recharge from 10s to 12s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Full Auto Attack damage from scale 2.499 to scale 2.09, increased recharge from 8s to 10s, fixed checking ranged instead of AoE defense, fixed range/radius mismatched."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Brawl damage from scale 0.36 to scale 0.68."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Heavy Pistol damage from scale 1.216 to scale 1.16."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Revolver damage from scale 1.216 to scale 0.95, increased accuracy from 0.625x to 0.8x."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Shotgun Butt recharge from 8s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "PPD/SWAT",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Submachine Gun Rifle Butt recharge from 8s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Force Punch damage from scale 0.56 to scale 1.0."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shockwave Grenade damage from scale 0.98 to scale 1.2, increased recharge from 8s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Toxic Burst damage from scale 1.54 to scale 1.38."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Force Smash damage from scale 0.77 to scale 1.64, fixed checking smashing instead of energy defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Plasma Burst damage from scale 1.232 to scale 1.96, decreased recharge from 14s to 10s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorian DUST / IDF / UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated regeneration debuffs in all attacks from 15s duration stacking to 10s duration replace."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rikti",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed overlapping level ranges for some Rikti."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rikti",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a Rikti Gunman costume missing an arm."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Rikti",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Finished proliferating Rikti costume variations from Lost versions."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Syndicate",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Storm Kick mistakenly having a 0% chance flag on its damage component."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Banshee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Castigation damage from scale 0.98 to scale 0.8, fixed missing a range value, decreased from 80ft radius/60 degree arc to 50ft radius/30 degree arc, decreased regeneration/recovery debuff from -200% to -25%, increased defense debuff from -5% to -10%, decreased resistance debuff from -12.5% to -10%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Banshee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Condemnation recharge from 8s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Banshee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Lamentation damage from scale 2.1 to scale 1.2."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Devotee / Disciple / Harpy / Huntress / Reviler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Blazing Arrow damage from scale 1.6 to scale 2.195"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Devotee / Disciple / Harpy / Huntress / Reviler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Screech damage from scale 0.3 to scale 1.82, decreased recharge from 20s to 12s, decreased disorient duration by 50%, decreased resistance debuff from -20% to -15% and updated to replace instead of stacking, removed self damage buff"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Devotee / Disciple / Harpy / Huntress / Reviler",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Talon Blade slow debuff from -30% to -10%, added missing continuingfx"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Flares damage from scale 0.7 to scale 0.87"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Fire Blast damage from scale 0.944 to scale 1.25, fixed DoT to use cancel-on-miss, increased recharge from 3.5s to 4s"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Ice Bolt damage from scale 0.7 to scale 0.8, increased recharge from 2.83s to 4s"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Ice Blast damage from scale 0.92 to scale 1.32"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shadow Blast damage from scale 0.7 to scale 0.8"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shadow Gloom damage from scale 1.2 to scale 1.44"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Elementalists / Spiritualists",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Talon Blade slow debuff from -30% to -10%, added missing continuingfx"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fanatic / Raider / Zealot",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Swipe damage from scale 0.475 to scale 0.56."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fanatic / Raider / Zealot",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Slash damage from scale 0.75 to scale 1.06."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fanatic / Raider / Zealot",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Spin damage from scale 0.73 to scale 1.18, increased recharge from 9.2s to 11.2s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Fanatic / Raider / Zealot",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Talon Crossbow animation from 3.83s to 2.17s, increased damage from scale 0.9 to scale 1.06, fixed desynced fx on initial draw."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Slash damage from scale 0.4 to scale 0.8."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Hack damage from scale 0.7 to scale 1.32."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Savage Slice damage from scale 0.95 to scale 1.57."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Savage Strike damage from scale 1.2 to scale 2.08."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Throwing Knives damage from scale 1.0 to scale 1.3, decreased recharge from 8s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Gorgon / Harridan",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Sirens Song damage from scale 0.5 psionic to scale 1.19 energy, fixed missing a range value, decreased recharge from 20s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamia",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Swipe damage from scale 0.475 to scale 0.56."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamia",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Slash damage from scale 0.75 to scale 1.06."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamia",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Eviscerate damage from scale 1.3 to scale 1.7, replaced -2% lethal resistance debuff with 10% chance for critical hit, fixed mismatched range/radius."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Lamia",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Sirens Song damage from scale 0.5 psionic to scale 1.19 energy, fixed missing a range value, decreased recharge from 20s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Blast DoT is now 80% tick chance."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Fire Breath damage from scale 1.25 to scale 1.755."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Blaze damage from scale 1.85 to scale 2.6, DoT is now 80% tick chance."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Inferno damage from scale 4.35 to scale 4.044, increased accuracy from 1.0x to 1.4x, DoT is now 99% tick chance, decreased damage debuff duration by 50%, decreased defense debuff from -50% to -20%, fixed buffing fire defense strength instead of fire defense, increased self damage buff from 5% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Ice Bolt recharge from 2.18s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Ice Blast damage from scale 1.1 to scale 1.32, increased recharge from 4s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Block of Ice hold duration by 66%, removed controller overpower and knockback protection."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Bitter Ice Blast damage from scale 1.4 to scale 1.7."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Blizzard summoning not being autohit, Blizzard patch is no longer autohit, decreased damage from scale 0.44 per tick to scale 0.1 per tick, increased patch duration from 8s to 15s, fixed buffing cold defense strength instead of cold defense, increased self damage buff from 5% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Lightning Bolt damage from scale 0.7 to scale 0.8, fixed recovery debuff using cancel-on-miss for up to a minute."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Chain Lightning to be a proper chain, increased damage from scale 0.5 to scale 1.2, fixed checking ranged instead of AoE defense, fixed recovery debuff using cancel-on-miss for up to a minute."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Ball Lightning damage from scale 1.95 to scale 1.02, increased recharge from 10s to 16s, fixed recovery debuff using cancel-on-miss for up to a minute."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Flow Lightning summoning not being autohit, Flow Lightning patch is no longer autohit, decreased damage from scale 4.85 to scale 3.36, increased end drain from -3% to -19%, increased recovery debuff from -20% to -50%, fixed buffing energy defense strength instead of energy defense, increased self damage buff from 5% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Shadow Gloom damage from scale 2.0 to scale 1.76."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Shadow Drain damage from scale 1.2 to scale 1.32, decreased recharge from 15s to 8s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Shadowfall damage from scale 1.8 to scale 1.1."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Shadowstar damage from scale 3.6 to scale 2.76, increased accuracy from 1.0x to 1.4x, increased tohit debuff from -20% to -25%, increased regeneration debuff from -20% to -75%, fixed buffing negative defense strength instead of negative defense, increased self damage buff from 5% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Ash Fall summoning not being autohit, Ash Fall patch is no longer autohit, increased recharge from 12s to 14s, fixed icon appearing in player buff bar, decreased tohit debuff from -15% to -10%, decreased fly debuff from -500% to -160%, decreased slow debuffs by 50%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Earthquake summoning not being autohit, Earthquake damage patch is no longer autohit, decreased damage from scale 1.0 to scale 0.9, fixed checking lethal instead of smashing defense, fixed icon appearing in player buff bar, decreased tohit debuff from -15% to -10%, decreased fly debuff from -1000% to -160%, decreased slow debuffs by 50%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Shards of Stone damage from scale 2.0 to scale 1.3, decreased radius from 60ft to 13ft, decreased fly debuff from -500% to -160%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Upthrust damage from scale 1.5 to scale 0.9, increased recharge from 4s to 16s, decreased fly debuff from -500% to -160%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Oracles / Prophetesses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Meteor summoning not being autohit, Meteor damage patch is no longer autohit, decreased inner damage from scale 8.0 to scale 4.0, decreased outer damage from scale 5.0 to scale 2.76, increased recharge from 20s to 30s, increased knockback from mag 4 to mag 10, fixed checking ranged instead of AoE defense, fixed buffing smashing defense strength instead of smashing defense, increased self damage buff from 5% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Antipodal Strike damage from scale 1.0 to scale 1.36, fixed DoT to use cancel-on-miss, decreased recharge from 8s to 6s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Autumnal Equinox damage from scale 0.64 to scale 1.1, decreased recharge from 30s to 16s, removed knockback protection."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Harvest Blades damage from scale 0.86 to scale 2.0, increased recharge from 6s to 11s, fixed DoT to use cancel-on-miss, increased slow debuff from -10% to -20%, fixed mismatched range/radius."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Seasonal Shift being autohit, decreased recharge from 18s to 16s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Season's End damage from scale 1.52 to scale 2.161, increased recharge from 12s to 15s, fixed continuingfx, fixed mismatched range/radius."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Diviner",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Winter's Hearth damage from scale 0.7 to scale 0.9, decreased recharge from 10s to 4s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Hero 1",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slice has been replaced with Boomerang Slice."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Warriors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Odysseus' Vulcan Clobber granting instead of debuffing defense."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Weekly Strike Target",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Marigold 'Zoe' Langston's Task Force has been added to the standard weekly rotation the weeks after Dr. Aeon's Strike Force."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 4",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Music added to the transition cutscene from cave to train in the finale."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix Nemesis Beta not triggering the Confiscated Nemesis Staff temp powers when they hit low health."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 4",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a texture swap issue on boat map that was causing certain gold textures to swap on to unintended models."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix subject reference to mention talking to team leader."
+    },
+    {
+      "category": "PvP",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The random chance Inspiration drop from defeating a player only occurs in PvP Zones now, no longer possible in Arena."
+    },
+    {
+      "category": "Architect Entertainment",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing high level Sky Raiders to NPC offerings in Mission Maker."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "SG Registrar contacts talk to any alignment."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added history plaques as items for the Supergroup base editor."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When clicked, they will display the Supergroup's name, motto and description."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any base passcodes in the description that are surrounded with square brackets will be turned into links to enter that base."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Example: [CODE-1234]"
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New setting in the Supergroup Base Settings, under Base Entry Permission: \"Public Access\"."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bases that are set to Public will appear as clickable links in the Supergroup Registrar listing."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This listing is cached; when you change your public base status, it will take some time for the list to update."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You have to be within 20ft of the registrar NPC for the links to send you into a base; if you move away from it, the links won't work."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supergroups that put their own base passcode in the Description field, which is visible by anyone, will automatically be made Public. This will only happen once, when the update is released. If you do not wish your base to become Public at that point, remove the Passcode from the description."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New commands: /sg_set_public and /enter_public_base"
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/sg_set_public requires Base Entry permission and it takes 1 or 0 as a parameter."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using /sg_set_public 1 will make your base accessible by either using /enter_public_base with just the supergroup ID, or /enter_base_from_passcode using any passcode."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For example, if your SG ID is 1234, you would be able to use /enter_public_base 1234 or /enter_base_from_passcode ANYTHING-1234 -- any passcode will be taken as valid if the base is public."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using /sg_set_public 0 will remove public access to the base; the passcode and other permissions will still work, if set."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Prestige is now the estimated number of unique visitors the base has received since this patch."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The estimate is based on a HyperLogLog with 256 buckets. Account IDs are not tracked."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "New Bouncer Feature",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bouncer command inside SG bases: /kiosk bouncer home allows you to kick a character from the base, and prevent any of their alts from entering it. The list persists until the base resets. You can remove players from the block list from the same window."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Macro images now scale to the size of a power slot."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Tray Saving",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added /tray_save_file <file> and /tray_load_file <file> to save and restore the power trays from a specified file."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Tray Saving",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added /tray_save and /tray_load to save and restore the power trays from a default file (one per character)."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Tray Saving",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Respecing will now preserve all your trays, removing any powers that are no longer relevant."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Tray Saving",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: It will not add your new powers to the trays, you will need to do that manually."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Set Bonuses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global bonuses now show up on their own section under the player powers list, instead of being grouped with other Set Bonuses."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the radius of the following powers:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bio Armor > Evolving Armor"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bio Armor > Genetic Corruption"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault > Mud Pots (damage restricted to 8ft)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Manipulation > Mud Bath"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Aura > Entropy Shield"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Aura > Repulse"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor > Chilling Embrace"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Icy Assault > Chilling Embrace (damage restricted to 8ft)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invulnerability > Invincibility"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mental Manipulation > World of Confusion (damage restricted to 8ft)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Armor > Impose Presence"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Mastery > World of Confusion (damage restricted to 8ft)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Armor > Beta Decay"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration > Integration (Brute/Tankers taunt aura)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Defense > Against All Odds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor > Mud Pots (damage restricted to 8ft)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Umbral Aura > Inky Aspect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Willpower > Rise to the Challenge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Aura Radius Increases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Tanker versions of any above power that was already at 12ft had no alterations)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Mastermind primary (only personal attacks) and secondary power end costs to match other AT endurance modifiers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced all Epic Pool endurance costs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the endurance cost of all ally rez powers in support sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the endurance cost of the following Pool powers:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fighting > Boxing"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fighting > Kick"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fighting > Cross Punch"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight > Air Superiority"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leaping > Jump Kick"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Endurance Cost Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Speed > Flurry"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Affinity > Howling Twilight"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 10.4 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.17s to 1.83"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 15ft to 40ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empathy > Resurrect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 180s to 120s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 5.2 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.2s to 1.83"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 15ft to 60ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elecrical Affinity > Defibrillate"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 10.4 end."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nature Affinity > Rebirth"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost on defeated targets reduced from 26 end to 13 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination > Conduit of Pain"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 180s to 120s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 5.2 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.2s to 1.83"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 15ft to 60ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison > Elixir of Life"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 180s to 120s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 5.2 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power is now TAoE and can rez up to 5 targets in as 15ft radius of the target"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emission > Mutation"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 180s to 120s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 26 end to 5.2 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.2s to 1.83"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 15ft to 60ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thermal Radiation > Power of the Phoenix"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 49.4 end to 10.4 end"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 15ft to 60ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Ally Rez Powers in support sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants a 15s stealth effect on the revived ally [PvE only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resist and Defense modifiers increased from 75% to 85%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PvP base resistances lowered from 10% to 0%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Max HP increased from 1499.2554 to 1601.719"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed an issue where Sentinel opportunity was not properly applying to pets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self Resist and Defense modifiers increased from 70% to 75%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Meter now only builds while in combat"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vulnerability is now as chain that can affect up to 5 targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Opportunity now grants a perception buff based on meter buildup, with a max of +40% at full meter."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Opportunity now grants a critical chance on all primary attacks based on meter buildup, with a max chance of +40% at full meter, 5% with empty meter."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Critical damage is 40% the strength of base power damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Nukes have limited crit potential"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crits can expand 40% of the bonus center damage to the full area of the power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sentinels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Foes hit by the center damage wont take additional crit damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassination:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scale increased from scale 7 to scale 8.5 in PvE"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen Summoning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen are now summoned with a temporary high stealth and defense buff"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These buffs last for up to 15s or until the henchmen engages in combat."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This effect is PvE only."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleportation"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The T1 power now can teleport henchmen to the designated ground location."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen will only be teleported if they are outside supremacy range and have not attacked in the last 5 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will not replace living henchmen, only teleport them."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set Bonus Share"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Has been increased from 40% to 50%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supremacy"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supremacy +AoE Def/+Res/+Regen effects lowered to 10%/10%/100% respectively."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants a +10% Res(ALL) and AoE Defense to henchmen within range."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants a +100% regen buff to henchmen within range."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While within Supremacy range, henchmen will have a generic ToHit buff vfx on them."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All henchmen within Supremacy range should now always have the same ToHit chance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Henchmen that leave supremacy range (60ft) and are not engaged in combat will receive a high stealth buff and perception debuffs as well as movement speed buffs. These will all cancel if they attack, are attacked or enter Supremacy range. This effect is PvE only."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind ATOs:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These powers are now treated as damage sets. As such, in addition to summon powers, they are now slottable on:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All primary personal attacks"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination > Sleet"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma > Howling Twilight"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field > Force Bolt"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Marine Affinity > Shifting Tides"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Marine Affinity > Whitecap"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison > Poison Trap"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Emission > Fallout"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Freezing Rain"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Gale"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Lightning Storm"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Tornado"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps > Acid Mortar"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps > Caltrops"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps > Seeker Drones"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps > Trip Mine"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow > Acid Arrow"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slash"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 1.33s to 1.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slice"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now applies a -9% res debuff on targets for 15 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After 15s from last use, this power can inflict a Rending Slice on the main target hitting for an additional 0.8431lethal damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Defense debuff lowered from -7.5% to -3.75%,"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 2.00s to 1.83s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mutually exclusive option to Boomerang Slice"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage from 1.23 to 1.2346"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Only"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Target cap increased from 5 to 10 targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boomerang Slice"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new mutually exclusive option to slice. It has a narrower area but longer reach than Slice."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now applies a -9% res debuff on targets for 15 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After 15s from last use, this power can inflict a Rending Slice on all targets hitting for an additional 3 ticks of scale 0.23 dot lethal damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power has similar stats with area, range and animation being the major differences."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1.83 cast time, 8s recharge, 30ft range, 30 degree arc with scale 0.877 damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Whirling Sword"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge increased from 14s to 20s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius increased from 8ft to 10ft on Scrappers, 12ft to 15ft on Tankers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost increased from 13.52 to 18.512"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage scale increased from 1.18 to 1.4218"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Disembowel"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 1.8s to 1.5s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Head Splitter:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now can hit up to 2 additional foes in a 90 degree arc for 33% damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Broad Sword",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Target cap adjusted to 3 on all ATs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jacob's Ladder"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge increased from 8s to 9s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost increased from 8.528 to 9.36"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage scale increased from scale 1.5 to 1.5233"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Previous recharge/endurance were too low for its damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chain Induction"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power is now a true chain"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Attack type changed from Melee_Attack to AoE_Attack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Melee Enhancement sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now accepts Melee AoE Enhancement sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Stalker] Stealth crit can only trigger on the main target, remains at 100% chance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lightning Clap"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power is now a foe targeted attack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now inflicts scale 2.76 energy damage against it's main target only"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power can now only proc on the primary target only"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 30s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accuracy increased from 0.8 to 1.0"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now accepts Damage Enhancements and sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chance to stun and knockback lowered from 100% to 80%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lightning Rod"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The center of this power has been expanded to 5ft, but can only hit a maximum of one target"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers and Stalkers can now crit for scale 3.2015 if they hit with the centermost portion of the power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electrical Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is now a true pseudopet on all archetypes"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Powers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Damage debuffs now effect all damage types (it did not decrease Toxic or Psychic damage)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Damage debuffs are normalized to scale 0.7 for all ATs and powers except for Burst"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burst -Damage debuff is scale 1.2"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Damage durations increased:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quick Strike, Repulsing Torrent - 6s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Body Blow - 8s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smashing Blow, Focused Burst - 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Concentrated Strike - 12s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burst - 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Damage debuffs now show -Damage fx"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "KB values decreased by 50% (ex: Scale 0.67kb -> 0.4467kb)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swapped damage type ratio so Energy is higher and Smashing lower to match En defense type"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "fixed Stalker powers not having the same damage scale ratio of Sm/En damage as other ATs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "fixed Brute Fiery Embrace damage in Concentrated Strike"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Siphon"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 1.93s to 1.17s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 120s to 90s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit and Power Siphon Mode duration lowered from 20s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stack duration increased from 10s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now grants one stack of Siphon at activation"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each stack now grants +10% damage (down from +25%), now also increases Toxic and Psychic damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base powers strength now goes up by +10% per owned stack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This increases all the base stats of the power before any other boosts"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This includes Damage, Mez Duration, Debuffs, and Knockback scale of Kinetic Melee powers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This multiplies against the buffed base damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For example, at 5 stacks a 100 damage attack becomes 150 and then is boosted by +50% to 225"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Repulsing Torrent"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range decreased from 40ft to 30ft, lowering it's area factor"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total damage scale increased from scale 1.1 to 1.29"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockback scale lowered from 3 to 1"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now inflicts scale 0.7 -Dam debuff for 6s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants a Power Siphon Stack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Burst"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is now able to chain on hit to up to 4 extra targets, richocheting kinetic energy!"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers can hit up to 10 total targets due to Overcap like with 5-target cones"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 1st target takes full damage, with each extra target taking 25% less up to a minimum of 25%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burst"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 2.67 to 2.53"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now deals damage over time during the start of animation, then a stronger final hit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total damage scale unchanged"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Stalkers] Stealth crit rate lowered to 50%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Concentrated Strike"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now can grant 2 stacks of Siphon, one at the start as you begin to drain the target and one at the final hit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now deals 1/3 of it's damage over time during the start of the animation"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total damage scale unchanged"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stun chance increased from 60% to 100%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 2.83 to 2.67"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Stalkers/Scrappers] Now deals 3 scale 1.1867 ticks on crit, fully matching the total base damage over time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Stalkers] No longer recharges Build Up on crit"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[Scrappers] No longer has a chance to recharge Power Siphon"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Insight"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a lockout"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Insight DoTs have been standardized to guarantee their average damage each time they are applied:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mental Strike - Insight DoT changed from 80% chance of 0.084 x4 over 3.1s > 100% chance of 0.0661 x3 over 2.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psi Blade - Insight DoT changed from 80% chance of 0.2285 x4 over 3.1s > 100% chance of 0.1799 x3 over 2.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinetic Blow - Insight DoT changed from 80% chance of 0.18 x4 over 3.1s > 100% chance of 0.1417 x3 over 2.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psi Blade Sweep - Insight DoT changed from 80% chance of 0.236 x4 over 3.1s > 100% chance of 0.1858 x3 over 2.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mass Levitate - Insight DoT changed from 80% chance of 0.142 x4 over 3.1s > 100% chance of 0.1118 x3 over 2.1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boggle"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2s to 1s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a highlight ring if you do not have any targets you have Boggled."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "FX now lasts 15 seconds to indicate the effect being active"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chances to proc Insight on powers increased from 2x to 3x"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ex: Mental Strike's 8.9% goes from 17.78% to 26.67% vs a Boggled target"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greater Psi Blade"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a highlight ring when you have Insight."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Insight Strike damage increased from scale 1.38 > 1.656"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Insight Strike no longer changes the Mag 3 hold portion to Scale 12."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instead, it now adds an additional Scale 8, Mag 1 hold that stacks with the base hold"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mass Levitate"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Delay for dealing damage reduced from 2s to 1.5s to better match when targets impact the ground"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Strident Echo / Sonic Thrust:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased these power's bonus against Attuned targets from 15s to 25s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Clap:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now triggers a dot around up to 5 targets around an attuned target (attuned target must be in the area of effect and be hit by the base power)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Highlight ring in this power means you have an Attuned target, but the power has not managed to apply its splash dot on any foes in the last 15s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deafening Wave:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now triggers a dot around up to 5 targets around an attuned target (attuned target must be in the area of effect and be hit by the base power)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Highlight ring in this power means you have an Attuned target but the power has not managed to apply it's splash dot on any foes in the last 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earsplitter"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased this power's bonus against Attuned targets from +10% to +20%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Barb Swipe"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT duration increased from 2.1 to 3.1 (3 -> 4 total ticks)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lunge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On hit, gain +15% to Spine Poison for 15s (replaces self)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spine Poison increases the odds of Spines DoT of continuing per tick. While active, this increases the odds from 80% to 95%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When Spine Poison is not active, a highlight ring will appear around Lunge"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 1.63s to 1.33s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 6s to 5s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lethal Damage Scale lowered from 1.32 to 1.08"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "End Cost lowered from 6.864 to 6.032"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT duration increased from 3.1 to 6.1 (4 -> 7 total ticks)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impale"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now deals -100% Regen debuff for 15s (replaces self)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2.43 to 2.23"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge increased from 8s to 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost increased from 8.528 to 10.192"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT now lasts for 15.1s (16 total ticks) at 80% chance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT starts at scale 0.2, and decays to scale 0.05 by the last tick."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combined, this is a possible total of Scale 3.64 damage"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spine Burst"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 3s to 1.67s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 16s to 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost lowered from 15.184 to 10.192"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lethal damage scale lowered from 0.9 to 0.6"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT duration increased from 3.1s to 6.1s (4 -> 7 total ticks)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ripper"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT duration increased from 4.1s to 7.1s (5 -> 8 total ticks)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Throw Spines"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Spines",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT duration increased from 4.1s to 7.1s (5 -> 8 total ticks)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Breath of Fire (Brutes, Scrappers, Stalkers)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc increase from 30 degrees to 120 degrees"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2.67s to 2.4s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "FX has been adjusted to reflect new area"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hits 10 targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Breath (Tankers)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 2.67s to 2.5s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage scale increased from 2 ticks of scale 0.68 to 0.7116"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the main target is within melee range (7ft), they will take 4 ticks of 0.7116 instead of 2"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Sword"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a No Swords theme"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Sword Circle"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a No Swords theme"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greater Fire Sword"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer applies a -defense debuff"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer accepts Defense debuff sets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fiery Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now has a No Swords theme"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Brewing"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now is a separate temporary power that can stack up to 5 times on the player, instead of being tied directly to the power used."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each stack increases the odds of Lightning Procs from attacks by 1%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The High Winds proc is now tied to Storm Brewing and lasts 10 seconds at a time"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Intensify"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants 5 Storm Brewing stacks"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Cell"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is now immobile"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast Time reduced from 2.03s to 1.17s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge reduced from 60s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius increased from 25ft to 35ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While High Winds is active, Storm Cell will cast Automatic Lightning in addition to the Lightning Procs granted by attacking with Storm Blast powers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Cell - Automatic Lightning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These procs are now an aura power granted to the Storm Cell as long as High Winds is active"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can proc every 1s on any target in a Storm Cell"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After hitting a target, up to 2 additional nearby targets can be struck with a 20% chance of occurring for each"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The main target cannot be hit again for 1-3s by the proc, but can be struck by chained procs of nearby targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each tick, there is a 20% chance of casting a Strong Lightning Proc instead that hits as hard as the normal Lightning Proc"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Cell - Lightning Procs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Target cap set to 3 at all times, from up to 4 dependent on Storm Brewing"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage scale increased from 0.5 to 1.0"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proc rate per power changes:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gust - 20%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hailstones, Jet Stream - 30%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Direct Strike (Fast), Chain Lightning - 40%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cloudburst - 50%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Direct Strike (Slow) - 80%"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can only occur every 2 seconds from the same caster, no longer locked out on the target for multiple casters"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These Lightning Procs can stack with Automatic Lightning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Cell - Lightning Lockout"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage and Endurance Drain are no longer subject to any sort of Lockout"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Lightning now have a 33% chance to either inflict Knockdown or a brief mag 3 Stun"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If either effect is procced, the target is immune from other strikes inflicting these effects for 5 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Category Five"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Duration shortened from 30s to 20s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel duration shortened from 20s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius of DoT, Lightning, and StormCell check increased from 30ft to 40ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel radius increased from 30ft to 35ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT rate reduced from 5 times per second to 3 times per second"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Category Five Eye"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Delay reduced from 3s to 2s for summoning the Cyclone for crowd control effects"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Duration shortened from 25s to 17s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel duration shortened from 15s to 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius reduced from 30ft to 25ft (damage scale unchanged)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Radius reduced from 25ft to 20ft (damage scale unchanged)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DoT rate increased from 2 times per second to 3 times per second and starts immediately"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Category Five lightning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now automatically strikes every 0.67 seconds, and has a 25% chance to trigger per target on up to 5 targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage reduced from Scale 1.0 to Scale 0.5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shares the lightning lockout properties with Storm Cell lightning for secondary mez effects"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage and Endurance Drain are not subject to Lockout"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Category Five (Sentinels)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed implementation issues with Category Five in sentinels"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This increases the damage done in the outer rim and decreases max damage on the standard 10ft center radius."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chain Lightning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power no longer deals additional DoT."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is also now an auto-hit for applying it’s chain across enemies."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The power still needs to pass a ToHit check in order to actually hit enemies, but it is no longer subject to critical failure."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cloudburst"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now accepts Slow and ToHit debuff enhancement"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "White Cap"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed to location teleport power instead of targeted teleport due to extremely unreliable teleport mechanics"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 30s to 15s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost reduced from 18 to 14.352"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2s to 1.5s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brine"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2s to 1.33s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shoal Rush"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time lowered from 2.17s to 1.33s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soothing Wave"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Dam debuff lowered from scale 1.2 to 0.75, is now resistable"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tide Pool"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Dam Debuff lowered from scale 2.4 to 1.5, is now resistable"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tide Pool Frenzy"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Dam Debuff lowered from scale 1.2 to 0.75, is now resistable"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tide Pool Frenzy"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Individual targets can only be knocked down once every 4 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shifting Tides"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Marine Affinity",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can now only trigger damage 4 times per second on the same enemy"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lick Wounds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power has been changed from Scale 1.33 Ranged_Heal to scale 2 HealSelf (20% self heal)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now available to Howler Wolves as part of the Tame Beast upgrade"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Howl (all versions)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.67s to 1.67s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Maiming Bite (all versions)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2.47s to 1.9s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dire Wolf > Freezing Roar"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 2.83 to 1.9s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dire Wolf > Terrible Roar"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 3.67 to 1.67"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Beast Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dire Wolf should use this power a more often now"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Glittering Column"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Explosion component is now an auto power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hypnotizing Lights"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage/Confuse procs should now only trigger of the confuse/damage sub-power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Black Hole"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to potential harassment against some enemy groups, now only the main target of the power will be Phased, should it be immune to repel effects."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius increased from 20ft to 30ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Epic - Dark Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Black Hole"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Epic - Dark Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to potential harassment against some enemy groups, now only the main target of the power will be Phased, should it be immune to repel effects."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Epic - Dark Mastery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius increased from 10ft to 20ft"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a visual issue with ToHit buffs showing a small white square inside players who are stealthed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed incorrect PvP damage scalers of Blaster Atomic Manipultion > Positron Cell and Sonic Manipulation > Echo Chamber."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the power icon for Confront on Scrapper's Kinetic Melee using the AoE border."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the power icons for Hack and Slash being incorrectly reversed (Hack is the bigger hit)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where multiple powers were not ignoring buffs despite applying resistance buffs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Following powers are affected:"
+    }
+  ]
+}

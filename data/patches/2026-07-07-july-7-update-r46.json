@@ -1,0 +1,42 @@
+{
+  "title": "July 7 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/july-7-update-r46/",
+  "published": "2026-07-07T15:04:01Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 46,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix bug in Psionic Armor causing powers to disappear when leveling until respec"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Armor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix Obscure Sustenance recharge time being longer for some ATs (now 60 seconds for everybody)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Willpower",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix Willpower Resurgence sometimes not respecting global recharge buffs"
+    },
+    {
+      "category": "Enhancements",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix Scrapper ATOs not modifying the crit chance of Lightning Rod's inner damage"
+    }
+  ]
+}

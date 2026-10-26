@@ -1,0 +1,234 @@
+{
+  "title": "October 8 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/october-8-update-r25/",
+  "published": "2024-10-08T15:04:00Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 25,
+  "changes": [
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a dialog loop option to return to the weapon checker page on the Labyrinth info NPC."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gateway to the Font of Malevolence given new visuals; Removed the box blocker."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entering the Font of Malevolence while the Minotaur is alive will kick you to the entrance lobby."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you own the Avatar of Achlys mini pet a shortcut to the Font of Malevolence will appear in the True Core near the Benefactor In The Fog, if the Minotaur is dead."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minotaur now triggers arena transition at 95% HP."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Font of Malevolence spawns individualized in packs of four based on their floor color."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will result in them re-spawning more consistently."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Font of Malevolence now spawns a random Giant Monster from the Labyrinth's GM spawn offerings every 75 defeats, before and after the Avatar spawns."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These GMs can trigger Spectral Pull at sub-50% HP."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys can now be spawned once every Minotaur cycle; No longer on a 2-3 hour re-spawn timer."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chalice of Malevolence removed as there is no longer a timer for it to track."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys now spawns at 375 total defeats in the Font of Malevolence each cycle. Can only be summoned once per cycle."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys' Malevolent Explosion damage increase/hit-timing staggered."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys now given similar on/off scrolling +ToHit buff to the Minotaur."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys' inherent resistances increased from 50% to 85%."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys' now grants leadership buffs to the Font's spawned mobs."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skull FX that highlights the Font of Malevolence is using Spectral Pull now spins."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Harridan EBs now spawn with Talons of Vengeance packs instead of two Keres."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a potential mapserver crash issue related to Draught of Fog usage."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed numerous misspellings of 'Achyls' in various locations."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed broken pathing beacons in the newer 5th Column sections."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered the violet mote's volume so getting it should be easier."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Kallisti Wharf",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved the spawn location for the Halloween event giant monsters away from drones which can insta-kill them."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Various",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed AI pathing issues in the end room affecting a few maps in the office tileset."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Warriors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Talos Island Alexander Pavlidis model to use newer Warriors assets."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Mini Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Avatar of Achlys not being summon-able through the Hologram Matrix pop menu macro."
+    },
+    {
+      "category": "Events",
+      "subsection": "Halloween 2022 - Trick-or-Treat Elite Bosses",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power availability on the Arisen Mummy and Hollow Reaper enemies has been adjusted to be better balanced when they spawn at lower levels, gaining powers at Levels 30+ and 40+ to reach their current strength, rather than having full access to all powers at all levels."
+    },
+    {
+      "category": "Events",
+      "subsection": "Halloween 2009 - Dark Apocalypse",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeat badge credit for the banner event now guaranteed as long as the participant hits the target once, no longer requiring 10% team damage dealt for credit."
+    }
+  ]
+}

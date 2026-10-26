@@ -1,0 +1,178 @@
+{
+  "title": "December 5 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/december-5-update-r31/",
+  "published": "2024-12-05T16:06:02Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 31,
+  "changes": [
+    {
+      "category": "AI",
+      "subsection": "Aggro Cap",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused NPCs more than 111' feet away from their primary target to have inverted priorities with regards to the aggro cap - i.e. taunted foes and high ranking foes would be lower priority and more likely to de-aggro or switch to ranged attacks due to the cap instead of higher priority as intended."
+    },
+    {
+      "category": "AI",
+      "subsection": "Aggro Cap",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reworked the priority algorithm to de-emphasize damage and distance while further prioritizing taunted enemies and high ranking enemies."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a number of tech lab doorways that could cause the Minotaur In The Fog to become stuck in the wall if they traveled through them."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Prevented Benefactor in the Fog's Accelerate Metabolism from unintentionally buffing the Minotaur."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achlys can now cast their cone attacks through mez."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players in the entrance lobby area or Core of the Labyrinth will no longer be timed out."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doubled the value of shift points earned by defeating Elite Bosses in the Labyrinth."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Re-write of the Labyrinth's informational navigation window to better explain the zone."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minotaur's invincibility field now using a unique FX to be more visible."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog's anchor field now using a unique FX to be more visible."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog's appearance now includes a glowing chain that extends to the ceiling of the arena, to make positioning easier."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog can no longer be targeted or killed."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Font high score counter can now be viewed from the nav while inside the True Core of the Labyrinth."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Description on the Avatar of Achlys cleaned up."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added some protection to the Font GM spawns to prevent more spawns than intended."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused the high score counter in the Font of Malevolence to not display."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restored the fog plume FX to the center of the Font of Malevolence."
+    },
+    {
+      "category": "Task Force:",
+      "subsection": "Lady Grey Task Force (Advanced Mode)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted K'ong's spawn so that the War Priest is always in the far away spot to prevent Recovery Aura inconsistencies."
+    },
+    {
+      "category": "Task Force:",
+      "subsection": "Dr. Aeon's Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Collision ramps added to the outer edges of the smelting cauldrons in the final encounter to allow King Midas to be pulled into them easier when he is inflicted with -Jump debuffs."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed invention vanity pet recipe crafts from not counting for the crafting badges."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Crey Cryogenicist Beam Rifle attacks firing from their hands instead of their rifle."
+    }
+  ]
+}
