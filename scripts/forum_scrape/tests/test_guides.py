@@ -365,6 +365,41 @@ def test_main_stops_after_a_streak_of_unfetchable_threads(tmp_path: Path, fake_n
     assert len(rows) == 3  # the three examined threads are on disk for the re-run
 
 
+def test_main_reads_an_archived_board_with_its_own_source_and_era_tag(tmp_path: Path, fake_net) -> None:
+    routes, _ = fake_net  # the archive serves no robots.txt: no route for it
+    archive = "https://forumarchive.cityofheroes.dev"
+    forum = f"{archive}/index.php?/forum/44-player-guides/"
+    topic = f"{archive}/index.php?/topic/1114-snipefus-definitive-guide-to-energy-blasters/"
+    routes[forum] = (
+        f"<li class='ipsDataItem'><a href='{topic}'>t</a><time datetime='2005-10-03T04:35:00Z'></time>"
+        f"<time datetime='2012-10-21T19:23:00Z'></time></li>"
+    ).encode()
+    routes[topic] = page(
+        "Snipefu's Definitive Guide to Energy Blasters", article("1", "Snipefu", "2005-10-03T04:35:00Z", GUIDE_BODY)
+    ).encode()
+    out = tmp_path / "pre-sunset"
+    args = [
+        "--forum",
+        forum,
+        "--base",
+        archive,
+        "--tag",
+        "pre-sunset",
+        "--out",
+        str(out),
+        "--canonical",
+        str(tmp_path),
+        "--delay",
+        "0",
+    ]
+    assert main(args) == 0
+    text = next(out.rglob("*.md")).read_text(encoding="utf-8")
+    assert 'source: "forumarchive.cityofheroes.dev"' in text
+    assert 'topic_tags: ["archetypes/blaster"' not in text  # the folder tag is the archetype name, not a path
+    assert 'topic_tags: ["blaster", "pre-sunset"' in text
+    assert 'date_posted: "2005-10-03"' in text
+
+
 def test_main_reports_an_unreadable_listing(tmp_path: Path, fake_net, capsys) -> None:
     assert main(["--forum", FORUM, "--out", str(tmp_path), "--canonical", str(tmp_path), "--delay", "0"]) == 0
     assert "E61" in capsys.readouterr().err

@@ -14,7 +14,10 @@ from scripts.forum_scrape.scrape import (
     crawl_forum,
     crawl_forums,
     discover_forums,
+    last_page_number,
+    listing_base,
     main,
+    topic_rows,
 )
 from scripts.forum_scrape.tests.conftest import TOPIC
 
@@ -90,6 +93,15 @@ def test_crawl_forum_harvests_the_topics_it_lists(tmp_path: Path) -> None:
     result = crawl_forum(fetcher, forum, 1, tmp_path, False)  # type: ignore[arg-type]
     assert (result.topics, result.found, result.written) == (1, 4, 4)
     assert (tmp_path / "index.jsonl").exists()
+
+
+def test_listing_parsers_read_an_archived_board_with_index_php_urls() -> None:
+    archive = "https://forumarchive.cityofheroes.dev/index.php?/forum/44-player-guides/"
+    topic = "https://forumarchive.cityofheroes.dev/index.php?/topic/1114-snipefus-definitive-guide/"
+    page = paginated(topic, archive, 101, "2012-10-21T19:23:00Z")
+    assert topic_rows(page) == {topic: "2012-10-21T19:23:00Z"}
+    assert last_page_number(page) == 101
+    assert listing_base(page, archive) == archive.rstrip("/")
 
 
 def listing_row(topic: str, last_activity: str = "2026-01-01T00:00:00Z") -> str:

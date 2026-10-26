@@ -24,12 +24,14 @@ import hashlib
 import json
 import re
 import sys
+import urllib.parse
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
 from scripts.forum_scrape.scoring import REQUEST_TITLE
 from scripts.forum_scrape.scrape import (
+    BASE,
     DEFAULT_UA,
     Fetcher,
     Post,
@@ -51,7 +53,7 @@ DISCUSSION_TITLE = re.compile(r"\b(rp|roleplay|role-play|showcase|favou?rite|you
 # (docs/build-types-and-goals.md). It needs no build vocabulary: its value is the look and the idea.
 THEME_TITLE = re.compile(
     r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be|costumes?|"
-    r"colou?rs?|customi[sz]ation|customi[sz]ing|auras?|tailor|appearance|looks?)\b",
+    r"colou?rs?|customi[sz]ation|auras?|tailor|appearance|looks?)\b",
     re.I,
 )
 # Frontmatter a reviewer owns; a refresh never overwrites these.
@@ -229,14 +231,22 @@ def content_hash(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
 
 
-def capture_markdown(post: Post, topic_url: str, title: str, tags: list[str], captured_on: str, digest: str) -> str:
+def capture_markdown(
+    post: Post,
+    topic_url: str,
+    title: str,
+    tags: list[str],
+    captured_on: str,
+    digest: str,
+    source: str = "forums.homecomingservers.com",
+) -> str:
     """The capture file: the manual workflow's frontmatter, a summary stub, the opening post verbatim."""
     posted = post.posted_at[:10]
     front = [
         "---",
         f"title: {json.dumps(title)}",
         f"url: {json.dumps(topic_url)}",
-        'source: "forums.homecomingservers.com"',
+        f"source: {json.dumps(source)}",
         f"authors: {_quoted_list([post.author])}",
         f"date_posted: {json.dumps(posted)}",
         f"date_captured: {json.dumps(captured_on)}",
@@ -349,13 +359,20 @@ def _walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None) -> dict[s
 
 
 def _capture(
-    fetcher: Fetcher, topic_url: str, section_slug: str, out: Path, powersets: frozenset[str]
+    fetcher: Fetcher,
+    topic_url: str,
+    section_slug: str,
+    out: Path,
+    powersets: frozenset[str],
+    source: str = "forums.homecomingservers.com",
+    extra_tags: tuple[str, ...] = (),
 ) -> tuple[str, str, str]:
     """Capture the thread's opening post if it is a build-related guide.
 
     Returns ``(file, digest, reason)``: the capture's path and content hash when the opener
     qualifies, else the reason it did not. ``reason`` is ``"unchanged"`` when the file already
-    holds this content, in which case nothing is written.
+    holds this content, in which case nothing is written. ``extra_tags`` follow the folder tag:
+    an era marker such as ``pre-sunset`` for an archived board.
     """
     page = fetcher.get(topic_url)
     if page is None:
@@ -373,14 +390,14 @@ def _capture(
         return "", "", "not build-related"
     folder, lead = ("theme", "theme-rp") if theme else classify(title, section_slug, powersets)
     kinds = ["discussion"] if is_discussion(title) else []
-    tags = [lead, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
+    tags = [lead, *extra_tags, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
     digest = content_hash(text)
     path = out / folder / f"{slugify(title)}.md"
     relative = path.relative_to(out).as_posix()
     existing = path.read_text(encoding="utf-8") if path.exists() else ""
     if existing and stored_hash(existing) == digest:
         return relative, digest, "unchanged"
-    fresh = capture_markdown(opener, topic_url, title, tags, datetime.now(UTC).date().isoformat(), digest)
+    fresh = capture_markdown(opener, topic_url, title, tags, datetime.now(UTC).date().isoformat(), digest, source)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(merge_capture(existing, fresh) if existing else fresh, encoding="utf-8", newline="\n")
     return relative, digest, ""
@@ -405,9 +422,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--delay", type=float, default=2.0, help="minimum seconds between requests (default 2)")
     parser.add_argument("--user-agent", default=DEFAULT_UA)
     parser.add_argument("--force", action="store_true", help="refetch threads the ledger already covers")
+    parser.add_argument(
+        "--base",
+        default=BASE,
+        metavar="URL",
+        help="the board's origin, for robots.txt and the capture's source field (default the Homecoming forum)",
+    )
+    parser.add_argument(
+        "--tag", action="append", default=[], metavar="TAG", help="a tag added after the folder tag (repeatable)"
+    )
     args = parser.parse_args(argv)
 
-    fetcher = Fetcher(args.user_agent, args.delay)
+    fetcher = Fetcher(args.user_agent, args.delay, base=args.base)
+    source = urllib.parse.urlsplit(args.base).netloc or args.base
     powersets = powersets_from_canonical(args.canonical)
     ledger = _ledger(args.out)
     args.out.mkdir(parents=True, exist_ok=True)
@@ -429,7 +456,9 @@ def main(argv: list[str] | None = None) -> int:
                     and last_activity <= str(known.get("last_activity", ""))
                 ):
                     continue
-                file, digest, reason = _capture(fetcher, topic_url, section_slug, args.out, powersets)
+                file, digest, reason = _capture(
+                    fetcher, topic_url, section_slug, args.out, powersets, source, tuple(args.tag)
+                )
                 examined += 1
                 captured += bool(file) and reason != "unchanged"
                 reasons[reason or "written"] += 1
