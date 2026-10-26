@@ -24,8 +24,19 @@ stub to fill in on review, and the opening post verbatim with tables kept as row
   `archetypes/<at>/`; a title naming a canonical powerset goes to `powersets/`; the rest to
   `mechanics/`. The folder's tag leads `topic_tags`, followed by the topics the text matches.
 - `trust` is written as `single-author-opinion`; raising it is a review decision.
-- `guides.jsonl` in the output root records every thread looked at; a re-run refetches only
-  threads with newer activity. `--pages N` caps the listing walk; `--force` refetches all.
+- A request, showcase or roleplay thread that passes the gates is captured with a `discussion`
+  tag after the folder tag: kept for the information in it, never presented as a guide.
+- Every capture carries `content_hash`, the digest of the rendered opening post. A re-run
+  refetches a thread only when the listing shows newer activity, and rewrites the file only
+  when that hash changed. A rewrite replaces the verbatim section and the source-derived
+  frontmatter; the reviewer's `trust`, `contradicts_data`, Summary and any added sections
+  survive, and the replaced hash is kept as `superseded_hash`. A frozen source (an archive)
+  therefore costs its listing walk per run and nothing more.
+- `guides.jsonl` in the output root records every thread looked at and why it was or was not
+  captured, flushed per thread, so a stopped run resumes where it ended. Threads that could not
+  be fetched or parsed are retried on the next run; ten such threads in a row stop the run
+  (`E63`). The run ends with a count by outcome and exits 2 (`E62`) when a retry run is wanted,
+  0 otherwise. `--pages N` caps the listing walk; `--force` refetches every thread.
 
 After a run, regenerate `community/INDEX.md` with `scripts/regen-index.ps1` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.

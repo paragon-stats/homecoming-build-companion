@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 
+from scripts.forum_scrape import scrape
 from scripts.forum_scrape.guides import (
     BUILD_VOCAB_MIN_PER_100,
     GUIDE_MIN_WORDS,
@@ -10,10 +11,14 @@ from scripts.forum_scrape.guides import (
     build_relevance,
     capture_markdown,
     classify,
+    content_hash,
+    is_discussion,
     is_guide,
     main,
+    merge_capture,
     powersets_from_canonical,
     render_html,
+    stored_hash,
     structure_score,
     topic_tags,
 )
@@ -129,9 +134,10 @@ def test_classify_places_archetype_then_powerset_then_mechanics() -> None:
 def test_capture_markdown_matches_the_manual_capture_format() -> None:
     post = Post("1", "Bopper", f"{BASE}/profile/1-bopper/", "2020-03-01T10:00:00Z", render_html(GUIDE_BODY), GUIDE_BODY)
     text = capture_markdown(
-        post, TOPIC, "Movement Speed: A Quick Guide", ["mechanics", "recharge-endurance"], "2026-10-26"
+        post, TOPIC, "Movement Speed: A Quick Guide", ["mechanics", "recharge-endurance"], "2026-10-26", "abc123"
     )
     head, body = text.split("---\n", 2)[1:]
+    assert 'content_hash: "abc123"' in head and "superseded_hash" not in head
     assert 'title: "Movement Speed: A Quick Guide"' in head
     assert f'url: "{TOPIC}"' in head
     assert 'authors: ["Bopper"]' in head
@@ -142,6 +148,55 @@ def test_capture_markdown_matches_the_manual_capture_format() -> None:
     assert "## Summary" in body and "## Verbatim excerpt" in body
     assert "### Post 1 — Bopper, 2020-03-01" in body
     assert "| Base | 21.48 | 14.32 |" in body
+
+
+def test_is_discussion_matches_requests_showcases_and_roleplay() -> None:
+    assert is_discussion("Post your favourite builds")
+    assert is_discussion("Need advice on my Brute")
+    assert is_discussion("RP crossover build: Fallout meets Paragon City")
+    assert not is_discussion("Movement Speed: A Quick Guide")
+
+
+def test_content_hash_is_stable_and_short() -> None:
+    assert content_hash("a") == content_hash("a") and content_hash("a") != content_hash("b")
+    assert len(content_hash("anything")) == 16
+
+
+def test_merge_capture_keeps_reviewer_work_and_replaces_the_verbatim_section() -> None:
+    post = Post("1", "Bopper", "", "2020-03-01T10:00:00Z", "", GUIDE_BODY)
+    old = capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-10-26", "old1")
+    reviewed = (
+        old.replace("trust: single-author-opinion", "trust: community-consensus")
+        .replace('contradicts_data: "none"', 'contradicts_data: "Claim: 21 mph; data: 21.48"')
+        .replace(_summary_stub(old), "- Reviewed: base fly speed is 21.48 mph.")
+        + "\n## Useful points\n\n- distilled by the reviewer\n"
+    )
+    edited = Post("1", "Bopper", "", "2020-03-01T10:00:00Z", "", GUIDE_BODY.replace("21.48", "21.50"))
+    fresh = capture_markdown(edited, TOPIC, "T", ["mechanics"], "2026-11-01", "new2")
+    merged = merge_capture(reviewed, fresh)
+    head, body = merged.split("---\n", 2)[1:]
+    assert "trust: community-consensus" in head and 'contradicts_data: "Claim: 21 mph; data: 21.48"' in head
+    assert 'content_hash: "new2"' in head and 'superseded_hash: "old1"' in head
+    assert 'date_captured: "2026-11-01"' in head
+    assert "- Reviewed: base fly speed is 21.48 mph." in body and "## Useful points" in body
+    assert "| Base | 21.50 | 14.32 |" in body and "| Base | 21.48 | 14.32 |" not in body
+    # The reviewer's section after the verbatim one survives in place.
+    assert body.index("## Verbatim excerpt") < body.index("## Useful points")
+
+
+def test_merge_capture_appends_the_verbatim_section_when_the_old_file_lacks_one() -> None:
+    post = Post("1", "Bopper", "", "2020-03-01T10:00:00Z", "", GUIDE_BODY)
+    fresh = capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-11-01", "new2")
+    merged = merge_capture('---\ntitle: "T"\n---\n\n# T\n\n## Summary\n\n- hand written\n', fresh)
+    assert "- hand written" in merged and "## Verbatim excerpt" in merged and "superseded_hash" not in merged
+    assert stored_hash(merged) == "new2"
+    assert stored_hash("no frontmatter at all") == "" and stored_hash("---\nunterminated") == ""
+    assert stored_hash('---\nbare line without a colon\ncontent_hash: "h"\n---\n') == "h"
+
+
+def _summary_stub(capture: str) -> str:
+    start = capture.index("## Summary") + len("## Summary")
+    return capture[start : capture.index("## Verbatim excerpt")].strip()
 
 
 def test_main_captures_guides_skips_chatter_and_resumes(tmp_path: Path, fake_net, capsys) -> None:
@@ -176,8 +231,11 @@ def test_main_captures_guides_skips_chatter_and_resumes(tmp_path: Path, fake_net
     (out / "guides.jsonl").write_text("\n", encoding="utf-8")  # a blank line in the ledger is ignored
 
     args = ["--forum", FORUM, "--out", str(out), "--canonical", str(canonical), "--delay", "0"]
-    assert main(args) == 0
-    assert "1 guide(s) captured from 5 thread(s)" in capsys.readouterr().out
+    assert main(args) == 2  # one thread was unavailable: a re-run is wanted
+    out_text, err_text = capsys.readouterr()
+    assert "1 guide(s) written from 5 thread(s)" in out_text
+    assert "no posts: 1, not build-related: 1, not guide-shaped: 1, unavailable: 1, written: 1" in out_text
+    assert "E62: 2 thread(s) could not be fetched or parsed" in err_text  # the 404 and the empty page
     files = sorted(p.relative_to(out).as_posix() for p in out.rglob("*.md"))
     assert files == ["mechanics/movement-speed-a-quick-guide.md"]
     ledger = [
@@ -190,15 +248,96 @@ def test_main_captures_guides_skips_chatter_and_resumes(tmp_path: Path, fake_net
         empty: "no posts",
         howto: "not build-related",
     }
+    assert ledger[0]["content_hash"] == stored_hash((out / files[0]).read_text(encoding="utf-8"))
 
     fetched = calls.count(TOPIC)
-    assert main(args) == 0
-    # Unchanged threads are not refetched; the one with no last-activity stamp is looked at again.
-    assert "0 guide(s) captured from 1 thread(s)" in capsys.readouterr().out
+    assert main(args) == 2
+    # Unchanged threads are not refetched; the unfetched and the unparsed ones are looked at again.
+    assert "0 guide(s) written from 2 thread(s)" in capsys.readouterr().out
     assert calls.count(TOPIC) == fetched
 
-    assert main([*args, "--force"]) == 0
+    # --force refetches, but an unchanged opener rewrites nothing.
+    before = (out / files[0]).read_bytes()
+    assert main([*args, "--force"]) == 2
     assert calls.count(TOPIC) == fetched + 1
+    assert (out / files[0]).read_bytes() == before
+    assert "0 guide(s) written" in capsys.readouterr().out
+
+    # The author edits the opener: the verbatim section is replaced, the reviewer's work kept.
+    reviewed = (
+        (out / files[0])
+        .read_text(encoding="utf-8")
+        .replace("trust: single-author-opinion", "trust: community-consensus")
+    )
+    (out / files[0]).write_text(reviewed, encoding="utf-8", newline="\n")
+    routes[TOPIC] = GUIDE_PAGE.replace("21.48", "21.50").encode()
+    assert main([*args, "--force"]) == 2
+    refreshed = (out / files[0]).read_text(encoding="utf-8")
+    assert (
+        "trust: community-consensus" in refreshed and "superseded_hash" in refreshed and "| Base | 21.50 |" in refreshed
+    )
+    assert "1 guide(s) written" in capsys.readouterr().out
+
+
+def test_main_tags_discussion_threads_retries_timeouts_and_flushes_per_thread(
+    tmp_path: Path, fake_net, monkeypatch, capsys
+) -> None:
+    routes, calls = fake_net
+    showcase = f"{BASE}/topic/7-post-your-favourite-builds/"
+    gone = f"{BASE}/topic/2-timed-out/"
+    routes[FORUM] = (
+        f"<li class='ipsDataItem'><a href='{showcase}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+        f"<li class='ipsDataItem'><a href='{gone}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+        f"<li class='ipsDataItem'><a href='{TOPIC}'>t</a><time datetime='2020-03-02T10:00:00Z'></time>"
+        f"<time datetime='2020-03-02T10:00:00Z'></time></li>"
+    ).encode()
+    routes[showcase] = page(
+        "Post your favourite builds", article("1", "Host", "2024-01-01T00:00:00Z", GUIDE_BODY)
+    ).encode()
+    routes[TOPIC] = GUIDE_PAGE.encode()
+    out = tmp_path / "community"
+    rows_before_second_fetch: list[int] = []
+    original_get = scrape.Fetcher.get
+
+    def counting_get(self: scrape.Fetcher, url: str) -> str | None:
+        if url == gone:  # second thread: the first thread's ledger row must already be on disk
+            rows_before_second_fetch.append(len((out / "guides.jsonl").read_text(encoding="utf-8").splitlines()))
+        return original_get(self, url)
+
+    monkeypatch.setattr(scrape.Fetcher, "get", counting_get)
+    args = ["--forum", FORUM, "--out", str(out), "--canonical", str(tmp_path), "--delay", "0"]
+    assert main(args) == 2
+    assert rows_before_second_fetch == [1]
+    showcase_file = next(out.rglob("post-your-favourite-builds.md"))
+    assert 'topic_tags: ["mechanics", "discussion"' in showcase_file.read_text(encoding="utf-8")
+
+    # The timed-out thread is retried on the next run; the settled ones are not.
+    fetched_gone, fetched_topic = calls.count(gone), calls.count(TOPIC)
+    routes[gone] = page("Back", article("1", "Late", "2024-01-01T00:00:00Z", "<p>short</p>")).encode()
+    assert main(args) == 0  # the retried thread answered this time
+    assert calls.count(gone) == fetched_gone + 1 and calls.count(TOPIC) == fetched_topic
+    assert "0 guide(s) written from 1 thread(s)" in capsys.readouterr().out
+
+
+def test_main_stops_after_a_streak_of_unfetchable_threads(tmp_path: Path, fake_net, capsys, monkeypatch) -> None:
+    routes, calls = fake_net
+    monkeypatch.setattr("scripts.forum_scrape.guides.BREAKER_STREAK", 3)
+    dead = [f"{BASE}/topic/{n}-dead/" for n in range(1, 6)]  # none routed: every fetch fails
+    routes[FORUM] = "".join(
+        f"<li class='ipsDataItem'><a href='{t}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+        for t in [*dead, TOPIC]
+    ).encode()
+    routes[TOPIC] = GUIDE_PAGE.encode()
+    out = tmp_path / "community"
+    assert main(["--forum", FORUM, "--out", str(out), "--canonical", str(tmp_path), "--delay", "0"]) == 2
+    err = capsys.readouterr().err
+    assert "E63: 3 consecutive threads" in err and "E62" in err
+    assert calls.count(dead[3]) == 0 and calls.count(TOPIC) == 0  # stopped after the third failure
+    rows = [json.loads(line) for line in (out / "guides.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert len(rows) == 3  # the three examined threads are on disk for the re-run
 
 
 def test_main_reports_an_unreadable_listing(tmp_path: Path, fake_net, capsys) -> None:
