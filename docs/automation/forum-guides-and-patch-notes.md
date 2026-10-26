@@ -25,7 +25,9 @@ stub to fill in on review, and the opening post verbatim with tables kept as row
   `mechanics/`. The folder's tag leads `topic_tags`, followed by the topics the text matches.
 - `trust` is written as `single-author-opinion`; raising it is a review decision.
 - A request, showcase or roleplay thread that passes the gates is captured with a `discussion`
-  tag after the folder tag: kept for the information in it, never presented as a guide.
+  tag after the folder tag: kept for the information in it, never presented as a guide. A
+  concept, theme or roleplay thread also gets `theme-rp`, the reference pool for the Theme/RP
+  build type in [`docs/build-types-and-goals.md`](../build-types-and-goals.md).
 - Every capture carries `content_hash`, the digest of the rendered opening post. A re-run
   refetches a thread only when the listing shows newer activity, and rewrites the file only
   when that hash changed. A rewrite replaces the verbatim section and the source-derived

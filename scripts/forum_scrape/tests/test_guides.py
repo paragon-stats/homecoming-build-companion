@@ -14,6 +14,7 @@ from scripts.forum_scrape.guides import (
     content_hash,
     is_discussion,
     is_guide,
+    is_theme,
     main,
     merge_capture,
     powersets_from_canonical,
@@ -155,6 +156,13 @@ def test_is_discussion_matches_requests_showcases_and_roleplay() -> None:
     assert is_discussion("Need advice on my Brute")
     assert is_discussion("RP crossover build: Fallout meets Paragon City")
     assert not is_discussion("Movement Speed: A Quick Guide")
+
+
+def test_is_theme_matches_concept_and_roleplay_threads() -> None:
+    assert is_theme("RP crossover build: Fallout meets Paragon City")
+    assert is_theme("Power sets that can be flavored as light elemental")
+    assert is_theme("What would Spider-Man be?")
+    assert not is_theme("Movement Speed: A Quick Guide")
 
 
 def test_content_hash_is_stable_and_short() -> None:
@@ -312,6 +320,7 @@ def test_main_tags_discussion_threads_retries_timeouts_and_flushes_per_thread(
     assert rows_before_second_fetch == [1]
     showcase_file = next(out.rglob("post-your-favourite-builds.md"))
     assert 'topic_tags: ["mechanics", "discussion"' in showcase_file.read_text(encoding="utf-8")
+    assert "theme-rp" not in showcase_file.read_text(encoding="utf-8")
 
     # The timed-out thread is retried on the next run; the settled ones are not.
     fetched_gone, fetched_topic = calls.count(gone), calls.count(TOPIC)

@@ -47,6 +47,8 @@ GUIDE_MIN_STRUCTURE = 6
 # A thread that is a conversation rather than a guide: a request (the scorer's list), a
 # showcase, or roleplay. Captured for the information in it, tagged so it never poses as a guide.
 DISCUSSION_TITLE = re.compile(r"\b(rp|roleplay|role-play|showcase|favou?rite|your most|post your|what are you)\b", re.I)
+# A concept, theme or roleplay thread feeds the Theme/RP build type (docs/build-types-and-goals.md).
+THEME_TITLE = re.compile(r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be)\b", re.I)
 # Frontmatter a reviewer owns; a refresh never overwrites these.
 REVIEWER_KEYS = ("trust", "contradicts_data")
 # Ledger outcomes that do not settle a thread: it is looked at again next run.
@@ -212,6 +214,11 @@ def is_discussion(title: str) -> bool:
     return bool(REQUEST_TITLE.search(title) or DISCUSSION_TITLE.search(title))
 
 
+def is_theme(title: str) -> bool:
+    """A concept, theme or roleplay thread: reference for Theme/RP builds."""
+    return bool(THEME_TITLE.search(title))
+
+
 def content_hash(text: str) -> str:
     """A short digest of the rendered opening post; equal digests mean the author changed nothing."""
     return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
@@ -359,7 +366,8 @@ def _capture(
         return "", "", "not build-related"
     title = page_title(page)
     folder, lead = classify(title, section_slug, powersets)
-    tags = [lead, *(["discussion"] if is_discussion(title) else []), *[t for t in topic_tags(title, text) if t != lead]]
+    kinds = [*(["discussion"] if is_discussion(title) else []), *(["theme-rp"] if is_theme(title) else [])]
+    tags = [lead, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
     digest = content_hash(text)
     path = out / folder / f"{slugify(title)}.md"
     relative = path.relative_to(out).as_posix()
