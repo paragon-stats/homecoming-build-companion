@@ -1,0 +1,962 @@
+{
+  "title": "June 23 Update - Panel 3",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/june-23-update-panel-3-r45/",
+  "published": "2026-06-23T14:49:27Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 45,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Embrace effects now last the full duration of the patch."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius of both the up front hit and patch are increased to 15'."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Target cap is increased to 10 for both the up front hit and patch."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Up front will apply scale 0.44 damage to the entire area and 1.0 damage to enemies within 8ft."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patch damage scale increased from 12 ticks of 0.08 damage over 10 seconds, to 12 ticks of scale 0.14 damage over 10s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patch Fiery Embrace damage scale increased from scale 0.036 per tick to 0.063 per tick."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Burn",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers can now slot their ATOs in Burn."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "KB protection increased from 1 to 3."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants 50% KB resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now also grants scale 1 resistance against Psi and toxic Damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants Fear protection."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +10% max HP (enhanceable)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+100% regen is now enhanceable."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Temperature Protection",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now accepts healing enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Healing Flames",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now also grants scale 1 resistance against Psi Damage in addition to its scale 2 toxic resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adaptive recharge has been implemented."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "10 seconds recharge base, +5s per target hit, max of 60s recharge."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Per target endurance lowered from +20 to +15."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Can now inflict up to 3 ticks of scale 0.1 fire damage over 2.1s, 80% cancel on miss."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phoenix Rising",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now heals applies a flat heal and endurance recovery buff regardless of the caster health."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phoenix Rising",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now applies a 30% Max HP buff for 30 seconds regardless if used conscious or as a rez."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phoenix Rising",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Raw damage scale of the Phoenix reduced from a maximum of scale 4.0 to scale 3.0."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phoenix Rising",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now deals 10 ticks of scale 0.2 damage over 7.1s regardless of caster health."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Molten Embrace [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The DoT damage proc from Molten Embrace is now effected by damage enhancements and buffs."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Hide -> Hidden Flame [Stalkers] -",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hide is now Hidden Flame on Stalkers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Hide -> Hidden Flame [Stalkers] -",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hidden Flame is identical to Hide, but now also grants the damage proc from Molten Embrace."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Cauterizing Blaze [Sentinels / Stalkers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While active, this power now increases Fire damage by 20%, and all other damage by 10%."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Shinobi-Iri (Scrapper/Sentinel)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants a scale 1.0 damage buff at all times."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now also applies a placate effect on targets (requires a tohit roll)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost increased from 7.8 to 12.28."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc increased from 40 degrees to 90."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Range increased from 25ft to 40ft."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now takes Taunt enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now takes Sleep enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now checks for Psionic defense in addition to AoE defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This effectively merges Smoke Flash and Blinding Powder into a single power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 120s to 90s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sleep magnitude increased from Mag 2 to Mag 3"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confuse magnitude increased from Mag 2 to Mag 3"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confuse scale decreased from 20 to 12"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now increases critical hit chances by 30% for 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed Smoke Flash."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now also applies a placate effect on targets (requires a tohit roll)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance cost increased from 7.8 to 12.28."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed from a foe targeted cone to a PBAoE with a 25ft radius."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time increased from 1.07s to 1.67s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animation and description changed to match the changes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now takes Taunt enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now takes Sleep enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now checks for Psionic defense in addition to AoE defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This effectively merges Smoke Flash and Blinding Powder into a single power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge lowered from 120s to 90s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sleep magnitude increased from Mag 2 to Mag 3."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confuse magnitude increased from Mag 2 to Mag 3."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Confuse scale decreased from 20 to 12."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Blinding Powder [Stalkers/Scrappers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now increases critical hit chances by 30% for 10s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Smoke Flash [Stalkers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power is being replaced with Bo Ryaku."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Smoke Flash [Stalkers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you had this power in your build, it will be replaced with Bo Ryaku next time you log in."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Smoke Flash [Stalkers]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All slotted enhancements and sets will still be in the power but you might want to change some of them."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Smoke Flash [Blaster]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cast time reduced from 1.83s to 1.67s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Seishinteki Kyoyo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge increased from 60s to 90s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Seishinteki Kyoyo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+Endurance reduced from +30% to +20%."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Seishinteki Kyoyo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +20% Recovery for 30s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Seishinteki Kyoyo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +30% resistance to -End and -Recovery for 30s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Shinobi-Iri [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants a +65% for chance for critical opportunity hit on ST attacks and +30% for AoE attacks."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Shinobi-Iri [Sentinels]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer grants a damage buff while stealthed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power should now show a ring around the power showing if stacks need refreshing in the next 10 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Recovery debuff duration lowered from 45s to 10 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Consume Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now applies -20% recovery for 35s after the -100% expires."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Mask Presence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed power description."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Radiation Therapy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an exponential flag in Radiation Therapy for some ATs."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Shield Charge",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power is now a true Pseudopet (this should not affect how the power works outside inheriting the caster's caps)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Shield Charge",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This attack should now break hide."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fast Healing (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +15% Recovery."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fast Healing (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +20% Resistance to -Recovery."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fast Healing (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now accepts Endurance Modifcation enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fast Healing (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers have lacked the Recovery bonus that other ATs get, which is more noticeable with the introduction of Up to the Challenge (a toggle)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Quick Recovery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now grants +20% Resistance to -Recovery."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Quick Recovery",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Regeneration version of this power already had this, and it makes sense to change it here, rather than have two different versions of this power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power can now be activated while conscious."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If used while conscious, the power will:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heal you for 25% of your base HP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apply a scale 0.5 Fire, Cold, Energy, Negative, Toxic and Psionic resist buff for 10 seconds (Does not stack with itself)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apply a scale 0.5 Fire, Cold, Energy, Negative, Toxic and Psionic resist buff for 60 seconds (Does not stack with itself)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recharge in 90s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You will gain an auto-self rez if you are defeated in the next 35 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If used after being defeated, the power will apply the current effects:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apply a +100% recharge buff for 90 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apply a scale 1 Fire, Cold, Energy, Negative, Toxic and Psionic resist buff for 90 seconds (Does not stack with itself)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer provides Damage or ToHit buffs."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer give a damage buff or crash."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Resurgence",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now takes Resist Damage enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Reconstruction (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power has been replaced with Up to the Challenge, a regenerative toggle that does not require targets in range to grant it's regen buffs and currently available to Sentinels."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Reconstruction (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The healing is now moved to Resurgence."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Reconstruction (Stalkers)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players that already owned Reconstruction will now have Resurgence in their builds instead."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Rise to the Challenge",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now grants 7.5% resistance to -regeneration for the first target and 2.25% for each target for a maximum 30% resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Up to the Challenge",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power now grants 15% resistance to -regeneration."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Obscure Sustenance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer lists AoE/Negative types on its attack types."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Obscure Sustenance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now accepts endurance modification enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Obscure Sustenance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "10% +Recovery duration increased from 30s to 60s."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Regeneration (Sentinels)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power now accepts accurate healing sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Sonic Thrust",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Debuff Res increased from scale -0.8 to -1.0."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Strident Echo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Debuff Res increased from scale -0.8 to -1.0."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Attune",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now inflicts -0.6 scale -Damage Resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Attune",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now inflicts -1.0 scale -Debuff Resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Earsplitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Debuff Res increased from scale -0.8 to -1.0."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Earsplitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-Debuff Res corrected from Ranged to Melee debuff scalar."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Earsplitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Correctly grants Assassin's Focus"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Critical Hits now only apply to the main target (just like the normal damage)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers can now slot Universal Damage sets in Lightning Clap."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Storm Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cleaned up Storm Blast enhancement text showing some duplicate values."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Head Splitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer crits for special damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Head Splitter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brutes can now slot Melee AoE sets in Headsplitter."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tanker - Fiery Breath",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No longer has a range requirement for main target bonus damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tanker - Fiery Breath",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc increased from 30* to 40*. Damage unchanged."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Power Siphon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stacks now correctly buff Psionic and Toxic damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Soothing Wave",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage debuff increased from scale 0.75 to 0.85."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tide Pool",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage debuff increased from scale 1.5 to 1.7."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tide Pool - Frenzy",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage debuff increased from scale 0.75 to 0.85."
+    }
+  ]
+}

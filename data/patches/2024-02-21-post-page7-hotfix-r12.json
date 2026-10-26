@@ -1,0 +1,34 @@
+{
+  "title": "Post-Page7 Hotfix",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/post-page7-hotfix-r12/",
+  "published": "2024-02-21T02:08:00Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 12,
+  "changes": [
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a client crash that could occur if a character with an invalid key binding profile name was loaded. There were a small number of these that somehow ended up in the database. We previously updated the character records so they could successfully log in, but this patch has failsafe measures to prevent invalid data from ending up in that field to begin with and resolves the issue permanently."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a client crash that could happen if a drag event occurred on an unexpected mouse button. This could happen with extended buttons (4 and 5) as well as in some circumstances if the key bindings for mouse buttons had been removed or overridden."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the inability to set the old Window Scale option in the Options UI. This is one of the few settings that must be applied in order to take effect, but it got missed because it's a legacy option that normally does not show up unless it has been previously altered. Changing this option will now light up the Apply Now button."
+    }
+  ]
+}

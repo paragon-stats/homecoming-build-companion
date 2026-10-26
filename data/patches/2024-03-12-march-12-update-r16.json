@@ -1,0 +1,146 @@
+{
+  "title": "March 12 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/march-12-update-r16/",
+  "published": "2024-03-12T14:51:22Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 16,
+  "changes": [
+    {
+      "category": "Events",
+      "subsection": "Spring Fling",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Spring Fling Event has now ended."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Arsenal Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Liquid Nitrogen: Now properly inherits slow enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Arsenal Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tri-Cannon: This pet can now taunt Raid Tagged targets. Can now proc Containment damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Arsenal Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tear Gas: This pseudopet now does damage against held targets. Now takes damage enhancements and sets."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added safety measure to prevent a bug caused by simultaneous cut scenes triggers."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Honoree's arrival cut scene mentions 'Damage Neutralizer' specifically to hint to players that he's invincible at first."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Mission 5",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some adjustments to Ruin's room to better communicate that he can't be saved nor fought."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Striga Isle",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed two missions in Mage-Killer Tatiana's arc where certain bosses would not activate their combat AI at the correct time."
+    },
+    {
+      "category": "Mission Architect",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed interrupt time from the NPC versions of Trip Mine and Time Bomb."
+    },
+    {
+      "category": "Consignment House",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that could cause the auction server to return sale history for the wrong item."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nictus",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized taunt values and removed -Range on Dark Dwarf Alpha mobs."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized taunt values and removed -Range on Cannon Rook mobs."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cannon Rook's Sprocket companion weapon now mourns upon their Rook's defeat."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cannon Rook's back key now stops turning on death like other Clockwork."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Psychic Clockwork",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assembler Lord's back key now stops turning on death like other Clockwork."
+    },
+    {
+      "category": "Aether Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Benevolab vendor dialog to the now shortened 'Prismatic Aether' salvage name."
+    },
+    {
+      "category": "Looking For Group",
+      "subsection": "Rikti Mothership",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that was preventing queuing for this event with lower level characters."
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "title": "July 30 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/july-30-update-r23/",
+  "published": "2024-07-30T13:02:59Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 23,
+  "changes": [
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All players in the Labyrinth zone now have inherent intangibility, allowing them to move through other players for optimal movement freedom."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cursed Plague Howl: Base accuracy doubled, recharge halved; No longer hits pets."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tweaked the global spawn rates to off-load the zone's spawn cap by 25%."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This should not be particularly perceptible to players, but should help with zone performance and mob spawn consistency."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the Minotaur's rotating Mez resist's strength by 50%."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minotaur defeat badge is now auto-granted to everyone in the arena on defeat."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed targeting range of the spawn Gladiator power on the Minotaur to prevent them from spawning in the lobby."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that would cause the teleport prompt to pop-up during the Minotaur's attempt multiple times after 75% HP."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the Minotaur was re-spawning sooner than an hour after defeat."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where interact-able Gladiators In The Fog would run off after becoming hostile."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the LFG description for the Labyrinth referencing deprecated elements."
+    },
+    {
+      "category": "Labyrinth of Fog",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that would cause the randomizer doors to fire twice and move the player incorrectly."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Conqueror of the Labyrinth' - Fix the badge's hint referencing an incorrect badge name."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Protector of Paragon' - Fixed the badge using the wrong art icon."
+    },
+    {
+      "category": "Aether Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the two Vanguard HVAS costumes to the costume pop-menu."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Marine Affinity to Architect Entertainment and Doppelganger power entries."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Barrier Reef's Water Only themes to be selectable."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Imperious Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Daedalus having the incorrect version of Overcharge."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved Blarf's wet floor sign behind his spawn point so he's less likely to get stuck on it returning home."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a long-standing (20+ year old) FX-related leak that could cause performance degradation over time and frame drops on the local client until the player switched zones."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a map server crash issue that could be caused by owning a very large amount of powers."
+    }
+  ]
+}

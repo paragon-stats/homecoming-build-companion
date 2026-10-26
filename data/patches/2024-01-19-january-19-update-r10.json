@@ -1,0 +1,18 @@
+{
+  "title": "January 19 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-6/january-19-update-r10/",
+  "published": "2024-01-19T14:13:42Z",
+  "issue": "issue-27",
+  "page": "page-6",
+  "revision": 10,
+  "changes": [
+    {
+      "category": "System",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash that could occur early in client startup during graphics initialization. This crash could be triggered by having one or more pieces of third-party software installed that adds virtual display adapters, such as Spacedesk, Parsec, Meta/Oculus PCVR software, etc., and was more likely with a combination of them installed."
+    }
+  ]
+}

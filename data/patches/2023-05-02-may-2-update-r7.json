@@ -1,0 +1,114 @@
+{
+  "title": "May 2 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-6/may-2-update-r7/",
+  "published": "2023-05-02T14:00:00Z",
+  "issue": "issue-27",
+  "page": "page-6",
+  "revision": 7,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Water Jet (quick) to use PvP Damage Modifier tables in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Full Auto's power description to accurately reflect the Page 6 changes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Flamethrower's endurance cost being too high."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed MISS floaters and combat log spam being incorrectly delayed on some toggle powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Costumes",
+      "archetype": "Fixed \"Auras",
+      "powerset": "Wealthy",
+      "power": "Trail",
+      "text": "Combat\" fx not displaying during combat."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some NPC weapons disappearing after being drawn."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed VEATS > Huge > Bane Spider missing left leg."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed female sheathed Impervium Ninja Blade impaling the wielder through the chest."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Scepter of Stheno subsequently sticking for a sustained span when un-sheathed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added resized click volume for Supergroup inspiration containers instead of just lowering the originals."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Dimensional Ripple Sky for bases which were using the wrong textures."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tweaked the lighting blend mode of the new SG letters to match the old letters. This change is only applicable to outdoor lighting."
+    },
+    {
+      "category": "Powers",
+      "subsection": "System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some client messages now go to a client.log file in addition to the debug console to aid in troubleshooting."
+    }
+  ]
+}

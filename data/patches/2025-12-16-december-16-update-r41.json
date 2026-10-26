@@ -1,0 +1,514 @@
+{
+  "title": "December 16 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-3/december-16-update-r41/",
+  "published": "2025-12-16T15:07:01Z",
+  "issue": "issue-28",
+  "page": "page-3",
+  "revision": 41,
+  "changes": [
+    {
+      "category": "Tasks",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in a clue."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "General - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swap power the War Chassis steals for Time Manipulation from Time Crawl to Slowed Response."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 2",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos ambush no longer attacks disguised Automatons."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 2 - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Add a bubble of water that makes it very obvious when the Leviathan/Arachnid's Bounty is held or not."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 3 - Advanced Mode",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enlightened Subjugator Psionic Pulse now deals one-fifth damage to pets."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Mission 4",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Map improvements to make it less likely finale Nemesis get caught on the lips of platforms when trying to knock them off."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reward table for defeating the Minotaur now offers 10 Prismatic Aether rather than 5 Prismatic + 10 Unstable."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduce player cap in the Labyrinth to 35 to manage lag in the zone during raids."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing beacons in Outer Darkness that was causing the things that live there to vanish."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed new MM pet classes to receive zone Labyrinth Shifts."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix attempt for Mr. G (Primal) sending players to the Labyrinth for missions."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Girl In The Darkness no longer has an about me page."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix missing space in one of the darkness captions."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Labyrinth Call now applies while dead, except the bonus Inf/Exp, which still requires being alive."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The target cap for the mythic fog anchor in the Font is now uncapped."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Named bartenders in Pocket D (Sam, Isaac, Chaz, etc) now sell inspirations."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "City Badge Tracker no longer automatically tracks characters who enter Pocket D if they have less than 500 badges."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix DynGeo looking for outdated event token."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Incarnate Conversions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Put influence-costly conversions for Incarnate progress on Prometheus under option 'What can you do for me?'."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix Sally not dropping the pet version of themselves and buffed drop rate so it's still a common pet."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Vanity Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed drop rate on Mini Nemesis pet being incorrectly set too low, now properly 10% per player."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Prestige Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "'Min FX' added as customization option to Effect: Spidernado."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Experience",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minor tweak to the XP curve, rounding Experience Required down to the nearest 100"
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Experience",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Example: Level 40 requires 8,401,500 experience instead of 8,401,519."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix the display of gendered titles (like \"The Once and Future King/Queen\") in the personal info window when hovering over a badge."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Heldenjaeger - 'Brass Tuesday'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Pstring errors with Heldenjaeger Ouroboros intro text."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Generals and Tacticians now spawn in regular Nemesis content."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Remove Mini Nemesis Bombs from Invasion GM Nemesis."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed typo on General description."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Pstring errors with Invasion GM Nemesis."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Drill March rifle persisting after behavior ends."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Vengeance not affecting Shadow Shard Reflections."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Nemesis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Created special definition of Mysterious Soldier for General Z arc and Dap-Dap mission to buff non-Nemesis allies."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "The Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Corrupted Crey melee attacks not being properly split smashing/special damage, added missing continuingfx to Corrupted Cryo Tank attacks."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "The Awakened",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added chance for disorient to Corrupted Power Tank Haymaker."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Crey",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 40% resistance to all damage types to Crey Juggernaut Personal Force Field, increased duration from 15s to 20s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Incinerate having mismatched activation and root times, fixed using wrong damage table, fixed using wrong continuingfx."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Crane Kick using wrong damage table, adjusted to scale 1.96 melee damage."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Dragon's Tail using wrong damage table, fixed checking melee instead of AoE defense."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Echo Chamber using copypasted Blaster replace hold setup, removed controller overpower."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Synaptic Overload to a true chain, fixed checking ranged instead of AoE defense, removed controller overpower."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Moment of Glory damage buff from +100% to +25% decaying, matching player version."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Death Cry missing AoE and Fire defense type checks, fixed summoning multiple Corrosive Blood patches, fixed missing an endurance cost, fixed having an activateperiod instead of a rechargetime, fixed part of its damage using wrong damage table, Corrosive Blood patches now do scale 0.4 toxic damage per tick instead of scale 0.1 damage stacking DoT for 15 seconds and damage component is no longer autohit."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "9th Generation Classified Protector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entropy Shield is now a proper psuedotoggle suppressible by mez and end drain, removed Confuse protection, added end drain resistance and recharge buff."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Demolitionist",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Incinerate having mismatched activation and root times, fixed using wrong damage table."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Demolitionist",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Fire Ball using wrong damage table, fixed not being properly split fire/smashing damage."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Demolitionist",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Seeker Drones using robot skeleton activation animation, increased recharge from 60s to 90s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Demolitionist",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Purging Bomb setup being broken (likely happened when Time Bomb got converted to Remote Bomb)."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Demolitionist",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Accelerate Metabolism damage buff from 22% to 20%, increased recharge from 90s to 211s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Fire Breath using wrong damage table"
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Repulsing Torrent damage from scale 1.2491 to scale 1.1, decreased recharge from 20s to 12s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Force Bolt using wrong damage table, added replacing -20% resistance debuff for 15s."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deflection Shield now hits up to 3 targets on cast, no longer checks positional defenses, defense buff increased from 15% to 20%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Classified Crey Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Converted Dispersion Bubble from auto power to a true toggle, no longer checks positional defenses, defense buff increased from 10% to 15%."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorians",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Battle Maiden's Crossbow to 100ft down from 310ft making it possible to move her with Taunt during the fight."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "Praetorians",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Siege/War Walker Nano Reconstruction recharge from 30s to 60s, removed unresistable flag from heal."
+    },
+    {
+      "category": "Enemies",
+      "subsection": "UPA",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Resistance Runesoldiers/Specialists/Seer Beholders unable to activate powers after level 54."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shorten the 'Enhancements' link on the tray to 'Enhance' to avoid overlapping with the collapse arrow of powers tray."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Don't hide Convert link in the enhancements window if you don't have converters."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Corruptor/Defender Freeze Ray and Corruptor Bitter Freeze Ray: Missing the target>kHeld > 0 requirement for -KB"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Apex Predator was not granting the +Acc buff to henchmen or caster."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spelling fixes in Attune, Sonic Clap, and Sandman's Whisper."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Timing adjustments on the hit for slow assassin's whisper."
+    }
+  ]
+}

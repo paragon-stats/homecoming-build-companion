@@ -1,0 +1,338 @@
+{
+  "title": "November 5 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/november-5-update-r28/",
+  "published": "2024-11-05T14:51:23Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 28,
+  "changes": [
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High score counter added to the Font of Malevolence."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Appears in the navigation bar when in the Font."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tracked per hour reset cycle, high score is recorded per server and persists."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Additions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Does not impact rewards, just statistical information for players."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enhanced visuals on the Font of Malevolence doors."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved movement control on the Minotaur In The Fog."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achyls given increased resistances to Slow, Endurance Drain, and Immobilize."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achyls HP scaling changed to scale from 8 players up to 40 players, previously 16-32; Amount of HP per player increased slightly."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avatar of Achyls' Malevolent Explosion recharge increased to 45 seconds from 30 seconds."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased delay between warning and execution on Malevolent Explosion to 5 seconds from 2 seconds."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog are now 50% larger so they're easier to see."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog now produce a bubble geometry surrounding their area of effect."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mythic Fog now plays a float message when changing location."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fall-off time for Anchor buff increased to 7 seconds from 3 seconds."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now activate powers in the True Core of the Labyrinth."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that caused many GMs to spawn in the Font of Malevolence."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that caused the Labyrinth zone to unload if idle."
+    },
+    {
+      "category": "Zones",
+      "subsection": "Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Halloween Minotaur costumes can now activate the secret cow door."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Council Super Soldier is now less super."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "5th Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Lt/Boss Rifle Butt missing an endurance cost."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "5th Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Steel Valkyrie Missile Launcher dealing smashing instead of fire damage."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "5th Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Robot defense having duplicate Terrorize protection."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "5th Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Krieger Dragons Tail having scrapper crit chance."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Banished Pantheon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Storm Shaman Hurricane omitting certain archetypes from range debuff."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Carnival of Shadows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the pet version of Illusionist Phase Shift not suppressing when mezzed."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Carnival of Shadows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Vanessa's Psyche recovery debuff not affecting enemies."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Carnival of Shadows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Carnival Mallet attacks redrawing off each other."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Crey",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Paragon Protector Spine Throwing missing toxic damage over time."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Crey",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Paragon Protector Elite Incinerate being an AoE."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Freakshow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Super Stunner Paralyzing Blast not affecting players."
+    },
+    {
+      "category": "NPCs",
+      "subsection": "Freakshow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Super Stunner using the wrong tinted FX for Reserve Power."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Giant Monsters - Labyrinth of Fog",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monsters defeated in the Labyrinth of Fog no longer reward Monstrous Aether per the amount encountered there."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "Costume Matrix Macro Accolade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed incorrectly named 'Mini Seed of Hamidon' to correct 'Mini Seedling of Hamidon'."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Energy Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an FX error in fast cast Energy Transfer."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing defense debuff continuing FX to various NPC powers."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed FX / animation desyncs for various NPC weapon powers."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the attack types used for defense checks for various NPC powers."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the AIGroup / NPC behavior for some powers."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected typos in various missions and dialogues."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the level ranges for critter spawns."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved the Nutrient Rich badge to a more appropriate location in the badge list."
+    }
+  ]
+}

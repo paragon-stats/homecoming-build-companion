@@ -1,0 +1,322 @@
+{
+  "title": "June 24 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-2/june-24-update-r36/",
+  "published": "2025-06-24T15:07:02Z",
+  "issue": "issue-28",
+  "page": "page-2",
+  "revision": 36,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Armor > Consume Psyche / Devour Psyche"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor > Consume Psyche / Devour Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where this power would pop up red \"First Target Only\" popups every time it was used"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor > Consume Psyche / Devour Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the Res(Heal) debuff was being suppressed"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor > Consume Psyche / Devour Psyche",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Armor > Memento Mori"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor > Memento Mori",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a timing issue with the conscious usage auto self rez"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Psionic Armor > Memento Mori",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor >Soul Transfer"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Armor >Soul Transfer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a timing issue with the conscious usage auto self rez"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Dark Armor >Soul Transfer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self Rez"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Self Rez",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will now be stealthed in PvE while under the effects of self-rez Untouchable buffs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Self Rez",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Control > Conductive Aura"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Control > Conductive Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the recovery/regen buff from this power was not stacking"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Control > Conductive Aura",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor > Grounded"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Armor > Grounded",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Off-ground duration of KB protection dialed back to 5 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Electric Armor > Grounded",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text issues"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Text issues",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where some powers had too many back-to-back line breaks"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Text issues",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pyrotechnic Control > Glittering Column"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to bugs with this power, various aspects were reimplemented"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The power should no longer grant some players a Glitter Explosion power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "-ToHit debuff moved to it's own Aura Power, separate from the taunt and explosion."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This aura can hit 16 targets in a 15ft radius and the effect lingers for 10s"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The aura starts from the moment the Column is created, but requires a ToHit check to apply per tick."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Pyrotechnic Control > Glittering Column",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Robotics > Maintenance Drone"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics > Maintenance Drone",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where this power was not spending the pet's HP"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Robotics > Maintenance Drone",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration > Instant Healing [PvP only]"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Instant Healing [PvP only]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Reduced unenhanceable regeneration from scale 6.00 to scale 4.00"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Instant Healing [PvP only]",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration > Reactive Regeneration"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Reduced base +regeneration from scale 2.00 + to scale 0.80"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Reduced +regeneration stacks from scale 0.25 to scale 0.08"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration > Reactive Regeneration"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "[PvP only] Remove resistance to -regen in PvP"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Regeneration > Reactive Regeneration",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tankers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers were inadvertently boosted in radius when they were not intended to. These radius boosts have been rolled back."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tankers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee > Dark Consumption"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Tankers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee > Soul Drain"
+    },
+    {
+      "category": "Badges",
+      "subsection": "City Badge Tracker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased max memory limit on the tracker's script to prevent it from crashing when used by a lot of players over time."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Erin West - 'Cutting Back Old Growth'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixes to bugs in Mission1_2 and Mission 3_5."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sun and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix to wrong actor speaking in Kogan tip mission."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "Robert Kogan - 'The Sun and the Spotlight'",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixing looping dialog."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "New Player Experience",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Update to Welcome Message Dialogue to account for Roleplaying Role and thematic font colors."
+    }
+  ]
+}

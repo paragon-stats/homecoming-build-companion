@@ -1,0 +1,170 @@
+{
+  "title": "March 19 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-7/march-19-update-r17/",
+  "published": "2024-03-19T14:48:45Z",
+  "issue": "issue-27",
+  "page": "page-7",
+  "revision": 17,
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Sleep Grenade",
+      "text": "Fixed issue that required the target to be held for it to do damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Arsenal Control",
+      "power": "Tri-Cannon",
+      "text": "The aura on this power should now taunt non-raid tagged foes. Changed the power description for clarity."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Devices",
+      "power": "Gun Drone",
+      "text": "The aura on this power should now taunt non-raid tagged foes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Epic",
+      "power": "Web Envelope (Defender)",
+      "text": "Damage in this power should no longer spam Scourge messages."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Super Reflexes",
+      "power": "Elude",
+      "text": "Corrected Set IO slotting for various Elude powers. All Elude powers now take Defense, EndMod, Running, and Universal Travel sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Bug Fixes",
+      "archetype": "",
+      "powerset": "Sonic Resonance",
+      "power": "Sonic Replusion",
+      "text": "This power can now slot Accuracy boosts."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Special Assault Suits now change costume and play an FX at 25% HP to provide 'near death' visual cues to players for informing them of imminent incoming on-defeat debuffs."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "Moonfire's Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed leftover references to Dr. Engles."
+    },
+    {
+      "category": "Missions",
+      "subsection": "Dr. Francois",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Portal Tech to Portal Corp in Dr. Francois clues."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Council Sonic Blast, Heavy Sonic Blast, and Cannon Heavy Sonic Blast rifle FX."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Council",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed another high level Council mob spawning outside their level range."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Circle of Thorns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed AI for Ruin Possessed Scientists."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Luddites",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Luddite minions all using same name."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Rikti",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Rikti Portals objects found in specific missions from infinitely spawning Rikti enemies."
+    },
+    {
+      "category": "Enemy NPCs",
+      "subsection": "Tsoo",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Ice Wind bosses' Storm Kick dealing 0 damage."
+    },
+    {
+      "category": "Giant Monsters",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added scaling HP to Giant Monsters when in the presence of more than 8 players."
+    },
+    {
+      "category": "Giant Monsters",
+      "subsection": "Jack In Irons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved odds of multiple Red Cap reinforcements spawning per player from Ambush."
+    },
+    {
+      "category": "Giant Monsters",
+      "subsection": "Jack In Irons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambushing Red Caps now correctly Ignore Combat Mods."
+    },
+    {
+      "category": "Giant Monsters",
+      "subsection": "Eochai",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Separated Pumpkin Patch behavior against players and critters; Lowered player damage scale to 0.22 from 0.3, and critter to 0.11 from 0.3."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed various typos in descriptions, powers, and strings."
+    }
+  ]
+}

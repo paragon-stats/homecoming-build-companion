@@ -1,0 +1,34 @@
+{
+  "title": "June 7 Minor Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-27/page-6/june-7-minor-update-r8/",
+  "published": "2023-06-07T07:15:15Z",
+  "issue": "issue-27",
+  "page": "page-6",
+  "revision": 8,
+  "changes": [
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an ancient and longstanding bug in the render code that's been around since retail and could cause random memory corruption under very specific circumstances."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed some extra debugging code that was inserted to locate the root cause of and finally resolve the previous issue."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Diagnostic",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The diagnostic client no longer shows the debug console by default. It can still be enabled using the launcher option if desired."
+    }
+  ]
+}

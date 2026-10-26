@@ -1,0 +1,50 @@
+{
+  "title": "February 14 Update",
+  "url": "https://forums.homecomingservers.com/patch-notes/issue-28/page-1/february-14-update-r33/",
+  "published": "2025-02-14T14:05:00Z",
+  "issue": "issue-28",
+  "page": "page-1",
+  "revision": 33,
+  "changes": [
+    {
+      "category": "Events",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Move Sigil, Kadabra Kill, and the Ouroboros crystal down to the main floor where it's less likely to cause traffic jams."
+    },
+    {
+      "category": "Events",
+      "subsection": "Sister Psyche's Wedding",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pause the ceremony when no players are in the map; this fixes an issue with the post-cutscene spawns not triggering correctly if there are no players in the map."
+    },
+    {
+      "category": "Events",
+      "subsection": "Sister Psyche's Wedding",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused the hero version of the Nemesis Plot to consider the heroes defeated by default."
+    },
+    {
+      "category": "Events",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Grant 'Entrusted With The Secret' to those entering the wedding flashback mission."
+    },
+    {
+      "category": "Events",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cupid's Crush: Add missing text for Universal Damage enhancement conversion."
+    }
+  ]
+}
