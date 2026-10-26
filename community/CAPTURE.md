@@ -1,7 +1,10 @@
 # Community Knowledge Capture Workflow
 
-This is the manual procedure for adding forum posts, wiki articles, and other community-curated content to the project. The Homecoming forum and the Unofficial Homecoming Wiki block AI user-agents,
-so we capture content **manually** through the Chrome browser + Claude extension, never via scraping.
+This is the procedure for adding forum posts, wiki articles, and other community-curated content to the project.
+Capture is operator-run, by one of two routes that produce the same file:
+the Chrome browser + Claude extension for a single thread, or `python -m scripts.forum_scrape.guides` for the guide-shaped
+opening posts of whole forum sections ([`docs/automation/forum-guides-and-patch-notes.md`](../docs/automation/forum-guides-and-patch-notes.md)).
+The forum's content signal is `ai-train=no, use=reference`; both routes keep attribution and the source URL on every capture, and the autonomous AI crawlers the site blocks are not what either route is.
 
 ---
 
