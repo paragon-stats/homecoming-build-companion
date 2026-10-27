@@ -1,0 +1,91 @@
+{
+  "title": "[Beta] Patch Notes for May 2nd, 2021",
+  "url": "https://forums.homecomingservers.com/topic/28492-beta-patch-notes-for-may-2nd-2021/",
+  "published": "2021-05-02T16:11:18Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many, many absorb powers were missing their combat log messages - they will now use the following strings:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You grant {PlayerDest} {Damage} points of absorption over time with {PowerName}"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "{PlayerSource} grants you {Damage} points of absorption over time with their {PowerName}"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You receive {Damage} points of absorption over time from your {PowerName}"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Full list of affected powers:"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Echo Plaza",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added P2W vendor by the hospital in order to easily get the new Only Affect Self and Disable All powers"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix basic Freakshow Tank Swipers and Freakshow Tank Smashers counting twice for the Tankbuster badge"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix basic Watchers and Overseers counting twice for the Visionary badge"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(\"Basic\" in this context means that they're not special versions used in the Catheral of Pain or alternate looks)"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Vespillo's Pass (ITF mission 3) minimap freaking out at the entrance and in the final area"
+    }
+  ]
+}

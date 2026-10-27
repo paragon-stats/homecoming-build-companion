@@ -1,0 +1,67 @@
+{
+  "title": "[Beta] Patch Notes for August 21st, 2021",
+  "url": "https://forums.homecomingservers.com/topic/30961-beta-patch-notes-for-august-21st-2021/",
+  "published": "2021-08-21T21:09:11Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Power can now trigger in PvP (Known Bug, it still isn't doing this)"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "Electrical Affinity:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defibrillate: Reduced the Endurance Drain to half."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "Super Reflexes PvP tweaks (All ATs):",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased PvP Elusivity in Focused Fighting, Focused Senses and Evasion to 30%."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "EMP Arrow PvP tweaks:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Singularity's Gravitation Pull:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "EMP Arrow PvP tweaks:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set a PvEOnly flag on the pull effect that requires Player targets. This should prevent pulling in PvP, but allow critters who summon a Singularity to still utilize the power on players in PvE."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "EMP Arrow PvP tweaks:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toxic Web Grenade:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "EMP Arrow PvP tweaks:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set the stacking on the -Recharge effect to kReplace in PvP. This will still stack in PvE."
+    }
+  ]
+}

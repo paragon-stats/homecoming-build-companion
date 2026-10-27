@@ -1,0 +1,971 @@
+{
+  "title": "Patch Notes/2009-01-22",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-01-22",
+  "published": "2009-01-22",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Combined",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players using trial accounts can be sidekicked again."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Entangling Arrow should now accept Slow enhancement sets."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Howling Twilight: When used on another player, this power's prompt will advise the player that they will be revived with full health and endurance instead of partial health and endurance."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Matched cast time to animation changes made to Dual Blades Power Slice and Electrical Mastery Charged Bolt."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified the amount of Recharge Resist in Shields Grant Cover. It is now a static 30% resistance at all levels."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Personal Force Field - All versions now suppress for 10 seconds when clicking on any mission object."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Defense/Shield Charge: This power will now do one tick of damage at 2.4 scale damage instead of one for 1.7 and another for .7."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Mission Teleporter power (included with the purchase of the Digital Download version of City of Heroes) will now refuse to send players to restricted zones they are not high enough level to enter or to Tutorial zones."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the PVP duration of Wide Area Web Grenade for the VEAT Wolf Spider powerset."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with Super Reflexes Focused Fighting giving Confuse Protection instead of Resistance in PVP."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Group Invisibility no longer causes travel suppression in PVP"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind - Storm Summoning - Thunder Clap - Corrected Stun duration"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind - Poison - Paralytic Poison - Corrected Hold duration"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Energy Aura - Overload - Now correctly provides a small elusivity bonus in PVP."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker - Stone Armor - Minerals - Now provides the correct amount of elusivity."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Ninjitsu - Ninja Reflexes adds the correct amount of elusivity"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor - Leviathan Mastery - School of Sharks now immobilizes for correct duration."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind - Leviathan Mastery - School of Sharks now immobilizes for correct duration."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster - Force Mastery - Personal Force Field - Now stacks correctly with Defense buffs in pvp"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender - Force Field - Personal Force Field - Now stacks correctly with Defense buffs in pvp"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller - Force Field - Personal Force Field - Now stacks correctly with Defense buffs in pvp"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind - Force Field - Personal Force Field - Now stacks correctly with Defense buffs in pvp"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Powers: PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator - Mace Mastery - Personal Force Field - Now stacks correctly with Defense buffs in pvp"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated the Arena UI: dropped \"Tactical Start\" and \"No Stealth\" added \"No Travel Suppression\" and \"No Diminishing Returns\""
+    },
+    {
+      "category": "Combined",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can once again start Rated Matches."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Autonomous Expert System - can now attach 9 auxiliary control items, and accepts all auxiliary items the Supercomputer will accept."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Orrery - can now attach 9 auxiliary control items, and accepts all auxiliary items the Orbits of Control accept."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in base editing where wall mount objects could not be moved up or down."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer automatically receive the badge hint for the Clothes Horse badge without earning any Halloween costumes."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "History badges should now properly award and have their progress bars advance correctly"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused some players to lose their Global Friends list."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chat Channel colors assigned through the Options Menu will now correctly appear in-game."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Professor and Caregiver/Pain Specialist badges will display a hint on how to obtain them whether or not you've logged out in a hospital or university."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem that could cause the day job buff icon not to display at certain auction houses"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected IO Set slotting capabilities for Munitions Mastery Sleep Grenade and Surveillance."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Leveling Pacts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug where leveling pact rewards would sometimes not be awarded until the member changed zones or logged out."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Leveling Pacts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If a pact is broken while a member is offline, the offline member will now receive the xp and influence owed to them by the pact since they logged off."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Multiple Builds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where trades would not work properly after switching builds."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Multiple Builds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Builds can now be renamed: the select build screen at the trainer includes an option to rename your build."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Multiple Builds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that made purple IO sets invisible in Build 2."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Merit Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause completing the Positron's taskforce to grant diminished merit rewards upon completing the Synapse taskforce if the Synapse taskforce was completed within 24 hours."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Merit Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause completing the Synapse's taskforce to grant diminished merit rewards upon completing the Positron taskforce if the Positron taskforce was completed within 24 hours."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug when players could lock a contact's store open."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where moving away from a contact with the store open caused a broken dialog to appear."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Right handed weapons should be visible when customizing shields"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several Caves mission maps that had missing walls in some areas."
+    },
+    {
+      "category": "Combined",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed extra tab from Clues window."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where heroes would see the Villain/Reformed badge progress bar. This badge should be completely unobtainable by heroes. Those players already with the badge will keep the badge."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Villain Disruptor badge should now function properly and progress when the player defeats signature and safeguard villains."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Mastery/Static Discharge: This power should now correctly take target AOE enhancement sets instead of ranged damage sets."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Buckshot - Reduced animation time to 0.9 seconds."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Beanbag - Reduced animation time to 0.9 seconds."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Sniper Rifle - Reduced animation time to 0.67. (Interrupt time not changed)"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Flame thrower - Reduced animation time to 2.33 seconds and DOT effect now starts immediately."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Ignite - Increased recharge to 20 seconds."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Full Auto - Reduced animation time to 4 seconds."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mental Manipulation - Drain Psyche - endurance recovery bonus no longer reduced by recovery resistance"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control - Fly Trap - Fly Trap had its resistances set too low Resistances increased to intended levels."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination Heat Loss once again grants the correct amount of recovery per target."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Follow up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Blinding Feint - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Broad Sword - Build up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Melee - Build up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Katana - Build up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts - Build up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quills - Build up - Damage bonus is no longer reduced by the player's own resistance."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Typhoon's Edge - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Sweeping Strike - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - one Thousand Cuts - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines - Ripper - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts - Dragons Tail - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly modified FX on hands for Pyre Mastery - Melt Armor."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe - Pendulum - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe - Whirling Axe - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Typhoon's Edge - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Sweeping Strike - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - one Thousand Cuts - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Melee - Whirling Hands - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Crowd Control - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Shatter - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Whirling Mace- Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arctic Mastery/Ice Storm: Fixed a bug where having Arctic Mastery/Shiver and 1 other power in the pool wouldn't unlock Ice Storm."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Mastery/Stalagmites: Fixed a bug where having Earth Mastery/Quicksand and 1 other power in the pool wouldn't unlock Stalagmites."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Mastery Telekinesis now has the 12 second forced Detoggle in PVP that other versions of this power have."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in Wheel of Destruction graveyard mission that sometimes caused a crash when the boss spawned."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains that earn the Shrouded badge should not earn a hint for the Portal Jockey accolade."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mercy Isle: The Day Job greeter was getting hoarse from constantly yelling at passers by. Players now need to click on this NPC to get a description of Day Jobs."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standing near the Black Helicopter in Grandville will no longer show two day job power icons. Only the Pilot day job icon will appear, this was done because only the Pilot Day job badge was receiving credit while standing in the area."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the Megalomaniac accolade's potency by 33% and removed its ability to enhance knockback powers, this puts it in line with the hero equivalent Vanguard Medal accolade power."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Aura/Entropy Shield: This power should now grant the user teleportation resistance even if the user is held, stunned or asleep."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed flags which allowed Brute Rise to the Challenge to not be detoggled by status effects. It now works the same as the Tanker and Scrapper versions."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe - Pendulum - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe - Whirling Axe - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Typhoon's Edge - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Sweeping Strike - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - one Thousand Cuts - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Melee - Whirling Hands - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee - Thunder Strike - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Crowd Control - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Shatter - Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace - Whirling Mace- Corrected range and radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Buckshot - Reduced animation time to 0.9 seconds."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Beanbag - Reduced animation time to 0.9 seconds."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Sniper Rifle - Reduced animation time to 0.67. (Interrupt time not changed)"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Flame thrower - Reduced animation time to 2.33 seconds and DOT effect now starts immediately."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Ignite - Increased recharge to 20 seconds."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle - Full Auto - Reduced animation time to 4 seconds."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Assault - Drain Psyche - endurance recovery bonus no longer reduced by recovery resistance"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery/Summon Tarantula: Fixed a problem with this power where it wouldn't correctly grant with some power combinations."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Assault - Whirling Hands - Corrected Radius to 8 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soldiers Medic once again loses \"Brawl\" as he is upgraded."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thug Bruisers Hand Clap should now cause Knockdown, rather than Knockback."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery - Power boost - Reduced bonus"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem where certain mastermind slash commands could cause erroneous error messages when a 48 month buff pet was summoned."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified FX for Shadow Meld Patron Power"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Altered Teleport Foe so that it disables the :automatic\" critical ability of Stalkers for 4 seconds if it successfully hits (not necessarily moves) a target."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - Sweeping Strike - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades - one Thousand Cuts - Corrected range and radius to 7 feet"
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades/Thousand Cuts: Increased this power's range from 7 to 10."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee - Thunder Strike - Corrected range and radius to 7 feet"
+    }
+  ]
+}

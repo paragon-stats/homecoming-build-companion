@@ -1,0 +1,219 @@
+{
+  "title": "Patch Notes/2008-07-22",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-07-22",
+  "published": "2008-07-22",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "AI",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entities which use the “Pet” AI should now cycle through their Ranged attacks, even while in Melee with a Target."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that sometimes caused a Supergroup’s progress towards earning SG badges to be lost."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the badge descriptions of Task Force/Strike Force challenge badges that referred to stature level 1 as being 1-15 to be 1-14."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected stature level 8 and 9 badge descriptions from erroneously being level 40-44 to 40-45 and from 45-50 to 46-50."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Custom Weapons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rularuu Claws should be available to Female and Huge players who have unlocked them"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Custom Weapons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Roman axes granted by completing the Imperious Task Force should now be properly awarded."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Global Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players with Trial accounts will no longer be able to use Global chat channels."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected two recipes in the Trap of the Hunter set that stated they granted range or damage. This set grants neither."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit Buffs/DeBuff Common IOs should not state they buff or debuff Accuracy any longer, but should properly state that they buff or debuff the “To Hit” chance."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cone Attack Powers – Corrected an issue where Cone Attack powers would not hit moving targets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animation time for Energy Punch, Stone Fist, Shadow Punch, and Charged Brawl changed from 1.0 second to 0.83 seconds. Activation time changed from 0.57 seconds to 0.83 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery / Ranged Shot - Fixed some minor issues with Archery - Ranged Shot’s animation and graphical effects."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brawl - Animation time corrected. Old cast time was 0.67 seconds, and the new cast time is 0.83 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Control / Animate Stone - Replaced Animated Stone’s Stone Hammer Power with a version of Seismic Smash. He now understands how to cycle between powers more effectively."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Melee / Energy Transfer - Increased visual impact of Hit graphical effects."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accolade / Portable Workbench - The Portable Workbench should no longer be seen as a viable target for critter attacks."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flurry and Sands of Mu should now play the correct animation while Spines - Quills is active"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Lost and Found story arc will now correctly award salvage for players that are significantly higher levels than the mission levels."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Commands",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "“Synch” Command - Players can now use “Synch” in addition to “Sync” if they are experiencing any synchronization issues with the game servers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Character Selection Screen - Corrected a bug where a Renamed character may disappear from the Character Selection screen until the player logs out and logs back in."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Character Selection Screen – Corrected a bug where renaming a character moved the character to a different character slot location."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defiance - Corrected the Defiance Buff value granted by secondary power set powers. They should now be back to their previous values."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Energy Manipulation / Total Focus - Reduced Blaster Energy Manipulation Total Focus Disorient Magnitude from 4 to 3, to bring it in line with other versions of the power"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected text in the Firefighter Badge."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind / Ninjas / Genin no longer have Archery attacks. “Snap Shot” and “Aimed Shot” have been replaced with “Shuriken” (a second Shuriken throw) and “Explosive Shuriken” attacks."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind / Necromancy / Lich should remain at Range in combat more often now."
+    }
+  ]
+}

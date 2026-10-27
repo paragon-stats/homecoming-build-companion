@@ -100,7 +100,8 @@ LICENSE_NOTE = (
 _ARTICLE = re.compile(r"<article\s[^>]*id=['\"]elComment_(\d+)['\"]", re.I)
 _CONTENT = re.compile(r"<div\s[^>]*data-role=['\"]commentContent['\"][^>]*>", re.I)
 _DIV_TAG = re.compile(r"<(/?)div\b", re.I)
-_PROFILE = re.compile(r"""href=['\"](https://forums\.homecomingservers\.com/profile/(\d+)-[^'\"]*)['\"]""", re.I)
+# The member's profile link; the forum archive puts ``index.php?/`` in front of the path.
+_PROFILE = re.compile(r"""href=['\"](https://[a-z0-9.-]+/(?:index\.php\?/)?profile/(\d+)-[^'\"/]*/?)['\"]""", re.I)
 _PHOTO_TITLE = re.compile(r"""title=['\"]Go to (.+?)'s profile['\"]""", re.I)
 _TIME = re.compile(r"""<time\s[^>]*datetime=['\"]([^'\"]+)['\"]""", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
@@ -108,7 +109,9 @@ _TITLE = re.compile(r"<title>(.*?)</title>", re.I | re.S)
 # separate thread. Listings normally append "#comments" to those, which the old pattern
 # happened to reject, but relying on the fragment made it one markup change from
 # harvesting every paginated thread twice.
-_TOPIC_LINK = re.compile(r"""['\"](https://forums\.homecomingservers\.com/topic/(\d+)-[^'\"#?/]*/)['\"]""")
+# Host-agnostic so the same listing parser reads any Invision board, such as the archived
+# pre-sunset forums, whose topic URLs carry an ``index.php?`` prefix.
+_TOPIC_LINK = re.compile(r"""['\"](https://[a-z0-9.-]+/(?:index\.php\?/)?topic/(\d+)-[^'\"#?/]*/)['\"]""", re.I)
 _LINE_BREAK = re.compile(r"<br\s*/?>|</(?:p|li|div|tr|h[1-6]|pre)\s*>", re.I)
 _TAG = re.compile(r"<[^>]+>")
 
@@ -125,7 +128,7 @@ _EXPORT_LINE = re.compile(r"^Level\s+\d+:\s+\S", re.M)
 _PAGINATION_COUNT = re.compile(r"""<ul[^>]*class=['\"]ipsPagination['\"][^>]*data-pages=['\"](\d+)['\"]""", re.I)
 _PAGINATION_HREF = re.compile(
     r"""class=['\"]ipsPagination['\"].{0,4000}?href=['\"]"""
-    r"""(https://forums\.homecomingservers\.com/forum/\d+-[^'\"]*?)/page/\d+/['\"]""",
+    r"""(https://[a-z0-9.-]+/(?:index\.php\?/)?forum/\d+-[^'\"]*?)/page/\d+/['\"]""",
     re.I | re.S,
 )
 # A forum section link, as opposed to its .xml feed or a /page/N/ variant of it.
@@ -465,7 +468,9 @@ def page_title(page: str) -> str:
     if not match:
         return ""
     title = html_mod.unescape(match.group(1)).strip()
-    return re.sub(r"\s*-\s*[^-]+\s*-\s*Homecoming$", "", title).strip()
+    # "<thread> - <section> - <site>": the site is Homecoming on the live board and the
+    # software's own name on the archived one.
+    return re.sub(r"\s*-\s*[^-]+\s*-\s*(Homecoming|Invision Community)$", "", title).strip()
 
 
 def last_page_number(page: str) -> int:
@@ -528,13 +533,35 @@ class Fetcher:
     the load on the site is ``delay``.
     """
 
-    def __init__(self, user_agent: str, delay: float) -> None:
+    def __init__(self, user_agent: str, delay: float, base: str = BASE) -> None:
         self.user_agent = user_agent
         self.delay = delay
+        self.base = base
         self._last = 0.0
         self._pace_lock = threading.Lock()
         self._robots = RobotFileParser()
-        self._robots.parse(self._raw(f"{BASE}/robots.txt")[0].decode("utf-8", "replace").splitlines())
+        # Set when the rules could not be read: every fetch is refused, as urllib.robotparser
+        # does for a 401 or 403, rather than crawling a site whose rules are unknown.
+        self._blocked = False
+        robots_url = f"{base}/robots.txt"
+        rules: list[str] = []
+        try:
+            rules = self._raw(robots_url)[0].decode("utf-8", "replace").splitlines()
+        except urllib.error.HTTPError as exc:
+            if exc.code in (401, 403):
+                self._blocked = True
+                print(f"E02: robots.txt refused ({exc.code}) at {robots_url}; nothing will be fetched", file=sys.stderr)
+            elif exc.code >= 500:
+                self._blocked = True
+                print(
+                    f"E03: robots.txt unreadable ({exc.code}) at {robots_url}; re-run when the site recovers",
+                    file=sys.stderr,
+                )
+            # Any other 4xx is a missing file (the forum archive serves none): no rules.
+        except (urllib.error.URLError, TimeoutError) as exc:
+            self._blocked = True
+            print(f"E03: robots.txt unreadable at {robots_url}: {exc}; re-run when the site recovers", file=sys.stderr)
+        self._robots.parse(rules)
 
     def _pace(self) -> None:
         """Block until this thread is allowed to start the next request."""
@@ -561,7 +588,7 @@ class Fetcher:
 
     def fetch(self, url: str) -> tuple[bytes, str] | None:
         """Fetch ``url`` as bytes, or ``None`` if robots.txt disallows it or it errors."""
-        if not self._robots.can_fetch(self.user_agent, url):
+        if self._blocked or not self._robots.can_fetch(self.user_agent, url):
             print(f"skip (robots.txt disallows): {url}", file=sys.stderr)
             return None
         try:
@@ -574,6 +601,29 @@ class Fetcher:
         """Fetch ``url`` and decode it as a page of text."""
         result = self.fetch(url)
         return None if result is None else result[0].decode("utf-8", "replace")
+
+
+def walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None = None) -> tuple[dict[str, str], list[str]]:
+    """``(topic URL -> last activity, listing pages that could not be read)`` for a forum section.
+
+    ``pages`` caps the walk; an unreadable first page means the whole section is missing.
+    """
+    first = fetcher.get(forum_url)
+    if first is None:
+        return {}, [forum_url]
+    base = listing_base(first, forum_url)
+    total = last_page_number(first)
+    rows = dict(topic_rows(first))
+    failed: list[str] = []
+    for number in range(2, (total if pages is None else min(total, pages)) + 1):
+        url = f"{base}/page/{number}/"
+        listing = fetcher.get(url)
+        if listing is None:
+            failed.append(url)
+            continue
+        for topic, last in topic_rows(listing).items():
+            rows.setdefault(topic, last)
+    return rows, failed
 
 
 def _artifact(

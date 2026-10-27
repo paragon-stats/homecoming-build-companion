@@ -1,0 +1,299 @@
+{
+  "title": "Patch Notes/2009-05-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-05-05",
+  "published": "2009-05-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Builder line of badges has had their requirements to obtain decreased substantially, so that the final badge \"Master Builder\" has the same requirements as getting a mission into the Hall of Fame."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause costume change emotes to crash the game client."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed more memory leaks in the Mission Architect windows."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved performance on Custom Critters with the Dual Blades power set. Changes were made to make it much easier for AI-controlled critters to get combos."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Extensively revamped the Custom Critters powers Rank and Difficulty settings. Power selection for custom critters should be better standardized, more flexible and provide finer control over the difficulty of custom critters."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All melee power sets have an additional ranged power added. Any ranged attack normally in a melee set will now be available at all levels, difficulties and ranks."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Build up and Aim style powers now are available at the \"Difficult\" Setting for LT's and above."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Status protection Toggles standardized at \"Extreme\" setting for LT's and above."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self Rez powers set to \"Extreme\" Difficulty for bosses or higher rank."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Armor Toggles now standardized. Minions begin with normal Smash/Lethal protection, LT's begin with extra protection, and bosses get all protection toggle effects except status protection."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Armor power sets PBAOE toggles set at \"Difficult\" setting for LT's and above."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranged attacks Tier 9 nukes standardized at \"Extreme\" setting. All Endurance intensive nukes available to LT's and above."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Control power sets standardized to AOE effects at \"Difficult\" setting or higher."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Control power sets Pets set to \"Difficult\" setting for Bosses or higher rank."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Help description of Pain Domination powerset in Mission Architect"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The rewards for defeating Rikti Communications Officers in Mission Architect has been decreased to match other minion level critters. Missions using earlier versions of the Rikti Communications Officer will be invalidated, and will need to be republished."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Batzul Fire Imps can no longer be selected as an allied critter. Missions including them will be invalidated and will need to be republished."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Visual FX for \"Captured (Energy Field)\" custom animation in the Mission Architect have been slightly modified. The original version was intended for a very specific use with a specific NPC (Penelope Yin)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ninjitsu - Hide - Adjusted the suppression time on the damage bonus."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow - Flash Arrow - Perception Debuff now supresses when the player is hit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ninjitsu - Blinding Powder - Perception Debuff now supresses when the player is hit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devices - Smoke Grenade - Perception Debuff now supresses when the player is hit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Control - Smoke - Perception Debuff now supresses when the player is hit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powersets are now listed in alphabetical order when viewing 'all'."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Fortune - The Tower damage effect should no longer be applied when zoning or respawning, and should no longer damage players below 25% health."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Rikti ship paths to not go through AE buildings. Affects Atlas Park, Galaxy City, Peregrine Island, Mercy Island, Nerva Archipelago. Also adjusted a few patrols in Nerva that got obliterated by AE drones."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Mastery - Corrected Missing Ice effect on Hibernate."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a minor issue with Illusion Control Phantasm which could cause it to spend time toggling on a power which has no effect."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Mastery - Corrected Missing Ice effect on Hibernate."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Iced Armor - Corrected Missing Ice effect on Hibernate."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leviathan Mastery - Corrected Missing Ice effect on Hibernate."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Jonin when fully upgraded are now always in Hide, except for immediately after attacking."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Soldier Spec-Ops when fully upgraded are now always stealthed, except for immediately after attacking."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leviathan Mastery - Corrected Missing Ice effect on Hibernate."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leviathan Mastery - Summon Guardian should once again accept Recharge Intensive Pets invention sets"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leviathan Mastery - Corrected Missing Ice effect on Hibernate."
+    }
+  ]
+}

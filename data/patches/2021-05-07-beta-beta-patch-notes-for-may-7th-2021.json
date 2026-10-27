@@ -1,0 +1,107 @@
+{
+  "title": "[Beta] Patch Notes for May 7th, 2021",
+  "url": "https://forums.homecomingservers.com/topic/28659-beta-patch-notes-for-may-7th-2021/",
+  "published": "2021-05-07T17:45:37Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sorcery > Arcane Bolt / Arcane Power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Activating and deactivating toggles will no longer grant Arcane Power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Movement speed cap adjusted from 3.15mph to 3.25mph (to match NPC walking speed)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jumping speed cap increased to 14.32mph (the base jumping speed)"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed ambushes from delivery missions to Kalinda in the Temple of the Waters SF"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed the Shopkeeper badge to Proprietor (as Shop Keeper already exists as a day job badge)"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can no longer begin observing an arena match if you had any combat activity in the past 10 seconds"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arena Observer / Gladiator modes will now automatically kill all pets on entry (certain pets could still be summoned when entering an arena match)"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Firebase Zulu: Closed holes in the collision boundary of the zone"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Chantry: Closed holes in the collision boundary of the zone"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Echo Plaza: Added a collision boundary around the zone to fix issues with teleportation powers"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cleaned up some unintended behaviour with the Fortunata Hypnosis proc"
+    }
+  ]
+}

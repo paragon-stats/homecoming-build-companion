@@ -1,0 +1,4107 @@
+{
+  "title": "Patch Notes for January 21st, 2020 - Issue 26, Page 4 (Release Candidate 5)",
+  "url": "https://forums.homecomingservers.com/topic/14418-patch-notes-for-january-21st-2020-issue-26-page-4-release-candidate-5/",
+  "published": "2020-01-21T23:08:52Z",
+  "issue": "issue-26",
+  "page": "page-4",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Attempt to gracefully handle and recover from a bug in certain AMD/ATI video drivers that crash when queried for how much video memory they have."
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Provost Marchand (Brickstown) will no longer give Hero-only missions to Villains/Rogues under rare circumstances."
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Inherent buff to arc reduced to 50% (same as the radius buff, if this does not meet the desired result once live, it might be changed in the future.)"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Target cap changes:"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute > Katana > Golden Dragonfly 10 => 5"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper > Katana > Golden Dragonfly 10 => 5"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker > Ninja Blade > Golden Dragonfly 10 => 5"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Katana > Golden Dragonfly 16 => 10"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Spines > Spine Burst 10 => 16"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Spines > Quills 16 => 10"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Spines > Throw Spines 16 => 10"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > War Mace > Crowd Control =>16 > 10"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Area changes:"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Battle Axe",
+      "power": "Pendulum",
+      "text": "Arc back to 180, ignores Arc Buffs"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Electric Melee",
+      "power": "Lightning Clap",
+      "text": "now ignores Radius Buffs"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Super Strength",
+      "power": "Hand Clap",
+      "text": "Radius back to 15, now ignores Radius Buffs"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Super Strength",
+      "power": "Foot Stomp",
+      "text": "Radius back to 15, now ignores Radius Buffs"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "War Mace",
+      "power": "Crowd Control",
+      "text": "Arc back to 180, ignores Arc Buffs"
+    },
+    {
+      "category": "Changes from RC4",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The patch notes below have been updated to include a comprehensive list of target cap changes."
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash relating to team invites."
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash relating to swapping between character builds"
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added some safety checks to game startup to ensure the game will not try to run borderless or on a monitor that's no longer connected."
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a new command line parameter: -gfxreset"
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will cause the game to reset all graphics settings and launch the game in windowed mode."
+    },
+    {
+      "category": "Changes from RC3",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Mission Architect database has been synced up with the Live servers."
+    },
+    {
+      "category": "Changes from RC2",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing \"Do Not Tint\" flag in many pet powers."
+    },
+    {
+      "category": "Changes from RC2",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Epic pool damage tables for Soul Mastery and Ice Mastery."
+    },
+    {
+      "category": "Changes from RC2",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is to bring it in line with what the patch notes actually say - not a new change."
+    },
+    {
+      "category": "Changes from RC2",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed various text errors on power customization for some armor sets."
+    },
+    {
+      "category": "Changes from RC1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the crash handler not triggering if the install path contained any spaces."
+    },
+    {
+      "category": "Changes from RC1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash relating to summoning certain Lore pets."
+    },
+    {
+      "category": "Changes from RC1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed some experimental costume format code (to return at a later date)."
+    },
+    {
+      "category": "Changes from RC1",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minor tweaks and fixes to Tanker powers and descriptions."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker:"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranged damage modifier increased from 0.5 to 0.8, Melee damage modifier increased from 0.8 to 0.95,"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bruise has been removed in favour of a flat damage scale increase."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Buff modifiers increased to match Controller values."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage buff cap increased from 400% to 500%."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute:"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranged and Melee damage modifiers are now equal at 0.75."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage buff cap lowered from 775% to 700%."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Brute and Tanker Epic pools now use ranged damage modifiers."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Scaling & Stats",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note that due to the above changes, Epic Pools should see no damage change at all."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most Tanker Melee AoE powers have had their target caps increased."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most cones now have a 10 target cap."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most PBAoEs now have a 16 target cap."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker now gets an inherent buff to the radius of AoE attacks and arc of cones."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+50% for AoEs."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+50% for cones."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some powers are unaffected by this buff. This is noted on the power description."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Full list of Tanker target cap changes, area changes, etc:"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Battle Axe > Whirling Axe 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Battle Axe > Cleave 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Battle Axe > Pendulum 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Broad Sword > Slice 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Broad Sword > Whirling Sword 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Broad Sword > Head Splitter 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Claws > Spin 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Claws > Eviscerate 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Dark Melee > Shadwo Maul 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Dark Melee > Dark Consumption 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Dual Blades > Typhoon's Edge 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Dual Blades > Sweeping Strike 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Dual Blades > One Thousand Cuts 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Electrical Melee > Thunder Strike 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Electrical Melee > Lightning Clap 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Energy Melee > Whirling Hands 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Fiery Melee > Combustion 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Fiery Melee > Breath of Fire 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Fiery Melee > Fire Sword Circle 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Ice Melee > Frost 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Ice Melee > Frozen Aura 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Katana > Flashing Steel 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Katana > The Lotus Drops 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Katana > Golden Dragonfly 16 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Kinetic Melee > Repulsing Torrent 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Kinetic Melee > Burst 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Martial Arts > Dragon's Tail 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Psionic Melee > Psi Blade Sweep 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Psionic Melee > Mass Levitate 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Radiation Melee > Proton Sweep 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Radiation Melee > Atom Smasher 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Savage Melee > Shred 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Savage Melee > Rending Flurry 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Spines > Ripper 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Spines > Spine Burst 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Staff Fighting > Guarded Spin 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Staff Fighting > Eye of the Storm 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Staff Fighting > Innocuous Strikes 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Stone Melee > Fault 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Stone Melee > Tremor 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Street Justice > Sweeping Cross 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Street Justice > Spinning Strike 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Super Strength > Hand Clap 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Super Strength > Foot Stomp 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Titan Weapons > Whirling Smash 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > Titan Weapons > Arc of Destruction 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > War Mace > Whirling Mace 10 => 16"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Target cap changes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker > War Mace > Shatter 5 => 10"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe > Pendulum"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws > Eviscerate"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws > Shockwave"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines > Throw Spines"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titan Weapons > Defensive Sweep"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titan Weapons > Titan Sweep"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titan Weapons > Arc of Destruction"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace > Crowd Control"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Arc Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Judgement powers"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee > Lightning Clap"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee > Lightning Rod"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Savage Melee > Savage Leap"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines > Quills Radius"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength > Hand Clap"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength > Foot Stomp"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titan Weapons > Whirling Smash"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers ignore Radius Buffs:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Judgement powers"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers have had their Arcs adjusted for Tankers only:",
+      "archetype": "",
+      "powerset": "Broad Sword",
+      "power": "Slice",
+      "text": "Lowered from 130° to 90° (actually 135° after the 50% increase from Tanker inherent buff)"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "The following powers have had their Arcs adjusted for Tankers only:",
+      "archetype": "",
+      "powerset": "Katana",
+      "power": "Flashing Steel",
+      "text": "Lowered from 130° to 90° (actually 135° after the 50% increase from Tanker inherent buff)"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hitting AVs no longer gives bonus Fury, but Fury generation for attacking has been increased in a variety of ways:"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Fury generation now takes into account the cast time of the attack for successful hits."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any attack slower than brawl will now generate bonus Fury if it lands a hit."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brutes now get bonus fury generation in teams - the larger the team, the larger the bonus."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fury now takes 10 seconds without attacking to start its accelerated decay, instead of 5 seconds."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The goal of these changes is to improve Fury generation in teams when the Brute is not the only brute, or is in the company of another tanking AT."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gauntlet is now applied via a global proc."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any single target power that takes endurance cost enhancements will trigger an AoE taunt."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every AoE power that takes endurance cost enhancements will taunt the enemies it hit."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Auras that take endurance cost enhancements will taunt the enemies they hit."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius is now the same for all attacks (10ft, 5 targets max)"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt scale is now 10% higher than the Brute's."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute PunchVoke is now also applied via a global proc."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Gauntlet & PunchVoke",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any power that either inflicts damage or takes accuracy enhancements will trigger PunchVoke."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe > Whirling Axe = 20, Swoop = 28"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts > Dragon Tail = 20, Focus Chi = 28, Crippling Axe Kick = 35"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Melee> Tremor = 28, Hurl Boulder = 35"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace > Whirling Mace = 20, Clobber = 28"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute and Tanker Ice Armor powers no longer have built-in Taunt, they are now instead covered by the inherent global proc."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following tanker and brute powers should now accept regular Taunt Enhancements:"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Oppressive Gloom, Cloak of Fear, Burn (note that burn patches don't taunt, only the up-front damage does.)"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines: Spine Burst> No longer ignores Radius buffs."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines: Quills > Now ignore Radius buffs."
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn for Brute and Tankers should also accept Taunt Sets (note that any proc on burn will not pass through to the patch.)"
+    },
+    {
+      "category": "Tanker & Brute Changes",
+      "subsection": "Other Changes",
+      "archetype": "Brute",
+      "powerset": "Martial Arts",
+      "power": "Taunt / Crane Kick",
+      "text": "Fixed incorrect power order."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Combat Log",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combat log output has been standardized. Many powers used to report the wrong damage type and effects in the combat log, this process has fixed that, in addition to making the combat log a lot easier to parse."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phantom Army",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new customisation options for Phantom Army"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phantom Army",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mirror (copy of current character costume)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Phantom Army",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phantom Mirror (copy of current character costume with Phantom Army VFX)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Other",
+      "archetype": "Pool",
+      "powerset": "Teleportation",
+      "power": "Long Range Teleport",
+      "text": "This power now grants a popup tray power that allows a second chance at teleporting should you fail to teleport the first time. The Second Chance power will remain for 2 minutes or until you zone."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Other",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered Weaken Resolve's -res debuff from scale -1.5 to scale -1.0."
+    },
+    {
+      "category": "Powers",
+      "subsection": "Other",
+      "archetype": "Brute",
+      "powerset": "Katana",
+      "power": "Golden Dragonfly",
+      "text": "Max targets reduced from 10 to 5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Other",
+      "archetype": "Scrapper",
+      "powerset": "Katana",
+      "power": "Golden Dragonfly",
+      "text": "Max targets reduced from 10 to 5"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Other",
+      "archetype": "Stalker",
+      "powerset": "Ninja Blade",
+      "power": "Golden Dragonfly",
+      "text": "Max targets reduced from 10 to 5"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Damage Procs like Hybrid Double Hit, Plant Manipulation's Toxins and Bio Armor's Offensive Adaptation should now use PvP damage formula in PvP instead of the PvE damage formula."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Misc power changes:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed PvP damage for Archery and other Snipes that were reported to be doing too little damage in slow form."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster > Immobilizing Dart > Should no longer have a Hold in PvP."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Hurricane should now apply it's -Range to everyone."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > O2 Boost should now provide stun and sleep resistance instead of protection in PvP"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning > Gale (controllers) should no longer list double mag knockbacks in PvP."
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppression rules have been enforced for the following enhancements:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debilitative Action: Disorient Bonus"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devastation: Chance for Hold"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Manipulator: Chance to Stun"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioners Contract: Disorient Bonus"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravitational Anchor: Chance for Hold"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lockdown: Chance for +2 Mag Hold"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pounding Slugfest: Disorient Bonus"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Razzle Dazzle: Chance for Immobilize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Dominion of Arachnos: Recharge/Chance for -Dmg and Terrorize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Frozen Blast: Recharge/Chance for Immobilize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unspeakable Terror: Disorient Bonus"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppression rules have been enforced for the following powers:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Bash"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Bane Spider Soldier > Pulverize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Electron Shackles"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Atomic Manipulation > Positron Cell"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Darkness Manipulation > Midnight Grasp"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Electricity Manipulation > Electric Fence"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ice Manipulation > Frozen Aura"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Mental Manipulation > World of Confusion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Blinding Powder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Immobilizing Dart"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Shift"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Temporal Manipulation > Time Wall"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Energy Melee > Bone Smasher"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Darkness Affinity > Howling Twilight"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Radiation Emission > EM Pulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Earth Control > Salt Crystals"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Force Field > Repulsion Bomb"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Ranged > Beam Rifle > Lancer Shot"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Dark Miasma > Petrifying Gaze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Buff > Traps > Web Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Ranged > Assault Rifle > Beanbag"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Earth Assault > Mud Pots"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Assault > Energy Assault > Whirling Hands"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Darkness Control > Dark Grasp"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Chain Fences"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Electric Fence"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Electric Control > Tesla Cage"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Ice Control > Arctic Air"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Confuse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Mass Confusion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Mind Control > Telekinesis"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Control > Plant Control > Seeds of Confusion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Dark Miasma > Fearsome Stare"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Storm Summoning > Thunder Clap"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Buff > Time Manipulation > Time Stop"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Pets > Jounin > Blinding Powder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Smite"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Dark Melee > Midnight Grasp"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel Ranged > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Cloak of Fear"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Oppressive Gloom"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Defense > Dark Armor > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Charged Brawl"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Havoc Punch"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Jacobs Ladder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Lightning Clap"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Electrical Melee > Thunder Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Energy Melee > Barrage"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Cobra Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Crippling Axe Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Eagles Claw"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Martial Arts > Thunder Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Greater Psi Blade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Psionic Melee > Psi Blade Sweep"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Barb Swipe"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Impale"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Lunge"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Quills"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Spine Burst"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Spines > Throw Spines"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Crushing Uppercut"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Initial Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Spinning Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Street Justice > Sweeping Cross"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > Titan Weapons > Follow Through"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Melee > War Mace > Whirling Mace"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Smite"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Inky Aspect"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Boxing"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Cross Punch"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Intimidate"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Presence > Invoke Panic"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Speed > Flurry"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Arctic Mastery > Chilblain"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Blaze Mastery > Ring of Fire"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Charge Mastery > ESD"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Chill Mastery > Flash Freeze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Cold Mastery > Flash Freeze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Flame Mastery > Char"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Soul Transfer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Salt Crystals"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Earth Mastery > Stone Prison"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > EM Pulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electrical Mastery > Shocking Bolt"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Electricity Mastery > Electric Fence"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Cryo Freeze Ray"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Munitions Mastery > Sleep Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > World of Confusion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > Telekinesis"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psychic Mastery > World of Confusion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Pyre Mastery > Ring of Fire"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Dark Mastery > Netherworld Grasp"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Mace Mastery > Pulverize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Fissure"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Stone Mastery > Seismic Smash"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Weapon Mastery > Web Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Stun Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Fiendish Glare"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Seduction"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Duplicity"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Hand Clap"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Minor Mutation"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Nectar"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Power of Scirocco"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Atomic Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Cosmic Burst"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Psionic Activator"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Temporary Powers > Vanguard Psi-Bomb"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mez Duration and Suppression rules have been enforced for the following player pet powers:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Bone Smasher"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Hard Suit > Energy Punch"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > PPD Sergeant > Force Brawl"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Resistance_Rifle > Power Punch"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Tech Lab > Explosion"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 1 > FlashPulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 2 > FlashPulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Seeker 3 > FlashPulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Coral Guardian Warder > Fossilize"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fly Trap > Entangle"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Psychic Wail"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Fortunata Mistress > Scramble Thoughts"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Adept > EM Pulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Guardian > EM Pulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mu Striker > EM Pulse"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Shade > Scare"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockback Suppression rules have been enforced for the following powers:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Archery > Explosive Arrow"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Psychic Blast > Psionic Tornado"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Electricity Manipulation > Thunder Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Support > Ninja Training > Golden Dragonfly"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Katana > Golden Dragonfly"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Melee > Stone Melee > Fault"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Electric Control > Jolting Chain"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller Control > Gravity Control > Wormhole"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Flare"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Defensive > Luminous Aura > White Dwarf Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Offensive > Luminous Blast > Solar Flare"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Melee > Dual Blades > Typhoon's Edge"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Staker Melee > Spines > Ripper"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Defensive > Umbral Aura > Black Dwarf Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Offensive > Umbral Blast > Dark Nova Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Offensive > Umbral Blast > Dark Nova Detonation"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Field Mastery > Power Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Leviathan Mastery > Arctic Breath"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Primal Forces Mastery > Power Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic > Psionic Mastery > Psionic Tornado"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Fighting > Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Leaping > Jump Kick"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Advanced Assault Rifle Slug"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Arachnos Shotgun Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Electron Haze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Energy Smash"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Focused Burst"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Gabriel's Hammer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Holy Shotgun Shells"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Laser Beam Eyes"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Nictus Gravitic Emanation"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Plasmatic Taser"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > PPD Grenade Launcher"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Rikti Rifle"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Sawed-off Shotgun"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Haze"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Smash"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shivan Strike"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Shotgun Launched Frag Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > St > Louis Slammer"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Synaptic Whirlwind"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Arachnobot Blaster > Energy Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Bomb > Time Bomb"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > High Explosives > High Explosives"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > High Explosives Tech > High Explosives"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > LightningStorm_NPC > Lightning"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Energy Barrage"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Grenade"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Longbow Heavy > Plasma Blast"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Mine > Trip Mine"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Phantasm > Energy Torrent"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Phantasm > Power Bolt"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Singularity > Lift"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Stone > Hurl Boulder"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets > Thug Minion > Dual Wield"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockback Suppression rules have been enforced for the following enhancements:"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Avalanche: Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Combat: Chance for Knockdown"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Overwhelming Force: Damage/Chance for Knockdown/Knockback to Knockdown"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stupefy: Chance for Knockback"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ragnarok: Chance for Knockdown"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Might of the Empire: Damage/Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "PvP Powers Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Avalanche: Recharge/Chance for Knockdown"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Renamed \"Bathroom\" tab to \"Bath & Kitchen\""
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 38 new base items created by @Naomi:"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Laundry Basket 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Laundry Basket 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Laundry Detergent"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Microwave"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Fork"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Spoon"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Knife"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Plate 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Plate 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Bowl 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Dinner Bowl 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Maker 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Maker 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Maker 3"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Carafe 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Carafe 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > French Press 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > French Press 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Can 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Can 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Coffee Bag 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Ice Bucket 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Ice Bucket 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Wine Glass 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Wine Glass 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Champagne Flute 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Champagne Flute 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Wine Bottle"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Champagne Bottle"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Portable Grill 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Portable Grill 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Portable Grill 3"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Portable Grill 4"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Portable Grill Lid"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Grill Hotdog 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Grill Hotdog 2"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Grill Hamburger 1"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bath & Kitchen > Grill Hamburger 2"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a new command line parameter: -gfxreset"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will cause the game to reset all graphics settings and launch the game in windowed mode."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added some safety checks to game startup to ensure the game will not try to run borderless or on a monitor that's no longer connected."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Switched to a different method of hooking the Print Screen key. This should fix the issues with using modifier keys in conjunction with it, as well as allow it to pass through to the OS so the traditional \"copy to clipboard\" functionality works again."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resynchronised modifier key state in certain edge cases (mostly involving the numeric keypad) to try and resolve issues of the shift key rarely getting stuck."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the team window showing \"On mission map\" when a teammate is in their Supergroup Base and vice versa."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixes for many Mapserver crashes unearthed by the new crash handler."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Various fixes and stability improvements to the client."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This should allow some users that were previously stuck on the Safe Mode client to now use the new client."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that allowed players to inadvertently delete the geometry of entire zones."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Possibly fixed a bug in certain AMD/ATI video drivers that crash the client when queried for how much video memory they have."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Provost Marchand (Brickstown) will no longer give Hero-only missions to Villains/Rogues under rare circumstances."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery > Ranged Shot Fixed a bug where would not animate in the character customization screen."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Ranged > Electric Blast > Corrected an FXGEO feedback error with this power's FX."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Beta Decay",
+      "text": "Text should no longer state it taunts enemies."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Atomic Manipulation",
+      "power": "Electron Shackles",
+      "text": "Should no longer accept Endurance Modification enhancements or sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Blaster Support",
+      "powerset": "Psoinic Manipulation",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "Dark Control",
+      "power": "Umbra Beast",
+      "text": "Should now accept Fear Enhancement and Sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "Devices",
+      "power": "Targeting Drone",
+      "text": "The power description for Targeting Drone has been fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Dominator",
+      "powerset": "Fire Control",
+      "power": "Fire Imps",
+      "text": "Should now always summon 3 imps."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Dominator",
+      "powerset": "Psionic Assault",
+      "power": "Drain Psych",
+      "text": "-Regeneration effect should no longer be enhanceable."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Dominator",
+      "powerset": "Savage Assault",
+      "power": "Call hawk & Feral Charge",
+      "text": "Should no longer accept Dominator Archetype Enhancement sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool > Force of Will > Mighty Leap > Takeoff effect can now be cancelled."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Pool",
+      "powerset": "Force of Will",
+      "power": "Weaken Resolve",
+      "text": "Fixed typos. Now accepts Accurate ToHit Debuff enhancements."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gravity Control > Singularity should now apply and take advantage of the Impact mechanic."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Melee > Frozen Fists (Brute/Stalker/Scrapper) Power Description should no longer say it adds -res."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "Incarnate",
+      "power": "Hybrid",
+      "text": "Should no longer fail to shut down after zoning."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "Martial Arts",
+      "power": "Crippling Axe Kick",
+      "text": "now accepts defense debuff enhancements and sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Weaken and Cold Domination -Special powers should no longer be boosted by +Special powers like Power Boost. As a rule, Str effects should not be affected by other Str effects."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Pool",
+      "powerset": "Concealment",
+      "power": "Stealth and Invisibility",
+      "text": "translucency issues should now, FINALLY be fixed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Pool",
+      "powerset": "Leaping",
+      "power": "Spring Attack",
+      "text": "should now do damage when used by Sentinels"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Proton Volley's Fast-Snipe sphere FX should now tint properly."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "Radiation Armor",
+      "power": "Beta Decay",
+      "text": "Taunt magnitude should now always be Mag 4"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radiation Melee > Contamination AoE should now reliably trigger when hitting a contaminated target."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Bio Armor",
+      "power": "Athletic Regulation",
+      "text": "Should no longer accept travel enhancement sets."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Energy Aura",
+      "power": "Power Armor",
+      "text": "Should now accept Healing Enhancement Sets"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Fire Blast",
+      "power": "Blazing Blast",
+      "text": "Should now do 13 ticks of damage over time."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Tanker Melee",
+      "powerset": "Psionic Melee",
+      "power": "Greater Psi Blade",
+      "text": "Should no longer do AoE insight damage."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Temporary Powers > Ethereal Shift should shut down automatically as other Phase Shift powers."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "Boosts",
+      "powerset": "Performance Shifter",
+      "power": "Chance for +Endurance",
+      "text": "Should now have a chance to grant the caster Endurance if used on an offensive attack."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers > Summoned Spiders should no longer play a teleport fx every 10 seconds."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "AE Critter",
+      "powerset": "Sonic Resonance",
+      "power": "Liquefy",
+      "text": "This power had a range of zero. It has been changed to 60ft."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "AE Critter",
+      "powerset": "Pain Domination",
+      "power": "Soothing Aura",
+      "text": "This power is now an Auto, as most AE versions of Toggle powers."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AE Critter > Force Fields > Personal Force Fields now lasts 30 seconds instead of 0.75 seconds."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Fixes",
+      "archetype": "AE Critter",
+      "powerset": "Assault Rifle",
+      "power": "Ignite",
+      "text": "Should now properly do damage."
+    }
+  ]
+}

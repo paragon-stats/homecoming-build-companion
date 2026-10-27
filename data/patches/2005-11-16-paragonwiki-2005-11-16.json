@@ -1,0 +1,579 @@
+{
+  "title": "Patch Notes/2005-11-16",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-11-16",
+  "published": "2005-11-16",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the Long Help Description on the Shivan Shard to reflect that it can only be used while you are near the ground. (Shivans don't fly!)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police Bots and Arbiter Drones will no longer apply XP Debt if they defeat a player."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police Bots and Arbiter Drones will now grant ally players a perception buff to help see stealthed targets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Dark Miasma/Howling Twilight so it won't resurrect enemies in PvP. (Known Issue: enemies will still be prompted to ask if they want to be resurrected. The power will not work on them, however.)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Fearsome Stare: after enemies went into cower animation, they would continue to attack normally."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mynx, Luminary, Aurora Borealis, Infernal, Silver Mantis, and Barracuda have been upgraded from Elite Bosses to Arch Villains/Heroes. This change will affect any missions that these signature heroes/villains may appear in."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smoke now has slightly different functionality. In PvE, the power is unchanged and automatically hits foes. In PvP, however, the power requires a To Hit check."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Accuracy Enhancements to Smoke and Smoke Grenade powers for the Archetypes which have those powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Resistance powers to Control, Energy and Medical Destructable Objects for Bases."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Circle of Thorns Spectres and Spectral Lords Smite and Midnight Grasp powers were doing the incorrect damage type. These power both have a Psionic component now."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powers that increase your Max HP, like Dull Pain, and Earths Embrace will now be affected by Heal Enhancements. That is, Heal Enhancements will improve how much the target's MAX HP is increased."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There was an inconsistency in the debuff duration for the following powers: Devices/Smoke Grenade, Fire Control/Smoke, Trick Arrow/Flash Arrow. The ToHit and Perception Debuffs are now set so they last 60 seconds in PvE and 20 seconds in PvP."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the effectiveness of Warburg reward temp powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Invulnerabiity/Invincibility and Ice Armor/Energy Absorption. for both powers: Max number of affected targets have been reduced to 10; The first target you affect grants you more defense than before; Additional defense gained for each affected target after the first is at a reduced rate. This change will ensure the powers grant a reasonable defense bonus when facing few foes, while making it more challenging to get a massive defense bonus."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Invulnerabiity/Invincibility so it goes off every second instead of every half second. This was for performance reasons. This does not change the effectiveness off the power, but it will cause the Endurance Cost to occur every second instead of every half second."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field/Personal Force Field now protects the caster from enemy Teleportation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Increase Density now protects the target from enemy Teleportation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "IR Goggles brought more in line with other Sirens Call Temp powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new Warzone Liaison NPCs near the entrances to all PvP zones. Added new Mission Contacts to all PvP zones."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified NPC dialog in PvP zones to make it clear whether a zone is Hero vs Villain or Freefire."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warburg: Players can no longer get inside the geometry of one of the buildings and shoot at players outside."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can no longer target enemies during cutscenes."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pet Arena: Pets will no longer remain in a match after their owner leaves."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that prevented the Arena from working on some servers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made some older characters be charged for costume changes when no changes were made."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nictus Dark Dwarf now has power FX that match the Nictus."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Endurance Reduction Enhancements to Blaster Charged Bolt. Other versions already had this."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Croatoa is no longer restricted to characters level 25 and higher. The zone itself is unchanged, and remains quite dangerous to lower level characters who are not sidekicked."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Founders Falls: the Trainer Infernal's name does not appear as Infernal Leader any more."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Long Description for Succubus Hellish Bolts power"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed reference to Knockback in Brute/Fiery Melee/Cremate short help. The power is unchanged."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Self-Damage on Stalker/Energy Melee/Energy Transfer when used outside of Hide. It now does only 2/3 of previous."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Mastermind/Robotics Drones and Protector bots Laser and Heavy Laser Blasts not doing damage in PvP."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Knockback distance of MasterMind/Necromancy Lich Torrent power. The was to prevent your lich from uncontrollably sending enemies into other spawns."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind pets will no longer automatically target and move towards an enemy that resurrects in PvP."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the effectiveness of Triage Beacon and Spirit Tree."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the effectiveness of Cold Domination/Frostwork."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Aura/Entropy Shield now protects the caster from enemy Teleportation and Repel."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boosted Smashing and Lethal defense for Stalker Energy Aura/Kinetic Shield."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boosted Energy defense for Stalker Energy Aura/Kinetic Shield."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boosted Energy damage resistance for Stalker Energy Aura/Energy Protection."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with Brute/Energy Aura/Energy Cloak: It was not giving any Defense to Fire Attacks."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Several Brute Attack powers did not have their Inherent Taunt ability disabled in PvP. This gave them a substantial advantage in group PvP encounters. These powers should no longer apply Taunt to PvP targets."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Punch"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smite"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Maul"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Siphon Life"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Consumption"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Drain"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnight Grasp"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fiery Melee"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scorch"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Sword"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cremate"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incinerate"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Breath of Fire"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Sword Circle"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greater Fire Sword"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jab"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Punch"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Haymaker"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Knockout Blow"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurl"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Foot Stomp"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "St. Martial: Fixed multiple geometry holes"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nerva: Fixed several graphical errors with boats in this zone."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed errors on many Longbow and Arachnos mission maps."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several text errors in missions given by Arbiter Leery"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Broker missions: In a Heist, all characters in a group that have a full Broker contact bar will get credit for completing a Heist, and be able to get a new Contact from the Broker."
+    }
+  ]
+}

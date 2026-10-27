@@ -1,0 +1,27 @@
+{
+  "title": "Patch Notes for August 19th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/8571-patch-notes-for-august-19th-2019/",
+  "published": "2019-08-19T10:21:44Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Legacy Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a new option in your launcher, \"HC Beta (Legacy)\". This will launch the old 32-bit client, adapted to load the 64-bit data files. It is a stopgap measure for players who have issues launching the new client, mainly old Mac OS versions. It does not have any of the new features introduced in the 64-Bit client; its purpose is to make sure that players can still log in if they run into crashes or incompatibilities with the main client."
+    },
+    {
+      "category": "Legacy Client",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You should still report any crashes and incompatibilities so they can be fixed! The Legacy client is a stopgap measure that won't be around forever."
+    }
+  ]
+}

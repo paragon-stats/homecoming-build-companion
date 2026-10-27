@@ -1,0 +1,59 @@
+{
+  "title": "Patch Notes/2009-02-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-02-10",
+  "published": "2009-02-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused unlocked or automatically assigned Contacts to give players story arcs before the players talked to them, and without updating the storyarc UI."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added completion rewards of Influence/Infamy and XP to many story arcs that were missing them since the introduction of Merit rewards."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Merit Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All tasks have had their Merit times and rewards re-evaluated. Most tasks received an increase to merits reward."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Merit Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Failing a mission that is the final (or only) mission of a story arc, task force, strike force or trial may result in reduced rewards. Failing tasks that have 2 or less missions will award 0 merits. Failing tasks that have 3-4 missions will award 50% merits. Failing a task that has 5 or more missions will result in normal merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that sometimes caused private tells to be cut off at either end."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that sometimes caused global channels Arena & Help text to be cut off at either end."
+    }
+  ]
+}

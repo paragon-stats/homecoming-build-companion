@@ -1,0 +1,571 @@
+{
+  "title": "Patch Notes/2009-09-30",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-09-30",
+  "published": "2009-09-30",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected a typo in the Leader badge's description."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Demonic Accolade will now correctly grant to players who have the required badges."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in the Celebrant badge that caused the description from another badge to be present in its description text."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee (all ATs) - Jacob's Ladder should look correct on male, female, and huge models now"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixes various issues with slide animations not playing consistently (includes sliding on snow/ice as well as Prestige Power Slide)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Archery (all ATs) - Snap Shot will play the attack animation again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight animations should be reliably interrupted by attack animations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Day Job power Warden Baton should now play the correct draw animation consistently."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Obliteration will now sell for the proper amount of influence/infamy during a respec."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Macintosh client to be optimized for Mac OS X Snow Leopard."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unofficial Mac OS X Tiger support has been deprecated, and users who previously ran City of Heroes under Tiger will no longer be able to run the game."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: This was previously announced in this forum announcement: [1]"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a client-side crash related to enabling the 3D Sound audio option."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed a (Macintosh) memory leak related to Mouse movement."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Earth Assault now available for primary and secondary selection. Due to stance issues it utilizes versions of Stone Fist animations instead of hammer animations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork Kingdom map can be used once again within Architect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Claws and Stone Armor are now mutually exclusive at character creation due to animation issues"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Kinetics - Transference and Transfusion have switched availability. Transference is now a minion - hard ability, and Transfusion is a LT - standard ability."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected orientation of the crystal theme's Stone Mallet."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made Sonic Dispersion's Clarity completely tintable. (The continuing effect on the head was previously the default orange.)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Sound effect for Gravity Control - Wormhole has been restored for the 'Bright' and 'Dark' versions of the customizable"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination - Snow Storm (All ATs) should properly play on the target now, instead of the caster."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor now has a \"No Fade or Pulse\" theme, which will allow players customizable FX without the dark light pulses of various powers or transparency in Cloak of Darkness"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination has been revised to better reflect selected colors."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The brown 'tints' in customized Earth Control should now be gone."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the default Ice Weapon to call the default Ice Sword instead of the Greater Ice Sword. (Both swords are still options in all Ice Sword attacks.)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Effects on the default Ice Sword should now align properly."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The second Lava theme in the tailor's dropdown menu should now be gone."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control's customized Spore Burst for the Controller AT should now reference the correct, tintable continuing effect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The default themes for Electrical Melee and Electrical Armor for Scrappers and Tankers now have a consistent and thematically appropriate color."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "No FX themes now available for all versions of Super Reflexes, Regeneration, Willpower and Dull Pain."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Metal Spines on the lower left leg for female players now fits properly on the model"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Spines - Impale hit FX should tint properly"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker - Dark Armor - Cloak of Darkness has an additional theme that no longer makes the character invisible."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute - Dark Armor - Cloak of Darkness has an additional theme that no longer makes the character invisible."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper - Dark Armor - Cloak of Darkness has an additional theme that no longer makes the character invisible."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed travel suppression from self buffing accolades. Including: Vanguard medal, Geas of the Kind Ones, Eye of the Magus, Demonic Aura, Megalomaniac, and Force of Nature."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper - Super Reflexes - Practiced Brawler's protection versus debuff effects should last the full 120 second duration."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Willpower - Mind over Body should no longer suppress resistances while in PVP zones."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Electric Armor - Charged Armor should no longer suppress resistances in PVP zones."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker - Electric Armor - Conductive Shield should no longer suppress resistances in PVP zones."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug was causing drop rates to be slightly too low."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added teleport protection to the Mitochondria in the Lady Grey Task Force."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level 54 Archvillains / Heroes should now appear in Task / Strike Forces again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added restrictions to prevent player difficulty from affecting Task / Strike Forces"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Zone Events",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zombie Apocalypse: Fixed a bug that caused the zombies to be too fragile. They are now back to their old selves again."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control - Fly Trap summon should play its spawn animation."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Peacebringers and Warshades",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldians in Nova form will no longer be impaled by the Nemesis Staff, Blackwand, or Ghost Slaying Axe."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor - The help text for this power set no longer states that it contains any healing powers. Instead it states that it offers no defense enhancing powers."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Darkness Mastery - Night Fall: This power should no longer state it accepts To Hit Buff enhancement sets and should correctly accept To Hit Debuff and Accuracy To Hit Debuff sets."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor - The help text for this power set no longer states that it contains any healing powers. Instead it states that it offers no defense enhancing powers."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Croatoa: Katie Hannon Task Force - Fixed a bug that would sometimes cause Katie to stop following players."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Striga Isle: Fixed bug in Ernesto Hess Task Force that sometimes made the computers untargetable in missions 3, 4 and 5 or made them spawn inside geometry (walls)."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Credit for the Untouchable badge should now be correctly earned for defeating all levels of Family Consiglieres in the Rogue Isles."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Master of 5th Column Strike Force Badge is now granting correctly."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Swipe: Decreased this power's damage scale from .89 to .83"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Strike: Decreased this power's damage scale from 1.35 to 1.24"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Slash: Decreased this power's damage scale from 1.64 to 1.48"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Focus: Decreased this power's damage scale from 1.66 to 1.51"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Eviscerate: Decreased this power's damage scale from 2.4 to 2.181"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claws - Shockwave: Decreased this power's damage scale from 1.25 to 1.13"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Armor - This power set's description should no longer state that it doesn't have any healing powers."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow - All powers in this set had their endurance cost decreased to correctly use Corruptor endurance cost modifiers instead of Mastermind costs."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Corruptors",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow - Poison Gas Arrow: This power was incorrectly using melee tables, it will now correctly refer to ranged tables. The end result is that this power's damage debuff effect was increased slightly."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Seismic Smash: This power's hold effect is now enhanced by Domination. Corrected normal hold magnitude to 3."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Assault - Fissure - This power's hold effect is now enhanced by Domination."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control - Fly Trap summon should play its spawn animation."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination - Suppress Pain will no longer root the player while activating."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Soldiers of Arachnos and Widows",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery - Shatter Armor - Added generic Resist Debuff visual effects."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electric Melee - the Stalker version of Lightning Rod received a moderate damage increase."
+    }
+  ]
+}

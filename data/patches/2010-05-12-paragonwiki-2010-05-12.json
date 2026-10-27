@@ -1,0 +1,115 @@
+{
+  "title": "Patch Notes/2010-05-12",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-05-12",
+  "published": "2010-05-12",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an error in Critter powers which could prevent them from being shut down in appropriate circumstances. Good examples are Reichsman keeping his max Resistance despite being shot with the Dimensional Grounding Ray, Green Mito's in the Lady Grey Task Force keeping their Healing Aura despite being held, and some critters retaining Hide when damaged."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters that had customized powers in Issue 16 will no longer lose customization the first time they log in to Issue 17."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was granting too large a reward to custom critters with Build Up or similar powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Koago (of the Minions of Igneous group) from the list of selectable bosses. Any missions that contain this critter may now be invalid."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the rewards for all 'errand' tasks within missions. These small rewards were exploitable with the new mission abandonment feature. Mission completion rewards are not affected, including patrol missions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the MAKE OFFER and POST are disabled due to too much activity, you will no longer be spammed with a huge number of announcements telling you about it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the MAKE OFFER and POST are disabled due to too much activity, the buttons will become active again after a short time as they are supposed to, instead of remaining greyed out until the player logs out and logs back in again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnighter Club - Fixed a bug that sometimes caused characters to get stuck in the ground when moving between the Midnighter Club and Cimerora."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Messages with \"<\". \"%\", and \"&\" in the subject line will no longer be garbled."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash if you attach an enhancement to a global email, delete the enhancement, and then send the email."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash for players using GeForce4 MX cards when creating a new character and getting to the 'name' screen. It may also clear up other crashes and issues with headshots/bodyshots on lower end graphics cards."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a few more rare random crash bugs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a rare crash when saving changes to custom powers."
+    }
+  ]
+}

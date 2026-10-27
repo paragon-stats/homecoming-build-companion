@@ -1,0 +1,59 @@
+{
+  "title": "Patch Notes for January 27th, 2020 (Night)",
+  "url": "https://forums.homecomingservers.com/topic/14702-patch-notes-for-january-27th-2020-night/",
+  "published": "2020-01-27T23:32:29Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Invention",
+      "power": "Build Snow Beast",
+      "text": "should no longer show as a PString in mail attachments."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invention > Sentinel ATOs should no longer show as a PString in mail attachments."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New characters should no longer see a \"SILENT\" popup upon first login."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with many special encounter enemies failing to telegraph their moves or spamming abilities they should not be using all the time."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind > Beast Mastery > Fixed a bug introduced in last patch where the pets attack chains were not working as designed."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Electric Armor",
+      "power": "Power Sink",
+      "text": "Should no longer state it grants the tanker Rage."
+    }
+  ]
+}

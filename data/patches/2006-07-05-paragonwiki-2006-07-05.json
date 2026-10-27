@@ -1,0 +1,35 @@
+{
+  "title": "Patch Notes/2006-07-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-07-05",
+  "published": "2006-07-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Combined",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash that occurred when a character was defeated"
+    },
+    {
+      "category": "Combined",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed performance and stability issues that were occurring on Intel CPUs with HyperThreading enabled."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in NPC pathing that would occasionally degrade performance on some maps."
+    }
+  ]
+}

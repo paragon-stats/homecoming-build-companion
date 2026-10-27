@@ -1,0 +1,43 @@
+{
+  "title": "Patch Notes/2008-02-26",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-02-26",
+  "published": "2008-02-26",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash bug that prevented some characters from logging on."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster attacks (primary and secondary) with multiple damage types were inadvertently doing too much damage (up to 50% more!) in PvP after the irresistible damage change. This has been corrected."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power sets affected by the Blaster fix include Archery, Energy Blast, Fire Blast, Ice Blast, Sonic Attack, Electricity Manipulation, Energy Manipulation, Fire Manipulation, Ice Manipulation"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Abyss – Fixed hole in the zone that allowed players to get under the game world."
+    }
+  ]
+}

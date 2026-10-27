@@ -1,0 +1,43 @@
+{
+  "title": "Patch Notes/2010-08-19",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-08-19",
+  "published": "2010-08-19",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that sometimes prevented Alignment powers and badges from being granted properly after the 7 day wait."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Precinct 5 tutorial: Removed the self-rez power from the Target Dummy Clockworks. They will now respawn when destroyed. They were taking a step each time they self-repaired, eventually wandering far from where they were supposed to be."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Precinct 5 tutorial: Fixed a bug that would sometimes grant Kalinda as a contact to new Praetorians."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Precinct 5 tutorial: If you somehow manage to die in the tutorial and select ‘go to hospital’, you will resurrect next to Officer Flint."
+    }
+  ]
+}

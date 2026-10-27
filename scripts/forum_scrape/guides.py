@@ -20,27 +20,50 @@ Re-runs fetch only threads with activity newer than the ledger's; ``--force`` re
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
+import urllib.parse
+from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
 
+from scripts.forum_scrape.scoring import REQUEST_TITLE
 from scripts.forum_scrape.scrape import (
+    BASE,
     DEFAULT_UA,
     Fetcher,
     Post,
     iter_posts,
-    last_page_number,
-    listing_base,
     page_title,
     slugify,
     strip_html,
-    topic_rows,
+    walk_listing,
 )
 
 GUIDE_MIN_WORDS = 500
 GUIDE_MIN_STRUCTURE = 6
+# A thread that is a conversation rather than a guide: a request (the scorer's list), a
+# showcase, or roleplay. Captured for the information in it, tagged so it never poses as a guide.
+DISCUSSION_TITLE = re.compile(r"\b(rp|roleplay|role-play|showcase|favou?rite|your most|post your|what are you)\b", re.I)
+# A concept, theme, costume, customization or roleplay thread feeds the Theme/RP build type
+# (docs/build-types-and-goals.md). It needs no build vocabulary: its value is the look and the idea.
+THEME_TITLE = re.compile(
+    r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be|costumes?|"
+    r"colou?rs?|customi[sz]ation|auras?|tailor|appearance|looks?)\b",
+    re.I,
+)
+# Frontmatter a reviewer owns; a refresh never overwrites these.
+# Frontmatter a reviewer owns once the file exists: a refresh keeps their values.
+REVIEWER_KEYS = ("trust", "contradicts_data", "topic_tags")
+# Ledger outcomes that do not settle a thread: it is looked at again next run.
+UNSETTLED = frozenset({"unavailable", "no posts"})
+# Consecutive unsettled threads that stop a run: the failure is the site or the markup, not the thread.
+BREAKER_STREAK = 10
+_VERBATIM_HEADING = "## Verbatim excerpt"
+_HEADING_START = re.compile(r"^(#)", re.M)
+_TOPIC_ID = re.compile(r"/topic/(\d+)-")
 # Build vocabulary per 100 words. In the probe every bind, badge, font, install and market
 # guide sat below 1.0; mechanics and archetype guides had a median of 3.3.
 BUILD_VOCAB_MIN_PER_100 = 2.0
@@ -194,25 +217,47 @@ def _quoted_list(values: list[str]) -> str:
     return "[" + ", ".join(json.dumps(v) for v in values) + "]"
 
 
-def capture_markdown(post: Post, topic_url: str, title: str, tags: list[str], captured_on: str) -> str:
+def is_discussion(title: str) -> bool:
+    """A request, showcase or roleplay thread: kept for its information, not presented as a guide."""
+    return bool(REQUEST_TITLE.search(title) or DISCUSSION_TITLE.search(title))
+
+
+def is_theme(title: str) -> bool:
+    """A concept, theme or roleplay thread: reference for Theme/RP builds."""
+    return bool(THEME_TITLE.search(title))
+
+
+def content_hash(text: str) -> str:
+    """A short digest of the rendered opening post; equal digests mean the author changed nothing."""
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def capture_markdown(
+    post: Post,
+    topic_url: str,
+    title: str,
+    tags: list[str],
+    captured_on: str,
+    digest: str,
+    source: str = "forums.homecomingservers.com",
+) -> str:
     """The capture file: the manual workflow's frontmatter, a summary stub, the opening post verbatim."""
     posted = post.posted_at[:10]
-    front = "\n".join(
-        [
-            "---",
-            f"title: {json.dumps(title)}",
-            f"url: {json.dumps(topic_url)}",
-            'source: "forums.homecomingservers.com"',
-            f"authors: {_quoted_list([post.author])}",
-            f"date_posted: {json.dumps(posted)}",
-            f"date_captured: {json.dumps(captured_on)}",
-            'captured_by: "local-capture"',
-            f"topic_tags: {_quoted_list(tags)}",
-            "trust: single-author-opinion",
-            'contradicts_data: "none"',
-            "---",
-        ]
-    )
+    front = [
+        "---",
+        f"title: {json.dumps(title)}",
+        f"url: {json.dumps(topic_url)}",
+        f"source: {json.dumps(source)}",
+        f"authors: {_quoted_list([post.author])}",
+        f"date_posted: {json.dumps(posted)}",
+        f"date_captured: {json.dumps(captured_on)}",
+        'captured_by: "local-capture"',
+        f"topic_tags: {_quoted_list(tags)}",
+        "trust: single-author-opinion",
+        'contradicts_data: "none"',
+        f"content_hash: {json.dumps(digest)}",
+        "---",
+    ]
     body = "\n".join(
         [
             f"# {title}",
@@ -221,15 +266,90 @@ def capture_markdown(post: Post, topic_url: str, title: str, tags: list[str], ca
             "",
             _SUMMARY_LINE,
             "",
-            "## Verbatim excerpt",
+            _VERBATIM_HEADING,
             "",
             f"### Post 1 — {post.author}, {posted}",
             "",
-            render_html(post.html),
+            # A post line that starts with "#" would read as a heading and end the section early.
+            _HEADING_START.sub(r"\\\1", render_html(post.html)),
             "",
         ]
     )
-    return front + "\n\n" + body
+    return "\n".join(front) + "\n\n" + body
+
+
+def _split(capture: str) -> tuple[dict[str, str], str]:
+    """``(frontmatter key -> raw value, body)`` of a capture file; a file without frontmatter is all body."""
+    if not capture.startswith("---\n"):
+        return {}, capture
+    end = capture.find("\n---", 4)
+    if end < 0:
+        return {}, capture
+    keys: dict[str, str] = {}
+    for line in capture[4:end].splitlines():
+        key, sep, value = line.partition(":")
+        if sep:
+            keys[key.strip()] = value.strip()
+    return keys, capture[end + 4 :].lstrip("\n")
+
+
+def _verbatim_section(body: str) -> tuple[int, int]:
+    """Start and end offsets of the verbatim section in a body, or ``(-1, -1)`` when it has none."""
+    start = body.find(_VERBATIM_HEADING)
+    if start < 0:
+        return -1, -1
+    following = re.search(r"^## ", body[start + len(_VERBATIM_HEADING) :], re.M)
+    end = start + len(_VERBATIM_HEADING) + following.start() if following else len(body)
+    return start, end
+
+
+def stored_hash(capture: str) -> str:
+    """The ``content_hash`` a capture file records, or "" for a file written before hashes."""
+    raw = _split(capture)[0].get("content_hash", '""')
+    try:
+        return str(json.loads(raw))
+    except json.JSONDecodeError:
+        return raw.strip("\"' ")  # hand-edited without quotes: the digest is still the value
+
+
+def merge_capture(existing: str, fresh: str) -> str:
+    """A refresh that keeps what the reviewer wrote.
+
+    Source-derived frontmatter and the verbatim section come from ``fresh``; the reviewer's
+    ``REVIEWER_KEYS`` values, any key the tool does not write, the Summary and every other
+    section come from ``existing``. The replaced hash is kept as ``superseded_hash`` so the
+    change can be diffed.
+    """
+    old_keys, old_body = _split(existing)
+    new_keys, new_body = _split(fresh)
+    lines = []
+    superseded = ""
+    for key, value in new_keys.items():
+        if key in REVIEWER_KEYS and key in old_keys:
+            value = old_keys[key]
+        lines.append(f"{key}: {value}")
+        if key == "content_hash" and old_keys.get("content_hash") not in (None, value):
+            superseded = old_keys["content_hash"]
+            lines.append(f"superseded_hash: {superseded}")
+    for key, value in old_keys.items():
+        if key not in new_keys and not (key == "superseded_hash" and superseded):
+            lines.append(f"{key}: {value}")
+    new_start, new_end = _verbatim_section(new_body)
+    old_start, old_end = _verbatim_section(old_body)
+    if old_start < 0:
+        body = old_body.rstrip("\n") + "\n\n" + new_body[new_start:new_end]
+    else:
+        body = old_body[:old_start] + new_body[new_start:new_end] + old_body[old_end:]
+    return "---\n" + "\n".join(lines) + "\n---\n\n" + body
+
+
+def _capture_url(capture: str) -> str:
+    """The thread URL a capture file records, or "" when it records none."""
+    raw = _split(capture)[0].get("url", '""')
+    try:
+        return str(json.loads(raw))
+    except json.JSONDecodeError:
+        return raw.strip("\"' ")
 
 
 def _ledger(out: Path) -> dict[str, dict[str, object]]:
@@ -243,49 +363,66 @@ def _ledger(out: Path) -> dict[str, dict[str, object]]:
     return rows
 
 
-def _walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None) -> dict[str, str]:
-    first = fetcher.get(forum_url)
-    if first is None:
-        print(f"E61: listing unavailable: {forum_url}", file=sys.stderr)
-        return {}
-    base = listing_base(first, forum_url)
-    total = last_page_number(first)
-    rows = dict(topic_rows(first))
-    for number in range(2, (total if pages is None else min(total, pages)) + 1):
-        listing = fetcher.get(f"{base}/page/{number}/")
-        if listing is not None:
-            for topic, last in topic_rows(listing).items():
-                rows.setdefault(topic, last)
-    return rows
+def _walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None) -> tuple[dict[str, str], int]:
+    """The section's topics and how many of its listing pages could not be read."""
+    rows, failed = walk_listing(fetcher, forum_url, pages)
+    for url in failed:
+        code = "E61" if url == forum_url else "E65"
+        print(f"{code}: listing page unavailable: {url}; re-run to pick up its threads", file=sys.stderr)
+    return rows, len(failed)
 
 
 def _capture(
-    fetcher: Fetcher, topic_url: str, section_slug: str, out: Path, powersets: frozenset[str]
-) -> tuple[str, str]:
-    """Capture the thread's opening post if it is a build-related guide: ``(file written, reason skipped)``."""
+    fetcher: Fetcher,
+    topic_url: str,
+    section_slug: str,
+    out: Path,
+    powersets: frozenset[str],
+    source: str = "forums.homecomingservers.com",
+    extra_tags: tuple[str, ...] = (),
+) -> tuple[str, str, str]:
+    """Capture the thread's opening post if it is a build-related guide.
+
+    Returns ``(file, digest, reason)``: the capture's path and content hash when the opener
+    qualifies, else the reason it did not. ``reason`` is ``"unchanged"`` when the file already
+    holds this content, in which case nothing is written. ``extra_tags`` follow the folder tag:
+    an era marker such as ``pre-sunset`` for an archived board.
+    """
     page = fetcher.get(topic_url)
     if page is None:
-        return "", "unavailable"
+        return "", "", "unavailable"
     posts = list(iter_posts(page))
     if not posts:
-        return "", "no posts"
+        return "", "", "no posts"
     opener = posts[0]
     text = render_html(opener.html)
     if not is_guide(opener.html, text):
-        return "", "not guide-shaped"
-    if build_relevance(text) < BUILD_VOCAB_MIN_PER_100:
-        return "", "not build-related"
+        return "", "", "not guide-shaped"
     title = page_title(page)
-    folder, lead = classify(title, section_slug, powersets)
-    tags = [lead, *[t for t in topic_tags(title, text) if t != lead]]
+    theme = is_theme(title)
+    if not theme and build_relevance(text) < BUILD_VOCAB_MIN_PER_100:
+        return "", "", "not build-related"
+    folder, lead = ("theme", "theme-rp") if theme else classify(title, section_slug, powersets)
+    kinds = ["discussion"] if is_discussion(title) else []
+    tags = [lead, *extra_tags, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
+    digest = content_hash(text)
     path = out / folder / f"{slugify(title)}.md"
+    existing = path.read_text(encoding="utf-8") if path.exists() else ""
+    if existing and _capture_url(existing) not in ("", topic_url):
+        # Another thread already holds this title's file: this one is named by its topic id too.
+        topic_id = _TOPIC_ID.search(topic_url)
+        path = out / folder / f"{slugify(title)}-{topic_id.group(1) if topic_id else 'x'}.md"
+        existing = path.read_text(encoding="utf-8") if path.exists() else ""
+    relative = path.relative_to(out).as_posix()
+    if existing and not stored_hash(existing):
+        print(f"E69: {relative} has no content_hash (a hand-made capture); left as it is", file=sys.stderr)
+        return relative, "", "kept manual capture"
+    if existing and stored_hash(existing) == digest:
+        return relative, digest, "unchanged"
+    fresh = capture_markdown(opener, topic_url, title, tags, datetime.now(UTC).date().isoformat(), digest, source)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        capture_markdown(opener, topic_url, title, tags, datetime.now(UTC).date().isoformat()),
-        encoding="utf-8",
-        newline="\n",
-    )
-    return path.relative_to(out).as_posix(), ""
+    path.write_text(merge_capture(existing, fresh) if existing else fresh, encoding="utf-8", newline="\n")
+    return relative, digest, ""
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -307,34 +444,81 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--delay", type=float, default=2.0, help="minimum seconds between requests (default 2)")
     parser.add_argument("--user-agent", default=DEFAULT_UA)
     parser.add_argument("--force", action="store_true", help="refetch threads the ledger already covers")
+    parser.add_argument(
+        "--base",
+        default=BASE,
+        metavar="URL",
+        help="the board's origin, for robots.txt and the capture's source field (default the Homecoming forum)",
+    )
+    parser.add_argument(
+        "--tag", action="append", default=[], metavar="TAG", help="a tag added after the folder tag (repeatable)"
+    )
     args = parser.parse_args(argv)
 
-    fetcher = Fetcher(args.user_agent, args.delay)
+    fetcher = Fetcher(args.user_agent, args.delay, base=args.base)
+    source = urllib.parse.urlsplit(args.base).netloc or args.base
     powersets = powersets_from_canonical(args.canonical)
     ledger = _ledger(args.out)
     args.out.mkdir(parents=True, exist_ok=True)
-    examined = captured = 0
+    examined = captured = streak = gaps = 0
+    reasons: Counter[str] = Counter()
+    tripped = False
     with (args.out / "guides.jsonl").open("a", encoding="utf-8", newline="\n") as ledger_file:
         for forum_url in args.forum:
             section_slug = forum_url.rstrip("/").rsplit("/", 1)[-1]
-            for topic_url, last_activity in _walk_listing(fetcher, forum_url, args.pages).items():
-                known = ledger.get(topic_url)
-                if known and not args.force and last_activity and last_activity <= str(known.get("last_activity", "")):
+            topics, missing = _walk_listing(fetcher, forum_url, args.pages)
+            gaps += missing
+            for topic_url, last_activity in topics.items():
+                known = ledger.get(topic_url) or {}
+                # A thread the last run could not fetch or parse is not covered: a timeout or a
+                # layout change must not hide it.
+                settled = bool(known) and known.get("reason") not in UNSETTLED
+                if (
+                    settled
+                    and not args.force
+                    and last_activity
+                    and last_activity <= str(known.get("last_activity", ""))
+                ):
                     continue
-                file, reason = _capture(fetcher, topic_url, section_slug, args.out, powersets)
+                file, digest, reason = _capture(
+                    fetcher, topic_url, section_slug, args.out, powersets, source, tuple(args.tag)
+                )
                 examined += 1
-                captured += bool(file)
+                captured += bool(file) and not reason
+                reasons[reason or "written"] += 1
+                streak = streak + 1 if reason in UNSETTLED else 0
                 row = {
                     "topic_url": topic_url,
                     "last_activity": last_activity,
                     "captured": bool(file),
                     "file": file,
+                    "content_hash": digest,
                     "reason": reason,
                 }
                 ledger[topic_url] = row
                 ledger_file.write(json.dumps(row, ensure_ascii=False) + "\n")
-    print(f"{captured} guide(s) captured from {examined} thread(s) into {args.out}")
-    return 0
+                # On disk before the next thread: progress stays visible and an interrupted
+                # run resumes from here instead of re-examining everything.
+                ledger_file.flush()
+                if streak >= BREAKER_STREAK:
+                    # The site is down, blocking us, or changed its markup: every further
+                    # request would fail the same way, so stop and leave the rest for a re-run.
+                    tripped = True
+                    print(
+                        f"E63: {streak} consecutive threads unfetched or unparsed; stopping at {topic_url}",
+                        file=sys.stderr,
+                    )
+                    break
+            if tripped:
+                break
+    print(f"{captured} guide(s) written from {examined} thread(s) examined into {args.out}")
+    if reasons:
+        print("  " + ", ".join(f"{name}: {count}" for name, count in sorted(reasons.items())))
+    # Unsettled threads are retried by the next run; exit 2 tells a scripted caller to schedule one.
+    unsettled = sum(reasons[name] for name in UNSETTLED)
+    if unsettled or tripped:
+        print(f"E62: {unsettled} thread(s) could not be fetched or parsed; re-run to retry them", file=sys.stderr)
+    return 2 if unsettled or tripped or gaps else 0
 
 
 if __name__ == "__main__":

@@ -1,0 +1,267 @@
+{
+  "title": "Patch Notes/2012-01-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2012-01-10",
+  "published": "2012-01-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Paragon Reward Program - Fire and Ice Costume Set",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Fire and Ice costume set is now available through the Paragon Rewards program to our VIP customers. This set is split into three sections: Fire and Ice 1 contains the base pieces of the Fire set, Fire and Ice 2 contains the base pieces for the Ice set, and Fire and Ice 3 contains the various component pieces and weapons. Enjoy!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A character's fog of war on zone maps will no longer reset after logging in as different characters without quitting the game."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Disabled debt message if level-capped, influence-capped, and no debt to work off."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Claiming all veteran rewards at once should maintain the correct bonuses."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lighten/Darken effect in the costume menu should now scale properly with widescreen resolutions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The ear option in the Standard head category has been updated to offer both skin and colored versions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"Combat Auras\" category has been renamed to \"Cyborg Auras.\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem where attempting purchase the Gunslinger boots from the character creation or tailor screens would not take the user to the correct purchase page for the item selected."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem where purchasing the basic female Gunslinger gloves from character creation would not successfully unlock them."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the basic female Gunslinger gloves to the robes category."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Selecting the Vanguard Bow for Trick Arrow should no longer cause Beam Rifle or Assault Rifle effects to emit from the player's knee. These effects now properly emit from the gun's muzzle."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Celestial Rifle hand placement in the Assault Rifle powerset, as well as the placement of its flamethrower component."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Titan Weapon ninja run completely, so it now uses a left handed version of ninja run, which fixes an issue where the character's weapon would pop out of their hand."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated female hands holding Titan Weapon on ninja run. The weapon no longer floating away from female hands."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vorpal Total Radial Judgement and Vorpal Radial Final Judgement now properly provide their entire defense boost when used against enemies above the level of the user."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hitpoints and Regeneration boosts provided by Vigor Core Paragon should now properly ignore 2/3s of diminishing returns on enhancement values."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted the female Flying Carpet stance so that shoulder pads should no longer clip into the head."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Warwolf from Undead Survival Kit long help has been updated to reflect that the pet will in fact zone with you."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Positional and ranged defense bonuses from the IDF and Robotic Drone support pets now last the same duration, and all properly suppress if the support pet is held, stunned, or slept."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Titan Weapon - Plasma Sword's glow effects would cause the weapon to appear transparent."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Inspirations",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased duration of Inspirations purchased from the Paragon Market (or acquired from the Paragon Rewards Program) to 5 minutes. This only Includes Inspirations that have a duration."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Inspirations",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These Inspirations with a duration will now persist through defeat."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue where Tickets in Mission Architect were being distributed unevenly between different members of the team."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Freedom Tutorial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clicking on the store icon in the dialog box to purchase the Knowledgeable badge will close the dialog box."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc Episode 4 - Hero",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An issue in the third mission where non-task owners could speak with Sister Psyche in the Rikti Base was fixed."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 60 thread reward in the Underground Incarnate Trial is now awarded even if the group doesn't succeed at the conditions for the 'Regenerate This' badge."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Trial - TPN Campus",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Maelstrom will now avoid using Crane Kick on a target who has been hit by his Crane Kick within the previous 15 seconds."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Trial - TPN Campus",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The damage on Maelstrom's teleporting Crane Kick has been reduced by 66%."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Trial - Minds of Mayhem",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Nightmares during the Malaise battle have been re-examined and adjustments have been made to their difficulty. Crystal Titan and Deathsurge in particular have been weakened, while Bat'Zul and Eochai have been strengthened. All Nightmares have also seen a general reduction in the duration of their crowd control effects."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Atlas Park Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rocket Board and other Walk-class powers will now be properly disabled during the \"disguise missions\" in the Matthew Habashy and Sondra Costel arcs."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Maria Jenkins",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Sister Psyche was not present for the mission \"Find Statesman\"."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Ghost Widow Patron Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Ghost Widow was giving out her second arc to players who were beneath level 40."
+    }
+  ]
+}

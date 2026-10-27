@@ -1,0 +1,211 @@
+{
+  "title": "Patch Notes/2004-10-13",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2004-10-13",
+  "published": "2004-10-13",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Zookeeper badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Master of Olympus badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Statesman's Pal badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bad badge (Gravedigger)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the long description for Super Strength/Hurl and Footstomp. They said they were Heavy damage when the damage is more like moderate (power did not change, only description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated all War Mace Damage descriptions (powers did not change, only the accuracy of the descriptions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the long description for Claws/Eviscerate damage. It said it was Heavy damage when the damage is more like Superior (power did not change, only description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the long description for Voltaic Sentinel damage. It said it was Heavy damage when the damage is more like Moderate (power did not change, only description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced all long description text of that said a power was “Heavy” damage and changed it to “High” damage for consistency (this did not change any actual powers, only the description was updated)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the long description for Power Punch/Whirling Hands and Fire Sword Circle damage. It said it was Minor damage when the damage is more like Moderate (power did not change, only description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the long description for Stone Mallet/Heavy Mallet damage. It said it was Extreme damage when the damage is more like Superior (power did not change, only description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Hurricane that was causing the Villain version of Hurricane to debuff Heroes 10 seconds after they left the affected area of the Hurricane. This change did not affect Hero Hurricanes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villain Hurricanes will no longer reduce the Range of Tanker and Scrappers. This is to prevent their melee ranges from being reduced to 0. All other aspects of Hurricane still apply to Scrappers and Tankers (they can get knocked down and their accuracy will be reduced). Other archetypes will still be affected by the range debuff. (This change only affects villain Hurricane)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Crey Protectors MoG and Unstoppable powers so they don't last so long. (Modified the quills protector power)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Power Burst Hit visual f/x."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More changes to low level Outcasts and Trolls (made lower level versions more like thugs)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased the Slow debuff associated with Increase Density."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Babbage resistance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Banished Pantheon Death Shamans from summoning Husks at the wrong (very high or very low) levels."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Clockwork Assemblers from building clockwork cogs at the wrong (very high or very low) levels."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Combat Jumping resistance to Immobilization."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Display name of Rank for Rularuu Field Marshals and Hamidon."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed minor issue with Howling Twilight that would cause you to get immobilized for a while casting against a lower level foe."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed villain Snow Storm powers from spamming your chat window."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Faster cast animation for Twilight Grasp."
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "title": "Patch Notes/2009-11-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-11-10",
+  "published": "2009-11-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a mouse cursor issue that affected Macintosh users who had the Intel GMA x3100 video card."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Macintosh Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The “Enter” key on the Macintosh Number keypad will no longer have the same functionality as the “Return” key on the keyboard."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcs using high level bosses from villain groups with non-continuous level ranges (The Family, Banished Pantheon, etc), were being incorrectly detected as invalid when characters tried to enter the mission door, after the mission was accepted. These arcs are now playable again."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where some powers (i.e. Healing Aura, Warmth) would occasionally root a character in place when the power was activated."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Walk Power - All characters will now have access to a new inherent power -- Walk! This toggle power enables characters to move at a comfortable walking pace."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The “Walk” power is an Inherent toggle power given to all characters at Level 2."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Please Note that powers or jumping (i.e. pressing the Space Bar) cannot be used while walking."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power is not intended for use in combat."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Shivan Shard temp power now works correctly while exemplared. Previously, the summoning animation would play and a charge would be consumed, but nothing would be summoned."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All references to ‘Talsorian’ in the game have been changed to ‘Vanguard’. Any character that currently uses any of these costume pieces or custom weapons will be required to change them when they make any changes at the Tailor/Facemaker. (Please Note that we will be granting a Costume token to players with the publish of this build on the Live servers)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Task / Strike Forces with a Level range that includes Level 50 (in the TF/SF range) spawn at one level below the team’s level."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Midnighter Club: Mercedes Sheldon’s story arc Crown of Glory was not giving out a story arc completion reward upon speaking to the contact. This has been fixed and the appropriate reward is now issued by the contact at story arc completion."
+    }
+  ]
+}

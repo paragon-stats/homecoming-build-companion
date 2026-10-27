@@ -1,0 +1,35 @@
+{
+  "title": "Patch Notes/2010-06-29",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-06-29",
+  "published": "2010-06-29",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Invention Tutorials for Heroes and Villains can no longer be abandoned."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Destructible Longbow Doors no longer grant rewards when destroyed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause attachments to be lost if an email was accidentally sent to an invalid name longer than 21 characters."
+    }
+  ]
+}

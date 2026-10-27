@@ -1,0 +1,59 @@
+{
+  "title": "Patch Notes/2005-07-13",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-07-13",
+  "published": "2005-07-13",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused incorrect costume pieces to appear in the Supergroup and Tailor windows."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made it impossible to target enemies through some open doors."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Task Forces and Trials will now accept any player who has reached at least the minimum level of the Task Force or Trial to play it. Players above the maximum level of the Task Force or Trial will be auto-exemplared to the highest level of the Task Force or Trial. They will remain exemplared until they are no longer a member of the taskforce or trial."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in Terra Volta Trial that made it difficult for players to target the Coolant Belts."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that occasionally allowed unlimited numbers of Rikti to spawn from portals in some mission maps."
+    },
+    {
+      "category": "Chat",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The /hide and /ghide commands are no longer linked. /hide makes you appear offline to others in local chat. /ghide makes you appear offline in global chat. The commands are canceled by /unhide and /gunhide respectively."
+    }
+  ]
+}

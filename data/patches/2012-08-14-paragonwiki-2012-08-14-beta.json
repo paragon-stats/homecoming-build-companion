@@ -1,0 +1,707 @@
+{
+  "title": "Patch Notes/2012-08-14 Beta",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2012-08-14_Beta",
+  "published": "2012-08-14",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "12.08.14 Beta Build 2400.201208122118.08",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "12.08.14 Beta Build 2400.201208122118.08"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Pool Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Static Discharge: All Epic pool versions of this power should now have the standard 2 hand cast with default purple electricity and the patron versions of this power have the standard 1 hand cast with default red electricity."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Pool Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster/Blaze Mastery/Char: Fixed a bug that caused this power to lack its appropriate continuing effects."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Pool Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patron Power Pool Pets now have customizable spawn and despawn effects."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Power Pool Customization",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zapp - Bright and dark versions of this power are now fully customizable."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Crashes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players previously from non-English-language servers should now be able to load into maps."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Crey Spawns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scientists & Tank \"Repair\" spawns, and PR \"Roadshow\" spawns now con yellow"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Crey Spawns",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Paragon Protectors in \"Roadshow\" spawndefs have been replaced with Power Tanks"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted neighborhood levels and balanced spawn level ranges to be easier for players, and align with mission progression. The new level ranges:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gish 7-10"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Industrial Ave 7-9"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "KGW 11-13"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aqueduct 9-11"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Royal Refinery 10-12"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "King's Row",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High Park 12-15"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Concealment/Misdirection: This power's duration will no longer scale with the user's level. It will have a constant duration of 15 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Beam: The Mace Beam sniper attack from Mace Mastery no longer invokes weapon redraw if you use another Mace attack before or after it."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Epic Power Pool",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Mastery power Summon Mistress is now using the run in spawn animation, instead of the hands on hips laughter emote."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Mu Mastery Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mu Mastery Pets have their red auras restored."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The recharge time of Blaster Sustain toggles has been standardized. Cauterizing Aura, Frigid Protection, Reaction Time, and Field Operative all now recharge in 10 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue where Blaster Sustain toggle powers would de-toggle when mezzed. These powers now remain toggled, but any offensive debuffs or damage are suppressed while the player is controlled."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Combat: Defiance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected a number of Defiance values in Martial Combat - many of them were looking up the wrong Area Factor for calculation."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Assault",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the Endurance Cost of Shuriken Throw, Caltrops, and Explosive Shuriken was too high."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Martial Assault",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ki Push was incorrectly flagged as Autohit. It now must successfully roll a To-Hit roll to hit the target."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioner's Contract: Disorient Bonus - This enhancement will now trigger mez suppression when used in PvP. Reduced this power's duration in PvP to be consistent with other mez procs."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pounding Slugfest: Disorient Bonus - This enhancement will now trigger mez suppression when used in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debilitative Action: Disorient Bonus - - This enhancement will now trigger mez suppression when used in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Razzle Dazzle: Disorient Bonus - This enhancement will now trigger mez suppression when used in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unspeakable Terror: Disorient Bonus - This enhancement will now trigger mez suppression when used in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Triumphant Insult: Chance to Disorient - This enhancement will now trigger mez suppression when used in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased \"Improved Movement Bonus\" set bonuses by 50%."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swapped Running, Flying and Leaping set bonuses with global Improved Movement Bonus set bonuses."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Preventive Medicine: This enhancement now has a 10% chance to trigger if your health is between 31-75% health and a 100% chance to trigger if your health is below 31%. Reduced the internal cooldown from 120 seconds to 90 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scourging Blast: Recharge/Chance for Minor PBAoE +End Proc now has a small area of effect heal as well."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crushing Impact: Reduced this set's 2 slot bonus from 3% Lethal/Smash Resist and 5% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pulverizing Impact: Reduced this set's 2 slot bonus from 2.25% Toxic/Psi Resist and 3.75% Mez Resist to 1.5% Toxic/Psi Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Smashing Haymaker: Reduced this set's 2 slot bonus from 2.25% Fire/Cold Resist and 3.75% Mez Resist to 1.5% Fire/Cold Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Smite: Reduced this set's 2 slot bonus from 2.25% Fire/Cold Resist and 3.75% Mez Resist to 1.5% Fire/Cold Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 2.25% Toxic/Psi Resist and 3.75% Mez Resist to 1.5% Toxic/Psi and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Touch of Death: Reduced this set's 2 slot bonus from 2.25% Energy/Negative Resist and 3.75% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mako's Bite: Reduced this set's 2 slot bonus from 2.25% Energy/Negative Resist and 3.75% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Salvo: Reduced this set's 2 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 3% Fire/Cold Resist and 5% Mez Resist to 2.25% Fire/Cold Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tempest: Reduced this set's 2 slot bonus from 2.25% Energy/Negative Resist and 3.75% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 2.25% Lethal/Smash Resist and 3.75% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entropic Chaos: Reduced this set's 3 slot bonus from 3.75% Energy/Negative Resist and 6.25% Mez Resist to 3% Energy/Negative Resist and 5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ruin: Reduced this set's 2 slot bonus from 2.25% Toxic/Psi Resist and 3.75% Mez Resist to 1.5% Toxic/Psi and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decimation: Reduced this set's 2 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detonation: Reduced this set's 2 slot bonus from 2.25% Lethal/Smash Resist and 3.75% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 2.25% Energy/Negative Resist and 3.75% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Positron's Blast: Reduced this set's 3 slot bonus from 3.75% Fire/Cold Resist and 6.25% Mez Resist to 3% Fire/Cold Resist and 5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Annihilation: Reduced this set's 3 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 2.25% Energy/Negative Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Multi-Strike: Reduced this set's 2 slot bonus from 2.25% Lethal/Smash Resist and 3.75% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 2.25% Energy/Negative Resist and 3.75% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scirocco's Dervish: Reduced this set's 3 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 2.25% Energy/Negative Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Obliteration: Reduced this set's 3 slot bonus from 3% Lethal/Smash Resist and 5% Mez Resist to 2.25% Lethal/Smash Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fury of the Gladiator: Reduced this set's 2 slot PVE bonus from 4.5% Fire/Cold Resist and 4.5% Mez Resist to 3.75% Fire/Cold Resist and 6.25% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Executioner's Contract: Reduced this set's 3 slot bonus from 3% Fire/Cold Resist and 5% Mez Resist to 2.25% Fire/Cold Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sovereign's Right: Reduced this set's 3 slot bonus from 3.75% Fire/Cold Resist and 6.25% Mez Resist to 2.25% Fire/Cold Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gift of the Ancients: Reduced this set's 3 slot bonus from 3% Fire/Cold Resist and 5% Mez Resist to 2.25% Fire/Cold Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Red Fortune: Reduced this set's 2 slot bonus from 2.25% Lethal/Smash Resist and 3.75% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 2.25% Fire/Cold Resist Resist and 3.75% Mez Resist to 1.5% Fire/Cold Resist Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impervious Skin: Reduced this set's 3 slot bonus from 3% Lethal/Smash Resist and 5% Mez Resist to 2.25% Lethal/Smash Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reactive Armor: Fixed a bug that caused this enhancement to have the incorrect set bonuses at 2 and 3 pieces. The 2 piece set bonus is a tiny lethal/smashing mez resistance bonus, and the 3 piece is the original tiny energy/negative/ranged defense bonus."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titanium Coating: Reduced this set's 2 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 1.5% Energy/Negative Resist and 2.5% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unbreakable Guard: Reduced this set's 3 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 2.25% Energy/Negative Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doctored Wounds: Reduced this set's 2 slot bonus from 2.25% Lethal/Smash Resist and 3.75% Mez Resist to 1.5% Lethal/Smash Resist and 2.5% Mez Resist. Reduced this set's 3 slot bonus from 3% Fire/Cold Resist Resist and 5% Mez Resist to 2.25% Fire/Cold Resist Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debilitative Action: Reduced this set's 3 slot bonus from 3% Fire/Cold Resist and 5% Mez Resist to 2.25% Fire/Cold Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Celerity: Reduced this set's 3 slot bonus from 3% Lethal/Smash Resist and 5% Mez Resist to 2.25% Lethal/Smash Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Crash: Reduced this set's 3 slot bonus from 3% Lethal/Smash Resist and 5% Mez Resist to 2.25% Lethal/Smash Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Analyze Weakness: Reduced this set's 3 slot bonus from 3% Energy/Negative Resist and 5% Mez Resist to 2.25% Energy/Negative Resist and 3.75% Mez Resist."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added villain specific dialog to missions's 1, 3, 4, and 5."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Praetorian civilians to missions 1 and 5."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Incarnate Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed details about Number Six's background to better fit with his previous history."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Antimatter Personal Story",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the player was not kicked out of the mission when it finished."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Deadlock Personal Story",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Deadlock's Serum buff would persist indefinitely."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added an extra dialog choice to Provost Marchand's initial dialog. Players will be able to ask Marchand more about his role in Praetoria and his current motivations."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added an extra dialog choice with Marauder in Mission 1. Players who have the Souvenir clue, \"The History Of The Destroyers\", will ask him about the Mid-West. Players who do not have the souvenir clue will ask why they should be able to trust Marauder."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc 3 Mission 2: Fixed an issue where the UI for saving Riptide did not show up in the mission. Players should also be able to earn the badge, Riptide's Comrade, now."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc 2 - Part 4: Added a mini-map to the Carnival Island refugee camp."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made adjustments to Crey, Freakshow, and Prisoner spawns so that the player/enemy difficulty ratio would be equal."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Brickstown Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arc 1 Mission 3: Fixed an issue where the waypoint was appearing at the entrance instead of the elevator after rescuing Aurora and Noble Savage."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "St. Martial Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inside Information: Fixed a bug where rogues in Paragon City could not properly start the first mission for Inside Information."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Prison Break Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies should now match player levels within the Prison Break event"
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Prison Break Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added line of dialogue for \"Arrest 5th Column\" spawns to include the Player’s name when alerted."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Prison Break Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced prisoner spawn probability in an effort to lighten overworld density."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Prison Break Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thinned out \"Prisoner Rumble\" spawns on sidewalks between The Zig and Seven Gates."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Prison Break Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Balanced Player/Prisoner difficulty ratio for spawns making it in player favor."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rogue-alignment players will now be able to access Antonio Nash's storyarc ."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigilante-alignment players will now be able to access Lieutenant Harriman's storyarc,"
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Astoria: Dream Doctor: Removed the treasure chests in the green orb room in Dream Doctor's final mission."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Entering Mission Architect missions should no longer display an error."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Reactive Defenses: Endurance/Recharge and Preventive Medicine Endurance/Recharge recipes on the Hero Merit vendor should now correctly cost 1 hero merit."
+    }
+  ]
+}

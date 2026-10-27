@@ -1,0 +1,43 @@
+{
+  "title": "Patch Notes/2011-05-03",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-05-03",
+  "published": "2011-05-03",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved a database issue which could cause a server crash under certain circumstances."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved a crash which could lead to an abrupt exit to the start of Incarnate Trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the filtering of league-wide buffs from Patch 1 which was causing additional server processing."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An optimized filter of league buffs will be addressed in a future patch."
+    }
+  ]
+}

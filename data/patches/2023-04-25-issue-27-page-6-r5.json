@@ -5,6 +5,7 @@
   "issue": "issue-27",
   "page": "page-6",
   "revision": 5,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Marquee Features",
@@ -688,9 +689,9 @@
     },
     {
       "category": "Blast Power Set Updates",
-      "subsection": "Fire Blast",
+      "subsection": "Fire Blast (Blaster and Sentinels only)",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Fire Blast",
       "power": "",
       "text": "Cast time lowered from 1.67s to 1.2s to match Defender/Corruptor version."
     },
@@ -928,17 +929,17 @@
     },
     {
       "category": "Blast Power Set Updates",
-      "subsection": "Seismic Blast",
+      "subsection": "Scramble Thoughts (Blaster/Defender/Corruptor)",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Seismic Blast",
       "power": "",
       "text": "Timing adjustments in Seismic Stress buildup, players should be able to more quickly notice orange rings and decide what power to use next based on this visual information."
     },
     {
       "category": "Blast Power Set Updates",
-      "subsection": "Water Blast",
+      "subsection": "Scramble Thoughts (Blaster/Defender/Corruptor)",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Water Blast",
       "power": "",
       "text": "Powers should build up Tidal Force stacks even if they miss."
     },

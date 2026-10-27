@@ -1,0 +1,411 @@
+{
+  "title": "Patch Notes/2006-08-16",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-08-16",
+  "published": "2006-08-16",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Extended Duration of Empowerment Station Buffs to 60 minutes."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the 'lifetime' of the attackable portion of Trick Arrow Oil Slick. This should fix the failure to ignite issue."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swift, Quickness and Lightning Reflexes now grant a bonus to Flight Speed, in addition to their existing Resistance to Flight Speed debuffs."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleporting is no longer allowed in Pocket-D."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Endurance Cost for Power Pool Flight."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Siren's Call: Modified police drones around hero hospital to help prevent villain camping."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recluse's Victory: Players can no longer dismiss friendly turrets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Prestige rewards (while playing in Supergroup mode) increased approximately 25%."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can no longer place more than one Combo Energy/Control generator in a base if you have more than one Oversight Center."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New rooms available"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Oversight Center (Found in the Control Rooms tab). This is a 3x3 room that costs 50,000 Prestige. It can hold 1 Control item, 1 Storage item, and 1 Workshop item (as well as unlimited decorative items, but no Aux items)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Med Bay: This is a 2x2 Medical room that costs 50,000 Prestige. It has the restriction of only allowing 1 Medical item in it (no Anchors, no Aux items)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleport Bay: This is a 1x2 Teleport room that costs 50,000 Prestige. It has the restriction of no Dimensional Anchors and only allowing 1 Teleporter and 1 Teleport Aux Item (so your Teleporter is restricted to going to only one zone)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Workshop: A new 1x2 Workshop is available costing 50,000 Prestige. It, too, can not have any Dimensional Anchors in it, and it is limited to 1 Worktable and 1 Storage object, as well as 1 Empowerment Station."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Base Item: Combo Energy/Control generator. This is a new Control item, a small, 25,000 prestige, generator that outputs Control and Energy to a level that is \"just enough\" to get the minimal functionality of the base online (that being a single Teleporter, Reclaimator, and Worktable). It comes in both Arcane and Tech versions, and you can fit 1 per Oversight Room and 1 per Plot (multiple Oversight rooms do not give you multiple Combo Items)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Unsecure Base Plots are now limited to 1 Item of Power. Secure Base Plots are unchanged (there is no artificial limit to the amount of Items of Power a Secure plot can contain)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare crash related to certain global chat channels."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the AI for inanimate objects (such as the Mole Machines) which were moving under certain conditions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare bug that could cause character data (powers, badges, costume) to be corrupted."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that sometimes made characters invisible in the Tailor window."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All boss-level Rularru Overseers (Eyeballs) now count towards the Visionary badge."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Portal-generated Banished Pantheon Spirits now count for the Banished badge."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleport Beacons (Tech and Arcane) added to City of Heroes. All Paragon City zones are now accessible through the Base Teleporter. To get a zone's beacon for your base, simply hit all of that zone's \"explore\" badge locations while in Supergroup mode (it doesn't matter if you personally have that exploration badge already or not). The zones added are:"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Croatoa"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eden"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Terra Volta"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kings Row"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Founders Falls"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peregrine Island"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Galaxy City"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brickstown"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Crash Site"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Independence Port"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Talos Island"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Steel Canyon"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skyway City"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Atlas Park"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Altered Dr. Vahzilok mission to complete when the Dr. is defeated."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Hive: Fixed bug in the Hamidon encounter that caused some players to drop off the damage done list and therefore get no reward when the Hamidon was defeated."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scirroco's Patron powers should now allow proper enhancement slotting."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Legacy of Chain minions now count toward the Ember Legacy of Flame gladiator."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Legacy of Chain lieutenants now count toward the Lucent Legacy of Light gladiator."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gladiator: Crab Spider Longfang now awarded for completing a Patron Arc."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coralax Gladiator badge should now be obtainable."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered requirements for Pirate badge."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Grandville:Fixed Arachnos Flier so that it will respawn properly (should appear much more frequently)."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "St. Martial: Fixed inaccessible/missing mission door."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in King's Row Mayhem Mission where rescued Villains would not follow players."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several Arachnos mission maps where defeated players would resurrect at the location they were defeated when they tried to go to the Hospital."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Freedom Phalanx members in the Recluse Strike Force will no longer Drop enhancements. This should help alleviate the issue of players' trays being full when the Synthetic Hamidon Enhancement is awarded."
+    }
+  ]
+}

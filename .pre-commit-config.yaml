@@ -51,6 +51,18 @@ repos:
     hooks:
       - id: markdownlint
         args: [--config, .github/linters/.markdownlint.yml]
+        # Content captured from external sources (forum posts, harvested game data,
+        # generated extraction docs) is exempt, the same set FILTER_REGEX_EXCLUDE in
+        # .github/workflows/super-linter.yml exempts; keep the two in parity.
+        exclude: |
+          (?x)^(
+            (.*/)?(samples|fixtures|canonical)/
+            | src/coh_engine/tests/fixtures/
+            | data/canonical/
+            | docs/engine/
+            | scripts/lane-[ab]/
+            | community/
+          )
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
     rev: 3.2.1

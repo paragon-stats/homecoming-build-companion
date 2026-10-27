@@ -1,0 +1,355 @@
+{
+  "title": "[Staging] Patch Notes for November 30th, 2021",
+  "url": "https://forums.homecomingservers.com/topic/32864-staging-patch-notes-for-november-30th-2021/",
+  "published": "2021-11-30T10:52:35Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The way it was originally implemented was hacky and fragile. Rewrote it to be more robust."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed contact hologram flickering when an NPC with customized colors was used."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed contact appearance sometimes not updating when first logging in or zoning."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed contact appearance sometimes not immediately reverting when quitting the TF."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed contact dialog headshot for color-customized NPCs not reflecting the custom colors."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AE contact costumes are now refreshed clientside only when it needs to change instead of every frame."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed unneeded network traffic constantly sending the name of the arc contact in every entity update."
+    },
+    {
+      "category": "General",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This change is due to many arcs, including all Incarnate Arcs and SSAs, not giving any merit rewards by default, instead putting them behind a Reward Choice which doesn't trigger the badge."
+    },
+    {
+      "category": "General",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Story arc merit reward payouts will be revised in January once we're back from the holiday break, and the limitation will be put back in to exclude non-combat and Personal Story arcs."
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em donut1"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em donut2"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em donut3"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em donut4"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em donut5"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em winterdonut (em holidaydonut, em christmasdonut)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em spookydonut (em halloweendonut)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em jellydonut"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em jellydonut2 (em lemondonut)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em ddcoffee (em coffee)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em ddcoffee2 (em coffee2)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em hotdog"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em hamburger"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em sandwich (em sandwitch)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new \"Idle > Food & Drink\" menu which contains the new emotes under a \"Drenched Donuts\" child menu"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Drink, Eat Food, Eat Donut, Drink Tea, Drink Enriche from Idle and Action menu(s) and placed them in the Food & Drink menu"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new \"Idle > Swimming\" menu, which contains the innertube emotes."
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em food (em eatfood, em eat)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em alakazamreact"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em Ledgesit -> (em Sitledge)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em Ledgesit1 -> (em Sitledge1)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em Ledgesit2 -> (em Sitledge2)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em Ledgesit3 -> (em Sitledge3)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "em Ledgesit4 -> (em Sitledge4)"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The original em donut emote remains unchanged for posterity. The donut1 emote is a slightly higher resolution, non-world anim model (along with the rest from the base item set)."
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Drenched Donuts emotes (including coffee), require an exploration badge to use. Can you guess which one?"
+    },
+    {
+      "category": "General",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 'em coffee' is an unofficial alias for now. Expect it to be repurposed if a generic mug of coffee emote is ever added in the future."
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Analyst's Teleporter"
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frequent Clubber"
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invigorate"
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hallucinogenic Gas recharge duration increased to 36s from 22s."
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hallucinogenic Gas AoE radius reduced to 10ft from 20ft."
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tear Gas Grenade recharge duration increased to 25s from 15s."
+    },
+    {
+      "category": "General",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tear Gas Grenade AoE radius reduced to 15ft from 35ft."
+    }
+  ]
+}

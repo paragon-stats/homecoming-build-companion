@@ -1,0 +1,131 @@
+{
+  "title": "[Beta] Patch Notes for April 25th, 2021",
+  "url": "https://forums.homecomingservers.com/topic/28272-beta-patch-notes-for-april-25th-2021/",
+  "published": "2021-04-25T22:19:24Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Colour Key",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most changes from the previous beta build are listed in green."
+    },
+    {
+      "category": "Colour Key",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Green text will become white text in the next set of patch notes."
+    },
+    {
+      "category": "Colour Key",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any changes or fixes that are only relevant to the beta builds (ie: fixes / tweaks to new features) are listed in blue."
+    },
+    {
+      "category": "Colour Key",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blue text will be deleted in the next set of patch notes as it is only relevant to highlight changes between beta builds, not changes from live."
+    },
+    {
+      "category": "Powers",
+      "subsection": "New Prestige Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Suppression rules updated to match Stealth (will only suppress if an enemy hits you, not if they miss you)"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Respec Recipes can no longer be sold to vendors"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Sprint / Run / Jump Invention Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Both existing Running sets (Celerity, Quickfoot) are now also in the Sprints category, and are listed as \"Running & Sprints\""
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Sprint / Run / Jump Invention Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Both existing Leaping sets (Unbounded Leap, Springfoot) are now also in the Sprints category, and are listed as \"Leaping & Sprints\""
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Sprint / Run / Jump Invention Sets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swapped the \"and\" to \"&\""
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing \"&\" in many references to the \"Time & Space Manipulation\" IO set"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Sorcery",
+      "power": "Spirit Ward",
+      "text": "Fixed sound effect repeating too much"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Pool",
+      "powerset": "Concealment",
+      "power": "Infiltration",
+      "text": "Fixed jump components not working correctly (this was a beta-only bug)"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "Sentinel",
+      "powerset": "Mace Mastery",
+      "power": "Coordinated Targeting",
+      "text": "Fixed missing icon"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This fix was in the previous build but was missing from the patch notes"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "Powers Bug Fixes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This change has been temporarily rolled back pending further testing"
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "title": "Patch Notes/2005-06-03",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-06-03",
+  "published": "2005-06-03",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vahzilok disease issue has been fixed."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All remaining issues with Task Force missions have been fixed."
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Task Force Story Arcs are among the most interesting and challenging tasks in City of Heroes. We have adjusted the levels of these arcs so that they will spawn villains at the highest level possible to receive the mission. Positron's Story Arc will now always spawn 15th level villains, for example. The rewards will match the greater risk however. Continuing the Positron example, if your group wants a challenge, they may try the Story Arc starting at 10th level. You will receive rewards as if you were a 15th level character. Here are the levels we consider appropriate for each Task Force:"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Positron: 15"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Synapse: 20"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sister Psyche: 25"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bastion: 30"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manticore: 35"
+    },
+    {
+      "category": "Task Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Numina: 40"
+    },
+    {
+      "category": "Balance",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the difficulty of fighting villains that are much higher level than you. Fighting villains within you range +/- 0 to 2 levels have not changed; Fighting villains +/- 3 to 4 levels changed somewhat; Fighting villains +/- 5 levels changed significantly. This was done to have the risk represent the reward, especially at the higher character levels."
+    },
+    {
+      "category": "Balance",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Raised the Max cap of most attributes at lower levels. This will prevent you from reaching a cap at early levels with Enhancements."
+    },
+    {
+      "category": "Balance",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where players were dead and managed to travel through a door got double XP debt. This could happen when they click on an exit (usually in an attempt to flee) and are defeated by a villain immediately before the transfer takes place."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Auto Turret: Decreased number of bullets in a burst from Auto Turret and increased the damage of each bullet in the burst. Auto Turret was firing too fast, and the system chat messages and overhead numbers could not keep up with its fire rate. This gave the impression that it wasn't doing much damage. The reduced number of bullets will allow you to see its true damage. Actual damage was not changed (except for the overall change to Pets Range Damage)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Katana Whirling Sword not reducing targets defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced End Cost of Claws/Shockwave."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly Reduced Recharge Time of Hasten."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly Reduced Recharge Time of Accelerate Metabolism."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Telekinesis is now an AoE: Ranged (Targeted AoE), Foe Hold, Repel - \"Lifts a foe, and any foes, off the ground and repels them. The targets are helpless, unable to take action, and will continue to hover away, picking up any passing targets, as long as you keep this power active. Keeping up this level of concentration costs a lot of Endurance.\""
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Energy Manipulation/Conserve Power Duration."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Battle Axe/Swoop Short Help fixed Battle Axe Damage type (it was doing Smashing damage instead of Lethal damage)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Dimension Shift from Singularity."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased damage of Fire Blast/Flares (it was about 40% too low for its recharge time). Reduced END cost of Fire Blast/Fire Blast power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Short Help of Caltrops."
+    }
+  ]
+}

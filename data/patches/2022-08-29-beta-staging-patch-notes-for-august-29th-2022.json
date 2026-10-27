@@ -1,0 +1,275 @@
+{
+  "title": "[Staging] Patch Notes for August 29th, 2022",
+  "url": "https://forums.homecomingservers.com/topic/37421-staging-patch-notes-for-august-29th-2022/",
+  "published": "2022-08-29T18:43:29Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Sister Valeria",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambushes no longer chase players endlessly and shouldn't see through stealth."
+    },
+    {
+      "category": "Sister Valeria",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added missing Incarnate finale rewards for non-task-owners."
+    },
+    {
+      "category": "Advanced Difficulty - Imperious Task Force",
+      "subsection": "Mission 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with initial behavior on the Aereus Colossi Twins that was sometimes causing them to behave strangely."
+    },
+    {
+      "category": "Advanced Difficulty - Imperious Task Force",
+      "subsection": "Mission 4",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nictus Romulus Augustus' Ebon Eye now has a -Fly debuff."
+    },
+    {
+      "category": "Sister Solaris",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the finale mission the spawns with multiple Minotaur and Cyclopes will now only have two of them at incarnate level with the added Nictus powers."
+    },
+    {
+      "category": "Colleen Nelson",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the error that was causing text in her arc to appear as pstrings."
+    },
+    {
+      "category": "Steven Sheridan",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Atmospheric pedestrians, cars, and trams should no longer spawn on the two new outdoor Rikti invasion mission maps."
+    },
+    {
+      "category": "Power Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tintable customization of the Munitions Mastery Freeze Ray FX was missed for the fix that resolved the disjointed firing point; Now always fires from the correct point of the chosen rifle model."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male/Female/Huge - Broadsword: Sheathed positioning for 'Rikti Sword' & 'Rikti Sword 2' on Broadsword adjusted to sit more naturally on the back."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female/Huge - Broadsword: Fixed 'Rapier' & 'Carnival of Shadows Rapier' to scale properly as they were previously bigger than intended."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female - Broadsword: Sheathed 'VK-99 Event Horizon' & 'PX17-N Supernova' were set to the wrong draw FX."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male/Female - Broadsword & Dual Blade: The following smaller weapons have been set to sit slightly lower on the back while sheathed to make them look more natural:"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hook Sword"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Machete"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Organic Sword"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sky Raider Machete"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vahzilok Bone Saw"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vahzilok Butcher Knife"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Faer Dagger (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dragon Dagger (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Redcap Dagger (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sai (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanto (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Main Droite & Main Gauche (Dual Blade only)"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male/Female/Huge - Dual Blades: Left Dual Blades now sit closer to the Right Dual Blades on all body types so they won't appear to float as far off the back."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female - Dual Blades: Adjusted the spacing offsets for Dual Blades as there was a bit more space between them and the weapons than was needed to facilitate bone size variations in costumes."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male/Huge - War Mace, Bane Spiders, & Mace Mastery: Improved the back position offsets for a couple models that were leaning a little far from the back:"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rularuu's Fury"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Male - War Mace: Sheathed Tech Mace was set to the wrong draw FX."
+    },
+    {
+      "category": "Cimeroran Traitors",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Incarnate-level Minotaurs had the damage set unintentionally too high on their Chop power."
+    },
+    {
+      "category": "The Lost",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that was causing Lost mobs to spawn at higher levels than intended in certain missions."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed a non-functional PlayerName variable from contact busy text."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Various client stability fixes to address crash reports."
+    }
+  ]
+}

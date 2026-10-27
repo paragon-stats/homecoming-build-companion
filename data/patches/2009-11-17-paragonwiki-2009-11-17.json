@@ -1,0 +1,35 @@
+{
+  "title": "Patch Notes/2009-11-17",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-11-17",
+  "published": "2009-11-17",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed many Hold powers that were incorrectly causing targets to use the ‘disoriented’ animation, including Cinder, Block of Ice, Strangler, Fossilize, and Freezing Touch."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shield Defense – Fixed a bug that caused some falling animations to loop with a shield out."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PvP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ninja Run (available through the Martial Arts Pack) - Corrected PvP suppression speed and height values for the Ninja Run power. They were set equivalent to Super Jump, instead of the proper values."
+    }
+  ]
+}

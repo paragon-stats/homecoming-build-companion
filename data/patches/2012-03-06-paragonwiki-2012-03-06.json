@@ -1,0 +1,1595 @@
+{
+  "title": "Patch Notes/2012-03-06",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2012-03-06",
+  "published": "2012-03-06",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Settings button has been added to the Login Screen."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A fix has been implemented for power trays getting reset when powers are granted after character selection."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This issue previously caused some players to have their power bars erased when the Holiday Powers were granted during the Winter Event."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The character selection screen text should no longer change colors based on the last character logged in."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tabs in the clue window should no longer be hidden under description text."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An issue where recipes and powers would overlap in the trade UI has been fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tooltips now appear when hovering over power icons of detached power trays."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"Add To Cart\" button in the tailor should now scale properly with widescreen resolutions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The visual accuracy of health bars and meters for critters with low max HP values has been increased."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Character selection UI elements should no longer appear behind aura effects."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issues where Hide Recipes Missing Ingredients would remove some items from the Astral and Empyrean merit vendors incorrectly have been corrected"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Auction House window separator should no longer adjust window size randomly."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "LFG refresh will no longer clear selected missions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A bug that prevented the body of an in-game e-mail from updating when selecting a different tab in the e-mail window has been fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Team health/endurance popup text should now display correctly."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash which could occur when creating an Illusion/Darkness Affinity character."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the Classic Steampunk, Victorian Steampunk, and Celestial Armor faces to the Special Helmets category for female characters."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Influence cost in the tailor should no longer change while the Paragon Market browser is open."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Alpha glasses so that they can be scaled along with the Brows."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skirts will no longer disappear underwater when Water Effects are set to None"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Customizing the Umbra Beast is now simpler. The particles take the primary color, and the beast's body takes the secondary color."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mandible costume piece found in half helmet category under detail 2 has been ported to 6 other head categories."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standard, Full Masks, Pointy Ears, Hats, Hoods, and Helmets categories all contain the Mandible costume piece now."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Propagated Circle of Thorns patterns on chest and hips to female body type."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that prevented some effects from playing in the powers customization editor."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Character Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An issue with cape rendering at the lowest graphics settings was resolved."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"LeagueNotLeader\" message should no longer spam when promoting another player to leader of a team or league."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Astoria has been repopulated with Incarnate level enemies from the Banished Pantheon, Tsoo, Talons of Vengeance, Circle of Thorns and the new Knives of Vengeance, ranging in level from 50 to 54."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Banished Pantheon, Tsoo and Talons of Vengeance also feature new members to be fought at these level ranges. Lower levels are unchanged, except as noted below in the section for Villain Group Adjustments."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All-new Incarnate story arcs, repeatable missions, and an Incarnate trial are available for level 50 Incarnate characters!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earn new, Incarnate level badges for defeating the main villain groups."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Malta, Arachnos, 5th Column, Paragon Police and Knives of Artemis will also appear at Incarnate levels in missions only."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New zone art: Moth Cemetery has been completely revamped from its original appearance and layout, the warwalls have taken a distinctly menacing hue and the fog has been lifted."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Dark Astoria Zone Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New portal connects to Peregrine Island and Grandville to give access to both Heroes and Villains."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Heroes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Dark Astoria arc begins when Captain Nolan of the PPD contacts heroes who have unlocked their Alpha Incarnate slot about an odd series of cases that have been occurring in Peregrine Island. He believes they may be linked to the events of Dark Astoria."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Villains",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains who have unlocked their Alpha Incarnate slot will receive a threatening Arachnos message from a deranged member of the organization. This man's madness may either be an intricate plot from Arachnos or an indication of something far more powerful that seeks to exact justice upon villains."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Repeatable Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Astoria Repeatable Missions will feature rewards befitting an Incarnate player, including Incarnate Experience and Thread Components."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Repeatable Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ephram Sha of the Midnight Squad has tasks befitting Incarnate-level Heroes in Dark Astoria. Help him push back the forces of Mot!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Repeatable Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Circle of Thorns has an interest in the dark magics swirling around Dark Astoria. They have sent Maharaj, a powerful Madness Mage, to help Incarnate-level Villains sow chaos in the ranks of their foes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Steel Canyon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 5th Column have mounted a counteroffensive against the Council, with Steel Canyon as the battlefield. Laura Lockhart, professional deprogrammer and 5th Column propaganda expert, is recruiting heroes to help investigate this recent surge of violence."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Steel Canyon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Steel Canyon Asian Art Museum's Grand Opening is underway, and the main exhibit has a hidden connection with the Tsoo... but with a death warrant out on your head, that may be the least of your concerns!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Cap au Diable",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A mysterious man named Baron Zukor has arrived in Cap au Diable, and has put out a call to the Destined Ones... to turn to heroism? Infiltrate his strange cult of villains-turned-heroes and turn Zukor's game against him!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Cap au Diable",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Luddites have been blathering on about the evils of technology for ages, but a new prophecy has given you some inspiration. Brother Hammond is convinced that you are the Chosen One... and who are you to argue, when a free army of followers has just fallen into your lap?"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adamastor has broken free of Dark Astoria, lying in wait beyond its walls until his summoning rituals are completed by cultists of the Banished Pantheon. Prevent this Giant Monster from going on a rampage in Talos Island and Sharkhead Isle by finding the Ritual of Summoning and using it to summon and defeat the creature."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Zone Events have been added in Talos Island (at the former doorway to Dark Astoria) and in Sharkhead Isle (in the sunken portion of Potters Field)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players may acquire the Ritual of Summoning as a random recipe drop from any Boss level or higher Banished Pantheon enemy, at any level the Banished Pantheon can be battled. It can then be converted into the Ritual of Summoning power at any Invention Worktable for 500 Influence."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using the Ritual of Summoning in the zone event area will bring forth Adamastor, allowing heroes and villains alike to defeat him and earn the \"Keeper of Secrets\" badge."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Ritual of Summoning recipe is tradeable, mailable, and auctionable."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Adamastor Zone Event",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adamastor awards each character who receives credit for his defeat up to 5 Threads and 10 Reward Merits once every 20hrs. This is per character, not per account."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Some of the Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Voracious Maw: The Sentinel of Mot will call upon the giant god's many mouths, which will burst from the ground and tear at the flesh of all those caught within their frenzied attack."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Some of the Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Impale: The Sentinel of Mot will coalesce death energy around a single target. This crystalline energy then erupts in a burst of shrapnel which harms the main target and all those around them who lingered too long within the field of energy."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Some of the Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Variable Powers: Depending on the sources of power left unrecovered in the plateau stage, the Sentinel and Diabolique will acquire different sets of combat bonuses. Additionally, the Sentinel will gain unique proc attacks. Six of these are Targeted AoEs, causing either Fear, Hold, Damage Pulse, EndDrain, Weaken, or Damage Reduction. One is a PBAoE around the Sentinel, which damages those caught in the field while simultaneously healing the Sentinel."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Some of the Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Might of the Dead: Whenever a player is defeated during the final battle with Diabolique, or when one of her sources of power is recovered, she will gain an increase in power. This increase is made clear by the distinct energy and sound of \"leveling up\", and for each level, Diabolique acquires greater defense, resistance, regeneration and chance to hit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Some of the Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lifegiving Essence: Throughout the final battle against Diabolique, Lifegiving Essences will spawn throughout the battle chamber. These amalgamations of pure life energy move quickly around the room, but cannot avoid Diabolique. Every 30s, she will consume all remaining Lifegiving Essences, recovering 10% of her maximum health for each one consumed. However, the Incarnates can also use these Essences to their advantage: each one defeated not only deprives Diabolique of a opportunity to heal, but also raises defeated allies and places a heal over time effect on the living."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "VIP Players who are level 50 can receive Incarnate Rewards outside of the trials through participation in Dark Astoria's zone and mission content. The rewards available include:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating enemies within Dark Astoria and its missions will award both Physical and Psychic Incarnate XP. Additionally, defeated enemies have a chance to drop Incarnate Threads."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enemies in this zone and its missions range from level 50 to 54, with higher level enemies providing more XP and greater chance for Thread drops."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Repeatable Missions within Dark Astoria will award their choice of Incarnate Threads, Reward Merits and Super Inspirations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The first Daily Repeatable completed will award more threads than subsequent Repeatables completed the same day, but threads can always be earned for completing Repeatables."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Story Arcs within Dark Astoria will award players with their choice of one randomly chosen Incarnate Component pool, a randomly chosen Incarnate Merit, Incarnate Threads, Reward Merits or Super Inspirations."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a chance to earn a Common, Uncommon, Rare or Very Rare Component with the Incarnate Component selection."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a chance to earn an Astral or an Empyrean Merit with the Incarnate Merit selection."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The story arcs use a similar lockout mechanism to that used in Signature Story Arcs, except with a 20-hour lockout for the reward choices, rather than 1 week."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Shards will not drop in Dark Astoria or its missions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Rewards Without Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Additionally, sub-level 50 VIPs should feel free to join their Incarnate friends in Dark Astoria. These players gain regular XP up to level 50, at which point they will automatically begin to earn Incarnate Rewards and accumulate Incarnate XP for as long as they remain in Dark Astoria."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Villain Group Adjustments",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some changes have been made to the main villain groups which will appear in Dark Astoria. These changes occur in lower level ranges, outside of Dark Astoria."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Banished Pantheon",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High level Portal Corp Banished Pantheon missions in the 40-54 range have been altered to use variants of the new Banished Pantheon critters (though not at the same strength as those found in Dark Astoria). This change also affects the list of level 40-54 Banished Pantheon critters accessible through Mission Architect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Talons of Vengeance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lightning and Shadow Oracles were underpowered compared to their Fire and Ice counterparts. Their powers have been adjusted upward slightly to compensate, though the Fire and Ice Oracles also experienced some reduction in power."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Talons of Vengeance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Oracles will now properly apply the -JumpHeight effect from their powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Super Packs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Packs have been added to the Paragon Rewards Program as a repeatable reward."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Mapset - Granite Caves",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new mapset has been created for missions, the Granite Caves. They are a larger version of the previous caves and are used throughout the new Dark Astoria story arcs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base Detail recipes have been added for \"Hacked Telepad\" (Tech) and \"Magicked Telepad\" (Arcane) with the same salvage costs as the Basic Telepad but an increased prestige cost."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These new Telepads look and work exactly the same as Basic Telepads but support up to 6 Teleportation Aux Beacon connections - meaning one pad can link up to 6 zones."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Base Telepads now correctly take players to Echo: Galaxy City instead of Destroyed Galaxy City."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Supergroup Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the visual appearance of the Grandville and Pocket D Supergroup Teleport Beacons."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powers which change the entire appearance of a character such as Granite Armor or White Dwarf should now preview the appearance change in the Powers Customization UI."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vengeance can now be used on any defeated player in the user's league, rather than in the user's team. The effects of Vengeance continue to only affect the team of the user."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controllers now deal Containment damage to uncontrollable Archvillains in Incarnate Trials."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Fortune and Secondary Mutation now have new unique power icons."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Coyote Travel power should no longer detoggle when the player becomes mezzed."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many 5th Column Lieutenants and bosses below level 30 were attacking too often with their shotguns. Their attack rate has been reduced."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "New Power Set - Darkness Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This new set is a primary power set choice for Controllers and Dominators. Darkness Control allows you to dominate your enemies with the power of darkness of shadow and instill fear into their hearts. This power is free for VIP subscribers and available in the Paragon Market for premium players."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Power Set Proliferation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Two power sets have been proliferated to pair nicely with Darkness Control:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Power Set Proliferation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Darkness Affinity - This is a secondary power set choice for Controllers. Darkness Affinity is a port of Dark Miasma, but has had a few changes made to it. Petrifying Gaze and Fearsome Stare have been removed and replaced with Fade and Soul Absorption. Fade is a powerful team defense buff with a short duration and Soul Absorption is a power that grants nearby allies a regeneration and recovery buff for each nearby defeated enemy. This power set is available for VIP players."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Power Set Proliferation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Assault - This is a secondary power set choice for Dominators. Dark Assault is a combination of Dark Blast, Dark Melee and Dark Armor powers. It introduces a new power called Gather Shadows. This power grants the user a damage and secondary effect buff. This power set is available for VIP players."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift has been re-designed. It is now a location-targeted Toggle instead of an enemy-targeted attack. It creates a zone of folded space for up to 20 seconds, phasing and immobilizing all foes in the area of effect for the duration. De-toggling the power quickly ends the effect, allowing the foes to be attacked once more."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wormhole's effect radius has been increased from 15 feet to 20 feet."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wormhole no longer causes targets to attack the user."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Singularity's cast time for Crush has been reduced from 3.1 seconds to 1.33 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Singularity's cast time for Gravity Distortion has been reduced from 3.2 seconds to 1.83 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the damage of Singularity's Lift by 63%."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a bonus mechanic to player versions of Lift and Propel. These powers now deal a small amount of additional damage, called \"Impact!\", to targets recently held by any player's Gravity Distortion power."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the cast time of Propel from 3.5 seconds down to 2.07 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quickened the projectile speed of Propel."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The portal and random objects in Gravity Control - Propel now spawn in front of the caster, instead of directly at their feet."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Color-customized Propel projectiles now properly synchronize with the power's in-game effects."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Singularity once again prefers to stay out of melee range of foes if possible."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift is now autohit."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift now works regardless of level differences between the user and the target."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Dimension Shift would stop functioning when the player used Phase Shift. It should now continue phasing its targets even if the caster changes phases."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The immobilization magnitude of Dimension Shift has been increased from 3 to 10."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift can no longer be enhanced for Intangibility or Accuracy, as the power utilizes neither of these enhancement types."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimension Shift can now be slotted for Immobilization enhancements and IO sets, increasing the duration that targets will be immobilized."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Controller - Gravity Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased the damage of Lift by 63%"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Ice Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jack Frost's power choice AI has been improved. He should now use all of his powers as they come off recharge, with much less idle time."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Shield Defense",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Active Defense no longer loses some of its protection when the player using the power becomes affected by status control."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Melee/Body Blow: Fixed a bug that caused this power to incorrectly cost slightly too little endurance. Its endurance cost has been adjusted from 5.82 to 6.03."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Melee/Quick Strike: Corrected a typo in this power's short help. It now correctly states that this power has a 25% chance to knock down."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker/Fiery Melee/Scorch: Fixed a bug in Scorch that caused it to deal very slightly too much damage while Fiery Embrace is active."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker/Fiery Melee/Combustion: Fixed a bug in Combustion that caused it to deal very slightly too much damage while Fiery Embrace is active."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker/Martial Arts/Eagles Claw: Fixed a bug in this power that caused it to deal significantly too little damage while Fiery Embrace is active."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker/Titan Weapons/Crushing Blow: Fixed a bug that caused this power to cause too little damage while Fiery Embrace is active."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper/Claws/Focus: Fixed a bug that would cause Fiery Embrace to cause too much damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper/Dark Melee/Siphon Life: Fixed a bug that would cause Fiery Embrace to cause too much damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper/Dark Melee/Dark Consumption: Fixed a bug that would cause Fiery Embrace to cause too much damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Fiery Aura/Fiery Embrace",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper/Martial Arts/Eagle's Claw: Fixed a bug that would cause Fiery Embrace to cause too little damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Defender - Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Servant will now play the appropriate casting effects."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Corruptor - Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Petrifying Gaze should now play the appropriate continuing effects on the target"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Corruptor - Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadowfall should now play the appropriate continuing effects on affected teammates."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Mastermind - Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Petrifying Gaze should now play the appropriate continuing effects on the target"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Mastermind - Dark Miasma",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadowfall should now play the appropriate continuing effects on affected teammates."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Stalker APP attack powers now have a chance to critically hit, based on the number of players in the stalker's group. All single-target attacks in Stalker APPs now have a 100% chance to crit while Hidden. All AoE attacks in Stalker APPs now have a 50% chance to crit while Hidden. These values match the critical strike chances of Patron power pools and Stalker primary power set attacks."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin Strike (All versions): This power now functions differently while not Hidden (or have just used Placate). When attacking a foe when Hidden, it will behave normally dealing tremendous damage with a chance to demoralize nearby foes, but it can be interrupted. However, when the power is used while you're not Hidden it will deal Superior damage and is uninterruptible! Assassin Strike while not Hidden has a base 0% chance to crit."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin's Focus: All damaging powers found in the Stalker's primary power set, other than Assassin Strike, have a chance to grant the user a stack of the Assassin's Focus buff. Powers with longer recharge times have a much higher chance to grant a stack of Assassin's Focus than those with fast recharge times. This buff will increase Assassin's Strike's chance to critically hit (for +100% damage) while not hidden by 33.3%. Assassin's Focus stacks up to 3 times. Using Assassin's Strike outside of hide will remove all stacks of Assassins's Focus."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Buffed Max HP modifier has been increased from 1 to 1.3. This results in Stalker's potential Buffed Max HP increasing from 1606 to 2088 at level 50. This will allow powers like Dull Pain and Frostworks as well as +Max HP set bonuses to have a greater potential effect."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The above changes have been made to remove some unnecessary archetype penalties (low buffed max HP) as well as to allow Stalkers to deal more competitive single target burst damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Darkness Mastery now properly accepts To-Hit Debuff Enhancement sets."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin's Focus now has a unique icon that should help distinguish it from other auto powers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassin's Strike: This power will now gain an orange highlight ring when the user has 3 stacks of Assassin's Focus."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devices/Gun Drone - When summoned in midair, Gun Drone should now fly to the user's location, rather than dropping to the ground and then flying up."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Blast - Aim now uses the Darkness-themed effects."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Tanker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Titan Weapons/Defensive Sweep: Fixed a bug that prevented this power from applying Bruising to its primary target while the user has Momentum."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Warshade",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sunless Mire no longer says it accepts To-Hit Debuff Enhancement Sets as it should not."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Trick Arrow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Gas Arrow now accepts Accuracy enhancements."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Trick Arrow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Poison Gas Arrow now has a 100% chance to apply its sleep to affected targets, up from 66%."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Titan Weapons",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crushing Blow's PvP damage has been increased to reflect its activation time."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Scrapper/Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power set was unintentionally receiving the Tanker damage bonus in PVP. This has been corrected, and all of the powers should now be doing their proper damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Scrapper/Kinetic Melee",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Concentrated Strike would deal double its intended damage in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Controller/Mind Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Total Domination, Terrify, and Mass Confusion have had their PvP duration properly set to 4 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dominator/Earth Assault",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Seismic Smash and Fissure have had their PvP durations properly set to 4 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dominator/Earth Control",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fossilize's duration in PvP has been reduced to its intended duration of 4 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Interface procs now all respect combat mods due to level differences or level shifts."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Incarnate Destiny Incandescence power so that it is fully customizable with bright and dark palettes"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incandescence Destiny powers can now teleport leaguemates who have been defeated, as well as leaguemates who are still alive."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All offensive Lore pet powers now properly receive the benefits of Alpha slot bonuses."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Mini SnowBeast companion pet should no longer be targetable."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 25% typed defense to most damage types and to AoE attacks to Jack Frost's resistance power, with 35% defense for Fire and Cold attacks."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 30% resistance to most damage types to Giant Fly Trap, with 0% resistance to Lethal and Fire. Added a very large regeneration bonus to Giant Fly Trap."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Giant Fly Trap would very rarely use Entangle. It should now use this power with much more frequency."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Pets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added 30% smashing and lethal resistance to Gremlins, in addition to the 40% energy resistance they already posessed."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Self Resurrection Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Regeneration / Revive now grants a 15 second window of immunity to most damage after use."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Self Resurrection Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Willpower / Resurgence now grants a 15 second window of immunity to most damage after use."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Self Resurrection Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Luminous Aura / Restore Essence now grants a 15 second window of immunity to most damage after use."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hamidon, Synthetic Hamidon, Titan and Hydra Enhancements will no longer incorrectly enhance attributes other than those specified by the enhancement."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper's Strike: Recharge/Critical Hit Bonus: Improved this enhancement's long help and also increased the critical hit bonus from 1/2% to 2/4%. This means that Scrappers' primary power set attacks will have a 7% chance to critically hit against minions, underlings and players and a 14% chance to critically hit against everything else while this enhancement is slotted."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Superior Scrapper's Strike: Recharge/Critical Hit Bonus: Fixed a bug that prevented this enhancement from granting a critical hit bonus. Improved this enhancement's long help and also increased the critical hit bonus from 2/4% to 3/6%. This means that Scrappers' primary power set attacks will have an 8% chance to critically hit against minions, underlings and players and a 16% chance to critically hit against everything else while this enhancement is slotted."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker's Guile: Recharge/Chance to Hide: Removed the reference to percent chance to trigger. This enhancement uses procs per minute."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now enter and remain in the Team-Up Teleporter queue while completing instanced missions or traveling to Supergroup bases. Accepting a TUT invitation on a mission will cause mid-way progress on that mission to be abandoned. Players returning from a TUT event map will return to the last non-instance map they traveled to."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now queue up for all regular Task Forces, Strike Forces, and Trials via the Team-Up Teleporter. Players can queue for any TF, SF or trial they can begin based upon level range, alignment, and any additional requirements such as the Alpha Slot Unlock or completion of a pre-requisite task. Rogues and Vigilantes can queue for content for either city regardless of current location."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The TUT will assemble teams from the queue between the minimum and maximum players for the event and teleport accepting members to the Contact which starts the TF, SF, or Trial. Once players are teleported to that location and assembled into the team, the TUT is no longer involved in the process. The leader of the newly formed team can invite more players or talk to the Contact to start the content at their discretion."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Features such as Join In Progress, Event Locking, and Vote Kick do not apply to these events. They are features specific to TUT-mediated events such as Death From Below and the Incarnate Trials."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The TUT window now also displays an indicator for the current Weekly Strike Targets. The event will be highlighted and its tooltip will indicate the WST bonus."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Team-Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Challenge Trials such as Death From Below and Incarnate Trials should no longer modify their spawns based upon the lead player's difficulty settings."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Missions (General)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rescue and escort encounters should no longer remain captive when the only living captors are untargetable pets and objects like Caltrops or Poison Gas Arrow."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Missions (General)",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Escort, Pet and Kidnap characters should now follow characters properly again on missions throughout the game."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc 2",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where players could get stuck on the first wormhole portal in the third mission."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc 3",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issues with Signature Story Arc Volume 1 Episode 3 final mission completion on both Hero and Villain side."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Apex Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with mini-map icons appearing in the first mission of the Apex TF."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Tin Mage Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the incorrect mini map markers from the first mission map."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Numina Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission 3 - Fixed an issue where the Warhulk scout was not showing up."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with speaking to the terminal on the final mission of Mortimer Kal's Strike Force."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Roy Cooling",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue in mission 1 where Louie Dogger could be talked to multiple times."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Unity Plague Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ms. Liberty will now properly reference going to Blue Steel instead of Back Alley Brawler."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Ghost Widow's Patron Arc",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where high level Fortunata minions would spawn in the mission \"Replace Crystals\"."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the vigilante tip mission, \"Infiltrate the Rally\" the objective to talk to the Rally Guest Speaker now displays properly."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vigilante Morality Mission, \"The End Justifies the Means\", no longer tries to send players to Sharkhead Isle."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Death from Below",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the mini-map of the final room was not displaying properly."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Death from Below",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Rogues would see exists listed as villain zones on the mini map."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Freedom Tutorial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An effect has been added around Blue Spectrum to make him stand out more."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Freedom Tutorial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced Numina with Back Alley Brawler due to issues with seeing Numina in the area."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Freedom Tutorial",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can teleport directly to Atlas and Mercy via dialog trees at the end of the tutorial."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The story arcs \"A Mind in Danger\", \"Twisted Reflections\", \"Looking Through the Glass\" and \"Bad People, Good Intentions\" should now award the appropriate level range of challenge badges when played in Flashback."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Laura Lockhart now phases out correctly when playing her arc in Flashback mode."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who use Ouroboros to complete Laura Lockhart's storyarc will no longer be kicked from the mission map while still speaking with Leon"
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doc Buzzsaw's arcs are available in Ouroboros for Praetorians who have the Who's Who badge and meet the other requirements."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Arbiter Rein",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Arbiter Rein would ask players lower than level 40 to return to him at level 40 after they had already chosen a patron."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Buck Salinger",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Firbolg summoned by Walter Daschle on \"Seek clues from Red Caps\" are no longer hostile to the player."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "First Ward",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contact introductions for Blind Makwa, Cerulean, Master Midnight, and Vanessa DeVore are no longer mixed up."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Praetorian Zone Events",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ensured that all entities created during the Resistance-sided version of the Protest are cleaned up when the event ends."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When creating a character in Mission Architect, the character rotation arrows in the Body screen are now positioned below the character."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Random Medium Inspiration rewards purchasable with Architect Tickets now require the user to either be a VIP subscriber or have a Paragon Reward level of 4 or greater."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Random Large Inspiration rewards purchasable with Architect Tickets now require the user to either be a VIP subscriber or have a Paragon Reward level of 8 or greater."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The badge awarded for the epilogue mission in Dark Astoria has been removed and is no longer required for the zone Accolade."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimensional Warder: Players who own the Minds of Mayhem completion badge will retroactively receive credit for defeating both Mother Mayhem and Malaise as part of the Dimensional Warder badge."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Malaise will now also immediately give credit for Dimensional Warder if he is defeated by a character who does not already have credit for Malaise."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shalice Tilman's final battle form will now also immediately give credit for Dimensional Warder if she is defeated by a character who does not already have credit for Mother Mayhem."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mother Yin, Mother Mayhem (Aurora Battle), Mother Malaise and Shalice Tilman (Well Battle) do not give credit toward Dimensional Warder."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Null the Gull will accurately reflect the status of Malaise and Mother Mayhem credit toward Dimensional Warder if the Minds of Mayhem completion badge is owned."
+    }
+  ]
+}

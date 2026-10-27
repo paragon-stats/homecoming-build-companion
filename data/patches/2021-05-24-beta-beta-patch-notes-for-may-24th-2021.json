@@ -1,0 +1,179 @@
+{
+  "title": "[Beta] Patch Notes for May 24th, 2021",
+  "url": "https://forums.homecomingservers.com/topic/29123-beta-patch-notes-for-may-24th-2021/",
+  "published": "2021-05-24T14:07:50Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This wasn't merged in yet"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the \"...crackle at your fingertips\" combat log message, this was mainly for testing purposes"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the \"ARCANE POWER\" floating message"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "With the VFX and yellow ring around Arcane Bolt, the added floating message was overkill as it kept triggering if you didn't make use of the proc"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Arachnos ambushes from delivery missions to Mercy Island in the Temple of the Waters SF"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Malta ambush from delivery missions to Mercy Island in Vernun von Grun's story arc."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Crey ambush from door mission to Mercy Island in Operative Grillo's story arc."
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The minimum level to start the Lady Grey TF has been changed back to 45 as it was on live"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Weakened Hamidon can now spawn from level 45 to 54"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "DJ Zero has redirected some of the less popular entrances to the club"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Founder Falls entrance has been redirected to Atlas Park"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The St. Martial entrance has been redirected to Mercy Island"
+    },
+    {
+      "category": "Miscellaneous",
+      "subsection": "Pocket D",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new entrance has been opened in Nova Preatoria, behind the Civic Center"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Talos Island: A number of floating rocks and bushes have been brought back to the ground"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Paragon City Hall has issued its monthly statement reminding Gravity Control heroes that this isn't funny"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the geometry of certain Goldbrickers NPCs that had a major hole in their neck"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the animation of Tech Generator objects inside missions using the tech base lair so it animates properly"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Ally Revive script used in the Brickstown story arcs"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Cognitive and Spectral Interface Procs"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This was a bug introduced last year when Interface DoT procs got fixed"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It turned out that the procs were missing the tag needed to turn on the effect group"
+    }
+  ]
+}

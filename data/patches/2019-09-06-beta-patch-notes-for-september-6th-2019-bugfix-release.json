@@ -1,0 +1,291 @@
+{
+  "title": "Patch Notes for September 6th, 2019 (Bugfix Release)",
+  "url": "https://forums.homecomingservers.com/topic/9825-patch-notes-for-september-6th-2019-bugfix-release/",
+  "published": "2019-09-06T16:51:05Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Notice",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The next patch to Justin will wipe its character database in order to sync the attribute tables with the live servers. If you have builds that you need to save, do it soon. The wipe patch is expected sometime next week. (Edit from GM Capocollo: This does not mean we're wiping all the servers or that your characters are getting deleted. This only applies to Justin, the beta server.)"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Initial implementation of the High DPI Scaling mode. The game will now use the Windows UI Scaling setting for the monitor it is currently played on. You can disable Automatic UI Scaling from the Options (under the Windows tab) and change it manually. This slider can now scale a lot more things than the old Window Scaling setting."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the ability to select Borderless Fullscreen mode in any monitor connected to the system."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue that caused some billboards in the game to have swapped the colors blue and red in the 64-bit client."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash on certain missions that spammed LOTS of chat bubbles (Confront Veles, Investigate Harvan's Lab)."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can now move stacks of salvage out of the vault again."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chernobog will now always spawn after the cutscene in Shauna Stockwell's storyarc."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Omnicore can no longer be killed by her own robots and prevent her mission from being completed."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a very obvious waypoint to Laura Lockhart's body in the mission \"Defend the UNSF Base\"."
+    },
+    {
+      "category": "Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ghost of Scrapyard can now be spawned by defeating 100 Scrapyarders in Sharkhead Isle, and should no longer walk into the Black Market kill field."
+    },
+    {
+      "category": "Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The AVs that spawned in Recluse's Victory were dependent on team size, resulting in some of them being rare. As of this patch, they will spawn regardless of team size in one of three pairs: Positron/Synapse, Back Alley Brawler/Manticore, or Ms. Liberty/Penny Yin. On the villain side, it'll be Black Scorpion+Mako, Ghost Widow+Scirocco, or Lord Recluse+Random patron."
+    },
+    {
+      "category": "Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The cars in Kallisti Wharf will no longer get stuck in an intersection."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eochai and Jack in Irons will now reward their badges on defeat regardless of how much damage the player does to them."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the badge art for \"Skip Tracer\" and \"Portal Hopper\"."
+    },
+    {
+      "category": "Base Items",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Bathtub Water collision bug."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Psionic Assault > Psi Dart and Poison > Envenom would randomly execute a different animations."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Beam Rifle Disintegration Spread would not need Disintegration effect on the target to be triggered."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Pool > Concealment > Stealth was making players completely translucent."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing +Range buff in Blaster Quick Snipes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Pool > Concealment > Stealth was granting double Stealth"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Engagement mechanics was taking 10 seconds after attack, when it should had taken 8."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Devices > Targeting Drone was taking 30 seconds out of combat, instead of 8, to increase it's damage buff."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Illusion Control powers would not stack as expected."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Illusion pets were ignoring enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Stalker > Epic > Mu > Zapp would crit multiple times in a single activation. Also fixed timing issues with the FX in this power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in Quick Sniper Blast (All versions) where the central energy orb would ignore color tinting."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where some snipes would not disable properly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Targeting Drone and Field Operative were granting double buffs for some of their attributes since last patch. This has been fixed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gun Drone now taunts enemies it hits. In addition, enemies near the Turret should often prioritize attacking the Drone. This power now takes taunt and taunt set enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Mace Master",
+      "power": "Mace Beam",
+      "text": "This power was doing double critical hits in some situations since last patch. This should now be fixed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Savage Melee",
+      "power": "Assassins Frenzy",
+      "text": "This power should now grant 3 stacks of frenzy while used from hide."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Concealment",
+      "power": "Invisibility",
+      "text": "the translucency effect should completely disappear if engaged in combat."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dominator",
+      "power": "Radioactive Assault",
+      "text": "Procs should no longer trigger off the special AoE triggered off hitting Contaminated targets."
+    }
+  ]
+}

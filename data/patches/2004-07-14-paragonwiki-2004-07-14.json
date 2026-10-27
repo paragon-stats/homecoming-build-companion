@@ -1,0 +1,203 @@
+{
+  "title": "Patch Notes/2004-07-14",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2004-07-14",
+  "published": "2004-07-14",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In Peregrine Island, less Snipers should now spawn in groups."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed problem where Phantasm summoned a Decoy Phantasm of the wrong level."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Clockwork Immobilizer MkIV Temp power so it again Holds properly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Banished Pantheon Zombies are now tougher."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Fulcrum Shift so it now buffs heroes around the caster as well as around the affected villains (it was double buffing around the affected villains and not at all around the caster)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made improvement to Improv Devouring Earth Swarm defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made improvement to CoT Mage Kamikaze power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added resistance to Hold, Confuse and Fear to hero/villain Trip mines, Time Bombs and Turrets (They were already resistant to Sleep and Disorients. These others were just missing)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem with Thunder Strike Knockback effect not working properly (Hero and villain versions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed problem with Blind and power not always blinding adjacent foes properly (Hero and villain versions). Fixed problem with villains (e.g. CoT, Outcast, Banished Pantheon, Tsoo, Carnival) casting Quicksand, Earthquake, Caltrops, Phantasm, Decoys, Dark Servant and Tarpatch at wrong level."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Gas Grenades and exploding Lances."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Problem with Outcast Fire Boss Fire Imp Summon."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Carnival Attendant Spit Fire Attack."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed problem with Blind and power not always blinding adjacent foes properly (Hero and villain versions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a Problem with Malta Gas missiles."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Neurons Voltaic Sentinel."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem with Sewer Trial Room teleporting Rikti levels."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed bad system chat messages from Detention Field."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased effectiveness of all powers that protect from Mez effects (Holds, Immobilize, Sleeps, etc.) This includes, but it not limited to: Integration, Burn, Clear Mind, Fortitude, Stimulant, Practiced Brawler, and many more). This change does not increase the effectiveness of powers that REDUCE the DURATION of Mez powers (like Accelerate Metabolism)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Targeting Drone ACC buff (it was set to be resistible, so Heroes were resisting their own buff)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced Chance for Critical Mez of Controller AoE Holds, Disorients and Confusion powers (powers work the same on Minions and Lts, but have a reduced chance now to affect Bosses). Single targeted Controller Mez powers remain unchanged."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased the Cast Time of Scrapper/Dark Armor/Dark Embrace (power is unchanged, it just activates faster now)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Damage Resistance (Most of his resistance was set way too high, and some was set way too low)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slight modification to CoT Mage Kamikaze power (casts slightly faster)."
+    }
+  ]
+}

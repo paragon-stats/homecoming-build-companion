@@ -1,0 +1,75 @@
+{
+  "title": "[Beta] Patch Notes for March 10th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/16421-beta-patch-notes-for-march-10th-2020/",
+  "published": "2020-03-10T13:20:50Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Just a minor patch today; continue using the existing threads for feedback and discussion."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brainstorm, Aeon, Shadow and Reflection now share the same authentication server with the Live shards."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This means that an account sync is no longer needed; your Live account will work on the Beta and Staging shards by default, and password changes will now be reflected immediately across all shards."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where unlinking Asymmetric parts for some costume pieces and then switching to a different Costume Set would not reset the asymmetry mode."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved backwards compatibility when saving costume files that have no asymmetric parts or path auras."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The game client will prefer to save costume files that can be loaded by Issue 24 clients if possible."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Random costume button will occasionally generate costumes with asymmetrical parts."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Safe Mode has been removed from the Staging servers."
+    }
+  ]
+}

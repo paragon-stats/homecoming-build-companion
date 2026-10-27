@@ -5,6 +5,7 @@
   "issue": "issue-27",
   "page": "page-7",
   "revision": 16,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Events",
@@ -16,25 +17,25 @@
     },
     {
       "category": "Powers",
-      "subsection": "Arsenal Control",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Arsenal Control",
       "power": "",
       "text": "Liquid Nitrogen: Now properly inherits slow enhancements."
     },
     {
       "category": "Powers",
-      "subsection": "Arsenal Control",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Arsenal Control",
       "power": "",
       "text": "Tri-Cannon: This pet can now taunt Raid Tagged targets. Can now proc Containment damage."
     },
     {
       "category": "Powers",
-      "subsection": "Arsenal Control",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Arsenal Control",
       "power": "",
       "text": "Tear Gas: This pseudopet now does damage against held targets. Now takes damage enhancements and sets."
     },

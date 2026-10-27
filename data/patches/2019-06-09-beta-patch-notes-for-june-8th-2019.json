@@ -1,0 +1,299 @@
+{
+  "title": "Patch Notes for June 8th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/3765-patch-notes-for-june-8th-2019/",
+  "published": "2019-06-09T00:53:09Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "GENERAL",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This post lists all the changes relative to the version of the game running on the five main Homecoming shards, therefore there's some repetition for the benefit of those just joining the beta."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ToHit is no longer required to achieve fast-snipe. Now, combat status determines if snipes are fast or slow, and ToHit buffs increase how much damage fast-snipe inflicts."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The snipe will be fast if you have attacked or been attacked in the last 8 seconds; this is the same time as Stalker's Hide."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All non-epic snipes (dominators included)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "12 second recharge and 14.352 end cost."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base 2.28 scale damage in their \"quick\" form, down from 2.76 scale."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 2.76 scale damage with +22% ToHit buff."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form will do 4.5 scale damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic Snipes:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Will now have a base 1.75 scale damage in their quick form."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Every point of ToHit buffing the player has will increase or decrease this damage, up to a cap of 2.3 scale damage with +22% ToHit buff."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form will do 3.56 scale damage"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slow form crits will do 3.56 + 1.78 scale damage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers should now properly crit 10% of the time, instead of using Stalker requirements."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note that PvP scale is based only around the PvP damage formula. ToHit buffs and debuffs do not change quick snipe damage in PvP."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Misc"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mu Mastery Epic Pool: Zap now uses Melee Damage Modifiers"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Beam Rifle's Penetrating Ray now has a 55% chance of spreading disintegration."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of Beam Rifle's Lancer Shot now has a 100% chance of spreading disintegration."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in the no-redraw version of fast-Archery's Snipe."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psionic Lance's quick FX was completely broken and out of sync. FX has been resync but this required a slightly slower animation (1.33 seconds.)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following fast snipe animations have been synced with their FX, no cast time changes: Moonbeam, Zapp, Sniper Blast, Proton Volley (they all remain at their original 1.33 second duration.)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Beam Rifle > Disintegration > Should [hopefully] never linger after the target dies."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Leaping",
+      "power": "Spring Attack",
+      "text": "now does Containment damage when used by Controllers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Sorcery",
+      "power": "Enflame",
+      "text": "Should now do damage for Sentinels"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Kheldians",
+      "power": "Inherent",
+      "text": "Should now see Sentinels the same way they see Blasters and Scrappers, for the purpose of their inherent powers."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Controller",
+      "powerset": "Ice Control",
+      "power": "Flash Freeze",
+      "text": "should be properly flagged as a Targetted AoE, not a Point Blank AoE."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Stalker",
+      "powerset": "Savage Melee",
+      "power": "Shred",
+      "text": "This power erroneously said it consumed Blood Frenzy stacks. The text has been corrected. This power generates one Blood Frenzy stacks instead. All other AT versions of the power had the correct text for Shred."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Dominator",
+      "power": "Feral Charge",
+      "text": "Fixed a bug where sometimes it would do no damage if executed from maximum distance."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Domintoar",
+      "powerset": "Savage Assault",
+      "power": "Unkindness",
+      "text": "This power erroneously said it consumed Blood Frenzy stacks. The text has been corrected. This power generates one Blood Frenzy stack, and it's DoT becomes stronger the more Blood Frenzy the caster has. This bonus to Unkindness makes up for the set's lack of Savage Leap and Hemorrage."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Ice Blast",
+      "power": "Chilling_Ray",
+      "text": "Should now accept Slow enhancements."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Regeneration",
+      "power": "Dismiss Pain",
+      "text": "Increased amount of MaxHP granted to 24% from 6%, should had not been that low to begin with."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "Sentinel",
+      "powerset": "Energy Aura",
+      "power": "Power Armor",
+      "text": "Now has a +MaxHP component as described in the power info. Power is now a passive and costs no endurance."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: a very early version of Savage Assault's Shred did have an RNG 20% chance per stack to recharge itself. This was universally hated in practice, as it always ate all blood frenzy even if the recharge did not trigger. In addition, feedback also stated there were not enough frenzy builders and too many frenzy consumers. This led to it being to Shred (and Unkindness, that is technically a spiritual ranged cone version) to become Blood Frenzy builders instead."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New PVP IO Set \"Experienced Marksman\"; includes proc that will always turn your Snipes into the fast version."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted Targeting has new art by Flashtoo."
+    }
+  ]
+}

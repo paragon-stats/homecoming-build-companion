@@ -1,0 +1,251 @@
+{
+  "title": "Patch Notes/2012-06-26",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2012-06-26",
+  "published": "2012-06-26",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "USER INTERFACE",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where macros would not be created in tray slots under certain conditions."
+    },
+    {
+      "category": "USER INTERFACE",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the client could have incorrect information about the status of powers after switching builds."
+    },
+    {
+      "category": "USER INTERFACE",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where dragging a power off of the server-controlled power tray could cause the system to accidentally copy a power back into the server-controlled power tray."
+    },
+    {
+      "category": "USER INTERFACE",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where windows could pop off of the edge of the screen after loading window positions from a file where the windows were saved at a scale less than 100%."
+    },
+    {
+      "category": "CHARACTER CREATION / TAILOR",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New tailor parts now default to light/dark gray colors."
+    },
+    {
+      "category": "CHARACTER CREATION / TAILOR",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some texture issues which made the lower half of some Boleros to appear darker than the top half."
+    },
+    {
+      "category": "CHARACTER CREATION / TAILOR",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane, Elegant, Wing and Imperial Dynasty Boleros should be corrected."
+    },
+    {
+      "category": "TEAM UP TELEPORTER / LFG",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Sister Psyche's task force and added Penelope Yin's task force to the LFG list."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would prevent you from receiving the passive boost from Hybrid Incarnate powers after switching from one power to another within the same tier of the same tree."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hybrid Assault and Hybrid Control boosts now properly persist when a player zones between two maps."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where many Control Radial abilities were more effective than intended in PvP."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Control Radial t4's Stun proc would almost never occur in PvP."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Doublehit has been changed to no longer work with Judgement powers. This is consistent with Assault Core abilities being unable to boost the damage of Judgement powers. Doublehit still works in all other damage-enhanceable powers."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Control Radial Genome now properly shuts off after 2 minutes of activation."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hybrid toggles now toggle off after their maximum duration is reached if the player logs out with the toggle active."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Hybrid passive buffs now properly apply when switching between two powers of the same tier in the same tree."
+    },
+    {
+      "category": "INCARNATE POWERS - HYBRID",
+      "subsection": "Incarnate Trial - The Magisterium",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All players in the Tyrant fight in Magisterium will now properly receive their temporary level shifts for each Light of the Well destroyed."
+    },
+    {
+      "category": "PVP",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can no longer accept alignment change reward tables while on a PvP map."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where you would be able to use the Panther Stealth Power while not in Panther Travel Form if you previously died while in panther form."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Sweep combo once more properly affects all targets within a 15 foot radius when Ablating Strike is used."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "Dominator",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Control: Possess now functions in PvP outside of Domination."
+    },
+    {
+      "category": "BADGES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some Night Ward badges were using incorrect art. This has been corrected."
+    },
+    {
+      "category": "BADGES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed the villain version of Positron's Pal to be Positron's Nemesis."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc 2 Episode 1",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The final waypoint in Lastri Kayumanis's first mission now correctly appears over First Officer Harriman"
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc 2 Episode 1",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where players were receiving a delay in obtaining the final reward table."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Signature Story Arc 2 - Hero - Episode 1",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manticore now spawns properly in Mission 3 of Wavelength's storyarc."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "The Television",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Investigate Freaks in TV - Fixed an issue where the hostages could not be led out of the map."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Black Knights",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eternal Guard: Taunt's cooldown has been increased from 10 seconds up to 15 seconds. It is now flagged as a Debuff, so that it is only used by Guards who have been attacked in some way."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Night Ward",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trilogy - Mercenary will now appear up to a maximum level of 54, rather than 44."
+    },
+    {
+      "category": "TASKS",
+      "subsection": "Peregrine Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Portal Corporation - Fixed an issue where Unai Kemen's missions were directing players into Dark Astoria."
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "title": "Patch Notes/2006-09-20",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-09-20",
+  "published": "2006-09-20",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You will now be able to drop missions that you receive from Contacts. Dropping a mission will carry with it everything that completing the mission successfully does. It will advance story arcs, improve Contact XP, grant special powers, give Mission Complete XP, etc. You will not be able to “replay” the mission you dropped. This is done this way so that you are not stuck on a Story Arc, or are missing a vital Temp Power needed later on in the mission chain, etc."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In order to drop a mission, you must be the mission owner, and you can talk to the Contact that gave you the mission. If the mission is droppable, an option to drop it will appear."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can only drop one mission every 7 days with this feature. If you need to clear a mission, but have already used this feature in the past 7 days, you will need to contact Customer Support as normal."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can not drop timed missions."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can not drop missions that are part of a Task or Strike Force."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can not drop missions that give badges as Mission Completion rewards."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some other missions are marked as \"undroppable.\" These are missions that have rewards that are well above average."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You will not be given the choice at all to drop missions that are undroppable. You will need to contact Customer Support in order to clear these missions."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you are on a team with someone who drops a mission, you will receive no rewards for the mission."
+    },
+    {
+      "category": "Mission Dropping Feature",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Missions that are dropped are logged so we can more easily debug bugged missions."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Moment of Glory which caused the Icon to blink after the power's Buff period had ended."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Gladiator version of the Malta Hercules Titan will no longer combine into a Zeus Titan if two are present."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ring of Fire and Fire Cages both have had a -Fly component added."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Teleport reticle now displays properly on Teleport powers with range enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pets made up entirely of f/x (like Tornado or Voltaic Sentinel) now display properly."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lieutenants will now appear in missions for solo players."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that allowed some destructible objects in missions to get into a state where they could not be targeted."
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Recluse's Victory: Attempting to dismiss a Turret no longer causes it to become inactive."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that can make enemies and/or other players invisible to you."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "XP debt in PvP has been adjusted: If a player is defeated by another player, no debt is given. If a player is damaged by another player and then defeated by NPCs, debt is given proportional to the amount of damage inflicted by NPCs."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moving stacks of stored items by double clicking no longer causes items to be dropped from stacks and lost."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldian Energy Flight's Endurance cost reduced to match the changes to the Flight power."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Tranquilizer Darts temporary power no longer slows the user when activated and properly slows the Devouring Earth."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Back Alley Brawler should no longer give debt when defeating players in Recluse's Victory."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Freedom Corps Nullifiers Sonic Grenades will now properly display a debuff icon when you are affected by them."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lowered the sound volume of the Elder Cobra's Poison Beam attack."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Future of Freedom Strike Force: Freedom Phalanx members on Lord Recluse strike force will once again drop Enhancements, Inspirations, and Salvage."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Future of Freedom Strike Force: At completion of the Strike Force, you are now given a choice table to pick your reward. You can pick a random Synthetic Hamidon Enhancement or a specific Single Origin Enhancement."
+    }
+  ]
+}

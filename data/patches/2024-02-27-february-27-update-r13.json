@@ -5,6 +5,7 @@
   "issue": "issue-27",
   "page": "page-7",
   "revision": 13,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Powers",
@@ -16,33 +17,33 @@
     },
     {
       "category": "Powers",
-      "subsection": "Arsenal Control",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Arsenal Control",
       "power": "",
       "text": "Liquid Nitrogen: Damage should now require a hit check, and would sometimes tick multiple times per pulse"
     },
     {
       "category": "Powers",
-      "subsection": "Savage Melee",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Savage Melee",
       "power": "",
       "text": "Savage Leap (Stalker): Power should now grant Assassin's Focus"
     },
     {
       "category": "Powers",
-      "subsection": "Mind Control",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Mind Control",
       "power": "",
       "text": "Telekinesis: Recharge lowered from 120s to 90s"
     },
     {
       "category": "Powers",
-      "subsection": "Traps",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Traps",
       "power": "",
       "text": "Poison Trap: No longer accepts Slow enhancements"
     },

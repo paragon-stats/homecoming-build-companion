@@ -1,0 +1,915 @@
+{
+  "title": "Patch Notes/2011-04-05",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-04-05",
+  "published": "2011-04-05",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Team-Up Teleporter is a new grouping feature that can be used to join an existing team, or assemble a new team in order to tackle the Incarnate Trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To use the Team Up Teleporter, a solo player, Team leader, or League leader must click the LFG button in the area above the chat window."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can then select the Incarnate Trial you are looking to queue for, or select \"First Available\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can leave the Queue by selecting \"Leave Queue\" when you are in it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each Incarnate Trial has a \"Minimum Launch Threshold\" which is the smallest amount of players needed to start the event. Once the number of players in the queue reaches this number, an internal countdown begins, allowing more players to join the queue. When that countdown expires, or when the amount of players reaches the maximum allowed for that event, the event will launch."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For the Behavioral Adjustment Facility (B.A.F.)the Minimum Launch Threshold is 12, and the Maximum Players is 24."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Lambda the Minimum Launch Threshold is 8, and the Maximum Players is 16."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once the Incarnate Trial is ready to launch, ALL eligible players will see a pop-up asking them to enter the event. This is your last chance to exit out gracefully."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Additional players will be able to join an event in-progress when the current number of participants falls below the minimum threshold for the event."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players are not able to queue for Incarnate Trials from any instance map, including Super Group bases, PvP zones and while inside a mission map."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A League is an assemblage of teams under one unified UI"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A League can have up to 6 teams of 8 characters each (up to 48 characters total)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a single League Leader who can invite other characters into the League"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each team also has a Team Leader who can invite other characters onto their Team."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team-wide buffs ONLY affect the team you are on."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is a game balance issue, as these buffs stacked into the quantities a League could bring to bear would be more than overwhelming."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The UI for the League allows you to look at all teams or an individual team."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When looking at All teams you can expand the UI to show the teams better."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A League Leader can use this expanded view to drag and drop team members onto new teams. If no team currently exists for the character, right clicking them and selecting the option for \"place on Team N\" will create a new team if Team N did not exist previously."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is a Focus tab within the UI as well"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is used for setting League members as a Focus."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Right Click any member of the league and select \"Place on Focus Tab\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Focus tab contains ONLY characters you have put there."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is useful for having a quick way to monitor specific characters' health or targeting."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "League members who are not a part of a player's group will show on the map."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These members will appear slightly faded to differentiate from team members."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new radio button toggle has been added to the mini-map drop down menu to show or hide leaguemates."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can choose to adopt a new Team and Pet UI style that matches the new League UI style as well."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A pop-up message will occur when first logging on asking whether you want to use the new UI style for Team/Pet windows as well or to retain the previous version."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The setting can be changed at any time within the Options menu."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When players log in for the first time on a character, they are prompted to select \"Help Me!\" or \"Helper.\" If the player chooses \"Help Me!\", their name changes to a purple color, and they will have a title that says \"Help Me!\" If the player chooses Helper, their name changes to a gold color, and they will have a title that says \"Helper.\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you have a temporary title, it will override your Helper Status title until your temporary title expires."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now a question mark icon in the chat channel selector list. This icon will allow you to chat to the Help channel."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Help channel has been added to the default list of chat channels displayed in the Global chat tab."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Help tab has been colored orange to help new players find it."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "The Player Help System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/h, /help, and /guide now chat to the Help channel instead of opening the Help window. Type /helpwindow or hit H when not chatting to open the help window."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that prevented mission rewards from being handed out on missions that had a base level of 54 and additional difficulty modifiers"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apex Task Force with +4 level adjust for example"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Storyline",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Under the guidance of Mother Mayhem, Siege and Nightstar, wardens of the Behavioral Adjustment Facility, have perfected a technique called Mindwashing. This devastating mind control technology has been inflicted on many prisoners of the facility, and they are about to be unleashed upon the city in a staged attack which the Emperor plans to use for propaganda purposes. The psychological effect this breakout would have on the populace would instantly sour any hope for Incarnate success in stopping Emperor Cole, so the Incarnates must make their way to the B.A.F. and prevent the staged breakout as best as they can."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Synopsis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The event takes place at the Behavioral Adjustment Facility in Imperial City. Players are tasked with making their way through the forces which guard the facility, then defeating Nightstar in an effort to infiltrate the facility. However, the battle comes too late, as no sooner is she defeated as the escape begins. However, after stopping the escapees from exiting the facility, players still need to deal with Siege before the facility can be contained. Unless, of course, the wardens have another trick up their sleeve...."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sequestration: Siege and Nightstar are equipped with powerful technologies that enable them to quickly bring enemies under control. Focusing on their main target, they will surround them with a field and begin the sequestration process. If their attention remains on the main target for three warnings, that target and all those caught in the field are locked down."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Security Towers: The B.A.F. is equipped with a set of towers which will quickly debilitate any target who remains within their range for too long. Rumor has it that they can be shut down by the terminals near their base, but approaching these terminals is quite risky."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defiance: Siege's assisting Warworks feature new AI protocols which allow them to increase their attack strength and chance to hit the longer they remain attacking. If too many of his allies arrive, they can quickly overwhelm almost any opponent."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mindwashed Contagion: the Mindwashed escapees are not much of a threat to the Incarnates, as these prisoners are programmed simply to leave the facility immediately. However, their Mindwashing does have a side effect: there is a chance that they can sow confusion amongst those who get to close to them, hampering the Incarnates' ability to stop them!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Storyline",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Within Neutropolis lies Lambda Sector, Neuron's crowning achievement and a critical component of Tyrant's war machinery. It is within Lambda Sector that Tyrant's super-soldiers are birthed, trained, and housed. It is critical that this facility be destroyed and the Super Soldier program scrapped if there is to be any hope of crippling Emperor Cole's ability to put forth an army that can threaten the Incarnates trying to prevent him from controlling both Primal and Praetorian Earth."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Synopsis",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The event takes place at the Lambda Sector complex in Neutropolis. Players are tasked with making their way through the forces which guard the facility, then breaking in and doing as much damage to the complex as they can. However, as soon as the complex is breached, Marauder will begin making his way to the area. When he arrives, the time for sabotage is over, and the time to take down an empowered Marauder will begin."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nova Fist: Marauder will charge up a powerful melee attack in which he punches the ground with tremendous force. The shock waves sent out by this attack do significant damage to those too close to him."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Artillery Barrage: Off-site artillery guns will bombard those who get far enough away from Marauder to be distinguished as a target."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pacification Grenade: Marauder's defenses are significantly increased by the power of a serum given to him by Neuron. The only way to bring down these defenses is to pacify him with these grenades, found inside Lambda Sector during the sabotage."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Unique Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Molecular Acid: Marauder's arrival also signals the activation of the reinforcement portals which allow IDF forces from within Lambda Sector to quickly move to the surface to aid Marauder. Only Molecular Acid can be used to shut down these portals and prevent reinforcements from overwhelming the Incarnates. The Molecular Acid can also be recovered during the sabotage stage."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate XP will now be awarded by all trials. The Behavioral Adjustment Facility will award XP for the Judgement and Lore slots. Lambda Sector will award XP for the Interface and Destiny slots."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you have not unlocked your Alpha slot, both trials will allow you to unlock that slot before accumulating XP in the other slots."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Astral Merits and Empyrean Merits are awarded in each trial. These are new Incarnate only currencies that can be used for advancement in the Incarnate system."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Astral Merits are awarded for completing key objectives during an event."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empyrean Merits are awarded for event completion."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each Incarnate Trial can only award one Empyrean Merit upon successful completion within an 18-hour period. If you would receive another Empyrean in that time period from that specific Trial, you will earn an Astral Merit instead."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Astral and Empyrean Merits may be exchanged within the Incarnate crafting system for additional Incarnate Components. These Merits will also be used in the future to earn additional rewards which can be obtained by running Incarnate Trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reward Tables are offered on the completion of an event."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Badges of the following types are present in each trial:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "One badge for completion of the event, awarded at the first successful completion."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Four achievement badges for unique challenges within each event. The first successful completion of a badge will award a random Uncommon component and an Astral Merit. Each successive completion will award an Astral Merit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "One mastery badge for acquiring the completion badge and all four achievement badges. The first successful mastery completion will award a random Rare component."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following slots are now accessible: Alpha, Interface, Judgement, Lore and Destiny. All powers in all slots are accessible."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate slots can be unlocked by earning Incarnate XP from standard enemy kills inside the Incarnate Trials. Various Incarnate Trials provide Physical or Psychic Incarnate XP which unlocks one or the other tracks of slots. Incarnate XP can also be earned by sacrificing Incarnate Sub-components."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once a slot is unlocked, created Incarnate abilities can be slotted in them."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The recipes for abilities in the four new slots and the new recipes for Alpha abilities require the new components which can only be found in the Incarnate Trials. The earlier Alpha component recipes are still valid but are no longer the only way to obtain those abilities. Likewise, it is now possible to unlock the Alpha slot by earning Incarnate XP in the trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Interface slot contains a variety of powers which provide global proc debuffs which apply to all powers. These procs will be applied directly to almost every enhanceable damaging power. The debuffs from this power stack globally - that is, multiple characters with the same Interface equipped share the same debuff stack on their foes. This slot does not provide a level shift."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Judgement slot contains a variety of large-scale AOE damaging powers with powerful secondary effects. Judgement powers are unaffected by standard character buffs to damage or to hit, but have a high base accuracy and are affected by global enhancements such as those provided by the Alpha and Interface slot. Judgement power damage is unaffected by archetype damage mods, and the recharge of Judgement powers cannot be buffed or debuffed. This slot does not provide a level shift."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Lore slot provides access to summonable essences of defeated Praetorian foes to fight for you. Unlike normal summon powers, these allies are controllable using the Mastermind control interface, even for non-Masterminds. The recharge of Lore powers cannot be buffed or debuffed. Rare and Very Rare powers in this slot provide a level shift."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "New Incarnate Slots",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Destiny slot contains a variety of large-scale defensive AOE powers which provide healing, protection, or buffs to friendlies within a large radius. The strength and duration of these buffs is unaffected by archetype buff mods, and the recharge of Destiny powers cannot be buffed or debuffed. Rare and Very Rare powers in this slot provide a level shift."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Empyrean Merit -> Incarnate Component conversions to the Incarnate Create interface:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Rare Components cost 8 Empyrean Merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Very Rare Components cost 30 Empyrean Merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note: Astral and Empyrean Merits will be used to purchase additional rewards besides Incarnate Components in releases following Issue 20."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a conversion recipe to synthesize Notices of the Well from lesser components and inf."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added an upconversion to turn Incarnate Shards into Incarnate Threads. The ratio is 10 Shards to 10 Threads once every 20 hours, or a more costly conversion of 10 Shards to 5 Threads with no restrictions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The restriction that players are combat level 50 for Incarnate Shards to drop has been removed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Shards can be earned by those who have their Alpha Slot unlocked even when exemplared. Incarnate Shards will not drop during Incarnate Trials, Incarnate Threads will drop instead."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "I20: Prometheus",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Prometheus the Titan has arrived in Ouroboros to provide guidance and insight to new Incarnates. He brings with him a great deal of knowledge of what it means to be an Incarnate and what challenges lie ahead for those who choose to pursue their Incarnate potential. He will only deign to speak to those who are already Incarnates, however, so be sure to unlock your Alpha slot in order to gain his insights!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Admiral Sutter of the United States Navy is seeking heroes to investigate a mysterious inter-dimensional rift signature originating off the coast of Paragon City in the Atlantic Ocean. He is currently docked in Independence Port aboard the USS Mason."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teams of 4 or more heroes between the levels of 20 and 40 can sign up to assist him."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Admiral Sutter Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On this task force you defend Paragon City from the land, sea, and air as the insidious Praetorian Imperial Defense Force begins their invasion of Primal Earth."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mortimer Kal, a venerable wizard and member of the Midnight Squad, has been spotted in Sharkhead Isle. Rumors abound that he has secret information regarding Incarnate artifacts and ways of seizing such power. But whispers amongst dark circles tell of a weakness of his which can be exploited to force him to reveal those secrets to anyone brave enough to cross him."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A special Tip Mission now drops for villains and rogues in the Rogue Isles greater than level 20 revealing Mortimer Kal's weakness. Completing this mission will allow you to start Mortimer Kal's Strike Force with a team of at least 4 villains between levels 20 and 40."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Only the leader of the Strike Force needs to have completed the Tip Mission to unlock Mortimer Kal as a contact."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On this strike force you can expect to exploit and/or betray anyone and everyone you encounter in an effort to claim glorious incarnate power! Crushed and broken enemies will be left in your wake, as nothing will keep you from the power that is rightfully yours!"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Apex and Tin Mage",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Apex and Tin Mage TFs now reward 2 Incarnate Threads upon successful completion instead of Incarnate Shards."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the visual effect intensity of the missile volley attack from IDF Heavy Trooper, Heavy Commander, and Mobile Artillery foes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Today's Newspaper: Frostfire should spawn at the appropriate level."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crossing the Line: Doc Quantum should spawn at the appropriate level."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ouroboros Portal"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The clickable region of the Ouroboros Portal has been raised and had its shape altered to match the floating light graphical effect."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dimensional Warder"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Trial Siege, Nightstar and Marauder as well as Alpha Strike Battle Maiden, Neuron, and Bobcat now count as valid kills for the purposes of this badge in addition to the previously valid versions of those Arch-villains."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spider Smasher"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified badge hint text to read \"Defeat 200 Arachnos Wolf Spiders to earn this badge\""
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Respec Badges"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who switch alignments can now collect all six respec badges."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The limit of three total respecs still applies to these trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Praetorian Warehouse maps added."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mac Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Mac graphics bug causing only lowest graphics settings to be used."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mac Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note that in order to get graphics settings back to desired settings, you need to go into the game and bring up the options dialog and set desired graphics settings."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mac Client",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Until you do this the first time you will still have the lowest settings."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Darkness Mastery - Night Fall now accepts only To Hit Debuff, Accurate To Hit Debuff and Targeted AoE Damage sets like other versions of this power."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Hero Epic Archetypes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If a level 30+ Peacebringer or Warshade becomes a Villain, they will no longer have the chance to encounter level 40 Quantum/CoS critters"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Calvin Scott Mission 1"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rescued team members should no longer attack the fire."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "I20: Black Helicopters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Black Helicopter line in the Rogue Isles has acquired four additional stops. These stops include: Port Oakes, Sharkhead Isle, Nerva Archipelago North and Grandville North."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Corruptor Patron Pool power \"Electric Shackles\" now does Scourge damage on each tick of the DoT."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Dark Miasma - Twilight Grasp radius has been increased to 20 feet to match other versions of this power."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Radiation Emission - Lingering Radiation now debuffs run speed like other versions of this power."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor Sonic Attack - Shriek has had its endurance cost reduced to 4.37 and its basic damage scale reduced to 0.84 to match its 3 second recharge time and the other versions of Shriek."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Mission maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Several missions which take place in warehouse maps now use Praetorian specific warehouse maps."
+    }
+  ]
+}

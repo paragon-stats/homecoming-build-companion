@@ -1,0 +1,235 @@
+{
+  "title": "Patch Notes/2007-05-09",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2007-05-09",
+  "published": "2007-05-09",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Passive’ movement powers such as Swift and Hurdle can no longer be slotted with Travel IO sets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The lock-out timer for receiving rare recipe rewards from Task Force and Strike Force Missions was reduced from 4 hours to 3 hours."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Player AT’s damage resistance was not 'capped' vs. the Hamidon’s special damage type. As a result, players could completely eliminate incoming damage from Hamidon via Essence of the Earth inspirations, which is not the intended behavior. Resistance to this damage type now has the standard maximum values as determined by archetype."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Chance to _____\" Invention Enhancements will now work with Area of Effect powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The animation for Dominate (shared by many other powers as well) while flying will now play all the way through and not be interrupted by the flying combat ready animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters have a Recipe inventory of 8 at level 10 now, instead of 4."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed mismatches between IO names and description text."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invention: Defense Buff (Lvl 30-40) used Silver. Silver was too high, now uses Alchemical Silver."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kismet.+6% Acc (Lvl 26-40) used Psionicly Charged Brass. Psionicly Charged Brass was too low, now uses Black Blood of the Earth."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Defense modifier to Gift of the Ancients: Increased Run Speed"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Defense modifier to Luck of the Gambler: Increased Recharge Rate"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Accuracy Set Bonuses -- They now modify the Accuracy of all of a player’s powers, instead of modifying the player’s base To Hit value."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slightly increased the Set Bonus values given to the Red Fortune set."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Red Fortune no longer offers a Confuse Duration increase as a Set Bonus. It has been replaces with Fire/Cold damage resistance."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Luck of the Gambler: +7.5% Recharge set enhancement was giving a double bonus the first time it was slotted. Now fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Induced Coma and Pacing of the Turtle chance to reduce attack rate IO enhancements should now work more reliably."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Transfer no longer says it accepts Stun IO sets -- it never could accept them, this is cleaning up a text error."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added recipe information to salvage info window"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Bosses and Archvillains so they drop Large Inspirations once again."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Task Forces now give you a choice table at the end allowing you to choose an SO Enhancement if you do not qualify for the Recipe reward."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed typo in Committed badge title."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swapped names of the Invention badges: Colonel and Lt. Colonel (they were transposed)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a hole in Siren’s Call that allowed players to teleport under the zone."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/emote howl has been silenced."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainers now display any changes to a player's inventory sizes when they level up."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Consignment Markets",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "if getting a stack from the auction house would fill your inventory, items will be added to your inventory until it is filled up and whatever is left will remain in the stack. Previously, such transfers simply failed."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added ‘The Abyss’ to Rogue Isles City Map"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a hole in Mercy Isle that caused players to get stuck."
+    }
+  ]
+}

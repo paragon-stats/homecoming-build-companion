@@ -1,0 +1,187 @@
+{
+  "title": "Patch Notes/2005-05-25",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-05-25",
+  "published": "2005-05-25",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in Transference that was causing you to resist the Endurance gain from this power if you had resistance to Endurance Drain."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some CoT Earth Mage powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Transfer now accepts Recovery Enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Limited the number of Rikti Communication Officers that may spawn."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was causing enhancements in Wormhole not to work."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was causing Black Dwarf Strike and Black Dwarf Smite to deal Energy damage instead of Negative Energy damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All powers that debuff flight will now affect villains up to three levels higher than the caster. Previously, these powers would only affect villains that were equal level or lower than the caster."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Enzyme Exposure +Defense boost to match the +Defense given by other Hamidon Enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a typo in the Titan Citrine Shard enhancement. It was marked as increasing accuracy, while it actually increases To Hit buffs"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the Text of Soaring Dragon in the Katana set. The long description conflicted with the short description. No numerical data was altered."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a grammatical error in the Cyclone Elemental's description"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Banished Pantheon Death Shaman in Portal Missions should summon zombies of the appropriate level now."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that allowed suppression to be avoided by restarting a power"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug where taunts would continue after taunter died"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with pets returning to their caster rather than attacking."
+    },
+    {
+      "category": "Rewards",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased xp award for defeating Giant Monsters."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed mapserver crash when taunter leaves map"
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed memory leak"
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix for most common client crash (game crashes at startup)"
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed random shadow crash bug"
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix for crash involving very long messages"
+    },
+    {
+      "category": "UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where screenshots would not work for users running ATI cards with anti-aliasing turned on"
+    }
+  ]
+}

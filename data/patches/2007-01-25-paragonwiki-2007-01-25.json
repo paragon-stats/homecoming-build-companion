@@ -1,0 +1,363 @@
+{
+  "title": "Patch Notes/2007-01-25",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2007-01-25",
+  "published": "2007-01-25",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "HEADLINES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base Rent Overhauled"
+    },
+    {
+      "category": "HEADLINES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardization of how toggle powers hold or \"root\" your character in place."
+    },
+    {
+      "category": "HEADLINES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt and Gauntlet corrections and animation standardization."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any toggle that only affects yourself should not cause you to be rooted while activating"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any toggle that affects yourself and/or allies should not root you while activating. Leadership, Shadow Fall, Dispersion Bubble, etc"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any toggle that affects yourself and debuffs or damages enemies should root you while it activates."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any toggle that only affects enemy mobs should root you while it activates. (Blazing Aura, Icicles, etc)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All \"Tier 9\" powers will root the player while activating. This includes Granite Armor."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The activation time is consistent for all at 1.5 seconds. This generally resulted in a shorter rooted animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Earth's Embrace, Ninjitsu/Kuji-In Rin, Super Reflexes/Practiced Brawler, and Regeneration/Instant Healing will no longer root the player while activating"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldian or Peacebringers: Changing form no longer roots the character."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor/Energy Absorption will now briefly root the player while activating."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Other Power Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Golden Rings and Renewal of Light Temporary Powers' lifetime is now measured in real time days, not /played days."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Other Power Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Armor/Earth's Embrace - Changed effects so that dirt, stones, and rock portion will only play on the ground."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Other Power Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker and Brute Super Strength Rage: Fixed a bug in which would allow players to bypass the Endurance 'crash' at the end of the power's duration."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Other Power Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Assault/Psychic Scream: Corrected a pause that would play after using this power while flying."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Other Power Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Armor’s sound effect now correctly silences after a short time period."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters' wings will no longer be visible while using the alakazamreact emote while they have Force Shield on them."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When logging in, the chat window will display the number of free tailor sessions available, if any."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A count of the total number of badges a character has is now displayed in the Personal Info Menu Item."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with a specific mission map where players could click to go to the Hospital, re-spawn and die from nearby critters."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem with elevators in a specific mission map."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will no longer be able to create or edit a supergroup while shapeshifted."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters are no longer able to talk to their contacts via cell phone while in PvP zones. This change is necessary to prevent bugs that can cause players to receive no reward for completing missions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Redcaps can now correctly spawn at levels below 35."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Dimensional Warder badge will now display a progress bar."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices Targeting Drone now grants a damage bonus to the Assault Rifle Sniper Rifle power."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices Taser: Changed animation and cast time."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices Cloaking Device: Removed erroneous text from Long Help text."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldian Antagonize: Increased durations in PvE, added PvP Duration modifier."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldians Inherent Taunt ability in Dwarf Form will now work on all ranks of critters."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Snow Storm graphical effects have been reworked. The base effect was modified and an effect was added to indicate the anchor. Also fixed a bug in the power definition that was causing the base effect to play on every affected mob, rather than the targetted anchor. This should prevent Snow Storm from stacking with itself and becoming blinding white."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nightwolves in the Citadel Task Force should no longer appear at levels not within the level range of the task force."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Banished Pantheon Masks should no longer show up in missions higher than their given level."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Supergroup base teleporter beacons to Faultline now send you to the correct location."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Secondary powerset attacks were generating Fury vs. high rank targets too quickly. This has been adjusted and these power now have the same bonus as the Brute Primary powers."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Patron Powers bonus Fury vs. Players and high ranking critters has been lowered to the same amount given by normal Brute attacks."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Blaze, Power Burst and Thorny Barrage: Increase maximum range for from 20' to 40'."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Photon Seekers levels for both Transcended and Quantum PPD. They were spawning at too high a level in some cases."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players using Ghost Widow's Patron Power \"Soul Storm\" will go into the normal combat stance after it is cast rather than going into a different animation."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Domination: the bonus given to Domination gain based on team size, although it was being calculated, was not being applied properly, resulting in lower Domination gain. This has been fixed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patron Power Pets should now be defeated when their creator is defeated."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Patron Power Pet Mu Guardian should now use his Sentinel of Lightning power properly."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Numina will no longer resurrect Ms. Liberty during the final battle of the Recluse Task Force"
+    }
+  ]
+}

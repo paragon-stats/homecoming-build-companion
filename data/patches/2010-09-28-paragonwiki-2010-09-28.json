@@ -1,0 +1,379 @@
+{
+  "title": "Patch Notes/2010-09-28",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-09-28",
+  "published": "2010-09-28",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters under level 20 can no longer be awarded credit for alignment missions before level 20."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Alignment System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you attempt to change alignment in an alignment-restricted zone (attempting to become a Villain in Atlas Park, for example), the alignment change will fail."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Game Store",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated links for the Going Rogue upgrade/purchase button."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn (all versions) – the tick damage will now show up in combat chat as pet damage."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Chiefs shouldn’t skate any more."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chance to Heal Self IO's will no longer heal enemies when slotted into Chain type powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cathedral of Pain - Fixed Merit diminishing returns. Merit rewards were dropping off too quickly when diminishing returns kicked in. This has been fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warburg Missiles can no longer be used in the Cathedral of Pain."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the swapped prestige costs for Small Steel Lab Tank and Steel Alembic Tank."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that prevented being awarded the Day Job Accolade Mercenary."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that prevented being awarded the Day Job Accolade Rapid Response (Hero)/Trouble Maker (Villain)"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Someone had kidnapped all the wandering pedestrians in Paragon City. They have now been rescued to pace the streets once more."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Mastery/Force of Nature - The bonus recovery of this power was marked to ignore Buffs and debuffs, including enhancements. This has been corrected and it is now enhanceable and buffable."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Blasters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Manipulation/Burn – This power will no longer damage the caster on its first tick."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery/Personal Force Field - This power has been replaced with Focused Accuracy."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Mastery/Force of Nature - The bonus recovery of this power was marked to ignore Buffs and debuffs, including enhancements. This has been corrected and it is now enhanceable and buffable."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a number of Patron Powers that were not unlocking properly at level 41:"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mu Mastery/Electrifying Fences"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mace Mastery/Web Grenade"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Leviathan Mastery/School of Sharks"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Achievement badge for completing a Hero Morality Mission has been renamed \"Gallant\" from \"Resolute\" to correct a duplicate title with the Veteran badge \"Resolute\"."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug in the first mission of the Positron Task Force (Teleport Assault into Orenbega) which could cause critters not to move."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peregrine Island - Maria Jenkins - Olympian Guards now spawn at an appropriate level."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Primal Forces Mastery/Energy Transfer - Reduced Self Damage from scale 3.0 to 2.75."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Primal Forces Mastery/Energy Transfer - Correct IO Set Slotting -- no longer accepts Stun or Melee AoE sets, now accepts Melee IO Sets."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Mastery/Sleet - increased recharge time from 60s to 90s."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ancillary Power Pools: attack powers in these pools were incorrectly given a chance to crit. This chance has been removed."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Field Mastery/Temporary Invulnerability – This power now properly accepts Resistance IO sets instead of Defense IO sets"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Robotics/Battle Drones - fixed grammar in the info text."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetic Melee/Build Up - adjusted the Cast Time from 1.93 to 1.17 to match other versions of the power."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Destroyer Crusher bats should no longer become invisible."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Praetorian Clockwork Dismantler - \"Particle Burst\" no longer automatically hits its target."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Praetoria Story Arcs will now give out the proper amount of completion XP, before some were giving out slightly lower XP than intended."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Charles Monroe must now be defeated before you actually arrest him."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jessica Flores is clearer in her instructions for her mission to manipulate files inside Athena Labs."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Metronome now makes an effort to stop you from rescuing Susan Beck, but less so with Alec Parson."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alec Parson will now really tell you important information over the micro-communicator as you are investigating the Haywire Clockwork in M.I.C.I.R."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dumpster, the Resistance Leader in Praetor White's \"Rescue PPD in Tunnels\", will now appropriately display his information."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork in Penelope Yin's mission to \"Retrieve Clockwork info for Aaron\" will no longer say the word \"TEXT\""
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The clues for Warrant's storyarc, Guns and Money, no longer have their titles chopped off."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Resistance attack on Gravatech Labs now has a more 'heroic' pace to it."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The computer desk inside Athena Labs is now correctly oriented."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Neutropolis - On Neuron's \"Help Test Neuron's Latest Experiment\", the clone will use its powers as expected to fight back."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Neutropolis - Allies will now spawn at the correct level during Calvin Scott (Praetorian)'s \"Assist the Storehouse Raid\" mission."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Neutropolis - Penelope Yin: Players of opposing factions can no longer attack each other on Penelope Yin's final mission."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeats of Nightstar as appearing in the Praetorian arcs now counts towards the Dimensional Warder badge."
+    }
+  ]
+}

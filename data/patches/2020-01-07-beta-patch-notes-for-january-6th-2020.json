@@ -1,0 +1,355 @@
+{
+  "title": "Patch Notes for January 6th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/13956-patch-notes-for-january-6th-2020/",
+  "published": "2020-01-07T01:50:16Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Pets & Henchmen Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demonlings and Ember Demon AI reverted to not used the 'ranged only' preference."
+    },
+    {
+      "category": "Pets & Henchmen Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Suppress the inherent transparency of Phantom Army decoys when the \"Mirror\" customization option is used, making them fully solid. The standard phantom army effects and \"Phantom Mirror\" customization remain slightly transparent."
+    },
+    {
+      "category": "Bug FIxes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a crash when Lore pets were summoned with power customization."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker:"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranged damage modifier increased from 0.5 to 0.8"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Melee damage modifier increased from 0.8 to 0.95"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Buffing and debuffing modifiers have been increased to match Controller modifiers."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bruise has been removed from T1 powers."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute : Ranged and Melee damage modifiers are now equal."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Epic Pools: All Brute and Tanker Epic pools now use ranged damage modifiers"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker damage cap increased to 500%"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Modifiers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute damage cap lowered to 700%"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most Tanker Melee AoE powers have had their target caps increased."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most cones are now 10 target cap."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Most PBAoE are now 16 target cap."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker now gets an inherent buff to the radius of AoE attacks and arc of cones."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+50% for sphere attacks."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "+100% for cones"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "AoEs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some powers are unaffected by this buff. This is noted on the power description."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hitting AVs no longer gives bonus Fury, but Fury generation for attacking has been increased in a variety of ways."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Fury generation now takes into account the cast time of the attack for successful hits."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any attack slower than brawl will now generate bonus Fury if it lands a hit."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brutes now get bonus fury generation in teams, the larger the team, the larger the bonus."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fury now takes 10 seconds without attacking to start its accelerated decay, instead of 5 seconds."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The goal of these changes is to improve Fury generation in teams when the Brute is not the only brute, or is in the company of another tanking AT."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To help debug these changes, the combat spam now shows +Fury and -Fury numbers."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Brute Fury Generation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Note that this is a temporary change and will be removed regardless if these changes remain or get rolled back."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Is now applied via a global proc. Any single target power that takes accuracy enhancements will trigger an AoE taunt. Every AoE power that takes accuracy enhancements will taunt the enemies it hit."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Radius is now the same for all attacks (10ft, 5 targets max)"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt scale is now 10% higher than Brute's"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Gauntlet",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute PunchVoke is now also applied via a global proc. Any power that either inflicts damage or takes accuracy enhancements will be able to punch-voke.)"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe > Whirling Axe = 20, Swoop = 28"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts > Dragon Tail = 20, Focus Chi = 28, Crippling Axe Kick = 34"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Melee> Tremor = 28, Hurl Boulder = 35"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Power Acquisition Levels",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "War Mace > Whirling Mace = 20, Clobber = 28"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Taunt Auras are now all scale 1 Taunt (approximately 13.6s at level 50):"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invincibility, Against All Odds, Rise to the Challenge (Brute and Tank only)."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute and Tanker Ice Armor powers no longer have built-in Taunt, they are now instead covered by the inherent global proc."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following tanker and brute powers should now accept regular Taunt Enhancements:"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Oppressive Gloom, Cloak of Fear, Burn (note that burn patches don't taunt, only the up-front damage does.)"
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines: Spine Burst> No longer ignores Radius buffs."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spines: Quills > Now ignore Radius buffs."
+    },
+    {
+      "category": "Tank Changes",
+      "subsection": "Taunt Auras",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Burn for Brute and Tankers should also accept Taunt Sets (note that any proc on burn will not pass through to the patch.)"
+    }
+  ]
+}

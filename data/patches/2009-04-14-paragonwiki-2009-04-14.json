@@ -1,0 +1,59 @@
+{
+  "title": "Patch Notes/2009-04-14",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-04-14",
+  "published": "2009-04-14",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Because Defendable objects have an ambush attached to them (which you must defend against) they will now be counted against the ambush limit per mission. However, we have raised the ambush limit from 3 to 6. Any missions that become invalid after this change will have to be edited. Do NOT \"Unpublish\" your mission, or you will lose your Arc ID and ratings."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed the Rikti War Zone Mothership Rikti from the list of creatures that can be placed in missions. Any missions that specifically include these critters will now be invalid, and will have to be edited. Do NOT \"Unpublish\" your mission, or you will lose your Arc ID and ratings."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused some missions to falsely appear with the Invalid icon"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused some Invalid missions to simply disappear from Search"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that lowered the amount of tickets dropped as the group size increased"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made it impossible to enter some SG bases (the base map would keep crashing)."
+    }
+  ]
+}

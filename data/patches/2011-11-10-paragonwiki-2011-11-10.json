@@ -1,0 +1,691 @@
+{
+  "title": "Patch Notes/2011-11-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-11-10",
+  "published": "2011-11-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjustments have been made to the Keyes Island Reactor Incarnate Trial in an effort to make it faster and less difficult:"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Reactor stages will only require 6 terminals to successfully gain control of the reactor, rather than 10. All 10 terminals will still spawn, so all the league needs to do is charge up any 6 of the 10. Three cells per terminal will still be required."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Cells will now override Anti-Matter's control over a terminal at Reactor Hope and Reactor Infinity after the first one is applied to the terminal. While he still must be brought to a terminal to unlock it for the first Power Cell, he does not need to be present for all 3 Power Cell applications."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The restocking of cells will begin sooner after 8 Cells are gathered at Reactor Genesis, instead of 10, or will start after 1 terminal is completed in any stage, rather than after 2."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the minimum damage on Antimatter Pulse from 50% Max HP to 20% Max HP."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significantly reduced the bonus damage due to Anti-Matter's health on Antimatter Pulse. The attack will now hit for a maximum of 25%, 30% or 35%, depending on Anti-Matter's health, rather than 80%, 90%, or 100%. This translates into reductions from +30%/+40%/+50% to +5%/+10%/+15%."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Altered the base damage for each tick of Disintegration from 15%/40%/75%/99% to 20%/40%/60%/80%. The attack will no longer require completely full health to survive at the end. Any increases in damage in a tick are to the resistible and defensible components, not the irresistible components."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the Endurance Crash due to survival of Disintegration from 100% to 50% of the character's maximum endurance."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The stage timer for all reactor stages has been reduced from 30:00 to 20:00 due to the reduced requirements for each stage."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Anti-Matter will now arrive 90s after the warning is triggered, rather than 2 minutes later."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On the Keyes Island Trial, players who are defeated by Disintegration during Anti-Matter's Molecular Stop power will no longer trigger Anti-Matter's heal from a Disintegration defeat."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Keyes Island",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where the cutscene would occasionally fail to launch even if there was a player in the event without the badge for completion."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Incarnate Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The drop rate of Rare and Very Rare Incarnate Components has been increased for the final encounter of Keyes Island Reactor."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Incarnate Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Underground Incarnate Trial will always award a Rare or Very Rare component after successful completion of the Avatar of Hamidon encounter for players who are present for the entire event's duration."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Incarnate Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Known Issue:' Additional Rewards are still under review for the longer Incarnate Trials; Keyes Island, The Underground and both Trials currently in Beta."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Alpha",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vigor Boost: This alpha tree focuses on boosting Healing, and secondarily boosts Accuracy and Endurance Reduction. The radial branch also boosts Fear, Sleep, or Confuse effects."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Alpha",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Agility Boost: This alpha tree focuses on boosting Endurance Modification, and secondarily boosts Defense and Recharge rate. The radial branch also boosts run speed, fly speed, and jump distance."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Alpha",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Intuition Boost: This alpha tree focuses on boosting Hold effects, and secondarily boosts Defense Debuffs and Range. The radial branch also boosts Damage, Slow effects, and To Hit Debuffs."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Alpha",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resilient Boost: This alpha tree focuses on boosting Resistance, and secondarily boosts Immobilize effects and Taunt durations. The radial branch also buffs Intangibility and Stun effects, and To Hit buffs."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cognitive Interface: This interface tree adds a chance to confuse targets of your attacks for approximately 2 seconds. The core branch increases the chance to confuse targets, while the radial branch adds a chance for a minor Psionic damage over time (DoT) effect."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Degenerative Interface: This interface tree adds a chance to debuff a target's maximum HP when you attack. The core branch increases the chance for the HP debuff to occur, while the radial branch adds a chance for a minor Toxic damage over time (DoT) effect."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Preemptive Interface: This interface tree adds a chance for your attacks to include an additional Endurance damage over time (DoT) effect. The core branch increases the chance of Endurance drain, while the radial branch adds a chance for an additional moderate Energy damage over time (DoT) effect."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spectral Interface: This interface tree adds a chance to immobilize targets of your attacks for approximately 2 seconds. The core branch increases the chance to immobilize targets, while the radial branch adds a chance for an additional moderate Negative damage over time (DoT) effect."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Judgement",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vorpal Judgement: You teleport and kick all enemies you successfully hit in a cone in front of you for heavy smashing damage. The core branch adds a chance to inflict a lethal DoT on all targets struck. Using the radial branch version of the power grants you a defense bonus during and after the attack due to your quick movement."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Destiny",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The core tree provides even more amplified healing on all targets. Using the radial tree provides additional utility in stealth radius, perception, and move speed boosts, or even short-term phase shift for your entire league."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should now be able to select any owned Incarnate ability from the UI when they have a large number in a single slot."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Atlas Park",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is now less likely that the game client will run out of memory and crash in Atlas Park."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a class of crashes in the character select screen."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added combat-only options to the Bats aura"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vampire Cape Collar now has a plain cape option associated with the purchase."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vampire Brooch now properly accepts tinting."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vampire Brooch should now appear properly with all cape and jacket combinations."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Female Vampire face features are now properly scaleable."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected the skin tone issues with the Medusa face coloration."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to clipping issues, Fish Monster Boots can no longer be used in conjunction with the Pants category."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A Crash in character creation should no longer occur when changing body types of an Arachnos Soldier."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Beam Rifle Overcharge power's big explosion is now visible in Dark version"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Costume Creation / Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An fix has been implemented for an issue where letterbox bars appeared on portraits."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Mace Mastery Costume Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters obtaining the mace mastery epic pool power should obtain the default mace in all of their costumes after selecting the power."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Mace Mastery Costume Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This should no longer cause the inability to tailor a costume after picking this power."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Data storage relating to the Auction House has been revamped."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The design and functionality of the current Auction House should remain unchanged."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Collection System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Badges"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Collection System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Content Unlocks: (First Ward, Signature Story Arcs)"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Collection System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate Unlocks: (Astral Merit Account Unlocks and Empyream Merit Account Unlocks)"
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arc Access",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new special Access contact has been added for the Signature Story Arcs. VIP players or those who have purchased a Signature Story Arc from the Paragon Market will receive this contact when they reach level 10 (or leave Praetoria). The contact will be added to your Active contact tab."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arc Access",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This contact allows you to start any of the Signature Story Arcs for which you have access by clicking on the Access button for this contact and following the selection menu."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arc Access",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once on a Signature Story Arc, you will still need to travel to the appropriate zone for mission doors and turn-ins to the SSA contact."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arc Access",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Signature Story Arc Contacts now have a unique zone map marker icon and icon category. These markers appear even if you are not currently on the SSA from that contact."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villain contacts will sell inspirations now."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where 2 reward merits were rewarded regardless of what choice was made at the end of the signature story arc."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Signature Story Arcs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where contacts would have blank generic greeting dialogues."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some untranslated string issues in the Mission Architect dialogs which could crash the game client."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When facing doppelgangers and custom enemies in Mission Architect, the player will see these enemies use more appropriate powers."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Team Up Teleporter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where players can't toggle off join LFG UI event choices."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "AlienFX Hardware Lights",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Disabled AlienFX Hardware Lights to help with some Atlas Park out of memory crashes."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "AlienFX Hardware Lights",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can re-enable the functionality by adding -supportHardwareLights in the \"Extra Command Line Paramaters (Advanced)\" field in the NCsoft Launcher Properties."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The base portal in Atlas Park should once again be awarding Day Jobs progress."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Certain Day Jobs in Atlas Park should no longer require jumping to trigger them."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Day Jobs",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Arachnos Agent Day Job volume in the Mercy Island Admin Building."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Nightmare Elite Boss found in the Zombie Apocalypse has returned to a \"normal\" height of 10 feet."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue in the Ongoing Training Mission \"Endure Omnicore's Master Plan\" where Robotic Legacy Chain spawned Vahzilok instead."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed an error where Halloween Costume Salvage turn-ins could award more than one costume slot."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue where some contacts given after a Mayhem Mission could be accessed by a Vigilante and some contacts given after a Safeguard Mission could be accessed by a Rogue."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Real Numbers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Healing Received Bonus (including negative values, if debuffed) will now appear in Combat Attributes / Real Numbers displays."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Pool",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stealth/Grant Invisibility: This power can now target any member of the user's League, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Pool",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Teleport/Recall Friend: This power can now target any member of the user's League, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Pool",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade/Shadow Recall: This power can now target any member of the user's League, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Radiation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fallout: This power can now target any member of the user's League, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Radiation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where the Corruptor version of Fallout was previously able to target non-teammates. It is now limited to Leaguemates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Sonic Resonance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Repulsion: This power can now target any member of the user's League, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Shield Defense",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Phalanx Fighting: This power now grants the user its benefits from any nearby Leaguemates, rather than only their teammates."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Poison",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Venomous Gas now properly benefits from To Hit Debuff and Defense Debuff enhancements and enhancement sets."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Poison",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Paralytic Poison now lasts the correct duration in PvP for all versions of this power: 4 seconds for Controllers and 2 seconds for Corruptors and Masterminds."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Devices",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gun Drone can now be used while the character is in mid-air."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Fire Blast",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The cast time of Fire Blast for Defenders has been lowered to 1.2 seconds, down from 1.67 seconds."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Inspirations",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Resistance inspirations should now properly grant teleport resistance in all situations."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Miscellaneous",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blue and Green Circle of Thorns crystals (typically found in Oranbega maps) will no longer interrupt power use or trigger the timer on Incarnate ability equip and unequip functions."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the ability for players to move base objects horizontally and rotate them about the vertical axis freely."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "While placing an object, if the player holds SHIFT, they can move the object vertically."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once placed vertically, if they wish to move the object again and maintain the vertical placement, they can hold the CTRL key."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If they do not use the CTRL key, the object will snap to the first encountered ground the cursor is placed over."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If the player holds ALT, they can rotate the object about the vertical axis."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Base Editor: Free Vertical Placement and Rotation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This should only affect the initial placement of a new base object."
+    },
+    {
+      "category": "Incarnate Trials",
+      "subsection": "Changes to Existing Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arbiter Lupin in Nerva Archapelago has been moved. People coming to him for respecs were occasionally getting assaulted by the Rikti. He has been moved from his original location on Cruz Isle to the Southwest corner of the AE building on Eisner Isle, in the same zone."
+    }
+  ]
+}

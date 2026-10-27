@@ -1,0 +1,19 @@
+{
+  "title": "[Staging] Patch Notes for Feburary 8, 2021",
+  "url": "https://forums.homecomingservers.com/topic/26332-staging-patch-notes-for-feburary-8-2021/",
+  "published": "2021-02-09T05:24:25Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Possible fix for crashing when hami buds spawn in raid conditions. This involves a changes to a low-level sorting algorithm that is heavily used by the graphics engine and needs testing to make sure it doesn't break anything else."
+    }
+  ]
+}

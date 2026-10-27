@@ -1,0 +1,75 @@
+{
+  "title": "Patch Notes/2007-05-24",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2007-05-24",
+  "published": "2007-05-24",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Message of the Day (the “Known Issues” login message) no longer appears in chat, only as a popup. Players that want to view the message again after dismissing it can do so by typing “/gmotd” in chat. This instruction will show up in chat when you log in."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Woodsman’s Task Force (the “Eden Trial”) and the Maren MacGregor Task Force (aka the “Sewer Trial”) now have choice tables upon completion. Choice can be a Task Force recipe (i.e. a recipe from the Task Force pool), or the Multi-aspect Enhancement reward that these missions have normally given. Choosing the recipe counts as your “once every three hours” Task Force recipe reward for that character."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Universities",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added kill volumes inside Universities to prevent hostile critters from getting inside. Bad critters!"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/emote drum and /emote drumlow will no longer play sounds (They were impacting performance too much). This is a temporary change to address performance. Look for drum sounds to return in a future build."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphic Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Optimized Invulnerability set effects for Tanks, Scrappers, and Brutes to improve performance. This primarily involved reducing the number of redundant effects. While performance is significantly increased with this change, expect a future change to this set of effects to improve the aesthetic quality of the graphics."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix for lighting corruption (“black fuzzies” effect) on GeForce 8800s on Arachnos mission maps."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made some costume pieces invisible in certain color combinations."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Stores",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug where stores would sometimes buy all or part of a stack of recipes for the price of one."
+    }
+  ]
+}

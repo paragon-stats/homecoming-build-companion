@@ -1,0 +1,867 @@
+{
+  "title": "Patch Notes/2008-02-12",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-02-12",
+  "published": "2008-02-12",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This window displays all the character’s current attributes."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It can be accessed by clicking on the “Powers” text on the Powers Icon Tray."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players may also access the Combat Attribute window with the following command : “/toggle combatnumbers”"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Below each attribute is a list of all powers affecting the attribute and the power's contribution."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There should be tooltips for every attribute thoroughly explaining them."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Each attribute can be sent to the Attribute Monitor window (via right-click context menu)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Feature - Combat Attribute Window",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds can right-click their pet and view their pet’s attributes."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attribute Monitor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Up to 10 attributes can be monitored."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attribute Monitor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can drag the window to any part of the user interface."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attribute Monitor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You can right-click on elements to re-order or remove them."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attribute Monitor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If there is a monitored attribute, the window will stay open. If all attributes are removed, it will close"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attribute Monitor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you right-click the buff icons by the health bar the context menu should list everything it’s actually doing."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "XP Curve Adjustment: Enemy XP values (and Influence/Infamy dropped) have been increased across nearly all levels. The size of the increase directly relates to datamined leveling speeds for characters, so levels where characters have found themselves ‘stuck’ or ‘slowed’ will have enemies of that level’s XP increased more than other levels. Enemy Levels with the greatest increase in XP rates are: 13 to 20, and 36 to 50. Other levels have had smaller, but still significant, XP and Influence adjustments. This may mean that characters will find it impossible to do ‘all’ the content of a given level range before outleveling it."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Debt incurred for being defeated has been lowered by 20% across all levels."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now drop missions as often as once every 3 days."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spawns in Task Forces, Strike Forces and Trials will now spawn enemies for at least the minimum size required to start the Task Force, Strike Force or Trial."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where players that weren’t level 35 or higher could get missions in the Rikti War Zone through the Ouroboros device."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue where Task Force/Strike Force members could buy from contacts using cell phones."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused some flashback missions to spawn enemies for a group size of 8, regardless of the size of the group."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Flashback story arc \"Alone In The Darque\" – it was not awarding a gold star on completion, or counting for any Challenge badges"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Keeping track of what goes in and out of base storage bins has been improved. When you query any of the storage bins in your base (invention, inspiration, enhancement, etc.) they will now show a unified log for anything stored in all shared bins within the base. This change addresses a stability issue with the previous log file system that only impacted extremely large bases."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ouroboros Portals can no longer be opened in the Ouroboros zone."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ouroboros Portals may no longer be summoned in PvP Zones."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ouroboros Portals will no longer aggro critters."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using your Summon Ouroboros Portal power while your portal still exists should no longer cause the power to fail."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tweaked Group Flight to help alleviate latency issues with the power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moment of Glory: Removed Health crash and Heal resistance. Reduced Recharge time to 240 seconds (four minutes). Decreased Protection, Resistance and Defense durations to 15 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flares for Blasters and Dominators range increased from 60’ to 80’"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Recharge time for Choking Cloud has been reduced from 90 seconds to 20 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taunt Aura powers, such as Invincibility, no longer accept Taunt IO Set Enhancements."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased damage on Force Field Repulsion Bomb. Previously, it was Minor damage (scale 0.1) and it is now Moderate damage (scale 1.0) The Endurance cost of this power increased slightly, as a result of this change."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength Rage no longer has an Only Affect Self period. Instead, it is given a huge damage reduction coupled with the inability to use Temporary Powers for 10 seconds as its ‘crash’ effect. Be careful if using Rage while wearing a disguise, such as a Freakshow Disguise or the Holographic Projector, as this crash will disable those effects!"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes powers which granted Defense Debuff Resistance were, in most cases, not increasing that resistance when enhanced. This has been corrected. In other words, your Defense slotting will now also increase your resistance to Defense Debuffs"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field Repulsion Bomb Knockback changed to Knockdown."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field Repulsion Bomb now accepts Damage Enhancements"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vahzilok Disease should fade after 3 hours now."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nictus Hunter Quantum Array Guns bonus damage against Kheldians is no longer irresistible."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Windows Vista Users: Added Vista compatible cursors for when the game is run in Full Screen mode. Vista users will no longer need to use the “-compatiblecursors 1” line in their CoHUpdater.exe shortcut to make their cursor appear."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters below 10th level cannot send emails."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Characters that are not high enough level to send emails can now delete emails they receive."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added two buttons to the Log In screen."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manage PlayNC Account – Clicking this button will launch the default web browser and take players to the PlayNC.com website to add more time or upgrade their City of Heroes account."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "View Community Website – Clicking this button will launch the default web browser and take players to the City of Heroes website."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Auction House"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sort by Rarity filter added."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Get all Influence / Infamy button added."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Combat Channel (found on the Chat tabs)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hit rolls have been added to the text in the combat channel."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Context Menu for Buff Icons added (found underneath the Health and Endurance bars, and to the right of the team member list when grouped.)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Context Menu for Buff Icons shows the effect of the buff."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "45 Month Veteran Reward added. This reward grants a free respec."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra Rare Enhancements and their Set Bonuses should now work at all levels if exemplared."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra Rare IO Enhancements now correctly state they cannot be slotted until level 50."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed inconsistent Salvage requirements on new Issue 11 Recipes (Level of recipe did not match level of Salvage needed for it)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Allowed slotting level range for Crafted Enhancement Set - Sniper / Extreme Measures should now be correct."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Allowed slotting level range for Crafted Enhancement: Boost Set: Red Fortune should now be correct."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Manipulator: Chance to Stun will no longer have any effect on PVP targets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Achilles’ Heel: Chance for Resistance Debuff should no longer accidentally debuff the caster"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Touch of Lady Grey: Chance for Negative Energy Damage will no longer damage the user in certain cases."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance Modification IOs should now affect endurance draining powers such as Short Circuit."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Performance Shifter: Chance for +Endurance is no longer resistible. If your powerset includes Endurance Drain resistance, you will now see full benefit of this enhancement."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Feedback Chance for Recharge should no longer display the wrong Icon on the status effect bar."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Absolute Amazement: Chance for To Hit Debuff was buffing enemies To Hit Value. This has been corrected and it will now properly reduce an enemy’s chances to hit."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Absolute Amazement: Chance for To Hit Debuff when slotted into a pet summoning power would sometimes proc on the caster. This has been corrected."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Karma: Defense/Recharge was inadvertently giving global recharge bonuses, rather than adding recharge only to the power in which it was slotted. It behaves correctly now."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dampened Spirits: To Hit Debuff/Endurance Reduction was using an incorrect table lookup to determine its To Hit Debuff value. This has been corrected."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue which would prevent you from slotting Dark Watcher’s Despair: Chance for Recharge Slow or Touch of Lady Grey: Chance for Negative Energy Damage if you had Gaussian’s Synchronized Fire-Control: Chance for Build Up already slotted in any power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Endurance Modification IOs were always applying the End Mod value on a single attribute IO. For Multiple attribute IO’s this was not correct! The buff amount from multiple attribute IOs has been corrected they follow the established rules."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue which could cause Confusion powers to cause aggro if they were slotted with the Contagious Confusion enhancement."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed display name of ‘Debilitative Action: Recharge/Immobilize’ to match what it actually does. It is now ‘Debilitative Action: Immobilize/Endurance Reduction’"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bad descriptions in Recipes"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many cases where the Recipe name did not match the resulting Enhancement have been fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated display names of all IO Set Bonus powers to be more user friendly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Server Transfer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clarified Character Transfer warning to indicate that Arena kiosk ratings do not transfer with a Server Transfer."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Full animation for Whirling Hands (as well as all other powers that share this animation) has been restored."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summoned Snow Beast will no longer play their spawn animation twice when summoned."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Oil Slick will now display a ‘Defense Debuff’ graphic effect on targets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "As an exploit fix, experience rewards were removed from Rikti Portals. To compensate for this change, the Rikti Communications Officers who summon them now give greater experience when defeated."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Experience and Influence rewards were removed from the Ouroboros Flashback mission “Welcome to Vanguard”"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrappers"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Martial Arts Crippling Axe Kick had its recharge time listed as ‘Fast’ when it should be referred to as ‘Moderate’. The help text has been corrected."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Invincibility was set to use the wrong operator for its Taunt Aura. This has been corrected and should be back to its I10 effectiveness."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Energy Blast Power Bolt for Blasters had a 5% chance to not deal the smashing portion of its damage. This has been corrected -- it should now always do the smashing damage, assuming the power hits a target."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devices Auto Turret did not have a Defiance modifier active. This has been corrected. It now adds ~39% damage buff when successfully cast."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Devices Web Grenade now properly stacks its Defiance modifiers."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Repaired Ice Blast Blizzard for Blasters. Its Endurance Crash was inadvertently removed."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters irresistible damage in PVP reduced from 33% to 10%"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Fire Sword Circle was inadvertently doing considerably too much damage in PVP after the unresistible damage change. This has been corrected."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders version of Voltaic Sentinel duration set to 60 seconds."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Frozen Aura for Tankers now has a damaging component."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Dual Blade Taunt recharge rate was set to 3 seconds, instead of the 10 seconds all other Tanker Taunt powers are set to. This has been corrected."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased radius of Ice Melee Frost from 7’ to 10’."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased radius of War Mace Crowd Control from 5’ to 8’."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased radius of War Mace Shatter from 10’ to 8’, but increased its arc of attack from 20 degrees to 45 degrees."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controllers"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Field Repulsion Bomb for Controllers no longer benefits from Containment."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Animations",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with some Archery and Trick Arrow animations not playing correctly at all times. Specifically if the power required the weapon to be drawn before activating."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Robotics Pulse Rifle Burse was doing Negative Energy Damage instead of Energy Damage. The damage type is now correctly set to the Energy type."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Mastermind commands have been added to facilitate sending inspirations to your pet."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/inspexec_pet_name <pet name> <insp name>"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/inspexec_pet_target <insp name>"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers"
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Stalker Dual Blades One Thousand Cuts that was causing it to have less than desired area of effect. The new radius is 10’."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Graphical / Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved issue with a shared wristband activation sequence that was resulting in sounds being shared between powers such as Robotics Masterminds and the portable workbench/Ouroboros portal summon."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Graphical / Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Transitioning from running forward to strafing left or right has been fixed for Dual Pistols."
+    }
+  ]
+}

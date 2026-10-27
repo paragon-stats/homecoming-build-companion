@@ -1,0 +1,27 @@
+{
+  "title": "[Staging] Patch Notes for March 6th, 2020",
+  "url": "https://forums.homecomingservers.com/topic/16250-staging-patch-notes-for-march-6th-2020/",
+  "published": "2020-03-06T11:13:49Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the loading of power customization files with invalid colors and tokens. This should resolve the issue of some of the files not showing up in the list."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that could cause the list of powersets in a character to become desynced and crash the client."
+    }
+  ]
+}

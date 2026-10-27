@@ -1,0 +1,299 @@
+{
+  "title": "Patch Notes/2009-07-15",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-07-15",
+  "published": "2009-07-15",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Zenith Hoverbots will no longer loop their exploding death animation"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Drones will no longer loop their exploding death animation"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would cause some players to earn nonexistent Arena badges and immediately have them revoked."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The basic /emote juggle now works while flying."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage resistance bonuses granted by Invention Origin Sets like Aegis or Shield Wall will no longer be modified by archetype modifiers. This means that all archetypes will get the advertised bonus on the enhancement."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention System",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All damage proc effects in Invention Origin enhancements will now state the rate at which they will be triggered, the damage type they inflict and the measure of damage they inflict."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed powers from Destructible Object mission objectives that harmed or affected players in some way. These objects should simply explode upon reaching 0 health and have no secondary effects like buffing or debuffing players or causing damage to either enemies or players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These changes will not affect on Mission Arcs that are marked as Dev Choice."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These changes will not affect on Mission Arcs that are marked as Guest Author"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Destructible Objects that didn't have a \"glow\" and sound pulse should now correctly have these effects"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where some players would receive an error message when entering an Architect mission (this error did not prevent players from actually entering the mission)"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Story Contact & \"Contact Group\" field will no longer reset to empty when editing a local or published arc."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When creating a Custom Boss and choosing the \"Same as Boss\" setting, the accompanying mobs will be the default Villain group of the mission in general. To circumvent this issue, you can use the Custom Tab for the accompanying mobs, and select the Custom group that the Custom Boss is in."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Mending Mitochondria from Devouring Earth enemy group."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Mercenaries summoning set - Attacks from this set should deal damage versus players now."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where you could sometimes attack a player as they respawn in an Arena match"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Dominator PVP damage bonus to compensate for the improved base damage."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where mez powers in PvP zones that were affecting NPCs were being limited to four seconds in duration."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed PvP rewards to function once again. Now, influence, inspirations, and other normal rewards occur on every PvP kill, while PvP IO recipes can only be rewarded on rep-valid kills."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rep-validation to function in arenas, even though it doesn't give you any reputation in arenas."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Also lowering the rep timer from 10 minutes to 5 minutes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator - Energy Assault - Power Push now deals damage versus players correctly."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Recipes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where some recipes wouldn't display tooltips when you moused over them"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Supergroup",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ranks 4 and higher can now invite Supergroups to chat channels"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where enhancements in the Auction House wouldn't display tooltips when you mouse over them"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Kheldians",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldians in Dwarf form should be able to utilize emotes again."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tankers in Granite Armor should be able to utilize emotes again."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Hero Task Force - \"Return of the Reichsman\"",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Task Force version of Reichsman's Unbreakable power so it no longer requires a To Hit check on an opponent to make him phased."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Hero Task Force - \"Return of the Reichsman\"",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Dimensional Grounding Ray so that it can hit Reichsman while he is Phased."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Hero Task Force - \"Return of the Reichsman\"",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now using the correct (unkillable) version of Reichsman in mission 2 of the Reichsman Task Force"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrappers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Activating \"Heightened Senses\" with Claws out no longer plays the Slash animation."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brutes in Granite Armor should be able to utilize emotes again."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The visual FX for Robotics - Pulse Rifle Burst should now sync with the attack animation"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power of Black Scorpion (Mastermind Version) now has the correct targeting information and help text. It also now works correctly when used on Reichsman. This power prevents Reichsman from using his Unbreakable power. If it is used while Reichsman is Unbreakable, it will prevent Reichsman from using it again."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Necromancy and Robotics Mastermind pets should be able to utilize emotes again."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed punctuation issues in Mastermind Pet Response text strings."
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "title": "Patch Notes/2006-08-01",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2006-08-01",
+  "published": "2006-08-01",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Combined Notes",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved network performance across the board."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix for pets to get through doors more easily if they get in each other's way."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Long distance Supergroup invites no longer crash the map."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Power",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hyper Phase Temporary Power now has the 30 second shut down."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Power",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gambler's Cut for Stalkers and Scrappers now properly calculates Critical Strikes."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Power",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The 5% Defense reduction in Scrapper and Brute versions of Unyielding has been reduced to a 3.75% Defense reduction. This value matches the unenhanced Defense gained from the Tough Hide passive power in the same power set. The Tanker version remains unchanged, as the values already match properly."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Power",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Toxic Resist to Sonic Dispersion power for Corruptors, Controllers and Defenders. The help text has always stated that Toxic damage was resisted by this power, so we added it."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players should no longer get stuck in the Pocket D Elevators."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Moved certain spawns in CoT Maps to higher ground for hostage purposes."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Several doors which were giving XP but were not supposed to have had the xp reward removed."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Items placed in Storage Containers are saved immediately."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Bases",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Base storage will now allow combined enhancements to be stored/removed."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the Gloves for Huge Robotic 3."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Huge Upper Body Jacket selection now has matching sleeves."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added additional logging and error checking code to global chat."
+    },
+    {
+      "category": "Combined Notes",
+      "subsection": "World",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem with pets getting stuck in elevators."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker War Mace: The order in which the powers Clobber and Jawbreaker are received have been swapped. This means that Jawbreaker will now be available at level 4, which should help War Mace's ability to deal damage at lower levels. Lower level characters that have already selected Clobber will still have it and can continue to use it and slot it normally."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Boost epic power now works properly with Kinetics, Transfusion."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringers in Light Form can no longer appear invisible to players who suppress extra player effects."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender Epic Power Build Up now enhances Transfusion's heal."
+    },
+    {
+      "category": "City of Heroes",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The first mission of Citadel's Task Force now gives a reward as expected."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Born In Battle Accolade no longer needs the Nigh Indestructible badge. It requires the Unbreakable badge instead."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added the Defeat Recluse badge to patron arcs that were missing it."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nemesis Mole Machines no longer give experience."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a Patron Respec to the first Patron Story Arcs."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified the Lorenz Ansaldo mission to make the generators smaller."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Missions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Completion of the Temple of the Waters Strike Force now awards the badge correctly."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Domination is now usable when the caster is under the effects of Hold, Stun or Sleep."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed first tier Mastermind Upgrade power descriptions to \"Recharge: Fast.\""
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Domination effect for Dominators now grants them some protection from most status effects for the duration of the effect."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected short help text of Corruptor Cold Domination Ice Shields and Glacial Shields to reflect Melee, Ranged and AoE defense bonuses."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Placate Powers endurance costs are now more consistent."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind Henchmen Medics/Protector Bots now heal/repair as expected."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stopped Kalinda from floating above ground in Mercy Island."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the paths of Pier 2 and Pier 7 Scrapyarder spawns in Sharkhead Isle."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed elevated Arachnos Flier paths which were causing clipping in Grandville."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug where Arachnoid Web Frames were not visible in Grandville."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Brute Electric Armor Power Surge now has the correct feedback at end of the effect."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Villains who have already received their Patron Power Sets will be granted a Patron Respec upon logging in. This respec stacks with the Thorn Tree respecs as well as the free respecs given out when major power changes happen. This respec allows your character to do the Patron content at any point in their career, even level 50, and be able to add the Patron Powers to the character. These respecs can be redeemed from Arbiter Lupin."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "World",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a missing Mission Door in Grandville."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "World",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a mysterious floating beam in Mercy Island."
+    },
+    {
+      "category": "City of Villains",
+      "subsection": "Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players no longer get experience when Coral minions expire on their own."
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "title": "Patch Notes/2009-08-04",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-08-04",
+  "published": "2009-08-04",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Arena",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Villain Pentad event to properly award the Pentad Arena badge"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Art",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Transformation Capsules now properly show their destroyed animation"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quick-Chat Menu has gone through an overhaul and now includes all emotes available to all players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Emotes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All versions of juggle emotes should now work with flight."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detonation Set: Fixed a bug that would cause the 5 piece set bonus from the Detonation Invention Origin set to require all 6 pieces."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Invention",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Focused Smite: Accuracy/Damage/Recharge should have its short help correctly state that it boosts Accuracy, Damage and Attack Rate instead of Damage, Reducing Endurance Cost and Increasing Attack Rate."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Leveling Pact",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that sometimes prevented an offline level-pacted player from receiving experience if the pact is broken while that player is offline."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Vanguard Warhead destructable object used in the Mission Architect should now correctly explode instead of vanishing."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Critters - Mercenaries summoning set - Attacks from this set now deal damage versus players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Destructable objects in arcs that are not flagged as Dev Choice will no longer cause secondary effects"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Dark Servant (all versions): Fixed a bug that caused this power to state that it would accept Recharge Intensive Pet enhancement sets. Since this pet cannot be slotted for damage, it should never have been able to accept these types of enhancements."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hit delay for Trick Arrow - Entangling Arrow and Ice Arrow should sync with the visuals of the projectile"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where pets weren't phasing with their owners properly (with powers such as Phase Shift)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "PVP Changes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you defeat someone who has recently defeated you, this will no longer restrict you from receiving rewards from the PvP defeat. The PvP reputation timer is now no longer reset from a defeat that doesn't earn reputation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Super Groups",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the /enter_base_from_sgid command so that it only works when the base entry dialog is Open."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The issue involving random characters appearing in the chat line has been fixed. For example, players should now no longer see “asdawasdsawdsLevel 10 Scrapper LFT”"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can no longer use the /enter_base_from_sgid command to flee from danger."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Chat Channels will no longer change colors randomly upon zoning."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A small hole in Cimerora's geometry no longer allows players to teleport behind the war walls."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow/Acid Arrow: This power should now correctly display its resistance debuff visual FX."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Controllers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow/Poison Gas Arrow: This power should now correctly display its damage debuff visual FX."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow/Acid Arrow: This power should now correctly display its resistance debuff visual FX."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trick Arrow/Poison Gas Arrow: This power should now correctly display its damage debuff visual FX."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Dark Servant: Text no longer claims that this power takes Recharge Intensive enhancement sets"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tankers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor/Wet Ice: Fixed a typo in this power’s long help."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Task Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Manticore Task Force: 1st Mission no longer spawns level 40 Paragon Protector Elites (This is a level 30-35 Task Force)"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Necromancy/Lich: This pet summoning power should no longer accept Defense Debuff enhancements, as the Lich doesn’t have any powers with a defense debuff component. The Lich can now be slotted for Accurate To-Hit Debuff Invention Origin sets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thus Spoke the Reichsman: Ghost Widow's Betrayed Dialog now occurs at the proper time"
+    }
+  ]
+}

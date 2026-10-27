@@ -1,0 +1,411 @@
+{
+  "title": "Patch Notes/2011-05-24",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2011-05-24",
+  "published": "2011-05-24",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Combat Attributes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your effective Level Shift now displays in this window under Base Attributes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Combat Attributes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Influence totals in the Combat Attributes windows now display comma separators."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A taskforce will no longer be able to join a league that is full, rather than break up the task force."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "League",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Buff sending settings now properly work in leagues."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The effective interaction area of the pet window has been expanded to include the lower portion of the window."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bosses in trials whose player count is less than the event minimum will now spawn with a scaling strength locked to a minimum value, rather than scaling to match the lower number of players."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected power disabling flags in Incarnate Trials, Ouroboros, and PVP zones."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trials",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Travel Temps, Costume Powers and MTX Powers are restored for use in Incarnate Trials."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In an effort to ensure that Lambda Sector's merits are more widely available regardless of whether the league is attempting badges or not, the following changes have been made to merit distribution:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 Merit will be awarded when acquiring 10 Grenades."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 Merit will be awarded when acquiring 10 Acids."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 Merit will be awarded when defeating 30 of Marauder's reinforcements (the enemies from the doors) in the final stage."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 Merit will be awarded when defeating Marauder."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "2 Merits will be awarded if the league completes Antacid. This is to compensate for the 10 Grenades merit this badge precludes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "2 Merits will be awarded if the league completes Well-Stocked. This is to compensate for the 10 Acids merit this badge precludes."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "1 Merit will be awarded if the league completes Lambda Looter. This is because the league would also have acquired the 10 Acid and 10 Grenade merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Merits will no longer be awarded for gathering all 20 powers."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This merit is moved to the kills in the final stage to have fewer merits dependent on power gathering."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The overall results are:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A standard run which gets all 10 of both powers and ignores badges will receive at least 4 Merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any power-related badge run (Antacid, Well-Stocked or Lambda Looter) run has the potential to acquire at least 5 Merits."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In order to make sure that all raid sizes can achieve the new bonus merit in a reasonable amount of time, we have activated one of the two permanent doors which was previously not active for smaller leagues. This will increase the rate at which reinforcements spawn by 1 every minute for league sizes less than 10."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Please note that ONLY the reinforcements which follow Marauder will give credit for the counter. The pets of those reinforcements, the turrets, IDF remaining from a previous stage and the IDF guarding the containers during the final stage will not count for the merit."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Marauder's base 30% S/L resistance and reduced the duration of his Unstoppable power."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Lambda Sector",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A door blocking access to one of the lab interiors in Lambda Sector has been replaced with an openable door."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Trial - Behavioral Adjustment Facility",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an error where the BAF occasionally would award more than one Empyrean Merit per 20 hour period."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added direct conversion recipes for the following:"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Notice of the Well converts into 40 Incarnate Threads"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Components",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Favor of the Well converts into 100 Incarnate Threads"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Greatly reduced the probability that Ion Judgment powers will strike the same target multiple times in the same activation."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Individual pet commands can now properly be issued to the Lore WarWorks Victoria Essence."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lore pet combat text has been adjusted to indicate which pet is acting."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rebirth Destiny powers now properly ignore buffs apart from those conferred by the Alpha Slot."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ageless and Barrier Destiny powers now properly accept increases to Damage Resistance, Defense Buff, and Recovery as conferred by the Alpha Slot."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Team Teleport now works properly on Lore pets of all varieties."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Level shifted players should not longer experience strange combat results versus very low level mobs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Switching Reactive Interface abilities equipped should no longer potentially result in the DoT effect being lost until zoning."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toggle and Auto powers will collectively only apply the effects of the Interface slot procs once every 10 seconds across all Toggle/Auto powers. Click power Interface slot procs are unaffected by this timer. Known Issue: This fix currently causes the Interface proc to only occur versus one target in a round of procs. This is unintentional and will be fixed in a future patch."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Incarnate Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an error which allowed players to summon more than one set of Lore pets."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Architect Souvenir descriptions can now have up to 3,000 characters. (Up from 1,000.)"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Woodsman Task Force (aka the Eden Trial) \"Prisoners of Eden\" will now properly start if the leader of the team is above level 41."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Members of the TF team above level 41 will be auto-exemplared to 41 for the duration as per standard Task Force mechanics."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Restored missing text to \"The Aura of Power\" hero storyarc."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "On Vincent Ross's mission \"Learn the Source of True Power\" players should no longer find themselves entering the mission into non-playable space."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Silver Mantis Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Re-entering the the ship on the final mission will cause the player to now appear in the ship's interior, instead of falling through the world."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Mortimer Kal Strike Force",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warrior bosses on the Mortimer Kal Strike Force now count towards the Legionnaire badge."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected several instances where two doors (one unopenable) were appearing in certain Praetorian Tech maps."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased time between howls of the Moon-Crazed Dancer in Studio 55."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Rift Enclosure - Resistance",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The nav bar text will properly update now to tell the player to enter Talos after talking with the Resistance member."
+    },
+    {
+      "category": "PRAETORIA",
+      "subsection": "Transmuter",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aid your Powers Division Team - The door to the roof where Reese is located has been restored."
+    }
+  ]
+}

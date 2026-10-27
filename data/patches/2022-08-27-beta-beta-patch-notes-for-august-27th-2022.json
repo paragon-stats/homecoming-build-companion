@@ -1,0 +1,219 @@
+{
+  "title": "[Beta] Patch Notes for August 27th, 2022",
+  "url": "https://forums.homecomingservers.com/topic/37374-beta-patch-notes-for-august-27th-2022/",
+  "published": "2022-08-27T21:16:05Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "Sister Valeria's Story Arc",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambushes no longer chase players endlessly."
+    },
+    {
+      "category": "Sister Valeria's Story Arc",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Incarnate finale rewards for non-task-owners was missing; This has been fixed."
+    },
+    {
+      "category": "Repeatable Cimerora Incarnate Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Due to the inconsistency issue with Sister Valeria not introducing Alexandra Sideris to many players, Alexandra Sideris is now unlocked by owning the Sister Valeria arc completion badge so you will gain access to these incarnate missions even if you completed Sister Valeria's arc using Ouroboros."
+    },
+    {
+      "category": "Repeatable Cimerora Incarnate Missions",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All option dialog on the task selections now includes a highlight of the mission objectives in red to more easily distinguish what that choice's task will be."
+    },
+    {
+      "category": "Advanced Difficulty - General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Re-added missed inspiration restriction modes to 2-Star and 3-Star Advanced Difficulty levels."
+    },
+    {
+      "category": "Advanced Difficulty - Imperious Task Force",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with initial behavior on the Aereus Colossi Twins that was sometimes causing them to run off unexpectedly."
+    },
+    {
+      "category": "Sister Solaris Story Arc",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the finale mission the spawns with multiple Minotaur and Cyclopes will now only have two of them at incarnate level with the added Nictus powers."
+    },
+    {
+      "category": "Colleen Nelson Story Arc",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the error that was causing text in her arc to appear as pstrings."
+    },
+    {
+      "category": "Power Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed numerous typos in power descriptions for Sonic Assault and Symphony Control."
+    },
+    {
+      "category": "Power Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tintable version of the Munitions Mastery Freeze Ray FX was missed for the fix that resolved the disjointed firing point; Now always fires from the correct point of the rifle."
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved the back position offsets for a couple of the War Mace/Mace Mastery models that were leaning a little far from the back on Male/Huge costume types:"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Carnival Mallet"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rularuu Mace"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Carnival of Light"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Carnival of War"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Carnival of Vengeance"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coral Club"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coral Hammer"
+    },
+    {
+      "category": "Sheathed Weapons",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Male Tech Mace pointing to the wrong Draw FX."
+    },
+    {
+      "category": "Cimeroran Traitors",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cimeroran Traitor elite bosses are now bigger and have a slightly different helmet crest to make them more identifiable against the normal bosses, whom they previously shared a costume with."
+    },
+    {
+      "category": "The Lost",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that was causing them to spawn at higher levels than intended in certain missions."
+    },
+    {
+      "category": "Peregrine Island",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Since Castle is now fulfilling his trainer duties in Recluse's Victory to train incoming Temporal Warriors, Vanguard's Incandescent has been appointed as the new trainer in Peregrine Island while she works on organizing collaborative efforts between Vanguard and Portal Corp."
+    },
+    {
+      "category": "Fort Trident",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The submarine inside Fort Trident was incorrectly pointing to the Smuggler's Ship destinations, it now correctly connects to the Smuggler's Submarine destinations (one-way)."
+    },
+    {
+      "category": "The Crucible",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Owning the 'Arbiter' badge for completing the Barracuda Strike Force now properly unlocks The Crucible as a Long Range Teleporter destination."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the issue that was causing \"Shower Floor 2\" (the smaller of the two) to have changed position in existing bases."
+    },
+    {
+      "category": "Supergroup Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue that was causing freshly placed teleporter beacons to not attach properly to teleporters."
+    }
+  ]
+}

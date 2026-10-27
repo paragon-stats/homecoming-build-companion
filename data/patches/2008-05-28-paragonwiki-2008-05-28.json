@@ -1,0 +1,515 @@
+{
+  "title": "Patch Notes/2008-05-28",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-05-28",
+  "published": "2008-05-28",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Maps",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Imperious Task Force: Fixed several holes on the Vespillo Pass map (the 3rd map in the TF)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "NPC Enemies",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The formula used by Lieutenants to calculate hit points (hp) was incorrect. This resulted in Lieutenants below level 15 having more hit points than intended, and those above level 15 having fewer than intended. At level 1, a Lieutenant had 22 hp greater than they should, and at level 54, they had 55 hp less than they should. The formula has been corrected and they now have the correct hp throughout their level ranges."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle / M30 Grenade: This power should now be able to be slotted for both knockback enhancements and sets. This affects all versions of this power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe / Gash: Since this power currently uses Beheader’s old animation to smooth out its overall attack chain, its power name has been changed to Beheader to better suit its animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Battle Axe / Beheader: Since this power currently uses Gash’s old animation to smooth out its overall attack chain, its power name has been changed to Gash to better suit its animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Sword: The animation for this power was changed. Its cast time was reduced from 1.67 to 1.33 seconds. This affects the power for all versions of Fiery Melee and Fire Manipulation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurl Boulder: The animation for this power was changed. Its cast time was reduced from 3.83 to 2.5 seconds. This affects the versions of this power in Stone Mastery (Epic) and Stone Melee."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Sword: The animation for this power was changed. Its cast time was reduced from 1.67 to 1.33 seconds. This affects the versions of this power in Ice Melee, Ice Manipulation and Icy Assault."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Melee / Heavy Mallet: Increased activation time to 1.63. This was done to allow the animation to return the player into the neutral position before activating another power"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stone Melee / Stone Mallet: Increased activation time to 1.61. This was done to allow the animation to return the player into the neutral position before activating another power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Strength / Hurl: The animation for this power was changed. Its cast time was reduced from 3.83 to 2.5 seconds. This affects both the Brute and Tanker versions of this power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Further AI improvements for Seeker Drones and the Gun Drone power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Attack Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage from Psychic Blast / Mental Blast should be delayed to sync with projectile now."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Power Pool Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight / Hover – Hovering Forward now has a new animation"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Power Pool Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight / Hover - Hover is now resistant to -Fly effects."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Power Pool Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medicine - Minor animation changes for Medicine - Aid Other, Aid Self, and Stimulant"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Power Pool Powers:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medicine - Revive animation and FX should now play properly."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Status Effect / Buffs / Debuff Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mind Control / Confuse: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Status Effect / Buffs / Debuff Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mind Control / Mass Confusion: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Status Effect / Buffs / Debuff Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control / Seeds of Confusion: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Status Effect / Buffs / Debuff Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning / O2 Boost: The duration of the perception bonus portion of O2 Boost now matches the duration of the other buffs associated with the power."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vanguard Merits now will display ‘Merit Awarded!’ instead of ‘Salvage Found!’ when they are awarded to a player."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taskforce challenge ‘debuff players’ was only being applied to the team leader. This has been fixed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Replaced character slot store icon"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Psychic Blast / Will Domination: Changed the long help text to match the short help text for this power. The long help for Will Domination now accurately states this power deals Moderate damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Mental Manipulation / World of Confusion: Blaster World of Confusion endurance cost was 50 % of the correct value. This has been corrected."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Electric Blast / Charged Bolts: The blaster version of this power should no longer list that it takes endurance modification enhancements twice."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Controller",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller / Illusion Control / Deceive: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender / Psychic Blast / Will Domination: Changed the long help text to match the short help text for this power. The long help for Will Domination now accurately states this power deals Moderate damage."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Defender",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender / Psychic Blast / Mental Blast: Damage is now delayed for projectile hit"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Kheldian Epic Archetypes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer / Combat Flight, Peacebringer / Bright Nova, and Warshade / Dark Nova are now resistant to -Fly effects."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Peacebringer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer / Luminous Blast / Photon Seekers: Increased Radius on Peacebringer Photon Seekers’ explosion from 7’ to 10’, but reduced their damage slightly from Damage Scale 2 to 1.64."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Peacebringer",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer / Combat Flight now gives AoE defense equal to its existing Melee and Ranged Defense values."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Stalker Melee damage multiplier from 0.9 base to 1.0 base."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Stalker Hit Points multiplier from 0.95 to 1.125"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Stalker melee attacks now have a chance to critical while not hidden. This chance is equal to 10% plus 3% per additional team member within 30’ of the stalker at the time of the attack. This only applies to PVE targets. Stalkers old chance to critical Held or Slept targets now only applies to PVP targets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Critical portion of Energy Transfer operates exactly as if you were criticalling from Hide -- it eliminates the Self Damage, rather than increasing damage to the target."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Using an Assassination attack and missing will no longer suppress Hide (though lesser stealth and invisibility powers will still suppress) if the attack misses. If the attack hits, Hide suppresses normally."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hide Suppression for Stalkers reduced from 10 seconds to 8 seconds."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assassination attacks now cause a demoralizing effect on PVE targets that survive the attack. Demoralized targets To Hit value is reduced, and the target may be frozen in terror."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Villain Epic Archetypes:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldiers and Widows will now properly be able to enhance Patron Power Pool powers."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Soldier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier / Crab Spider / Omega Maneuver: Mobs defeated by Omega Maneuver explosion should now grant rewards to the player."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Fortunata Teamwork / Aura of Confusion: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Fortunata Teamwork / Confuse: Added PvP Confusion suppression to this power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Fortunata Training / Total Domination: This power’s victim hit message was reporting {PowerName} instead of the power’s name, this has been corrected."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Fortunata Training / Subdue: This power now has the proper purple ring visual effect to indicate the target has been immobilized; these were not present for NPC targets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Fortunata Training / Dominate: This power’s victim hit message was reporting {PowerName} instead of the power’s name, this has been corrected."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training: All attacks from Widow Training had their toxic damage enhanceable. This has been fixed."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training / Strike: Corrected animation for Widow Training – Strike. Strike now uses intended ‘gutpunch’ animation."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training / Poison Dart: Long help read “Poison Dart does light moderate damage to your foe, then poisons them. The poison does toxic damage over time and reduces their regeneration rate. Damage: Moderate Recharge: Fast”. Changed to: “Poison Dart does moderate damage to your foe, then poisons them. The poison does toxic damage over time and reduces their regeneration rate. Damage: Moderate Recharge: Fast”"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training: Animation/Activation time changes for some Arachnos Widow Claw attacks."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Swipe - 0.83 seconds"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Strike - 1.17 seconds"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Slash - 1.33 seconds"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brutes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Reflexes / Evasion: Corrected the Brute version of this power to cost the correct amount of endurance. It previously was costing far too little endurance."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Corruptor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Corruptor version of Voltaic Sentinel now has Scourge effects."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Corruptor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps and Storm Summoning for Corruptors were using the wrong value in the endurance cost calculations. This has been corrected and should see a decrease in endurance costs for most powers from these sets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Dominators",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominators / Icy Assault / Greater Ice Sword: This power has been renamed ‘Ice Slash’. This is to differentiate it from powers with the same name, but differing animations."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds / Necromancy / Grave Knight: The henchman The “Grave Knight” will now use his Necromancy Sword for all of his attacks. This should also help him cycle through all of his sword attack powers."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers / Ninja Blade / Placate should no longer cause redraw with other Ninja Blade powers."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalkers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalkers / Dual Blades / Assassin’s Blades – Fixed Animation"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Temporary Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Coral Club: This power had its activation time increased to 1.6 seconds. This was done to allow the animation to return the player into the neutral position before activating another power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tailor",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crab Spider backpacks are now only available to Soldiers Of Arachnos who have specialized in the Crab Spider path. They are customizable now at the Facemaker and will be removed if you respec out of the Crab Spider path."
+    }
+  ]
+}

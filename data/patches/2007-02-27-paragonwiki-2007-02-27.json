@@ -1,0 +1,363 @@
+{
+  "title": "Patch Notes/2007-02-27",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2007-02-27",
+  "published": "2007-02-27",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "HEADLINES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changes to optimize stability and performance."
+    },
+    {
+      "category": "HEADLINES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Animation standardization for “click” powers"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected a problem that could cause the game’s framerate to drop substantially when exiting a Mission."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Special textures and objects in missions should no longer be invisible. This addresses a problem with special missions like Frostfire, PWNZ, etc."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added fixes to address a problem that could cause the client to crash when viewing trenchcoats and custom capes in certain situations. While we believe that this issue should be corrected, as always if you do experience a client crash that brings up a dialog to send the report in, please do so."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added text to distinguish different slow effects on power enhancement tooltips."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All click power activation rooting has been normalized to follow the below rules:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any click power that damages, debuffs, applies a status effect, or taunts an enemy is considered an attack and will root the player while activating."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PBAOE ally buffs, single target ally buffs, or single target ally heals will root the player while activating."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any click power that is a PBAOE ally heal will not root."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self only buffs or self only heals will not root."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any click power that is a 'placed' effect (e.g. pet summon, Teleport, Rain of Fire, etc) will root while activating."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tier 9 powers such as Unstoppable, Moment of Glory, and Force of Nature will root you for 1.5 seconds while activating."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Self-Rez powers are a special case. They will not root you while activating but they have had a 4 second immobilize effect added to them. You will still be able to use powers/inspirations, turn on toggles, or attack. For powers like Rise of the Phoenix which have a secondary damage component and should be rooted, this prevents them from being less effective. Rez powers like Revive and inspiration rezes will now only be immobilized instead of a root. Consequently, the animation for Rise of the Phoenix, Shadow Maw, and the Kheldian self-rez have been slightly sped up to account for this change."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers will now transition into a more appropriate standing animation cycle when they finish. This does not change how the power functions, but only the animations it switches to after it’s done playing the power’s graphical effect and animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Wedding Band"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instant Healing"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inertial Reduction"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hurricane"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Murky Cloud"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Obsidian Shield"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Invincibility"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Soul Storm will once again transition to its unique animation cycle after casting."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Toggle power that now roots: Inky Aspect"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers now root the character in place while the animation and graphical effects play:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adrenaline Boost"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Group Invisibility"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added run animation for females with left handed weapons (bow, katana, etc)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changes to toggle activation rooting:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Personal Force Field will no longer root during activation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Force Bubble will now root during activation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quills will now root during activation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Whirlwind will now root during activation. Whirlwind has also been changed so that the spinning animation will restart after using other powers."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Other Animation and Effects Changes:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empathy/Regeneration Aura - Changed animation so that it is not identical to Recovery Aura."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Aid Other/Stimulate/Aid Self - changed animations so they are more properly interrupted by movement and have less \"skating\"."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Elude’s activation animation will no longer play unless the power is actually recharged and activates."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer/Warshade transform animation will no longer root the player while flying."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Darkest Night - Added secondary graphical effects to help identify the anchor."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The graphical effects for all Warshade powers has gone through an optimization pass."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animations and Power Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Armor/Energy Absorption will use its correct animation again."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All Self Rez power's debt protection period are now set to 60 seconds. Most were set to 20 seconds previously, though a few were at 90 seconds. This change is being done to normalize the effect."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker Invulnerability - Invincibility: Fixed a visual error with the graphic tell for the increased To Hit chance. It was being applied to the Tankers enemies, rather than to the Tanker. The actual To Hit value was being applied correctly; this was simply correcting the visual effects."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thermal Radiation – Melt Armor: Graphics optimizations."
+    }
+  ]
+}

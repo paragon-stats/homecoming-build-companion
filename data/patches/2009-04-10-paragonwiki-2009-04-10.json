@@ -1,0 +1,43 @@
+{
+  "title": "Patch Notes/2009-04-10",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-04-10",
+  "published": "2009-04-10",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Combined",
+      "subsection": "Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can no longer place Cimeroran “Immunes Surgeon” Minions in custom missions. Any missions that specifically include these critters will now be invalid, and will have to be edited. Do NOT “Unpublish” your mission, or you will lose your Arc ID and ratings."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Architect Custom Critters",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can no longer place Council “Transformation Capsule” Bosses in custom missions. Any missions that specifically include these critters will now be invalid and will have to be edited. Do NOT “Unpublish” your mission, or you will lose your Arc ID and ratings."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Mission Architect Server",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Mission Architect stability."
+    },
+    {
+      "category": "Combined",
+      "subsection": "Bases:",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue where all Supergroups (Heroes and Villains) that logged in after Issue 14 launched would receive all Supergroup Badges. All affected Supergroups had their badges removed. The first Supergroup member to log in an affected base will have their SG badges re-granted based upon their Supergroup's previous achievements and exploration."
+    }
+  ]
+}

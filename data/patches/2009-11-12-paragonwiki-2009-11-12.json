@@ -1,0 +1,67 @@
+{
+  "title": "Patch Notes/2009-11-12",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2009-11-12",
+  "published": "2009-11-12",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Resolved a game stability issue (which was in no way related to the Walk power)."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Custom Villain Groups that were composed of both custom and non-custom critters would only spawn the custom critters in missions. This has been fixed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that could incorrectly exemplar players to a very low level when swapping missions."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Walk Power now has a new Icon."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Walk power is now interrupted by falling, swimming and sliding."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with Walk where Increase Slow IO set bonuses were affecting walking speed"
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug with stunned enemies playing the Walk animation rather than the normal dizzy walk"
+    }
+  ]
+}

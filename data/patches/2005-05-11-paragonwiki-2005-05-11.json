@@ -1,0 +1,563 @@
+{
+  "title": "Patch Notes/2005-05-11",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-05-11",
+  "published": "2005-05-11",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lightning Storm cast by villains will no longer cause player toggles to be shut off."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "AI was improved on the following villains so that they cycle through their powers better:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Envoy of Shadow"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Baphomet"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Behemoth"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Behemoth Master"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Behemoth Lord"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Behemoth Overlord"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Thorn Caster"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Possessed Scientist"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Far Fire"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Dagger"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "FrostFire"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damned"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Infernal"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demon Overlord"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lead Scorcher"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scorcher"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lead Quantum Scorcher"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Rikti Magus"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Tanker/Ice Armor/Hoarfrost so that it no longer attempts to Animate when unavailable."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Taunt HitFX to Mace/Taunt"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Martial Arts/Storm Kick no longer uses the old multiple kick sound effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeated players will no longer continue to affect other players with Taunt powers. The duration of Taunt powers ends with defeat. (this bug only happened in PvP. No change to PvE.)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed ToHit penalty from Super Speed, Super Leap, Fly and Peacebringer Fly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you attack a target while you have Super Speed on, you will be reduced to your base run speed for 4 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you attack a target while you have Super Leap on, you will be reduced to your base jumping for 4 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If you attack a target while you have Flight on, you will be reduced to Hover flight speed for 4 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers can now significantly affect enemies with Super Speed and Super Leap: Chilling Embrace (Tanker, Blaster and Jack Frost), Mud Pots, Ice Patch (Tanker, Blaster), Caltrops, Rain of Fire, Ice Storm, Blizzard, Shiver (Blaster, Controller), Arctic Air, Tar Patch, Snow Storm (Defender, Controller), Freezing Rain, Lingering Radiation, Siphon Speed, QuickSand, Ice Slick."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Epic/Telekinesis to match the effect of Mind Control/Telekinesis in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed AV Infernal so he is no longer 100% resistant to Fire."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Assault Rifle FlameThrower PvP damage. It was incorrectly set much higher than its PvE damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Staff Short Help (it used to say Minor damage. Text now says High damage)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the KnockBack on some Battle Axe, Super Strength and Earth Melee powers. Many were changed to KnockBACK and should have stayed KnockDOWN. This was a bug and all affected powers have been reverted."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set up a fix to reduce the chance of single targeted Tanker Melee powers from affecting multiple targets (e.g. Energy Transfer bug)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Snow Storm Help text to indicate it can bring down flying foes (power did not change)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Nemesis Staff. It was working as an AoE, when it was supposed to be single targeted. Decreased the lifetime of this Temp power to 3 days. Increased its chance to Knock Back."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added combat text for the Nemesis Staff temporary power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with the Web Grenade and Stun Grenade purchasable Temporary powers. The number of uses was increased from 1 to 6."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with Controller/MindControl/Mesmerize—The Magnitude of the power for PvP was set too low. It should now be possible to sleep your opponents."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Controller/Kinetics/Transfusion so that it properly debuffs the targets Regeneration Rate instead of Buffing it. This bug was not in evidence in the Defender version of the power."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Knockback in PvP for Power Push"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Suppression on Spines/Barb Swipe Immobilization."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where pet icons remained in the status window even after the pet was destroyed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue with missing tooltip information for all Kheldian Dwarf and Nova powers."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Modified Rank of Nictus Crystal Shard. Also, it will no longer appear in Kheldian missions randomly."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These enemies were set as a Giant Monster level threat as opposed to a Boss level threat. This has been fixed. Also, they were sometimes appearing in random Nictus Hunter spawns. Now they will only show up in specific high level Kheldian missions."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed crash in Terra Volta Trial if players failed the Trial and did not go to the Hospital."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed level 45 ambush spawn in Taskforce Numina"
+    },
+    {
+      "category": "UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in Character Creation where if you switched from Male to Female or Huge body type, a Male body appeared on the Create Your Costume screen."
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Skyway City: Hero Corp Field Analyst is no longer floating in the air."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed graphical problems with temp power vendors."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made Peacebringers in Light Form who left an Arena match invisible when they left the Arena and reentered the city."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can no longer use Inspirations to resurrect in Arena battles."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed rare bug that allowed players in Observer mode to die, resulting in a client crash."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "An event creator's Ready button no longer shows placeholder text."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Troll Tunnels map has been removed from the arena map list."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where an event creator who quit out of an event could not drop the event in the Arena terminals."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug on Tech maps where observers would spawn in the ceiling."
+    },
+    {
+      "category": "Arena",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed issue where the Arena Chat channel could not be set as the default channel."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringers in White Dwarf form can now change /boombox music selections."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that made the Friends window difficult to resize."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that allowed the /respec command to be used to remove all holds and debuffs from a player."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused the client to crash if a player changed zones while defeated, and then prevented the player from logging back on."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved game stability"
+    },
+    {
+      "category": "NPCs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trainers no longer refer to Citadel as Bastion."
+    },
+    {
+      "category": "Global Chat",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that occasionally caused the chat server to overload and crash."
+    },
+    {
+      "category": "Costumes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "ICON: fixed bug that charged players for body and face scaling although no changes were made."
+    },
+    {
+      "category": "Chat",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Super Group Chat: Fixed bug that prevented players on a channel from logging on if the Message of the Day was too long."
+    }
+  ]
+}

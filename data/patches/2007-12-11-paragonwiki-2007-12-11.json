@@ -1,0 +1,443 @@
+{
+  "title": "Patch Notes/2007-12-11",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2007-12-11",
+  "published": "2007-12-11",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accolades should now be available even when exemplared to lower levels."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue with the “Rectified Reticle – Increased Perception” Invention Origin Enhancement that prevents characters from leveling up if the enhancement is slotted."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Melee Incinerate Graphical Effects will now hit the target after the appropriate delay."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphical Effects performance optimizations made for Fulcrum Shift and Heat Loss"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed overly bright texture for Ouroboros Crystals when shader and water quality settings are not set to ‘high’"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage numbers and hit Graphical Effects for Archery and Trick Arrow powers should sync up better with the Graphical Effects for the arrow projectiles."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dominator Energy Assault - Power Bolt and Power Blast should be using their correct red tinted Graphical Effects again."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphical Effects for many critters using a copy of the “Burst” power should now visually line up with the animation."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Graphical Effects for Ice Bolt and Ice Blast have been reverted to their previous versions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tank/War Mace - Build Up will now only play the Graphical Effect and Sound Effect once."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Graphical/Sound Effects",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Assault Rifle – Buckshot’s Sound Effect reverted to previous version."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Global Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Any channel commands used by a Global Chat Operator will now be displayed in the channel, along with the name of the Operator using the command. This message will appear regardless of whether the Operator is hidden (i.e. if they are using /ghide)."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Two new Costume sets are now available to players:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enforcer Set"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Head"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hat (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detail 1 (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detail 2 (3 options)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Top"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shoulder (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chest Texture (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Chest Emblem (2 options)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Belt (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gloves (2 options)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Legs"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hips Texture (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boots (2 options"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jester Set"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hat (2 options)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detail 1 (2 options)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Detail 2 (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Gloves (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Boots (1 option)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Two new Pattern sets are now available:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lock Pattern Set"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Costumes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dagger Pattern Set"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contact Stores now work in Task Force / Strike Force mode for contacts the player hasn't been introduced to in their 'real' lives."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players who are already dead at the start of a Task Force/Flashback count towards the “deaths” total for that Task Force including for the purposes of the limited lives challenge."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Flashback",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Progress for ‘X Flashback missions completed’ badges will be awarded to all members of a group upon mission completion, not just the mission owner."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Game",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Map Server stability."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper version of Heightened Senses’ Help text now matches the Help text of the other versions of the power."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defiance Replaced:"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blasters’ earliest abilities come so naturally to them, that they are accessible even in states that normally prevent them from using powers, such as being Held, Slept or Stunned."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Additionally, each time the Blaster attacks with a primary or secondary power, they gain a stacking damage bonus for the next several seconds. The amount of the damage bonus and its duration is dependent on the exact power used, with single target abilities generally giving the largest bonus."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Voltaic Sentinel now has a duration of 60 seconds for Blasters, and it should fly considerably faster."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "12.5 percent increase to Base Ranged Damage."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defenders"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Voltaic Sentinel should fly considerably faster for Defenders with Electric Blast."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hero Flashback missions should give proper level badges"
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed old Defiance bar from UI for Blasters."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved activation time for Mastermind Mercenaries Burst power."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Snake Eggs should once again Hatch."
+    }
+  ]
+}

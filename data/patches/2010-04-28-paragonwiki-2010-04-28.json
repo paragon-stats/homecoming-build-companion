@@ -1,0 +1,1539 @@
+{
+  "title": "Patch Notes/2010-04-28",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-04-28",
+  "published": "2010-04-28",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra Mode is a superior graphics rendering process that gives City of Heroes a heightened level of detail in lighting, reflections, shadows, and water effects."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra Mode is intended for players who have higher-end graphic cards. Each feature can be enabled or disabled in the graphics menu options and will be scalable. Ultra Mode works on both Macs and PCs. To be specific, it offers dynamic shadows, screen-space ambient occlusion, and dynamic environment reflections (including planar reflections and environment mapping of reflective surfaces)."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "At the log-in screen, there will now be a one-time pop-up window if the client detects that your graphics card can handle Ultra Mode features. You'll be able to chose from Ultra Mode's Quality or Ultra settings or cancel the choice."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some graphic options do not appear until Apply Now is selected. In the Options Menu, the \"Apply Now\" button will change colors when you select any graphics change that has not been applied yet."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Known issue - Catalyst 10.2 drivers have a conflict with Ultra Mode features. After toggling between graphics quality levels and pushing \"Apply\" in the UI the game framerate may drop dramatically until you quit the game and restart. This is currently being addressed, in the meantime, all affected players should roll their drivers back to Catalyst 10.1."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Menu Options for Ultra Mode:"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Graphics Quality\" slider"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Previously there were 4 notches in this slider. With Issue 17, we have expanded it to include a 5th notch, \"Ultra\". The notches currently behave as follows:"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Minimum, Performance, Recommended - these 3 settings remain unchanged from Issue 16. No new graphics features are enabled."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quality - enables all of the new Ultra Mode features (shadows, building/character reflections, water reflections and ambient occlusion), each in a \"fast\" configuration."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadows set to \"ShadowMaps\" at Low Quality"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Environment Reflections set to Low Quality"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Water Effects set to High Quality"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ambient Occlusions set to High Performance"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra - enables all of the Ultra Mode features in a high quality configuration."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadows set to \"ShadowMaps\" at High Quality - Real-time shadows and self shadowing. The sun now casts shadows that are relevant to the time of day. Characters cast shadows on themselves."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Environment Reflections set to High Quality - Windows and reflective materials mirror the world around them."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Water Effects set to Ultra Quality - Water ripples, reflects and moves realistically."
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Advanced\" settings"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Water Effects\""
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"Water Effects\" Option was changed from:"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Low Quality: refractions without depth"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High Quality: refractions with depth"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "To:"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Low Quality (same as before)"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Medium Quality (old High Quality)"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "High Quality: Medium Quality plus some reflections"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ultra Quality: Medium Quality plus lots of reflections"
+    },
+    {
+      "category": "Ultra Mode",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Full Screen Anti-Aliasing (FSAA) - We have moved this setting out of the advanced graphics options and placed it on the main graphics options pane."
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issue 17 introduces the Demon Summoning power set. Like Dual Pistols, this set is tied to the Going Rogue expansion, but will be unlocked in Issue 17 for players who prepurchase the Going Rogue Expansion."
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Demon Summoning is a primary power choice for the Mastermind archetype and is also the power set used by the Going Rogue signature character Desdemona."
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This power set allows the player to summon elemental demons that can manipulate flame, cold and hellfire. However, what truly sets this power set apart from other Mastermind primary power sets are the summoner's hellfire whip attacks that deal both fire and toxic damage and reduce the target's damage resistance."
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Demon Summoning Power Set is composed of the following powers:"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruption"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demonlings"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Lash"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enchant Demon"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crack Whip"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demons"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Hell on Earth"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Summon Demon Prince"
+    },
+    {
+      "category": "New Power Set: Demon Summoning",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Abyssal Empowerment"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There have been some upgrades to the Mission Architect system:"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission Architect Experience Rewards"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Previously, if the player made any changes to make the enemies they face in Mission Architect easier, they would receive zero experience for those enemies. We've made an adjustment to allow players to handpick the powers for custom enemies and still receive experience for them, but not be able to exploit weaker enemies for unfair experience gain. Now, every power for custom critters has been weighted individually."
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Mission Architect Maps"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Approximately 20 new unique maps have been added to the Mission Architect system."
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Giant Monsters Added"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now add giant monsters to most outdoor maps in Mission Architect. Defeating Giant Monsters in Mission Architect will not grant any badges associated with them."
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Flyer"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deathsurge"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Caleb"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Babbage"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Clockwork Paladin"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stropharia"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thorn"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eochai"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kraken"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kronos Titan"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jack in Irons"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ghost of Scrapyard"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Exit Mission on Complete"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mission Architect Authors can now specify that players have to leave the mission manually on completion."
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Escort Improvements"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Lead to Place\" technology allows Authors more control over escort objectives"
+    },
+    {
+      "category": "Mission Architect Changes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "File size for missions has been doubled to 200kb."
+    },
+    {
+      "category": "Peacebringers/Warshades/Soldiers of Arachnos/Widows",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "These archetypes are now unlocked as soon as one of your characters reaches level 20 on the appropriate side, instead of level 50."
+    },
+    {
+      "category": "Mission Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contacts in starting zones (Atlas Park, Galaxy City, Mercy Isle) should, in general, no longer send players into dangerous neighborhoods to reach low-level (1-5) missions. Travel times will often be shorter to reach these mission doors, as well."
+    },
+    {
+      "category": "Mission Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players can now have 7 active missions, instead of just 3."
+    },
+    {
+      "category": "Mission Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Show Last Objective: This allows players to be able to find their last objective on a mission map, making it easier to find something they missed."
+    },
+    {
+      "category": "Mission Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Contacts give out their cell phone number sooner."
+    },
+    {
+      "category": "Mission Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "In the mission window and when talking to a contact with whom one has a standing mission, there is now an option to abandon that mission. This does not complete the mission. This is not available during \"Task Force mode.\""
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Heroes:"
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Field Agent Keith Nance has arrived in Talos Island to investigate charges of treason. He realizes he has the wrong suspect so he needs your help to solve the case."
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Once you've cleared things up with the government and Keith Nance, he directs you to Special Agent Jenni Adair who has just come into some new information."
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Villains"
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dean MacArthur in Sharkhead Isle has some information on the troublesome hero, Ajax, who has been spotted in the Rogue Isles recently."
+    },
+    {
+      "category": "New Story Arcs",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "After you are finished with Dean MacArthur, you can look up Leonard Silmon, who is interested in a new group called \"Mane Corp\"."
+    },
+    {
+      "category": "Task Forces and Strike Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Heroes:"
+    },
+    {
+      "category": "Task Forces and Strike Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Positron Task Force has been updated. Please check out this dramatic upgrade of a classic Task Force."
+    },
+    {
+      "category": "Task Forces and Strike Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The original Positron's Task Force is available in \"The New Recruits\" flashback arc. Completing either the new Task Force or the original will grant the Positron's Ally badge."
+    },
+    {
+      "category": "Task Forces and Strike Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Villains:"
+    },
+    {
+      "category": "Task Forces and Strike Forces",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Silver Mantis Strike Force is now accessed via Silver Mantis, located in Sharkhead Isle. (This Strike Force was previously accessed only via mission computer in a supergroup base.) Players will also be able to run this Strike Force from their Supergroup computer. This adjustment makes the Silver Mantis Strike Force accessible to players who are not part of a Supergroup and ensures that the Strike Force is available both in a zone and in a supergroup base."
+    },
+    {
+      "category": "Task Force Difficulty",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Notoriety Settings will now affect Task Forces and Strike Forces as follows:"
+    },
+    {
+      "category": "Task Force Difficulty",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Setting level to -1 will set level to +0 (not -1)"
+    },
+    {
+      "category": "Task Force Difficulty",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Setting team size will affect spawn sizes accordingly"
+    },
+    {
+      "category": "Task Force Difficulty",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Allow Bosses\" will always be enabled"
+    },
+    {
+      "category": "Task Force Difficulty",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "\"Allow AVs\" will always be enabled."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There are now at least 8 exploration badges in every city zone. Happy hunting."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now an Accolade for finding all of the exploration badges in each zone (i.e. Atlas Park Explorer, Mercy Isle Explorer, etc.)"
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There is now a badge for finding 500 badges. And one for 750."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All new story arcs have badges associated with them"
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The new Positron Task Force is split into two halves, each of which grants a new badge. Getting both badges grants Positron's Ally. Players who already have the Positron's Ally badge will keep it, and it is still possible to earn it through the original Positron Task Force via flashback."
+    },
+    {
+      "category": "Invention",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crafted Temporary Powers - added several new recipes for Temp Powers, and shifted these recipes in the crafting UI to make them easier to find."
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Costumes - certain costume sets have been specially updated to take advantage of Ultra Mode features:"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Armored"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cyborg"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enforcer"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Sleek"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Valkyrie"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vanguard"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Metallic"
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New Costume Part: Animated Tails - most types of tails in the game now have a version that moves."
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The original tails remain available. Both versions can be found in a brand new costume part, separate from belts."
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Depending on which costume part you are changing, the zoom button now creates new views and stances to better see that section of your character."
+    },
+    {
+      "category": "Tailor Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "There are new weapon options for Dual Pistols"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Improved Sorting Options"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Your Consignment House transactions are now sorted into separate tabs for each category, such as Selling or Bidding. Each tab will indicate how many transaction slots are being used by that tab. There is also an All tab, where you can find all of your transactions. You can resize the transaction pane by dragging the border separating the search pane from the transaction pane."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "For Sale and Bidding Radio Buttons"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Search results can be further filtered by the \"For Sale\" and \"Bidding\" radio buttons. For example, with Bidding toggled on, the Consignment House will only show items with bids. With both \"For Sale\" and \"Bidding\" toggled on, only results that are both for sale and with bids will be shown."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Text Autocomplete"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The search bar now supports auto-completion of text. Start typing, and press Tab to auto-complete the current word. When you are ready to search for the item, press the Search button. If you turn off Autocomplete (by unselecting the radio button), searching will function as it did prior to Issue 17."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "One Click to find all Salvage used in Recipe"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Search results for salvage now provide for one-click searching for any recipes that use the salvage. Just click on the text, \"Search for Recipes that use this salvage\"."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"More\" Button is Replaced"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instead of the More button, simply click on an item in your transaction inventory to bring up information on that item. Click on the Find button to search for that piece of auction inventory."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warning if Selling salvage that is used in a recipe that is owned."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "When selling salvage that is used in a recipe you own, you now receive a warning message."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Item Level Dials"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "We replaced the item level drop-down lists with up and down arrows to dial-in the desired level range. Alternatively, you can type directly over the level number."
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tintable Window Border"
+    },
+    {
+      "category": "Auction House User Interface Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Auction House window is tintable, just like other interface windows. Window color can be changed in the \"Graphics and Audio\" section of the Options Menu. The Auction House window can also be made transparent."
+    },
+    {
+      "category": "Email Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The email system can now send to @global names."
+    },
+    {
+      "category": "Email Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global emails can have influence or items attached"
+    },
+    {
+      "category": "Email Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Heroes can only send emails with attachments to Heroes, and Villains can only send emails with attachments to Villains"
+    },
+    {
+      "category": "Email Improvements",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The UI for writing emails has been slightly improved"
+    },
+    {
+      "category": "Audio Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sounds now position in 3D space in both Sound Playback Modes."
+    },
+    {
+      "category": "Audio Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "3D Sound option now properly supports 5.1 Surround Sound."
+    },
+    {
+      "category": "Audio Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Music Volume slider now correctly controls all music in the game."
+    },
+    {
+      "category": "Audio Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Many new and updated sounds (footsteps, vehicles, citizens, flight, swim)."
+    },
+    {
+      "category": "Audio Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cleaned up a number of old sound bugs."
+    },
+    {
+      "category": "Vigilance for Defenders Upgraded",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Inherent Powers#Vigilance inherent power has been improved to give benefits to Defenders who are not in groups. To that end, in addition to the increasing Endurance discount in groups, Vigilance now adds a damage buff which only applies fully when solo. The damage buff degrades as more team members are added. The buff starts small and increases until it is a 30% increase to (unenhanced) damage at level 20 and above, minus 10% per additional team member."
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dig"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Picklock"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Spraypaint"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jackhammer"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warmhands"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pamphlet"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vendor"
+    },
+    {
+      "category": "New Emotes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "BatLookout"
+    },
+    {
+      "category": "Arena Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a button that displays the score of an Arena match while the match is still being played."
+    },
+    {
+      "category": "Arena Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Exiting an arena match is now a two-step process: first you open the score window, and then choose to exit the match from there. You can no longer leave the match from just clicking on the Exit button in the navigation window."
+    },
+    {
+      "category": "Arena Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The arena UI no longer resets some settings to their default values between matches during the same client session."
+    },
+    {
+      "category": "Arena Updates",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The options within the upper left master dropdown in the arena window have been broken up into multiple separate dropdowns, allowing for further player customization of match settings."
+    },
+    {
+      "category": "Auction House",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "inf from sold items cannot be claimed and Bids cannot be canceled until doing so will not put the character's total influence over their cap (Normal accounts capped at 2 billion, Trial accounts capped at 50k)."
+    },
+    {
+      "category": "Invention",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blessing of the Zephyr: This set's bonuses were significantly decreased as the 2 and 3 piece set bonuses were far too powerful, allowing players to easily stack 5 copies of these buffs for minimal slot usage."
+    },
+    {
+      "category": "Invention",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased the 2 piece set bonus from this set from +3.125% Ranged Defense, +1.563% Energy and Negative Energy Defense to +1.25% Ranged Defense, +.625% Energy and Negative Energy Defense."
+    },
+    {
+      "category": "Invention",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased the 3 piece set bonus from this set from +3.125% AoE Defense, +1.563% Fire and Cold Defense to +1.875% AoE Defense and +.938% Fire and Cold Defense."
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Player Buff fix. Some buff powers had been recently changed to affect a max of 16 player allies (including pets), which had implications in some groups and in large outdoor fights. These are now fixed to affect up to 255 targets. The powers affected are:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Pool - Flight/Group Fly"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Pool - Leadership/Maneuvers, Tactics, Assault, Vengeance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Power Pool - Teleport/Team Teleport"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier - Teamwork/Training and Gadgets Tactical Training: Assault"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier - Teamwork/Training and Gadgets Tactical Training: Maneuvers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier - Training and Gadgets Tactical Training: Leadership"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow - Fortunata Teamwork/Mind Link"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow - Fortunata Teamwork/Tactical Training: Vengeance"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow - Teamwork/Tactical Training: Leadership"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination/Arctic Fog"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cold Domination/Heat Loss +Recovery effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Howling Twilight Rez effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Shadow Fall"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Miasma/Twilight Grasp Heal effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Empathy/Healing Aura, Recovery Aura and Regeneration Aura"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Transfusion Heal effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Transference +Endurance effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Fulcrum Shift +Damage effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kinetics/Siphon Power +Damage effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pain Domination/Nullify Pain, Soothing Aura, World of Pain"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringers/Luminous Aura Group Energy Flight"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Plant Control/Spirit Tree +Regeneration effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Police-bot +Perception effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Robotics/Protector Bots Dispersion Bubble"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Summoning : Steamy Mist"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps/Force Field Generator Dispersion Bubble"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traps/Triage Beacon +Regeneration effect"
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Pistols\\Dual Wield (All): This power now accepts Knockback IO sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Fortune buff is now automatically granted. There is no longer a pop-up window to accept or decline the buff."
+    },
+    {
+      "category": "Powers",
+      "subsection": "General",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stealth and Invisibility powers will now cause your character to cast no shadow. This does not apply to the Stealth from SuperSpeed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It is no longer possible to use Teleport Foe on enemies while they are inside Hospital recovery rooms."
+    },
+    {
+      "category": "Powers",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Pistols (All)/Bullet Rain: Fixed a bug that would cause this power's secondary damage effect to be slightly higher than normal in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Pistols (All)/Empty Clips: Fixed a bug that would cause this power's secondary damage effect to be slightly higher than normal in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Pistols(All)/Swap Ammo: Fixed a bug that would cause the ammo powers granted to the player by Swap Ammo to not apply if the player was in an environment where temporary powers are disabled."
+    },
+    {
+      "category": "Powers",
+      "subsection": "PVP",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "You now respawn with full health and endurance when you spawn in a hospital in Bloody Bay, Siren's Call, Warburg, and Recluse's Victory."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The color of the splash notices for recipe drops now correspond to the color-coded rarity of the recipe: White for common; yellow for uncommon; orange for rare; and purple for very rare."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Now when you respec, there is a \"Current Respec Level\" counter in the upper right when you're picking powers"
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug which sometimes caused the cursor not to appear in fullscreen mode for Windows Vista."
+    },
+    {
+      "category": "User Interface",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The command \"show_bind\" shows what commands are bound to the key"
+    },
+    {
+      "category": "Powers",
+      "subsection": "Defenders",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Pistols/Piercing Rounds: Fixed a bug that would cause this power's PvP damage to be lower than it should be."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None"
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "title": "Patch Notes/2008-08-19",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-08-19",
+  "published": "2008-08-19",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix for rare bug that caused erroneous \"wrong number of parameters\" message to spam repeatedly in global chat."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Chat",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Global Chat Channels will now reflect who initiated any Operator actions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Enhancements",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Traded combined Hamidon Enhancements (i.e. marked with a \"+\" or \"++\") will now retain their Combined \"+\" or \"++\" attributes when traded."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Addressed a client-side crash where players would sometimes get a \"Base.Power.Not.Found\" error message and crash, when the \"Stop sending all buffs\" option was enabled."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eliminated \"pause\" times from Claws attack animations. Most attacks activate more quickly now (Eviscerate is slightly longer.) Additionally, a balancing algorithm has been applied to the damage of the attacks. In most cases, this means the attacks will do slightly more damage, though for Focus, it means slightly less damage overall."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fire Imps should now be \"pushable\" by players."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ice Control / Ice Slick: This power now states in its short help that it has a -Jump component."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Attack / Screech: This power can now be slotted with range enhancements."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sonic Attack / Shockwave: This power will no longer erroneously state that it reduces the target’s resistance."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed Graphical FX on auto powers granted from mayhem missions."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Control / Animate Stone: Reduced Animate Stone’s Seismic Smash’s hold magnitude from 4 to 3 and reduced the frequency in which the hold will be triggered from 100% to 66%"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flashback story arcs will now correctly grant their end story arc rewards once every 30 minutes."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in some office maps that would sometimes make it impossible to complete 'Defeat All' missions (for example: mission 5 of the Ice Mistral Strike Force.)"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Players will no longer be able to select Supergroup settings when their character is dead. This was done to correct an issue where the keyboard became non-responsive after the Supergroup settings were accessed."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Veteran Rewards",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected an issue with the 51 Month Veteran Reward where the rewarded helmets would not properly appear during character creation."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Masterminds",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind pets will now keep their names when defeated and resummoned."
+    }
+  ]
+}

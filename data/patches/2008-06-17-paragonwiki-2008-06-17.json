@@ -1,0 +1,603 @@
+{
+  "title": "Patch Notes/2008-06-17",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2008-06-17",
+  "published": "2008-06-17",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Flight / Hover – Hover animations tweaked some more."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed animations for Martial Arts attacks to help improve performance. New animation times are as follows:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thunder Kick 0.83"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Storm Kick 0.83"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cobra Strike 1.67"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crane Kick 1.67"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crippling Axe Kick 1.60"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dragons Tail 1.50"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Eagles Claw 2.53"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issue 12 Exploration badges should give XP."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cimerora: Fixed a hole near the Castellum bridge that allowed players to teleport under the world"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "City Zones",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Cimerora: Fixed hole in Vespillo Pass that allowed players to teleport outside the map boundaries."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trap of the Hunter Acc/Recharge: Corrected the short help for this enhancement to read Acc/Rech and not Acc/Dmg."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trap of the Hunter Immobilize/Endurance Reduction IO: Corrected short help text on IO enhancement. It no longer states it improves Damage."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Inventions",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected short help in Defense and To-Hit Debuff invention origin sets. They should now list that they enhance To-Hit Debuffs and Defense Debuffs instead of To-Hit Buffs and Defense Buffs."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accolade / Portable Workbench accolade will no longer summon a Workbench in PVP areas."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Accolade / Portable Workbench accolade will once again summon a Workbench in non-PVP areas."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dual Blades / One Thousand Cuts: Corrected this power’s cast time from being 2.43 seconds to 3.30 seconds."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "(Katana or Ninja Blade) / Sting of the Wasp animation once again returns to the two handed Katana Ready cycle after it completes"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Earth Control / Earthquake: Now accepts To Hit Debuff Enhancements and IO sets."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some NPC weapons have been flipped back to their proper orientation"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed transparency and color for several powers icons"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Powers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powers which accept Defense IO sets now accept “Defense Sets” rather than “defense” -- text fix."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed improper start location in the Midnighter’s Club mission map as accessed by the Darrin Wade story arc."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a message specific to trial accounts explaining why they can't send emails."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Account restrictions implemented:"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Accounts cannot email other players"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Accounts may not level past 13"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Accounts can only have 50k influence"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Accounts can only speak in"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "Trial Accounts",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Trial Accounts cannot invite players to team"
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed the bug where tooltips displayed too small."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some pets summoned through control sets weren’t showing an icon in their buff tray, this has been corrected. All Tier 9 summoned pets should now have a buff icon."
+    },
+    {
+      "category": "COMBINED NOTES",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a display problem with the map compass in Cimerora."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Animation",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Kheldian Dwarves and other critters that share the beast skeleton should play their \"Taunt\" animation again."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Badges",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Issue 12 Hero Exploration badges now have the correct art."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Psionic Blast / Psionic Dart: This power will now have a unique icon, it should no longer be the same as Mental Blast"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Blaster",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster / Fire Manipulation / Burn: This power’s icon should now match the color scheme of the other powers in the set."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper / Fiery Aura / Consume: Power was incorrectly taking Knockback Sets instead of Endurance Modification sets. This has been corrected."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper Fiery Aura Consume now accepts Endurance Modification IO Sets, and no longer accepts Taunt Enhancements."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper / Fiery Melee attacks no longer state they can accept Taunt IO sets."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper / Fire Melee / Cremate now accepts Damage IO sets, instead of Melee AoE IO Sets."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Scrapper",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Scrapper / Katana - Modified Katana cast times to match new animation times. Most powers are now faster activating."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Peacebringers",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer / Combat Flight - Combat Flight now has the correct fly speed modifier of 1 (instead of the 4 it was given during the -Fly protection tests.)"
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tanker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker / Dark Armor / Oppressive Gloom and Cloak of Fear no longer accept Taunt enhancements."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tanker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker / Dark Melee attacks now accept Taunt Enhancements and Sets."
+    },
+    {
+      "category": "CITY of HEROES",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech. Naylor’s souvenir clues should unlock Rularuu Weapons for the appropriate powersets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Soldier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier / Bane Spider - Fixed Bane spider characters getting an invisible default mace when using a powers respec."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Soldier",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Soldier / Crab Spider / Longfang - Corrected help text on Crab Spider Longfang."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Teamwork / Indomitable Will - Indomitable Will for Widows will no longer gain increased damage resistance when the Widows damage is buffed."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training / Follow Up – “Follow Up” now has a unique animation not shared by “Strike”"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training / Follow Up - Matched cast time to new Follow Up animation."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Arachnos Widow",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arachnos Widow / Widow Training / Strike: Corrected Widow Strike power. It was separating damage into 2 packets, instead of a single packet of damage."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brute",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee powers, Shadow Punch, Shadow Maul, and Smite have had power icons corrected for Brutes and Stalkers."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Brute",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee / Chain Induction: Chain Induction jumping effect is now increased by enhancements and fury, and no longer jumps from confused NPCs to players. It also only strikes NPCs it has not previously jumped from. This affects Brute and Stalker versions of the power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind / Thugs / Call Thugs: This power was listing that it accepted knockback enhancements twice. This has been corrected."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds / Thugs / Call Thugs / Empty Clips: Adjusted this power’s range down to match its radius (it was firing before enemies were within the cone of effect). Also decreased this power’s damage."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Mastermind",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Masterminds / Thugs / Call Thugs: Corrected typo in the summoned entity’s description."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dark Melee powers, Shadow Punch, Shadow Maul, and Smite have had power icons corrected for Brutes and Stalkers."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker / Dual Blades / Ablating Strike: Corrected an issue with Stalker Dual Blades Ablating Strike which was causing it to have critical effects against entities not targeted by the power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker / Electric Armor / Static Shield: This power’s icon should no longer disappear after a minute of activity."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Electrical Melee attacks no longer accept Taunt Enhancements or IO Sets."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Electrical Melee / Chain Induction: Chain Induction jumping effect is now increased by enhancements and fury, and no longer jumps from confused NPCs to players. It also only strikes NPCs it has not previously jumped from. This affects Brute and Stalker versions of the power."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated the Stalker’s long help text on their Assassination inherent ability to reflect the recent changes to the Stalker archetype."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Demoralize Effect no longer scales by level effects. The debuff and duration is fixed, regardless of the level of the target."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Further tweaks to the class based on data mining and player feedback (and some bug fixes):"
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Demoralize Effect duration reduced from 12 seconds to 8 seconds."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Demoralize Effect To Hit debuff reduced from 22.5% to 7.5%, but is no longer resistible."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Demoralize Effect Terrorize chance reduced from 30% to 25% per target."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Stalker Energy Melee Energy Transfer Self Damage increased from scale 2.5 to scale 3.00. This is due to Stalkers improved Hit Points and damage capability."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sting of the Wasp and Crippling Axe Kick for stalkers will now properly have a chance to crit while not in a Hide state, instead of having a chance to double crit from a Hide state."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Stalker",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Vengeful Slice for Stalkers now correctly does Knockdown once again."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "Tasks",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Alan Desslock now gives a better explanation why you cannot get his final mission from him."
+    },
+    {
+      "category": "CITY of VILLAINS",
+      "subsection": "User Interface",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shortened display name of Arachnos Soldiers and Widows in target window"
+    }
+  ]
+}

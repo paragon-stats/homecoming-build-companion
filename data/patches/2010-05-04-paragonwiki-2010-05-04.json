@@ -1,0 +1,75 @@
+{
+  "title": "Patch Notes/2010-05-04",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2010-05-04",
+  "published": "2010-05-04",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "Mission Architect",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the experience calculation point value of Ninjitsu/Hide from 5 to 1 and the multiplier from 1.0 to 0.5. The original calculations did not take into account that Hide's damage buff is not constant."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Auction House",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would delete an entire buy order for a stack of enhancements or inspirations when a single one was claimed."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Gameplay",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several rare random crash bugs."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Global Email",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that would delete anything sent as an attachment if there was a double quote (\") in the body of the email."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a software conflict with some graphics cards using Intel chipsets that made the shader quality degrade significantly."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Graphics",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a conflict with ATI-based PCs using driver versions 10.1 or 10.4. The game would crash if the user changed the 'Water Effects' slider to 'Recommended', disabled Advanced Graphics Settings, then moved the Water slider again."
+    },
+    {
+      "category": "CITY OF HEROES",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None."
+    },
+    {
+      "category": "CITY OF VILLAINS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "None."
+    }
+  ]
+}

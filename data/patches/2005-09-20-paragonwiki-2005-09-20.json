@@ -1,0 +1,339 @@
+{
+  "title": "Patch Notes/2005-09-20",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-09-20",
+  "published": "2005-09-20",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed runspeed buff duration of Elude (it was expiring too soon)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Ruladak's Energy Aura is no longer Auto Hit. This is to make Defensive sets more effective against him."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Acrobatics had a bug in which for 1/4 of a second it offered no knockback resistance. This has been corrected."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Summon power of Tuatha Boss so it no longer summons incorrect level pets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Lt. run speed (they were slower than minions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added Damage Resistance Inspirations (Reduces the damage you take from an attack). Drop rate for non-defensive Inspirations has not changed. 50% of defensive Inspirations that drop will be the old Defense (avoid getting hit) Inspirations, and 50% will be the new Damage Resistance Inspiration."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Made several changes to the Force Field powersets for Defenders and Controllers:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Deflection Field now has Defense to Melee attacks, in addition to its old effects."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Insulation Field now has Defense to Ranged attacks, in addition to its old effects"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Dispersion Bubble now has Defense to Area of Effect attacks, in addition to its old effects"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Significantly Reduced the Endurance cost of Force Bubble. Also, added a small chance to knock down foes."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added new inherent power to Defenders: Vigilance. As a Defenders teammates lose Health, the Defender gains an Endurance Discount."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Blaster Assault Rifle so their KnockBack effects wont chain in PvP."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Set Blaster/Fire Blast/Inferno Recharge time to 360 seconds so it is consistent with all other last Blaster powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced duration of XP Debt protection in Resurrect Powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced 'Per Hit' endurance cost on Whirlwind, Repel and Repulsion Field."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corrected Long Help Description for Propel. It said the Recharge was Long, when it should be Moderate."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed duration of Mind Control/Confuse in PvP. It was lasting shorter than it should have. (PvE unaffected)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that was making the Disorient effect in Gravity Control/Wormhole unresistable in some cases."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer Quantum Flight will now impose a growing Endurance Penalty after 45 seconds of use."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Warshade Nebulous Form will disable after 60 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Text for Hibernate. It said it would deactivate in 60 seconds when it actually deactivates in 30."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased Recharge time of Police Bot attack."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced recharge time of Rest."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Psychic Blast/Subdue: Increased Damage, Decreased its Recharge and Endurance Cost."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Pool/Leadership/Tactics now also grants resistance to Fear."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated Inspiration Help Text."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced the Slow Debuff on Lingering Radiation. The Defender version had a decimal place error which reduced any targets attack speed to the minimum. Reduced the Controller version slightly and brought the Defender version back in line."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Various text error fixes"
+    },
+    {
+      "category": "Stores",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Contact stores so that Contacts now sell proper Enhancements. (Doesn't affect all Contact Stores)."
+    },
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Disabled stencil shadows (world shadows) on Intel Extreme/ATI 7500 class cards for performance reasons."
+    },
+    {
+      "category": "UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed SuperGroup naming problem"
+    },
+    {
+      "category": "UI",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Readded tech 7 pants to armored set"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bugs with escort NPCs:"
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug in some missions where if a hostage is killed, the mission does not end."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that could cause escort NPCs to become hostile and attack players."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug that caused escort NPCs to despawn 10 minutes after being freed."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Removed invisible turrets that appeared in some missions."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Reduced requirement for Believer badge."
+    },
+    {
+      "category": "Badges",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defeating Tyrant will now properly award Statesman's Pal badge"
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Crotoa: fixed holes in geometry"
+    }
+  ]
+}

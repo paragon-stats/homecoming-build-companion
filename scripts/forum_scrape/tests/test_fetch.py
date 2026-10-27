@@ -7,6 +7,7 @@ instead of aborting a crawl.
 
 import base64
 import json
+import urllib.error
 from pathlib import Path
 
 import brotli
@@ -20,6 +21,7 @@ from scripts.forum_scrape.scrape import (
     main,
     page_title,
     strip_html,
+    walk_listing,
     write_artifacts,
 )
 from scripts.forum_scrape.tests.conftest import ATTACHMENT, FIXTURE, TOPIC
@@ -34,6 +36,62 @@ def test_fetcher_honours_robots_and_returns_text(fake_net) -> None:
     assert fetcher.get(TOPIC) == "<html>hello</html>"
     assert fetcher.get("https://forums.homecomingservers.com/search/?q=x") is None
     assert calls == ["https://forums.homecomingservers.com/robots.txt", TOPIC]
+
+
+def test_fetcher_reads_robots_from_its_own_base(fake_net) -> None:
+    routes, calls = fake_net
+    other = "https://archive.example.org"
+    routes[f"{other}/robots.txt"] = b"User-agent: *\nDisallow: /private/\n"
+    routes[f"{other}/wiki/Page"] = b"<html>wiki</html>"
+    fetcher = Fetcher("test-agent", delay=0.0, base=other)
+
+    assert fetcher.get(f"{other}/wiki/Page") == "<html>wiki</html>"
+    assert fetcher.get(f"{other}/private/x") is None
+    assert calls[0] == f"{other}/robots.txt"
+
+
+def test_fetcher_treats_a_missing_robots_file_as_no_rules(fake_net) -> None:
+    routes, _ = fake_net
+    archive = "https://forumarchive.example.org"  # no robots.txt route: the request 404s
+    routes[f"{archive}/index.php?/topic/1-x/"] = b"<html>old</html>"
+    fetcher = Fetcher("test-agent", delay=0.0, base=archive)
+    assert fetcher.get(f"{archive}/index.php?/topic/1-x/") == "<html>old</html>"
+
+
+@pytest.mark.parametrize(
+    ("failure", "code"),
+    [
+        (urllib.error.HTTPError("u", 403, "Forbidden", {}, None), "E02"),  # type: ignore[arg-type]
+        (urllib.error.HTTPError("u", 401, "Unauthorized", {}, None), "E02"),  # type: ignore[arg-type]
+        (urllib.error.HTTPError("u", 503, "Unavailable", {}, None), "E03"),  # type: ignore[arg-type]
+        (urllib.error.URLError("name resolution failed"), "E03"),
+        (TimeoutError("timed out"), "E03"),
+    ],
+)
+def test_fetcher_refuses_every_fetch_when_the_rules_cannot_be_read(
+    fake_net, capsys: pytest.CaptureFixture[str], failure: Exception, code: str
+) -> None:
+    routes, calls = fake_net
+    site = "https://blocked.example.org"
+    routes[f"{site}/robots.txt"] = failure
+    routes[f"{site}/topic/1-x/"] = b"<html>never read</html>"
+    fetcher = Fetcher("test-agent", delay=0.0, base=site)
+    assert fetcher.get(f"{site}/topic/1-x/") is None
+    assert calls == [f"{site}/robots.txt"]  # the page itself is never requested
+    assert code in capsys.readouterr().err
+
+
+def test_walk_listing_reports_the_pages_it_could_not_read(fake_net) -> None:
+    routes, _ = fake_net
+    forum = "https://forums.homecomingservers.com/forum/44-guides/"
+    pagination = f"<ul class='ipsPagination' data-pages='3'><li><a href='{forum}page/2/'>2</a></li></ul>"
+    routes[forum] = (pagination + listing_row(TOPIC, "2024-01-01T00:00:00Z")).encode()
+    routes[f"{forum}page/3/"] = b""  # page 2 has no route: it fails
+    fetcher = Fetcher("test-agent", delay=0.0)
+    rows, failed = walk_listing(fetcher, forum)
+    assert rows == {TOPIC: "2024-01-01T00:00:00Z"} and failed == [f"{forum}page/2/"]
+    assert walk_listing(fetcher, forum, pages=1) == (rows, [])  # a capped walk never reaches page 2
+    assert walk_listing(fetcher, forum + "gone/") == ({}, [forum + "gone/"])
 
 
 def test_fetcher_gunzips_and_waits_between_requests(fake_net, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -180,6 +238,11 @@ def test_unclosed_content_div_returns_the_rest_of_the_post() -> None:
 
 def test_page_title_absent() -> None:
     assert page_title("<html>no title element</html>") == ""
+
+
+def test_page_title_strips_the_archived_board_suffix_too() -> None:
+    assert page_title("<title>Guide to Guides - Player Guides - Invision Community</title>") == "Guide to Guides"
+    assert page_title("<title>Movement Speed - Guides - Homecoming</title>") == "Movement Speed"
 
 
 def test_strip_html_unescapes_entities() -> None:

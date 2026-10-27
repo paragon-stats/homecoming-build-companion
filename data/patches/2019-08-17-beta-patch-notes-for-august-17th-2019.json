@@ -1,0 +1,531 @@
+{
+  "title": "Patch Notes for August 17th, 2019",
+  "url": "https://forums.homecomingservers.com/topic/8457-patch-notes-for-august-17th-2019/",
+  "published": "2019-08-17T12:37:27Z",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "forum-beta",
+  "changes": [
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added a roleplaying tag which will flag yourself as currently RPing."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This will change your character name to appear in purple as well as adding a \"Roleplaying\" title."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Use /roleplaying to toggle the flag on and off, or use the dropdown in the helper window (H by default)."
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Increased Supergroup membership limit from 150 to 300."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix enhancement tables not properly displaying % signs (and possibly crashing)"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The boost and boostset commands now only allow you to get enhancements that are level 1 to 50."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed printscreen key not working."
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fix a potential crash when displaying power info for effect groups that don't have any tags defined."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Remove what was left of DirectInput Joystick support and replaced it with new Game Controller support."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Instead of a simple \"Joystick Input Enabled\" toggle, you can select which device to use from the options menu."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Native support for XBox controllers as well as other XInput compatible controllers. This is not available on Windows XP."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller vibration support for XInput devices:"
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Damage received"
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Environmental effects"
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Turn on vibration on the options menu, or you can choose to only enable vibration effects from one of the above sources."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Raw Input handles non-XInput devices and replaces DirectInput."
+    },
+    {
+      "category": "Input",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All DirectInput-compatible devices should be supported, including traditional joysticks."
+    },
+    {
+      "category": "Physics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "PhysX simulation is no longer frame-locked to the game. It now runs asynchronously, so if PhysX is processing too slowly to keep up, it should not slow down your framerate, but instead use larger simulation steps to compensate."
+    },
+    {
+      "category": "Physics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "If it falls too far behind, the number of PhysX objects in the scene will be reduced by removing the oldest objects."
+    },
+    {
+      "category": "Physics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Adjusted object collisions to reduce processing overhead on Medium and High physics quality settings."
+    },
+    {
+      "category": "Physics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Some insubstantial objects like leaves and floating paper no longer collide with each other and stack up."
+    },
+    {
+      "category": "Physics",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Large objects (i.e. gravity control) now always interact with all other objects, even on the Low physics setting."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The red and black floor grid should now be hidden outside of the base editor. This was a popular request, so if you are against this change, please voice your concerns against it if you have any."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Nature > Grass Valley has had its alignment corrected and should now be usable with other floor plate details (e.g. all the other grass)."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Existing bases will not be modified. Simply moving any existing Valleys will update their position."
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following details have had their selection box fixed:"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Teleport > Carnival of Light Portal"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Teleport > Magic Portal"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Teleport > Summoning Portal"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Arcane Teleport > Summoning Portal (Inactive)"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Teleport > Interdimensional Shard"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Teleport > Black Hole"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Teleport > White Hole"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tech Teleport > Small Portal"
+    },
+    {
+      "category": "Bases",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Bathroom > Bathtub Water"
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Peacebringer customizable FX have been updated in order to actually use the secondary color."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The glowy eyes have been reined in:"
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All buff powers use the same eye glow VFX, so they will no longer stack."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Attacks still spawn extra glowy eyes when used. This will get fixed someday."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Conserve Energy will now have glowy eyes."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The humming noise has been reined in:"
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It no longer plays when activating attacks."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "It no longer plays when one VFX expires and transitions to another one."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Being mezzed with the toggle sheilds on will no longer blow out your speakers."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Inner Light now only plays it once instead of twice."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Other stuff:"
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "White Dwarf Step no longer uses Warshade graphics."
+    },
+    {
+      "category": "Peacebringer FX",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Quantum Shield's \"No Bubble\" setting no longer has fuzzy rings."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "",
+      "text": "Mud Pots: Increased radius to 15ft. Lowered endurance cost slightly."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "",
+      "text": "Hurl Boulder: hit timing improved."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Electricity Assault",
+      "text": "Thunder Strike: Cast time lowered to 2.5 seconds. Now knocks enemies down."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Energy Assault",
+      "text": "Total Focus: sound has been synced to match the new faster animation."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Icy Assault",
+      "text": "Chilling Embrace: increased radius to 15ft. Added -10% damage str to affected enemies."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Martial Assault",
+      "text": "Shuriken Throw: Was doing less damage than intended. This has now been fixed."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Martial Assault",
+      "text": "Thunder Kick: Recharge increased to 7 seconds. Damage increased to 86.4."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Martial Assault",
+      "text": "Spinning Kick: Recharge increased to 10 seconds. Damage increased to 78.4."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Martial Assault",
+      "text": "Envenomed Blades procs now ignores damage buffs and enhancements."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Savage Assault",
+      "text": "Savage Assault changes (except text changes and feral charge range) have all been rolled back."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Pool > Concealment",
+      "text": "Invisibility +Def component now completely suppresses while in combat."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Thorny Assault",
+      "text": "Skewer: Recharge lowered from 8 to 6 seconds. Damage lowered to 77.1 lethal damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Thorny Assault",
+      "text": "Impale: Recharge lowered from 12 to 10 seconds. Damage lowered to 103.5 lethal damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Thorny Assault",
+      "text": "Ripper: Recharge increased from 13 to 15 seconds, arc lowered to 60 degrees. Damage increased to 136.5 lethal damage."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Thorny Assault",
+      "text": "Thorn Barrage: Recharge increased from 14 to 18 seconds. Damage increased to 42.8 lethal damage per tick."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Earth Assault",
+      "power": "Misc",
+      "text": "Fixed some stacking and enhancement issues with multiple powers, especially Devices."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Burn",
+      "power": "All versions",
+      "text": "should no longer spawn more than one burn patch per activation."
+    }
+  ]
+}

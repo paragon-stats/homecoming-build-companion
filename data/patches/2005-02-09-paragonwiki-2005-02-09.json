@@ -1,0 +1,131 @@
+{
+  "title": "Patch Notes/2005-02-09",
+  "url": "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-02-09",
+  "published": "2005-02-09",
+  "issue": "",
+  "page": "",
+  "revision": 0,
+  "source": "paragonwiki",
+  "changes": [
+    {
+      "category": "Game",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Enabled Global Chat Server Beta"
+    },
+    {
+      "category": "City Zones",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Founders' Falls: Removed spawns near some mission contacts."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreased END cost of Teleport Foe and Teleport Friend (also Warshade versions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Decreases chance foes will be alerted when you Teleport Foe. Also, if you miss with Teleport Foe, enemies will not be alerted (also Warshade versions)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a bug that caused the END cost of Hasten to be increased if you use a power like Power Boost."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed animation bug in Dark Miasma/Tar Patch."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed missing Ice f/x for Ancillary ice armors."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Tanker/Super Strength/Rage will now only drain 25% of your Endurance, but will leave you unable to affect other targets (cannot attack) for 10 seconds when the buff wears off. Also, updated short and long help (Rage always gave an ACC bonus, but this was never on the description)."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an animation bug in Dark Miasma/Tar Patch."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed: Practiced Brawler, Ice Patch, Recovery Aura animations from activating before the power is completely recharged."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed numerous text bugs with tooltip help for Peacebringer and Warshade powers."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed bug with Power Boost that made Hasten cost more endurance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defense bonuses no longer stack against attacks with more than one damage type. For example, Dark Melee/Shadow Punch does both Smashing and Dark damage. If the attack is used against an opponent with defense bonuses that apply to both damage types, only the largest single defense bonus will be used. This change also applies to villains that do more than one type of damage to heroes."
+    },
+    {
+      "category": "Tasks",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Shadow Shard: Changed all Kora Fruit missions so they require some combat to complete."
+    },
+    {
+      "category": "Game Stability",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed several rare client and server crashes."
+    }
+  ]
+}

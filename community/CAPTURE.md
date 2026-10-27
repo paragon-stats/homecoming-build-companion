@@ -47,6 +47,9 @@ Out of scope:
 ## File format
 
 Every capture has YAML frontmatter and a structured body. The frontmatter drives `regen-index.ps1`.
+The guide scraper adds `content_hash` to every capture it writes and refreshes a file only when that digest changes.
+A refresh keeps `trust`, `contradicts_data`, `topic_tags`, any key you add, the Summary and your own sections.
+It never touches a capture without `content_hash`, so a hand-made capture stays as you wrote it.
 
 ```markdown
 ---
@@ -60,6 +63,8 @@ captured_by: local-capture
 topic_tags: [tanker, invulnerability, soft-cap-defense]   # first tag drives index grouping
 trust: community-consensus   # first-party | community-consensus | single-author-opinion
 contradicts_data: none       # or "Claim: foot stomp recharge 18sec; data/canonical: 20sec"
+content_hash: 8c1fd877727cb49b    # scraper captures only: digest of the opening post as captured
+superseded_hash: 5c3f6da333ec6a6a # scraper captures only: the digest the last refresh replaced
 ---
 
 ## Summary
