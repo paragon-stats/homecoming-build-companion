@@ -160,8 +160,12 @@ BUILD_EXTENSIONS = ("mbd", "mxd")
 ALL_FORMATS = ("mbd", "mxd", "text")
 _TOPIC_LEDGER = "topics.jsonl"
 _SECTION_LEDGER = "section_sizes.jsonl"
-# One row of a forum listing, which pairs a topic with its started/last-posted times.
-_LISTING_ROW = re.compile(r"(?=<li[^>]*class=['\"][^'\"]*ipsDataItem)", re.I)
+# One row of a forum listing, which pairs a topic with its started/last-posted times. The
+# class must hold ipsDataItem as a whole word: a sub-forum card nests an
+# ipsDataItem_lastPoster__title item that links that sub-forum's newest topic.
+_LISTING_ROW = re.compile(r"(?=<li[^>]*class=['\"](?:[^'\"]*\s)?ipsDataItem[\s'\"])", re.I)
+# A sub-forum card on a category page: its rows are forums, not topics.
+_FORUM_CARD = re.compile(r"^<li[^>]*(?:data-forumid=|cForumRow)", re.I)
 # Mids wraps share-block payloads at this width; matching it keeps a rebuilt block
 # byte-comparable with one Mids itself would have emitted.
 _WRAP = 67
@@ -455,7 +459,7 @@ def topic_rows(listing_html: str) -> dict[str, str]:
     rows: dict[str, str] = {}
     for chunk in _LISTING_ROW.split(listing_html)[1:]:
         match = _TOPIC_LINK.search(chunk)
-        if not match:
+        if not match or _FORUM_CARD.match(chunk):
             continue
         stamps = _TIME.findall(chunk)
         rows.setdefault(match.group(1), stamps[-1] if len(stamps) > 1 else "")
