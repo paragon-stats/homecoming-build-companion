@@ -12,7 +12,8 @@ A claim in a `community/` capture is dated by its `date_posted`; any change to t
 | `paragonwiki` | The Paragon Wiki Archive's dated pages, `https://archive.paragonwiki.com/wiki/Patch_Notes/YYYY-MM-DD` | Launch (May 2004) to the 2012 sunset | one per dated page |
 
 The live application wins: a beta series it also covers, or an interim beta thread dated inside its coverage, is not written.
-Of a labelled Issue/Page series, only the last candidate in each beta section is fetched; a candidate whose title carries no series label counts as an interim patch.
+Of a labelled Issue/Page series, only its last thread across both beta sections is fetched; of a run of numbered release candidates without a label, only the last.
+Every other beta thread is an interim patch with a record of its own.
 Within the beta and wiki sources a change line is dated by its first appearance.
 Staging reposts the beta notes days later, each beta thread restates the ones before it, and the wiki republished pages with corrections.
 A later entry therefore keeps only the lines no earlier entry of its source recorded.

@@ -1,164 +1,12 @@
 {
-  "title": "[BETA] Patch Notes for October 16th, 2022 - Issue 27: Second Chances, Page 5 (Release Candidate 1)",
-  "url": "https://forums.homecomingservers.com/topic/38371-beta-patch-notes-for-october-16th-2022-issue-27-second-chances-page-5-release-candidate-1/",
-  "published": "2022-10-15T22:29:00Z",
+  "title": "[Staging] Patch Notes for October 16th, 2022 - Issue 27: Second Chances, Page 5",
+  "url": "https://forums.homecomingservers.com/topic/38375-staging-patch-notes-for-october-16th-2022-issue-27-second-chances-page-5/",
+  "published": "2022-10-16T00:44:43Z",
   "issue": "issue-27",
   "page": "page-5",
   "revision": 0,
   "source": "forum-beta",
   "changes": [
-    {
-      "category": "RELEASE CANDIDATE 1",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Most changes from the previous beta build are listed in green."
-    },
-    {
-      "category": "RELEASE CANDIDATE 1",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Green text will become white text in the next set of patch notes."
-    },
-    {
-      "category": "RELEASE CANDIDATE 1",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Any changes or fixes that are only relevant to the beta builds (ie: fixes / tweaks to new features) are listed in blue."
-    },
-    {
-      "category": "RELEASE CANDIDATE 1",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Blue text will be deleted in the next set of patch notes as it is only relevant to highlight changes between beta builds, not a changes from live."
-    },
-    {
-      "category": "RELEASE CANDIDATE 1",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Known issues are listed in purple"
-    },
-    {
-      "category": "Sentinels",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Updated Icons for Opportunity and Vulnerability."
-    },
-    {
-      "category": "Sentinels",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Updated Sentinel's AT description."
-    },
-    {
-      "category": "Masterminds",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed root time for Pulse Rifle Blast/Burst."
-    },
-    {
-      "category": "Masterminds",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Updates to numerous descriptions."
-    },
-    {
-      "category": "Masterminds",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Corrected Serum's endurance cost to match other Tier 7s"
-    },
-    {
-      "category": "Battle Axe",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Updates to numerous descriptions."
-    },
-    {
-      "category": "Battle Axe",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed Brute's Cleave. Now ignores Range buffs."
-    },
-    {
-      "category": "Force Fields",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Updates to numerous descriptions."
-    },
-    {
-      "category": "Power Bug Fixes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Tanker Irradiated Ground now does proper damage (was using old Tanker scalar)."
-    },
-    {
-      "category": "Power Bug Fixes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Blaster Fire Sword Circle no longer claims to do -defense and no longer accepts defense debuff sets (this is a Beta fix only, does not affect Live)"
-    },
-    {
-      "category": "Power Bug Fixes",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Stalagmites and Gleam now do correct endurance cost."
-    },
-    {
-      "category": "Holstered Weapon System",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed Female Retro SciFi rifles using the wrong child draw FX."
-    },
-    {
-      "category": "Holstered Weapon System",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Improved the back placement of the Retro Rifle on Male/Huge body types."
-    },
-    {
-      "category": "Tasks",
-      "subsection": "Tin Mage's Task Force",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "All of the defeat objectives in Mission 2 must now be cleared in order for the mission to complete."
-    },
     {
       "category": "Marquee Features",
       "subsection": "",
@@ -2942,22 +2790,6 @@
       "powerset": "",
       "power": "",
       "text": "Fixed issue where Mercenary Mastermind Rifles were missed for the firing point desync fixes."
-    },
-    {
-      "category": "Character Customization Improvements",
-      "subsection": "Custom Weapon Adjustments & Fixes",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Fixed Female Retro SciFi rifles using the wrong child draw FX."
-    },
-    {
-      "category": "Character Customization Improvements",
-      "subsection": "Custom Weapon Adjustments & Fixes",
-      "archetype": "",
-      "powerset": "",
-      "power": "",
-      "text": "Improved the back placement of the Retro Rifle on Male/Huge body types."
     },
     {
       "category": "Wave 2 Aether Prestige Rewards",

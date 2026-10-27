@@ -899,6 +899,190 @@
       "category": "Powers",
       "subsection": "",
       "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers now ignore outside buffs (they all provide enhanceable resistance and should've always ignored buffs)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller > Darkness Affinity > Fade"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Controller > Poison > Elixir of Life"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Defender > Poison > Elixir of Life"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Corruptor > Poison > Elixir of Life"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mastermind > Poison > Elixir of Life"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Sentinel > Bio Armor > Genomic Evolution"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following Scrapper and Stalker Epic Pools powers have been modified:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Mace Mastery",
+      "power": "Web Cocoon",
+      "text": "This power now does Toxic Damage over time. Now accept damage enhancements and sets."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leviathan Mastery",
+      "power": "Spirit Shark Jaws",
+      "text": "This power can now land critical hits."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Mu Mastery",
+      "power": "Electric Shackles",
+      "text": "This power can now land critical hits."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Soul Mastery",
+      "power": "Soul Storm",
+      "text": "This power can now land critical hits."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Weapon Mastery",
+      "power": "Shuriken",
+      "text": "This power was erroneously set at half the intended recharge for it's damage. Recharge has now been increased from 3 to 6 seconds."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Weapon Mastery",
+      "power": "Explosive Shuriken",
+      "text": "This power was doing 85% the damage it was meant to do in PvE, damage has been increased."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The following powers are now disabled whilst in Arena matches:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Mystic Fortune (and buffs)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Secondary Mutation (and buffs)"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Jump Pack"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Steam Jump"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "",
+      "text": "The following Leadership powers have had their activation time reduced from 3.63 seconds to 1.5 seconds:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "",
+      "text": "Pools > Leadership > Maneuvers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "",
+      "text": "Pools > Leadership >Assault"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "",
+      "text": "Pools > Leadership >Tactics"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
       "powerset": "Leadership",
       "power": "Invention Procs",
       "text": "Call of the Sandman: Chance for Heal"
@@ -1076,6 +1260,22 @@
       "subsection": "",
       "archetype": "",
       "powerset": "Leadership",
+      "power": "Power Customization",
+      "text": "Updated Electrical Blast for Blasters and Corruptors to be able to select from both the default Hero (blue) and Villain (red) options, along with other customisation options"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Power Customization",
+      "text": "Fixed the default Villain (red) theme Electrical Blast having a Hero (blue) Voltaic Sentinel"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
       "power": "Katana Animations",
       "text": "Katana powers no longer have a \"No Redraw\" theme. These powers now will execute an interruptible draw animation only in the following conditions:"
     },
@@ -1180,6 +1380,94 @@
       "subsection": "",
       "archetype": "",
       "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Shadow Maul (Tanker, Scrapper, Brute, Stalker) is now a much larger, faster cone that's actually capable of easily hitting multiple targets - especially on tanks!"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Arc increased from 45 to 120 degrees"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Recharge increased from 8 to 11 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Cast Time reduced from 3.07 to 2.35 seconds"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Damage lowered from scale 2.156 to 1.6184"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "DPS reduction is minor, it has only been lowered from scale 0.653 to scale 0.645"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Target Cap increased from 10 to 16 for Tankers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Target Cap increased from 5 to 10 for Scrappers, Brutes and Stalkers"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Dark Melee",
+      "text": "Dark Melee was under-performing in the AoE department. The aim of this change is to increase the AoE potential of the set whilst having minimal impact on the single target potential."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Tanker",
+      "powerset": "Super Reflexes",
+      "power": "Evasion",
+      "text": "Fixed a bug where this power would not maintain its Defense Resistance 100% of the time."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "Fixed several villain powers being tagged as both Ranged and AoE:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
       "power": "Powers Bug Fixes",
       "text": "5th Column > Missile Launcher"
     },
@@ -1256,12 +1544,236 @@
       "text": "Snakes > Venomous Spray"
     },
     {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Secondary Mutation",
+      "power": "Devolution",
+      "text": "Fixed an issue that caused you to not change your shape and prevent all powers from being usable until zoning"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Pool",
+      "powerset": "Invisibility",
+      "power": "Phase Shift",
+      "text": "This power's effect should no longer cancel if stunned, held or slept by a delayed mez effect."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Incarnate",
+      "powerset": "Hybrid",
+      "power": "Melee",
+      "text": "This tree no longer grants mez protection in PvP zones, instead, it grants mez resistance."
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "The following powers Soul Noir theme of this power was executing the wrong animation and missing FX. This has been fixed:"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "Sentinel > Dark Blast > Abyssal Gaze"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "Defender >Dark Blast > Petrifying Gaze"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "Scrapper > Epic > Darkness Mastery > Petrifying Gaze"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Leadership",
+      "power": "Powers Bug Fixes",
+      "text": "Stalker > Epic > Darkness Mastery > Petrifying Gaze"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Incarnate",
+      "powerset": "Interface",
+      "power": "Degenerativ",
+      "text": "Should once again work on raid targets"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Invulnerability",
+      "power": "Unstoppable",
+      "text": "This power no longer accepts Endurance Mod enhancements or sets. The Recovery buff in this power has never been enhanceable"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Stalker",
+      "powerset": "Ice Melee",
+      "power": "Ice Patch",
+      "text": "This power no longer states that it accepts Universal Damage or Stalker Archetype Origin sets, it has never accepted these enhancements"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Savage Melee",
+      "power": "Savage Leap",
+      "text": "Should inflict damage much more reliably when used from maximum range on moving targets or while jousting"
+    },
+    {
+      "category": "Powers",
+      "subsection": "",
+      "archetype": "Blaster > Support",
+      "powerset": "Devices",
+      "power": "Targeting Drone",
+      "text": "This power's text should no longer state it grants a recharge buff"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Powers with redirects will now display numbers properly in the detailed information window"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized combat spam for heal and endurance modification attributes"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Standardized the text description denoting the recharge time of player powers:"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Less or equal to 3s: Very Fast"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 3s, less or equal to 6s: Fast"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 6s less or equal to 10s: Moderate"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 10s, less or equal to 60s: Slow"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 60s, less or equal to 240s: Long"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 240s, less or equal to 600s: Very Long"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "More than 600s: Extremely Long"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All players can now move through Mastermind henchmen and push them out of the way, not just their owners"
+    },
+    {
+      "category": "General",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Null the Gull now has options to disable the additional power tray popup for all Origin Pool travel powers"
+    },
+    {
       "category": "General",
       "subsection": "",
       "archetype": "",
       "powerset": "",
       "power": "",
       "text": "Updated the \"incorrect password\" login error message to prompt the player to check they aren't using their forum account info"
+    },
+    {
+      "category": "General",
+      "subsection": "General Chat Channel",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "A new 'General' channel has been added to the game"
+    },
+    {
+      "category": "General",
+      "subsection": "General Chat Channel",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This is a new shard-wide channel like LFG and Help. The goal with adding this is to ensure that LFG and Help remain focused on their specific topics, with everything else being discussed in General"
+    },
+    {
+      "category": "General",
+      "subsection": "General Chat Channel",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "/general, /gen and /z can be used to send messages to General"
     },
     {
       "category": "General",
@@ -1294,6 +1806,86 @@
       "powerset": "",
       "power": "",
       "text": "When Mastermind pets are teleported to their owner due to being out of range, they now now reset their orders to Follow to avoid odd Stay/Goto behavior"
+    },
+    {
+      "category": "General",
+      "subsection": "Login Screen Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The login screen has been updated to feature the new Homecoming logo"
+    },
+    {
+      "category": "General",
+      "subsection": "Login Screen Update",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Goldie's red sleeve has finally been fixed and is now actually gold"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Alpha",
+      "power": "Vigor Boost",
+      "text": "Icon replaced with a colour corrected version that matches the rest of the Vigor powers"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "Sorcery",
+      "power": "Rune of Protection",
+      "text": "VFX no longer persists after the power expires"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue preventing some power customisation files from loading properly"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed Medium Dual Team inspirations being tagged as Small inspirations in AE"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Positron should no longer teleport all over the place in the Mortimer Kal Strike Force"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Potentially fixed a crash relating to combining enhancements"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed an issue that could cause boosters and catalysts to not show up in the combination screen"
+    },
+    {
+      "category": "Bug Fixes",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed clipping issue for Huge > Pants > Gunslinger Boots"
     }
   ]
 }

@@ -7,8 +7,9 @@ be dated against the changes that followed them. The sources, by the span they c
     Issue > Page categories, one entry per update with a publish date. Issue 27 page 6
     (April 2023) onward. Live patch notes are not forum threads.
 - ``forum-beta``: the beta and staging patch-note sections of the forum, 2019 to 2023. Each
-    release candidate re-posts a page's full notes, so one series keeps only its final
-    thread; interim patches without an Issue/Page label are kept one per thread. Threads
+    release candidate re-posts a page's full notes, so one series keeps only its last
+    thread across both sections, and a run of numbered candidates without an Issue/Page
+    label keeps only its last; other interim patches are kept one per thread. Threads
     dated inside the live application's coverage are skipped: the live entry wins.
 - ``paragonwiki``: the Paragon Wiki Archive's dated ``Patch_Notes/YYYY-MM-DD`` pages,
     2004 to 2012.
@@ -57,6 +58,7 @@ _BODY = re.compile(
 )
 # A thread slug names its series: "...-issue-27-second-chances-page-3-release-candidate-1".
 _SERIES = re.compile(r"issue-(\d+).*?page-(\d+)")
+_CANDIDATE = re.compile(r"release-candidate-(\d+)$")
 _WIKI_PAGE = re.compile(r"""href=['\"](/wiki/Patch_Notes/(\d{4}-\d{2}-\d{2})[^'\"#?]*)['\"]""")
 _WIKI_BODY = re.compile(r"""class=['\"][^'\"]*mw-parser-output[^'\"]*['\"][^>]*>(.*)""", re.S)
 _WIKI_TOKEN = re.compile(r"<h([1-6])\b[^>]*>(.*?)</h\1>|<li\b[^>]*>", re.I | re.S)
@@ -190,16 +192,35 @@ def series_of(topic_url: str) -> tuple[str, str]:
 
 
 def beta_candidates(rows: dict[str, str]) -> list[str]:
-    """The threads worth reading from a beta listing: the latest of each labelled series, and every interim patch."""
+    """The threads worth reading from a beta listing.
+
+    The latest thread of each labelled series, the last of each run of unlabelled numbered
+    release candidates (a number that does not rise on the next candidate starts a new run),
+    and every other interim patch.
+    """
     latest: dict[tuple[str, str], tuple[str, str]] = {}
+    numbered: list[tuple[int, int, str]] = []  # (topic id, candidate number, url)
     interim: list[str] = []
     for topic_url, last_activity in rows.items():
+        slug = topic_url.rstrip("/").rsplit("/", 1)[-1]
         series = series_of(topic_url)
-        if series == ("", ""):
+        if series != ("", ""):
+            if series not in latest or last_activity > latest[series][0]:
+                latest[series] = (last_activity, topic_url)
+        elif candidate := _CANDIDATE.search(slug):
+            head = slug.split("-", 1)[0]
+            numbered.append((int(head) if head.isdigit() else 0, int(candidate.group(1)), topic_url))
+        else:
             interim.append(topic_url)
-        elif series not in latest or last_activity > latest[series][0]:
-            latest[series] = (last_activity, topic_url)
-    return [url for _, url in latest.values()] + interim
+    finals: list[str] = []
+    last: tuple[int, str] | None = None
+    for _, number, topic_url in sorted(numbered):
+        if last is not None and number <= last[0]:
+            finals.append(last[1])
+        last = (number, topic_url)
+    if last is not None:
+        finals.append(last[1])
+    return [url for _, url in latest.values()] + finals + interim
 
 
 def parse_beta_thread(page: str, url: str) -> PatchEntry:
@@ -421,8 +442,13 @@ def _collect_forum_beta(fetcher: Fetcher, written: set[str], out: Path, rows: li
     # Index rows written before the source and series columns existed carry the series in the URL.
     live_series = {_live_series(row) for row in live}
     live_from = min((str(row["published"]) for row in live), default="9999")
+    # A series runs across both sections, so its last thread is chosen over their union.
+    listing: dict[str, str] = {}
+    for section in BETA_SECTIONS:
+        for topic_url, last_activity in _walk(fetcher, section).items():
+            listing.setdefault(topic_url, last_activity)
     entries = []
-    for topic_url in (url for section in BETA_SECTIONS for url in beta_candidates(_walk(fetcher, section))):
+    for topic_url in beta_candidates(listing):
         if topic_url in written:
             continue
         page = fetcher.get(topic_url)

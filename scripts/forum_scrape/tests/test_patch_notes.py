@@ -227,13 +227,18 @@ def _thread(title: str, when: str, body: str) -> bytes:
 def test_series_of_and_beta_candidates_keep_the_latest_of_a_series_and_every_interim_patch() -> None:
     assert series_of(RC2) == ("issue-27", "page-3") and series_of(INTERIM_OLD) == ("", "")
     rc0 = f"{BASE}/topic/0-staging-patch-notes-issue-27-page-3-build-0/"
+    # Unlabelled numbered candidates: 1, 2, 3 are one run; the next 1, 2 are another; a lone 2 its own.
+    run_a = [f"{BASE}/topic/{10 + n}-patch-notes-for-august-2{n}th-2019-release-candidate-{n}/" for n in (1, 2, 3)]
+    run_b = [f"{BASE}/topic/{20 + n}-patch-notes-for-february-1{n}th-2020-release-candidate-{n}/" for n in (1, 2)]
+    lone = f"{BASE}/topic/odd-patch-notes-release-candidate-2/"  # no topic id: sorts first
     rows = {
         RC1: "2021-11-05T00:00:00Z",
         RC2: "2021-11-24T00:00:00Z",
         INTERIM_OLD: "2019-08-11T00:00:00Z",
         rc0: "2021-11-01T00:00:00Z",
+        **dict.fromkeys(run_a + run_b + [lone], "2020-01-01T00:00:00Z"),
     }
-    assert beta_candidates(rows) == [RC2, INTERIM_OLD]
+    assert beta_candidates(rows) == [RC2, lone, run_a[2], run_b[1], INTERIM_OLD]
 
 
 def test_parse_beta_thread_reads_the_opener() -> None:
