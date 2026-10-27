@@ -165,6 +165,10 @@ def test_is_theme_matches_concept_costume_and_roleplay_threads() -> None:
     assert is_theme("A guide to costume design for villains")
     assert is_theme("Power colour customization: matching auras to your look")
     assert not is_theme("Movement Speed: A Quick Guide")
+    # Aura powersets and Lore pets are build subjects, not themes.
+    assert not is_theme("Maximal survival guide for Fiery Melee/Energy Aura brutes")
+    assert not is_theme("Memphis Bill's Firey Aura overview 2.0 (i18)")
+    assert not is_theme("A mostly comprehensive compendium of Lore pet performance")
 
 
 def test_main_captures_theme_guides_without_build_vocabulary(tmp_path: Path, fake_net) -> None:

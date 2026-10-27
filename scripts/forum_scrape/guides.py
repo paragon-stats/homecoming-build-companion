@@ -49,12 +49,13 @@ GUIDE_MIN_STRUCTURE = 6
 DISCUSSION_TITLE = re.compile(r"\b(rp|roleplay|role-play|showcase|favou?rite|your most|post your|what are you)\b", re.I)
 # A concept, theme, costume, customization or roleplay thread feeds the Theme/RP build type
 # (docs/build-types-and-goals.md). It needs no build vocabulary: its value is the look and the idea.
+# "Aura" and "lore" are left out: Energy Aura, Fiery Aura and Lore pets are build subjects.
+# A costume or colour title that mentions auras still matches through its other words.
 THEME_TITLE = re.compile(
-    r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|lore|crossover|would .+ be|costumes?|"
-    r"colou?rs?|customi[sz]ation|auras?|tailor|appearance|looks?)\b",
+    r"\b(rp|roleplay|role-play|themed?|concept|flavou?r(ed)?|crossover|would .+ be|costumes?|"
+    r"colou?rs?|customi[sz]ation|tailor|appearance|looks?)\b",
     re.I,
 )
-# Frontmatter a reviewer owns; a refresh never overwrites these.
 # Frontmatter a reviewer owns once the file exists: a refresh keeps their values.
 REVIEWER_KEYS = ("trust", "contradicts_data", "topic_tags")
 # Ledger outcomes that do not settle a thread: it is looked at again next run.
