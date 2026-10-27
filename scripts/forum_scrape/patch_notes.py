@@ -18,16 +18,21 @@ Usage::
 
     python -m scripts.forum_scrape.patch_notes --out data/patches
     python -m scripts.forum_scrape.patch_notes --source paragonwiki --out data/patches
+    python -m scripts.forum_scrape.patch_notes --source paragonwiki --reparse
 
-Re-runs fetch only entries whose URL is not yet in the output index.
+Re-runs fetch only entries whose URL is not yet in the output index. Every entry page is
+kept in a local page cache, so ``--reparse`` can rebuild a source's records after a parser
+change and rewrite only the records that differ, fetching only the pages it lacks.
 """
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
+import tempfile
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -44,6 +49,8 @@ from scripts.forum_scrape.scrape import (
 )
 
 SOURCES = ("release-notes", "forum-beta", "paragonwiki")
+# The sources whose change lines are dated by first appearance; live entries are kept whole.
+DATED_SOURCES = ("forum-beta", "paragonwiki")
 CATEGORIES_URL = f"{BASE}/patch-notes/?show=categories"
 BETA_SECTIONS = (f"{BASE}/forum/73-open-beta-patch-notes/", f"{BASE}/forum/100-staging-patch-notes/")
 WIKI_BASE = "https://archive.paragonwiki.com"
@@ -411,8 +418,33 @@ def _write_dated(entries: list[PatchEntry], out_dir: Path, rows: list[dict[str, 
     return count
 
 
+class PageCache:
+    """Entry pages kept on disk by URL, so a re-parse reads them instead of the site.
+
+    Listing and index pages never go through it: they are what reveals new entries.
+    """
+
+    def __init__(self, folder: Path) -> None:
+        self.folder = folder
+
+    def get(self, fetcher: Fetcher, url: str) -> str | None:
+        """The cached page for ``url``, or the fetched one, cached for next time."""
+        path = self.folder / f"{hashlib.sha256(url.encode('utf-8')).hexdigest()[:32]}.html"
+        if path.exists():
+            return path.read_text(encoding="utf-8")
+        page = fetcher.get(url)
+        if page is not None:
+            self.folder.mkdir(parents=True, exist_ok=True)
+            path.write_text(page, encoding="utf-8", newline="\n")
+        return page
+
+
 def _collect_release_notes(
-    fetcher: Fetcher, written: set[str], out: Path, powersets: frozenset[str] = frozenset()
+    fetcher: Fetcher,
+    written: set[str],
+    out: Path,
+    powersets: frozenset[str],
+    cache: PageCache,
 ) -> int:
     categories = fetcher.get(CATEGORIES_URL)
     if categories is None:
@@ -424,7 +456,7 @@ def _collect_release_notes(
         for entry_url in list_entries(listing):
             if entry_url in written:
                 continue
-            page = fetcher.get(entry_url)
+            page = cache.get(fetcher, entry_url)
             if page is None:
                 continue
             entry = parse_entry(page, entry_url, powersets)
@@ -448,7 +480,8 @@ def _collect_forum_beta(
     written: set[str],
     out: Path,
     rows: list[dict[str, object]],
-    powersets: frozenset[str] = frozenset(),
+    powersets: frozenset[str],
+    cache: PageCache,
 ) -> tuple[int, bool]:
     """Beta threads not covered by the live application: the live entry wins on the same series or date.
 
@@ -473,7 +506,7 @@ def _collect_forum_beta(
     for topic_url in beta_candidates(listing):
         if topic_url in written:
             continue
-        page = fetcher.get(topic_url)
+        page = cache.get(fetcher, topic_url)
         if page is None:
             continue
         entry = parse_beta_thread(page, topic_url, powersets)
@@ -484,7 +517,9 @@ def _collect_forum_beta(
     return _write_dated(entries, out, rows, written), not gaps
 
 
-def _collect_wiki(fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]) -> int:
+def _collect_wiki(
+    fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]], cache: PageCache
+) -> int:
     index = fetcher.get(WIKI_INDEX_URL)
     if index is None:
         print(f"E64: could not read the wiki patch-notes index at {WIKI_INDEX_URL}", file=sys.stderr)
@@ -493,10 +528,135 @@ def _collect_wiki(fetcher: Fetcher, written: set[str], out: Path, rows: list[dic
     for page_url in wiki_pages(index):
         if page_url in written:
             continue
-        page = fetcher.get(page_url)
+        page = cache.get(fetcher, page_url)
         if page is not None:
             entries.append(parse_wiki_page(page, page_url))
     return _write_dated(entries, out, rows, written)
+
+
+def _source(row: dict[str, object]) -> str:
+    return str(row.get("source", "release-notes"))
+
+
+def _collect(
+    sources: list[str], out: Path, user_agent: str, delay: float, powersets: frozenset[str], cache: PageCache
+) -> tuple[int, bool]:
+    """Collect the requested sources into ``out``; returns the entries written and whether any source failed."""
+    rows = _index(out)
+    written = {str(row["url"]) for row in rows}
+    total = 0
+    failed = False
+    forum = Fetcher(user_agent, delay)
+    if "release-notes" in sources:
+        count = _collect_release_notes(forum, written, out, powersets, cache)
+        failed |= count < 0
+        total += max(count, 0)
+        rows = _index(out)
+    if "forum-beta" in sources:
+        count, complete = _collect_forum_beta(forum, written, out, rows, powersets, cache)
+        failed |= not complete
+        total += count
+    if "paragonwiki" in sources:
+        count = _collect_wiki(Fetcher(user_agent, delay, base=WIKI_BASE), written, out, rows, cache)
+        failed |= count < 0
+        total += max(count, 0)
+    return total, failed
+
+
+def _write_index(out: Path, rows: list[dict[str, object]]) -> None:
+    text = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows)
+    index = out / "index.jsonl"
+    if not index.exists() or index.read_text(encoding="utf-8") != text:
+        index.write_text(text, encoding="utf-8", newline="\n")
+
+
+def _sync(fresh: Path, out: Path, source: str) -> Counter[str]:
+    """Bring ``out``'s records of ``source`` to ``fresh``'s, writing only the files that differ.
+
+    A record whose page now parses to no lines while the file on disk holds some is kept:
+    those lines were filled in by hand for a post written in a layout the parser does not read.
+    """
+    counts: Counter[str] = Counter({"changed": 0, "unchanged": 0, "removed": 0, "kept": 0})
+    produced: set[str] = set()
+    for row in _index(fresh):
+        if _source(row) != source or not row.get("file"):
+            continue
+        name = str(row["file"])
+        produced.add(name)
+        text = (fresh / name).read_text(encoding="utf-8")
+        target = out / name
+        current = target.read_text(encoding="utf-8") if target.exists() else None
+        if current == text:
+            counts["unchanged"] += 1
+        elif current is not None and not json.loads(text)["changes"] and json.loads(current)["changes"]:
+            counts["kept"] += 1
+        else:
+            target.write_text(text, encoding="utf-8", newline="\n")
+            counts["changed"] += 1
+    for row in _index(out):
+        name = str(row.get("file") or "")
+        if _source(row) == source and name and name not in produced:
+            (out / name).unlink(missing_ok=True)
+            counts["removed"] += 1
+    return counts
+
+
+def _redate(out: Path, source: str) -> int:
+    """Keep each change line only in its source's earliest record; returns the records rewritten.
+
+    Needed after a kept record: the fresh records were dated without its lines. A record that
+    would lose every line is left as it is. Live release notes are recorded whole, never dated
+    this way.
+    """
+    if source not in DATED_SOURCES:
+        return 0
+    seen: set[tuple[str, ...]] = set()
+    rewritten = 0
+    held = [row for row in _index(out) if _source(row) == source and row.get("file")]
+    for row in sorted(held, key=lambda r: (str(r.get("published", "")), str(r["url"]))):
+        path = out / str(row["file"])
+        document = json.loads(path.read_text(encoding="utf-8"))
+        kept = []
+        for change in document["changes"]:
+            key = tuple(str(change[k]) for k in ("category", "subsection", "archetype", "powerset", "power", "text"))
+            if key not in seen:
+                seen.add(key)
+                kept.append(change)
+        if kept and len(kept) < len(document["changes"]):
+            document["changes"] = kept
+            path.write_text(json.dumps(document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+            rewritten += 1
+    return rewritten
+
+
+def _reparse(
+    sources: list[str], out: Path, user_agent: str, delay: float, powersets: frozenset[str], cache: PageCache
+) -> bool:
+    """Rebuild the sources' records in a scratch folder, then change only what differs in ``out``."""
+    old_rows = _index(out)
+    with tempfile.TemporaryDirectory() as scratch:
+        fresh = Path(scratch)
+        # Other sources' rows stay in view: the beta collector needs the live coverage.
+        _write_index(fresh, [row for row in old_rows if _source(row) not in sources])
+        _, failed = _collect(sources, fresh, user_agent, delay, powersets, cache)
+        counts = {source: _sync(fresh, out, source) for source in sources}
+        new_rows = _index(fresh)
+        _write_index(
+            out,
+            [
+                row
+                for source in SOURCES
+                for row in (new_rows if source in sources else old_rows)
+                if _source(row) == source
+            ],
+        )
+    for source in (s for s in SOURCES if s in sources):
+        count = counts[source]
+        print(
+            f"{source}: {count['changed']} changed, {count['unchanged']} unchanged, {count['removed']} removed, "
+            f"{count['kept']} kept, {_redate(out, source)} re-dated"
+        )
+    return failed
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -516,30 +676,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--canonical", type=Path, default=Path("data/canonical"), help="canonical data, for powerset names"
     )
+    parser.add_argument(
+        "--cache", type=Path, default=None, help="the entry page cache (default OUT/.cache, gitignored)"
+    )
+    parser.add_argument(
+        "--reparse",
+        action="store_true",
+        help="rebuild the sources' records from the page cache and rewrite only the records that differ",
+    )
     args = parser.parse_args(argv)
     sources = args.source or list(SOURCES)
     powersets = powersets_from_canonical(args.canonical)
     if not powersets:
         print(f"E68: no powerset names under {args.canonical}; headings will not fill powerset", file=sys.stderr)
+    cache = PageCache(args.cache or args.out / ".cache")
+    args.out.mkdir(parents=True, exist_ok=True)
 
-    rows = _index(args.out)
-    written = {str(row["url"]) for row in rows}
-    total = 0
-    failed = False
-    forum = Fetcher(args.user_agent, args.delay)
-    if "release-notes" in sources:
-        count = _collect_release_notes(forum, written, args.out, powersets)
-        failed |= count < 0
-        total += max(count, 0)
-        rows = _index(args.out)
-    if "forum-beta" in sources:
-        count, complete = _collect_forum_beta(forum, written, args.out, rows, powersets)
-        failed |= not complete
-        total += count
-    if "paragonwiki" in sources:
-        count = _collect_wiki(Fetcher(args.user_agent, args.delay, base=WIKI_BASE), written, args.out, rows)
-        failed |= count < 0
-        total += max(count, 0)
+    if args.reparse:
+        return 1 if _reparse(sources, args.out, args.user_agent, args.delay, powersets, cache) else 0
+    total, failed = _collect(sources, args.out, args.user_agent, args.delay, powersets, cache)
     print(f"{total} entries written to {args.out}")
     return 1 if failed else 0
 

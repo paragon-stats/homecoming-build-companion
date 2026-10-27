@@ -45,6 +45,22 @@ stub to fill in on review, and the opening post verbatim with tables kept as row
   refetches every thread.
 - When `robots.txt` refuses access (401 or 403, `E02`) or cannot be read (5xx or a network
   failure, `E03`), nothing is fetched; only a missing file (any other 4xx) means no rules.
+- A listing that is a category of sub-forums lists only its own threads: each sub-forum is
+  walked by naming it with its own `--forum`.
+
+After a change to how captures are placed (the archetype, powerset and theme rules), apply it to
+the captures already on disk without fetching anything:
+
+```bash
+python -m scripts.forum_scrape.guides --reclassify --out community
+```
+
+Only the captures whose folder changes move; each takes the new folder's lead tag, keeps every
+other tag, key and section, and gets a ledger row naming its new path. The ledger records the
+section a thread was found in; a row written before it did keeps the archetype of the
+`archetypes/<at>` folder its capture sits in. A capture without `content_hash`, or under a nested
+capture root with its own ledger, is not touched; a move onto an existing file is named (`E70`)
+and skipped.
 
 After a run, regenerate `community/INDEX.md` with `scripts/regen-index.ps1` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
@@ -88,6 +104,20 @@ application covers the same series or date), and the Paragon Wiki Archive's date
 later entry keeps only what no earlier one recorded and a word-for-word repost is indexed
 without a file. `--source` selects one; the default is all three. Re-runs write only entries
 not yet in the index, so the two archive sources cost nothing after their first run.
+
+Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
+After a parser change, rebuild the records from it instead of deleting them:
+
+```bash
+python -m scripts.forum_scrape.patch_notes --source paragonwiki --reparse
+```
+
+The sources are regenerated in a scratch folder, fetching only pages the cache lacks; then only
+the records whose JSON differs are rewritten, records no page produces any more are removed, and
+the run prints, per source, how many records changed, stayed the same, were removed and were
+kept. A record is kept when its page now parses to no lines but the file holds some: those were
+filled in by hand for a post written as paragraphs. A last pass dates each line by first
+appearance across the source again, since the regenerated records did not see the kept ones.
 
 ## Sections
 

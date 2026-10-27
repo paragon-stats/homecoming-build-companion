@@ -353,6 +353,53 @@ def _capture_url(capture: str) -> str:
         return raw.strip("\"' ")
 
 
+def _inside_other_root(path: Path, out: Path) -> bool:
+    """Whether ``path`` sits under a nested capture root, one with its own ledger."""
+    return any((parent / "guides.jsonl").exists() for parent in path.parents if parent != out and out in parent.parents)
+
+
+def _reclassify(out: Path, powersets: frozenset[str]) -> int:
+    """Re-run placement over the captures already on disk and move only those whose folder changes.
+
+    Nothing is fetched. A ledger row without ``section`` (written before rows recorded it)
+    keeps the archetype of the ``archetypes/<at>`` folder its capture sits in.
+    """
+    ledger = _ledger(out)
+    moved: list[dict[str, object]] = []
+    unchanged = 0
+    for path in sorted(out.rglob("*.md")):
+        text = path.read_text(encoding="utf-8")
+        keys, _ = _split(text)
+        if not stored_hash(text) or "title" not in keys or _inside_other_root(path, out):
+            continue
+        title, url = str(json.loads(keys["title"])), _capture_url(text)
+        current = path.parent.relative_to(out).as_posix()
+        row = ledger.get(url, {})
+        section = str(row.get("section") or (current.rsplit("/", 1)[-1] if current.startswith("archetypes/") else ""))
+        folder, lead = ("theme", "theme-rp") if is_theme(title) else classify(title, section, powersets)
+        if folder == current:
+            unchanged += 1
+            continue
+        target = out / folder / path.name
+        relative = target.relative_to(out).as_posix()
+        if target.exists():
+            print(f"E70: {relative} already exists; {path.relative_to(out).as_posix()} left in place", file=sys.stderr)
+            continue
+        tags = json.loads(keys.get("topic_tags", "[]"))
+        tags = [lead, *[t for t in tags[1:] if t != lead]]
+        text = text.replace(f"topic_tags: {keys['topic_tags']}", f"topic_tags: {_quoted_list(tags)}", 1)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text, encoding="utf-8", newline="\n")
+        path.unlink()
+        print(f"moved {path.relative_to(out).as_posix()} -> {relative}")
+        moved.append({**row, "topic_url": url, "file": relative})
+    with (out / "guides.jsonl").open("a", encoding="utf-8", newline="\n") as ledger_file:
+        for entry in moved:
+            ledger_file.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    print(f"{len(moved)} capture(s) moved, {unchanged} unchanged in {out}")
+    return 0
+
+
 def _ledger(out: Path) -> dict[str, dict[str, object]]:
     path = out / "guides.jsonl"
     rows: dict[str, dict[str, object]] = {}
@@ -432,8 +479,11 @@ def main(argv: list[str] | None = None) -> int:
         prog="python -m scripts.forum_scrape.guides",
         description="Capture forum guides as community reference files, with attribution.",
     )
+    parser.add_argument("--forum", action="append", default=[], metavar="URL", help="a forum listing URL (repeatable)")
     parser.add_argument(
-        "--forum", action="append", default=[], metavar="URL", required=True, help="a forum listing URL (repeatable)"
+        "--reclassify",
+        action="store_true",
+        help="re-run placement over the captures under --out and move only those whose folder changes; no fetch",
     )
     parser.add_argument(
         "--pages", type=int, default=None, metavar="N", help="listing pages to walk per forum (default all)"
@@ -455,10 +505,14 @@ def main(argv: list[str] | None = None) -> int:
         "--tag", action="append", default=[], metavar="TAG", help="a tag added after the folder tag (repeatable)"
     )
     args = parser.parse_args(argv)
+    powersets = powersets_from_canonical(args.canonical)
+    if args.reclassify:
+        return _reclassify(args.out, powersets)
+    if not args.forum:
+        parser.error("--forum is required unless --reclassify is given")
 
     fetcher = Fetcher(args.user_agent, args.delay, base=args.base)
     source = urllib.parse.urlsplit(args.base).netloc or args.base
-    powersets = powersets_from_canonical(args.canonical)
     ledger = _ledger(args.out)
     args.out.mkdir(parents=True, exist_ok=True)
     examined = captured = streak = gaps = 0
@@ -490,6 +544,7 @@ def main(argv: list[str] | None = None) -> int:
                 streak = streak + 1 if reason in UNSETTLED else 0
                 row = {
                     "topic_url": topic_url,
+                    "section": section_slug,
                     "last_activity": last_activity,
                     "captured": bool(file),
                     "file": file,

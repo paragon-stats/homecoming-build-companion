@@ -43,6 +43,8 @@ Desktop.ini
 # Project transient
 inbox/__staging/
 tmp/
+# The patch timeline's local page cache (python -m scripts.forum_scrape.patch_notes)
+data/patches/.cache/
 
 # .NET build artifacts + local Mids reference dumps (tools/mids-dump)
 tools/mids-dump/bin/
