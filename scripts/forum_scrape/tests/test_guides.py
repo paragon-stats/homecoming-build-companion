@@ -216,6 +216,32 @@ def test_merge_capture_appends_the_verbatim_section_when_the_old_file_lacks_one(
     assert stored_hash(merged) == "new2"
     assert stored_hash("no frontmatter at all") == "" and stored_hash("---\nunterminated") == ""
     assert stored_hash('---\nbare line without a colon\ncontent_hash: "h"\n---\n') == "h"
+    assert stored_hash("---\ncontent_hash: abc\n---\n") == "abc"  # hand-edited without quotes
+
+
+def test_merge_capture_keeps_keys_and_tags_the_tool_does_not_own() -> None:
+    post = Post("1", "Bopper", "", "2020-03-01T10:00:00Z", "", GUIDE_BODY)
+    old = capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-10-26", "h2")
+    reviewed = old.replace(
+        'content_hash: "h2"', 'content_hash: "h2"\nsuperseded_hash: "h1"\nreviewed_by: "local-capture"'
+    )
+    reviewed = reviewed.replace('topic_tags: ["mechanics"]', 'topic_tags: ["mechanics", "procs-ppm"]')
+    # An unchanged hash: the earlier superseded hash and the reviewer's own key and tags stay.
+    same = merge_capture(reviewed, capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-11-01", "h2"))
+    head = same.split("---\n", 2)[1]
+    assert 'superseded_hash: "h1"' in head and 'reviewed_by: "local-capture"' in head
+    assert 'topic_tags: ["mechanics", "procs-ppm"]' in head
+    # A changed hash replaces the superseded one rather than listing two.
+    moved = merge_capture(reviewed, capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-11-02", "h3"))
+    head = moved.split("---\n", 2)[1]
+    assert head.count("superseded_hash") == 1 and 'superseded_hash: "h2"' in head
+
+
+def test_capture_markdown_escapes_post_lines_that_would_read_as_headings() -> None:
+    body = GUIDE_BODY + "<p>## Not a heading, just the author's text</p>"
+    post = Post("1", "Bopper", "", "2020-03-01T10:00:00Z", "", body)
+    text = capture_markdown(post, TOPIC, "T", ["mechanics"], "2026-10-26", "h")
+    assert "\n\\## Not a heading" in text and "\n## Not a heading" not in text
 
 
 def _summary_stub(capture: str) -> str:
@@ -436,6 +462,44 @@ def test_main_captures_a_real_archived_thread(tmp_path: Path, fake_net) -> None:
     assert 'title: "Claws/Fire Brute build"' in text and 'authors: ["Super_E_Man"]' in text
     assert 'date_posted: "2012-08-13"' in text and 'source: "forumarchive.cityofheroes.dev"' in text
     assert "### Post 1 — Super_E_Man, 2012-08-13" in text and text.count("\n- ") > 50  # the build's slot lines
+
+
+def test_main_names_a_colliding_title_by_topic_id_and_leaves_hand_made_captures(
+    tmp_path: Path, fake_net, capsys
+) -> None:
+    routes, _ = fake_net
+    twin = f"{BASE}/topic/20000-movement-speed-a-quick-guide/"  # another thread, the same title
+    routes[FORUM] = (
+        f"<li class='ipsDataItem'><a href='{TOPIC}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+        f"<li class='ipsDataItem'><a href='{twin}'>t</a><time datetime='2024-01-02T00:00:00Z'></time>"
+        f"<time datetime='2024-01-02T00:00:00Z'></time></li>"
+    ).encode()
+    routes[TOPIC] = GUIDE_PAGE.encode()
+    routes[twin] = GUIDE_PAGE.replace("21.48", "22.00").encode()
+    out = tmp_path / "community"
+    args = ["--forum", FORUM, "--out", str(out), "--canonical", str(tmp_path), "--delay", "0"]
+    assert main(args) == 0
+    first = (out / "mechanics" / "movement-speed-a-quick-guide.md").read_text(encoding="utf-8")
+    second = (out / "mechanics" / "movement-speed-a-quick-guide-20000.md").read_text(encoding="utf-8")
+    assert f'url: "{TOPIC}"' in first and "21.48" in first
+    assert f'url: "{twin}"' in second and "22.00" in second
+    assert "2 guide(s) written" in capsys.readouterr().out
+
+    # A hand-made capture (no content_hash) at a thread's path is never overwritten.
+    manual = '---\ntitle: "Movement Speed"\nurl: "' + TOPIC + '"\n---\n\n# Movement Speed\n\n### Post 2 — Reader\n'
+    (out / "mechanics" / "movement-speed-a-quick-guide.md").write_text(manual, encoding="utf-8")
+    assert main([*args, "--force"]) == 0
+    out_text, err_text = capsys.readouterr()
+    assert (out / "mechanics" / "movement-speed-a-quick-guide.md").read_text(encoding="utf-8") == manual
+    assert "E69: mechanics/movement-speed-a-quick-guide.md has no content_hash" in err_text
+    assert "kept manual capture: 1" in out_text
+    # A capture whose url line was hand-edited without quotes still names its own thread.
+    unquoted = first.replace(f'url: "{TOPIC}"', f"url: {TOPIC}")
+    (out / "mechanics" / "movement-speed-a-quick-guide.md").write_text(unquoted, encoding="utf-8")
+    assert main([*args, "--force"]) == 0
+    assert (out / "mechanics" / "movement-speed-a-quick-guide.md").read_text(encoding="utf-8") == unquoted
+    assert "0 guide(s) written" in capsys.readouterr().out  # recognised as its own file, unchanged
 
 
 def test_main_reports_an_unreadable_listing_and_asks_for_a_re_run(tmp_path: Path, fake_net, capsys) -> None:

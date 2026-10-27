@@ -55,12 +55,15 @@ THEME_TITLE = re.compile(
     re.I,
 )
 # Frontmatter a reviewer owns; a refresh never overwrites these.
-REVIEWER_KEYS = ("trust", "contradicts_data")
+# Frontmatter a reviewer owns once the file exists: a refresh keeps their values.
+REVIEWER_KEYS = ("trust", "contradicts_data", "topic_tags")
 # Ledger outcomes that do not settle a thread: it is looked at again next run.
 UNSETTLED = frozenset({"unavailable", "no posts"})
 # Consecutive unsettled threads that stop a run: the failure is the site or the markup, not the thread.
 BREAKER_STREAK = 10
 _VERBATIM_HEADING = "## Verbatim excerpt"
+_HEADING_START = re.compile(r"^(#)", re.M)
+_TOPIC_ID = re.compile(r"/topic/(\d+)-")
 # Build vocabulary per 100 words. In the probe every bind, badge, font, install and market
 # guide sat below 1.0; mechanics and archetype guides had a median of 3.3.
 BUILD_VOCAB_MIN_PER_100 = 2.0
@@ -267,7 +270,8 @@ def capture_markdown(
             "",
             f"### Post 1 — {post.author}, {posted}",
             "",
-            render_html(post.html),
+            # A post line that starts with "#" would read as a heading and end the section early.
+            _HEADING_START.sub(r"\\\1", render_html(post.html)),
             "",
         ]
     )
@@ -301,25 +305,35 @@ def _verbatim_section(body: str) -> tuple[int, int]:
 
 def stored_hash(capture: str) -> str:
     """The ``content_hash`` a capture file records, or "" for a file written before hashes."""
-    return str(json.loads(_split(capture)[0].get("content_hash", '""')))
+    raw = _split(capture)[0].get("content_hash", '""')
+    try:
+        return str(json.loads(raw))
+    except json.JSONDecodeError:
+        return raw.strip("\"' ")  # hand-edited without quotes: the digest is still the value
 
 
 def merge_capture(existing: str, fresh: str) -> str:
     """A refresh that keeps what the reviewer wrote.
 
     Source-derived frontmatter and the verbatim section come from ``fresh``; the reviewer's
-    ``trust`` and ``contradicts_data`` values, the Summary and every other section come from
-    ``existing``. The replaced hash is kept as ``superseded_hash`` so the change can be diffed.
+    ``REVIEWER_KEYS`` values, any key the tool does not write, the Summary and every other
+    section come from ``existing``. The replaced hash is kept as ``superseded_hash`` so the
+    change can be diffed.
     """
     old_keys, old_body = _split(existing)
     new_keys, new_body = _split(fresh)
     lines = []
+    superseded = ""
     for key, value in new_keys.items():
         if key in REVIEWER_KEYS and key in old_keys:
             value = old_keys[key]
         lines.append(f"{key}: {value}")
         if key == "content_hash" and old_keys.get("content_hash") not in (None, value):
-            lines.append(f"superseded_hash: {old_keys['content_hash']}")
+            superseded = old_keys["content_hash"]
+            lines.append(f"superseded_hash: {superseded}")
+    for key, value in old_keys.items():
+        if key not in new_keys and not (key == "superseded_hash" and superseded):
+            lines.append(f"{key}: {value}")
     new_start, new_end = _verbatim_section(new_body)
     old_start, old_end = _verbatim_section(old_body)
     if old_start < 0:
@@ -327,6 +341,15 @@ def merge_capture(existing: str, fresh: str) -> str:
     else:
         body = old_body[:old_start] + new_body[new_start:new_end] + old_body[old_end:]
     return "---\n" + "\n".join(lines) + "\n---\n\n" + body
+
+
+def _capture_url(capture: str) -> str:
+    """The thread URL a capture file records, or "" when it records none."""
+    raw = _split(capture)[0].get("url", '""')
+    try:
+        return str(json.loads(raw))
+    except json.JSONDecodeError:
+        return raw.strip("\"' ")
 
 
 def _ledger(out: Path) -> dict[str, dict[str, object]]:
@@ -384,8 +407,16 @@ def _capture(
     tags = [lead, *extra_tags, *kinds, *[t for t in topic_tags(title, text) if t != lead]]
     digest = content_hash(text)
     path = out / folder / f"{slugify(title)}.md"
-    relative = path.relative_to(out).as_posix()
     existing = path.read_text(encoding="utf-8") if path.exists() else ""
+    if existing and _capture_url(existing) not in ("", topic_url):
+        # Another thread already holds this title's file: this one is named by its topic id too.
+        topic_id = _TOPIC_ID.search(topic_url)
+        path = out / folder / f"{slugify(title)}-{topic_id.group(1) if topic_id else 'x'}.md"
+        existing = path.read_text(encoding="utf-8") if path.exists() else ""
+    relative = path.relative_to(out).as_posix()
+    if existing and not stored_hash(existing):
+        print(f"E69: {relative} has no content_hash (a hand-made capture); left as it is", file=sys.stderr)
+        return relative, "", "kept manual capture"
     if existing and stored_hash(existing) == digest:
         return relative, digest, "unchanged"
     fresh = capture_markdown(opener, topic_url, title, tags, datetime.now(UTC).date().isoformat(), digest, source)
@@ -453,7 +484,7 @@ def main(argv: list[str] | None = None) -> int:
                     fetcher, topic_url, section_slug, args.out, powersets, source, tuple(args.tag)
                 )
                 examined += 1
-                captured += bool(file) and reason != "unchanged"
+                captured += bool(file) and not reason
                 reasons[reason or "written"] += 1
                 streak = streak + 1 if reason in UNSETTLED else 0
                 row = {
