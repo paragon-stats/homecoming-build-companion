@@ -8,6 +8,7 @@ from scripts.forum_scrape.patch_notes import (
     WIKI_BASE,
     Change,
     PatchEntry,
+    _redate,
     _write_dated,
     beta_candidates,
     dedupe_lines,
@@ -473,3 +474,106 @@ def test_main_paragonwiki_writes_each_dated_page_and_reports_a_missing_index(tmp
     routes[f"{WIKI_BASE}/wiki/Patch_Notes"] = urllib.error.URLError("down")
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "paragonwiki"]) == 1
     assert "E64" in capsys.readouterr().err
+
+
+def _wiki_routes(routes: dict) -> list[str]:
+    routes[f"{WIKI_BASE}/robots.txt"] = ROBOTS_OK
+    routes[f"{WIKI_BASE}/wiki/Patch_Notes"] = WIKI_INDEX.encode()
+    pages = [f"{WIKI_BASE}/wiki/Patch_Notes/{d}" for d in ("2005-10-27", "2004-05-11", "2012-08-23_Beta")]
+    routes[pages[0]] = WIKI_PAGE.encode()
+    # Two pages the parser reads as empty: one written as paragraphs, one with no notes at all.
+    routes[pages[1]] = b"<html><head><title>Patch Notes/2004-05-11</title></head><body></body></html>"
+    routes[pages[2]] = b"<html><head><title>Patch Notes/2012-08-23 Beta</title></head><body></body></html>"
+    return pages
+
+
+def test_reparse_rewrites_only_records_that_differ_and_reads_pages_from_the_cache(
+    tmp_path: Path, fake_net, capsys, monkeypatch
+) -> None:
+    routes, calls = fake_net
+    pages = _wiki_routes(routes)
+    out = tmp_path / "patches"
+    args = ["--out", str(out), "--delay", "0", "--source", "paragonwiki"]
+    assert main(args) == 0
+    early = out / "2004-05-11-paragonwiki-2004-05-11.json"
+    later = out / "2005-10-27-paragonwiki-2005-10-27.json"
+    # The 2004 page parsed to nothing; its line was filled in the record by hand, and the
+    # 2005 page restates it.
+    record = json.loads(early.read_text(encoding="utf-8"))
+    record["changes"] = [
+        {
+            "category": "PvP Zones",
+            "subsection": "",
+            "archetype": "",
+            "powerset": "",
+            "power": "",
+            "text": "Recluse's Victory opens.",
+        }
+    ]
+    early.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    stray = out / "2003-01-01-paragonwiki-gone.json"  # a record no page produces any more
+    stray.write_text('{"changes": []}\n', encoding="utf-8")
+    with (out / "index.jsonl").open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps({"url": "gone", "published": "2003-01-01", "source": "paragonwiki", "file": stray.name}))
+        fh.write("\n")
+    capsys.readouterr()
+
+    # A warm cache: no page is requested, nothing differs but the stray, the hand fill stays,
+    # and the 2005 record gives up the line the 2004 one now holds.
+    for page in pages:
+        del routes[page]
+    before = len(calls)
+    assert main([*args, "--reparse"]) == 0
+    assert not [url for url in calls[before:] if url in pages]
+    assert "paragonwiki: 0 changed, 2 unchanged, 1 removed, 1 kept, 1 re-dated" in capsys.readouterr().out
+    assert not stray.exists()
+    assert [c["text"] for c in json.loads(early.read_text(encoding="utf-8"))["changes"]] == ["Recluse's Victory opens."]
+    assert "Recluse's Victory opens." not in later.read_text(encoding="utf-8")
+    rows = [json.loads(line) for line in (out / "index.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [r["url"] for r in rows] == [pages[1], pages[0], pages[2]]
+
+    # A parser change: the records it alters are rewritten, and match a full regeneration.
+    import scripts.forum_scrape.patch_notes as patch_notes
+
+    real = patch_notes.parse_wiki_page
+
+    def louder(page: str, url: str) -> PatchEntry:
+        entry = real(page, url)
+        entry.changes = [
+            Change(c.category, c.subsection, c.archetype, c.powerset, c.power, c.text.upper()) for c in entry.changes
+        ]
+        return entry
+
+    monkeypatch.setattr(patch_notes, "parse_wiki_page", louder)
+    assert main([*args, "--reparse"]) == 0
+    assert "paragonwiki: 1 changed, 1 unchanged, 0 removed, 1 kept, 0 re-dated" in capsys.readouterr().out
+    _wiki_routes(routes)
+    fresh = tmp_path / "fresh"
+    assert main(["--out", str(fresh), "--delay", "0", "--source", "paragonwiki"]) == 0
+    assert later.read_text(encoding="utf-8") == (fresh / later.name).read_text(encoding="utf-8")
+
+
+def test_redate_leaves_live_release_notes_whole(tmp_path: Path) -> None:
+    line = {"category": "Powers", "subsection": "", "archetype": "", "powerset": "", "power": "", "text": "Same."}
+    rows = []
+    for name, date in (("a.json", "2024-01-01"), ("b.json", "2024-02-01")):
+        (tmp_path / name).write_text(json.dumps({"changes": [line]}) + "\n", encoding="utf-8")
+        rows.append({"url": name, "published": date, "source": "release-notes", "file": name})
+    (tmp_path / "index.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    assert _redate(tmp_path, "release-notes") == 0
+    assert json.loads((tmp_path / "b.json").read_text(encoding="utf-8"))["changes"] == [line]
+
+
+def test_reparse_of_one_source_leaves_the_others_and_their_index_rows(tmp_path: Path, fake_net, capsys) -> None:
+    routes, _ = fake_net
+    _wiki_routes(routes)
+    out = tmp_path / "patches"
+    out.mkdir()
+    live = {"url": f"{BASE}/patch-notes/issue-28/page-1/x-r22/", "published": "2023-04-25", "source": "release-notes"}
+    (out / "index.jsonl").write_text(json.dumps({**live, "file": "live.json"}) + "\n", encoding="utf-8")
+    (out / "live.json").write_text("{}\n", encoding="utf-8")
+    assert main(["--out", str(out), "--delay", "0", "--source", "paragonwiki", "--reparse"]) == 0
+    assert "paragonwiki: 3 changed, 0 unchanged, 0 removed, 0 kept" in capsys.readouterr().out
+    rows = [json.loads(line) for line in (out / "index.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert rows[0]["file"] == "live.json" and (out / "live.json").read_text(encoding="utf-8") == "{}\n"
+    assert [r["source"] for r in rows] == ["release-notes", "paragonwiki", "paragonwiki", "paragonwiki"]

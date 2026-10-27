@@ -1,7 +1,10 @@
 """Guide capture: shape detection, topic tags, placement, the capture file, and the crawl."""
 
 import json
+import re
 from pathlib import Path
+
+import pytest
 
 from scripts.forum_scrape import scrape
 from scripts.forum_scrape.guides import (
@@ -165,6 +168,10 @@ def test_is_theme_matches_concept_costume_and_roleplay_threads() -> None:
     assert is_theme("A guide to costume design for villains")
     assert is_theme("Power colour customization: matching auras to your look")
     assert not is_theme("Movement Speed: A Quick Guide")
+    # Aura powersets and Lore pets are build subjects, not themes.
+    assert not is_theme("Maximal survival guide for Fiery Melee/Energy Aura brutes")
+    assert not is_theme("Memphis Bill's Firey Aura overview 2.0 (i18)")
+    assert not is_theme("A mostly comprehensive compendium of Lore pet performance")
 
 
 def test_main_captures_theme_guides_without_build_vocabulary(tmp_path: Path, fake_net) -> None:
@@ -500,6 +507,64 @@ def test_main_names_a_colliding_title_by_topic_id_and_leaves_hand_made_captures(
     assert main([*args, "--force"]) == 0
     assert (out / "mechanics" / "movement-speed-a-quick-guide.md").read_text(encoding="utf-8") == unquoted
     assert "0 guide(s) written" in capsys.readouterr().out  # recognised as its own file, unchanged
+
+
+def test_reclassify_moves_only_captures_whose_folder_changes_and_fetches_nothing(
+    tmp_path: Path, fake_net, capsys, monkeypatch
+) -> None:
+    routes, calls = fake_net
+    routes[FORUM] = (
+        f"<li class='ipsDataItem'><a href='{TOPIC}'>t</a><time datetime='2024-01-01T00:00:00Z'></time>"
+        f"<time datetime='2024-01-01T00:00:00Z'></time></li>"
+    ).encode()
+    routes[TOPIC] = GUIDE_PAGE.encode()
+    out = tmp_path / "community"
+    capture_args = ["--forum", FORUM, "--out", str(out), "--canonical", str(tmp_path), "--delay", "0"]
+    # An older classifier that read "speed" as a theme word sends the guide to theme/.
+    monkeypatch.setattr("scripts.forum_scrape.guides.THEME_TITLE", re.compile(r"\bspeed\b", re.I))
+    assert main(capture_args) == 0
+    old = out / "theme" / "movement-speed-a-quick-guide.md"
+    assert 'topic_tags: ["theme-rp"' in old.read_text(encoding="utf-8")
+    rows = [json.loads(line) for line in (out / "guides.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert rows[-1]["section"] == "44-guides"  # the ledger names the section a thread came from
+    reviewed = old.read_text(encoding="utf-8") + "\n## Useful points\n\n- kept by the reviewer\n"
+    old.write_text(reviewed, encoding="utf-8", newline="\n")
+    # A capture sitting under an archetype from its section, in a row written before sections were recorded.
+    brute = out / "archetypes" / "brute" / "fire-fire-notes.md"
+    brute.parent.mkdir(parents=True)
+    brute.write_text(
+        '---\ntitle: "Fire/Fire notes"\nurl: "u2"\ntopic_tags: ["brute"]\ncontent_hash: "h"\n---\n', encoding="utf-8"
+    )
+    (out / "nested").mkdir()
+    (out / "nested" / "guides.jsonl").write_text("", encoding="utf-8")  # another capture root: left alone
+    (out / "nested" / "speed-run.md").write_text('---\ntitle: "x"\ncontent_hash: "h"\n---\n', encoding="utf-8")
+    (out / "hand.md").write_text('---\ntitle: "Movement speed notes"\n---\n', encoding="utf-8")  # no hash: skipped
+    capsys.readouterr()
+
+    monkeypatch.undo()
+    before = len(calls)
+    assert main(["--reclassify", "--out", str(out), "--canonical", str(tmp_path)]) == 0
+    assert calls[before:] == []  # not even robots.txt
+    assert "1 capture(s) moved, 1 unchanged" in capsys.readouterr().out
+    new = out / "mechanics" / "movement-speed-a-quick-guide.md"
+    assert not old.exists() and "- kept by the reviewer" in new.read_text(encoding="utf-8")
+    assert 'topic_tags: ["mechanics"' in new.read_text(encoding="utf-8") and brute.exists()
+    rows = [json.loads(line) for line in (out / "guides.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert rows[-1]["file"] == "mechanics/movement-speed-a-quick-guide.md"
+
+    # A target already taken is named and the capture left where it is.
+    monkeypatch.setattr("scripts.forum_scrape.guides.THEME_TITLE", re.compile(r"\bspeed\b", re.I))
+    (out / "theme").mkdir(exist_ok=True)
+    new.rename(out / "theme" / new.name)
+    new.write_text("someone else's file\n", encoding="utf-8")
+    monkeypatch.undo()
+    assert main(["--reclassify", "--out", str(out), "--canonical", str(tmp_path)]) == 0
+    assert "E70: mechanics/movement-speed-a-quick-guide.md already exists" in capsys.readouterr().err
+
+
+def test_main_needs_a_forum_unless_it_reclassifies(tmp_path: Path) -> None:
+    with pytest.raises(SystemExit):
+        main(["--out", str(tmp_path)])
 
 
 def test_main_reports_an_unreadable_listing_and_asks_for_a_re_run(tmp_path: Path, fake_net, capsys) -> None:

@@ -407,3 +407,20 @@ def test_topic_rows_ignores_rows_that_are_not_topics() -> None:
 
     forum_row = "<li class='ipsDataItem'><a href='https://forums.homecomingservers.com/forum/19-x/'>f</a></li>"
     assert topic_rows(forum_row + listing_row(TOPIC)) == {TOPIC: "2026-01-01T00:00:00Z"}
+
+
+def test_topic_rows_skips_sub_forum_cards_on_a_category_page() -> None:
+    """A category page lists its sub-forums, each with a nested link to its newest topic."""
+    from scripts.forum_scrape.scrape import topic_rows
+    from scripts.forum_scrape.tests.test_forums import listing_row
+
+    newest = "https://forums.homecomingservers.com/topic/66076-trying-to-figure-out-a-solo-blaster-build/"
+    card = (
+        "<li class='cForumRow ipsDataItem ipsDataItem_responsivePhoto ipsClearfix' data-forumID='13'>"
+        "<h4 class='ipsDataItem_title'><a href='https://forums.homecomingservers.com/forum/13-blaster/'>Blaster</a></h4>"
+        "<ul class='ipsDataItem_lastPoster ipsDataItem_withPhoto'>"
+        f"<li class='ipsDataItem_lastPoster__title'><a href='{newest}'>Trying to figure out</a></li>"
+        f"<li class='ipsType_light'>By x, <a href='{newest}'><time datetime='2026-10-27T01:00:00Z'>3h</time></a></li>"
+        "</ul></li>"
+    )
+    assert topic_rows(card + listing_row(TOPIC)) == {TOPIC: "2026-01-01T00:00:00Z"}
