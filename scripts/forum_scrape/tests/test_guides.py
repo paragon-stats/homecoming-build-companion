@@ -23,7 +23,7 @@ from scripts.forum_scrape.guides import (
     structure_score,
     topic_tags,
 )
-from scripts.forum_scrape.scrape import Post
+from scripts.forum_scrape.scrape import Post, iter_posts
 
 BASE = "https://forums.homecomingservers.com"
 TOPIC = f"{BASE}/topic/16050-movement-speed-a-quick-guide/"
@@ -409,6 +409,42 @@ def test_main_reads_an_archived_board_with_its_own_source_and_era_tag(tmp_path: 
     assert 'date_posted: "2005-10-03"' in text
 
 
-def test_main_reports_an_unreadable_listing(tmp_path: Path, fake_net, capsys) -> None:
-    assert main(["--forum", FORUM, "--out", str(tmp_path), "--canonical", str(tmp_path), "--delay", "0"]) == 0
+ARCHIVE_FIXTURE = Path(__file__).parent / "fixtures" / "archive_topic_sample.html"
+
+
+def test_main_captures_a_real_archived_thread(tmp_path: Path, fake_net) -> None:
+    """The archive's own markup, saved from one thread, gives the right title, author, date and body."""
+    routes, _ = fake_net
+    archive = "https://forumarchive.cityofheroes.dev"
+    forum = f"{archive}/index.php?/forum/44-player-guides/"
+    topic = f"{archive}/index.php?/topic/141229-clawsfire-brute-build/"
+    routes[forum] = (
+        f"<li class='ipsDataItem'><a href='{topic}'>t</a><time datetime='2012-08-13T15:30:00Z'></time>"
+        f"<time datetime='2012-08-20T00:00:00Z'></time></li>"
+    ).encode()
+    page_html = ARCHIVE_FIXTURE.read_text(encoding="utf-8")
+    routes[topic] = page_html.encode()
+    (opener,) = iter_posts(page_html)
+    assert opener.author == "Super_E_Man"
+    assert opener.author_profile == f"{archive}/index.php?/profile/29433-super_e_man/"
+    out = tmp_path / "pre-sunset"
+    args = ["--forum", forum, "--base", archive, "--tag", "pre-sunset", "--out", str(out)]
+    assert main([*args, "--canonical", str(tmp_path), "--delay", "0"]) == 0
+    (capture,) = out.rglob("*.md")
+    text = capture.read_text(encoding="utf-8")
+    assert capture.relative_to(out).as_posix() == "archetypes/brute/claws-fire-brute-build.md"
+    assert 'title: "Claws/Fire Brute build"' in text and 'authors: ["Super_E_Man"]' in text
+    assert 'date_posted: "2012-08-13"' in text and 'source: "forumarchive.cityofheroes.dev"' in text
+    assert "### Post 1 — Super_E_Man, 2012-08-13" in text and text.count("\n- ") > 50  # the build's slot lines
+
+
+def test_main_reports_an_unreadable_listing_and_asks_for_a_re_run(tmp_path: Path, fake_net, capsys) -> None:
+    assert main(["--forum", FORUM, "--out", str(tmp_path), "--canonical", str(tmp_path), "--delay", "0"]) == 2
     assert "E61" in capsys.readouterr().err
+
+    # A later listing page that fails is named too, and the run still asks for a re-run.
+    routes, _ = fake_net
+    pagination = f"<ul class='ipsPagination' data-pages='2'><li><a href='{FORUM}page/2/'>2</a></li></ul>"
+    routes[FORUM] = pagination.encode()
+    assert main(["--forum", FORUM, "--out", str(tmp_path), "--canonical", str(tmp_path), "--delay", "0"]) == 2
+    assert f"E65: listing page unavailable: {FORUM}page/2/" in capsys.readouterr().err

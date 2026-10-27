@@ -37,11 +37,9 @@ from scripts.forum_scrape.scrape import (
     DEFAULT_UA,
     Fetcher,
     iter_posts,
-    last_page_number,
-    listing_base,
     page_title,
     strip_html,
-    topic_rows,
+    walk_listing,
 )
 
 SOURCES = ("release-notes", "forum-beta", "paragonwiki")
@@ -80,7 +78,7 @@ _BOLD = re.compile(r"<(?:strong|b)\b[^>]*>(.*?)</(?:strong|b)>", re.I | re.S)
 _POWER_PATH = re.compile(r"^([^:>\n]{1,80}(?:\s*>\s*[^:>\n]{1,80}){1,3}?)\s*[-:]\s+(.+)$", re.S)
 _CATEGORY_FONT_PX = 18
 # Zero-width marks pasted into forum posts; a JSON linter rejects them and they carry nothing.
-_ZERO_WIDTH = re.compile("[​‌‍⁠﻿]")
+_ZERO_WIDTH = re.compile("[\u200b\u200c\u200d\u2060\ufeff]")
 # MediaWiki's table of contents is a heading named Contents over a list of section numbers.
 _WIKI_TOC = "Contents"
 SUBSECTION_WORDS = frozenset(
@@ -415,20 +413,6 @@ def _collect_release_notes(fetcher: Fetcher, written: set[str], out: Path) -> in
     return count
 
 
-def _walk(fetcher: Fetcher, forum_url: str) -> dict[str, str]:
-    first = fetcher.get(forum_url)
-    if first is None:
-        return {}
-    base = listing_base(first, forum_url)
-    rows = dict(topic_rows(first))
-    for number in range(2, last_page_number(first) + 1):
-        listing = fetcher.get(f"{base}/page/{number}/")
-        if listing is not None:
-            for topic, last in topic_rows(listing).items():
-                rows.setdefault(topic, last)
-    return rows
-
-
 def _live_series(row: dict[str, object]) -> tuple[str, str]:
     if row.get("issue") or row.get("page"):
         return str(row.get("issue", "")), str(row.get("page", ""))
@@ -436,17 +420,28 @@ def _live_series(row: dict[str, object]) -> tuple[str, str]:
     return (match.group(2), match.group(3)) if match else ("", "")
 
 
-def _collect_forum_beta(fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]) -> int:
-    """Beta threads not covered by the live application: the live entry wins on the same series or date."""
+def _collect_forum_beta(
+    fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]
+) -> tuple[int, bool]:
+    """Beta threads not covered by the live application: the live entry wins on the same series or date.
+
+    Returns the entries written and whether every listing page was read: a missing page hides
+    its threads, and a series final may have been chosen without its later candidates.
+    """
     live = [row for row in rows if row.get("source", "release-notes") == "release-notes"]
     # Index rows written before the source and series columns existed carry the series in the URL.
     live_series = {_live_series(row) for row in live}
     live_from = min((str(row["published"]) for row in live), default="9999")
     # A series runs across both sections, so its last thread is chosen over their union.
     listing: dict[str, str] = {}
+    gaps: list[str] = []
     for section in BETA_SECTIONS:
-        for topic_url, last_activity in _walk(fetcher, section).items():
+        topics, failed = walk_listing(fetcher, section)
+        gaps += failed
+        for topic_url, last_activity in topics.items():
             listing.setdefault(topic_url, last_activity)
+    for url in gaps:
+        print(f"E66: beta listing page unavailable: {url}; re-run to pick up its threads", file=sys.stderr)
     entries = []
     for topic_url in beta_candidates(listing):
         if topic_url in written:
@@ -459,7 +454,7 @@ def _collect_forum_beta(fetcher: Fetcher, written: set[str], out: Path, rows: li
         if (labelled and (entry.issue, entry.page) in live_series) or (not labelled and entry.published >= live_from):
             continue
         entries.append(entry)
-    return _write_dated(entries, out, rows, written)
+    return _write_dated(entries, out, rows, written), not gaps
 
 
 def _collect_wiki(fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]) -> int:
@@ -505,7 +500,9 @@ def main(argv: list[str] | None = None) -> int:
         total += max(count, 0)
         rows = _index(args.out)
     if "forum-beta" in sources:
-        total += _collect_forum_beta(forum, written, args.out, rows)
+        count, complete = _collect_forum_beta(forum, written, args.out, rows)
+        failed |= not complete
+        total += count
     if "paragonwiki" in sources:
         count = _collect_wiki(Fetcher(args.user_agent, args.delay, base=WIKI_BASE), written, args.out, rows)
         failed |= count < 0

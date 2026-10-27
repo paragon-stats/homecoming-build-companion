@@ -36,12 +36,10 @@ from scripts.forum_scrape.scrape import (
     Fetcher,
     Post,
     iter_posts,
-    last_page_number,
-    listing_base,
     page_title,
     slugify,
     strip_html,
-    topic_rows,
+    walk_listing,
 )
 
 GUIDE_MIN_WORDS = 500
@@ -342,20 +340,13 @@ def _ledger(out: Path) -> dict[str, dict[str, object]]:
     return rows
 
 
-def _walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None) -> dict[str, str]:
-    first = fetcher.get(forum_url)
-    if first is None:
-        print(f"E61: listing unavailable: {forum_url}", file=sys.stderr)
-        return {}
-    base = listing_base(first, forum_url)
-    total = last_page_number(first)
-    rows = dict(topic_rows(first))
-    for number in range(2, (total if pages is None else min(total, pages)) + 1):
-        listing = fetcher.get(f"{base}/page/{number}/")
-        if listing is not None:
-            for topic, last in topic_rows(listing).items():
-                rows.setdefault(topic, last)
-    return rows
+def _walk_listing(fetcher: Fetcher, forum_url: str, pages: int | None) -> tuple[dict[str, str], int]:
+    """The section's topics and how many of its listing pages could not be read."""
+    rows, failed = walk_listing(fetcher, forum_url, pages)
+    for url in failed:
+        code = "E61" if url == forum_url else "E65"
+        print(f"{code}: listing page unavailable: {url}; re-run to pick up its threads", file=sys.stderr)
+    return rows, len(failed)
 
 
 def _capture(
@@ -438,13 +429,15 @@ def main(argv: list[str] | None = None) -> int:
     powersets = powersets_from_canonical(args.canonical)
     ledger = _ledger(args.out)
     args.out.mkdir(parents=True, exist_ok=True)
-    examined = captured = streak = 0
+    examined = captured = streak = gaps = 0
     reasons: Counter[str] = Counter()
     tripped = False
     with (args.out / "guides.jsonl").open("a", encoding="utf-8", newline="\n") as ledger_file:
         for forum_url in args.forum:
             section_slug = forum_url.rstrip("/").rsplit("/", 1)[-1]
-            for topic_url, last_activity in _walk_listing(fetcher, forum_url, args.pages).items():
+            topics, missing = _walk_listing(fetcher, forum_url, args.pages)
+            gaps += missing
+            for topic_url, last_activity in topics.items():
                 known = ledger.get(topic_url) or {}
                 # A thread the last run could not fetch or parse is not covered: a timeout or a
                 # layout change must not hide it.
@@ -494,8 +487,7 @@ def main(argv: list[str] | None = None) -> int:
     unsettled = sum(reasons[name] for name in UNSETTLED)
     if unsettled or tripped:
         print(f"E62: {unsettled} thread(s) could not be fetched or parsed; re-run to retry them", file=sys.stderr)
-        return 2
-    return 0
+    return 2 if unsettled or tripped or gaps else 0
 
 
 if __name__ == "__main__":

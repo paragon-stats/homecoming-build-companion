@@ -39,8 +39,12 @@ stub to fill in on review, and the opening post verbatim with tables kept as row
 - `guides.jsonl` in the output root records every thread looked at and why it was or was not
   captured, flushed per thread, so a stopped run resumes where it ended. Threads that could not
   be fetched or parsed are retried on the next run; ten such threads in a row stop the run
-  (`E63`). The run ends with a count by outcome and exits 2 (`E62`) when a retry run is wanted,
-  0 otherwise. `--pages N` caps the listing walk; `--force` refetches every thread.
+  (`E63`). A listing page that cannot be read is named (`E61` for a section's first page, `E65`
+  for a later one), since its threads go unseen. The run ends with a count by outcome and exits 2
+  (`E62`) when a retry run is wanted, 0 otherwise. `--pages N` caps the listing walk; `--force`
+  refetches every thread.
+- When `robots.txt` refuses access (401 or 403, `E02`) or cannot be read (5xx or a network
+  failure, `E03`), nothing is fetched; only a missing file (any other 4xx) means no rules.
 
 After a run, regenerate `community/INDEX.md` with `scripts/regen-index.ps1` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
@@ -58,8 +62,9 @@ python -m scripts.forum_scrape.guides --base https://forumarchive.cityofheroes.d
   --tag pre-sunset --out community/pre-sunset
 ```
 
-- The archive publishes no `robots.txt` and no terms; its operator is unnamed. A full crawl
-  waits on one contact through the site's contact page, recorded here with its outcome.
+- The archive publishes no `robots.txt` and no terms; its operator is unnamed. Contact outcome:
+  none was made, by the project operator's decision (2026-10-26); the crawl runs at the same
+  pace and declared user agent as every other run.
 - The content is frozen, so a second run costs the listing walk and writes nothing: no thread
   shows new activity and no opening post's hash changes.
 - Old guides explain how a set plays; their numbers are dated by the patch timeline below, which

@@ -286,7 +286,7 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
         "<li>Dark Melee &gt; Touch of Fear: Wider cone.</li></ul>"
     )
     gone = f"{BASE}/topic/6-patch-notes-for-june-8th-2019/"  # no route: the fetch fails
-    # Three listing pages declared; page 3 has no route, so a failed listing page is skipped, not fatal.
+    # Three listing pages declared; page 3 has no route: its threads are missing, so the run says so.
     pagination = f"<ul class='ipsPagination' data-pages='3'><li><a href='{BETA}page/2/'>2</a></li></ul>"
     routes[BETA] = (
         pagination
@@ -324,8 +324,11 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
         tmp_path,
     )
 
-    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
-    assert "2 entries written" in capsys.readouterr().out
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 1
+    out_text, err_text = capsys.readouterr()
+    assert "2 entries written" in out_text
+    assert f"E66: beta listing page unavailable: {BETA}page/3/" in err_text
+    routes[f"{BETA}page/3/"] = b""
     names = sorted(p.name for p in tmp_path.glob("*.json"))
     rc2_file = "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json"
     assert rc2_file in names and "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
@@ -343,12 +346,14 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
     del routes[STAGING]
     routes[BETA] = (pagination + _row(RC2, "2021-11-24T00:00:00Z") + _row(late, "2020-01-04T00:00:00Z")).encode()
     routes[late] = _thread("Jan 2020", "2020-01-04T10:00:00Z", body)
-    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
-    assert "0 entries written" in capsys.readouterr().out
+    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 1
+    out_text, err_text = capsys.readouterr()
+    assert "0 entries written" in out_text and f"E66: beta listing page unavailable: {STAGING}" in err_text
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
     late_row = next(row for row in rows if row["url"] == late)
     assert late_row["file"] == "" and late_row["repeat_of"] == "2019-08-11-beta-patch-notes-for-august-11th-2019.json"
 
+    routes[STAGING] = b""
     fetched = calls.count(RC2)
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 0
     assert "0 entries written" in capsys.readouterr().out
