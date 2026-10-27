@@ -5,6 +5,7 @@
   "issue": "issue-28",
   "page": "page-1",
   "revision": 28,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Zones",
@@ -272,9 +273,9 @@
     },
     {
       "category": "Powers",
-      "subsection": "Energy Melee",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Energy Melee",
       "power": "",
       "text": "Fixed an FX error in fast cast Energy Transfer."
     },

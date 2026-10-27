@@ -5,6 +5,7 @@
   "issue": "issue-28",
   "page": "page-1",
   "revision": 24,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Zones",
@@ -568,42 +569,42 @@
     },
     {
       "category": "Powers",
-      "subsection": "Fixes: Barrier Reef",
+      "subsection": "Fixes",
       "archetype": "",
-      "powerset": "",
-      "power": "",
+      "powerset": "Marine Affinity",
+      "power": "Fixes: Barrier Reef",
       "text": "Fixed an issue where Barrier Reef's rename feature would not stick after re-summoning."
     },
     {
       "category": "Powers",
-      "subsection": "Fixes: Barrier Reef",
+      "subsection": "Fixes",
       "archetype": "",
-      "powerset": "",
-      "power": "",
+      "powerset": "Marine Affinity",
+      "power": "Fixes: Barrier Reef",
       "text": "Now has the correct \"Disable All\" flag to prevent it being used when other powers cannot."
     },
     {
       "category": "Powers",
-      "subsection": "Fixes: Barrier Reef",
+      "subsection": "Fixes",
       "archetype": "",
-      "powerset": "",
-      "power": "",
+      "powerset": "Marine Affinity",
+      "power": "Fixes: Barrier Reef",
       "text": "No longer displays the \"Tempest\" power on it's buff bar."
     },
     {
       "category": "Powers",
-      "subsection": "Fixes: AE and Dopplegangers",
+      "subsection": "Fixes",
       "archetype": "",
-      "powerset": "",
-      "power": "",
+      "powerset": "Marine Affinity",
+      "power": "Fixes: AE and Dopplegangers",
       "text": "NPC versions of Marine Affinity should now have the correct level requirements."
     },
     {
       "category": "Powers",
-      "subsection": "Fixes: AE and Dopplegangers",
+      "subsection": "Fixes",
       "archetype": "",
-      "powerset": "",
-      "power": "",
+      "powerset": "Marine Affinity",
+      "power": "Fixes: AE and Dopplegangers",
       "text": "Barrier Reef is set to not spawn as often and can be interrupted"
     },
     {

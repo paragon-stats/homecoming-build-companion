@@ -117,7 +117,7 @@ def test_parse_changes_reads_the_older_layouts() -> None:
 
 def test_parse_changes_reads_beta_thread_headings() -> None:
     """A beta opener: a 20px banner, 18px categories, 16px subsections or powersets, unsized power names."""
-    changes = parse_changes(
+    body = (
         _h("RELEASE CANDIDATE 3 CHANGES:", 20)
         + _h("Powers", 18)
         + _h("Adjustments", 16)
@@ -126,18 +126,25 @@ def test_parse_changes_reads_beta_thread_headings() -> None:
         + "<ul><li>Recharge reduced to 8s.</li></ul>"
         + _h("Blinding Beam")
         + "<ul><li>Now a cone.</li></ul>"
+        + _h("Travel Power Stacking", 16)
+        + "<ul><li>Travel powers no longer stack.</li></ul>"
         + _h("Fixes", 16)
         + "<ul><li>Fixed a typo.</li></ul>"
         + _h("Costumes", 18)
         + _h("New Costume Parts (62)", 16)
         + "<ul><li>Male &gt; Head &gt; Detail 1 &gt; Blackwing</li></ul>"
     )
+    changes = parse_changes(body, frozenset({"light affinity"}))
     rows = [(c.category, c.subsection, c.powerset, c.power, c.text) for c in changes]
     assert rows[0] == ("Powers", "Adjustments", "Light Affinity", "Radiance", "Recharge reduced to 8s.")
     assert rows[1] == ("Powers", "Adjustments", "Light Affinity", "Blinding Beam", "Now a cone.")
-    assert rows[2] == ("Powers", "Fixes", "", "", "Fixed a typo.")
+    # A same-size update banner names no canonical set: it is a subsection, not a powerset.
+    assert rows[2] == ("Powers", "Travel Power Stacking", "", "", "Travel powers no longer stack.")
+    assert rows[3] == ("Powers", "Fixes", "", "", "Fixed a typo.")
     # Outside a Powers category a 16px label is a subsection, and a ">" path that is not a power stays text.
-    assert rows[3][:2] == ("Costumes", "New Costume Parts (62)")
+    assert rows[4][:2] == ("Costumes", "New Costume Parts (62)")
+    # Without canonical names no heading is read as a powerset.
+    assert {c.powerset for c in parse_changes(body)} == {""}
 
 
 def test_parse_entry_without_a_body_yields_no_changes() -> None:
@@ -177,16 +184,20 @@ def test_main_release_notes_walks_categories_and_skips_written_entries(tmp_path:
     routes[f"{BASE}/patch-notes/issue-28/page-3/"] = (
         f"<a href='{BASE}/patch-notes/issue-28/page-3/gone-r1/'>x</a>".encode()
     )
-    routes[f"{BASE}/patch-notes/issue-27/page-7/"] = b"<html></html>"
+    blank = f"{BASE}/patch-notes/issue-27/page-7/placeholder-r1/"  # an entry with no notes in it
+    routes[f"{BASE}/patch-notes/issue-27/page-7/"] = f"<a href='{blank}'>x</a>".encode()
+    routes[blank] = b"<html><head><title>placeholder - Page 7 - Homecoming</title></head><body></body></html>"
     routes[ENTRY_URL] = FIXTURE.read_bytes()
     routes[f"{BASE}/patch-notes/issue-28/page-4/issue-28-page-4-r47/"] = FIXTURE.read_bytes()
 
     args = ["--out", str(tmp_path), "--delay", "0", "--source", "release-notes"]
     assert main(args) == 0
-    assert "2 entries written" in capsys.readouterr().out
+    out_text, err_text = capsys.readouterr()
+    assert "3 entries written" in out_text and f"E67: no change lines parsed from {blank}" in err_text
     assert sorted(p.name for p in tmp_path.glob("*.json")) == [
         "2026-10-20-issue-28-page-4-r47.json",
         "2026-10-20-october-20-update-r48.json",
+        "undated-placeholder-r1.json",
     ]
     fetched = calls.count(ENTRY_URL)
     assert main(args) == 0
@@ -197,8 +208,10 @@ def test_main_release_notes_walks_categories_and_skips_written_entries(tmp_path:
 def test_main_reports_an_unreachable_browser(tmp_path: Path, fake_net, capsys) -> None:
     routes, _ = fake_net
     routes[f"{BASE}/patch-notes/?show=categories"] = urllib.error.URLError("boom")
-    assert main(["--out", str(tmp_path), "--delay", "0", "--source", "release-notes"]) == 1
-    assert "E60" in capsys.readouterr().err
+    args = ["--out", str(tmp_path), "--delay", "0", "--source", "release-notes", "--canonical", str(tmp_path)]
+    assert main(args) == 1
+    err = capsys.readouterr().err
+    assert "E60" in err and "E68: no powerset names" in err  # an empty canonical tree is named
 
 
 # --- the beta forum threads -------------------------------------------------------------
@@ -232,7 +245,8 @@ def test_series_of_and_beta_candidates_keep_the_latest_of_a_series_and_every_int
     run_b = [f"{BASE}/topic/{20 + n}-patch-notes-for-february-1{n}th-2020-release-candidate-{n}/" for n in (1, 2)]
     lone = f"{BASE}/topic/odd-patch-notes-release-candidate-2/"  # no topic id: sorts first
     rows = {
-        RC1: "2021-11-05T00:00:00Z",
+        # A reply on the earlier candidate after the final was posted: the topic id still decides.
+        RC1: "2022-01-05T00:00:00Z",
         RC2: "2021-11-24T00:00:00Z",
         INTERIM_OLD: "2019-08-11T00:00:00Z",
         rc0: "2021-11-01T00:00:00Z",
@@ -262,16 +276,21 @@ def test_dedupe_lines_keeps_first_appearance_and_names_the_origin() -> None:
     new = Change("Powers", "", "", "Dark Melee", "Siphon Life", "Heals more.")
     entry = PatchEntry("t", "u", "2021-01-01", "", "", 0, "forum-beta", [first, again, new])
     assert dedupe_lines(entry, {}) == "" and entry.changes == [first, new]  # the in-entry repeat is gone
+    smite = ("Powers", "", "", "Dark Melee", "Smite", "Buffed.")
     later = PatchEntry("t", "u2", "2021-02-01", "", "", 0, "forum-beta", [again, new])
-    assert dedupe_lines(later, {("Powers", "", "", "Dark Melee", "Smite", "Buffed."): "a.json"}) == "a.json"
+    assert dedupe_lines(later, {smite: ("a.json", "2021-01-01")}) == "a.json"
     assert later.changes == [new]
+    # A thread found on a later run but posted before the file holding the line keeps it.
+    older = PatchEntry("t", "u3", "2020-12-01", "", "", 0, "forum-beta", [again])
+    assert dedupe_lines(older, {smite: ("a.json", "2021-01-01")}) == "" and older.changes == [again]
 
 
-def test_write_dated_records_an_entry_that_parsed_to_nothing(tmp_path: Path) -> None:
+def test_write_dated_records_and_reports_an_entry_that_parsed_to_nothing(tmp_path: Path, capsys) -> None:
     empty = PatchEntry("t", "u", "2021-01-01", "", "", 0, "forum-beta", [])
     assert _write_dated([empty], tmp_path, [], set()) == 1
     (written,) = tmp_path.glob("2021-01-01-*.json")
     assert json.loads(written.read_text(encoding="utf-8"))["changes"] == []
+    assert "E67: no change lines parsed from u" in capsys.readouterr().err
 
 
 REPOST = f"{BASE}/topic/8-staging-patch-notes-for-november-25th-2021/"
@@ -412,6 +431,22 @@ def test_parse_wiki_page_reads_headings_items_and_the_issue() -> None:
         ).changes
         == []
     )
+    # A page whose Issue is named by a section heading, not the page heading.
+    sectioned = WIKI_PAGE.replace("Issue 6: Along Came a Spider", "Combined").replace(
+        ">PvP Zones</span></h2>", ">Issue 14: Architect</span></h2>"
+    )
+    assert parse_wiki_page(sectioned, f"{WIKI_BASE}/wiki/Patch_Notes/2009-04-08").issue == "issue-14"
+    # A page whose contents list comes before the page heading, with h3 sections and no h2.
+    h3_only = (
+        "<html><head><title>Patch Notes/2011-11-10 - Paragon Wiki Archive</title></head><body>"
+        '<div class="mw-parser-output"><div id="toc"><h2>Contents</h2><ul><li>1 build</li></ul></div>'
+        '<h1><span class="mw-headline">10.10.11 build 2150</span></h1>'
+        '<h3><span class="mw-headline">Incarnate Trials</span></h3>'
+        '<h4><span class="mw-headline">Keyes Island</span></h4><ul><li>Six terminals instead of ten.</li></ul>'
+        '<div class="printfooter"></div></div></body></html>'
+    )
+    rows = [(c.category, c.subsection, c.text) for c in parse_wiki_page(h3_only, f"{WIKI_BASE}/x/2011-11-10").changes]
+    assert rows == [("Incarnate Trials", "Keyes Island", "Six terminals instead of ten.")]
 
 
 def test_main_paragonwiki_writes_each_dated_page_and_reports_a_missing_index(tmp_path: Path, fake_net, capsys) -> None:

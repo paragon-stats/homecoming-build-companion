@@ -6,5 +6,22 @@
   "page": "",
   "revision": 0,
   "source": "paragonwiki",
-  "changes": []
+  "changes": [
+    {
+      "category": "COMBINED",
+      "subsection": "NC Launcher",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Added optional file verification step which can be invoked by passing \"-verify\" on the command line (in Properties). This process will run once at application launch and will check the size and checksum for each file in the COH folder to verify the files are not corrupt."
+    },
+    {
+      "category": "COMBINED",
+      "subsection": "Map Crashes",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed some stability issues which were causing map server crashes."
+    }
+  ]
 }

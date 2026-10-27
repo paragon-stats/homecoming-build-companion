@@ -5,28 +5,29 @@
   "issue": "issue-28",
   "page": "page-3",
   "revision": 46,
+  "source": "release-notes",
   "changes": [
     {
       "category": "Powers",
-      "subsection": "Psionic Armor",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Psionic Armor",
       "power": "",
       "text": "Fix bug in Psionic Armor causing powers to disappear when leveling until respec"
     },
     {
       "category": "Powers",
-      "subsection": "Dark Armor",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Dark Armor",
       "power": "",
       "text": "Fix Obscure Sustenance recharge time being longer for some ATs (now 60 seconds for everybody)"
     },
     {
       "category": "Powers",
-      "subsection": "Willpower",
+      "subsection": "",
       "archetype": "",
-      "powerset": "",
+      "powerset": "Willpower",
       "power": "",
       "text": "Fix Willpower Resurgence sometimes not respecting global recharge buffs"
     },

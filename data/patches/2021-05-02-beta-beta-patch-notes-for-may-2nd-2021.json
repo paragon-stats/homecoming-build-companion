@@ -9,59 +9,43 @@
   "changes": [
     {
       "category": "Powers",
-      "subsection": "",
+      "subsection": "Combat Log",
       "archetype": "",
-      "powerset": "Combat Log",
+      "powerset": "",
       "power": "",
       "text": "Many, many absorb powers were missing their combat log messages - they will now use the following strings:"
     },
     {
       "category": "Powers",
-      "subsection": "",
+      "subsection": "Combat Log",
       "archetype": "",
-      "powerset": "Combat Log",
+      "powerset": "",
       "power": "",
       "text": "You grant {PlayerDest} {Damage} points of absorption over time with {PowerName}"
     },
     {
       "category": "Powers",
-      "subsection": "",
+      "subsection": "Combat Log",
       "archetype": "",
-      "powerset": "Combat Log",
+      "powerset": "",
       "power": "",
       "text": "{PlayerSource} grants you {Damage} points of absorption over time with their {PowerName}"
     },
     {
       "category": "Powers",
-      "subsection": "",
+      "subsection": "Combat Log",
       "archetype": "",
-      "powerset": "Combat Log",
+      "powerset": "",
       "power": "",
       "text": "You receive {Damage} points of absorption over time from your {PowerName}"
     },
     {
       "category": "Powers",
-      "subsection": "",
+      "subsection": "Combat Log",
       "archetype": "",
-      "powerset": "Combat Log",
+      "powerset": "",
       "power": "",
       "text": "Full list of affected powers:"
-    },
-    {
-      "category": "Powers",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Combat Log",
-      "power": "Enhancements",
-      "text": "+range set bonuses now have 7 tiers (like all other types), rather than 3"
-    },
-    {
-      "category": "Powers",
-      "subsection": "",
-      "archetype": "",
-      "powerset": "Combat Log",
-      "power": "Enhancements",
-      "text": "This should have no impact on existing sets"
     },
     {
       "category": "Miscellaneous",

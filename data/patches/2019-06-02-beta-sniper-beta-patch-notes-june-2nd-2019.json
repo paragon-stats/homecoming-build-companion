@@ -6,5 +6,126 @@
   "page": "",
   "revision": 0,
   "source": "forum-beta",
-  "changes": []
+  "changes": [
+    {
+      "category": "THIS IS WHY WE BETA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Another day, another patch! Feedback has been passed along, and the most agreed-upon bits have been implemented in this patch. Other ideas are being considered, but were not ready yet. Keep the feedback coming, and remember that this is a beta. The whole point is to gather feedback, and more importantly, feedback based on testing. A lot of the loudest complaints yesterday came from accounts that didn't log in to Justin at all; gut feelings are nowhere near as valuable as playtesting fedback."
+    },
+    {
+      "category": "THIS IS WHY WE BETA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Several changes to Devices are implemented on this patch; they were not planned to be tested this soon, as they were part of a different branch, but since there is a general concern is that Devices is getting the short end of the stick with the Snipe changes, they're being merged now."
+    },
+    {
+      "category": "THIS IS WHY WE BETA",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Patron power pools are now unlocked at character creation."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Thanks to Banana Man and Dan Petro, the new set Experienced Marksman is getting modified significantly."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Old version, five-slotted: 47.7% accuracy, 116.6% damage, 47.7% endredux, 25.6% range and 42.4% recharge."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "New version, five-slotted: 47.7% accuracy, 92.8% damage, 42.4% endredux, 12.8% range, 66.3% recharge and 51% interrupt time."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The Fast Snipe enhancement now has a Range component; this means that if you six-slot the set, the 51% interrupt time becomes meaningless, but the Range is boosted to 25.6%."
+    },
+    {
+      "category": "INVENTIONS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The set bonuses have also been changed a bit. The +Health and +Accuracy bonuses have been bumped a tier, and the last two PVP bonuses (recharge and recovery) have been switched around."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "All snipes, regardless speed, will again have maximum range. This means 150ft feet for most snipes, 175ft for Psionic snipes."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "The \"engaged\" flag that drives fast snipe now requires 10 seconds without attacking or being attacked, down from 15 seconds."
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Blaster Devices:"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Changed Web Grenade to Toxic Web Grenade, now deals scale 1 toxic DoT and can be slotted for damage"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Taser recharge reduced from 20 to 10 seconds, duration reduced from scale 10 to scale 5, damage increased from 0.25 to 1.96 (same damage as Energy Punch)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Time Bomb animation is now 2.77 seconds, interrupt time removed, countdown reduced to 5 seconds, defiance values reduced to match (this only applies to this set, not to the Traps support set versions.)"
+    },
+    {
+      "category": "POWERS",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Targeting Drone now also adds a 30% recharge buff."
+    }
+  ]
 }

@@ -32,6 +32,7 @@ from collections import Counter
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
+from scripts.forum_scrape.guides import powersets_from_canonical
 from scripts.forum_scrape.scrape import (
     BASE,
     DEFAULT_UA,
@@ -66,9 +67,10 @@ _WIKI_FOOTER = "printfooter"
 
 # The forum-side body is paragraphs (headings, when they hold only a bold label) and list
 # items (the changes). Heading level is the label's font size: 18px and up is a category, 16px
-# a subsection, or inside a Powers category a powerset unless it is one of the usual
-# subsection words; an unsized bold label under a powerset names the power. A list item's
-# text runs to the next item or the end of its list, so nested items become their own lines.
+# a subsection, or inside a Powers category a powerset when it names a canonical set (update
+# banners such as "Travel Power Stacking" sit at the same size); an unsized bold label under a
+# powerset names the power. A list item's text runs to the next item or the end of its list,
+# so nested items become their own lines.
 _TOKEN = re.compile(r"<p\b[^>]*>(.*?)</p>|<li\b[^>]*>", re.I | re.S)
 _ITEM_END = re.compile(r"<li\b|</[uo]l>", re.I)
 _FONT_SIZE = re.compile(r"font-size:\s*(\d+)px", re.I)
@@ -81,9 +83,6 @@ _CATEGORY_FONT_PX = 18
 _ZERO_WIDTH = re.compile("[\u200b\u200c\u200d\u2060\ufeff]")
 # MediaWiki's table of contents is a heading named Contents over a list of section numbers.
 _WIKI_TOC = "Contents"
-SUBSECTION_WORDS = frozenset(
-    {"additions", "adjustments", "fixes", "bug fixes", "changes", "new", "removed", "removals", "notes", "known issues"}
-)
 
 
 @dataclass(frozen=True, slots=True)
@@ -144,8 +143,12 @@ def _change(text: str, category: str, subsection: str, powerset: str = "", power
     return Change(category, subsection, " > ".join(parts[:-2]), parts[-2], parts[-1], " ".join(path.group(2).split()))
 
 
-def parse_changes(html: str) -> list[Change]:
-    """The change lines of a forum-side body (an application entry or a beta thread's opener)."""
+def parse_changes(html: str, powersets: frozenset[str] = frozenset()) -> list[Change]:
+    """The change lines of a forum-side body (an application entry or a beta thread's opener).
+
+    ``powersets`` are the canonical set names in lower case; a heading is read as a powerset
+    only when it is one of them, so with none every heading is a category or subsection.
+    """
     changes: list[Change] = []
     category = subsection = powerset = power = ""
     for token in _TOKEN.finditer(html):
@@ -159,10 +162,10 @@ def parse_changes(html: str) -> list[Change]:
                 category, subsection, powerset, power = label, "", "", ""
             elif px == 0 and powerset:
                 power = label.rstrip(",:")
-            elif label.lower() in SUBSECTION_WORDS or "power" not in category.lower():
-                subsection, powerset, power = label, "", ""
-            else:
+            elif "power" in category.lower() and label.rstrip(",:").lower() in powersets:
                 powerset, power = label.rstrip(",:"), ""
+            else:
+                subsection, powerset, power = label, "", ""
             continue
         end = _ITEM_END.search(html, token.end())
         text = _clean(html[token.end() : end.start() if end else len(html)])
@@ -171,7 +174,7 @@ def parse_changes(html: str) -> list[Change]:
     return changes
 
 
-def parse_entry(page: str, url: str) -> PatchEntry:
+def parse_entry(page: str, url: str, powersets: frozenset[str] = frozenset()) -> PatchEntry:
     """Parse one Release Notes application entry page into its dated change records."""
     match = _ENTRY.match(f'"{url}"')
     issue, page_name, revision = (match.group(2), match.group(3), int(match.group(5))) if match else ("", "", 0)
@@ -179,7 +182,7 @@ def parse_entry(page: str, url: str) -> PatchEntry:
     entry = PatchEntry(page_title(page), url, published.group(1) if published else "", issue, page_name, revision)
     body = _BODY.search(page)
     if body is not None:
-        entry.changes = parse_changes(body.group(1))
+        entry.changes = parse_changes(body.group(1), powersets)
     return entry
 
 
@@ -192,22 +195,25 @@ def series_of(topic_url: str) -> tuple[str, str]:
 def beta_candidates(rows: dict[str, str]) -> list[str]:
     """The threads worth reading from a beta listing.
 
-    The latest thread of each labelled series, the last of each run of unlabelled numbered
+    The last-posted thread of each labelled series, the last of each run of unlabelled numbered
     release candidates (a number that does not rise on the next candidate starts a new run),
-    and every other interim patch.
+    and every other interim patch. Order is the topic id, which rises as threads are posted;
+    the listing's last-activity time moves with every reply, so a late reply on a draft would
+    otherwise outrank the final.
     """
-    latest: dict[tuple[str, str], tuple[str, str]] = {}
+    latest: dict[tuple[str, str], tuple[int, str]] = {}
     numbered: list[tuple[int, int, str]] = []  # (topic id, candidate number, url)
     interim: list[str] = []
-    for topic_url, last_activity in rows.items():
+    for topic_url in rows:
         slug = topic_url.rstrip("/").rsplit("/", 1)[-1]
+        head = slug.split("-", 1)[0]
+        topic_id = int(head) if head.isdigit() else 0
         series = series_of(topic_url)
         if series != ("", ""):
-            if series not in latest or last_activity > latest[series][0]:
-                latest[series] = (last_activity, topic_url)
+            if series not in latest or topic_id > latest[series][0]:
+                latest[series] = (topic_id, topic_url)
         elif candidate := _CANDIDATE.search(slug):
-            head = slug.split("-", 1)[0]
-            numbered.append((int(head) if head.isdigit() else 0, int(candidate.group(1)), topic_url))
+            numbered.append((topic_id, int(candidate.group(1)), topic_url))
         else:
             interim.append(topic_url)
     finals: list[str] = []
@@ -221,13 +227,13 @@ def beta_candidates(rows: dict[str, str]) -> list[str]:
     return [url for _, url in latest.values()] + finals + interim
 
 
-def parse_beta_thread(page: str, url: str) -> PatchEntry:
+def parse_beta_thread(page: str, url: str, powersets: frozenset[str] = frozenset()) -> PatchEntry:
     """Parse a beta patch-notes thread's opening post into its dated change records."""
     issue, page_name = series_of(url)
     opener = next(iter(iter_posts(page)), None)
     entry = PatchEntry(page_title(page), url, opener.posted_at if opener else "", issue, page_name, 0, "forum-beta")
     if opener is not None:
-        entry.changes = parse_changes(opener.html)
+        entry.changes = parse_changes(opener.html, powersets)
     return entry
 
 
@@ -248,15 +254,23 @@ def parse_wiki_page(page: str, url: str) -> PatchEntry:
     footer = html.find(_WIKI_FOOTER)
     html = html[:footer] if footer >= 0 else html
     category = subsection = ""
+    title_issue = _WIKI_ISSUE.search(entry.title)
+    entry.issue = f"issue-{title_issue.group(1)}" if title_issue else ""
     for token in _WIKI_TOKEN.finditer(html):
         if token.group(1) is not None:
             headline = _WIKI_HEADLINE.search(token.group(2))
             label = _clean(headline.group(1) if headline else token.group(2))
             level = int(token.group(1))
+            # The page names its Issue in its title or in whichever heading opens the notes.
+            heading_issue = _WIKI_ISSUE.search(label)
+            if heading_issue and not entry.issue:
+                entry.issue = f"issue-{heading_issue.group(1)}"
             if level == 1:
-                issue = _WIKI_ISSUE.search(label)
-                entry.issue = f"issue-{issue.group(1)}" if issue else entry.issue
-            elif level == 2 or not category:
+                # The page heading follows the contents list; some pages then use h3 sections
+                # with no h2, so the next heading of any level opens the first category.
+                category = subsection = ""
+                continue
+            if level == 2 or not category:
                 category, subsection = label, ""
             else:
                 subsection = label
@@ -334,13 +348,15 @@ def _line_key(change: Change) -> LineKey:
     return (change.category, change.subsection, change.archetype, change.powerset, change.power, change.text)
 
 
-def dedupe_lines(entry: PatchEntry, seen: dict[LineKey, str]) -> str:
+def dedupe_lines(entry: PatchEntry, seen: dict[LineKey, tuple[str, str]]) -> str:
     """Keep only the lines no earlier entry recorded: a change is dated by its first appearance.
 
     Staging reposts the beta notes days later, each beta thread restates the ones before it,
     and the wiki republished pages with corrections; recorded whole, every such line would
-    carry two dates. Repeats inside one entry go too. Returns the file most dropped lines
-    first appeared in, or "" when nothing was dropped.
+    carry two dates. ``seen`` maps each recorded line to ``(file, published)``. A line held
+    only by a later-dated file stays: a thread found on a later run is older than what is
+    on disk, and dropping its line would date the change by the repeat. Repeats inside one
+    entry go too. Returns the file most dropped lines first appeared in, or "" for none.
     """
     kept: list[Change] = []
     origins: Counter[str] = Counter()
@@ -350,24 +366,24 @@ def dedupe_lines(entry: PatchEntry, seen: dict[LineKey, str]) -> str:
         if key in local:
             continue
         local.add(key)
-        if key in seen:
-            origins[seen[key]] += 1
+        if key in seen and seen[key][1] <= entry.published:
+            origins[seen[key][0]] += 1
             continue
         kept.append(change)
     entry.changes = kept
     return origins.most_common(1)[0][0] if origins else ""
 
 
-def _seen_lines(out_dir: Path, rows: list[dict[str, object]], source: str) -> dict[LineKey, str]:
-    seen: dict[LineKey, str] = {}
-    for row in rows:
+def _seen_lines(out_dir: Path, rows: list[dict[str, object]], source: str) -> dict[LineKey, tuple[str, str]]:
+    seen: dict[LineKey, tuple[str, str]] = {}
+    for row in sorted(rows, key=lambda r: str(r.get("published", ""))):
         if row.get("source") != source or not row.get("file"):
             continue
         document = json.loads((out_dir / str(row["file"])).read_text(encoding="utf-8"))
         for change in document["changes"]:
             seen.setdefault(
                 (*(change[k] for k in ("category", "subsection", "archetype", "powerset", "power", "text")),),
-                str(row["file"]),
+                (str(row["file"]), str(row.get("published", ""))),
             )
     return seen
 
@@ -379,11 +395,13 @@ def _write_dated(entries: list[PatchEntry], out_dir: Path, rows: list[dict[str, 
     seen = _seen_lines(out_dir, rows, entries[0].source)
     count = 0
     for entry in sorted(entries, key=lambda e: (e.published, e.url)):
+        if not entry.changes:
+            print(f"E67: no change lines parsed from {entry.url}; check the post's layout", file=sys.stderr)
         origin = dedupe_lines(entry, seen)
         if entry.changes or not origin:  # a thread that parsed to nothing is recorded, not a repeat
             path = write_entry(entry, out_dir)
             for change in entry.changes:
-                seen.setdefault(_line_key(change), path.name)
+                seen.setdefault(_line_key(change), (path.name, entry.published))
             print(f"wrote {path.name}")
             count += 1
         else:
@@ -393,7 +411,9 @@ def _write_dated(entries: list[PatchEntry], out_dir: Path, rows: list[dict[str, 
     return count
 
 
-def _collect_release_notes(fetcher: Fetcher, written: set[str], out: Path) -> int:
+def _collect_release_notes(
+    fetcher: Fetcher, written: set[str], out: Path, powersets: frozenset[str] = frozenset()
+) -> int:
     categories = fetcher.get(CATEGORIES_URL)
     if categories is None:
         print(f"E60: could not read the patch-notes category browser at {CATEGORIES_URL}", file=sys.stderr)
@@ -407,7 +427,10 @@ def _collect_release_notes(fetcher: Fetcher, written: set[str], out: Path) -> in
             page = fetcher.get(entry_url)
             if page is None:
                 continue
-            print(f"wrote {write_entry(parse_entry(page, entry_url), out).name}")
+            entry = parse_entry(page, entry_url, powersets)
+            if not entry.changes:
+                print(f"E67: no change lines parsed from {entry_url}; check the post's layout", file=sys.stderr)
+            print(f"wrote {write_entry(entry, out).name}")
             written.add(entry_url)
             count += 1
     return count
@@ -421,7 +444,11 @@ def _live_series(row: dict[str, object]) -> tuple[str, str]:
 
 
 def _collect_forum_beta(
-    fetcher: Fetcher, written: set[str], out: Path, rows: list[dict[str, object]]
+    fetcher: Fetcher,
+    written: set[str],
+    out: Path,
+    rows: list[dict[str, object]],
+    powersets: frozenset[str] = frozenset(),
 ) -> tuple[int, bool]:
     """Beta threads not covered by the live application: the live entry wins on the same series or date.
 
@@ -449,7 +476,7 @@ def _collect_forum_beta(
         page = fetcher.get(topic_url)
         if page is None:
             continue
-        entry = parse_beta_thread(page, topic_url)
+        entry = parse_beta_thread(page, topic_url, powersets)
         labelled = entry.issue != ""
         if (labelled and (entry.issue, entry.page) in live_series) or (not labelled and entry.published >= live_from):
             continue
@@ -486,8 +513,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--delay", type=float, default=2.0, help="minimum seconds between requests (default 2)")
     parser.add_argument("--user-agent", default=DEFAULT_UA)
+    parser.add_argument(
+        "--canonical", type=Path, default=Path("data/canonical"), help="canonical data, for powerset names"
+    )
     args = parser.parse_args(argv)
     sources = args.source or list(SOURCES)
+    powersets = powersets_from_canonical(args.canonical)
+    if not powersets:
+        print(f"E68: no powerset names under {args.canonical}; headings will not fill powerset", file=sys.stderr)
 
     rows = _index(args.out)
     written = {str(row["url"]) for row in rows}
@@ -495,12 +528,12 @@ def main(argv: list[str] | None = None) -> int:
     failed = False
     forum = Fetcher(args.user_agent, args.delay)
     if "release-notes" in sources:
-        count = _collect_release_notes(forum, written, args.out)
+        count = _collect_release_notes(forum, written, args.out, powersets)
         failed |= count < 0
         total += max(count, 0)
         rows = _index(args.out)
     if "forum-beta" in sources:
-        count, complete = _collect_forum_beta(forum, written, args.out, rows)
+        count, complete = _collect_forum_beta(forum, written, args.out, rows, powersets)
         failed |= not complete
         total += count
     if "paragonwiki" in sources:

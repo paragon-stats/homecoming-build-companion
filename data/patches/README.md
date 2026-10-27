@@ -50,8 +50,10 @@ Between the last beta series (Issue 27 page 5, October 2022) and the application
 ```
 
 `archetype`, `powerset` and `power` are filled from an `AT > Set > Power -` path at the head of a change line.
-A beta thread places its powerset and power as headings above its lines, and those fill the same fields; other lines keep the category and subsection only.
-Wiki pages carry `issue` from their title when it names one, and no `page`; `revision` is 0 outside the application.
+A beta thread places its powerset and power as headings above its lines, and those fill the same fields when the heading names a set in `data/canonical/powers/`.
+Any other heading, such as an update banner, is a subsection; lines without a set keep the category and subsection only.
+Wiki pages carry `issue` from their title or the first heading that names one, and no `page`; `revision` is 0 outside the application.
+A wiki line never fills `powerset` or `power`: the wiki writes powers in running text, so the area sits in `category` or `subsection` (often `Powers` under an edition heading such as `City of Villains`).
 `index.jsonl` lists every written entry by URL, date, revision, source, issue, page and file; a re-run writes only entries whose URL is not yet in it.
 
 ## Use

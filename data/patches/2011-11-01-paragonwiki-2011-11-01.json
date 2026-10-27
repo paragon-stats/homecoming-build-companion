@@ -6,5 +6,38 @@
   "page": "",
   "revision": 0,
   "source": "paragonwiki",
-  "changes": []
+  "changes": [
+    {
+      "category": "Costume and Weapon Animations",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Fixed a problem where weapons would disappear on costume changes."
+    },
+    {
+      "category": "Costume and Weapon Animations",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This affected players who tried to draw their weapons while Granite Armor was active."
+    },
+    {
+      "category": "Costume and Weapon Animations",
+      "subsection": "",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "This problem could also occur when using NPC costume powers."
+    },
+    {
+      "category": "Costume and Weapon Animations",
+      "subsection": "Server Stability",
+      "archetype": "",
+      "powerset": "",
+      "power": "",
+      "text": "Updated recent optimization code to remove a possible rare server crash."
+    }
+  ]
 }
