@@ -45,7 +45,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 11,
+          "Level": 15,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_B",
@@ -57,7 +57,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 15,
+          "Level": 19,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_D",
@@ -69,7 +69,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 23,
+          "Level": 25,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_E",
@@ -93,7 +93,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 43,
+          "Level": 45,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Steadfast_Protection_B",
@@ -140,7 +140,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 3,
+          "Level": 5,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Superior_Attuned_Superior_Might_of_the_Tanker_B",
@@ -152,7 +152,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 25,
+          "Level": 27,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Superior_Attuned_Superior_Might_of_the_Tanker_D",
@@ -211,7 +211,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 13,
+          "Level": 3,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_B",
@@ -223,7 +223,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 19,
+          "Level": 13,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_D",
@@ -235,7 +235,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 40,
+          "Level": 42,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Unbreakable_Guard_E",
@@ -282,7 +282,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 5,
+          "Level": 7,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Makos_Bite_B",
@@ -294,7 +294,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 27,
+          "Level": 29,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Makos_Bite_C",
@@ -306,7 +306,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 36,
+          "Level": 37,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Makos_Bite_D",
@@ -365,7 +365,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 7,
+          "Level": 9,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Red_Fortune_D",
@@ -377,7 +377,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 29,
+          "Level": 31,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Red_Fortune_E",
@@ -401,7 +401,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 45,
+          "Level": 46,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Red_Fortune_F",
@@ -448,7 +448,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 9,
+          "Level": 11,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Preventive_Medicine_C",
@@ -511,6 +511,18 @@
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Shield_Wall_F",
+            "Grade": "None",
+            "IoLevel": 50,
+            "RelativeLevel": "Even",
+            "Obtained": false
+          },
+          "FlippedEnhancement": null
+        },
+        {
+          "Level": 13,
+          "IsInherent": false,
+          "Enhancement": {
+            "Uid": "Crafted_Luck_of_the_Gambler_A",
             "Grade": "None",
             "IoLevel": 50,
             "RelativeLevel": "Even",
@@ -600,7 +612,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 17,
+          "Level": 21,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Gladiators_Armor_D",
@@ -612,7 +624,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 31,
+          "Level": 33,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Gladiators_Armor_E",
@@ -695,7 +707,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 42,
+          "Level": 43,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Luck_of_the_Gambler_F",
@@ -742,7 +754,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 21,
+          "Level": 23,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Superior_Attuned_Blistering_Cold_B",
@@ -766,7 +778,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 37,
+          "Level": 40,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Superior_Attuned_Blistering_Cold_E",
@@ -977,7 +989,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 33,
+          "Level": 34,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Eradication_C",
@@ -1001,7 +1013,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 46,
+          "Level": 50,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Eradication_F",
@@ -1293,18 +1305,6 @@
             "Obtained": false
           },
           "FlippedEnhancement": null
-        },
-        {
-          "Level": 50,
-          "IsInherent": false,
-          "Enhancement": {
-            "Uid": "Crafted_Mocking_Beratement_E",
-            "Grade": "None",
-            "IoLevel": 50,
-            "RelativeLevel": "Even",
-            "Obtained": false
-          },
-          "FlippedEnhancement": null
         }
       ]
     },
@@ -1455,7 +1455,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 13,
+          "Level": 15,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Miracle_F",
@@ -1467,7 +1467,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 34,
+          "Level": 36,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Panacea_F",
@@ -1525,7 +1525,7 @@
           "FlippedEnhancement": null
         },
         {
-          "Level": 15,
+          "Level": 17,
           "IsInherent": false,
           "Enhancement": {
             "Uid": "Crafted_Performance_Shifter_A",

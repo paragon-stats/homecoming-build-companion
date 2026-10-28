@@ -24,7 +24,9 @@ PICKS = (
         True,
     ),
     PickSpec("Tanker_Melee.Super_Strength.Punch", 1, _set(SMT, "ACBDEF"), essential=True),
-    PickSpec("Tanker_Defense.Willpower.Mind_Over_Body", 2, _set(C + "Unbreakable_Guard_", "ABDE"), True),
+    PickSpec(
+        "Tanker_Defense.Willpower.Mind_Over_Body", 2, _set(C + "Unbreakable_Guard_", "ABDE"), True, essential=True
+    ),
     PickSpec("Tanker_Melee.Super_Strength.Haymaker", 4, _set(C + "Makos_Bite_", "AEBCDF"), essential=True),
     PickSpec("Tanker_Defense.Willpower.Indomitable_Will", 6, _set(C + "Red_Fortune_", "ABDECF"), True, essential=True),
     PickSpec(
@@ -35,7 +37,11 @@ PICKS = (
         essential=True,
     ),
     PickSpec(
-        "Pool.Leaping.Combat_Jumping", 10, (C + "Luck_of_the_Gambler_F", C + "Shield_Wall_F"), True, essential=True
+        "Pool.Leaping.Combat_Jumping",
+        10,
+        (C + "Luck_of_the_Gambler_F", C + "Shield_Wall_F", C + "Luck_of_the_Gambler_A"),
+        True,
+        essential=True,
     ),
     PickSpec("Pool.Leaping.Long_Jump", 12, (C + "Blessing_of_the_Zephyr_C",)),
     PickSpec("Pool.Fighting.Boxing", 14, (C + "Accuracy",)),
@@ -56,7 +62,7 @@ PICKS = (
     PickSpec("Epic.Fire_Mastery.Fire_Blast", 38, _set(SWB, "ACBDEF")),
     PickSpec("Epic.Fire_Mastery.Fire_Shield", 41, _set(C + "Aegis_", "ABED"), True),
     PickSpec("Pool.Leadership.Vengeance", 44, (C + "Luck_of_the_Gambler_F",)),
-    PickSpec("Tanker_Melee.Super_Strength.Taunt", 47, _set(C + "Mocking_Beratement_", "ABCDE")),
+    PickSpec("Tanker_Melee.Super_Strength.Taunt", 47, _set(C + "Mocking_Beratement_", "ABCD")),
     PickSpec("Pool.Speed.Hasten", 49, (C + "Recharge",) * 2, True),
 )
 INHERENTS = (

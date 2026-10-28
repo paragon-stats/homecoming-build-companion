@@ -137,13 +137,6 @@ def test_essential_powers_get_two_added_slots_by_level_15(schedule: LevelSchedul
 
 TANKER_MBD = FIXTURES / "builds" / "wpss_tanker_leadership.mbd"
 TANKER_DUMP = MIDS / "builds" / "wpss_tanker_leadership"
-ATTACK_OR_TOGGLE = (
-    "Super_Strength.Punch",
-    "Super_Strength.Haymaker",
-    "Indomitable_Will",
-    "Rise_to_the_Challenge",
-    "Combat_Jumping",
-)
 
 
 def test_the_writer_reproduces_the_committed_tanker_build(schedule: LevelSchedule) -> None:
@@ -173,13 +166,29 @@ def test_the_loaded_tanker_build_validates_without_errors() -> None:
     assert errors == []
 
 
-def test_every_early_attack_and_toggle_holds_two_added_slots_by_level_15() -> None:
-    build = load_mbd(TANKER_MBD)
-    early = [e for e in build.power_entries[:24] if e.level + 1 <= 14 and e.power_name.endswith(ATTACK_OR_TOGGLE)]
-    assert len(early) == len(ATTACK_OR_TOGGLE)
-    for entry in early:
-        added = entry.slot_entries[1:]
-        assert sum(1 for s in added if s.level + 1 <= 15) >= min(2, len(added)), entry.power_name
+def _early_slots(kind: str, effects: set[str], last_level: int) -> dict[str, int]:
+    """Added slots placed by ``last_level`` in each early pick Mids loaded as ``kind`` with one of ``effects``."""
+    powers = json.loads((TANKER_DUMP / "powers_effects.json").read_text(encoding="utf-8"))
+    slots = {s["BuildIndex"]: s["Slots"] for s in json.loads((TANKER_DUMP / "slots.json").read_text(encoding="utf-8"))}
+    return {
+        p["FullName"]: sum(1 for s in slots[p["BuildIndex"]][1:] if s["Level"] + 1 <= last_level)
+        for p in powers[:24]
+        if p["PickLevel"] + 1 <= last_level
+        and p["PowerType"] == kind
+        and effects & {e["EffectType"] for e in p["Effects"]}
+    }
+
+
+def test_every_early_defensive_toggle_holds_two_added_slots_by_level_15() -> None:
+    """Exemplar-10: the toggles come from Mids' own load, so a toggle missing from the spec's essentials is caught."""
+    toggles = _early_slots("Toggle", {"Defense", "Resistance"}, 15)
+    assert len(toggles) >= 3
+    assert {name: n for name, n in toggles.items() if n < 2} == {}
+
+
+def test_two_early_attacks_hold_two_added_slots_by_level_14() -> None:
+    attacks = _early_slots("Click", {"Damage"}, 14)
+    assert sum(1 for n in attacks.values() if n >= 2) >= 2, attacks
 
 
 def test_inherents_and_incarnates_follow_the_picks(schedule: LevelSchedule) -> None:

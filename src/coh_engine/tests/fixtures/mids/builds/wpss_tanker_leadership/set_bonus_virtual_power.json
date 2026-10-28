@@ -1,5 +1,5 @@
 {
-  "EffectCount": 277,
+  "EffectCount": 275,
   "Effects": [
     {
       "Index": 0,
@@ -1299,6 +1299,15 @@
     },
     {
       "Index": 144,
+      "EffectType": "Regeneration",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.1,
+      "BuffedMag": 0.1
+    },
+    {
+      "Index": 145,
       "EffectType": "Enhancement",
       "DamageType": "None",
       "MezType": "None",
@@ -1307,18 +1316,9 @@
       "BuffedMag": 0.075
     },
     {
-      "Index": 145,
-      "EffectType": "Resistance",
-      "DamageType": "Lethal",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
       "Index": 146,
       "EffectType": "Resistance",
-      "DamageType": "Smashing",
+      "DamageType": "Lethal",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1327,7 +1327,7 @@
     {
       "Index": 147,
       "EffectType": "Resistance",
-      "DamageType": "Fire",
+      "DamageType": "Smashing",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1336,7 +1336,7 @@
     {
       "Index": 148,
       "EffectType": "Resistance",
-      "DamageType": "Cold",
+      "DamageType": "Fire",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1345,7 +1345,7 @@
     {
       "Index": 149,
       "EffectType": "Resistance",
-      "DamageType": "Energy",
+      "DamageType": "Cold",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1354,7 +1354,7 @@
     {
       "Index": 150,
       "EffectType": "Resistance",
-      "DamageType": "Negative",
+      "DamageType": "Energy",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1363,7 +1363,7 @@
     {
       "Index": 151,
       "EffectType": "Resistance",
-      "DamageType": "Psionic",
+      "DamageType": "Negative",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1372,7 +1372,7 @@
     {
       "Index": 152,
       "EffectType": "Resistance",
-      "DamageType": "Toxic",
+      "DamageType": "Psionic",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1380,6 +1380,15 @@
     },
     {
       "Index": 153,
+      "EffectType": "Resistance",
+      "DamageType": "Toxic",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 154,
       "EffectType": "MezResist",
       "DamageType": "None",
       "MezType": "Teleport",
@@ -1388,7 +1397,7 @@
       "BuffedMag": 1
     },
     {
-      "Index": 154,
+      "Index": 155,
       "EffectType": "Mez",
       "DamageType": "None",
       "MezType": "Knockback",
@@ -1397,7 +1406,7 @@
       "BuffedMag": -4
     },
     {
-      "Index": 155,
+      "Index": 156,
       "EffectType": "Mez",
       "DamageType": "None",
       "MezType": "Knockup",
@@ -1406,7 +1415,7 @@
       "BuffedMag": -4
     },
     {
-      "Index": 156,
+      "Index": 157,
       "EffectType": "Recovery",
       "DamageType": "None",
       "MezType": "None",
@@ -1415,7 +1424,7 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 157,
+      "Index": 158,
       "EffectType": "Mez",
       "DamageType": "None",
       "MezType": "Knockback",
@@ -1424,7 +1433,7 @@
       "BuffedMag": -3
     },
     {
-      "Index": 158,
+      "Index": 159,
       "EffectType": "Mez",
       "DamageType": "None",
       "MezType": "Knockup",
@@ -1433,7 +1442,7 @@
       "BuffedMag": -3
     },
     {
-      "Index": 159,
+      "Index": 160,
       "EffectType": "Resistance",
       "DamageType": "Toxic",
       "MezType": "None",
@@ -1442,7 +1451,7 @@
       "BuffedMag": 0.0375
     },
     {
-      "Index": 160,
+      "Index": 161,
       "EffectType": "Resistance",
       "DamageType": "Psionic",
       "MezType": "None",
@@ -1451,19 +1460,10 @@
       "BuffedMag": 0.0375
     },
     {
-      "Index": 161,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.0625,
-      "BuffedMag": 0.0625
-    },
-    {
       "Index": 162,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Held",
+      "MezType": "Immobilized",
       "ETModifies": "None",
       "Mag": 0.0625,
       "BuffedMag": 0.0625
@@ -1472,7 +1472,7 @@
       "Index": 163,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Stunned",
+      "MezType": "Held",
       "ETModifies": "None",
       "Mag": 0.0625,
       "BuffedMag": 0.0625
@@ -1481,7 +1481,7 @@
       "Index": 164,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Sleep",
+      "MezType": "Stunned",
       "ETModifies": "None",
       "Mag": 0.0625,
       "BuffedMag": 0.0625
@@ -1490,7 +1490,7 @@
       "Index": 165,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Terrorized",
+      "MezType": "Sleep",
       "ETModifies": "None",
       "Mag": 0.0625,
       "BuffedMag": 0.0625
@@ -1499,13 +1499,22 @@
       "Index": 166,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Confused",
+      "MezType": "Terrorized",
       "ETModifies": "None",
       "Mag": 0.0625,
       "BuffedMag": 0.0625
     },
     {
       "Index": 167,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
+      "ETModifies": "None",
+      "Mag": 0.0625,
+      "BuffedMag": 0.0625
+    },
+    {
+      "Index": 168,
       "EffectType": "HitPoints",
       "DamageType": "None",
       "MezType": "None",
@@ -1514,7 +1523,7 @@
       "BuffedMag": 42.166553
     },
     {
-      "Index": 168,
+      "Index": 169,
       "EffectType": "Defense",
       "DamageType": "Ranged",
       "MezType": "None",
@@ -1523,18 +1532,9 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 169,
-      "EffectType": "Defense",
-      "DamageType": "Energy",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.0125,
-      "BuffedMag": 0.0125
-    },
-    {
       "Index": 170,
       "EffectType": "Defense",
-      "DamageType": "Negative",
+      "DamageType": "Energy",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.0125,
@@ -1543,16 +1543,16 @@
     {
       "Index": 171,
       "EffectType": "Defense",
-      "DamageType": "Melee",
+      "DamageType": "Negative",
       "MezType": "None",
       "ETModifies": "None",
-      "Mag": 0.03,
-      "BuffedMag": 0.03
+      "Mag": 0.0125,
+      "BuffedMag": 0.0125
     },
     {
       "Index": 172,
       "EffectType": "Defense",
-      "DamageType": "AoE",
+      "DamageType": "Melee",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1561,7 +1561,7 @@
     {
       "Index": 173,
       "EffectType": "Defense",
-      "DamageType": "Ranged",
+      "DamageType": "AoE",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1570,7 +1570,7 @@
     {
       "Index": 174,
       "EffectType": "Defense",
-      "DamageType": "Smashing",
+      "DamageType": "Ranged",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1579,7 +1579,7 @@
     {
       "Index": 175,
       "EffectType": "Defense",
-      "DamageType": "Lethal",
+      "DamageType": "Smashing",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1588,7 +1588,7 @@
     {
       "Index": 176,
       "EffectType": "Defense",
-      "DamageType": "Fire",
+      "DamageType": "Lethal",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1597,7 +1597,7 @@
     {
       "Index": 177,
       "EffectType": "Defense",
-      "DamageType": "Cold",
+      "DamageType": "Fire",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1606,7 +1606,7 @@
     {
       "Index": 178,
       "EffectType": "Defense",
-      "DamageType": "Energy",
+      "DamageType": "Cold",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1615,7 +1615,7 @@
     {
       "Index": 179,
       "EffectType": "Defense",
-      "DamageType": "Negative",
+      "DamageType": "Energy",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1624,7 +1624,7 @@
     {
       "Index": 180,
       "EffectType": "Defense",
-      "DamageType": "Toxic",
+      "DamageType": "Negative",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1633,7 +1633,7 @@
     {
       "Index": 181,
       "EffectType": "Defense",
-      "DamageType": "Psionic",
+      "DamageType": "Toxic",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03,
@@ -1641,6 +1641,15 @@
     },
     {
       "Index": 182,
+      "EffectType": "Defense",
+      "DamageType": "Psionic",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03,
+      "BuffedMag": 0.03
+    },
+    {
+      "Index": 183,
       "EffectType": "MezResist",
       "DamageType": "None",
       "MezType": "Teleport",
@@ -1649,7 +1658,7 @@
       "BuffedMag": 1
     },
     {
-      "Index": 183,
+      "Index": 184,
       "EffectType": "Regeneration",
       "DamageType": "None",
       "MezType": "None",
@@ -1658,7 +1667,7 @@
       "BuffedMag": 0.1
     },
     {
-      "Index": 184,
+      "Index": 185,
       "EffectType": "HitPoints",
       "DamageType": "None",
       "MezType": "None",
@@ -1667,7 +1676,7 @@
       "BuffedMag": 21.083277
     },
     {
-      "Index": 185,
+      "Index": 186,
       "EffectType": "Enhancement",
       "DamageType": "None",
       "MezType": "None",
@@ -1676,7 +1685,7 @@
       "BuffedMag": 0.09
     },
     {
-      "Index": 186,
+      "Index": 187,
       "EffectType": "Enhancement",
       "DamageType": "None",
       "MezType": "None",
@@ -1685,20 +1694,11 @@
       "BuffedMag": 0.075
     },
     {
-      "Index": 187,
-      "EffectType": "ResEffect",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "SpeedRunning",
-      "Mag": 0.15,
-      "BuffedMag": 0.15
-    },
-    {
       "Index": 188,
       "EffectType": "ResEffect",
       "DamageType": "None",
       "MezType": "None",
-      "ETModifies": "RechargeTime",
+      "ETModifies": "SpeedRunning",
       "Mag": 0.15,
       "BuffedMag": 0.15
     },
@@ -1707,12 +1707,21 @@
       "EffectType": "ResEffect",
       "DamageType": "None",
       "MezType": "None",
-      "ETModifies": "SpeedFlying",
+      "ETModifies": "RechargeTime",
       "Mag": 0.15,
       "BuffedMag": 0.15
     },
     {
       "Index": 190,
+      "EffectType": "ResEffect",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "SpeedFlying",
+      "Mag": 0.15,
+      "BuffedMag": 0.15
+    },
+    {
+      "Index": 191,
       "EffectType": "Recovery",
       "DamageType": "None",
       "MezType": "None",
@@ -1721,7 +1730,7 @@
       "BuffedMag": 0.04
     },
     {
-      "Index": 191,
+      "Index": 192,
       "EffectType": "Resistance",
       "DamageType": "Fire",
       "MezType": "None",
@@ -1730,7 +1739,7 @@
       "BuffedMag": 0.06
     },
     {
-      "Index": 192,
+      "Index": 193,
       "EffectType": "Resistance",
       "DamageType": "Cold",
       "MezType": "None",
@@ -1739,19 +1748,10 @@
       "BuffedMag": 0.06
     },
     {
-      "Index": 193,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.1,
-      "BuffedMag": 0.1
-    },
-    {
       "Index": 194,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Held",
+      "MezType": "Immobilized",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -1760,7 +1760,7 @@
       "Index": 195,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Stunned",
+      "MezType": "Held",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -1769,7 +1769,7 @@
       "Index": 196,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Sleep",
+      "MezType": "Stunned",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -1778,7 +1778,7 @@
       "Index": 197,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Terrorized",
+      "MezType": "Sleep",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -1787,24 +1787,24 @@
       "Index": 198,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Confused",
+      "MezType": "Terrorized",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
     },
     {
       "Index": 199,
-      "EffectType": "Defense",
-      "DamageType": "Lethal",
-      "MezType": "None",
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
       "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
+      "Mag": 0.1,
+      "BuffedMag": 0.1
     },
     {
       "Index": 200,
       "EffectType": "Defense",
-      "DamageType": "Smashing",
+      "DamageType": "Lethal",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1813,6 +1813,15 @@
     {
       "Index": 201,
       "EffectType": "Defense",
+      "DamageType": "Smashing",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 202,
+      "EffectType": "Defense",
       "DamageType": "Melee",
       "MezType": "None",
       "ETModifies": "None",
@@ -1820,18 +1829,9 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 202,
-      "EffectType": "Defense",
-      "DamageType": "Fire",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
       "Index": 203,
       "EffectType": "Defense",
-      "DamageType": "Cold",
+      "DamageType": "Fire",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -1840,6 +1840,15 @@
     {
       "Index": 204,
       "EffectType": "Defense",
+      "DamageType": "Cold",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 205,
+      "EffectType": "Defense",
       "DamageType": "AoE",
       "MezType": "None",
       "ETModifies": "None",
@@ -1847,7 +1856,7 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 205,
+      "Index": 206,
       "EffectType": "Enhancement",
       "DamageType": "None",
       "MezType": "None",
@@ -1856,7 +1865,7 @@
       "BuffedMag": 0.075
     },
     {
-      "Index": 206,
+      "Index": 207,
       "EffectType": "Resistance",
       "DamageType": "Lethal",
       "MezType": "None",
@@ -1865,7 +1874,7 @@
       "BuffedMag": 0.015
     },
     {
-      "Index": 207,
+      "Index": 208,
       "EffectType": "Resistance",
       "DamageType": "Smashing",
       "MezType": "None",
@@ -1874,19 +1883,10 @@
       "BuffedMag": 0.015
     },
     {
-      "Index": 208,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.025,
-      "BuffedMag": 0.025
-    },
-    {
       "Index": 209,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Held",
+      "MezType": "Immobilized",
       "ETModifies": "None",
       "Mag": 0.025,
       "BuffedMag": 0.025
@@ -1895,7 +1895,7 @@
       "Index": 210,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Stunned",
+      "MezType": "Held",
       "ETModifies": "None",
       "Mag": 0.025,
       "BuffedMag": 0.025
@@ -1904,7 +1904,7 @@
       "Index": 211,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Sleep",
+      "MezType": "Stunned",
       "ETModifies": "None",
       "Mag": 0.025,
       "BuffedMag": 0.025
@@ -1913,7 +1913,7 @@
       "Index": 212,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Terrorized",
+      "MezType": "Sleep",
       "ETModifies": "None",
       "Mag": 0.025,
       "BuffedMag": 0.025
@@ -1922,13 +1922,22 @@
       "Index": 213,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Confused",
+      "MezType": "Terrorized",
       "ETModifies": "None",
       "Mag": 0.025,
       "BuffedMag": 0.025
     },
     {
       "Index": 214,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
+      "ETModifies": "None",
+      "Mag": 0.025,
+      "BuffedMag": 0.025
+    },
+    {
+      "Index": 215,
       "EffectType": "Endurance",
       "DamageType": "None",
       "MezType": "None",
@@ -1937,18 +1946,9 @@
       "BuffedMag": 1.8
     },
     {
-      "Index": 215,
-      "EffectType": "Defense",
-      "DamageType": "Energy",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03125,
-      "BuffedMag": 0.03125
-    },
-    {
       "Index": 216,
       "EffectType": "Defense",
-      "DamageType": "Negative",
+      "DamageType": "Energy",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.03125,
@@ -1957,6 +1957,15 @@
     {
       "Index": 217,
       "EffectType": "Defense",
+      "DamageType": "Negative",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03125,
+      "BuffedMag": 0.03125
+    },
+    {
+      "Index": 218,
+      "EffectType": "Defense",
       "DamageType": "Ranged",
       "MezType": "None",
       "ETModifies": "None",
@@ -1964,7 +1973,7 @@
       "BuffedMag": 0.01563
     },
     {
-      "Index": 218,
+      "Index": 219,
       "EffectType": "HitPoints",
       "DamageType": "None",
       "MezType": "None",
@@ -1973,7 +1982,7 @@
       "BuffedMag": 42.166553
     },
     {
-      "Index": 219,
+      "Index": 220,
       "EffectType": "Regeneration",
       "DamageType": "None",
       "MezType": "None",
@@ -1982,7 +1991,7 @@
       "BuffedMag": 0.12
     },
     {
-      "Index": 220,
+      "Index": 221,
       "EffectType": "Defense",
       "DamageType": "AoE",
       "MezType": "None",
@@ -1991,7 +2000,7 @@
       "BuffedMag": 0.03125
     },
     {
-      "Index": 221,
+      "Index": 222,
       "EffectType": "Defense",
       "DamageType": "Fire",
       "MezType": "None",
@@ -2000,7 +2009,7 @@
       "BuffedMag": 0.01563
     },
     {
-      "Index": 222,
+      "Index": 223,
       "EffectType": "Defense",
       "DamageType": "Cold",
       "MezType": "None",
@@ -2009,7 +2018,7 @@
       "BuffedMag": 0.01563
     },
     {
-      "Index": 223,
+      "Index": 224,
       "EffectType": "Enhancement",
       "DamageType": "None",
       "MezType": "None",
@@ -2018,7 +2027,7 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 224,
+      "Index": 225,
       "EffectType": "Resistance",
       "DamageType": "Fire",
       "MezType": "None",
@@ -2027,7 +2036,7 @@
       "BuffedMag": 0.06
     },
     {
-      "Index": 225,
+      "Index": 226,
       "EffectType": "Resistance",
       "DamageType": "Cold",
       "MezType": "None",
@@ -2036,19 +2045,10 @@
       "BuffedMag": 0.06
     },
     {
-      "Index": 226,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.1,
-      "BuffedMag": 0.1
-    },
-    {
       "Index": 227,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Held",
+      "MezType": "Immobilized",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -2057,7 +2057,7 @@
       "Index": 228,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Stunned",
+      "MezType": "Held",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -2066,7 +2066,7 @@
       "Index": 229,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Sleep",
+      "MezType": "Stunned",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -2075,7 +2075,7 @@
       "Index": 230,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Terrorized",
+      "MezType": "Sleep",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
@@ -2084,13 +2084,22 @@
       "Index": 231,
       "EffectType": "MezResist",
       "DamageType": "None",
-      "MezType": "Confused",
+      "MezType": "Terrorized",
       "ETModifies": "None",
       "Mag": 0.1,
       "BuffedMag": 0.1
     },
     {
       "Index": 232,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
+      "ETModifies": "None",
+      "Mag": 0.1,
+      "BuffedMag": 0.1
+    },
+    {
+      "Index": 233,
       "EffectType": "ResEffect",
       "DamageType": "None",
       "MezType": "None",
@@ -2099,7 +2108,7 @@
       "BuffedMag": 0.15
     },
     {
-      "Index": 233,
+      "Index": 234,
       "EffectType": "ResEffect",
       "DamageType": "None",
       "MezType": "None",
@@ -2108,7 +2117,7 @@
       "BuffedMag": 0.15
     },
     {
-      "Index": 234,
+      "Index": 235,
       "EffectType": "ResEffect",
       "DamageType": "None",
       "MezType": "None",
@@ -2117,7 +2126,7 @@
       "BuffedMag": 0.15
     },
     {
-      "Index": 235,
+      "Index": 236,
       "EffectType": "Recovery",
       "DamageType": "None",
       "MezType": "None",
@@ -2126,7 +2135,7 @@
       "BuffedMag": 0.04
     },
     {
-      "Index": 236,
+      "Index": 237,
       "EffectType": "Defense",
       "DamageType": "Energy",
       "MezType": "None",
@@ -2135,7 +2144,7 @@
       "BuffedMag": 0.05
     },
     {
-      "Index": 237,
+      "Index": 238,
       "EffectType": "Defense",
       "DamageType": "Negative",
       "MezType": "None",
@@ -2144,7 +2153,7 @@
       "BuffedMag": 0.05
     },
     {
-      "Index": 238,
+      "Index": 239,
       "EffectType": "Defense",
       "DamageType": "Ranged",
       "MezType": "None",
@@ -2153,18 +2162,9 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 239,
-      "EffectType": "Defense",
-      "DamageType": "Fire",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
       "Index": 240,
       "EffectType": "Defense",
-      "DamageType": "Cold",
+      "DamageType": "Fire",
       "MezType": "None",
       "ETModifies": "None",
       "Mag": 0.05,
@@ -2173,6 +2173,15 @@
     {
       "Index": 241,
       "EffectType": "Defense",
+      "DamageType": "Cold",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 242,
+      "EffectType": "Defense",
       "DamageType": "AoE",
       "MezType": "None",
       "ETModifies": "None",
@@ -2180,17 +2189,8 @@
       "BuffedMag": 0.025
     },
     {
-      "Index": 242,
-      "EffectType": "SpeedJumping",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.075,
-      "BuffedMag": 0.075
-    },
-    {
       "Index": 243,
-      "EffectType": "JumpHeight",
+      "EffectType": "SpeedJumping",
       "DamageType": "None",
       "MezType": "None",
       "ETModifies": "None",
@@ -2199,276 +2199,6 @@
     },
     {
       "Index": 244,
-      "EffectType": "SpeedFlying",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.075,
-      "BuffedMag": 0.075
-    },
-    {
-      "Index": 245,
-      "EffectType": "SpeedRunning",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.075,
-      "BuffedMag": 0.075
-    },
-    {
-      "Index": 246,
-      "EffectType": "Defense",
-      "DamageType": "Fire",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03125,
-      "BuffedMag": 0.03125
-    },
-    {
-      "Index": 247,
-      "EffectType": "Defense",
-      "DamageType": "Cold",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03125,
-      "BuffedMag": 0.03125
-    },
-    {
-      "Index": 248,
-      "EffectType": "Defense",
-      "DamageType": "AoE",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.01563,
-      "BuffedMag": 0.01563
-    },
-    {
-      "Index": 249,
-      "EffectType": "Resistance",
-      "DamageType": "Lethal",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03,
-      "BuffedMag": 0.03
-    },
-    {
-      "Index": 250,
-      "EffectType": "Resistance",
-      "DamageType": "Smashing",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03,
-      "BuffedMag": 0.03
-    },
-    {
-      "Index": 251,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 252,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Held",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 253,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Stunned",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 254,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Sleep",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 255,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Terrorized",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 256,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Confused",
-      "ETModifies": "None",
-      "Mag": 0.05,
-      "BuffedMag": 0.05
-    },
-    {
-      "Index": 257,
-      "EffectType": "Enhancement",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "RechargeTime",
-      "Mag": 0.075,
-      "BuffedMag": 0.075
-    },
-    {
-      "Index": 258,
-      "EffectType": "Endurance",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 1.8,
-      "BuffedMag": 1.8
-    },
-    {
-      "Index": 259,
-      "EffectType": "Resistance",
-      "DamageType": "Lethal",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.0225,
-      "BuffedMag": 0.0225
-    },
-    {
-      "Index": 260,
-      "EffectType": "Resistance",
-      "DamageType": "Smashing",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.0225,
-      "BuffedMag": 0.0225
-    },
-    {
-      "Index": 261,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Immobilized",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 262,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Held",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 263,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Stunned",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 264,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Sleep",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 265,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Terrorized",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 266,
-      "EffectType": "MezResist",
-      "DamageType": "None",
-      "MezType": "Confused",
-      "ETModifies": "None",
-      "Mag": 0.0375,
-      "BuffedMag": 0.0375
-    },
-    {
-      "Index": 267,
-      "EffectType": "Defense",
-      "DamageType": "Lethal",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.025,
-      "BuffedMag": 0.025
-    },
-    {
-      "Index": 268,
-      "EffectType": "Defense",
-      "DamageType": "Smashing",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.025,
-      "BuffedMag": 0.025
-    },
-    {
-      "Index": 269,
-      "EffectType": "Defense",
-      "DamageType": "Melee",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.0125,
-      "BuffedMag": 0.0125
-    },
-    {
-      "Index": 270,
-      "EffectType": "Defense",
-      "DamageType": "Fire",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03125,
-      "BuffedMag": 0.03125
-    },
-    {
-      "Index": 271,
-      "EffectType": "Defense",
-      "DamageType": "Cold",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.03125,
-      "BuffedMag": 0.03125
-    },
-    {
-      "Index": 272,
-      "EffectType": "Defense",
-      "DamageType": "AoE",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.01563,
-      "BuffedMag": 0.01563
-    },
-    {
-      "Index": 273,
-      "EffectType": "SpeedJumping",
-      "DamageType": "None",
-      "MezType": "None",
-      "ETModifies": "None",
-      "Mag": 0.075,
-      "BuffedMag": 0.075
-    },
-    {
-      "Index": 274,
       "EffectType": "JumpHeight",
       "DamageType": "None",
       "MezType": "None",
@@ -2477,7 +2207,7 @@
       "BuffedMag": 0.075
     },
     {
-      "Index": 275,
+      "Index": 245,
       "EffectType": "SpeedFlying",
       "DamageType": "None",
       "MezType": "None",
@@ -2486,7 +2216,259 @@
       "BuffedMag": 0.075
     },
     {
-      "Index": 276,
+      "Index": 246,
+      "EffectType": "SpeedRunning",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.075,
+      "BuffedMag": 0.075
+    },
+    {
+      "Index": 247,
+      "EffectType": "Defense",
+      "DamageType": "Fire",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03125,
+      "BuffedMag": 0.03125
+    },
+    {
+      "Index": 248,
+      "EffectType": "Defense",
+      "DamageType": "Cold",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03125,
+      "BuffedMag": 0.03125
+    },
+    {
+      "Index": 249,
+      "EffectType": "Defense",
+      "DamageType": "AoE",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.01563,
+      "BuffedMag": 0.01563
+    },
+    {
+      "Index": 250,
+      "EffectType": "Resistance",
+      "DamageType": "Lethal",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03,
+      "BuffedMag": 0.03
+    },
+    {
+      "Index": 251,
+      "EffectType": "Resistance",
+      "DamageType": "Smashing",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.03,
+      "BuffedMag": 0.03
+    },
+    {
+      "Index": 252,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Immobilized",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 253,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Held",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 254,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Stunned",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 255,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Sleep",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 256,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Terrorized",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 257,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
+      "ETModifies": "None",
+      "Mag": 0.05,
+      "BuffedMag": 0.05
+    },
+    {
+      "Index": 258,
+      "EffectType": "Enhancement",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "RechargeTime",
+      "Mag": 0.075,
+      "BuffedMag": 0.075
+    },
+    {
+      "Index": 259,
+      "EffectType": "Endurance",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 1.8,
+      "BuffedMag": 1.8
+    },
+    {
+      "Index": 260,
+      "EffectType": "Resistance",
+      "DamageType": "Lethal",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.0225,
+      "BuffedMag": 0.0225
+    },
+    {
+      "Index": 261,
+      "EffectType": "Resistance",
+      "DamageType": "Smashing",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.0225,
+      "BuffedMag": 0.0225
+    },
+    {
+      "Index": 262,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Immobilized",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 263,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Held",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 264,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Stunned",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 265,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Sleep",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 266,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Terrorized",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 267,
+      "EffectType": "MezResist",
+      "DamageType": "None",
+      "MezType": "Confused",
+      "ETModifies": "None",
+      "Mag": 0.0375,
+      "BuffedMag": 0.0375
+    },
+    {
+      "Index": 268,
+      "EffectType": "Defense",
+      "DamageType": "Lethal",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.025,
+      "BuffedMag": 0.025
+    },
+    {
+      "Index": 269,
+      "EffectType": "Defense",
+      "DamageType": "Smashing",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.025,
+      "BuffedMag": 0.025
+    },
+    {
+      "Index": 270,
+      "EffectType": "Defense",
+      "DamageType": "Melee",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.0125,
+      "BuffedMag": 0.0125
+    },
+    {
+      "Index": 271,
+      "EffectType": "SpeedJumping",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.075,
+      "BuffedMag": 0.075
+    },
+    {
+      "Index": 272,
+      "EffectType": "JumpHeight",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.075,
+      "BuffedMag": 0.075
+    },
+    {
+      "Index": 273,
+      "EffectType": "SpeedFlying",
+      "DamageType": "None",
+      "MezType": "None",
+      "ETModifies": "None",
+      "Mag": 0.075,
+      "BuffedMag": 0.075
+    },
+    {
+      "Index": 274,
       "EffectType": "SpeedRunning",
       "DamageType": "None",
       "MezType": "None",
