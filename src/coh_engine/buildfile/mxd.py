@@ -41,6 +41,15 @@ _HEX = re.compile(r"\A[0-9A-Fa-f]+\Z")
 _PAYLOAD_LINE = re.compile(r"\A[0-9A-Za-z+/=]+\Z")
 
 
+def _lines(text: str) -> list[str]:
+    """Split a share block into lines; ``||`` marks a line break in single-line files.
+
+    MidsReborn does the same before classifying or decoding
+    (``MidsCharacterFileFormat.cs:1157,1254``).
+    """
+    return [ln for ln in re.split(r"[\r\n]+", text.replace("||", "|\n|")) if ln != ""]
+
+
 def _find_header_index(lines: list[str]) -> int | None:
     """Return the index of the first ``|MxDz;…`` / ``|MBD;…`` header line."""
     for i, line in enumerate(lines):
@@ -56,7 +65,7 @@ def classify(text: str) -> str | None:
     prefixes a "Do not modify" banner, so the header line is located rather than
     assumed to be line 0. Returns ``"mxd"``, ``"mbd"``, ``"unkbase64"``, or ``None``.
     """
-    lines = [ln for ln in re.split(r"[\r\n]+", text) if ln != ""]
+    lines = _lines(text)
     for line in lines:
         if _MXD_HEADER.match(line):
             return "mxd"
@@ -87,7 +96,7 @@ def decode_share_block(text: str) -> ShareBlock:
         ValueError: if there are fewer than 2 lines, the header is not exactly 5
             ``;``-separated items, or the sizes are not integers.
     """
-    lines = [ln for ln in re.split(r"[\r\n]+", text) if ln != ""]
+    lines = _lines(text)
     header_index = _find_header_index(lines)
     if header_index is None:
         raise ValueError("no |MxDz;…| or |MBD;…| header line found")

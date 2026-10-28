@@ -123,3 +123,12 @@ def test_read_mxd_build_newer_version_raises() -> None:
     buf = _MAGIC + struct.pack("<f", 9.99)
     with pytest.raises(ValueError, match="newer version"):
         read_mxd_build(buf, {}, {})
+
+
+def test_single_line_share_block_reads_like_the_multi_line_form() -> None:
+    original = bytes(range(256)) * 4
+    multi = _make_mxd_share(original)
+    single = multi.replace("\r\n", "")
+    assert "\n" not in single
+    assert classify(single) == "mxd"
+    assert decode_mxd(single) == decode_mxd(multi) == original
