@@ -191,6 +191,17 @@ def test_incarnates_do_not_count_toward_picks_or_grant_levels(schedule: LevelSch
     assert "H-POWER-003" not in _rule_ids(diags)
 
 
+def test_accolades_do_not_count_toward_picks(schedule: LevelSchedule) -> None:
+    """An accolade (``Temporary_Powers.Accolades.*``) is earned, not picked, whether or not the file says so."""
+    powers = [
+        _power(i, f"Dominator_Control.Arsenal_Control.P{i}", pick_level=lv)
+        for i, lv in enumerate(schedule.power_pick_levels)
+    ]
+    powers += [_power(24, "Temporary_Powers.Accolades.Task_Force_Commander", level=1, pick_level=0)]
+    diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
+    assert "H-POWER-001" not in _rule_ids(diags) and "H-POWER-003" not in _rule_ids(diags)
+
+
 def test_auto_granted_subpower_does_not_count_toward_picks(schedule: LevelSchedule) -> None:
     """An auto-granted sub-power (``chosen=false``) is not one of the 24 picks.
 

@@ -37,6 +37,7 @@ from coh_engine.levels import LevelSchedule
 # Group prefix (first dotted segment of a power full name) → build role.
 _INHERENT_GROUP = "Inherent"
 _INCARNATE_GROUP = "Incarnate"
+_TEMPORARY_GROUP = "Temporary_Powers"  # accolades and other earned temporary powers
 _POOL_GROUP = "Pool"
 _ANCILLARY_GROUP = "Epic"  # Ancillary / Patron pools are the "Epic" group.
 
@@ -80,6 +81,14 @@ def _is_incarnate(power: Power) -> bool:
     predicate rather than merged with :func:`_is_inherent`.
     """
     return _group(power) == _INCARNATE_GROUP
+
+
+def _is_accolade(power: Power) -> bool:
+    """Whether a power is an earned accolade or temporary power — granted, never one of the 24 picks.
+
+    A ``.mbd`` has no ``Chosen`` flag, so the group name is what keeps an accolade out of the pick count there.
+    """
+    return _group(power) == _TEMPORARY_GROUP
 
 
 def _added_slots(power_slots: Sequence[SlotRef]) -> list[SlotRef]:
@@ -148,7 +157,11 @@ def build_context(
     Slot accounting walks all powers, so inherent Health/Stamina slots still count against
     the budget and slotless incarnates contribute 0.
     """
-    picks = tuple(p for p in powers if p.build_index >= 0 and p.chosen and not _is_inherent(p) and not _is_incarnate(p))
+    picks = tuple(
+        p
+        for p in powers
+        if p.build_index >= 0 and p.chosen and not _is_inherent(p) and not _is_incarnate(p) and not _is_accolade(p)
+    )
     added_by_power: dict[int, int] = {}
     added_by_level: dict[int, int] = {}
     added_pairs: list[tuple[Power, SlotRef]] = []
