@@ -25,7 +25,7 @@ load errors.
 The project reference expects the fork three levels above `tools/mids-dump`. From a git worktree,
 pass its location: `dotnet build -c Debug -p:MidsFork=<repos>/MidsReborn`.
 
-## Race-free dumps — apply the harness patch first
+## Race-free dumps — the fork stays patched
 
 `MidsReborn.GenerateBuffedPowerArray` runs its per-power pass loops under `Parallel.For`,
 which carries three intra-pass data races (a cross-power `Math_Mag`/`BuffedMag` read, a torn
@@ -34,20 +34,26 @@ dictionary). They surface on **incarnate and set-bonus** builds — e.g. Combat 
 endurance dumps ÷2.15 instead of the correct ÷1.45. The interactive UI happens to show the
 correct in-index-order result; the harness must reproduce it deterministically.
 
-The fork is a read-only vendored reference and stays pristine (no branches, no commits), so
-the fix lives here as a patch applied only for the duration of a dump, then reverted:
+The fork takes no branches or commits, so the fix is
+[`patches/gbpa-sequential.patch`](./patches/gbpa-sequential.patch), kept applied to the fork
+as an uncommitted edit. It is not reverted after a dump: an unpatched run does not fail, it
+silently gives wrong endurance numbers, so a fork left unpatched by mistake corrupts every
+fixture it produces. `git -C <fork> status --short` lists only `MidsReborn/clsToonX.cs`, as modified.
 
 ```bash
 FORK=<repos>/MidsReborn
-git -C "$FORK" apply tools/mids-dump/patches/gbpa-sequential.patch   # serialize the pass loops
+git -C "$FORK" apply tools/mids-dump/patches/gbpa-sequential.patch   # once, if status shows the file clean
 dotnet build -c Debug                                                # rebuild against the patched fork
 dotnet run -c Debug --no-build -- "$FORK"/MidsReborn/Databases/Homecoming ./out - <parity-builds>
-git -C "$FORK" checkout -- MidsReborn/clsToonX.cs                     # revert — fork back to pristine
 ```
 
-[`patches/gbpa-sequential.patch`](./patches/gbpa-sequential.patch) replaces both `Parallel.For`
-loops with sequential `for` loops (see the patch's inline comment for the full rationale).
-Non-incarnate builds are byte-identical patched or not — only race-carrying builds change.
+The harness refuses to dump (`E15`, exit 2) when the fork it was built against is unpatched.
+The next upstream sync (MidsReborn 4.0) overwrites the fork, so the check fails after it until
+the patch is re-applied, or until the new `GenerateBuffedPowerArray` is found not to need it.
+
+The patch replaces both `Parallel.For` loops with sequential `for` loops (see its inline
+comment for the full rationale). Non-incarnate builds are byte-identical patched or not —
+only race-carrying builds change.
 
 ## Outputs
 

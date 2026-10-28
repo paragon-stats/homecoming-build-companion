@@ -9,6 +9,7 @@
 // Load sequence mirrors MainModule.LoadDataAsync (MidsReborn MainModule.cs:145-218),
 // minus graphics. Dialogs only fire on load errors.
 
+using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Mids_Reborn;
@@ -33,6 +34,16 @@ internal static class Program
         if (args.Length < 2)
         {
             Console.Error.WriteLine("usage: MidsDump <databases-dir> <output-dir>");
+            return 2;
+        }
+
+        if (!ForkIsPatched())
+        {
+            Console.Error.WriteLine(
+                "E15: the MidsReborn fork is unpatched: clsToonX.GenerateBuffedPowerArray still runs its pass loops "
+                + "under Parallel.For, which races and silently gives wrong endurance numbers on incarnate and "
+                + "set-bonus builds; apply tools/mids-dump/patches/gbpa-sequential.patch to the fork "
+                + "(git -C <fork> apply ...) and rebuild the harness");
             return 2;
         }
 
@@ -156,6 +167,16 @@ internal static class Program
 
         Console.WriteLine($"OK: dumps written to {outDir}");
         return 0;
+    }
+
+    // The patch replaces both Parallel.For lambdas with plain loops, so the compiled fork has no
+    // lambda left whose name the compiler derives from GenerateBuffedPowerArray.
+    private static bool ForkIsPatched()
+    {
+        const BindingFlags all = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+        var types = new[] { typeof(clsToonX) }.Concat(typeof(clsToonX).GetNestedTypes(all));
+        return !types.SelectMany(t => t.GetMethods(all))
+            .Any(m => m.Name.StartsWith("<GenerateBuffedPowerArray>", StringComparison.Ordinal));
     }
 
     private static void DumpEnums(string outDir)
