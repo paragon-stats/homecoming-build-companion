@@ -1,0 +1,4044 @@
+[
+  {
+    "BuildIndex": 0,
+    "FullName": "Controller_Control.Illusion_Control.Blind",
+    "Accuracy": 1.9778172,
+    "AccuracyMult": 4.183701,
+    "EndCost": 4.5114236,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 2.2186956,
+    "CastTime": 1.67,
+    "DamagePerActivation": 91.48066,
+    "Base": {
+      "Accuracy": 1.1,
+      "EndCost": 8.528,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 9,
+      "CastTime": 1.67
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 38.254
+      },
+      {
+        "Index": 1,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 28.690502
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 4,
+        "Math_Duration": 8.215625
+      },
+      {
+        "Index": 3,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 35.785152,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 4,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 35.785152,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 5,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 115.740265,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 6,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 57.87031,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 7,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Sleep",
+        "ETModifies": "None",
+        "Math_Mag": 2,
+        "Math_Duration": 39.744007
+      },
+      {
+        "Index": 8,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Sleep",
+        "ETModifies": "None",
+        "Math_Mag": 4,
+        "Math_Duration": 4.2678127
+      },
+      {
+        "Index": 9,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 107.0897,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 10,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 107.0897,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 1,
+    "FullName": "Controller_Buff.Time_Manipulation.Time_Crawl",
+    "Accuracy": 1.3302501,
+    "AccuracyMult": 2.0818415,
+    "EndCost": 9.6744175,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 4.8582993,
+    "CastTime": 1.6,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 10.4,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 15,
+      "CastTime": 1.6
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.790625,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 1,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.75,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 2,
+        "EffectType": "GrantPower",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 3,
+        "EffectType": "Null",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 4,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": -0.625,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 5,
+        "EffectType": "MaxRunSpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -3.5,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 6,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.790625,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 7,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.790625,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 8,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 9,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1.384,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 10,
+        "EffectType": "Null",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 2,
+    "FullName": "Controller_Control.Illusion_Control.Spectral_Wounds",
+    "Accuracy": 2.116811,
+    "AccuracyMult": 4.792394,
+    "EndCost": 4.3667593,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 1.4827628,
+    "CastTime": 1.07,
+    "DamagePerActivation": 89.95825,
+    "Base": {
+      "Accuracy": 1.1,
+      "EndCost": 6.864,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 6,
+      "CastTime": 1.07
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 109.533035,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "Damage",
+        "DamageType": "Special",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -19.574783,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 66.78844,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 3,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 155.54425,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 4,
+        "EffectType": "Damage",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 77.7718,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 5,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 6,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 7,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedRunning",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 8,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedFlying",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 9,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 10,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedJumping",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      }
+    ]
+  },
+  {
+    "BuildIndex": 3,
+    "FullName": "Controller_Buff.Time_Manipulation.Temporal_Mending",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 7.171227,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 4.705513,
+    "CastTime": 2.03,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 13,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 18,
+      "CastTime": 2.03
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 174.48035,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 46.52809,
+        "Math_Duration": 6
+      },
+      {
+        "Index": 2,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 261.72052,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 3,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 69.79214,
+        "Math_Duration": 6
+      },
+      {
+        "Index": 4,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1.856406,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 5,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2.7846088,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 6,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedRunning",
+        "Math_Mag": 0.2,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 7,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": 0.2,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 8,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedFlying",
+        "Math_Mag": 0.2,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 9,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": 0.2,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 10,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedJumping",
+        "Math_Mag": 0.2,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 11,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "Regeneration",
+        "Math_Mag": 0.346,
+        "Math_Duration": 30
+      }
+    ]
+  },
+  {
+    "BuildIndex": 4,
+    "FullName": "Controller_Buff.Time_Manipulation.Times_Juncture",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.24299064,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 2.76434,
+    "CastTime": 0.67,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.39,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 10,
+      "CastTime": 0.67
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1.6,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 1,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": -0.375,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 2,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 3,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 4,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 5,
+        "EffectType": "DamageBuff",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 6,
+        "EffectType": "DamageBuff",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 7,
+        "EffectType": "DamageBuff",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 8,
+        "EffectType": "DamageBuff",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 9,
+        "EffectType": "DamageBuff",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 10,
+        "EffectType": "DamageBuff",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 11,
+        "EffectType": "DamageBuff",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 12,
+        "EffectType": "DamageBuff",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.2,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 13,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.19270313,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 14,
+        "EffectType": "MaxRunSpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -3.5,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 15,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1.92,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 16,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": -0.45000002,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 17,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.45000002,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 18,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.45000002,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 19,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.45000002,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 20,
+        "EffectType": "DamageBuff",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 21,
+        "EffectType": "DamageBuff",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 22,
+        "EffectType": "DamageBuff",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 23,
+        "EffectType": "DamageBuff",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 24,
+        "EffectType": "DamageBuff",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 25,
+        "EffectType": "DamageBuff",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 26,
+        "EffectType": "DamageBuff",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 27,
+        "EffectType": "DamageBuff",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.24000001,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 28,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.23124376,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 29,
+        "EffectType": "MaxRunSpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -4.2000003,
+        "Math_Duration": 1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 5,
+    "FullName": "Controller_Control.Illusion_Control.Deceive",
+    "Accuracy": 1.9341751,
+    "AccuracyMult": 3.6676795,
+    "EndCost": 6.0643554,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 2.0066469,
+    "CastTime": 2,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1.2,
+      "EndCost": 8.528,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 8,
+      "CastTime": 2
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Confused",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 79.66379
+      },
+      {
+        "Index": 1,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Confused",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 8.554501
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Confused",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 59.74784
+      },
+      {
+        "Index": 3,
+        "EffectType": "GrantPower",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 4,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Confused",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 25.774998
+      }
+    ]
+  },
+  {
+    "BuildIndex": 6,
+    "FullName": "Controller_Control.Illusion_Control.Invisibility",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.11726803,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0.6061525,
+    "CastTime": 0.73,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.182,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 2,
+      "CastTime": 0.73
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "StealthRadius",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 200,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "StealthRadiusPlayer",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1000,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 3,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 4,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 6,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 9,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 10,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 11,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 12,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 13,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 14,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 15,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 16,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 18,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 19,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 20,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 21,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 22,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 23,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.032446895,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 24,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 25,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.3,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 26,
+        "EffectType": "ThreatLevel",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 7,
+    "FullName": "Pool.Flight.Combat_Flight",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.07313433,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.098,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 4,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 3,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 4,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 6,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 9,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 10,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 11,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 12,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 13,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 14,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 15,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 16,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 18,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 19,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 20,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 21,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 22,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.029671878,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 23,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.5,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 24,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.5,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 25,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1.01,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 26,
+        "EffectType": "MovementControl",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 27,
+        "EffectType": "MovementFriction",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 28,
+        "EffectType": "GlobalChanceMod",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 8,
+    "FullName": "Pool.Flight.Fly",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.21209301,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.228,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "GlobalChanceMod",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "MovementControl",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 8,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 3,
+        "EffectType": "MovementFriction",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 8,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 4,
+        "EffectType": "SetMode",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2.2916932,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 6,
+        "EffectType": "MaxFlySpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2.0475001,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2.2916932,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 9,
+    "FullName": "Controller_Buff.Time_Manipulation.Distortion_Field",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 13.544186,
+    "InterruptTime": 0,
+    "Range": 70,
+    "RechargeTime": 19.433197,
+    "CastTime": 2.03,
+    "DamagePerActivation": 64.57509,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 14.56,
+      "InterruptTime": 0,
+      "Range": 70,
+      "RechargeTime": 60,
+      "CastTime": 2.03
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 50,
+        "Math_Duration": 45
+      },
+      {
+        "Index": 1,
+        "EffectType": "Damage",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 71.7501,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Damage",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 71.7501,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 3,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.2,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 4,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.78,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 5,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "JumpHeight",
+        "Math_Mag": -0.91,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 6,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.65,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 7,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.91,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 8,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.91,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 9,
+        "EffectType": "MaxRunSpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -3.5,
+        "Math_Duration": 1.3
+      },
+      {
+        "Index": 10,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 4.5878406
+      },
+      {
+        "Index": 11,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 0.32400003
+      },
+      {
+        "Index": 12,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 4.5878406
+      },
+      {
+        "Index": 13,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 0.32400003
+      }
+    ]
+  },
+  {
+    "BuildIndex": 10,
+    "FullName": "Controller_Control.Illusion_Control.Decoy",
+    "Accuracy": 1.1971874,
+    "AccuracyMult": 1.9110104,
+    "EndCost": 18.48889,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 60.19941,
+    "CastTime": 3.1,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 26,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 240,
+      "CastTime": 3.1
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 60
+      },
+      {
+        "Index": 1,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 60
+      },
+      {
+        "Index": 2,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 60
+      }
+    ]
+  },
+  {
+    "BuildIndex": 11,
+    "FullName": "Pool.Speed.Hasten",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 114.77542,
+    "CastTime": 0.73,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 450,
+      "CastTime": 0.73
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": 0.7,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 1,
+        "EffectType": "Endurance",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -15,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 12,
+    "FullName": "Controller_Control.Illusion_Control.Spectral_Terror",
+    "Accuracy": 1.7191557,
+    "AccuracyMult": 3.4770544,
+    "EndCost": 8.8194685,
+    "InterruptTime": 0,
+    "Range": 60,
+    "RechargeTime": 11.093478,
+    "CastTime": 3.2,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 16.64,
+      "InterruptTime": 0,
+      "Range": 60,
+      "RechargeTime": 45,
+      "CastTime": 3.2
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 45
+      },
+      {
+        "Index": 1,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -50,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Terrorized",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 10.866615
+      },
+      {
+        "Index": 3,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.15,
+        "Math_Duration": 5
+      },
+      {
+        "Index": 4,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Terrorized",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 4.092887
+      },
+      {
+        "Index": 5,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Afraid",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 2.124
+      },
+      {
+        "Index": 6,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.15,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 7,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Terrorized",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 32.599846
+      },
+      {
+        "Index": 8,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Terrorized",
+        "ETModifies": "None",
+        "Math_Mag": 3.5,
+        "Math_Duration": 4.092887
+      }
+    ]
+  },
+  {
+    "BuildIndex": 13,
+    "FullName": "Controller_Buff.Time_Manipulation.Farsight",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 8.605473,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 62.740173,
+    "CastTime": 2.03,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 15.6,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 240,
+      "CastTime": 2.03
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 1,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 2,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 3,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 4,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 5,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 6,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 7,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 9,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.14767382,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 10,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 11,
+        "EffectType": "ResEffect",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "PerceptionRadius",
+        "Math_Mag": 0.519,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 12,
+        "EffectType": "PerceptionRadius",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.692,
+        "Math_Duration": 120
+      }
+    ]
+  },
+  {
+    "BuildIndex": 14,
+    "FullName": "Controller_Buff.Time_Manipulation.Time_Stop",
+    "Accuracy": 1.7980156,
+    "AccuracyMult": 3.8033645,
+    "EndCost": 4.6764755,
+    "InterruptTime": 0,
+    "Range": 70,
+    "RechargeTime": 4.0379186,
+    "CastTime": 2.17,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 8.84,
+      "InterruptTime": 0,
+      "Range": 70,
+      "RechargeTime": 16,
+      "CastTime": 2.17
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 30.6032
+      },
+      {
+        "Index": 1,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 7.6508
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 15.3016
+      },
+      {
+        "Index": 3,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 3.8254
+      },
+      {
+        "Index": 4,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "Heal",
+        "Math_Mag": -0.465625,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 5,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.5,
+        "Math_Duration": 20
+      },
+      {
+        "Index": 6,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -2,
+        "Math_Duration": 20
+      }
+    ]
+  },
+  {
+    "BuildIndex": 15,
+    "FullName": "Controller_Buff.Time_Manipulation.Slowed_Response",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 8.605473,
+    "InterruptTime": 0,
+    "Range": 80,
+    "RechargeTime": 23.527565,
+    "CastTime": 2.27,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 15.6,
+      "InterruptTime": 0,
+      "Range": 80,
+      "RechargeTime": 90,
+      "CastTime": 2.27
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Resistance",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 1,
+        "EffectType": "Resistance",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 2,
+        "EffectType": "Resistance",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 3,
+        "EffectType": "Resistance",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 4,
+        "EffectType": "Resistance",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 5,
+        "EffectType": "Resistance",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 6,
+        "EffectType": "Resistance",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 7,
+        "EffectType": "Resistance",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.22500001,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.32898003,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 9,
+        "EffectType": "Resistance",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 10,
+        "EffectType": "Resistance",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 11,
+        "EffectType": "Resistance",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 12,
+        "EffectType": "Resistance",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 13,
+        "EffectType": "Resistance",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 14,
+        "EffectType": "Resistance",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 15,
+        "EffectType": "Resistance",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 16,
+        "EffectType": "Resistance",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.27,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.41122502,
+        "Math_Duration": 30
+      }
+    ]
+  },
+  {
+    "BuildIndex": 16,
+    "FullName": "Controller_Control.Illusion_Control.Phantasm",
+    "Accuracy": 1.7321302,
+    "AccuracyMult": 3.529735,
+    "EndCost": 16.752577,
+    "InterruptTime": 0,
+    "Range": 60,
+    "RechargeTime": 63.550903,
+    "CastTime": 2.03,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 26,
+      "InterruptTime": 0,
+      "Range": 60,
+      "RechargeTime": 240,
+      "CastTime": 2.03
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 99999
+      }
+    ]
+  },
+  {
+    "BuildIndex": 17,
+    "FullName": "Pool.Flight.Evasive_Maneuvers",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.120930225,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 3.2388663,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.13,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 10,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 4,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.546,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "MovementControl",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 60,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 3,
+        "EffectType": "MovementFriction",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 60,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 4,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Immobilized",
+        "ETModifies": "None",
+        "Math_Mag": -10.379999,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Knockback",
+        "ETModifies": "None",
+        "Math_Mag": 0.4844,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 6,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Immobilized",
+        "ETModifies": "None",
+        "Math_Mag": 0.8304,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Knockback",
+        "ETModifies": "None",
+        "Math_Mag": 0.4844,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 9,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 10,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 11,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 12,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 13,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 14,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 15,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 16,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15651563,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 18,
+    "FullName": "Controller_Buff.Time_Manipulation.Chrono_Shift",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 19.348835,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 99.516235,
+    "CastTime": 2.03,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 20.8,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 360,
+      "CastTime": 2.03
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 141.35832,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 212.03748,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 23.559721,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 3,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 35.33958,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 4,
+        "EffectType": "Endurance",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.15,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 5,
+        "EffectType": "Recovery",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.3795,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 6,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1.066,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 7,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1.599,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 8,
+        "EffectType": "Null",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 90
+      },
+      {
+        "Index": 9,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": 0.5,
+        "Math_Duration": 90
+      }
+    ]
+  },
+  {
+    "BuildIndex": 19,
+    "FullName": "Pool.Teleportation.Recall_Friend",
+    "Accuracy": 1.4654,
+    "AccuracyMult": 2.5263495,
+    "EndCost": 13.953487,
+    "InterruptTime": 2,
+    "Range": 200,
+    "RechargeTime": 6.4777327,
+    "CastTime": 3.17,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 15,
+      "InterruptTime": 2,
+      "Range": 200,
+      "RechargeTime": 20,
+      "CastTime": 3.17
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0,
+        "Math_Duration": 1.5
+      },
+      {
+        "Index": 1,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 2.1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 15
+      },
+      {
+        "Index": 3,
+        "EffectType": "EntCreate",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0,
+        "Math_Duration": 1
+      },
+      {
+        "Index": 4,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.3,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "StealthRadius",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 20,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 6,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Intangible",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Untouchable",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 8,
+        "EffectType": "ThreatLevel",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 9,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "OnlyAffectsSelf",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 10,
+        "EffectType": "Meter",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 4
+      },
+      {
+        "Index": 11,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 12,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 13,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 14,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 15,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 20,
+    "FullName": "Pool.Teleportation.Teleport_Foe",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 5.181395,
+    "InterruptTime": 0,
+    "Range": 100,
+    "RechargeTime": 1.7086715,
+    "CastTime": 0.67,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 5.57,
+      "InterruptTime": 0,
+      "Range": 100,
+      "RechargeTime": 6,
+      "CastTime": 0.67
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 5
+      }
+    ]
+  },
+  {
+    "BuildIndex": 21,
+    "FullName": "Pool.Teleportation.Long_Range_Teleport",
+    "Accuracy": 1.81322,
+    "AccuracyMult": 3.867961,
+    "EndCost": 12.576744,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 30.60678,
+    "CastTime": 1.67,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 13.52,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 120,
+      "CastTime": 1.67
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 4.1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 15
+      }
+    ]
+  },
+  {
+    "BuildIndex": 22,
+    "FullName": "Controller_Control.Illusion_Control.Flash",
+    "Accuracy": 1.28945,
+    "AccuracyMult": 2.4451196,
+    "EndCost": 6.0643554,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 2.0066469,
+    "CastTime": 3,
+    "DamagePerActivation": 13.240303,
+    "Base": {
+      "Accuracy": 0.8,
+      "EndCost": 8.528,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 8,
+      "CastTime": 3
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 3,
+        "Math_Duration": 29.490824
+      },
+      {
+        "Index": 1,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 22.118116
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Held",
+        "ETModifies": "None",
+        "Math_Mag": 4,
+        "Math_Duration": 7.917
+      },
+      {
+        "Index": 3,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 4,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 5,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 6,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 7,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 8,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 9,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 10,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 11,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 12,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 13,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 14,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 15,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 16,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 17,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 18,
+        "EffectType": "ModifyAttrib",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 19,
+        "EffectType": "Damage",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 107.0897,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 20,
+        "EffectType": "Damage",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 107.0897,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 23,
+    "FullName": "Pool.Leaping.Combat_Jumping",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.030232556,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.0325,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "JumpHeight",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 3,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 4,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 5,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 6,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 7,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 8,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 9,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 10,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 11,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 12,
+        "EffectType": "Defense",
+        "DamageType": "Melee",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 13,
+        "EffectType": "Defense",
+        "DamageType": "Ranged",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 14,
+        "EffectType": "Defense",
+        "DamageType": "AoE",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 15,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 16,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 18,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 19,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 20,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 21,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 22,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.026085937,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 23,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.01,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 24,
+        "EffectType": "MovementControl",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 40,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 25,
+        "EffectType": "MovementFriction",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.2,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 26,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Immobilized",
+        "ETModifies": "None",
+        "Math_Mag": -9.63264,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 27,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Immobilized",
+        "ETModifies": "None",
+        "Math_Mag": 0.8304,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 24,
+    "FullName": "Inherent.Inherent.Containment",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Null",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 25,
+    "FullName": "Inherent.Inherent.Brawl",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 7,
+    "RechargeTime": 0.64777327,
+    "CastTime": 0.83,
+    "DamagePerActivation": 12.882655,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 7,
+      "RechargeTime": 2,
+      "CastTime": 0.83
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Damage",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 12.882655,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 1,
+        "EffectType": "Damage",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 12.882655,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 3,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "RechargeTime",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 4,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 5,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 6,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      },
+      {
+        "Index": 7,
+        "EffectType": "Recovery",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.1,
+        "Math_Duration": 10
+      }
+    ]
+  },
+  {
+    "BuildIndex": 26,
+    "FullName": "Inherent.Inherent.Sprint",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.1360465,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.14625,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.5,
+        "Math_Duration": 0.8
+      },
+      {
+        "Index": 1,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.5,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 2,
+        "EffectType": "JumpHeight",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 3,
+        "EffectType": "StealthRadius",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 30,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 4,
+        "EffectType": "StealthRadiusPlayer",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 300,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 5,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.5,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 6,
+        "EffectType": "Translucency",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.8,
+        "Math_Duration": 120
+      }
+    ]
+  },
+  {
+    "BuildIndex": 27,
+    "FullName": "Inherent.Inherent.Rest",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 6,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 6,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 6,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 6
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 19,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 1,
+        "EffectType": "Recovery",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 4.25,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 2,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Immobilized",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 0.3
+      },
+      {
+        "Index": 3,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "OnlyAffectsSelf",
+        "ETModifies": "None",
+        "Math_Mag": 100,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 4,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Untouchable",
+        "ETModifies": "None",
+        "Math_Mag": -100,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 5,
+        "EffectType": "Resistance",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 6,
+        "EffectType": "Resistance",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 7,
+        "EffectType": "Resistance",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 8,
+        "EffectType": "Resistance",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 9,
+        "EffectType": "Resistance",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 10,
+        "EffectType": "Resistance",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 11,
+        "EffectType": "Resistance",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 12,
+        "EffectType": "Resistance",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 13,
+        "EffectType": "Resistance",
+        "DamageType": "Special",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -10,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 14,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 15,
+        "EffectType": "Mez",
+        "DamageType": "None",
+        "MezType": "Teleport",
+        "ETModifies": "None",
+        "Math_Mag": -100,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 16,
+        "EffectType": "Fly",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -100,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 17,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 18,
+        "EffectType": "Defense",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 19,
+        "EffectType": "Defense",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 20,
+        "EffectType": "Defense",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 21,
+        "EffectType": "Defense",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 22,
+        "EffectType": "Defense",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 23,
+        "EffectType": "Defense",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 24,
+        "EffectType": "Defense",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      },
+      {
+        "Index": 25,
+        "EffectType": "Defense",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -1000,
+        "Math_Duration": 0.55
+      }
+    ]
+  },
+  {
+    "BuildIndex": 28,
+    "FullName": "Inherent.Fitness.Swift",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "SpeedRunning",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.35,
+        "Math_Duration": 10.25
+      },
+      {
+        "Index": 1,
+        "EffectType": "SpeedFlying",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.194376,
+        "Math_Duration": 10.25
+      }
+    ]
+  },
+  {
+    "BuildIndex": 29,
+    "FullName": "Inherent.Fitness.Hurdle",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "JumpHeight",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 2.3752317,
+        "Math_Duration": 10.25
+      },
+      {
+        "Index": 1,
+        "EffectType": "SpeedJumping",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1.7728801,
+        "Math_Duration": 10.25
+      }
+    ]
+  },
+  {
+    "BuildIndex": 30,
+    "FullName": "Inherent.Fitness.Health",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.4,
+        "Math_Duration": 10.25
+      },
+      {
+        "Index": 1,
+        "EffectType": "MezResist",
+        "DamageType": "None",
+        "MezType": "Sleep",
+        "ETModifies": "None",
+        "Math_Mag": 0.4844,
+        "Math_Duration": 10.25
+      },
+      {
+        "Index": 2,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.2,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 3,
+        "EffectType": "Recovery",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 120
+      },
+      {
+        "Index": 4,
+        "EffectType": "Heal",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 78.925064,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 5,
+        "EffectType": "Endurance",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.075,
+        "Math_Duration": 0
+      },
+      {
+        "Index": 6,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.2,
+        "Math_Duration": 120
+      }
+    ]
+  },
+  {
+    "BuildIndex": 31,
+    "FullName": "Inherent.Fitness.Stamina",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Recovery",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.356,
+        "Math_Duration": 10.25
+      },
+      {
+        "Index": 1,
+        "EffectType": "Endurance",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.1,
+        "Math_Duration": 0
+      }
+    ]
+  },
+  {
+    "BuildIndex": 32,
+    "FullName": "Inherent.Inherent.Afterburner",
+    "Accuracy": 1.105,
+    "AccuracyMult": 1.4365,
+    "EndCost": 0.21209301,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 60,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 1,
+      "EndCost": 0.228,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 60,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "MaxFlySpeed",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 1,
+        "Math_Duration": 0.75
+      },
+      {
+        "Index": 1,
+        "EffectType": "Enhancement",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "SpeedFlying",
+        "Math_Mag": 0.40950003,
+        "Math_Duration": 0.75
+      }
+    ]
+  },
+  {
+    "BuildIndex": 33,
+    "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+    "Accuracy": 0,
+    "AccuracyMult": 0,
+    "EndCost": 0,
+    "InterruptTime": 0,
+    "Range": 0,
+    "RechargeTime": 0,
+    "CastTime": 0,
+    "DamagePerActivation": 0,
+    "Base": {
+      "Accuracy": 0,
+      "EndCost": 0,
+      "InterruptTime": 0,
+      "Range": 0,
+      "RechargeTime": 0,
+      "CastTime": 0
+    },
+    "Effects": [
+      {
+        "Index": 0,
+        "EffectType": "Regeneration",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": 0.25,
+        "Math_Duration": 120
+      }
+    ]
+  }
+]
