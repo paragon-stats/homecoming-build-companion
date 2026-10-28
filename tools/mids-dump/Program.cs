@@ -1311,6 +1311,10 @@ internal static class Program
             Enums.ePowerSetType.Pool,
             Enums.ePowerSetType.Inherent,
             Enums.ePowerSetType.Incarnate,
+            // Accolades and temporary powers are saved in real builds
+            // (Temporary_Powers.Accolades.*) and must resolve like any other entry.
+            Enums.ePowerSetType.Accolade,
+            Enums.ePowerSetType.Temp,
         };
         var powers = DatabaseAPI.Database.Powersets
             .Where(ps => ps != null && buildSets.Contains(ps.SetType))
