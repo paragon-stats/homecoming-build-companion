@@ -78,6 +78,8 @@ class Effect:
     # Set by GBPA_AddEnhFX for enhancement-granted effects; always False for
     # effects loaded straight from the DB dump.
     is_enhancement_effect: bool = False
+    # eBuffMode: Debuff only on the effects of a set-bonus power named for Slow.
+    buff_mode: str = "Normal"
 
 
 @dataclass(frozen=True, slots=True)

@@ -31,7 +31,7 @@ Spec: docs/engine/mids-port-spec.md § set-bonuses-ruleof5.
 
 import json
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from types import MappingProxyType
 from typing import Any
@@ -138,11 +138,17 @@ def load_set_bonus_powers(path: Path | str) -> Mapping[int, SetBonusPower]:
             full_name=r["FullName"],
             power_type=r["PowerType"],
             my_pet_only=bool(r["MyPetTarget"]) and bool(r["MyPetEntities"]),
-            effects=tuple(_parse_effect(fx) for fx in r["Effects"]),
+            effects=_bonus_effects(r),
         )
         for r in records
     }
     return MappingProxyType(out)
+
+
+def _bonus_effects(record: Mapping[str, Any]) -> tuple[Effect, ...]:
+    # Mids marks every effect of a set-bonus power named for Slow as a debuff.
+    mode = "Debuff" if "Slow" in record["FullName"].rsplit(".", 1)[-1] else "Normal"
+    return tuple(replace(_parse_effect(fx), buff_mode=mode) for fx in record["Effects"])
 
 
 def load_set_bonus_db(sets_path: Path | str, powers_path: Path | str) -> SetBonusDb:

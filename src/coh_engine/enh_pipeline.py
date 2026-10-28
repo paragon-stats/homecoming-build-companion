@@ -44,6 +44,7 @@ def aggregate_and_ed(
     sub_enh: int = -1,
     mag: float = 1.0,
     pre_ed_addend: float = 0.0,
+    skip_ed: bool = False,
 ) -> float:
     """Sum one aspect's per-slot values across ``slots``, then apply ED once.
 
@@ -57,7 +58,7 @@ def aggregate_and_ed(
     (:mod:`coh_engine.incarnate`), so it is co-ED'd with the slots exactly as
     ``GBPA_ApplyIncarnateEnhancements`` (pre-ED) then ``GBPA_Pass2_ApplyED`` do. The
     pre-ED sum accumulates in float32, and ED is applied a single time on the
-    schedule for ``aspect``.
+    schedule for ``aspect`` unless ``skip_ed`` is set, for an effect ED never reaches.
     """
     pre_ed = 0.0
     for slot in slots:
@@ -66,4 +67,4 @@ def aggregate_and_ed(
         record = enh_db[slot.enh]
         pre_ed = f32(pre_ed + enhancement_effect(record, slot, aspect=aspect, sub_enh=sub_enh, mag=mag, tables=tables))
     pre_ed = f32(pre_ed + pre_ed_addend)
-    return apply_ed(schedule_for_enhance(aspect, sub_enh), pre_ed, tables)
+    return pre_ed if skip_ed else apply_ed(schedule_for_enhance(aspect, sub_enh), pre_ed, tables)
