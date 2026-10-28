@@ -88,6 +88,21 @@ def test_all_mxd_fixtures_match_their_mbd(indexes: Indexes) -> None:
         _assert_build_parity(mx, mb)
 
 
+def test_every_legacy_mxd_reads(indexes: Indexes) -> None:
+    # Real single-line files from the community archive: every one must read,
+    # and every failure is listed rather than dropped.
+    power_index, enh_index = indexes
+    legacy = sorted((MXD_DIR / "legacy").rglob("*.mxd"))
+    assert len(legacy) == 131
+    failures = []
+    for path in legacy:
+        try:
+            read_mxd(path.read_text(encoding="utf-8"), power_index, enh_index, ARCHETYPES)
+        except (ValueError, KeyError) as exc:
+            failures.append((path.name, str(exc)))
+    assert failures == []
+
+
 def test_scrapper_specifics(indexes: Indexes) -> None:
     power_index, enh_index = indexes
     mx = read_mxd(
