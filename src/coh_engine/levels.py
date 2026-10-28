@@ -27,13 +27,13 @@ class LevelSchedule:
 
     ``slots_per_level`` maps a slot-grant level index to how many enhancement slots
     it grants (2 at levels 3-29, 3 at 31-50 on Homecoming; 67 total). ``slot_grant_levels``
-    is its key set. ``power_pick_levels`` is the set of level indices at which a power
-    may be chosen (the 24-pick schedule; level index 0 appears once in the set though
-    two powers are picked there).
+    is its key set. ``power_pick_levels`` is the 24-pick schedule in order: the n-th entry
+    is the level index of the n-th pick (level index 0 twice, for the two level-1 picks).
+    Mids places a pick by its position among the 24, so the order is part of the rule.
     """
 
     slots_per_level: Mapping[int, int]
-    power_pick_levels: frozenset[int]
+    power_pick_levels: tuple[int, ...]
 
     @property
     def slot_grant_levels(self) -> frozenset[int]:
@@ -55,7 +55,7 @@ def load_level_schedule(path: Path | str) -> LevelSchedule:
     with open(path, encoding="utf-8") as stream:
         raw = json.load(stream)
     slots_per_level = {entry["LevelIndex"]: entry["Slots"] for entry in raw["SlotGrantLevels"]}
-    power_pick_levels = frozenset(entry["LevelIndex"] for entry in raw["PowerPickLevels"])
+    power_pick_levels = tuple(entry["LevelIndex"] for entry in raw["PowerPickLevels"])
     return LevelSchedule(
         slots_per_level=MappingProxyType(slots_per_level),
         power_pick_levels=power_pick_levels,

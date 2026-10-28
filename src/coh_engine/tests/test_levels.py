@@ -14,12 +14,11 @@ def test_schedule_grants_67_total_slots() -> None:
     assert schedule.total_slots_granted == 67
 
 
-def test_schedule_has_24_power_pick_levels_by_index() -> None:
-    """Level index 0 collapses in the set, so 24 picks map to 23 distinct pick indices."""
+def test_schedule_keeps_the_24_power_pick_levels_in_order() -> None:
+    """The n-th pick's level, as 0-based indices; game level 1 grants the first two picks."""
     schedule = load_level_schedule(MIDS / "levels.json")
-    # The 24-pick schedule is [1,1,2,4,...]; level index 0 (game level 1) appears twice.
-    assert 0 in schedule.power_pick_levels
-    assert len(schedule.power_pick_levels) == 23
+    game_levels = [1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 35, 38, 41, 44, 47, 49]
+    assert schedule.power_pick_levels == tuple(level - 1 for level in game_levels)
 
 
 def test_early_grant_levels_give_two_slots() -> None:
