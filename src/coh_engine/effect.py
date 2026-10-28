@@ -17,9 +17,7 @@ harness dumps them; ``fixtures/mids/enums.json`` maps names to ordinals.
 Spec: docs/engine/mids-port-spec.md § effect-model.
 """
 
-import ast
 import json
-import re
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
@@ -27,6 +25,7 @@ from typing import Any
 
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.attribmod import AttribMods, get_modifier
+from coh_engine.expressions import ExpressionContext, evaluate_magnitude
 from coh_engine.maths import f32
 
 # MidsContext.MathLevelBase (MidsContext.cs:21): the zero-based AttribMod row
@@ -305,6 +304,8 @@ def effect_mag(
     mods: AttribMods,
     classes: ArchetypeDb,
     archetype_index: int,
+    *,
+    expr: ExpressionContext | None = None,
 ) -> float:
     """Raw per-effect magnitude — ``Effect.Mag`` (``Effect.cs:390-403``).
 
@@ -320,7 +321,8 @@ def effect_mag(
 
     Raises:
         NotImplementedError: ``E08`` for a magnitude expression that uses a
-            keyword or function the evaluator does not port.
+            keyword or function the evaluator does not port, or one that
+            needs the ``expr`` context when none was given.
     """
     scale = effect.scale
     if power.variable_enabled and effect.variable_modified and not effect.ignore_scaling:
@@ -337,85 +339,6 @@ def effect_mag(
         # Scale * nMagnitude, not treated as a real expression.
         if effect.expr_magnitude.strip():
             modifier = get_modifier_for_effect(effect, power, mods, classes, archetype_index)
-            return f32(sign * _parse_magnitude(effect, power, scale, modifier))
+            return f32(sign * evaluate_magnitude(effect, power, expr, scale=scale, modifier=modifier))
         return f32(f32(sign * scale) * effect.n_magnitude)
     return 0.0
-
-
-# Mids' default combat setting; the reference dumps are taken at full health and record no other value.
-_PLAYER_HP_PERCENT = 100
-_VARIABLE_VAL = re.compile(r"([a-zA-Z\-_\.]+)>variableVal")
-_EXPR_FUNCTIONS: Mapping[str, Callable[..., float]] = {
-    "eq": lambda a, b: 1 if abs(a - b) < _DOUBLE_EPSILON else 0,
-    "ne": lambda a, b: 1 if abs(a - b) > _DOUBLE_EPSILON else 0,
-    "gt": lambda a, b: 1 if a > b else 0,
-    "gte": lambda a, b: 1 if a >= b else 0,
-    "lt": lambda a, b: 1 if a < b else 0,
-    "lte": lambda a, b: 1 if a <= b else 0,
-    "minmax": lambda a, b, c: min(b if b > c else c, max(c if b > c else b, a)),
-    "and_": lambda a, b: 1 if a != 0 and b != 0 else 0,
-    "or_": lambda a, b: 1 if a != 0 or b != 0 else 0,
-}
-_DOUBLE_EPSILON = 5e-324
-_BINARY_OPS: Mapping[type, Callable[[float, float], float]] = {
-    ast.Add: lambda a, b: a + b,
-    ast.Sub: lambda a, b: a - b,
-    ast.Mult: lambda a, b: a * b,
-    ast.Div: lambda a, b: a / b,
-}
-
-
-def _float_text(value: float) -> str:
-    """A float32 as .NET formats it into a string: the shortest text that reads back to the same value."""
-    return next(text for digits in range(1, 18) if f32(float(text := f"{value:.{digits}g}")) == value)
-
-
-def _parse_magnitude(effect: Effect, power: Power, scale: float, modifier: float) -> float:
-    """``Expressions.Parse`` for a magnitude: substitute the keywords as text, then evaluate the arithmetic.
-
-    Only the keywords and functions the committed builds use are substituted; anything else is
-    refused rather than evaluated to the 0 Mids returns on a parse failure.
-
-    Raises:
-        NotImplementedError: ``E08`` for an expression outside the ported keywords and grammar.
-    """
-    expr = effect.expr_magnitude
-    for keyword, text in (
-        ("@StdResult", _float_text(scale)),
-        ("modifier>current", _float_text(modifier)),
-        ("cfg>player>hp", str(_PLAYER_HP_PERCENT)),
-    ):
-        expr = expr.replace(keyword, text)
-
-    def variable_value(match: re.Match[str]) -> str:
-        if match.group(1) != power.full_name:
-            raise _unported(effect, power, f"the variable value of another power ({match.group(1)})")
-        return str(power.variable_value)
-
-    expr = re.sub(r"\b(and|or)\s*\(", r"\1_(", _VARIABLE_VAL.sub(variable_value, expr))
-    try:
-        tree = ast.parse(expr, mode="eval")
-    except SyntaxError as error:
-        raise _unported(effect, power, f"text that is not plain arithmetic ({expr!r})") from error
-    return f32(_evaluate(tree.body, effect, power))
-
-
-def _evaluate(node: ast.expr, effect: Effect, power: Power) -> float:
-    if isinstance(node, ast.Constant) and isinstance(node.value, int | float):
-        return float(node.value)
-    if isinstance(node, ast.BinOp) and type(node.op) in _BINARY_OPS:
-        return _BINARY_OPS[type(node.op)](_evaluate(node.left, effect, power), _evaluate(node.right, effect, power))
-    if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub | ast.UAdd):
-        operand = _evaluate(node.operand, effect, power)
-        return -operand if isinstance(node.op, ast.USub) else operand
-    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in _EXPR_FUNCTIONS:
-        return float(_EXPR_FUNCTIONS[node.func.id](*(_evaluate(arg, effect, power) for arg in node.args)))
-    raise _unported(effect, power, f"the term {ast.unparse(node)!r}")
-
-
-def _unported(effect: Effect, power: Power, what: str) -> NotImplementedError:
-    return NotImplementedError(
-        f"E08: cannot compute Mag for {power.full_name} effect {effect.index}: the magnitude expression "
-        f"{effect.expr_magnitude!r} uses {what}, which the expression evaluator does not port; "
-        "port that keyword or function against a Mids reference dump that exercises it"
-    )

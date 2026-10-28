@@ -7,6 +7,7 @@ import pytest
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.attribmod import AttribMods
 from coh_engine.effect import Effect, Power, _parse_requirement_groups, effect_mag, get_modifier_for_effect
+from coh_engine.expressions import ExpressionContext
 from coh_engine.maths import f32
 
 
@@ -85,6 +86,18 @@ def test_magnitude_expression_is_evaluated(
     )
     power = make_power(fx, full_name="Inherent.Inherent.Rage_Buff", variable_value=7)
     assert effect_mag(fx, power, tiny_mods, tiny_classes, 0) == f32(want)
+
+
+def test_expression_context_reaches_the_evaluator(
+    make_effect: MakeEffect, make_power: MakePower, tiny_mods: AttribMods, tiny_classes: ArchetypeDb
+) -> None:
+    fx = make_effect(attrib_type="Expression", expr_magnitude="source>Max.kHitPoints / 100")
+    ctx = ExpressionContext(
+        prev_hp_max=f32(1500.0), build_power_names=frozenset(), active_power_names=frozenset(), variable_values={}
+    )
+    assert effect_mag(fx, make_power(fx), tiny_mods, tiny_classes, 0, expr=ctx) == f32(15.0)
+    with pytest.raises(NotImplementedError, match="E08"):
+        effect_mag(fx, make_power(fx), tiny_mods, tiny_classes, 0)
 
 
 def test_damage_expression_is_negated(
