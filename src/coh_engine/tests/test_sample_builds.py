@@ -98,12 +98,10 @@ def _errors_from_the_registries(path: Path) -> list[str]:
 
 
 # Builds whose totals the engine still refuses: the port stops at a feature it has not ported
-# (E08 the Expressions evaluator, E13 the movement speed-scalar split). Listed so a refusal is
+# (E13 the movement speed-scalar split). Listed so a refusal is
 # never silent; the check fails when one stops refusing, so the entry is removed with the fix.
 UNPORTED = {
-    "Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)": "E08",
     "Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)": "E13",
-    "Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)": "E08",
 }
 
 

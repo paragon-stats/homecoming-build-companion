@@ -58,13 +58,58 @@ def test_blank_expression_falls_back_to_scale_times_nmag(
     assert effect_mag(fx, power, tiny_mods, tiny_classes, 0) == f32(6.0)
 
 
-def test_expression_with_magnitude_string_is_deferred(
+@pytest.mark.parametrize(
+    ("expr", "want"),
+    [
+        # Fury: the effect's Scale times the power's own variable value.
+        ("@StdResult*Inherent.Inherent.Rage_Buff>variableVal", f32(0.1) * 7),
+        # Super Reflexes' scaling resistance at the default full health is zero.
+        ("0.003 * minmax(60 - cfg>player>hp, 0, 100)", 0.0),
+        # A set bonus that scales with missing health, at full health.
+        ("-0.001 * cfg>player>hp + 0.129", 0.029),
+        ("modifier>current * (lt(3, 10) + lte(10, 10) + gt(1, 2) + gte(2, 2))", 6.0),
+        ("eq(1, 1) + ne(1, 2) + and(1, 0) + or(0, 1) + 4 / 2 - +1", 4.0),
+        ("minmax(500, 100, 0)", 100.0),
+    ],
+)
+def test_magnitude_expression_is_evaluated(
+    expr: str,
+    want: float,
+    make_effect: MakeEffect,
+    make_power: MakePower,
+    tiny_mods: AttribMods,
+    tiny_classes: ArchetypeDb,
+) -> None:
+    fx = make_effect(
+        attrib_type="Expression", expr_magnitude=expr, scale=f32(0.1), modifier_table="Twos", n_modifier_table=1
+    )
+    power = make_power(fx, full_name="Inherent.Inherent.Rage_Buff", variable_value=7)
+    assert effect_mag(fx, power, tiny_mods, tiny_classes, 0) == f32(want)
+
+
+def test_damage_expression_is_negated(
     make_effect: MakeEffect, make_power: MakePower, tiny_mods: AttribMods, tiny_classes: ArchetypeDb
 ) -> None:
-    fx = make_effect(attrib_type="Expression", expr_magnitude="@StdResult * 2")
-    power = make_power(fx)
+    fx = make_effect(effect_type="Damage", attrib_type="Expression", expr_magnitude="@StdResult * 2", scale=1.5)
+    assert effect_mag(fx, make_power(fx), tiny_mods, tiny_classes, 0) == f32(-3.0)
+
+
+@pytest.mark.parametrize(
+    "expr",
+    [
+        "@StdResult * source>cur.kToHit",  # a keyword the evaluator does not port
+        "Other.Power.Name>variableVal * 2",  # another power's variable value
+        "max(1, 2)",  # a function Mids does not register
+        "2 ** 3",  # an operator outside Mids' infix grammar
+        "@StdResult *",  # not parseable
+    ],
+)
+def test_unported_expression_is_refused(
+    expr: str, make_effect: MakeEffect, make_power: MakePower, tiny_mods: AttribMods, tiny_classes: ArchetypeDb
+) -> None:
+    fx = make_effect(attrib_type="Expression", expr_magnitude=expr)
     with pytest.raises(NotImplementedError, match="E08"):
-        effect_mag(fx, power, tiny_mods, tiny_classes, 0)
+        effect_mag(fx, make_power(fx), tiny_mods, tiny_classes, 0)
 
 
 def test_unknown_attrib_type_yields_zero(
