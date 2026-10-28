@@ -277,12 +277,21 @@ def test_sample_build_assembly_files_load(dump: Path) -> None:
 
 def test_assembly_entities_load(tmp_path: Path) -> None:
     data: dict[str, Any] = {
-        "Entities": [{"Nid": 2, "UID": "Pets_TarPatch", "ClassNid": 18, "PowersetNids": [3299]}],
+        "Entities": [
+            {
+                "Nid": 2,
+                "UID": "Pets_TarPatch",
+                "ClassNid": 18,
+                "PowersetNids": [3299],
+                "FirstPowersetEffectTypes": [["Damage"]],
+            }
+        ],
         "Powersets": [{"Nid": 3299, "FullName": "Pets.TarPatch", "SetType": "Pet", "PowerNids": [11, -1]}],
     }
     loaded = load_assembly_entities(_write(tmp_path, "assembly_entities.json", data))
     assert loaded.entities[2].class_nid == 18
     assert loaded.entities[2].powerset_nids == (3299,)
+    assert loaded.entities[2].first_powerset_effect_types == (frozenset({"Damage"}),)
     assert loaded.powersets[3299].power_nids == (11, -1)
     brokens: list[dict[str, Any]] = [
         {"Entities": []},

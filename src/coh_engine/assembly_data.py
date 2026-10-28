@@ -156,6 +156,8 @@ class AssemblyEntity:
     uid: str
     class_nid: int
     powerset_nids: tuple[int, ...]
+    # Per power of the entity's first powerset, its effect types: what a pets-only enhancement effect checks.
+    first_powerset_effect_types: tuple[frozenset[str], ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -248,12 +250,17 @@ def load_assembly_entities(path: Path | str) -> AssemblyEntities:
     _require(raw, ("Entities", "Powersets"), name)
     entities = {}
     for record in raw["Entities"]:
-        _require(record, ("Nid", "UID", "ClassNid", "PowersetNids"), f"{name} entity {record.get('Nid', '?')}")
+        _require(
+            record,
+            ("Nid", "UID", "ClassNid", "PowersetNids", "FirstPowersetEffectTypes"),
+            f"{name} entity {record.get('Nid', '?')}",
+        )
         entities[record["Nid"]] = AssemblyEntity(
             nid=record["Nid"],
             uid=record["UID"],
             class_nid=record["ClassNid"],
             powerset_nids=tuple(record["PowersetNids"]),
+            first_powerset_effect_types=tuple(frozenset(types) for types in record["FirstPowersetEffectTypes"]),
         )
     powersets = {}
     for record in raw["Powersets"]:

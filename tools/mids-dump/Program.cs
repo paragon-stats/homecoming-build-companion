@@ -1166,11 +1166,22 @@ internal static class Program
         // entities those powers summon in turn.
         var entities = new SortedSet<int>();
         var powersets = new SortedSet<int>();
+        // Every summoning power's entity, absorbed or not: a pets-only enhancement effect on a summon power
+        // is copied once per power of the entity's first powerset that carries an effect of its type.
+        var summoned = new SortedSet<int>();
         void ReachEffects(IPower pw, bool absorbing)
         {
             foreach (var fx in pw.Effects)
             {
                 Reach(ReachedPower(fx));
+                if (fx.EffectType == Enums.eEffectType.EntCreate && !string.IsNullOrEmpty(fx.Summon))
+                {
+                    var uidNid = DatabaseAPI.NidFromUidEntity(fx.Summon);
+                    if (uidNid > -1)
+                    {
+                        summoned.Add(uidNid);
+                    }
+                }
                 if (!absorbing || fx.EffectType != Enums.eEffectType.EntCreate || fx.nSummon < 0
                     || fx.nSummon >= db.Entities.Length || !entities.Add(fx.nSummon))
                 {
@@ -1210,12 +1221,16 @@ internal static class Program
 
         WriteJson(outDir, "assembly_entities.json", new
         {
-            Entities = entities.Select(nid => new
+            Entities = entities.Union(summoned).Select(nid => new
             {
                 Nid = nid,
                 db.Entities[nid].UID,
                 ClassNid = db.Entities[nid].GetNClassId(),
-                PowersetNids = db.Entities[nid].GetNPowerset(),
+                PowersetNids = entities.Contains(nid) ? db.Entities[nid].GetNPowerset() : [],
+                FirstPowersetEffectTypes = (DatabaseAPI.GetPowersetByFullname(db.Entities[nid].PowersetFullName.FirstOrDefault())?.Powers ?? [])
+                    .Where(p => p != null)
+                    .Select(p => p!.Effects.Select(e => e.EffectType.ToString()).Distinct().ToList())
+                    .ToList(),
             }).ToList(),
             Powersets = powersets.Select(nid => new
             {
@@ -1381,7 +1396,7 @@ internal static class Program
                     PowerType = pw.PowerType.ToString(),
                     MyPetTarget = pw.Target.HasFlag(Enums.eEntity.MyPet),
                     MyPetEntities = pw.EntitiesAffected.HasFlag(Enums.eEntity.MyPet),
-                    Effects = pw.Effects.Select((fx, fxIdx) => SerializeEffect(fx, fxIdx)).ToList(),
+                    Effects = pw.Effects.Select((fx, fxIdx) => SerializeAssemblyEffect(fx, fxIdx)).ToList(),
                 };
             })
             .ToList();
