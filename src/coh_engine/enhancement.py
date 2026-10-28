@@ -73,6 +73,9 @@ class EnhancementRecord:
     # nIDSet: the enhancement set this piece belongs to (-1 for non-set IOs). The
     # set-bonus tally (coh_engine.set_bonuses) reads it for SetO pieces only.
     nid_set: int = -1
+    # IsProc, and the index of the enhancement's own power (-1 if none): the effects assembly adds.
+    is_proc: bool = False
+    power_nid: int = -1
 
 
 @dataclass(frozen=True, slots=True)
@@ -108,6 +111,8 @@ def load_enhancement_effects(path: Path | str) -> Mapping[int, EnhancementRecord
             type_name=r["TypeName"],
             superior=r["Superior"],
             nid_set=r["nIDSet"],
+            is_proc=r.get("IsProc", False),
+            power_nid=r.get("PowerNid", -1),
             effects=tuple(
                 EnhEffect(
                     enhance=fx["EnhanceName"],

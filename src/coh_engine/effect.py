@@ -75,11 +75,19 @@ class Effect:
     expr_duration: str
     expr_probability: str
     display_percentage: bool
-    # Set by GBPA_AddEnhFX for enhancement-granted effects; always False for
-    # effects loaded straight from the DB dump.
+    # Set by GBPA_AddEnhFX for enhancement-granted effects; False for a raw
+    # database effect.
     is_enhancement_effect: bool = False
     # eBuffMode: Debuff only on the effects of a set-bonus power named for Slow.
     buff_mode: str = "Normal"
+    # The fields power assembly reads; records without them (powers_effects.json) keep these defaults.
+    summon: str = ""
+    n_summon: int = -1
+    duration: float = 0.0
+    effect_id: str = ""
+    reward: str = ""
+    conditionals: tuple[tuple[str, str], ...] = ()
+    absorbed_power_nid: int = -1
 
 
 @dataclass(frozen=True, slots=True)
@@ -142,6 +150,9 @@ class Power:
     # ``chosen=false``. Defaults True so a directly-constructed power, and a dump predating
     # the field, still reads as a real pick.
     chosen: bool = True
+    # The scalars magnitude expressions read; the defaults are Mids' for a power with no record of them.
+    aoe_modifier: float = 1.0
+    base_recharge_time: float = 0.0
 
 
 def _parse_effect(raw: dict[str, Any]) -> Effect:
@@ -183,7 +194,25 @@ def _parse_effect(raw: dict[str, Any]) -> Effect:
         expr_duration=raw["ExprDuration"],
         expr_probability=raw["ExprProbability"],
         display_percentage=raw["DisplayPercentage"],
+        is_enhancement_effect=raw.get("IsEnhancementEffect", False),
+        **_assembly_fields(raw),
     )
+
+
+def _assembly_fields(raw: Mapping[str, Any]) -> dict[str, Any]:
+    """The extended assembly keys of an effect record, keyed by ``Effect`` field; absent keys are left out."""
+    keys: dict[str, tuple[str, Callable[[Any], Any]]] = {
+        "Summon": ("summon", str),
+        "nSummon": ("n_summon", int),
+        "Duration": ("duration", f32),
+        "EffectId": ("effect_id", str),
+        "Reward": ("reward", str),
+        "Absorbed_Power_nID": ("absorbed_power_nid", int),
+    }
+    out: dict[str, Any] = {name: convert(raw[key]) for key, (name, convert) in keys.items() if key in raw}
+    if "ActiveConditionals" in raw:
+        out["conditionals"] = tuple((c["Key"], c["Value"]) for c in raw["ActiveConditionals"])
+    return out
 
 
 def load_powers_effects(path: Path | str) -> tuple[Power, ...]:
