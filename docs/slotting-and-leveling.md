@@ -2,7 +2,9 @@
 
 The level rules govern when you get power picks, when you get enhancement slots, and where powers are gated by tier. These are hard limits — a build that violates them is invalid.
 
-Authoritative data: [data/mids/database/Levels.json](../data/mids/database/Levels.json) (LevelMap array — the canonical schedule) and [data/mids/derived/server_constants.json](../data/mids/derived/server_constants.json) (ServerData constants).
+Authoritative data:
+[data/mids/database/Levels.json](../data/mids/database/Levels.json) (LevelMap array — the canonical schedule) and
+[data/mids/derived/server_constants.json](../data/mids/derived/server_constants.json) (ServerData constants).
 
 ---
 
@@ -73,7 +75,9 @@ Each level tick grants either a power pick, slots, both, or neither. The pattern
 - Total enhancement slots: **67** (`ServerData.MaxSlots = 67`) — 4 inherent (3 from Fitness + 1 from Health) + 63 placed.
 - Per-power slot cap: **6** (1 inherent slot that comes with the power + 5 added). `Power.MaxBoosts = 6` for slottable powers.
 
-You cannot place more than 5 added slots in a single power. You cannot place more than 67 added slots total. The leveling schedule controls when those slots become available — typically you have all 67 by mid-40s.
+You cannot place more than 5 added slots in a single power.
+You cannot place more than 67 added slots total.
+The leveling schedule controls when those slots become available — typically you have all 67 by mid-40s.
 
 ---
 
@@ -120,11 +124,26 @@ Inherent powers don't take a power pick — they're auto-granted. They DO take e
 
 The four inherent slots from Health/Stamina are critical real estate — they give you 4 of the strongest global procs in the game without using any of your 67 added slots.
 
+### Powers MidsReborn grants without a pick
+
+A saved `.mbd` has no `Chosen` flag, so a validated `.mbd` counts every granted pool sub-power as a pick.
+Only the Pool-group grants can make `H-POWER-001` over-count; the Inherent-group ones are excluded by name.
+Rows marked "not in the repository" trace to a web source that was read for this table only.
+
+| Power | Granted by | Game change | Source |
+| --- | --- | --- | --- |
+| Swift, Hurdle, Health, Stamina | every character (Inherent group) | Issue 19 (launch patch notes dated 2010-11-30) made the four Fitness powers inherent at level 2; Issue 27 Page 2 moved the grant to level 1 | In the repository: this document, above, and `community/mechanics/guide-to-power-pools.md`. Not in the repository: [Issue 19 launch notes](https://forumarchive.cityofheroes.dev/topic/245825), [Homecoming wiki, Fitness](https://homecoming.wiki/wiki/Fitness) |
+| Translocation, Arcane Power | Mystic Flight and the Sorcery pool (Pool group) | Pool Powerset Update: Sorcery, 20 April 2021 | In the repository: `data/diff/patch_history/Issue_27_Page_2.md` (the Translocation endurance row only); the page is [Issue 27 Page 2](https://homecoming.wiki/wiki/Issue_27_Page_2). The grant of Arcane Power itself is not traced |
+| Double Jump, Afterburner, Speed Phase | the Jump, Flight and Speed pools (Pool group) | Travel Power Updates, Issue 27 | Not traced: the repository holds only the Sorcery rows and no release note naming these grants was found |
+| Fast Snipe | a prerequisite power named in its `Requires` (Inherent group; present in the samples at level 50) | The snipe rework | Not traced: no source found in the repository or the web search |
+| Prestige sprints, Prestige Ninja Run, Prestige Athletic Run | the Prestige power-slide purchases (Inherent group) | The Pay-to-Win store | In the repository: `community/mechanics/a-p2w-store-primer.md` |
+
 ---
 
 ## Powerset availability rules
 
-Each AT publishes `Primary[]`, `Secondary[]`, and `Ancillary[]` arrays of allowed powerset indices in `Archetypes.json`. The pool list is universal but you can only take **4 pools** per build (each with up to 4 powers).
+Each AT publishes `Primary[]`, `Secondary[]`, and `Ancillary[]` arrays of allowed powerset indices in `Archetypes.json`.
+The pool list is universal but you can only take **4 pools** per build (each with up to 4 powers).
 
 **Hard-gated powers** (level requirement above what `Level` says):
 
@@ -170,34 +189,57 @@ If a build violates any of these, name the violation and suggest the closest val
 
 ## Exemplar mechanics and the universal exemplar-10 rule
 
-Exemplaring is when the game temporarily lowers your character's effective level — typically when teaming with lower-level players, when running task forces that mandate level brackets (Posi 1 caps you at 16, Synapse at 20, etc.), or when you Ouroboros into older-content arcs.
+Exemplaring is when the game temporarily lowers your character's effective level.
+It happens when teaming with lower-level players, when running task forces that mandate level brackets (Posi 1 caps you at 16, Synapse at 20, etc.), or when you Ouroboros into older-content arcs.
 
 ### Priority order — read this first
 
-The build target is **level-50 endgame play.** That's where all the optimization goes — slot choices, set bonuses, perma-Hasten, Incarnates, the works. The exemplar-10 rule sits *underneath* that as a playability floor, not a competing optimization target.
+The build target is **level-50 endgame play.** That's where all the optimization goes — slot choices, set bonuses, perma-Hasten, Incarnates, the works.
+The exemplar-10 rule sits *underneath* that as a playability floor, not a competing optimization target.
 
 Concretely:
 
 1. **Level-50 endgame quality is the primary objective.** Pick powers and enhancements that maximize the level-50 build.
-2. **Exemplar-10 must be playable** — the character can attack, has some defensive layer running, has a travel power, isn't dead weight. That's it. Not optimized; not fully soft-capped; not hitting any specific number. *Playable.*
-3. **Never trade level-50 quality for exemplar bonuses.** If retaining a set bonus at exemplar 10 would weaken the level-50 build, don't do it. PvP IO set persistence (below) is interesting trivia, not a slotting goal.
+2. **Exemplar-10 must be playable** — the character can attack, has some defensive layer running, has a travel power, isn't dead weight.
+    That's it.
+    Not optimized; not fully soft-capped; not hitting any specific number.
+    *Playable.*
+3. **Never trade level-50 quality for exemplar bonuses.** If retaining a set bonus at exemplar 10 would weaken the level-50 build, don't do it.
+    PvP IO set persistence (below) is interesting trivia, not a slotting goal.
 
-The constraint is therefore almost entirely about **pick ordering** (the early picks happen to land in the levels that exemplar 10 can use) and **occasional enhancement choices** (use attuned IOs where they're equally good for level 50; otherwise slot for level 50). It is *not* about chasing exemplar set bonuses.
+The constraint is therefore almost entirely about **pick ordering** (the early picks happen to land in the levels that exemplar 10 can use)
+and **occasional enhancement choices** (use attuned IOs where they're equally good for level 50; otherwise slot for level 50).
+It is *not* about chasing exemplar set bonuses.
 
 ### Mechanics (reference, not a slotting agenda)
 
-- **Power availability — the +5 rule.** When exemplared to level N, you have access to powers picked at level ≤ N + 5. At exemplar 10 → powers picked at levels 1, 1, 2, 4, 6, 8, 10, 12, 14 are available. The pick scheduled at 16 and later is not.
-- **Slot availability — also +5.** Slots placed at level X in any power are accessible while your effective level ≥ X − 5. Slots placed at level 16 and later don't exist on your character at exemplar 10.
-- **IO set bonuses — the −3 rule (regular IO sets).** A regular set's bonuses persist while your effective level ≥ (set's minimum craftable level) − 3. Most meta IO sets have min level 30 → bonuses lost at effective level < 27. **Most level-50 builds will lose most of their set bonuses at exemplar 10. That is fine.** The build's level-50 set bonuses still work at level 50, which is where it lives most of the time.
-- **PvP IO set bonuses — exemplar-agnostic (informational).** PvP IO sets (Shield Wall, Panacea, Gladiator's Armor / Net / Strike / Javelin / Rage, etc.) retain their set bonuses at every exemplar level. **This is interesting trivia, not a slotting recommendation.** Use PvP sets when their level-50 bonuses are competitive with the alternative for the slot — not because they survive exemplar.
-- **ATO and Winter-O sets — also retain at exemplar 10.** Both are attuned-only, min level 10, and 10 ≥ 10 − 3 = 7. ATOs slot at level 10 (a useful scaling perk during leveling, not a constraint on level-50 build choice). Catalyze to Superior at 50 for the level-50 benefit, not for the exemplar effect.
-- **Attuned IOs (in general).** Per-IO enhancement values scale to your effective level, which prevents the level penalty crafted IOs take below their crafted level. **Use attuned IOs when they're as good as the crafted alternative for the level-50 build.** Set bonuses for attuned IOs still follow the −3 rule by *set* min level — attuned regular sets still lose bonuses below (set_min − 3).
-- **Purples — bonuses lost at any exemplar < 47.** Min level 50, so −3 puts the floor at 47. **Slot purples freely; they're a level-50 optimization.** They're useless on deep exemplar but that's not a reason to avoid them.
+- **Power availability — the +5 rule.** When exemplared to level N, you have access to powers picked at level ≤ N + 5.
+  At exemplar 10 → powers picked at levels 1, 1, 2, 4, 6, 8, 10, 12, 14 are available.
+  The pick scheduled at 16 and later is not.
+- **Slot availability — also +5.** Slots placed at level X in any power are accessible while your effective level ≥ X − 5.
+  Slots placed at level 16 and later don't exist on your character at exemplar 10.
+- **IO set bonuses — the −3 rule (regular IO sets).** A regular set's bonuses persist while your effective level ≥ (set's minimum craftable level) − 3.
+  Most meta IO sets have min level 30 → bonuses lost at effective level < 27.
+  **Most level-50 builds will lose most of their set bonuses at exemplar 10.
+  That is fine.** The build's level-50 set bonuses still work at level 50, which is where it lives most of the time.
+- **PvP IO set bonuses — exemplar-agnostic (informational).**
+  PvP IO sets (Shield Wall, Panacea, Gladiator's Armor / Net / Strike / Javelin / Rage, etc.) retain their set bonuses at every exemplar level.
+  **This is interesting trivia, not a slotting recommendation.** Use PvP sets when their level-50 bonuses are competitive with the alternative for the slot — not because they survive exemplar.
+- **ATO and Winter-O sets — also retain at exemplar 10.** Both are attuned-only, min level 10, and 10 ≥ 10 − 3 = 7.
+  ATOs slot at level 10 (a useful scaling perk during leveling, not a constraint on level-50 build choice).
+  Catalyze to Superior at 50 for the level-50 benefit, not for the exemplar effect.
+- **Attuned IOs (in general).** Per-IO enhancement values scale to your effective level, which prevents the level penalty crafted IOs take below their crafted level.
+  **Use attuned IOs when they're as good as the crafted alternative for the level-50 build.**
+  Set bonuses for attuned IOs still follow the −3 rule by *set* min level — attuned regular sets still lose bonuses below (set_min − 3).
+- **Purples — bonuses lost at any exemplar < 47.** Min level 50, so −3 puts the floor at 47.
+  **Slot purples freely; they're a level-50 optimization.** They're useless on deep exemplar but that's not a reason to avoid them.
 - **Incarnates.** Alpha shift applies only when exemplared to 45+. At exemplar 10, no incarnate buffs apply. Build for level 50 with full Incarnate kit and accept the reduced power at exemplar 10.
 
 ### What this actually means for build design
 
-Most of the rule reduces to **pick ordering**, which matches normal leveling anyway. A character that levels through the 1–50 range *naturally* picks attacks early, gets a defensive layer online by level 8–10, takes a travel power around 12. The exemplar-10 rule is mostly a check that the build doesn't deliberately *defer* essentials to chase some level-50 trick.
+Most of the rule reduces to **pick ordering**, which matches normal leveling anyway.
+A character that levels through the 1–50 range *naturally* picks attacks early, gets a defensive layer online by level 8–10, takes a travel power around 12.
+The exemplar-10 rule is mostly a check that the build doesn't deliberately *defer* essentials to chase some level-50 trick.
 
 **Pick-level checklist** (just confirm before emitting a build):
 
@@ -221,7 +263,8 @@ If the build naturally picks these in this order during leveling, the exemplar r
 **Enhancement checklist (level-50 first; exemplar bonuses are a side effect):**
 
 - **Slot for the level-50 build first.** Pick the IO sets and pieces that maximize level-50 performance. Don't let exemplar viability change what gets slotted at 50.
-- **Prefer attuned IOs when they're as good as crafted for level 50.** They scale automatically and avoid the exemplar penalty as a free bonus. If a crafted +5 boosted level-50 IO is *better* at 50, take it.
+- **Prefer attuned IOs when they're as good as crafted for level 50.** They scale automatically and avoid the exemplar penalty as a free bonus.
+  If a crafted +5 boosted level-50 IO is *better* at 50, take it.
 - **ATOs slot at level 10 if you're playing through the leveling content.** This isn't a level-50 build constraint, just a "you'll have ATO bonuses earlier" perk.
 - **Don't pick PvP sets for exemplar set-bonus persistence.** Pick them when their level-50 bonuses are competitive with the alternative. The exemplar persistence is gravy when it happens.
 
