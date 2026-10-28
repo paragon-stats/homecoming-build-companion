@@ -55,6 +55,7 @@ from coh_engine.effect import Effect, Power, effect_mag
 from coh_engine.enh_aspects import END, fold_scalar
 from coh_engine.enh_pipeline import aggregate_and_ed
 from coh_engine.enhancement import EnhancementRecord, SlotRef
+from coh_engine.expressions import ExpressionContext, effect_included
 from coh_engine.incarnate import Incarnate, IncarnateAddends, resolve_incarnates
 from coh_engine.maths import MathTables, f32
 from coh_engine.set_bonuses import (
@@ -322,19 +323,18 @@ class _MagContext:
     enh_mult: Mapping[tuple[int, int], float] = field(default_factory=dict)
     enhance_names: frozenset[str] = frozenset()
     enums: EnumMaps | None = None
+    expr: ExpressionContext | None = None
 
 
-def _can_include(fx: Effect) -> bool:
-    """Partial port of ``Effect.CanInclude`` (``Effect.cs:1856+``).
+def _can_include(fx: Effect, ctx: _MagContext) -> bool:
+    """``Effect.CanInclude``: conditions are evaluated against the build when ``ctx`` carries it.
 
-    True only for unconditional effects. Effects with ``ActiveConditionals``
-    or a ``SpecialCase`` need the character-state evaluation leaves that are
-    not ported yet, so they are excluded. This diverges from Mids, which keeps
-    many default-true SpecialCase effects (see the module docstring); the
-    ``test_excluded_conditionals_do_not_affect_totals`` gate confirms the
-    committed fixtures have no such effect reaching a read bucket.
+    A ``SpecialCase`` effect stays excluded: the character-state switch is not ported. This diverges
+    from Mids, which keeps many default-true SpecialCase effects (see the module docstring); the
+    ``test_excluded_conditionals_do_not_affect_totals`` gate confirms the committed fixtures have no
+    such effect reaching a read bucket.
     """
-    return fx.active_conditionals_count == 0 and fx.special_case == "None"
+    return effect_included(fx, ctx.expr)
 
 
 def _pvx_include(fx: Effect, archetype_index: int, config: EngineConfig) -> bool:
@@ -375,7 +375,7 @@ def _get_effect_mag_sum(
             or fx.effect_type != i_effect
             or fx.effect_class in ("Ignored", "Special")
             or (fx.delayed_time > 5 and not include_delayed)
-            or not _can_include(fx)
+            or not _can_include(fx, ctx)
             or not _pvx_include(fx, ctx.archetype_index, ctx.config)
         ):
             continue
@@ -395,7 +395,7 @@ def _get_effect_mag_sum(
 
 
 def _mag(fx: Effect, power: Power, ctx: _MagContext) -> float:
-    return effect_mag(fx, power, ctx.mods, ctx.classes, ctx.archetype_index)
+    return effect_mag(fx, power, ctx.mods, ctx.classes, ctx.archetype_index, expr=ctx.expr)
 
 
 def _enhance_names(enums: EnumMaps) -> frozenset[str]:
@@ -808,7 +808,7 @@ def _get_enhancement_mag_sum(power: Power, i_effect: str, ctx: _MagContext) -> l
             or fx.et_modifies != i_effect
             or fx.effect_type not in ("Enhancement", "DamageBuff")
             or (fx.absorbed_effect and fx.absorbed_power_type == "GlobalBoost")
-            or not _can_include(fx)
+            or not _can_include(fx, ctx)
             or not _pvx_include(fx, ctx.archetype_index, ctx.config)
             or fx.to_who == "Target"
         ):
@@ -934,6 +934,7 @@ def compute_base_totals(
     tables: MathTables | None = None,
     set_db: SetBonusDb | None = None,
     incarnates: Iterable[Incarnate] | None = None,
+    expr: ExpressionContext | None = None,
 ) -> BaseTotals:
     """Compute ``Totals``/``TotalsCapped`` for a build.
 
@@ -963,6 +964,11 @@ def compute_base_totals(
     addends ride on the result for the per-power scalar layer. The ``Incarnate.*`` powers
     themselves are excluded from the buff/enhance passes — they are GrantPower delivery
     vehicles, not direct-effect powers, so their raw effects contribute nothing to Totals.
+
+    ``expr`` is the build state conditional effects and magnitude expressions read
+    (:class:`~coh_engine.expressions.ExpressionContext`). Without it only unconditional effects count
+    and an expression that needs the build is refused (``E08``). Pass the build's assembled powers
+    (:mod:`coh_engine.assembly`) for totals that include what Mids adds to each power before computing.
 
     Raises:
         ValueError: ``E09`` if ``class_name`` is unknown; ``E11`` if the
@@ -996,6 +1002,7 @@ def compute_base_totals(
         config=config,
         enhance_names=_enhance_names(enums),
         enums=enums,
+        expr=expr,
     )
 
     self_buffs = _new_buffs(enums)

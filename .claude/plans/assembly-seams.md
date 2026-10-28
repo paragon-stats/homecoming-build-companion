@@ -124,13 +124,19 @@ The summoned entities pet absorption reads, and their powersets.
 
 | Key | Type | Meaning |
 | --- | --- | --- |
-| `Entities` | list of `{"Nid": int, "UID": string, "ClassNid": int, "PowersetNids": [int]}` | Each entity an absorbing power creates (its EntCreate `nSummon` is the `Nid`), with `GetNClassId()` and `GetNPowerset()` in order |
+| `Entities` | list of `{"Nid": int, "UID": string, "ClassNid": int, "PowersetNids": [int], "FirstPowersetEffectTypes": [[string]]}` | Each entity an absorbing power creates (its EntCreate `nSummon` is the `Nid`), with `GetNClassId()` and `GetNPowerset()` in order, and each entity any buildable power summons (by `UID`), whose `PowersetNids` is empty unless it is absorbed. `FirstPowersetEffectTypes` lists, per power of the entity's first powerset, its distinct effect types: what a pets-only enhancement effect checks |
 | `Powersets` | list of `{"Nid": int, "FullName": string, "SetType": string, "PowerNids": [int]}` | Each powerset named above, its powers' indexes in order (`-1` for an empty slot); every power is in `assembly_powers.json` |
 
 ```json
-{"Entities": [{"Nid": 2, "UID": "Pets_TarPatch", "ClassNid": 18, "PowersetNids": [3299]}],
+{"Entities": [{"Nid": 2, "UID": "Pets_TarPatch", "ClassNid": 18, "PowersetNids": [3299],
+    "FirstPowersetEffectTypes": [["Damage", "Mez"]]}],
   "Powersets": [{"Nid": 3299, "FullName": "...", "SetType": "Pet", "PowerNids": [11021]}]}
 ```
+
+### `set_bonus_powers.json` (re-dumped)
+
+Its effects are now extended effect records, so the set-bonus virtual power's GlobalChanceMod effects carry
+their `Reward`.
 
 ### `builds/<name>/power_assembly.json` (new, per build)
 
@@ -243,7 +249,7 @@ def assemble_power(
     entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
-) -> tuple[Effect, ...]: ...
+) -> AssembledPower: ...
 
 def assemble_build(
     build: Mapping[int, BuildPowerAssembly],
@@ -256,11 +262,23 @@ def assemble_build(
     entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
-) -> dict[int, tuple[Effect, ...]]: ...   # build index -> assembled effects
+    set_bonus_effects: Sequence[Effect] = (),
+) -> dict[int, AssembledPower]: ...   # build index -> assembled power
+
+@dataclass(frozen=True, slots=True)
+class AssembledPower:
+    effects: tuple[Effect, ...]
+    ignore_enh: frozenset[str]
+
+def apply_assembly(
+    powers: Sequence[Power], build: Mapping[int, BuildPowerAssembly], assembled: Mapping[int, AssembledPower]
+) -> list[Power]: ...   # the build's powers with assembled effects, ignore_enh, aoe_modifier, base_recharge_time
 ```
 
 Output: the assembled effects as plain `Effect` records, re-indexed so `Effect.index` is the position in the
-returned tuple (the multiplier and incarnate maps key on it). No new type.
+returned tuple (the multiplier and incarnate maps key on it), with the aspects the power ignores once pet
+absorption copied them. `set_bonus_effects` are the set-bonus virtual power's effects; their GlobalChanceMod
+rewards enter the chance modifiers after the build powers', each reward taken once.
 
 Order, per power, as Mids runs it:
 
@@ -271,8 +289,9 @@ Order, per power, as Mids runs it:
     set has no special bonus for that piece and (the enhancement has no enhancement-mode effect, or the
     effect's modifier table does not start `Melee_Boosts_` or `Ranged_Boosts_`). Each copy gets
     `is_enhancement_effect=True`, `ignore_scaling=is_proc`, `absorbed_effect=True`, `buffable=False`, its own
-    `to_who` and `ticks`. The pets-only branch is not ported: an effect that affects pets only on a summon
-    power refuses with E89.
+    `to_who` and `ticks`. An effect that affects pets only (a `Set_Bonus` reward from a pet set) on a summon
+    power is copied once per power of the first EntCreate's entity's first powerset with an effect of its type,
+    and once more when the last of those powers has one; an entity missing from the export refuses with E89.
 3. Pet absorption (`Power.AbsorbPetEffects`): a power with `absorb_summon_effects` or
     `absorb_summon_attributes` and an EntCreate effect of probability about 1 takes its entity's powersets from
     `assembly_entities.json`: attributes from the first powerset's powers (including `entities_affected`,
@@ -338,25 +357,29 @@ as it does today.
 Keywords to add to the ones already ported (`@StdResult`, `modifier>current`, `cfg>player>hp`, the power's
 own `>variableVal`): `source>Max.kHitPoints` (`ctx.prev_hp_max`), `power.base>rechargetime`
 (`power.base_recharge_time`), `power.base>areafactor` (`power.aoe_modifier`), `power.base>activateperiod`
-(`power.activate_period`), `powerGroupNotIn(X)` and `powerGroupIn(X)` (whether `power.full_name` starts with
+(`power.activate_period`), `power.base>activatetime` (`power.cast_time`, the HAZMAT Brute needs it), `powerGroupNotIn(X)` and `powerGroupIn(X)` (whether `power.full_name` starts with
 `X`), and another power's `>variableVal` from `ctx.variable_values`. Text substitution follows Mids' order
 (the constant table first, then the function patterns). The power is the one that owns the effect after
 assembly. Any other keyword or function, or a missing context for one that needs it, is still refused with
 E08.
 
 `effect_included` is the engine's `CanInclude`: true for an effect with no conditionals and no special case;
-`conditionals_met` for an effect with conditionals and no special case; false for a special case, as today.
-`conditionals_met` evaluates the conditions in order with Mids' AND/OR chaining and supports the condition
+false for a special case, as today; for one with conditionals, every condition must hold, a key led by
+an AND or OR prefix matches no type and is not met, and `Team` is not met with no team members configured.
+`conditionals_met` (`ValidateConditional`, used for grants) evaluates the conditions in order with Mids' AND/OR chaining and supports the condition
 types the sample builds' StatInclude powers carry (`Active`, `Taken` and `Stacks`; Cross Punch uses `Active` and `Taken`; `Team` appears only on a power that is not StatInclude); any other condition type
 refuses with E92.
 
 ## Seam 4: integration
 
-Seam 4 lands after seams 2 and 3:
+Landed:
 
-- Assemble each build power before `compute_base_totals` reads it, and pass `effect_included` and the
-  expression context through `base_totals` (`_can_include`, `_mag`).
-- Supply `prev_hp_max` from a first recompute, as Mids' repeated recompute does, if the five builds need it.
-- Resolve the `incarnate.py` overlap: incarnate enhancement stays its own cross-power pass; the Alpha's
-  absorbed effects now arrive through assembly. Keep every incarnate parity test passing.
-- Widen `test_unslotted_sample_matches_mids_totals` to all 12 builds, exact as now.
+- `compute_base_totals` takes `expr: ExpressionContext | None`; `_can_include` is `effect_included` and `_mag`
+  passes the context to `effect_mag`. The caller assembles (`assemble_build`, then `apply_assembly`).
+- `prev_hp_max` is 0: Mids' reference dumps are taken with the previous recompute's max hit points at 0 (a
+  second recompute gives the NUKE Corruptor an absorb Mids does not report).
+- `incarnate.py` is unchanged: its cross-power enhancement pass reads the same granted sub-powers Mids reads
+  from the assembled Alpha, and the Alpha's own absorbed effects, now in its assembled list, are GlobalBoost
+  effects the buff and enhancement passes skip. Another incarnate's absorbed effects that are not GlobalBoost
+  (the Hybrid's DamageBuff) now count through assembly, as in Mids.
+- `test_sample_builds.py` holds all 12 builds to Mids' totals, exact.

@@ -9,13 +9,13 @@ powers into each power (``GBPA_ApplyIncarnateEnhancements`` with effect type Gra
 The output is plain :class:`Effect` records, re-indexed so ``Effect.index`` is the position in the list.
 Their ``probability`` is what Mids' ``Probability`` reads after a recompute: the base probability plus
 the build's chance modifier for the effect's id (``ModifyEffects``), from the cross-power pass and the
-build powers' GlobalChanceMod effects. The set-bonus virtual power's GlobalChanceMod effects are not
-among the inputs, so their modifiers are missing. Contract: ``.claude/plans/assembly-seams.md`` § Seam 2.
+build powers' GlobalChanceMod effects, then the set-bonus virtual power's, each reward taken once.
+Contract: ``.claude/plans/assembly-seams.md`` § Seam 2.
 
 Three things are refused rather than guessed: an override redirect (``E88``, the export carries no
-redirect target), the pets-only enhancement branch or an entity or powerset the export does not hold
-(``E89``) and a GrantPower gated on a special case (``E91``, character state is not modelled). A pointer
-to any other record the inputs do not hold refuses with ``E90``.
+redirect target), an entity or powerset the export does not hold (``E89``) and a GrantPower gated on a
+special case (``E91``, character state is not modelled). A pointer to any other record the inputs do not
+hold refuses with ``E90``.
 """
 
 import math
@@ -31,7 +31,7 @@ from coh_engine.assembly_data import (
     AssemblyPower,
     BuildPowerAssembly,
 )
-from coh_engine.effect import Effect
+from coh_engine.effect import Effect, Power
 from coh_engine.enhancement import EnhancementRecord, SlotRef
 from coh_engine.maths import f32
 from coh_engine.set_bonuses import SetBonusDb
@@ -44,6 +44,14 @@ _SLOTTABLE_SET_TYPES = frozenset({"Primary", "Secondary", "Ancillary", "Inherent
 _BOOST_TABLE = re.compile(r"^(Melee|Ranged)_Boosts_")
 # The build's chance modifiers are empty while each power is assembled; the cross-power pass fills them.
 _NO_MODS: Mapping[str, float] = MappingProxyType({})
+
+
+@dataclass(frozen=True, slots=True)
+class AssembledPower:
+    """One build power after assembly: its effects, and the aspects it ignores once pet absorption copied them."""
+
+    effects: tuple[Effect, ...]
+    ignore_enh: frozenset[str]
 
 
 @dataclass(frozen=True, slots=True)
@@ -180,13 +188,30 @@ def _check_override(power: AssemblyPower) -> None:
             )
 
 
+def _pets_only_copies(fx: Effect, current: Sequence[Effect], entities: AssemblyEntities, where: str) -> int:
+    """How many times a pets-only effect is copied onto a summon power.
+
+    Once per power of the summoned entity's first powerset that has an effect of the same type, and once
+    more when the last of those powers has one, as Mids' loop leaves its flag set for the common add.
+    """
+    uid = next(e.summon for e in current if e.effect_type == "EntCreate")
+    entity = next((e for e in entities.entities.values() if e.uid == uid), None)
+    if entity is None:
+        raise NotImplementedError(
+            f"E89: {where} summons entity {uid!r}, which assembly_entities.json does not hold; expected every "
+            "entity a pets-only enhancement effect reads; re-run the Mids dump harness so the export carries it"
+        )
+    matches = [fx.effect_type in types for types in entity.first_powerset_effect_types]
+    return sum(matches) + (1 if matches and matches[-1] else 0)
+
+
 def _enhancement_effects(
     build_power: BuildPowerAssembly,
     slots: Sequence[SlotRef],
     current: Sequence[Effect],
     enh_db: Mapping[int, EnhancementRecord],
     set_db: SetBonusDb,
-    powers: Mapping[int, AssemblyPower],
+    inputs: _Inputs,
 ) -> tuple[list[Effect], bool]:
     """``GBPA_AddEnhFX``: the slotted enhancements' own power effects, and whether one is a GrantPower."""
     where = f"build power {build_power.build_index} ({build_power.power.full_name})"
@@ -201,30 +226,27 @@ def _enhancement_effects(
             continue
         set_def = _record(set_db.sets, enh.nid_set, "enhancement set", f"enhancement {enh.nid}")
         position = set_def.enhancements.index(slot.enh) if slot.enh in set_def.enhancements else -1
-        for fx in _record(powers, enh.power_nid, "power", f"enhancement {enh.nid}").effects:
+        for fx in _record(inputs.powers, enh.power_nid, "power", f"enhancement {enh.nid}").effects:
             if summons and "Set_Bonus" in fx.reward and "Pet" in set_def.set_type_name:
-                raise NotImplementedError(
-                    f"E89: {where} is a summon power and enhancement {enh.nid} carries a pets-only effect; "
-                    "expected no pets-only enhancement effect, found one; the pets-only branch needs entity "
-                    "powers the export does not carry"
-                )
-            if (
+                copies = _pets_only_copies(fx, current, inputs.entities, where)
+            elif (
                 position < 0
                 or set_def.special_bonus[position].index
                 or (enh.effects and _BOOST_TABLE.match(fx.modifier_table))
             ):
                 continue
-            out.append(
-                replace(
-                    fx,
-                    is_enhancement_effect=True,
-                    ignore_scaling=enh.is_proc,
-                    absorbed_effect=True,
-                    buffable=False,
-                    absorbed_power_nid=-1,
-                )
+            else:
+                copies = 1
+            copy = replace(
+                fx,
+                is_enhancement_effect=True,
+                ignore_scaling=enh.is_proc,
+                absorbed_effect=True,
+                buffable=False,
+                absorbed_power_nid=-1,
             )
-            grants = grants or fx.effect_type == "GrantPower"
+            out.extend([copy] * copies)
+            grants = grants or (copies > 0 and fx.effect_type == "GrantPower")
     return out, grants
 
 
@@ -363,6 +385,29 @@ def _reindex(effects: Sequence[Effect]) -> tuple[Effect, ...]:
     return tuple(replace(fx, index=i) for i, fx in enumerate(effects))
 
 
+def apply_assembly(
+    powers: Sequence[Power], build: Mapping[int, BuildPowerAssembly], assembled: Mapping[int, AssembledPower]
+) -> list[Power]:
+    """The build's powers with their assembled effects and ignored aspects, and the scalars expressions read."""
+    out = []
+    for power in powers:
+        result = assembled[power.build_index]
+        own = build[power.build_index].power
+        ignore_enh = (
+            power.ignore_enh if frozenset(power.ignore_enh) == result.ignore_enh else tuple(sorted(result.ignore_enh))
+        )
+        out.append(
+            replace(
+                power,
+                effects=result.effects,
+                ignore_enh=ignore_enh,
+                aoe_modifier=own.aoe_modifier,
+                base_recharge_time=own.base_recharge_time,
+            )
+        )
+    return out
+
+
 def _assemble(
     build_power: BuildPowerAssembly,
     slots: Sequence[SlotRef],
@@ -374,7 +419,7 @@ def _assemble(
     power = build_power.power
     _check_override(power)
     effects = list(power.effects)
-    enh_effects, enh_grants = _enhancement_effects(build_power, slots, effects, enh_db, set_db, inputs.powers)
+    enh_effects, enh_grants = _enhancement_effects(build_power, slots, effects, enh_db, set_db, inputs)
     effects.extend(enh_effects)
     power = _absorb_pets(power, effects, inputs)
     if power.has_grant_power_effect or enh_grants:
@@ -401,17 +446,18 @@ def assemble_power(
     entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
-) -> tuple[Effect, ...]:
+) -> AssembledPower:
     """One build power's assembled effects, before the cross-power pass.
 
     Raises:
         ValueError: ``E88`` for an override redirect the power takes; ``E90`` for a pointer to a record
             the inputs do not hold.
-        NotImplementedError: ``E89`` for the pets-only enhancement branch or an entity or powerset the
-            export does not hold; ``E91`` for a GrantPower gated on a special case.
+        NotImplementedError: ``E89`` for an entity or powerset the export does not hold; ``E91`` for a
+            GrantPower gated on a special case.
     """
     inputs = _Inputs(powers, entities, archetype_index)
-    return _reindex(_assemble(build_power, slots, enh_db, set_db, inputs, conditions)[1])
+    power, effects = _assemble(build_power, slots, enh_db, set_db, inputs, conditions)
+    return AssembledPower(effects=_reindex(effects), ignore_enh=power.ignore_enh)
 
 
 def _grant_root(source: AssemblyPower, source_fx: Sequence[Effect], inputs: _Inputs) -> Callable[[int], Effect | None]:
@@ -528,15 +574,14 @@ def _global_chance_mods(
     order: Sequence[int],
     assembled: Mapping[int, tuple[AssemblyPower, list[Effect]]],
     stat_include: Mapping[int, bool],
+    set_bonus_effects: Sequence[Effect],
     mods: dict[str, float],
 ) -> None:
-    """``GenerateModifyEffectsArray`` over the build powers: each reward's first GlobalChanceMod scale."""
-    for i in order:
-        if not stat_include[i]:
-            continue
-        for fx in assembled[i][1]:
-            if fx.effect_type == "GlobalChanceMod" and fx.reward and fx.reward not in mods:
-                mods[fx.reward] = fx.scale
+    """``GenerateModifyEffectsArray``: each reward's first GlobalChanceMod scale, build powers then set bonuses."""
+    sources = [fx for i in order if stat_include[i] for fx in assembled[i][1]]
+    for fx in (*sources, *set_bonus_effects):
+        if fx.effect_type == "GlobalChanceMod" and fx.reward and fx.reward not in mods:
+            mods[fx.reward] = fx.scale
 
 
 def assemble_build(
@@ -550,11 +595,13 @@ def assemble_build(
     entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
-) -> dict[int, tuple[Effect, ...]]:
+    set_bonus_effects: Sequence[Effect] = (),
+) -> dict[int, AssembledPower]:
     """Every build power's assembled effects, by build index, after the cross-power GrantPower pass.
 
     Each power, StatInclude or not, absorbs from every other StatInclude power in build order; a source
-    already processed as a target carries what it absorbed.
+    already processed as a target carries what it absorbed. ``set_bonus_effects`` are the set-bonus virtual
+    power's effects, whose chance modifiers follow the build powers'.
 
     Raises:
         ValueError: as :func:`assemble_power`.
@@ -571,8 +618,11 @@ def assemble_build(
             if source != target and stat_include[source]:
                 (target_power, target_fx), (source_power, source_fx) = assembled[target], assembled[source]
                 _absorb_global(target_fx, target_power, source_fx, source_power, inputs, mods)
-    _global_chance_mods(order, assembled, stat_include, mods)
+    _global_chance_mods(order, assembled, stat_include, set_bonus_effects, mods)
     return {
-        i: _reindex([replace(fx, probability=_probability(fx, mods)) for fx in effects])
-        for i, (_, effects) in assembled.items()
+        i: AssembledPower(
+            effects=_reindex([replace(fx, probability=_probability(fx, mods)) for fx in effects]),
+            ignore_enh=power.ignore_enh,
+        )
+        for i, (power, effects) in assembled.items()
     }

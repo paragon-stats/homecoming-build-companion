@@ -178,7 +178,7 @@ def test_excluded_conditionals_do_not_affect_totals(
         "server": server,
     }
     excluded = compute_base_totals(powers, **call)
-    monkeypatch.setattr(base_totals, "_can_include", lambda fx: True)
+    monkeypatch.setattr(base_totals, "_can_include", lambda fx, ctx: True)
     forced = compute_base_totals(powers, **call)
     assert forced.totals == excluded.totals
     assert forced.totals_capped == excluded.totals_capped

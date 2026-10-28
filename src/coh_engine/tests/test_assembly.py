@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from coh_engine.assembly import Conditions, assemble_build, assemble_power
+from coh_engine.assembly import AssembledPower, Conditions, apply_assembly, assemble_build, assemble_power
 from coh_engine.assembly_data import (
     AssemblyEntities,
     AssemblyEntity,
@@ -13,12 +13,13 @@ from coh_engine.assembly_data import (
     AssemblyPowerset,
     BuildPowerAssembly,
 )
-from coh_engine.effect import Effect
+from coh_engine.effect import Effect, Power
 from coh_engine.enhancement import EnhancementRecord, EnhEffect, SlotRef
 from coh_engine.maths import f32
 from coh_engine.set_bonuses import BonusItem, EnhancementSetDef, SetBonusDb
 
 MakeEffect = Callable[..., Effect]
+MakePower = Callable[..., Power]
 MakeAssemblyPower = Callable[..., AssemblyPower]
 MakeBuildPower = Callable[..., BuildPowerAssembly]
 
@@ -119,7 +120,7 @@ def _assemble(
         entities=entities,
         archetype_index=AT,
         conditions=conditions,
-    )
+    ).effects
 
 
 def _types(effects: Sequence[Effect]) -> list[str]:
@@ -237,12 +238,56 @@ def test_enhancement_grant_runs_the_grant_step(
     assert out[0].effect_class == "Ignored"
 
 
-def test_pets_only_enhancement_on_a_summon_refuses(
+@pytest.mark.parametrize(
+    ("pet_powers", "copies"),
+    [
+        # One copy per pet power with an effect of the same type, and one more when the last pet power has one.
+        ((frozenset({"Heal"}), frozenset({"Damage"}), frozenset({"Heal", "Damage"})), 3),
+        ((frozenset({"Heal"}), frozenset({"Heal"}), frozenset({"Damage"})), 2),
+        ((), 0),
+    ],
+)
+def test_pets_only_enhancement_on_a_summon_copies_per_matching_pet_power(
+    pet_powers: tuple[frozenset[str], ...],
+    copies: int,
+    make_effect: MakeEffect,
+    make_assembly_power: MakeAssemblyPower,
+    make_build_power: MakeBuildPower,
+) -> None:
+    powers = [make_assembly_power(make_effect(effect_type="Heal", reward="Set_Bonus.Pet"), nid=500)]
+    pet = AssemblyEntity(
+        nid=41, uid="Pets_Decoy", class_nid=18, powerset_nids=(), first_powerset_effect_types=pet_powers
+    )
+    summon = make_build_power(make_effect(effect_type="EntCreate", probability=0.5, summon="Pets_Decoy"))
+    out = _assemble(summon, powers, [_slot(60)], entities=_entities(pet))
+    assert _types(out) == ["EntCreate"] + ["Heal"] * copies
+    assert all(fx.is_enhancement_effect and not fx.buffable for fx in out[1:])
+
+
+def test_pets_only_enhancement_with_an_unknown_entity_refuses(
     make_effect: MakeEffect, make_assembly_power: MakeAssemblyPower, make_build_power: MakeBuildPower
 ) -> None:
     powers = [make_assembly_power(make_effect(reward="Set_Bonus.Pet"), nid=500)]
+    summon = make_build_power(make_effect(effect_type="EntCreate", probability=0.5, summon="Pets_Missing"))
     with pytest.raises(NotImplementedError, match="E89"):
-        _assemble(make_build_power(make_effect(effect_type="EntCreate", probability=0.5)), powers, [_slot(60)])
+        _assemble(summon, powers, [_slot(60)])
+
+
+def test_pets_only_grant_runs_the_grant_step(
+    make_effect: MakeEffect, make_assembly_power: MakeAssemblyPower, make_build_power: MakeBuildPower
+) -> None:
+    grant = make_effect(effect_type="GrantPower", reward="Set_Bonus.Pet", n_summon=600)
+    powers = [make_assembly_power(grant, nid=500), make_assembly_power(make_effect(effect_type="Heal"), nid=600)]
+    pet = AssemblyEntity(
+        nid=41,
+        uid="Pets_Decoy",
+        class_nid=18,
+        powerset_nids=(),
+        first_powerset_effect_types=(frozenset({"GrantPower"}),),
+    )
+    summon = make_build_power(make_effect(effect_type="EntCreate", probability=0.5, summon="Pets_Decoy"))
+    out = _assemble(summon, powers, [_slot(60)], entities=_entities(pet))
+    assert _types(out) == ["EntCreate", "GrantPower", "GrantPower", "Heal", "Heal"]
 
 
 @pytest.mark.parametrize(("summon", "enh"), [(True, 50), (False, 60)])
@@ -726,8 +771,9 @@ def _build(
     entries: Mapping[int, BuildPowerAssembly],
     powers: Sequence[AssemblyPower] = (),
     stat_include: Mapping[int, bool] | None = None,
+    set_bonus_effects: Sequence[Effect] = (),
 ) -> dict[int, tuple[Effect, ...]]:
-    return assemble_build(
+    out = assemble_build(
         entries,
         {},
         stat_include=stat_include or dict.fromkeys(entries, True),
@@ -737,7 +783,9 @@ def _build(
         entities=NO_ENTITIES,
         archetype_index=AT,
         conditions=_never,
+        set_bonus_effects=set_bonus_effects,
     )
+    return {i: assembled.effects for i, assembled in out.items()}
 
 
 def _target(make_build_power: MakeBuildPower, make_effect: MakeEffect, **over: Any) -> BuildPowerAssembly:
@@ -942,3 +990,60 @@ def test_global_chance_mods_raise_probability(make_effect: MakeEffect, make_buil
     inactive = make_build_power(make_effect(effect_type="GlobalChanceMod", reward="Regen", scale=-1.0), build_index=2)
     out = _build({0: raised, 1: rewards, 2: inactive}, stat_include={0: True, 1: True, 2: False})
     assert out[0][0].probability == 1.0
+
+
+def test_set_bonus_chance_mods_follow_the_build_powers(
+    make_effect: MakeEffect, make_build_power: MakeBuildPower
+) -> None:
+    raised = make_build_power(make_effect(effect_type="Regeneration", base_probability=0.0, effect_id="Regen"))
+    other = make_build_power(make_effect(effect_type="Heal", base_probability=0.0, effect_id="Other"), build_index=1)
+    rewards = make_build_power(make_effect(effect_type="GlobalChanceMod", reward="Regen", scale=1.0), build_index=2)
+    bonus = (
+        make_effect(effect_type="GlobalChanceMod", reward="Regen", scale=-1.0),
+        make_effect(effect_type="GlobalChanceMod", reward="Other", scale=0.25),
+        make_effect(effect_type="GlobalChanceMod", reward="Other", scale=0.5),
+        make_effect(effect_type="Defense", reward="Other", scale=1.0),
+    )
+    out = _build({0: raised, 1: other, 2: rewards}, set_bonus_effects=bonus)
+    assert (out[0][0].probability, out[1][0].probability) == (1.0, 0.25)
+
+
+def test_pet_attributes_reach_the_assembled_power(
+    make_effect: MakeEffect, make_assembly_power: MakeAssemblyPower, make_build_power: MakeBuildPower
+) -> None:
+    pet = make_assembly_power(nid=300, ignore_enh=frozenset({"RechargeTime"}))
+    entities = _entities(_entity(40, 30), _powerset(30, 300))
+    absorber = make_build_power(_create(make_effect, probability=1.0), absorb_summon_attributes=True)
+    assembled = assemble_power(
+        absorber,
+        (),
+        enh_db=ENH_DB,
+        set_db=SET_DB,
+        powers={300: pet},
+        entities=entities,
+        archetype_index=AT,
+        conditions=_never,
+    )
+    assert assembled.ignore_enh == frozenset({"RechargeTime"})
+
+
+@pytest.mark.parametrize(
+    ("own", "absorbed", "want"),
+    [
+        (("Range", "Accuracy"), frozenset({"Accuracy", "Range"}), ("Range", "Accuracy")),
+        ((), frozenset({"B", "A"}), ("A", "B")),
+    ],
+)
+def test_apply_assembly_hands_the_powers_their_assembled_state(
+    own: tuple[str, ...],
+    absorbed: frozenset[str],
+    want: tuple[str, ...],
+    make_effect: MakeEffect,
+    make_power: MakePower,
+    make_build_power: MakeBuildPower,
+) -> None:
+    power = make_power(make_effect(effect_type="Defense"), build_index=2, ignore_enh=own)
+    entry = make_build_power(build_index=2, aoe_modifier=1.5, base_recharge_time=8.0)
+    effects = (make_effect(effect_type="Heal"),)
+    (out,) = apply_assembly([power], {2: entry}, {2: AssembledPower(effects=effects, ignore_enh=absorbed)})
+    assert (out.effects, out.ignore_enh, out.aoe_modifier, out.base_recharge_time) == (effects, want, 1.5, 8.0)

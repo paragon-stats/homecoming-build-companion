@@ -91,6 +91,7 @@ def evaluate_magnitude(
 
     constants: tuple[tuple[str, Callable[[], str]], ...] = (
         ("power.base>activateperiod", lambda: _float_text(power.activate_period)),
+        ("power.base>activatetime", lambda: _float_text(power.cast_time)),
         ("power.base>areafactor", lambda: _float_text(power.aoe_modifier)),
         ("power.base>rechargetime", lambda: _float_text(power.base_recharge_time)),
         ("@StdResult", lambda: _float_text(scale)),
@@ -198,8 +199,20 @@ def conditionals_met(effect: Effect, ctx: ExpressionContext) -> bool:
     return not groups or any(all(group) for group in groups)
 
 
+def _included_by_condition(effect: Effect, key: str, value: str, ctx: ExpressionContext) -> bool:
+    """One condition as ``Effect.CanInclude`` reads it, which differs from ``ValidateConditional``.
+
+    It strips no ``AND ``/``OR `` lead, so a led key matches no condition type and is not met; a ``Team``
+    condition is met only with team members configured, and the reference dumps configure none.
+    """
+    kind = key.partition(":")[0]
+    if kind == "Team" or kind.startswith(("AND ", "OR ")):
+        return False
+    return _condition_holds(effect, key, value, ctx)
+
+
 def effect_included(effect: Effect, ctx: ExpressionContext | None) -> bool:
-    """``Effect.CanInclude``: an effect with a special case is out; one with conditions needs them met.
+    """``Effect.CanInclude``: an effect with a special case is out; one with conditions needs every one met.
 
     Without a context only an unconditional effect is in, as before conditions were ported.
 
@@ -216,4 +229,4 @@ def effect_included(effect: Effect, ctx: ExpressionContext | None) -> bool:
             "expected the conditions loaded with the effect, found an empty list; "
             "load the effect from a record that holds ActiveConditionals"
         )
-    return conditionals_met(effect, ctx)
+    return all(_included_by_condition(effect, key, value, ctx) for key, value in effect.conditionals)

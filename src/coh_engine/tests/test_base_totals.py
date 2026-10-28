@@ -32,6 +32,7 @@ from coh_engine.base_totals import (
 from coh_engine.ed import Schedule
 from coh_engine.effect import Effect, Power
 from coh_engine.enhancement import EnhancementRecord, EnhEffect, SlotRef
+from coh_engine.expressions import ExpressionContext
 from coh_engine.maths import MathTables, f32
 from coh_engine.set_bonuses import SET_BONUS_BUILD_INDEX, SetBonusDb
 
@@ -678,6 +679,66 @@ class TestGbdTotals:
         value = f32(0.45)
         factor = f32(1.0 - abs(math.atan(f32(1.2) * value)) * (2.0 / math.pi) * f32(1.0))
         assert calculate_pvp_dr(value) == f32(value * factor)
+
+    @pytest.mark.parametrize(("active", "want"), [(frozenset({"Pool.Fighting.Kick"}), 0.25), (frozenset(), 0.0)])
+    def test_conditional_effect_counts_when_its_conditions_hold(
+        self,
+        active: frozenset[str],
+        want: float,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        enums: EnumMaps,
+        server: ServerData,
+    ) -> None:
+        conditional = make_effect(
+            effect_type="Regeneration",
+            scale=0.25,
+            active_conditionals_count=1,
+            conditionals=(("Active:Pool.Fighting.Kick", "True"),),
+        )
+        expr = ExpressionContext(
+            prev_hp_max=0.0, build_power_names=active, active_power_names=active, variable_values={}
+        )
+        result = compute_base_totals(
+            [make_power(conditional)],
+            class_name="Class_Test",
+            mods=tiny_mods,
+            classes=tiny_classes,
+            enums=enums,
+            config=PVE,
+            server=server,
+            expr=expr,
+        )
+        assert result.totals.hp_regen == f32(want)
+
+    def test_expression_reads_the_previous_max_hit_points(
+        self,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        enums: EnumMaps,
+        server: ServerData,
+    ) -> None:
+        absorb = make_effect(
+            effect_type="Absorb", attrib_type="Expression", expr_magnitude="0.15*source>Max.kHitPoints"
+        )
+        expr = ExpressionContext(
+            prev_hp_max=1000.0, build_power_names=frozenset(), active_power_names=frozenset(), variable_values={}
+        )
+        result = compute_base_totals(
+            [make_power(absorb)],
+            class_name="Class_Test",
+            mods=tiny_mods,
+            classes=tiny_classes,
+            enums=enums,
+            config=PVE,
+            server=server,
+            expr=expr,
+        )
+        assert result.totals.absorb == f32(150.0)
 
     def test_stat_exclude_powers_contribute_nothing(
         self,

@@ -60,6 +60,7 @@ def test_float_text_is_the_shortest_round_trip(value: float, text: str) -> None:
         ("power.base>rechargetime * 2", {"base_recharge_time": f32(0.1)}, f32(0.2)),
         ("power.base>areafactor + 1", {"aoe_modifier": f32(0.75)}, 1.75),
         ("power.base>activateperiod * 10", {"activate_period": f32(0.1)}, 1.0),
+        ("0.7 * power.base>activatetime + 0.4", {"cast_time": f32(2.0), "activate_period": f32(3.0)}, 1.8),
         ("power.base>areafactor", {}, 1.0),
         ("power.base>rechargetime", {}, 0.0),
     ],
@@ -253,6 +254,25 @@ def test_conditional_effect_needs_a_context_and_met_conditions(make_effect: Make
     assert effect_included(fx, None) is False
     assert effect_included(fx, _ctx()) is True
     assert effect_included(_conditional(make_effect, (_KICK, "True")), _ctx()) is False
+
+
+@pytest.mark.parametrize(
+    ("conditions", "met", "included"),
+    [
+        # ValidateConditional chains an OR group; CanInclude needs every condition and reads no OR lead.
+        (((_KICK, "True"), (f"OR {_BOXING}", "True")), True, False),
+        (((_BOXING, "True"), (f"AND {_BOXING}", "True")), True, False),
+        (((_BOXING, "True"), ("Team:Any", "= 1")), None, False),
+        (((_BOXING, "True"), (_KICK, "False")), True, True),
+    ],
+)
+def test_inclusion_needs_every_condition_where_validation_chains_them(
+    conditions: tuple[tuple[str, str], ...], met: bool | None, included: bool, make_effect: MakeEffect
+) -> None:
+    fx = _conditional(make_effect, *conditions)
+    assert effect_included(fx, _ctx()) is included
+    if met is not None:
+        assert conditionals_met(fx, _ctx()) is met
 
 
 def test_conditions_known_only_by_count_are_not_evaluated(make_effect: MakeEffect) -> None:

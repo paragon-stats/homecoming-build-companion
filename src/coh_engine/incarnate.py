@@ -45,6 +45,10 @@ increment into the effect's ``Math_Mag`` alongside slotted enhancement before Pa
 target effect may carry both slotted and incarnate enhancement — no separate-ED divergence,
 no co-slotting guard.
 
+Power assembly (:mod:`coh_engine.assembly`) also absorbs the granted sub-powers into the Alpha's own
+effect list, as Mids does; those absorbed effects are GlobalBoost effects the totals passes skip, so the
+enhancement reaches other powers only through this module.
+
 Spec: docs/engine/mids-port-spec.md § gbpa-pass-pipeline; .claude/rules/check-registry.md.
 """
 
