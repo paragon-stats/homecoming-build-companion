@@ -294,16 +294,26 @@ def _rule_first_available_level(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
 
 @hard_limit_rule
 def _rule_pick_at_grant_level(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
-    """H-POWER-003: a power is picked at a real power-pick level in the schedule."""
+    """H-POWER-003: each pick sits on the schedule level of its own position among the 24.
+
+    A pick's ``build_index`` is its position in Mids' build, and Mids places a pick by that
+    position, not by its level: a level that is a real pick level but belongs to another
+    position still loads the power into the wrong pick (and is caught here).
+    """
+    order = ctx.schedule.power_pick_levels
     for power in ctx.picks:
-        if power.pick_level not in ctx.schedule.power_pick_levels:
-            yield _error(
-                "H-POWER-003",
-                f"{power.full_name!r} is picked at level {power.pick_level + 1}, which is not a "
-                "power-pick level in the schedule",
-                fix="pick this power at a level the schedule grants a power",
-                actual=power.pick_level + 1,
-            )
+        if power.build_index >= len(order) or power.pick_level == order[power.build_index]:
+            continue  # beyond 24 picks is H-POWER-001's
+        expected = order[power.build_index] + 1
+        yield _error(
+            "H-POWER-003",
+            f"{power.full_name!r} is pick {power.build_index + 1} of {len(order)}, which the schedule "
+            f"grants at level {expected}, but it is picked at level {power.pick_level + 1}",
+            fix=f"move this power to the pick the schedule grants at level {power.pick_level + 1}, "
+            f"or pick it at level {expected}",
+            expected=expected,
+            actual=power.pick_level + 1,
+        )
 
 
 @hard_limit_rule

@@ -84,9 +84,9 @@ def test_clean_build_has_no_violations(schedule: LevelSchedule) -> None:
     """A small legal build produces no diagnostics."""
     powers = [
         _power(0, "Scrapper_Melee.Dark_Melee.Smite", level=1, pick_level=0),
-        _power(1, "Pool.Speed.Hasten", level=4, pick_level=3),
+        _power(3, "Pool.Speed.Hasten", level=4, pick_level=3),  # the fourth pick is the level-4 one
     ]
-    slots = {0: (_slot(0, inherent=True), _slot(2), _slot(4)), 1: (_slot(3, inherent=True),)}
+    slots = {0: (_slot(0, inherent=True), _slot(2), _slot(4)), 3: (_slot(3, inherent=True),)}
     assert check_hard_limits(powers, slots, schedule, MAX_SLOTS) == []
 
 
@@ -179,7 +179,10 @@ def test_incarnates_do_not_count_toward_picks_or_grant_levels(schedule: LevelSch
     power-pick level) must raise neither H-POWER-001 (>24 picks) nor H-POWER-003 (pick at a
     non-grant level): the incarnate is excluded from the pick set entirely, like an inherent.
     """
-    powers = [_power(i, f"Dominator_Control.Arsenal_Control.P{i}", pick_level=0) for i in range(24)]
+    powers = [
+        _power(i, f"Dominator_Control.Arsenal_Control.P{i}", pick_level=lv)
+        for i, lv in enumerate(schedule.power_pick_levels)
+    ]
     powers += [_power(24, "Incarnate.Alpha.Agility_Core_Paragon", level=50, pick_level=49)]
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
     assert "H-POWER-001" not in _rule_ids(diags)
@@ -220,6 +223,29 @@ def test_pick_at_non_pick_level_errors(schedule: LevelSchedule) -> None:
     powers = [_power(0, "Scrapper_Melee.Dark_Melee.Smite", level=1, pick_level=2)]
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
     assert "H-POWER-003" in _rule_ids(diags)
+
+
+def test_pick_out_of_schedule_order_errors(schedule: LevelSchedule) -> None:
+    """H-POWER-003: each pick sits on its own position's level, not just any pick level.
+
+    Mids places a pick by its position among the 24, not by its level: Taunt written with
+    level 47 after Hasten written with level 49 loads Hasten into the level-47 pick. Both
+    levels are real pick levels, so only the position check catches the swap.
+    """
+    levels = list(schedule.power_pick_levels)
+    levels[22], levels[23] = levels[23], levels[22]  # positions 22 and 23 hold game levels 47 and 49
+    powers = [_power(i, f"Tanker_Melee.Super_Strength.P{i}", pick_level=lv) for i, lv in enumerate(levels)]
+    diags = [d for d in check_hard_limits(powers, {}, schedule, MAX_SLOTS) if d.rule_id == "H-POWER-003"]
+    assert [(d.expected, d.actual) for d in diags] == [(47, 49), (49, 47)]
+    assert "pick 23 of 24" in diags[0].message and "Tanker_Melee.Super_Strength.P22" in diags[0].message
+
+
+def test_picks_in_schedule_order_are_legal(schedule: LevelSchedule) -> None:
+    """A full 24-pick build on the schedule's own levels raises no H-POWER-003."""
+    powers = [
+        _power(i, f"Tanker_Melee.Super_Strength.P{i}", pick_level=lv) for i, lv in enumerate(schedule.power_pick_levels)
+    ]
+    assert "H-POWER-003" not in _rule_ids(check_hard_limits(powers, {}, schedule, MAX_SLOTS))
 
 
 def test_five_pools_errors(schedule: LevelSchedule) -> None:
