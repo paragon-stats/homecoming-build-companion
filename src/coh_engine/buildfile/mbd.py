@@ -16,10 +16,12 @@ empty slot.
 """
 
 import json
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from coh_engine.archetypes import ArchetypeDb, load_archetypes
 from coh_engine.levels import LevelSchedule
 
 
@@ -182,6 +184,62 @@ def load_mbd(path: Path | str) -> Build:
     return parse_mbd(data)
 
 
+def _dump_enhancement(enh: Enhancement | None) -> dict[str, Any] | None:
+    if enh is None:
+        return None
+    return {
+        "Uid": enh.uid,
+        "Grade": enh.grade,
+        "IoLevel": enh.io_level,
+        "RelativeLevel": enh.relative_level,
+        "Obtained": enh.obtained,
+    }
+
+
+def _dump_entry(entry: PowerEntry) -> dict[str, Any]:
+    return {
+        "PowerName": entry.power_name,
+        "Level": entry.level + 1 if entry.power_name else entry.level,  # the inverse of _parse_power_entry
+        "StatInclude": entry.stat_include,
+        "ProcInclude": entry.proc_include,
+        "VariableValue": entry.variable_value,
+        "InherentSlotsUsed": entry.inherent_slots_used,
+        "SubPowerEntries": [
+            {"PowerName": s.power_name, "StatInclude": s.stat_include} for s in entry.sub_power_entries
+        ],
+        "SlotEntries": [
+            {
+                "Level": s.level + 1,
+                "IsInherent": s.is_inherent,
+                "Enhancement": _dump_enhancement(s.enhancement),
+                "FlippedEnhancement": _dump_enhancement(s.flipped_enhancement),
+            }
+            for s in entry.slot_entries
+        ],
+    }
+
+
+def dump_mbd(build: Build) -> dict[str, Any]:
+    """The ``.mbd`` JSON object for a parsed :class:`Build`: the inverse of :func:`parse_mbd`."""
+    return {
+        "BuiltWith": {
+            "App": build.meta.app,
+            "Version": build.meta.version,
+            "Database": build.meta.database,
+            "DatabaseVersion": build.meta.database_version,
+        },
+        "Level": str(build.level),
+        "Class": build.class_name,
+        "Origin": build.origin,
+        "Alignment": build.alignment,
+        "Name": build.name,
+        "Comment": build.comment,
+        "PowerSets": list(build.power_sets),
+        "LastPower": build.last_power,
+        "PowerEntries": [_dump_entry(e) for e in build.power_entries],
+    }
+
+
 # --- writing: a build walked level by level, as the game grants it ----------------------
 
 HOMECOMING = MetaData(app="Mids Reborn", version="3.8.6.0", database="Homecoming", database_version="2026.1.1242")
@@ -191,6 +249,175 @@ _EXEMPLAR_SLOTS = 2
 
 class BuildSpecError(ValueError):
     """A build spec the game could not grant: the message carries an E-code and the level."""
+
+
+# --- the reference tables a ``.mbd`` is checked and resolved against (Mids dump harness) ---
+
+POWERSETS_EXPECTED = 8  # primary, secondary, "", four pools, ancillary (Character.cs:23)
+_MAX_LEVEL_TEXT = 49  # CharacterBuildData.cs:41: the header level is 0-based
+
+
+@dataclass(frozen=True, slots=True)
+class EnhInfo:
+    """One enhancement: its nID, type, owning set and the InventO IO-level bounds."""
+
+    nid: int
+    type_name: str
+    set_nid: int
+    level_min: int
+    level_max: int
+
+
+@dataclass(frozen=True, slots=True)
+class PowerTemplate:
+    """A power from ``powers.json``: the database fields, without per-build state or effects."""
+
+    full_name: str
+    nid: int
+    static_index: int
+    power_type: str
+    level: int
+    set_types: tuple[int, ...]
+    enhancements: tuple[int, ...]
+    requires_powers: tuple[tuple[str, ...], ...]
+    requires_powers_not: tuple[tuple[str, ...], ...]
+    requires_class: tuple[str, ...]
+    requires_class_not: tuple[str, ...]
+    power_set_type: str
+
+
+@dataclass(frozen=True, slots=True)
+class MbdDb:
+    """What the writer, the invariants and the resolution read: one bundle from one Mids dump."""
+
+    enhancements: Mapping[str, EnhInfo]
+    set_bounds: Mapping[int, tuple[int, int]]
+    archetypes: ArchetypeDb
+    powers: Mapping[str, PowerTemplate]
+
+
+def load_mbd_db(mids_dir: Path | str) -> MbdDb:
+    """Read ``enhancements.json``, ``enhancement_sets.json``, ``archetypes.json`` and ``powers.json`` from a dump.
+
+    Raises:
+        FileNotFoundError: if one of the files is missing.
+        KeyError: if a file lacks a field; re-dump with the current harness.
+    """
+    root = Path(mids_dir)
+    enhancements = {
+        r["UID"]: EnhInfo(r["Nid"], r["TypeName"], r["nIDSet"], r["LevelMin"], r["LevelMax"])
+        for r in json.loads((root / "enhancements.json").read_text(encoding="utf-8"))
+    }
+    set_bounds = {
+        r["Nid"]: (r["LevelMin"], r["LevelMax"])
+        for r in json.loads((root / "enhancement_sets.json").read_text(encoding="utf-8"))
+    }
+    powers = {
+        r["FullName"]: PowerTemplate(
+            full_name=r["FullName"],
+            nid=r["NIDPower"],
+            static_index=r["StaticIndex"],
+            power_type=r["PowerType"],
+            level=r["Level"],
+            set_types=tuple(r["SetTypes"]),
+            enhancements=tuple(r["Enhancements"]),
+            requires_powers=tuple(tuple(g) for g in r["RequiresPowers"]),
+            requires_powers_not=tuple(tuple(g) for g in r["RequiresPowersNot"]),
+            requires_class=tuple(r["RequiresClass"]),
+            requires_class_not=tuple(r["RequiresClassNot"]),
+            power_set_type=r["PowerSetType"],
+        )
+        for r in json.loads((root / "powers.json").read_text(encoding="utf-8"))
+    }
+    return MbdDb(enhancements, set_bounds, load_archetypes(root / "archetypes.json"), powers)
+
+
+def powersets_arity(power_sets: Sequence[object]) -> int:
+    """The number of ``PowerSets`` entries; MidsReborn indexes eight (``Character.Reset``)."""
+    return len(power_sets)
+
+
+def io_level_bounds(uid: str, db: MbdDb) -> tuple[int, int] | None:
+    """The 0-based ``IoLevel`` range MidsReborn keeps for ``uid``; ``None`` for a uid not in the table.
+
+    Ported from ``Enhancement.CheckAndFixIOLevel`` (``Enhancement.cs:340-358``): a set piece
+    takes its set's bounds, an InventO its own, a set piece with no set the defaults (9, 52).
+    Every other type has no IO level and Mids keeps 1.
+    """
+    info = db.enhancements.get(uid)
+    if info is None:
+        return None
+    if info.type_name == "InventO":
+        return (info.level_min, info.level_max)
+    if info.type_name == "SetO":
+        return db.set_bounds.get(info.set_nid, (9, 52))
+    return (1, 1)
+
+
+def level_text_problem(value: object) -> str | None:
+    """Why ``value`` is not a header ``Level`` MidsReborn loads: a string of an integer from 0 to 49, or ``None``."""
+    if isinstance(value, str) and value.lstrip("-").isdigit() and 0 <= int(value) <= _MAX_LEVEL_TEXT:
+        return None
+    return f"{value!r} is not a string of an integer from 0 to {_MAX_LEVEL_TEXT}"
+
+
+def missing_inherents(entry_names: Sequence[str], class_name: str, level: int, db: MbdDb) -> list[str]:
+    """The inherent powers Mids adds to a character of ``level`` that ``entry_names`` lacks.
+
+    A level 0 inherent is Mids' virtual set-bonus power, added only when a set bonus exists, so it
+    is never required.
+    """
+    nid = db.archetypes.nid_from_uid_class(class_name)
+    if nid < 0:
+        raise BuildSpecError(f"E76: class {class_name} is not in the archetype table; re-dump the Mids data")
+    present = set(entry_names)
+    return [
+        p.full_name
+        for p in db.archetypes.classes[nid].inherent_powers
+        if 1 <= p.level <= level and p.full_name not in present
+    ]
+
+
+def _enhancement_uid(obj: Mapping[str, Any] | None) -> str | None:
+    """The uid of an ``EnhancementData`` object, with the legacy ``Enhancement`` key accepted."""
+    if obj is None:
+        return None
+    uid = obj.get("Uid", obj.get("Enhancement"))
+    return uid if isinstance(uid, str) else None
+
+
+def check_mbd_invariants(doc: Mapping[str, Any], db: MbdDb) -> None:
+    """Refuse a ``.mbd`` JSON object MidsReborn would crash on or load wrongly.
+
+    Raises:
+        BuildSpecError: E73 for a ``PowerSets`` list not 8 long, E75 for a ``Level`` that is not
+            a string of 0 to 49, E76 for a missing inherent power, E74 for an ``IoLevel`` outside
+            the bounds of its enhancement (MidsReborn clamps it on load, which once left every
+            typed defence and resistance negative).
+    """
+    arity = powersets_arity(doc["PowerSets"])
+    if arity != POWERSETS_EXPECTED:
+        raise BuildSpecError(
+            f"E73: PowerSets has {arity} entries; MidsReborn needs {POWERSETS_EXPECTED}; pad with empty strings"
+        )
+    problem = level_text_problem(doc["Level"])
+    if problem:
+        raise BuildSpecError(f"E75: Level {problem}; write the character level minus one as text")
+    entries = doc["PowerEntries"]
+    missing = missing_inherents([e["PowerName"] for e in entries], doc["Class"], int(doc["Level"]) + 1, db)
+    if missing:
+        raise BuildSpecError(f"E76: missing inherent powers {', '.join(missing)}; add them as unslotted entries")
+    for entry in entries:
+        for slot in entry["SlotEntries"]:
+            for key in ("Enhancement", "FlippedEnhancement"):
+                enh = slot.get(key)
+                uid = _enhancement_uid(enh)
+                bounds = io_level_bounds(uid, db) if uid else None
+                if bounds and not bounds[0] <= enh.get("IoLevel", 1) <= bounds[1]:
+                    raise BuildSpecError(
+                        f"E74: {entry['PowerName']} slot at level {slot['Level']}: {uid} has IoLevel "
+                        f"{enh.get('IoLevel', 1)}, outside {bounds[0]} to {bounds[1]}; write at most {bounds[1]}"
+                    )
 
 
 @dataclass(frozen=True, slots=True)
@@ -225,6 +452,7 @@ class BuildSpec:
     inherents: tuple[PickSpec, ...] = ()
     incarnates: tuple[str, ...] = ()
     meta: MetaData = HOMECOMING
+    level: int = 50  # the character level; the file stores it minus one
 
 
 def _ordered_picks(picks: tuple[PickSpec, ...], schedule: LevelSchedule) -> list[PickSpec]:
@@ -329,13 +557,18 @@ def _feasible(grants: list[int], left: dict[int, int], powers: list[PickSpec]) -
     return not any(left.values())
 
 
-def _enhancement(uid: str | None) -> dict[str, Any] | None:
+def _enhancement(uid: str | None, db: MbdDb) -> dict[str, Any] | None:
     if uid is None:
         return None
-    return {"Uid": uid, "Grade": "None", "IoLevel": 50, "RelativeLevel": "Even", "Obtained": False}
+    bounds = io_level_bounds(uid, db)
+    if bounds is None:
+        raise BuildSpecError(
+            f"E78: enhancement {uid} is not in enhancements.json; check the uid or re-dump the Mids data"
+        )
+    return {"Uid": uid, "Grade": "None", "IoLevel": bounds[1], "RelativeLevel": "Even", "Obtained": False}
 
 
-def _entry(pick: PickSpec, added: list[int]) -> dict[str, Any]:
+def _entry(pick: PickSpec, added: list[int], db: MbdDb) -> dict[str, Any]:
     levels = [pick.level, *sorted(added)] if pick.enhancements else []
     return {
         "PowerName": pick.power,
@@ -346,36 +579,53 @@ def _entry(pick: PickSpec, added: list[int]) -> dict[str, Any]:
         "InherentSlotsUsed": 0,
         "SubPowerEntries": [],
         "SlotEntries": [
-            {"Level": level, "IsInherent": False, "Enhancement": _enhancement(uid), "FlippedEnhancement": None}
+            {"Level": level, "IsInherent": False, "Enhancement": _enhancement(uid, db), "FlippedEnhancement": None}
             for level, uid in zip(levels, pick.enhancements, strict=True)
         ],
     }
 
 
-def write_mbd(spec: BuildSpec, schedule: LevelSchedule) -> dict[str, Any]:
+def _omitted_inherents(spec: BuildSpec, db: MbdDb) -> list[PickSpec]:
+    """The class inherents the spec leaves out, as Mids adds them: unslotted but for the free slot."""
+    names = [pick.power for pick in spec.inherents]
+    added = []
+    for name in missing_inherents(names, spec.class_name, spec.level, db):
+        template = db.powers.get(name)
+        if template is None:
+            raise BuildSpecError(f"E77: inherent power {name} is not in powers.json; re-dump the Mids data")
+        added.append(
+            PickSpec(name, template.level, (None,) if template.enhancements else (), template.power_type == "Auto_")
+        )
+    return added
+
+
+def write_mbd(spec: BuildSpec, schedule: LevelSchedule, db: MbdDb) -> dict[str, Any]:
     """The ``.mbd`` JSON object for ``spec``, picks and slots walked in the order the game grants them.
 
     Picks are written in pick-schedule order whatever order the spec lists them, because
-    MidsReborn places a pick by its position among the 24, not by its level.
+    MidsReborn places a pick by its position among the 24, not by its level. The class
+    inherents the spec omits follow, as Mids adds them, and the result is checked against
+    :func:`check_mbd_invariants` before it is returned.
 
     Raises:
         BuildSpecError: E46 for a pick off its schedule level, E47 for a pinned slot before
             its power, E48 for a pinned slot off a grant level or a short pin list, E49 for
-            added slots the schedule cannot place.
+            added slots the schedule cannot place, E77 for an inherent power the powers table
+            lacks, E78 for an enhancement the table lacks, and E73 to E76 from the invariants.
     """
     picks = _ordered_picks(spec.picks, schedule)
-    powers = [*picks, *spec.inherents]
+    powers = [*picks, *spec.inherents, *_omitted_inherents(spec, db)]
     placed = _place_slots(powers, schedule)
-    entries = [_entry(pick, placed.get(i, [])) for i, pick in enumerate(powers)]
-    entries += [_entry(PickSpec(name, 50, (), stat_include=True), []) for name in spec.incarnates]
-    return {
+    entries = [_entry(pick, placed.get(i, []), db) for i, pick in enumerate(powers)]
+    entries += [_entry(PickSpec(name, 50, (), stat_include=True), [], db) for name in spec.incarnates]
+    doc = {
         "BuiltWith": {
             "App": spec.meta.app,
             "Version": spec.meta.version,
             "Database": spec.meta.database,
             "DatabaseVersion": spec.meta.database_version,
         },
-        "Level": "50",
+        "Level": str(spec.level - 1),
         "Class": spec.class_name,
         "Origin": spec.origin,
         "Alignment": spec.alignment,
@@ -385,3 +635,5 @@ def write_mbd(spec: BuildSpec, schedule: LevelSchedule) -> dict[str, Any]:
         "LastPower": len(picks),
         "PowerEntries": entries,
     }
+    check_mbd_invariants(doc, db)
+    return doc
