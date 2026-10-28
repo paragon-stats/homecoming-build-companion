@@ -1,9 +1,10 @@
 """The harness export power assembly reads: the powers it pulls effects from, and the build's own powers.
 
-Three files feed it (``.claude/plans/assembly-seams.md`` § Seam 1):
+Four files feed it (``.claude/plans/assembly-seams.md`` § Seam 1):
 
 - ``assembly_powers.json``, database wide: each enhancement's own power and every power reachable
     through a GrantPower or ExecutePower effect, with its effects in the extended record shape.
+- ``assembly_entities.json``, database wide: the summoned entities a power absorbs, and their powersets.
 - ``builds/<name>/power_assembly.json``: the build powers' assembly fields and the extended keys of
     their effects, matched to ``powers_effects.json`` by build index and effect index.
 - ``builds/<name>/slots.json``: ``ProcInclude`` per build power.
@@ -77,7 +78,13 @@ EFFECT_KEYS = (
         )
     ),
 )
-_FLAG_KEYS = ("HasGrantPowerEffect", "HasPowerOverrideEffect", "AbsorbSummonEffects", "AbsorbSummonAttributes")
+_FLAG_KEYS = (
+    "HasGrantPowerEffect",
+    "HasPowerOverrideEffect",
+    "AbsorbSummonEffects",
+    "AbsorbSummonAttributes",
+    "IgnoreEnh",
+)
 _POWER_KEYS = (
     "Nid",
     "FullName",
@@ -127,6 +134,7 @@ class AssemblyPower:
     has_power_override_effect: bool
     absorb_summon_effects: bool
     absorb_summon_attributes: bool
+    ignore_enh: frozenset[str]
     effects: tuple[Effect, ...]
 
 
@@ -138,6 +146,34 @@ class BuildPowerAssembly:
     proc_include: bool
     sub_powers: tuple[tuple[int, bool], ...]  # (power nid, stat include)
     power: AssemblyPower
+
+
+@dataclass(frozen=True, slots=True)
+class AssemblyEntity:
+    """A summoned entity a power absorbs: its class row and the powersets its powers come from, in order."""
+
+    nid: int
+    uid: str
+    class_nid: int
+    powerset_nids: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class AssemblyPowerset:
+    """A summoned entity's powerset: its powers' database indexes, in order (``-1`` for an empty slot)."""
+
+    nid: int
+    full_name: str
+    set_type: str
+    power_nids: tuple[int, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class AssemblyEntities:
+    """``assembly_entities.json``: the entities and powersets pet absorption reads, by database index."""
+
+    entities: Mapping[int, AssemblyEntity]
+    powersets: Mapping[int, AssemblyPowerset]
 
 
 def _require(record: Mapping[str, Any], keys: Iterable[str], where: str) -> None:
@@ -166,6 +202,7 @@ def _power_fields(raw: Mapping[str, Any]) -> dict[str, Any]:
         "has_power_override_effect": raw["HasPowerOverrideEffect"],
         "absorb_summon_effects": raw["AbsorbSummonEffects"],
         "absorb_summon_attributes": raw["AbsorbSummonAttributes"],
+        "ignore_enh": frozenset(raw["IgnoreEnh"]),
     }
 
 
@@ -197,6 +234,37 @@ def load_assembly_powers(path: Path | str) -> Mapping[int, AssemblyPower]:
             **_power_fields(raw),
         )
     return MappingProxyType(out)
+
+
+def load_assembly_entities(path: Path | str) -> AssemblyEntities:
+    """Parse ``assembly_entities.json``.
+
+    Raises:
+        FileNotFoundError: if ``path`` does not exist.
+        ValueError: ``E85`` for a record missing a key.
+    """
+    raw = _load(path)
+    name = Path(path).name
+    _require(raw, ("Entities", "Powersets"), name)
+    entities = {}
+    for record in raw["Entities"]:
+        _require(record, ("Nid", "UID", "ClassNid", "PowersetNids"), f"{name} entity {record.get('Nid', '?')}")
+        entities[record["Nid"]] = AssemblyEntity(
+            nid=record["Nid"],
+            uid=record["UID"],
+            class_nid=record["ClassNid"],
+            powerset_nids=tuple(record["PowersetNids"]),
+        )
+    powersets = {}
+    for record in raw["Powersets"]:
+        _require(record, ("Nid", "FullName", "SetType", "PowerNids"), f"{name} powerset {record.get('Nid', '?')}")
+        powersets[record["Nid"]] = AssemblyPowerset(
+            nid=record["Nid"],
+            full_name=record["FullName"],
+            set_type=record["SetType"],
+            power_nids=tuple(record["PowerNids"]),
+        )
+    return AssemblyEntities(entities=MappingProxyType(entities), powersets=MappingProxyType(powersets))
 
 
 def _enrich(power: Power, raw_effects: Sequence[Mapping[str, Any]], where: str) -> tuple[Effect, ...]:

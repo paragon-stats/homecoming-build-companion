@@ -139,6 +139,7 @@ internal static class Program
         DumpConfig(outDir);
         DumpLevels(outDir);
         DumpIncarnates(outDir);
+        DumpAssemblyPowers(outDir);
 
         // Optional third arg: a directory of .mbd sample builds. Each is loaded
         // through Mids and re-saved as a .mxd share block, giving the Python port
@@ -331,6 +332,8 @@ internal static class Program
         Directory.CreateDirectory(buildDir);
         DumpBuildPowersEffects(buildDir, toon);
         DumpBuildSlots(buildDir, toon);
+        DumpBuildPowerAssembly(buildDir, toon);
+        DumpBuildAssembledPowers(buildDir, toon);
         DumpBuildEnhancedPowers(buildDir, toon);
         DumpBuildSetBonusVirtualPower(buildDir, toon);
         DumpBuildIncarnates(buildDir, toon);
@@ -786,6 +789,7 @@ internal static class Program
             builds.Add(new
             {
                 BuildIndex = i,
+                entry.ProcInclude,
                 Slots = entry.Slots.Select(s => new
                 {
                     s.Level,
@@ -1049,6 +1053,9 @@ internal static class Program
                 TypeName = t.e.TypeID.ToString(),
                 t.e.Superior,
                 t.e.nIDSet,
+                // The enhancement's own power holds the effects assembly copies into the slotted power.
+                t.e.IsProc,
+                PowerNid = t.e.GetPower()?.PowerIndex ?? -1,
                 Effects = t.e.Effect
                     .Where(fx => fx.Mode == Enums.eEffMode.Enhancement)
                     .Select(fx => new
@@ -1066,6 +1073,232 @@ internal static class Program
             })
             .ToList();
         WriteJson(outDir, "enhancement_effects.json", records);
+    }
+
+    // The keys assembly needs beyond the effect record powers_effects.json carries.
+    private static Dictionary<string, object?> AssemblyEffectKeys(IEffect fx, int idx)
+    {
+        return new Dictionary<string, object?>
+        {
+            ["Index"] = idx,
+            ["Summon"] = fx.Summon ?? "",
+            ["nSummon"] = fx.nSummon,
+            ["Duration"] = fx.Duration,
+            ["EffectId"] = fx.EffectId ?? "",
+            ["Reward"] = fx.Reward ?? "",
+            ["ActiveConditionals"] = (fx.ActiveConditionals ?? []).Select(c => new { c.Key, c.Value }).ToList(),
+            ["IsEnhancementEffect"] = fx.isEnhancementEffect,
+            ["Absorbed_Power_nID"] = fx.Absorbed_Power_nID,
+        };
+    }
+
+    // The powers_effects.json effect record plus the assembly keys, as one flat record.
+    private static Dictionary<string, object?> SerializeAssemblyEffect(IEffect fx, int idx)
+    {
+        var record = JsonSerializer.SerializeToElement(SerializeEffect(fx, idx), JsonOpts)
+            .EnumerateObject()
+            .ToDictionary(p => p.Name, p => (object?)p.Value);
+        foreach (var (key, value) in AssemblyEffectKeys(fx, idx))
+        {
+            record[key] = value;
+        }
+        return record;
+    }
+
+    private static List<string> EntityNames(Enums.eEntity flags)
+    {
+        return Enum.GetValues<Enums.eEntity>()
+            .Where(v => v != Enums.eEntity.None && (flags & v) == v)
+            .Select(v => v.ToString())
+            .ToList();
+    }
+
+    // The power-level fields assembly reads, shared by the database export and the per-build file.
+    private static Dictionary<string, object?> AssemblyPowerFields(IPower pw)
+    {
+        return new Dictionary<string, object?>
+        {
+            ["PowerSetType"] = pw.GetPowerSet()?.SetType.ToString() ?? "None",
+            ["EntitiesAffected"] = EntityNames(pw.EntitiesAffected),
+            ["EntitiesAutoHit"] = EntityNames(pw.EntitiesAutoHit),
+            ["BaseRechargeTime"] = pw.BaseRechargeTime,
+            ["AoEModifier"] = pw.AoEModifier,
+            ["HasGrantPowerEffect"] = pw.HasGrantPowerEffect,
+            ["HasPowerOverrideEffect"] = pw.HasPowerOverrideEffect,
+            ["AbsorbSummonEffects"] = pw.AbsorbSummonEffects,
+            ["AbsorbSummonAttributes"] = pw.AbsorbSummonAttributes,
+            ["IgnoreEnh"] = pw.IgnoreEnh.Select(e => e.ToString()).ToList(),
+        };
+    }
+
+    private static int ReachedPower(IEffect fx)
+    {
+        return fx.EffectType switch
+        {
+            Enums.eEffectType.GrantPower => fx.nSummon,
+            Enums.eEffectType.ExecutePower when !string.IsNullOrEmpty(fx.Summon) => DatabaseAPI.NidFromUidPower(fx.Summon),
+            _ => -1,
+        };
+    }
+
+    // Every enhancement's own power, and every power reachable from one or from a buildable power
+    // through GrantPower or ExecutePower, recursively. Written unindented to keep the file small.
+    private static void DumpAssemblyPowers(string outDir)
+    {
+        var db = DatabaseAPI.Database;
+        var buildSets = new HashSet<Enums.ePowerSetType>
+        {
+            Enums.ePowerSetType.Primary, Enums.ePowerSetType.Secondary, Enums.ePowerSetType.Ancillary,
+            Enums.ePowerSetType.Pool, Enums.ePowerSetType.Inherent, Enums.ePowerSetType.Incarnate,
+            Enums.ePowerSetType.Accolade, Enums.ePowerSetType.Temp,
+        };
+        var reached = new SortedSet<int>();
+        var pending = new Stack<int>();
+        void Reach(int nid)
+        {
+            if (nid > -1 && nid < db.Power.Length && db.Power[nid] != null && reached.Add(nid))
+            {
+                pending.Push(nid);
+            }
+        }
+
+        // A power that absorbs its summon's effects pulls in the summoned entity's powersets, and the
+        // entities those powers summon in turn.
+        var entities = new SortedSet<int>();
+        var powersets = new SortedSet<int>();
+        void ReachEffects(IPower pw, bool absorbing)
+        {
+            foreach (var fx in pw.Effects)
+            {
+                Reach(ReachedPower(fx));
+                if (!absorbing || fx.EffectType != Enums.eEffectType.EntCreate || fx.nSummon < 0
+                    || fx.nSummon >= db.Entities.Length || !entities.Add(fx.nSummon))
+                {
+                    continue;
+                }
+                foreach (var setNid in db.Entities[fx.nSummon].GetNPowerset())
+                {
+                    if (setNid < 0 || setNid >= db.Powersets.Length || db.Powersets[setNid] == null || !powersets.Add(setNid))
+                    {
+                        continue;
+                    }
+                    foreach (var pet in db.Powersets[setNid]!.Powers.Where(p => p != null))
+                    {
+                        Reach(pet!.PowerIndex);
+                        ReachEffects(pet, true);
+                    }
+                }
+            }
+        }
+
+        foreach (var enh in db.Enhancements.Where(e => e != null))
+        {
+            Reach(enh.GetPower()?.PowerIndex ?? -1);
+        }
+        var roots = db.Powersets
+            .Where(ps => ps != null && buildSets.Contains(ps.SetType))
+            .SelectMany(ps => ps!.Powers.Where(p => p != null));
+        foreach (var root in roots)
+        {
+            ReachEffects(root!, root!.AbsorbSummonEffects || root.AbsorbSummonAttributes);
+        }
+        while (pending.Count > 0)
+        {
+            var pw = db.Power[pending.Pop()];
+            ReachEffects(pw, pw.AbsorbSummonEffects || pw.AbsorbSummonAttributes);
+        }
+
+        WriteJson(outDir, "assembly_entities.json", new
+        {
+            Entities = entities.Select(nid => new
+            {
+                Nid = nid,
+                db.Entities[nid].UID,
+                ClassNid = db.Entities[nid].GetNClassId(),
+                PowersetNids = db.Entities[nid].GetNPowerset(),
+            }).ToList(),
+            Powersets = powersets.Select(nid => new
+            {
+                Nid = nid,
+                db.Powersets[nid]!.FullName,
+                SetType = db.Powersets[nid]!.SetType.ToString(),
+                PowerNids = db.Powersets[nid]!.Powers.Select(p => p?.PowerIndex ?? -1).ToList(),
+            }).ToList(),
+        });
+
+        var records = reached.Select(nid =>
+        {
+            var pw = db.Power[nid];
+            var record = new Dictionary<string, object?>
+            {
+                ["Nid"] = nid,
+                ["FullName"] = pw.FullName,
+                ["PowerType"] = pw.PowerType.ToString(),
+                ["ActivatePeriod"] = pw.ActivatePeriod,
+                ["RechargeTime"] = pw.RechargeTime,
+                ["CastTime"] = pw.CastTimeBase,
+                ["Enhancements"] = pw.Enhancements,
+            };
+            foreach (var (key, value) in AssemblyPowerFields(pw))
+            {
+                record[key] = value;
+            }
+            record["Effects"] = pw.Effects.Select((fx, i) => SerializeAssemblyEffect(fx, i)).ToList();
+            return record;
+        }).ToList();
+        var path = Path.Combine(outDir, "assembly_powers.json");
+        File.WriteAllText(path, JsonSerializer.Serialize(records, new JsonSerializerOptions(JsonOpts) { WriteIndented = false }));
+        Console.WriteLine($"wrote {path} ({records.Count} powers)");
+    }
+
+    // What assembly needs about the build's own powers that powers_effects.json does not carry.
+    private static void DumpBuildPowerAssembly(string buildDir, clsToonX toon)
+    {
+        var db = DatabaseAPI.Database;
+        var records = new List<object>();
+        for (var i = 0; i < toon.CurrentBuild.Powers.Count; i++)
+        {
+            var entry = toon.CurrentBuild.Powers[i];
+            if (entry == null || entry.NIDPower < 0 || db.Power[entry.NIDPower] == null)
+            {
+                continue;
+            }
+
+            var pw = db.Power[entry.NIDPower];
+            var record = new Dictionary<string, object?> { ["BuildIndex"] = i };
+            foreach (var (key, value) in AssemblyPowerFields(pw))
+            {
+                record[key] = value;
+            }
+            record["SubPowers"] = (entry.SubPowers ?? []).Select(s => new { NIDPower = s.nIDPower, s.StatInclude }).ToList();
+            record["Effects"] = pw.Effects.Select((fx, idx) => AssemblyEffectKeys(fx, idx)).ToList();
+            records.Add(record);
+        }
+        WriteJson(buildDir, "power_assembly.json", records);
+    }
+
+    // Mids' assembled effect list for each StatInclude build power: the reference the engine's assembly
+    // is tested against. Scale already carries the variable-value multiply on a VariableEnabled power.
+    private static void DumpBuildAssembledPowers(string buildDir, clsToonX toon)
+    {
+        var records = new List<object>();
+        for (var i = 0; i < toon.CurrentBuild.Powers.Count; i++)
+        {
+            var entry = toon.CurrentBuild.Powers[i];
+            var assembled = entry == null || entry.NIDPower < 0 || !entry.StatInclude ? null : toon.GetEnhancedPower(i);
+            if (assembled == null)
+            {
+                continue;
+            }
+
+            records.Add(new
+            {
+                BuildIndex = i,
+                assembled.FullName,
+                Effects = assembled.Effects.Select((fx, idx) => SerializeAssemblyEffect(fx, idx)).ToList(),
+            });
+        }
+        WriteJson(buildDir, "assembled_powers.json", records);
     }
 
     private static void DumpEnhancementSets(string outDir)

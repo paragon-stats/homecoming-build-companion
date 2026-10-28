@@ -66,7 +66,9 @@ only race-carrying builds change.
 | `enhancement_classes.json` | Enhancement class ID/name lookup |
 | `enhancements.json` | Per-enhancement `StaticIndex` / `UID` / `TypeID` (`.mxd` slot-reader byte-count map), plus the legality fields: `ClassIds` (resolved `EnhancementClasses[..].ID`), `nIDSet`, `Unique`, `MutExId`/`MutExName`, `Superior`, `LongName`, and `LevelMin`/`LevelMax` (the InventO IO-level bounds `CheckAndFixIOLevel` clamps to) |
 | `legality_probe.json` | Per named (power, enhancement) pair: Mids' `IsEnhancementValid` verdict + `Power.Enhancements` / `SetTypes` / enh `nIDSet` — the golden-negative reference (Recharge IO in One with the Shield, Force Feedback in Soul Drain both reject; Recharge IO in Hasten accepts) |
-| `enhancement_effects.json` | Per-enhancement `Superior` + `nIDSet` (owning set) + `Enhancement`-mode effects (aspect / schedule / multiplier / buff-mode) — the enhancement value-pipeline input |
+| `enhancement_effects.json` | Per-enhancement `Superior` + `nIDSet` (owning set) + `Enhancement`-mode effects (aspect / schedule / multiplier / buff-mode), plus `IsProc` and `PowerNid` (the enhancement's own power) — the enhancement value-pipeline and assembly input |
+| `assembly_powers.json` | Unindented: each enhancement's own power and every power reachable through GrantPower, ExecutePower or an absorbed summon, with the assembly fields and extended effect records |
+| `assembly_entities.json` | The summoned entities absorbing powers create (`ClassNid`, `PowersetNids`) and those powersets' powers in order |
 | `enhancement_sets.json` | Per set: `Uid`, `SetType` (+ `SetTypeName`), `LevelMin`/`LevelMax` (the SetO IO-level bounds `CheckAndFixIOLevel` clamps to), member `Enhancements[]`, tier `Bonus[]` (`Slotted` / `PvMode` / `Index[]`), and per-enhancement `SpecialBonus[]` — the set-bonus assembly definitions |
 | `set_bonus_powers.json` | The referenced `set_bonus` powers (keyed by global Power id) the virtual power clones effects from, with the MyPet-only flags |
 | `power_static_index.json` | `StaticIndex` → `FullName` map (`.mxd` build-file resolution layer) |
@@ -74,7 +76,9 @@ only race-carrying builds change.
 | `enums.json` | Name → ordinal for every enum the engine indexes arrays by (`eDamage`, `eEffectType`, `eStatType`, `eEnhance`, `eSchedule`, `eSetType`, …) |
 | `config.json` | Config state totals are computed under (`Suppression`, `DisablePvE`, `ForceLevel`, `ScalingToHit`) |
 | `builds/<name>/powers_effects.json` | Per parity build (4th CLI arg): the build's resolved DB powers with the full effect field set |
-| `builds/<name>/slots.json` | Per parity build: the resolved per-power slot layout (`Level`, `Enh` nID, `Grade`, `IOLevel`, `RelativeLevel`) |
+| `builds/<name>/slots.json` | Per parity build: the resolved per-power slot layout (`Level`, `Enh` nID, `Grade`, `IOLevel`, `RelativeLevel`) and the entry's `ProcInclude` |
+| `builds/<name>/power_assembly.json` | Per parity build: what assembly reads about each build power beyond `powers_effects.json` — entity flags, `PowerSetType`, `BaseRechargeTime`, `AoEModifier`, the absorption flags, `IgnoreEnh`, sub-powers, and per effect `Summon`/`nSummon`/`Duration`/`EffectId`/`Reward`/`ActiveConditionals` |
+| `builds/<name>/assembled_powers.json` | Per parity build: Mids' assembled effect list of each StatInclude power, the reference the engine's assembly is tested against |
 | `builds/<name>/enhanced_powers.json` | Per parity build: each power's enhanced scalars + effect `Math_Mag` (`GetEnhancedPower`), with the unenhanced `Base` scalars. Adds `CastTime` and `DamagePerActivation` (`FXGetDamageValue` under the `config.json` damage mode) for the CP6.1 derived-stat parity |
 | `builds/<name>/set_bonus_virtual_power.json` | Per parity build: the assembled `SetBonusVirtualPower` effects (structural key + `Mag`) — the golden for the port's set-bonus assembly |
 | `builds/<name>/incarnates.json` | Per parity build: each StatInclude `Incarnate.*` power resolved to its GrantPower-granted sub-powers (`fx.nSummon` → `db.Power[nSummon]`), with each sub-power's accept-gate `Enhancements` class list and its `Enhancement`/`DamageBuff` effects (the `IgnoreED` pre/post-ED split). Empty `[]` for a build with no incarnate |

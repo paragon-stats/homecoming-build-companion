@@ -64,7 +64,7 @@ plus these keys:
 | `Duration` | float | `Effect.Duration`, the duration Mids hands to the absorbed effects |
 | `EffectId` | string | `Effect.EffectId` |
 | `Reward` | string | `Effect.Reward` |
-| `ActiveConditionals` | list of `{"Key": string, "Value": string}` | The conditions, in order, as Mids stores them (`Key` such as `"Pool.Fighting.Boxing:Active"`, possibly prefixed `"OR "` or `"AND "`) |
+| `ActiveConditionals` | list of `{"Key": string, "Value": string}` | The conditions, in order, as Mids stores them: `Key` is `"<type>:<power full name>"`, possibly prefixed `"OR "` or `"AND "` (`"Active:Inherent.Inherent.Critical_Hit"`, `"Taken:Pool.Fighting.Kick"`, `"Stacks:Pool.Teleportation.Recall_Friend"`); `Value` is `"True"`/`"False"`, or `"= 1"` style for `Stacks` |
 | `IsEnhancementEffect` | bool | `Effect.isEnhancementEffect` |
 | `Absorbed_Power_nID` | int | `Effect.Absorbed_Power_nID` |
 
@@ -99,7 +99,12 @@ GrantPower (`nSummon`) or ExecutePower (`Summon`) effect from an enhancement's p
 | `ActivatePeriod`, `RechargeTime`, `BaseRechargeTime`, `CastTime`, `AoEModifier` | float | The power's scalars |
 | `Enhancements` | list of int | Enhancement class IDs the power accepts |
 | `HasGrantPowerEffect`, `HasPowerOverrideEffect`, `AbsorbSummonEffects`, `AbsorbSummonAttributes` | bool | The power's flags of those names |
+| `IgnoreEnh` | list of string | `eEnhance` names the power ignores (pet absorption copies it onto the absorbing power) |
 | `Effects` | list of extended effect records | The database effects, in order |
+
+The file also holds every power of every powerset of a summoned entity that an absorbing power (one with
+`AbsorbSummonEffects` or `AbsorbSummonAttributes`) creates through EntCreate, and of the entities those powers
+create in turn. It is written unindented, about 10 MB and 1,800 powers.
 
 ```json
 {"Nid": 9213, "FullName": "Boosts.Crafted_Force_Feedback_F.Crafted_Force_Feedback_F", "PowerType": "Auto_",
@@ -113,6 +118,20 @@ GrantPower (`nSummon`) or ExecutePower (`Summon`) effect from an enhancement's p
 
 The numbers in the examples show the shape; the dump supplies the real ones.
 
+### `assembly_entities.json` (new, database level)
+
+The summoned entities pet absorption reads, and their powersets.
+
+| Key | Type | Meaning |
+| --- | --- | --- |
+| `Entities` | list of `{"Nid": int, "UID": string, "ClassNid": int, "PowersetNids": [int]}` | Each entity an absorbing power creates (its EntCreate `nSummon` is the `Nid`), with `GetNClassId()` and `GetNPowerset()` in order |
+| `Powersets` | list of `{"Nid": int, "FullName": string, "SetType": string, "PowerNids": [int]}` | Each powerset named above, its powers' indexes in order (`-1` for an empty slot); every power is in `assembly_powers.json` |
+
+```json
+{"Entities": [{"Nid": 2, "UID": "Pets_TarPatch", "ClassNid": 18, "PowersetNids": [3299]}],
+  "Powersets": [{"Nid": 3299, "FullName": "...", "SetType": "Pet", "PowerNids": [11021]}]}
+```
+
 ### `builds/<name>/power_assembly.json` (new, per build)
 
 What assembly needs about the build's own powers that `powers_effects.json` does not carry. One record per
@@ -121,7 +140,7 @@ build power that `powers_effects.json` lists, matched by `BuildIndex`.
 | Key | Type | Meaning |
 | --- | --- | --- |
 | `BuildIndex` | int | Same key as `powers_effects.json` |
-| `EntitiesAffected`, `EntitiesAutoHit`, `PowerSetType`, `BaseRechargeTime`, `AoEModifier`, the four flags | as above | The build power's values |
+| `EntitiesAffected`, `EntitiesAutoHit`, `PowerSetType`, `BaseRechargeTime`, `AoEModifier`, the four flags, `IgnoreEnh` | as above | The build power's values |
 | `SubPowers` | list of `{"NIDPower": int, "StatInclude": bool}` | The entry's sub-powers (`PowerEntry.SubPowers`) |
 | `Effects` | list of `{"Index", "Summon", "nSummon", "Duration", "EffectId", "Reward", "ActiveConditionals", "IsEnhancementEffect", "Absorbed_Power_nID"}` | The extended keys for each effect of `powers_effects.json`, matched by `Index` |
 
@@ -132,7 +151,9 @@ Each per-power entry gains `"ProcInclude": bool` (`PowerEntry.ProcInclude`). Not
 ### `builds/<name>/assembled_powers.json` (new, per build, the reference for seam 2)
 
 For each StatInclude build power, Mids' assembled effect list after Pass0: `{"BuildIndex": int, "FullName":
-string, "Effects": [extended effect records, in Mids' order]}`.
+string, "Effects": [extended effect records, in Mids' order]}`. On a VariableEnabled power, `Scale` already
+carries Mids' variable-value multiply, which the engine applies when it reads the magnitude instead; compare
+`Scale` against the engine's assembled scale times that factor, or skip it for such effects.
 
 ### Python side, `src/coh_engine/assembly_data.py`
 
@@ -155,7 +176,27 @@ class AssemblyPower:
     has_power_override_effect: bool
     absorb_summon_effects: bool
     absorb_summon_attributes: bool
+    ignore_enh: frozenset[str]
     effects: tuple[Effect, ...]
+
+@dataclass(frozen=True, slots=True)
+class AssemblyEntity:
+    nid: int
+    uid: str
+    class_nid: int
+    powerset_nids: tuple[int, ...]
+
+@dataclass(frozen=True, slots=True)
+class AssemblyPowerset:
+    nid: int
+    full_name: str
+    set_type: str
+    power_nids: tuple[int, ...]
+
+@dataclass(frozen=True, slots=True)
+class AssemblyEntities:
+    entities: Mapping[int, AssemblyEntity]
+    powersets: Mapping[int, AssemblyPowerset]
 
 @dataclass(frozen=True, slots=True)
 class BuildPowerAssembly:
@@ -165,6 +206,7 @@ class BuildPowerAssembly:
     power: AssemblyPower                       # the build power, effects enriched with the extended keys
 
 def load_assembly_powers(path: Path | str) -> Mapping[int, AssemblyPower]: ...
+def load_assembly_entities(path: Path | str) -> AssemblyEntities: ...
 def load_build_power_assembly(
     power_assembly_path: Path | str, slots_path: Path | str, powers: Sequence[Power]
 ) -> Mapping[int, BuildPowerAssembly]: ...
@@ -198,6 +240,7 @@ def assemble_power(
     enh_db: Mapping[int, EnhancementRecord],
     set_db: SetBonusDb,
     powers: Mapping[int, AssemblyPower],
+    entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
 ) -> tuple[Effect, ...]: ...
@@ -210,6 +253,7 @@ def assemble_build(
     enh_db: Mapping[int, EnhancementRecord],
     set_db: SetBonusDb,
     powers: Mapping[int, AssemblyPower],
+    entities: AssemblyEntities,
     archetype_index: int,
     conditions: Conditions,
 ) -> dict[int, tuple[Effect, ...]]: ...   # build index -> assembled effects
@@ -229,8 +273,15 @@ Order, per power, as Mids runs it:
     `is_enhancement_effect=True`, `ignore_scaling=is_proc`, `absorbed_effect=True`, `buffable=False`, its own
     `to_who` and `ticks`. The pets-only branch is not ported: an effect that affects pets only on a summon
     power refuses with E89.
-3. Pet absorption: a power with `absorb_summon_effects` or `absorb_summon_attributes` and an EntCreate effect
-    of probability about 1 refuses with E89 (entity data is not exported). Report it if a sample build hits it.
+3. Pet absorption (`Power.AbsorbPetEffects`): a power with `absorb_summon_effects` or
+    `absorb_summon_attributes` and an EntCreate effect of probability about 1 takes its entity's powersets from
+    `assembly_entities.json`: attributes from the first powerset's powers (including `entities_affected`,
+    `entities_auto_hit` and `ignore_enh`), then, with `absorb_summon_effects`, every powerset power's effects as
+    Mids absorbs them (the entity's `class_nid` as the absorbed class, the stack count, the EntCreate's duration
+    and delay, the pet duration rule from a SilentKill on a `"Pet"` powerset) and the powers of entities those
+    create. Four sample builds need this (Distortion Field, Spectral Terror, Fallout, Hell on Earth). An
+    entity or powerset missing from the export refuses with E89. `assemble_power` and `assemble_build` take
+    `entities: AssemblyEntities` as one more keyword argument.
 4. GrantPower replacement, repeated until no grant is left (at most 100 rounds): each GrantPower effect that is
     not Ignored, has `n_summon > -1` and passes `CanGrantPower` (its special-case switch ported here; its
     conditionals through `conditions`) becomes `effect_class="Ignored"`, and the granted power's effects are
@@ -296,7 +347,7 @@ E08.
 `effect_included` is the engine's `CanInclude`: true for an effect with no conditionals and no special case;
 `conditionals_met` for an effect with conditionals and no special case; false for a special case, as today.
 `conditionals_met` evaluates the conditions in order with Mids' AND/OR chaining and supports the condition
-types Cross Punch uses (`Active`, `Taken`, `Stacks`, whichever its records hold); any other condition type
+types the sample builds carry (`Active`, `Taken` and `Stacks`; Cross Punch uses `Active` and `Taken`); any other condition type
 refuses with E92.
 
 ## Seam 4: integration

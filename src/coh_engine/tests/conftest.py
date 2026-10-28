@@ -129,6 +129,7 @@ _ASSEMBLY_POWER_DEFAULTS: dict[str, Any] = {
     "has_power_override_effect": False,
     "absorb_summon_effects": False,
     "absorb_summon_attributes": False,
+    "ignore_enh": frozenset(),
 }
 
 

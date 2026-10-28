@@ -12,10 +12,11 @@ from coh_engine.assembly_data import (
     AssemblyPower,
     BuildPowerAssembly,
     load_assembled_powers,
+    load_assembly_entities,
     load_assembly_powers,
     load_build_power_assembly,
 )
-from coh_engine.effect import Effect, Power, _parse_effect
+from coh_engine.effect import Effect, Power, _parse_effect, load_powers_effects
 from coh_engine.enhancement import load_enhancement_effects
 from coh_engine.maths import f32
 
@@ -97,6 +98,7 @@ def _power_record(**over: Any) -> dict[str, Any]:
         "HasPowerOverrideEffect": False,
         "AbsorbSummonEffects": False,
         "AbsorbSummonAttributes": True,
+        "IgnoreEnh": ["RechargeTime"],
         "Effects": [_effect_record()],
     }
     return {**base, **over}
@@ -235,10 +237,68 @@ def test_effect_keys_cover_what_the_parser_reads() -> None:
 
 def test_enhancement_record_reads_its_own_power(tmp_path: Path) -> None:
     record = {"Nid": 640, "StaticIndex": 641, "TypeName": "SetO", "Superior": False, "nIDSet": 106, "Effects": []}
-    plain = load_enhancement_effects(_write(tmp_path, "a.json", [record]))[640]
-    assert (plain.is_proc, plain.power_nid) == (False, -1)
     proc = load_enhancement_effects(_write(tmp_path, "b.json", [{**record, "IsProc": True, "PowerNid": 9213}]))[640]
     assert (proc.is_proc, proc.power_nid) == (True, 9213)
+    with pytest.raises(KeyError, match="IsProc"):
+        load_enhancement_effects(_write(tmp_path, "a.json", [record]))
+
+
+MIDS = Path(__file__).parent / "fixtures" / "mids"
+SAMPLE_DUMPS = sorted(d for d in (MIDS / "builds").iterdir() if " " in d.name)
+
+
+def test_export_holds_every_power_an_enhancement_or_a_grant_points_at() -> None:
+    powers = load_assembly_powers(MIDS / "assembly_powers.json")
+    owned = {r.power_nid for r in load_enhancement_effects(MIDS / "enhancement_effects.json").values()} - {-1}
+    granted = {fx.n_summon for p in powers.values() for fx in p.effects if fx.effect_type == "GrantPower"} - {-1}
+    names = {p.full_name for p in powers.values()}
+    executed = {fx.summon for p in powers.values() for fx in p.effects if fx.effect_type == "ExecutePower"} - {""}
+    assert owned <= powers.keys()
+    assert granted <= powers.keys()
+    assert executed <= names
+
+
+def test_force_feedback_proc_grants_its_recharge_power() -> None:
+    powers = load_assembly_powers(MIDS / "assembly_powers.json")
+    proc = next(p for p in powers.values() if p.full_name.endswith("Crafted_Force_Feedback_F"))
+    (grant,) = [fx for fx in proc.effects if fx.effect_type == "GrantPower"]
+    assert grant.summon == "Set_Bonus.Set_Bonus.Force_Feedback"
+    assert powers[grant.n_summon].full_name == grant.summon
+
+
+@pytest.mark.parametrize("dump", SAMPLE_DUMPS, ids=lambda d: d.name)
+def test_sample_build_assembly_files_load(dump: Path) -> None:
+    powers = load_powers_effects(dump / "powers_effects.json")
+    build = load_build_power_assembly(dump / "power_assembly.json", dump / "slots.json", powers)
+    assembled = load_assembled_powers(dump / "assembled_powers.json")
+    assert build.keys() == {p.build_index for p in powers}
+    assert assembled.keys() == {p.build_index for p in powers if p.stat_include}
+
+
+def test_assembly_entities_load(tmp_path: Path) -> None:
+    data: dict[str, Any] = {
+        "Entities": [{"Nid": 2, "UID": "Pets_TarPatch", "ClassNid": 18, "PowersetNids": [3299]}],
+        "Powersets": [{"Nid": 3299, "FullName": "Pets.TarPatch", "SetType": "Pet", "PowerNids": [11, -1]}],
+    }
+    loaded = load_assembly_entities(_write(tmp_path, "assembly_entities.json", data))
+    assert loaded.entities[2].class_nid == 18
+    assert loaded.entities[2].powerset_nids == (3299,)
+    assert loaded.powersets[3299].power_nids == (11, -1)
+    brokens: list[dict[str, Any]] = [
+        {"Entities": []},
+        {**data, "Entities": [{"Nid": 2}]},
+        {**data, "Powersets": [{"Nid": 1}]},
+    ]
+    for broken in brokens:
+        with pytest.raises(ValueError, match="E85"):
+            load_assembly_entities(_write(tmp_path, "broken.json", broken))
+
+
+def test_export_holds_every_powerset_and_power_a_summoned_entity_points_at() -> None:
+    powers = load_assembly_powers(MIDS / "assembly_powers.json")
+    loaded = load_assembly_entities(MIDS / "assembly_entities.json")
+    assert {s for e in loaded.entities.values() for s in e.powerset_nids if s > -1} <= loaded.powersets.keys()
+    assert {p for s in loaded.powersets.values() for p in s.power_nids if p > -1} <= powers.keys()
 
 
 def test_conftest_factories_build_the_contract_shapes(make_build_power: MakeBuildPower) -> None:

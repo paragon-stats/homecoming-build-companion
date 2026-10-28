@@ -111,8 +111,8 @@ def load_enhancement_effects(path: Path | str) -> Mapping[int, EnhancementRecord
             type_name=r["TypeName"],
             superior=r["Superior"],
             nid_set=r["nIDSet"],
-            is_proc=r.get("IsProc", False),
-            power_nid=r.get("PowerNid", -1),
+            is_proc=r["IsProc"],
+            power_nid=r["PowerNid"],
             effects=tuple(
                 EnhEffect(
                     enhance=fx["EnhanceName"],
