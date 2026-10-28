@@ -347,7 +347,7 @@ E08.
 `effect_included` is the engine's `CanInclude`: true for an effect with no conditionals and no special case;
 `conditionals_met` for an effect with conditionals and no special case; false for a special case, as today.
 `conditionals_met` evaluates the conditions in order with Mids' AND/OR chaining and supports the condition
-types the sample builds carry (`Active`, `Taken` and `Stacks`; Cross Punch uses `Active` and `Taken`); any other condition type
+types the sample builds' StatInclude powers carry (`Active`, `Taken` and `Stacks`; Cross Punch uses `Active` and `Taken`; `Team` appears only on a power that is not StatInclude); any other condition type
 refuses with E92.
 
 ## Seam 4: integration

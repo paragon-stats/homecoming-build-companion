@@ -30,7 +30,7 @@ _EXTENSION = {
     "Duration": 5.0,
     "EffectId": "Ef_1",
     "Reward": "",
-    "ActiveConditionals": [{"Key": "Pool.Fighting.Boxing:Active", "Value": "true"}],
+    "ActiveConditionals": [{"Key": "Active:Pool.Fighting.Boxing", "Value": "True"}],
     "IsEnhancementEffect": True,
     "Absorbed_Power_nID": 77,
 }
@@ -124,7 +124,7 @@ def test_assembly_power_record_loads_every_field(tmp_path: Path) -> None:
     assert fx.n_summon == 8120
     assert fx.duration == f32(5.0)
     assert fx.effect_id == "Ef_1"
-    assert fx.conditionals == (("Pool.Fighting.Boxing:Active", "true"),)
+    assert fx.conditionals == (("Active:Pool.Fighting.Boxing", "True"),)
     assert fx.is_enhancement_effect
     assert fx.absorbed_power_nid == 77
 
@@ -181,7 +181,7 @@ def test_build_power_record_joins_onto_its_power(tmp_path: Path, make_power: Mak
     assert build.power.aoe_modifier == f32(1.5)
     (fx,) = build.power.effects
     assert fx.summon == "Set_Bonus.Set_Bonus.Force_Feedback"
-    assert fx.conditionals == (("Pool.Fighting.Boxing:Active", "true"),)
+    assert fx.conditionals == (("Active:Pool.Fighting.Boxing", "True"),)
     assert fx.scale == power.effects[0].scale
 
 
