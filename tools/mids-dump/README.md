@@ -22,6 +22,9 @@ dotnet run -c Debug --no-build -- <midsreborn-fork>/MidsReborn/Databases/Homecom
 Load sequence mirrors `MainModule.LoadDataAsync` (minus graphics); dialogs only fire on
 load errors.
 
+The project reference expects the fork three levels above `tools/mids-dump`. From a git worktree,
+pass its location: `dotnet build -c Debug -p:MidsFork=<repos>/MidsReborn`.
+
 ## Race-free dumps — apply the harness patch first
 
 `MidsReborn.GenerateBuffedPowerArray` runs its per-power pass loops under `Parallel.For`,
@@ -52,15 +55,16 @@ Non-incarnate builds are byte-identical patched or not — only race-carrying bu
 | --- | --- |
 | `version.json` | Homecoming DB version + dump timestamp — every baseline is version-stamped |
 | `server_data.json` | `BaseToHit`, `MaxSlots`, `EnableInherentSlotting` |
-| `archetypes.json` | Per-AT `Column` (class→column indirection) and all caps (HP/Res/Damage/Recharge/Recovery/Regen/Perception) |
+| `archetypes.json` | Per-AT `Column` (class→column indirection), all caps (HP/Res/Damage/Recharge/Recovery/Regen/Perception), `Ancillary` (the patron/ancillary powerset full names the class may take) and `InherentPowers` (`FullName` + DB `Level` of each inherent power Mids adds without a pick, filtered as `Build.AddAutomaticGrantedPowers` does) |
 | `maths.json` | `MultED` / `MultTO` / `MultDO` / `MultSO` / `MultHO` / `MultIO` — the ED and grade-effectiveness tables |
 | `enhancement_classes.json` | Enhancement class ID/name lookup |
-| `enhancements.json` | Per-enhancement `StaticIndex` / `UID` / `TypeID` (`.mxd` slot-reader byte-count map), plus the legality fields: `ClassIds` (resolved `EnhancementClasses[..].ID`), `nIDSet`, `Unique`, `MutExId`/`MutExName`, `Superior`, `LongName` |
+| `enhancements.json` | Per-enhancement `StaticIndex` / `UID` / `TypeID` (`.mxd` slot-reader byte-count map), plus the legality fields: `ClassIds` (resolved `EnhancementClasses[..].ID`), `nIDSet`, `Unique`, `MutExId`/`MutExName`, `Superior`, `LongName`, and `LevelMin`/`LevelMax` (the InventO IO-level bounds `CheckAndFixIOLevel` clamps to) |
 | `legality_probe.json` | Per named (power, enhancement) pair: Mids' `IsEnhancementValid` verdict + `Power.Enhancements` / `SetTypes` / enh `nIDSet` — the golden-negative reference (Recharge IO in One with the Shield, Force Feedback in Soul Drain both reject; Recharge IO in Hasten accepts) |
 | `enhancement_effects.json` | Per-enhancement `Superior` + `nIDSet` (owning set) + `Enhancement`-mode effects (aspect / schedule / multiplier / buff-mode) — the enhancement value-pipeline input |
-| `enhancement_sets.json` | Per set: `Uid`, `SetType` (+ `SetTypeName`), member `Enhancements[]`, tier `Bonus[]` (`Slotted` / `PvMode` / `Index[]`), and per-enhancement `SpecialBonus[]` — the set-bonus assembly definitions |
+| `enhancement_sets.json` | Per set: `Uid`, `SetType` (+ `SetTypeName`), `LevelMin`/`LevelMax` (the SetO IO-level bounds `CheckAndFixIOLevel` clamps to), member `Enhancements[]`, tier `Bonus[]` (`Slotted` / `PvMode` / `Index[]`), and per-enhancement `SpecialBonus[]` — the set-bonus assembly definitions |
 | `set_bonus_powers.json` | The referenced `set_bonus` powers (keyed by global Power id) the virtual power clones effects from, with the MyPet-only flags |
 | `power_static_index.json` | `StaticIndex` → `FullName` map (`.mxd` build-file resolution layer) |
+| `powers.json` | Every power of a Primary, Secondary, Ancillary, Pool, Inherent or Incarnate powerset: `FullName`, `NIDPower`, `StaticIndex`, `PowerType`, `Level`, `SetTypes`, `Enhancements`, `RequiresPowers`/`RequiresPowersNot`, `RequiresClass`/`RequiresClassNot`, `PowerSetType` — what a bare `.mbd` resolves against (no effects; those stay per build) |
 | `enums.json` | Name → ordinal for every enum the engine indexes arrays by (`eDamage`, `eEffectType`, `eStatType`, `eEnhance`, `eSchedule`, `eSetType`, …) |
 | `config.json` | Config state totals are computed under (`Suppression`, `DisablePvE`, `ForceLevel`, `ScalingToHit`) |
 | `builds/<name>/powers_effects.json` | Per parity build (4th CLI arg): the build's resolved DB powers with the full effect field set |

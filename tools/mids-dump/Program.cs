@@ -123,6 +123,7 @@ internal static class Program
         DumpEnhancementSets(outDir);
         DumpSetBonusPowers(outDir);
         DumpPowerIndex(outDir);
+        DumpPowers(outDir);
         DumpEnums(outDir);
         DumpConfig(outDir);
         DumpLevels(outDir);
@@ -942,6 +943,10 @@ internal static class Program
                     .Where(idx => idx >= 0 && idx < classes.Length)
                     .Select(idx => classes[idx].ID)
                     .ToList(),
+                // The InventO IO-level bounds Enhancement.CheckAndFixIOLevel clamps a
+                // loaded IoLevel to (SetO pieces use the owning set's bounds instead).
+                t.e.LevelMin,
+                t.e.LevelMax,
                 t.e.Unique,
                 MutExId = (int)t.e.MutExID,
                 MutExName = t.e.MutExID.ToString(),
@@ -1060,6 +1065,10 @@ internal static class Program
                 t.s.Uid,
                 t.s.DisplayName,
                 t.s.SetType,
+                // The IO-level bounds Enhancement.CheckAndFixIOLevel clamps a loaded
+                // SetO IoLevel to; the writer and the H-FMT-002 rule read the ceiling here.
+                t.s.LevelMin,
+                t.s.LevelMax,
                 // The eSetType name this set maps to; matched against a power's
                 // SetTypes to decide whether the set is slottable in that power.
                 SetTypeName = ((Enums.eSetType)t.s.SetType).ToString(),
@@ -1221,6 +1230,13 @@ internal static class Program
             at.ClassName,
             at.DisplayName,
             ClassType = at.ClassType.ToString(),
+            // The ancillary/patron pool powersets this class may take (Archetype.Ancillary,
+            // powerset indexes resolved to FullName). The canonical records carry a null
+            // epic_pool_category for every class, so the pools are read from here.
+            Ancillary = at.Ancillary
+                .Where(i => i >= 0 && i < DatabaseAPI.Database.Powersets.Length)
+                .Select(i => DatabaseAPI.Database.Powersets[i].FullName)
+                .ToList(),
             at.Column,
             at.Playable,
             at.Hitpoints,
@@ -1234,6 +1250,22 @@ internal static class Program
             at.BaseRecovery,
             at.BaseRegen,
             at.BaseThreat,
+            // The inherent powers Mids adds to a build of this class without a pick, filtered
+            // as Build.AddAutomaticGrantedPowers does (IncludeFlag, not Prestige, class
+            // requirement met, no prerequisite power). Level is the DB minimum; Mids places
+            // the entry at max(Level - 1, ...) on load.
+            InherentPowers = DatabaseAPI.Database.Powersets
+                .Where(ps => ps is {SetType: Enums.ePowerSetType.Inherent})
+                .SelectMany(ps => ps!.Powers)
+                .Where(p => p != null
+                    && p.IncludeFlag
+                    && p.InherentType != Enums.eGridType.Prestige
+                    && p.Requires.PowerID.Length == 0
+                    && (p.Requires.ClassName.Length == 0
+                        || p.Requires.ClassName.Contains(at.ClassName, StringComparer.OrdinalIgnoreCase))
+                    && !p.Requires.ClassNameNot.Contains(at.ClassName, StringComparer.OrdinalIgnoreCase))
+                .Select(p => new { p!.FullName, p.Level })
+                .ToList(),
         });
         WriteJson(outDir, "archetypes.json", ats.ToList());
     }
@@ -1263,6 +1295,43 @@ internal static class Program
             c.Desc,
         });
         WriteJson(outDir, "enhancement_classes.json", classes.ToList());
+    }
+
+    // The powers table a bare .mbd resolves against: every power of the powersets a build
+    // can hold (archetype sets, pools, ancillary, inherent, incarnate), with the fields
+    // the hard-limits and legality validators read. Effects, Chosen and StatInclude are
+    // per-build and stay in builds/<name>/powers_effects.json.
+    private static void DumpPowers(string outDir)
+    {
+        var buildSets = new HashSet<Enums.ePowerSetType>
+        {
+            Enums.ePowerSetType.Primary,
+            Enums.ePowerSetType.Secondary,
+            Enums.ePowerSetType.Ancillary,
+            Enums.ePowerSetType.Pool,
+            Enums.ePowerSetType.Inherent,
+            Enums.ePowerSetType.Incarnate,
+        };
+        var powers = DatabaseAPI.Database.Powersets
+            .Where(ps => ps != null && buildSets.Contains(ps.SetType))
+            .SelectMany(ps => ps!.Powers.Where(p => p != null).Select(p => (ps, p)))
+            .Select(t => new
+            {
+                t.p.FullName,
+                NIDPower = t.p.PowerIndex,
+                t.p.StaticIndex,
+                PowerType = t.p.PowerType.ToString(),
+                t.p.Level,
+                t.p.SetTypes,
+                t.p.Enhancements,
+                RequiresPowers = t.p.Requires.PowerID,
+                RequiresPowersNot = t.p.Requires.PowerIDNot,
+                RequiresClass = t.p.Requires.ClassName,
+                RequiresClassNot = t.p.Requires.ClassNameNot,
+                PowerSetType = t.ps!.SetType.ToString(),
+            })
+            .ToList();
+        WriteJson(outDir, "powers.json", powers);
     }
 
     private static void DumpPowerIndex(string outDir)

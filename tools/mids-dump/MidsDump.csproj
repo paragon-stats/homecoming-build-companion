@@ -12,12 +12,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>MidsDump</RootNamespace>
     <AssemblyName>MidsDump</AssemblyName>
+    <!-- Override with -p:MidsFork=<path> when this repo is a git worktree and the fork
+      is not three levels up. -->
+    <MidsFork Condition="'$(MidsFork)' == ''">..\..\..\MidsReborn</MidsFork>
     <!-- Test-only harness: references the MidsReborn fork checked out as a sibling
       of this repo. The fork's Core namespace holds the authoritative build math;
       this harness loads the Homecoming DB headless and dumps JSON the Python
       port's golden fixtures are baselined against. -->
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MidsReborn\MidsReborn\MidsReborn.csproj" />
+    <ProjectReference Include="$(MidsFork)\MidsReborn\MidsReborn.csproj" />
   </ItemGroup>
 </Project>
