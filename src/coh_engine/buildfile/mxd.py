@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.buildfile.binary import Cursor
 from coh_engine.buildfile.dbindex import EnhIndexEntry
-from coh_engine.buildfile.mbd import Enhancement, PowerEntry, Slot, SubPower
+from coh_engine.buildfile.mbd import ENH_GRADE, ENH_RELATIVE, Enhancement, PowerEntry, Slot, SubPower
 from coh_engine.maths import f32
 
 _MXD_HEADER = re.compile(r"^\|MxDz;[0-9]+;[0-9]+;[0-9]+;HEX;\|")
@@ -173,21 +173,6 @@ _MAGIC = bytes([0x4D, 0x78, 0x44, 0x0C])  # 'M','x','D',12
 _PRIOR_VERSION = f32(3.10)
 _THIS_VERSION = f32(3.20)
 
-# eEnhRelative / eEnhGrade ordinals -> the same names the .mbd stores (Enums.cs).
-_EENH_RELATIVE = (
-    "None",
-    "MinusThree",
-    "MinusTwo",
-    "MinusOne",
-    "Even",
-    "PlusOne",
-    "PlusTwo",
-    "PlusThree",
-    "PlusFour",
-    "PlusFive",
-)
-_EENH_GRADE = ("None", "TrainingO", "DualO", "SingleO")
-
 # Powerset FullName migrations applied on .mxd read (MidsCharacterFileFormat.cs:459-467).
 _POWERSET_MIGRATIONS = {
     "Pool.Leadership_beta": "Pool.Leadership",
@@ -278,15 +263,15 @@ def _read_slot_data(
     if entry is None:  # -1 sentinel or unresolved -> empty slot
         return None
     if entry.type_id in ("Normal", "SpecialO"):
-        relative_level = _enum_name(_EENH_RELATIVE, cur.read_sbyte(), "relative level")
-        grade = _enum_name(_EENH_GRADE, cur.read_sbyte(), "grade")
+        relative_level = _enum_name(ENH_RELATIVE, cur.read_sbyte(), "relative level")
+        grade = _enum_name(ENH_GRADE, cur.read_sbyte(), "grade")
         return Enhancement(uid=entry.uid, grade=grade, io_level=1, relative_level=relative_level)
     if entry.type_id in ("InventO", "SetO"):
         io_level = cur.read_sbyte()
         io_level = min(io_level, 49)
         relative_level = "Even"
         if f_version > 1.0:
-            relative_level = _enum_name(_EENH_RELATIVE, cur.read_sbyte(), "relative level")
+            relative_level = _enum_name(ENH_RELATIVE, cur.read_sbyte(), "relative level")
         return Enhancement(uid=entry.uid, grade="None", io_level=io_level, relative_level=relative_level)
     # eType.None: reference present but no trailing fields.
     return Enhancement(uid=entry.uid, grade="None", io_level=1, relative_level="Even")

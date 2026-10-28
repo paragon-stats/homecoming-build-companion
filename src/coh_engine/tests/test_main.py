@@ -1,12 +1,14 @@
 """CLI entry point — registry introspection and the ``validate`` subcommand."""
 
 import json
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
 import pytest
 
 from coh_engine.__main__ import _emit, main, run_validate
+from coh_engine.buildfile.mbd import io_level_bounds, load_mbd_db
 
 FIXTURES = Path(__file__).parent / "fixtures"
 BUILD_DIR = FIXTURES / "mids" / "builds" / "shield_scrapper_set_bonuses"
@@ -240,3 +242,69 @@ def test_validate_value_error_is_reported_on_stderr(
     monkeypatch.setattr("coh_engine.__main__.run_validate", rejected)
     assert main(["validate", str(BUILD_DIR)]) == 1
     assert capsys.readouterr().err == "error: E99: rejected input\n"
+
+
+BANE = (
+    FIXTURES.parents[3]
+    / "samples/builds/operator-builds"
+    / "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd"
+)
+
+
+def _mutated_bane(tmp_path: Path, mutate: Callable[[dict[str, Any]], None]) -> Path:
+    doc = json.loads(BANE.read_text(encoding="utf-8"))
+    mutate(doc)
+    path = tmp_path / "mutated.mbd"
+    path.write_text(json.dumps(doc), encoding="utf-8")
+    return path
+
+
+def _ids(capsys: pytest.CaptureFixture[str], path: Path) -> set[str]:
+    main(["validate", str(path), "--format", "json"])
+    return {d["rule_id"] for d in json.loads(capsys.readouterr().out)}
+
+
+def test_validate_accepts_a_bare_mbd_without_a_harness_dump(capsys: pytest.CaptureFixture[str]) -> None:
+    """The Bane operator build, which takes a Mace Mastery pool, reports no error."""
+    assert main(["validate", str(BANE), "--format", "json"]) in (0, 2)
+    payload = json.loads(capsys.readouterr().out)
+    assert [d for d in payload if d["severity"] == "error"] == []
+    assert main(["validate", str(BANE)]) in (0, 2)
+    capsys.readouterr()
+
+
+def test_validate_mbd_reports_seven_powersets(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
+    path = _mutated_bane(tmp_path, lambda d: d.__setitem__("PowerSets", d["PowerSets"][:7]))
+    assert "H-FMT-001" in _ids(capsys, path)
+
+
+def test_validate_mbd_reports_an_io_level_above_its_set(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
+    db = load_mbd_db(FIXTURES / "mids")
+
+    def raise_io_level(doc: dict[str, Any]) -> None:
+        for entry in doc["PowerEntries"]:
+            for slot in entry["SlotEntries"]:
+                enh = slot.get("Enhancement")
+                bounds = io_level_bounds(enh["Uid"], db) if enh else None
+                if bounds and bounds[1] < 49:  # a set below the level-50 ceiling, as Achilles' Heel is
+                    enh["IoLevel"] = 50
+                    return
+        raise AssertionError("the Bane sample holds no piece from a set with a lower ceiling")
+
+    assert "H-FMT-002" in _ids(capsys, _mutated_bane(tmp_path, raise_io_level))
+
+
+def test_validate_mbd_reports_a_one_based_level(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
+    assert "H-FMT-003" in _ids(capsys, _mutated_bane(tmp_path, lambda d: d.__setitem__("Level", "50")))
+
+
+def test_validate_mbd_reports_an_unknown_power_as_e77(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
+    path = _mutated_bane(tmp_path, lambda d: d["PowerEntries"][0].__setitem__("PowerName", "Nope.Nope.Nope"))
+    assert main(["validate", str(path)]) == 1
+    assert capsys.readouterr().err.startswith("error: E77: ")
+
+
+def test_rules_lists_the_format_rules(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["rules"]) == 0
+    out = capsys.readouterr().out
+    assert all(name in out for name in ("_rule_mbd_powersets", "_rule_mbd_io_levels", "_rule_mbd_level_text"))

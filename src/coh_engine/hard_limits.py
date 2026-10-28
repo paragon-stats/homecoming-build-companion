@@ -28,6 +28,7 @@ from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
+from coh_engine.buildfile.mbd import POWERSETS_EXPECTED, level_text_problem, powersets_arity
 from coh_engine.diagnostics import Diagnostic
 from coh_engine.effect import Power
 from coh_engine.enhancement import SlotRef
@@ -93,6 +94,20 @@ def _added_slots(power_slots: Sequence[SlotRef]) -> list[SlotRef]:
 
 
 @dataclass(frozen=True, slots=True)
+class MbdFormat:
+    """The ``.mbd`` file facts the ``H-FMT`` rules check: header fields and each enhancement's IoLevel bounds.
+
+    Present only when a bare ``.mbd`` is validated; a Mids-dump directory has no such file, so
+    the rules stay silent there. ``io_bounds_by_nid`` maps an enhancement nID to its
+    ``(min, max)`` IoLevel, built from :func:`coh_engine.buildfile.mbd.io_level_bounds`.
+    """
+
+    power_sets: tuple[str, ...]
+    level_text: object
+    io_bounds_by_nid: Mapping[int, tuple[int, int]]
+
+
+@dataclass(frozen=True, slots=True)
 class HardLimitsContext:
     """The pre-built inputs every hard-limit rule reads — the build walked once.
 
@@ -112,6 +127,7 @@ class HardLimitsContext:
     # Every (power, added slot) pair, walked once here so the slot-placement rules read it
     # instead of each re-walking the build (check-registry "context walks once").
     added_pairs: tuple[tuple[Power, SlotRef], ...] = field(default_factory=tuple)
+    format: MbdFormat | None = None
 
 
 def build_context(
@@ -119,6 +135,8 @@ def build_context(
     slots: Mapping[int, Sequence[SlotRef]],
     schedule: LevelSchedule,
     max_slots: int,
+    *,
+    format: MbdFormat | None = None,
 ) -> HardLimitsContext:
     """Assemble the shared context every rule reads (the single build walk).
 
@@ -150,6 +168,7 @@ def build_context(
         added_by_power=added_by_power,
         added_by_level=added_by_level,
         added_pairs=tuple(added_pairs),
+        format=format,
     )
 
 
@@ -386,17 +405,70 @@ def _rule_single_ancillary_pool(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
         )
 
 
+@hard_limit_rule
+def _rule_mbd_powersets(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
+    """H-FMT-001: ``PowerSets`` must have 8 entries, or MidsReborn fails at ``Character.Reset``."""
+    if ctx.format is None:
+        return
+    arity = powersets_arity(ctx.format.power_sets)
+    if arity != POWERSETS_EXPECTED:
+        yield _error(
+            "H-FMT-001",
+            f"PowerSets has {arity} entries; MidsReborn indexes {POWERSETS_EXPECTED}",
+            fix='pad PowerSets with "" entries or drop the extras until it has 8',
+            expected=POWERSETS_EXPECTED,
+            actual=arity,
+        )
+
+
+@hard_limit_rule
+def _rule_mbd_io_levels(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
+    """H-FMT-002: each IoLevel lies within its enhancement's bounds; MidsReborn clamps it on load otherwise."""
+    if ctx.format is None:
+        return
+    for power in ctx.powers:
+        for slot in ctx.slots.get(power.build_index, ()):
+            bounds = ctx.format.io_bounds_by_nid.get(slot.enh)
+            if bounds and not bounds[0] <= slot.io_level <= bounds[1]:
+                yield _error(
+                    "H-FMT-002",
+                    f"a slot in {power.full_name!r} at level {slot.level + 1} has IoLevel {slot.io_level} for "
+                    f"enhancement nID {slot.enh}, outside {bounds[0]} to {bounds[1]}",
+                    fix=f"write the IoLevel as at most {bounds[1]}",
+                    expected=bounds[1],
+                    actual=slot.io_level,
+                )
+
+
+@hard_limit_rule
+def _rule_mbd_level_text(ctx: HardLimitsContext) -> Iterable[Diagnostic]:
+    """H-FMT-003: the header ``Level`` is the character level minus one, as text from "0" to "49"."""
+    if ctx.format is None:
+        return
+    problem = level_text_problem(ctx.format.level_text)
+    if problem:
+        yield _error(
+            "H-FMT-003",
+            f"the header Level {problem}",
+            fix="write the character level minus one as a string",
+            actual=str(ctx.format.level_text),
+        )
+
+
 def check_hard_limits(
     powers: Sequence[Power],
     slots: Mapping[int, Sequence[SlotRef]],
     schedule: LevelSchedule,
     max_slots: int,
+    *,
+    format: MbdFormat | None = None,
 ) -> list[Diagnostic]:
     """Every hard-limit violation, by running the registered rules over a pre-built context.
 
     The runner holds no per-dimension logic: it builds the :class:`HardLimitsContext` once
     and folds every ``@hard_limit_rule`` over it. A new hard limit is a new
     ``@hard_limit_rule`` — never an edit here. An empty list means the build is legal.
+    ``format`` carries the ``.mbd`` file facts for the ``H-FMT`` rules; they stay silent without it.
     """
-    ctx = build_context(powers, slots, schedule, max_slots)
+    ctx = build_context(powers, slots, schedule, max_slots, format=format)
     return [diagnostic for rule in _RULES for diagnostic in rule(ctx)]

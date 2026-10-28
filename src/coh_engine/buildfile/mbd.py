@@ -22,6 +22,8 @@ from pathlib import Path
 from typing import Any
 
 from coh_engine.archetypes import ArchetypeDb, load_archetypes
+from coh_engine.effect import Power, _parse_requirement_groups
+from coh_engine.enhancement import SlotRef
 from coh_engine.levels import LevelSchedule
 
 
@@ -321,8 +323,8 @@ def load_mbd_db(mids_dir: Path | str) -> MbdDb:
             level=r["Level"],
             set_types=tuple(r["SetTypes"]),
             enhancements=tuple(r["Enhancements"]),
-            requires_powers=tuple(tuple(g) for g in r["RequiresPowers"]),
-            requires_powers_not=tuple(tuple(g) for g in r["RequiresPowersNot"]),
+            requires_powers=_parse_requirement_groups(r["RequiresPowers"]),
+            requires_powers_not=_parse_requirement_groups(r["RequiresPowersNot"]),
             requires_class=tuple(r["RequiresClass"]),
             requires_class_not=tuple(r["RequiresClassNot"]),
             power_set_type=r["PowerSetType"],
@@ -418,6 +420,112 @@ def check_mbd_invariants(doc: Mapping[str, Any], db: MbdDb) -> None:
                         f"E74: {entry['PowerName']} slot at level {slot['Level']}: {uid} has IoLevel "
                         f"{enh.get('IoLevel', 1)}, outside {bounds[0]} to {bounds[1]}; write at most {bounds[1]}"
                     )
+
+
+# --- a ``.mbd`` resolved to the objects the validators read -----------------------------
+#
+# A ``.mbd`` carries no ``Chosen`` flag, so every entry resolves with ``chosen=True``: a pool
+# sub-power Mids grants without a pick (Translocation from Mystic Flight, Double Jump) counts
+# as one of the 24 picks, and ``H-POWER-001`` can over-count a build that holds one. The
+# granted powers and their game changes are listed in docs/slotting-and-leveling.md.
+
+# eEnhRelative / eEnhGrade ordinals -> the names the .mbd and .mxd store (Enums.cs).
+ENH_RELATIVE = (
+    "None",
+    "MinusThree",
+    "MinusTwo",
+    "MinusOne",
+    "Even",
+    "PlusOne",
+    "PlusTwo",
+    "PlusThree",
+    "PlusFour",
+    "PlusFive",
+)
+ENH_GRADE = ("None", "TrainingO", "DualO", "SingleO")
+
+
+def io_bounds_by_nid(db: MbdDb) -> dict[int, tuple[int, int]]:
+    """The IoLevel bounds of every enhancement, keyed by nID: what ``H-FMT-002`` checks a loaded slot against."""
+    return {
+        info.nid: bounds for uid, info in db.enhancements.items() if (bounds := io_level_bounds(uid, db)) is not None
+    }
+
+
+def powers_from_build(build: Build, db: MbdDb) -> tuple[Power, ...]:
+    """Each named entry of ``build`` as a :class:`Power`, its ``build_index`` the entry's position.
+
+    Raises:
+        ValueError: E77 for a power name the powers table lacks; re-dump the Mids data.
+    """
+    powers = []
+    for position, entry in enumerate(build.power_entries):
+        if not entry.power_name:
+            continue
+        template = db.powers.get(entry.power_name)
+        if template is None:
+            raise ValueError(
+                f"E77: entry {position + 1} names {entry.power_name}, which powers.json lacks; "
+                "re-dump the Mids data or replace the entry"
+            )
+        powers.append(
+            Power(
+                build_index=position,
+                nid_power=template.nid,
+                full_name=template.full_name,
+                static_index=template.static_index,
+                power_type=template.power_type,
+                forced_class="",
+                click_buff=False,
+                level=template.level,
+                end_cost=0.0,
+                activate_period=0.0,
+                toggle_cost=0.0,
+                variable_enabled=False,
+                stat_include=entry.stat_include,
+                variable_value=entry.variable_value,
+                effects=(),
+                set_types=template.set_types,
+                enhancements=template.enhancements,
+                pick_level=entry.level,
+                requires_powers=template.requires_powers,
+                requires_powers_not=template.requires_powers_not,
+            )
+        )
+    return tuple(powers)
+
+
+def _slot_ref(slot: Slot, entry: PowerEntry, db: MbdDb) -> SlotRef:
+    enh = slot.enhancement
+    if enh is None:
+        return SlotRef(slot.level, slot.is_inherent, -1, 0, 1, ENH_RELATIVE.index("Even"))
+    info = db.enhancements.get(enh.uid)
+    if info is None:
+        raise ValueError(
+            f"E78: {entry.power_name} slot at level {slot.level + 1} holds {enh.uid}, "
+            "which enhancements.json lacks; re-dump the Mids data or replace the enhancement"
+        )
+    return SlotRef(
+        level=slot.level,
+        is_inherent=slot.is_inherent,
+        enh=info.nid,
+        grade=ENH_GRADE.index(enh.grade),
+        io_level=enh.io_level,
+        relative_level=ENH_RELATIVE.index(enh.relative_level),
+    )
+
+
+def slots_from_build(build: Build, db: MbdDb) -> dict[int, tuple[SlotRef, ...]]:
+    """Each named entry's slots as :class:`SlotRef`, keyed by the entry's position (its ``build_index``).
+
+    Raises:
+        ValueError: E78 for an enhancement the table lacks; re-dump the Mids data.
+    """
+    return {
+        position: tuple(_slot_ref(slot, entry, db) for slot in entry.slot_entries)
+        for position, entry in enumerate(build.power_entries)
+        if entry.power_name
+    }
 
 
 @dataclass(frozen=True, slots=True)
