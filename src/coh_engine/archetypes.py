@@ -13,8 +13,20 @@ from pathlib import Path
 
 
 @dataclass(frozen=True, slots=True)
+class InherentPower:
+    """An inherent power Mids adds to a build of the class without a pick.
+
+    ``level`` is the power's database minimum level, which is also the 1-based level a
+    saved ``.mbd`` entry carries.
+    """
+
+    full_name: str
+    level: int
+
+
+@dataclass(frozen=True, slots=True)
 class Archetype:
-    """One class record: identity, the AttribMod ``Column``, and the AT caps."""
+    """One class record: identity, the AttribMod ``Column``, the AT caps, and the pools and inherents."""
 
     index: int
     class_name: str
@@ -33,6 +45,8 @@ class Archetype:
     base_recovery: float
     base_regen: float
     base_threat: float
+    ancillary: tuple[str, ...] = ()
+    inherent_powers: tuple[InherentPower, ...] = ()
 
 
 @dataclass(frozen=True, slots=True)
@@ -77,6 +91,8 @@ def load_archetypes(path: Path | str) -> ArchetypeDb:
             base_recovery=r["BaseRecovery"],
             base_regen=r["BaseRegen"],
             base_threat=r["BaseThreat"],
+            ancillary=tuple(r["Ancillary"]),
+            inherent_powers=tuple(InherentPower(p["FullName"], p["Level"]) for p in r["InherentPowers"]),
         )
         for r in records
     )

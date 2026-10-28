@@ -52,3 +52,37 @@ def test_nid_from_uid_class_missing_returns_minus_one(archetypes: ArchetypeDb) -
 def test_missing_file_raises(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         load_archetypes(tmp_path / "nope.json")
+
+
+@pytest.mark.parametrize("class_name", ["Class_Arachnos_Soldier", "Class_Arachnos_Widow"])
+def test_the_arachnos_classes_list_the_four_patron_pools(archetypes: ArchetypeDb, class_name: str) -> None:
+    at = archetypes.classes[archetypes.nid_from_uid_class(class_name)]
+    assert at.ancillary == (
+        "Epic.VEAT_Leviathan_Mastery",
+        "Epic.VEAT_Mace_Mastery",
+        "Epic.VEAT_Mu_Mastery",
+        "Epic.VEAT_Soul_Mastery",
+    )
+
+
+def test_every_playable_class_but_the_kheldians_has_an_ancillary_pool(archetypes: ArchetypeDb) -> None:
+    kheldians = {"Class_Peacebringer", "Class_Warshade"}
+    without = {at.class_name for at in archetypes.classes if at.playable and not at.ancillary}
+    assert without == kheldians
+
+
+def test_the_scrapper_record_lists_the_inherent_powers_mids_adds(archetypes: ArchetypeDb) -> None:
+    scrapper = archetypes.classes[archetypes.nid_from_uid_class("Class_Scrapper")]
+    levels = {p.full_name: p.level for p in scrapper.inherent_powers}
+    assert set(levels) == {
+        "Inherent.Inherent.Special_Set_Bonuses",
+        "Inherent.Inherent.Brawl",
+        "Inherent.Inherent.Critical_Hit",
+        "Inherent.Inherent.Sprint",
+        "Inherent.Inherent.Rest",
+        "Inherent.Fitness.Swift",
+        "Inherent.Fitness.Hurdle",
+        "Inherent.Fitness.Health",
+        "Inherent.Fitness.Stamina",
+    }
+    assert levels["Inherent.Inherent.Rest"] == 2
