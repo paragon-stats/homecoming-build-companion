@@ -197,10 +197,13 @@ def subjects(
     groups: Mapping[str, tuple[PowersetName, ...]],
     aliases: Mapping[str, str] = ALIASES,
 ) -> list[str]:
-    """Display names of the sets the title names or the body names ``BODY_MIN_MENTIONS`` times."""
+    """Display names of the sets the title names or the body names ``BODY_MIN_MENTIONS`` times.
+
+    When the capture's archetype is known, a set that archetype cannot take is not a subject.
+    """
     found = _combo_sets(title, groups, archetype, aliases)
     for display, members in groups.items():
-        if members[0].category in UNMATCHED_CATEGORIES:
+        if members[0].category in UNMATCHED_CATEGORIES or not _on_archetype(members, archetype):
             continue
         pattern = _pattern(tuple(_names(display, members, aliases)))
         if pattern.search(title) or len(pattern.findall(body)) >= BODY_MIN_MENTIONS:
@@ -214,9 +217,10 @@ def _pattern(names: tuple[str, ...]) -> re.Pattern[str]:
 
 
 def _on_archetype(members: tuple[PowersetName, ...], archetype: str) -> tuple[PowersetName, ...]:
-    """The members held by the capture's archetype, or all of them when none is or none matches."""
-    held = tuple(m for m in members if any(_same_archetype(archetype, a) for a in m.archetypes))
-    return held if archetype and held else members
+    """The members held by the capture's archetype, or all of them when it has none."""
+    if not archetype:
+        return members
+    return tuple(m for m in members if any(_same_archetype(archetype, a) for a in m.archetypes))
 
 
 def _same_archetype(guide: str, key: str) -> bool:

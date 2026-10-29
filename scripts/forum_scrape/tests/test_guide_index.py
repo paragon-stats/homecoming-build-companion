@@ -185,8 +185,8 @@ def test_index_rows_carry_type_archetype_subjects_powers_and_issue(tmp_path: Pat
     assert notes["issue"] == "issue-13"
     assert by_file["pre-sunset/powersets/two.md"]["powerset_names"] == []
 
-    # A combo needs a shared archetype: Fire/Kin on a scrapper names no Fire set; "Kin" still names Kinetics alone.
-    assert by_file["mechanics/regen.md"]["powerset_names"] == ["Kinetics", "Regeneration"]
+    # A combo needs a shared archetype: Fire/Kin on a scrapper names no Fire set, and Kinetics is no Scrapper set.
+    assert by_file["mechanics/regen.md"]["powerset_names"] == ["Regeneration"]
     # An alias whose set is absent, an unknown half, and aliases in running text.
     assert by_file["mechanics/odd.md"]["powerset_names"] == ["Claws"]
 
@@ -194,10 +194,14 @@ def test_index_rows_carry_type_archetype_subjects_powers_and_issue(tmp_path: Pat
     assert widow["powerset_names"] == ["Widow Training"] and widow["powersets"] == ["Arachnos_Widow.Widow_Training"]
 
 
-def test_index_falls_back_to_all_members_when_the_archetype_holds_none(tmp_path: Path) -> None:
-    capture(tmp_path, "archetypes/sentinel/fire.md", "Fire Blast for sentinels", "x", digest="h1", url="u1")
-    (row,), _ = _index(tmp_path)
-    assert row["powersets"] == ["Corruptor_Ranged.Fire_Blast", "Defender_Ranged.Fire_Blast"]
+def test_a_set_the_capture_archetype_cannot_take_is_not_a_subject(tmp_path: Path) -> None:
+    capture(tmp_path, "archetypes/blaster/fire.md", "Fire Blast and Widow Training", "x", digest="h1", url="u1")
+    capture(tmp_path, "mechanics/fire.md", "Fire Blast notes", "x", digest="h2", url="u2")
+    rows, _ = _index(tmp_path)
+    by_file = {r["file"]: r for r in rows}
+    assert by_file["archetypes/blaster/fire.md"]["powerset_names"] == []
+    # With no archetype, every version of the set is the subject.
+    assert by_file["mechanics/fire.md"]["powersets"] == ["Corruptor_Ranged.Fire_Blast", "Defender_Ranged.Fire_Blast"]
 
 
 def test_index_folds_duplicate_hashes_and_urls_keeping_the_live_capture(tmp_path: Path) -> None:
