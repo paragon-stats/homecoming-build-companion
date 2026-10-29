@@ -71,7 +71,23 @@ ALIASES: Mapping[str, str] = {
     "ss": "Super Strength",
     "tw": "Titan Weapons",
     "wp": "Willpower",
+    # Arachnos branch names: Bane and Crab are Soldier sets, Fortunata and Night Widow are Widow sets.
+    # Huntsman names an NPC, not a player set, so it has no alias.
+    "bane": "Bane Spider Soldier",
+    "crab": "Crab Spider Soldier",
+    "fort": "Fortunata Training",
+    "fortunata": "Fortunata Training",
+    "night widow": "Night Widow Training",
 }
+# Capture folders and title words that name a group of archetypes; the resolver keys each one separately.
+GUIDE_ARCHETYPE_KEYS: Mapping[str, tuple[str, ...]] = {
+    "arachnos": ("arachnos_soldier", "arachnos_widow"),
+    "kheldian": ("peacebringer", "warshade"),
+}
+# Sets whose names are ordinary words or power names, so their counts run high.
+KNOWN_OVER_MATCHES = ("Force Field", "Fire Blast", "Ice Blast", "Invulnerability", "Regeneration")
+# Epic pools are named by their full display name only: a combo half or a bare "Fire" must not name one.
+FULL_NAME_CATEGORIES = frozenset({"Epic"})
 _ISSUE_TITLE = re.compile(r"\b(?:issue\s*|i)(\d{1,2})\b", re.I)
 _COMBO = re.compile(r"\b(\w+)\s*/\s*(?=(\w+)\b)")
 
@@ -120,7 +136,8 @@ def document_type(title: str, tags: Iterable[str], body: str) -> str:
     tagged = set(tags)
     if is_theme(title) or "theme-rp" in tagged:
         return "theme"
-    if find_forum_export(body) and REQUEST_TITLE.search(title):
+    # A capture renders the export's bold power headings as "**Level 1: Power**".
+    if find_forum_export(body.replace("**", "")) and REQUEST_TITLE.search(title):
         return "build post"
     if "discussion" in tagged or is_discussion(title):
         return "discussion"
@@ -136,6 +153,8 @@ def _group(resolver: PowerNameResolver) -> dict[str, tuple[PowersetName, ...]]:
 
 
 def _names(display: str, members: tuple[PowersetName, ...], aliases: Mapping[str, str]) -> list[str]:
+    if members[0].category in FULL_NAME_CATEGORIES:
+        return [display.lower()]
     internal = (m.internal.rsplit(".", 1)[-1].replace("_", " ") for m in members)
     short = (alias for alias, target in aliases.items() if target == display)
     return sorted({display.lower(), *(i.lower() for i in internal), *short}, key=len, reverse=True)
@@ -154,7 +173,12 @@ def _combo_sets(
         token = token.lower()
         if token in aliases:
             return [aliases[token]] if aliases[token] in groups else []
-        return [d for d in groups if d.lower() == token or d.lower().startswith(token + " ")]
+        return [
+            d
+            for d, members in groups.items()
+            if members[0].category not in FULL_NAME_CATEGORIES
+            and (d.lower() == token or d.lower().startswith(token + " "))
+        ]
 
     found: set[str] = set()
     for left, right in _COMBO.findall(title):
@@ -196,7 +220,7 @@ def _on_archetype(members: tuple[PowersetName, ...], archetype: str) -> tuple[Po
 
 
 def _same_archetype(guide: str, key: str) -> bool:
-    return bool(guide) and (key == guide or key.startswith(guide))
+    return key in GUIDE_ARCHETYPE_KEYS.get(guide, (guide,))
 
 
 def powers_named(body: str, members: tuple[PowersetName, ...]) -> set[str]:
@@ -312,6 +336,7 @@ def build_coverage(rows: list[dict[str, Any]], resolver: PowerNameResolver) -> d
         "powersets": powersets,
         "pairs": pairs,
         "pair_group_counts": counts,
+        "known_over_matches": {d: len(powersets[d]["guides"]) for d in KNOWN_OVER_MATCHES if d in powersets},
         "unguided": sorted(d for d in groups if not covering[d]),
         "transfer_test_set": sorted(d for d, n in strong.items() if n >= TRANSFER_MIN_ARCHETYPES),
     }

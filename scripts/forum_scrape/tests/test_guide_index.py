@@ -331,3 +331,56 @@ def test_main_reports_empty_roots_and_a_missing_patch_index(tmp_path: Path, monk
 def test_write_outputs_creates_the_folder(tmp_path: Path) -> None:
     write_outputs(tmp_path / "a" / "b", [], [], {})
     assert (tmp_path / "a" / "b" / "coverage.json").read_text(encoding="utf-8") == "{}\n"
+
+
+BOLD_EXPORT = "\n".join(f"**Level {n}: Power {n}** -- Mako-Acc/Dmg:50(A), Mako-Dmg/EndRdx:50(3)" for n in range(1, 8))
+
+
+def test_a_rendered_bold_export_still_makes_a_build_post() -> None:
+    assert document_type("Fire/Stone build feedback", [], BOLD_EXPORT) == "build post"
+    assert document_type("Fire/Stone build", [], BOLD_EXPORT) == "guide"
+
+
+def _wide_resolver() -> PowerNameResolver:
+    return PowerNameResolver(
+        (
+            _set("Corruptor_Ranged.Fire_Blast", "Fire Blast", ("corruptor",)),
+            _set("Corruptor_Buff.Kinetics", "Kinetics", ("corruptor", "defender")),
+            _set("Epic.Corruptor_Fire_Mastery", "Fire Mastery", ("corruptor",)),
+            _set("Epic.Blaze_Mastery", "Fire Mastery", ("corruptor",)),
+            _set("Warshade_Defensive.Umbral_Aura", "Umbral Aura", ("warshade",)),
+            _set("Arachnos_Soldiers.Bane_Spider_Soldier", "Bane Spider Soldier", ("arachnos_soldier",)),
+            _set("Widow_Training.Night_Widow_Training", "Night Widow Training", ("arachnos_widow",)),
+        )
+    )
+
+
+def _names(tmp_path: Path, title: str, body: str = "x") -> list[str]:
+    path = tmp_path / "mechanics" / "c.md"
+    path.unlink(missing_ok=True)
+    capture(tmp_path, "mechanics/c.md", title, body, digest="h", url="u")
+    (row,), _ = build_index(tmp_path, _wide_resolver(), TIMELINE)
+    return list(row["powerset_names"])
+
+
+def test_an_epic_pool_is_named_only_by_its_full_display_name(tmp_path: Path) -> None:
+    assert _names(tmp_path, "Fire/Kin Corruptor") == ["Fire Blast", "Kinetics"]
+    assert _names(tmp_path, "Fire Mastery for corruptors") == ["Fire Mastery"]
+    assert _names(tmp_path, "Notes", "Blaze Mastery " * 4) == []
+
+
+def test_aliases_name_the_arachnos_branches(tmp_path: Path) -> None:
+    assert _names(tmp_path, "Bane build for the VEAT") == ["Bane Spider Soldier"]
+    assert _names(tmp_path, "Night Widow soloing") == ["Night Widow Training"]
+
+
+def test_a_group_folder_covers_each_of_its_archetype_keys() -> None:
+    rows = [
+        {"file": "k", "archetype": "kheldian", "powerset_names": ["Umbral Aura"]},
+        {"file": "a", "archetype": "arachnos", "powerset_names": ["Night Widow Training"]},
+    ]
+    report = build_coverage(rows, _wide_resolver())
+    pairs = {(p["powerset"], p["archetype"]): p["group"] for p in report["pairs"]}
+    assert pairs[("Umbral Aura", "warshade")] == "own"
+    assert pairs[("Night Widow Training", "arachnos_widow")] == "own"
+    assert report["known_over_matches"] == {"Fire Blast": 0}
