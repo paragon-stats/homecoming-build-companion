@@ -3,14 +3,13 @@
 from __future__ import annotations
 
 import json
-import sys
-import types
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
 import pytest
 
+from coh_engine.power_names import PowerName, PowerNameResolver, PowersetName
+from scripts.forum_scrape import guide_index
 from scripts.forum_scrape.guide_index import (
     build_coverage,
     build_index,
@@ -18,42 +17,26 @@ from scripts.forum_scrape.guide_index import (
     issue_on,
     issue_timeline,
     main,
+    tags_from,
     write_outputs,
 )
 
 
-@dataclass(frozen=True)
-class FakePower:
-    internal: str
-    display: str
-    powerset: str
-
-
-@dataclass(frozen=True)
-class FakeSet:
-    internal: str
-    display: str
-    category: str
-    archetypes: tuple[str, ...]
-    powers: tuple[FakePower, ...]
-
-
-def _set(internal: str, display: str, archetypes: tuple[str, ...], *powers: str) -> FakeSet:
+def _set(internal: str, display: str, archetypes: tuple[str, ...], *powers: str) -> PowersetName:
     category = internal.split(".")[0]
-    return FakeSet(
+    return PowersetName(
         internal,
         display,
         category,
         archetypes,
-        tuple(FakePower(f"{internal}.{p.replace(' ', '_')}", p, internal) for p in powers),
+        tuple(PowerName(f"{internal}.{p.replace(' ', '_')}", p, internal) for p in powers),
     )
 
 
-class FakeResolver:
-    """The #48 resolver's interface over a handful of sets."""
-
-    def powersets(self) -> tuple[FakeSet, ...]:
-        return (
+def small_resolver() -> PowerNameResolver:
+    """A resolver over a handful of sets, enough for every subject rule."""
+    return PowerNameResolver(
+        (
             _set("Scrapper_Melee.Claws", "Claws", ("scrapper", "stalker"), "Eviscerate", "Spin"),
             _set("Scrapper_Defense.Super_Reflexes", "Super Reflexes", ("scrapper", "stalker")),
             _set("Brute_Defense.Bio_Organic_Armor", "Bio Armor", ("brute", "scrapper"), "Genetic Contamination"),
@@ -65,6 +48,7 @@ class FakeResolver:
             _set("Arachnos_Widow.Widow_Training", "Widow Training", ("arachnos_widow",)),
             _set("Pool.Speed", "Speed", ()),
         )
+    )
 
 
 def capture(
@@ -130,8 +114,21 @@ def test_document_type(title: str, tags: list[str], body: str, expected: str) ->
     assert document_type(title, tags, body) == expected
 
 
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        ('["brute", "discussion"]', ["brute", "discussion"]),
+        ("[farming, builds, ae]", ["farming", "builds", "ae"]),
+        ("[]", []),
+        ("", []),
+    ],
+)
+def test_tags_reads_the_scraper_and_the_hand_written_forms(value: str, expected: list[str]) -> None:
+    assert tags_from(value) == expected
+
+
 def _index(tmp_path: Path):
-    return build_index(tmp_path, FakeResolver(), TIMELINE)
+    return build_index(tmp_path, small_resolver(), TIMELINE)
 
 
 def test_index_rows_carry_type_archetype_subjects_powers_and_issue(tmp_path: Path, capsys) -> None:
@@ -262,7 +259,7 @@ def test_coverage_groups_pairs_and_names_unguided_and_transfer_sets() -> None:
         _row("g9", "corruptor", "Regeneration"),
     ]
 
-    report = build_coverage(rows, FakeResolver())
+    report = build_coverage(rows, small_resolver())
 
     pairs = {(p["powerset"], p["archetype"]): p for p in report["pairs"]}
     assert pairs[("Claws", "scrapper")]["group"] == "own"
@@ -285,9 +282,9 @@ def test_coverage_groups_pairs_and_names_unguided_and_transfer_sets() -> None:
 
 
 def _install_fake_resolver(monkeypatch: pytest.MonkeyPatch) -> None:
-    module = types.ModuleType("coh_engine.power_names")
-    module.PowerNameResolver = types.SimpleNamespace(from_canonical=lambda _path: FakeResolver())  # type: ignore[attr-defined]
-    monkeypatch.setitem(sys.modules, "coh_engine.power_names", module)
+    monkeypatch.setattr(
+        guide_index.PowerNameResolver, "from_canonical", classmethod(lambda _cls, _path: small_resolver())
+    )
 
 
 def test_write_outputs_and_main_are_byte_identical_across_runs(tmp_path: Path, monkeypatch, capsys) -> None:

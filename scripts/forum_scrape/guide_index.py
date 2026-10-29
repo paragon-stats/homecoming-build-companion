@@ -35,8 +35,9 @@ from collections import defaultdict
 from collections.abc import Iterable, Mapping
 from functools import cache
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import Any
 
+from coh_engine.power_names import PowerNameResolver, PowersetName
 from scripts.forum_scrape.guides import (
     _capture_url,
     _ledger,
@@ -49,9 +50,6 @@ from scripts.forum_scrape.guides import (
 )
 from scripts.forum_scrape.scoring import REQUEST_TITLE
 from scripts.forum_scrape.scrape import find_forum_export
-
-if TYPE_CHECKING:
-    from coh_engine.power_names import PowerNameResolver, PowersetName
 
 BODY_MIN_MENTIONS = 3
 TRANSFER_MIN_GUIDES = 3
@@ -107,6 +105,14 @@ def issue_on(timeline: list[tuple[str, str]], date: str, title: str) -> str:
         return f"issue-{int(marker.group(1))}"
     at = bisect.bisect_right(timeline, (date, "￿"))
     return timeline[at - 1][1] if at else ""
+
+
+def tags_from(value: str) -> list[str]:
+    """``topic_tags`` as the scraper writes it (JSON) or as a hand-written capture does (``[a, b]``).
+
+    A block list leaves the key's own line empty, so it reads as no tags.
+    """
+    return [tag.strip().strip("\"'") for tag in value.strip().strip("[]").split(",") if tag.strip()]
 
 
 def document_type(title: str, tags: Iterable[str], body: str) -> str:
@@ -258,7 +264,7 @@ def build_index(
                 "topic_url": url,
                 "title": title,
                 "era": era,
-                "document_type": document_type(title, json.loads(keys.get("topic_tags", "[]")), body),
+                "document_type": document_type(title, tags_from(keys.get("topic_tags", "")), body),
                 "archetype": archetype,
                 "powerset_names": names,
                 "powersets": sorted({m.internal for m in scoped}),
@@ -333,8 +339,6 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--canonical", type=Path, default=Path("data/canonical"), help="canonical data")
     parser.add_argument("--patches", type=Path, default=Path("data/patches"), help="dated patch records")
     args = parser.parse_args(argv)
-
-    from coh_engine.power_names import PowerNameResolver
 
     timeline = issue_timeline(args.patches)
     if not timeline:
