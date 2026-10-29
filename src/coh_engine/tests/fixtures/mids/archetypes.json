@@ -4,6 +4,18 @@
     "ClassName": "Class_Blaster",
     "DisplayName": "Blaster",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Munitions_Mastery",
+      "Epic.Dark_Mastery_Blaster",
+      "Epic.Electrical_Mastery",
+      "Epic.Flame_Mastery",
+      "Epic.Force_Mastery",
+      "Epic.Cold_Mastery",
+      "Epic.Mastermind_Leviathan_Mastery",
+      "Epic.Blaster_Mace_Mastery",
+      "Epic.Blaster_Mu_Mastery",
+      "Epic.Mastermind_Soul_Mastery"
+    ],
     "Column": 0,
     "Playable": true,
     "Hitpoints": 1205,
@@ -16,13 +28,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 1,
     "ClassName": "Class_Controller",
     "DisplayName": "Controller",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Dark_Mastery_Controller",
+      "Epic.Stone_Mastery",
+      "Epic.Primal_Forces_Mastery",
+      "Epic.Fire_Mastery",
+      "Epic.Ice_Mastery",
+      "Epic.Dominator_Leviathan_Mastery",
+      "Epic.Controller_Mace_Mastery",
+      "Epic.Dominator_Mu_Mastery",
+      "Epic.Psionic_Mastery",
+      "Epic.Dominator_Soul_Mastery"
+    ],
     "Column": 1,
     "Playable": true,
     "Hitpoints": 1017,
@@ -35,13 +97,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 2,
     "ClassName": "Class_Defender",
     "DisplayName": "Defender",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Dark_Mastery",
+      "Epic.Electricity_Mastery",
+      "Epic.Power_Mastery",
+      "Epic.Def_Flame_Mastery",
+      "Epic.Ice_Mastery_DefCorr",
+      "Epic.Corruptor_Leviathan_Mastery",
+      "Epic.Corruptor_Mace_Mastery",
+      "Epic.Corruptor_Mu_Mastery",
+      "Epic.Psychic_Mastery",
+      "Epic.Corruptor_Soul_Mastery"
+    ],
     "Column": 2,
     "Playable": true,
     "Hitpoints": 1017,
@@ -54,13 +166,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Vigilance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 3,
     "ClassName": "Class_Scrapper",
     "DisplayName": "Scrapper",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Darkness_Mastery",
+      "Epic.Body_Mastery",
+      "Epic.Blaze_Mastery",
+      "Epic.Ice_Mastery_ScrapStalk",
+      "Epic.Stalker_Leviathan_Mastery",
+      "Epic.Scrapper_Mace_Mastery",
+      "Epic.Stalker_Mu_Mastery",
+      "Epic.Psionic_Mastery_ScrapStalk",
+      "Epic.Stalker_Soul_Mastery",
+      "Epic.Weapon_Mastery"
+    ],
     "Column": 3,
     "Playable": true,
     "Hitpoints": 1339,
@@ -73,13 +235,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 3
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Critical_Hit",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 4,
     "ClassName": "Class_Tanker",
     "DisplayName": "Tanker",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Dark_Mastery_TankBrute",
+      "Epic.Earth_Mastery",
+      "Epic.Energy_Mastery",
+      "Epic.Pyre_Mastery",
+      "Epic.Arctic_Mastery",
+      "Epic.Brute_Leviathan_Mastery",
+      "Epic.Brute_Mace_Mastery",
+      "Epic.Brute_Mu_Mastery",
+      "Epic.Psionic_Mastery_TankBrute",
+      "Epic.Brute_Soul_Mastery"
+    ],
     "Column": 4,
     "Playable": true,
     "Hitpoints": 1874,
@@ -92,13 +304,52 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 4
+    "BaseThreat": 4,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Gauntlet",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 5,
     "ClassName": "Class_Peacebringer",
     "DisplayName": "Peacebringer",
     "ClassType": "HeroEpic",
+    "Ancillary": [],
     "Column": 5,
     "Playable": true,
     "Hitpoints": 1071,
@@ -111,13 +362,60 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Cosmic_Balance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Energy_Flight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Inherent.Combat_Flight",
+        "Level": 10
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 6,
     "ClassName": "Class_Warshade",
     "DisplayName": "Warshade",
     "ClassType": "HeroEpic",
+    "Ancillary": [],
     "Column": 6,
     "Playable": true,
     "Hitpoints": 1071,
@@ -130,13 +428,71 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Dark_Sustenance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Shadow_Step",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Inherent.Shadow_Recall",
+        "Level": 10
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 7,
     "ClassName": "Class_Sentinel",
     "DisplayName": "Sentinel",
     "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Sentinel_Dark_Mastery",
+      "Epic.Sentinel_Elec_Mastery",
+      "Epic.Sentinel_Fire_Mastery",
+      "Epic.Sentinel_Ice_Mastery",
+      "Epic.Sentinel_Lev_Mastery",
+      "Epic.Sentinel_Mace_Mastery",
+      "Epic.Sentinel_Mu_Mastery",
+      "Epic.Sentinel_Psi_Mastery",
+      "Epic.Sentinel_Soul_Mastery",
+      "Epic.Sentinel_Ninja_Mastery"
+    ],
     "Column": 7,
     "Playable": true,
     "Hitpoints": 1205,
@@ -149,13 +505,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 8,
     "ClassName": "Class_Brute",
     "DisplayName": "Brute",
     "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Dark_Mastery_TankBrute",
+      "Epic.Earth_Mastery",
+      "Epic.Energy_Mastery_Brute",
+      "Epic.Pyre_Mastery",
+      "Epic.Arctic_Mastery",
+      "Epic.Brute_Leviathan_Mastery",
+      "Epic.Brute_Mace_Mastery",
+      "Epic.Brute_Mu_Mastery",
+      "Epic.Psionic_Mastery_TankBrute",
+      "Epic.Brute_Soul_Mastery"
+    ],
     "Column": 8,
     "Playable": true,
     "Hitpoints": 1499,
@@ -168,13 +574,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 4
+    "BaseThreat": 4,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 9,
     "ClassName": "Class_Stalker",
     "DisplayName": "Stalker",
     "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Darkness_Mastery",
+      "Epic.Body_Mastery_Stalker",
+      "Epic.Blaze_Mastery",
+      "Epic.Ice_Mastery_ScrapStalk",
+      "Epic.Stalker_Leviathan_Mastery",
+      "Epic.Stalker_Mace_Mastery",
+      "Epic.Stalker_Mu_Mastery",
+      "Epic.Psionic_Mastery_ScrapStalk",
+      "Epic.Stalker_Soul_Mastery",
+      "Epic.Weapon_Mastery_Stalker"
+    ],
     "Column": 9,
     "Playable": true,
     "Hitpoints": 1204,
@@ -187,13 +643,62 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 10,
     "ClassName": "Class_Mastermind",
     "DisplayName": "Mastermind",
     "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Dark_Mastery_Mastermind",
+      "Epic.Charge_Mastery",
+      "Epic.Field_Mastery",
+      "Epic.Heat_Mastery_Stalker",
+      "Epic.Chill_Mastery",
+      "Epic.Mastermind_Leviathan_Mastery",
+      "Epic.Mastermind_Mace_Mastery",
+      "Epic.Mastermind_Mu_Mastery",
+      "Epic.Mastermind_Soul_Mastery"
+    ],
     "Column": 10,
     "Playable": true,
     "Hitpoints": 803,
@@ -206,13 +711,62 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Supremacy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 11,
     "ClassName": "Class_Dominator",
     "DisplayName": "Dominator",
     "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Dark_Mastery_Dominator",
+      "Epic.Primal_Forces_Mastery_Dominator",
+      "Epic.Fire_Mastery_Dominator",
+      "Epic.Ice_Mastery_Dominator",
+      "Epic.Dominator_Leviathan_Mastery",
+      "Epic.Dominator_Mace_Mastery",
+      "Epic.Dominator_Mu_Mastery",
+      "Epic.Psionic_Mastery_Domingator",
+      "Epic.Dominator_Soul_Mastery"
+    ],
     "Column": 11,
     "Playable": true,
     "Hitpoints": 1017,
@@ -225,13 +779,63 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 12,
     "ClassName": "Class_Corruptor",
     "DisplayName": "Corruptor",
     "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Dark_Mastery",
+      "Epic.Electricity_Mastery",
+      "Epic.Power_Mastery",
+      "Epic.Corr_Flame_Mastery",
+      "Epic.Ice_Mastery_DefCorr",
+      "Epic.Corruptor_Leviathan_Mastery",
+      "Epic.Corruptor_Mace_Mastery",
+      "Epic.Corruptor_Mu_Mastery",
+      "Epic.Psychic_Mastery",
+      "Epic.Corruptor_Soul_Mastery"
+    ],
     "Column": 12,
     "Playable": true,
     "Hitpoints": 1071,
@@ -244,13 +848,57 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1,
     "BaseRegen": 0.25,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Scourge",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 13,
     "ClassName": "Class_Arachnos_Widow",
     "DisplayName": "Arachnos Widow",
     "ClassType": "VillainEpic",
+    "Ancillary": [
+      "Epic.VEAT_Leviathan_Mastery",
+      "Epic.VEAT_Mace_Mastery",
+      "Epic.VEAT_Mu_Mastery",
+      "Epic.VEAT_Soul_Mastery"
+    ],
     "Column": 13,
     "Playable": true,
     "Hitpoints": 1071,
@@ -263,13 +911,57 @@
     "PerceptionCap": 1268.3,
     "BaseRecovery": 1.05,
     "BaseRegen": 0.3,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Widow_Conditioning",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 14,
     "ClassName": "Class_Arachnos_Soldier",
     "DisplayName": "Arachnos Soldier",
     "ClassType": "VillainEpic",
+    "Ancillary": [
+      "Epic.VEAT_Leviathan_Mastery",
+      "Epic.VEAT_Mace_Mastery",
+      "Epic.VEAT_Mu_Mastery",
+      "Epic.VEAT_Soul_Mastery"
+    ],
     "Column": 14,
     "Playable": true,
     "Hitpoints": 1071,
@@ -282,13 +974,52 @@
     "PerceptionCap": 1268.3,
     "BaseRecovery": 1.05,
     "BaseRegen": 0.3,
-    "BaseThreat": 2
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Special_Set_Bonuses",
+        "Level": 0
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Spider_Conditioning",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 15,
     "ClassName": "Class_Boss_Henchman",
     "DisplayName": "Henchman",
     "ClassType": "Henchman",
+    "Ancillary": [],
     "Column": 15,
     "Playable": false,
     "Hitpoints": 5000,
@@ -301,13 +1032,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 16,
     "ClassName": "Class_Lt_Henchman",
     "DisplayName": "Henchman",
     "ClassType": "Henchman",
+    "Ancillary": [],
     "Column": 16,
     "Playable": false,
     "Hitpoints": 5000,
@@ -320,13 +1082,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 17,
     "ClassName": "Class_Minion_Henchman",
     "DisplayName": "Henchman",
     "ClassType": "Henchman",
+    "Ancillary": [],
     "Column": 17,
     "Playable": false,
     "Hitpoints": 5000,
@@ -339,13 +1132,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 18,
     "ClassName": "Class_Minion_Pets",
     "DisplayName": "Pet",
     "ClassType": "Pet",
+    "Ancillary": [],
     "Column": 18,
     "Playable": false,
     "Hitpoints": 5000,
@@ -358,13 +1182,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 19,
     "ClassName": "Class_Boss_Archvillain",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 19,
     "Playable": false,
     "Hitpoints": 5000,
@@ -377,13 +1232,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 20,
     "ClassName": "Class_Boss_Archvillain_Flying",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 20,
     "Playable": false,
     "Hitpoints": 5000,
@@ -396,13 +1282,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 21,
     "ClassName": "Class_Boss_Elite",
     "DisplayName": "Elite Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 21,
     "Playable": false,
     "Hitpoints": 5000,
@@ -415,13 +1332,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 22,
     "ClassName": "Class_Boss_EliteTurret",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 22,
     "Playable": false,
     "Hitpoints": 5000,
@@ -434,13 +1382,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 23,
     "ClassName": "Class_Boss_Grunt",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 23,
     "Playable": false,
     "Hitpoints": 5000,
@@ -453,13 +1432,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 24,
     "ClassName": "Class_Boss_Guard",
     "DisplayName": "Police",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 24,
     "Playable": false,
     "Hitpoints": 5000,
@@ -472,13 +1482,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 25,
     "ClassName": "Class_Boss_Hamidon",
     "DisplayName": "Hamidon",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 25,
     "Playable": false,
     "Hitpoints": 5000,
@@ -491,13 +1532,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 26,
     "ClassName": "Class_Boss_HeavyPet",
     "DisplayName": "Elite Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 26,
     "Playable": false,
     "Hitpoints": 5000,
@@ -510,13 +1582,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 27,
     "ClassName": "Class_Boss_HugeDevice",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 27,
     "Playable": false,
     "Hitpoints": 5000,
@@ -529,13 +1632,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 28,
     "ClassName": "Class_Boss_Mito",
     "DisplayName": "Hamidon",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 28,
     "Playable": false,
     "Hitpoints": 5000,
@@ -548,13 +1682,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 29,
     "ClassName": "Class_Boss_Monster",
     "DisplayName": "Giant Monster",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 29,
     "Playable": false,
     "Hitpoints": 5000,
@@ -567,13 +1732,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 30,
     "ClassName": "Class_Boss_Monster_Flying",
     "DisplayName": "Giant Monster",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 30,
     "Playable": false,
     "Hitpoints": 5000,
@@ -586,13 +1782,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 31,
     "ClassName": "Class_Boss_Rularuu",
     "DisplayName": "Rularuu",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 31,
     "Playable": false,
     "Hitpoints": 5000,
@@ -605,13 +1832,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 32,
     "ClassName": "Class_Boss_RularuuFM",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 32,
     "Playable": false,
     "Hitpoints": 5000,
@@ -624,13 +1882,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 33,
     "ClassName": "Class_Boss_Shield",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 33,
     "Playable": false,
     "Hitpoints": 5000,
@@ -643,13 +1932,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 34,
     "ClassName": "Class_Boss_Signature_Pets",
     "DisplayName": "Boss Signature Pets",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 34,
     "Playable": false,
     "Hitpoints": 5000,
@@ -662,13 +1982,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 35,
     "ClassName": "Class_Boss_Turret",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 35,
     "Playable": false,
     "Hitpoints": 5000,
@@ -681,13 +2032,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 36,
     "ClassName": "Class_Lt_Grunt",
     "DisplayName": "Lieutenant",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 36,
     "Playable": false,
     "Hitpoints": 5000,
@@ -700,13 +2082,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 37,
     "ClassName": "Class_Lt_LongRangeDrone",
     "DisplayName": "Lt_LongRangeDrone",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 37,
     "Playable": false,
     "Hitpoints": 5000,
@@ -719,13 +2132,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 38,
     "ClassName": "Class_Lt_Sniper",
     "DisplayName": "Sniper",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 38,
     "Playable": false,
     "Hitpoints": 5000,
@@ -738,13 +2182,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 39,
     "ClassName": "Class_Lt_Turret",
     "DisplayName": "Lieutenant",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 39,
     "Playable": false,
     "Hitpoints": 5000,
@@ -757,13 +2232,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 40,
     "ClassName": "Class_Minion_Fire",
     "DisplayName": "Lieutenant",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 40,
     "Playable": false,
     "Hitpoints": 5000,
@@ -776,13 +2282,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 41,
     "ClassName": "Class_Minion_Grunt",
     "DisplayName": "Minion",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 41,
     "Playable": false,
     "Hitpoints": 5000,
@@ -795,13 +2332,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 42,
     "ClassName": "Class_Minion_Henchman",
     "DisplayName": "Henchman",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 42,
     "Playable": false,
     "Hitpoints": 5000,
@@ -814,13 +2382,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 43,
     "ClassName": "Class_Minion_Monument",
     "DisplayName": "Monument",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 43,
     "Playable": false,
     "Hitpoints": 5000,
@@ -833,13 +2432,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 44,
     "ClassName": "Class_Minion_OilSlickTarget",
     "DisplayName": "OilSlickTarget",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 44,
     "Playable": false,
     "Hitpoints": 5000,
@@ -852,13 +2482,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 45,
     "ClassName": "Class_Minion_Practice",
     "DisplayName": "PracticeBot",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 45,
     "Playable": false,
     "Hitpoints": 5000,
@@ -871,13 +2532,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 46,
     "ClassName": "Class_Minion_Small",
     "DisplayName": "Underling",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 46,
     "Playable": false,
     "Hitpoints": 5000,
@@ -890,13 +2582,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 47,
     "ClassName": "Class_Minion_Small_Agressive",
     "DisplayName": "Underling",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 47,
     "Playable": false,
     "Hitpoints": 5000,
@@ -909,13 +2632,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 48,
     "ClassName": "Class_Minion_Swarm",
     "DisplayName": "Swarm",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 48,
     "Playable": false,
     "Hitpoints": 5000,
@@ -928,13 +2682,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 49,
     "ClassName": "Class_Minion_Turret",
     "DisplayName": "Minion",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 49,
     "Playable": false,
     "Hitpoints": 5000,
@@ -947,13 +2732,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 50,
     "ClassName": "Class_Minion_UnkillableNPC",
     "DisplayName": "Minion_UnkillableNPC",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 50,
     "Playable": false,
     "Hitpoints": 5000,
@@ -966,13 +2782,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 51,
     "ClassName": "Class_Signature_Pets",
     "DisplayName": "",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 51,
     "Playable": false,
     "Hitpoints": 5000,
@@ -985,13 +2832,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 52,
     "ClassName": "Class_Boss_Reichsman",
     "DisplayName": "Reichsman",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 52,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1004,13 +2882,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 53,
     "ClassName": "Class_Minion_PraetorianSmall",
     "DisplayName": "Underling",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 53,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1023,13 +2932,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 54,
     "ClassName": "Class_Minion_PraetorianGrunt",
     "DisplayName": "Minion",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 54,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1042,13 +2982,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 55,
     "ClassName": "Class_Lt_PraetorianGrunt",
     "DisplayName": "Lieutenant",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 55,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1061,13 +3032,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 56,
     "ClassName": "Class_Boss_PraetorianGrunt",
     "DisplayName": "Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 56,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1080,13 +3082,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 57,
     "ClassName": "Class_Boss_PraetorianElite",
     "DisplayName": "Elite Boss",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 57,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1099,13 +3132,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 58,
     "ClassName": "Class_Boss_PraetorianArchvillain",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 58,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1118,13 +3182,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 59,
     "ClassName": "Class_Boss_RularuuCoP",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 59,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1137,13 +3232,44 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   },
   {
     "Index": 60,
     "ClassName": "Class_Boss_PraetorianAVLowPerception",
     "DisplayName": "Arch-villain",
     "ClassType": "None",
+    "Ancillary": [],
     "Column": 59,
     "Playable": false,
     "Hitpoints": 5000,
@@ -1156,6 +3282,36 @@
     "PerceptionCap": 1153,
     "BaseRecovery": 1.67,
     "BaseRegen": 1,
-    "BaseThreat": 1
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      },
+      {
+        "FullName": "Inherent.Fitness.Swift",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Health",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Hurdle",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Fitness.Stamina",
+        "Level": 1
+      }
+    ]
   }
 ]

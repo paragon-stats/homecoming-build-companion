@@ -176,6 +176,7 @@ def test_deflection_per_effect_math_mag(
         archetype_index=at_index,
         config=config,
         enhance_names=base_totals._enhance_names(enums),
+        enums=enums,
     )
     included = [p for p in powers.values() if p.stat_include]
     enh_mult = base_totals._compute_enh_multipliers(

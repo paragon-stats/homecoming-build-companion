@@ -65,11 +65,9 @@ PICKS = (
     PickSpec("Tanker_Melee.Super_Strength.Taunt", 47, _set(C + "Mocking_Beratement_", "ABCD")),
     PickSpec("Pool.Speed.Hasten", 49, (C + "Recharge",) * 2, True),
 )
+# Only the slotted inherents; the writer adds the rest (Brawl, Gauntlet, Rest) as Mids does.
 INHERENTS = (
-    PickSpec("Inherent.Inherent.Brawl", 1),
-    PickSpec("Inherent.Inherent.Gauntlet", 1, ()),
     PickSpec("Inherent.Inherent.Sprint", 1, (C + "Celerity_C",)),
-    PickSpec("Inherent.Inherent.Rest", 2),
     PickSpec("Inherent.Fitness.Swift", 1, (C + "Run",), True),
     PickSpec("Inherent.Fitness.Health", 1, (C + "Numinas_Convalesence_F", C + "Miracle_F", C + "Panacea_F"), True),
     PickSpec("Inherent.Fitness.Hurdle", 1, (C + "Jump",), True),

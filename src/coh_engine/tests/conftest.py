@@ -5,6 +5,7 @@ from typing import Any
 import pytest
 
 from coh_engine.archetypes import Archetype, ArchetypeDb
+from coh_engine.assembly_data import AssemblyPower, BuildPowerAssembly
 from coh_engine.attribmod import AttribMods, ModifierTable
 from coh_engine.effect import Effect, Power
 from coh_engine.maths import MathTables, load_maths
@@ -13,6 +14,8 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 MakeEffect = Callable[..., Effect]
 MakePower = Callable[..., Power]
+MakeAssemblyPower = Callable[..., AssemblyPower]
+MakeBuildPower = Callable[..., BuildPowerAssembly]
 
 _EFFECT_DEFAULTS: dict[str, Any] = {
     "index": 0,
@@ -105,6 +108,58 @@ def make_power() -> MakePower:
         # at pick_level 0. Matches test_set_bonuses._power; callers can override.
         fields.setdefault("pick_level", fields["level"])
         return Power(effects=tuple(effects), **fields)
+
+    return _make
+
+
+_ASSEMBLY_POWER_DEFAULTS: dict[str, Any] = {
+    "nid": 1,
+    "full_name": "Test.Test_Set.Test_Power",
+    "power_type": "Toggle",
+    "power_set_type": "Primary",
+    "entities_affected": frozenset({"Caster"}),
+    "entities_auto_hit": frozenset({"Caster"}),
+    "activate_period": 0.0,
+    "recharge_time": 0.0,
+    "base_recharge_time": 0.0,
+    "cast_time": 0.0,
+    "aoe_modifier": 1.0,
+    "enhancements": frozenset(),
+    "has_grant_power_effect": False,
+    "has_power_override_effect": False,
+    "absorb_summon_effects": False,
+    "absorb_summon_attributes": False,
+    "ignore_enh": frozenset(),
+}
+
+
+@pytest.fixture
+def make_assembly_power() -> MakeAssemblyPower:
+    """Factory for synthetic :class:`AssemblyPower` records taking effects positionally."""
+
+    def _make(*effects: Effect, **overrides: Any) -> AssemblyPower:
+        return AssemblyPower(effects=tuple(effects), **{**_ASSEMBLY_POWER_DEFAULTS, **overrides})
+
+    return _make
+
+
+@pytest.fixture
+def make_build_power(make_assembly_power: MakeAssemblyPower) -> MakeBuildPower:
+    """Factory for synthetic :class:`BuildPowerAssembly` records wrapping an :class:`AssemblyPower`."""
+
+    def _make(
+        *effects: Effect,
+        build_index: int = 0,
+        proc_include: bool = False,
+        sub_powers: tuple[tuple[int, bool], ...] = (),
+        **overrides: Any,
+    ) -> BuildPowerAssembly:
+        return BuildPowerAssembly(
+            build_index=build_index,
+            proc_include=proc_include,
+            sub_powers=sub_powers,
+            power=make_assembly_power(*effects, **overrides),
+        )
 
     return _make
 

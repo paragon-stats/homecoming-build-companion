@@ -1,0 +1,4403 @@
+[
+  {
+    "BuildIndex": 0,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 9,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": true,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 18.625,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 13.96875,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 4,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "Pets.Blind.Blind",
+        "nSummon": 6523,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 1,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 15,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": true,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "Temporary_Powers.Temporary_Powers.Time_Crawl_Debuff",
+        "nSummon": 9991,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "Temporary_Powers.Temporary_Powers.Time_Crawl_Debuff",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "SpeedRunning",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 2,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 6,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 3,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Caster",
+      "Friend"
+    ],
+    "EntitiesAutoHit": [
+      "Caster",
+      "Friend"
+    ],
+    "BaseRechargeTime": 18,
+    "AoEModifier": 4.75,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 6,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 6,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 4,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [
+      "Foe"
+    ],
+    "BaseRechargeTime": 10,
+    "AoEModifier": 4.75,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "DeBuff_ToHit",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "SpeedRunning",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 19,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Slow",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 20,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 21,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 22,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 23,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 24,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 25,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 26,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 27,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "Debuff_Dam",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 28,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "DeBuff_ToHit",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 29,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1,
+        "EffectId": "SpeedRunning",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 5,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 8,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 37.25,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 4,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 27.9375,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 6,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 2,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 19,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 20,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 21,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 22,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 23,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 24,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 25,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 26,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 7,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 19,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 20,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 21,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 22,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 23,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 24,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 25,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 26,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Control",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 27,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Friction",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 28,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "FlightActive",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 8,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "FlightActive",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 9,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 60,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": true,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "Pets_DistortionField_Controller",
+        "nSummon": 287,
+        "Duration": 45,
+        "EffectId": "Level",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 10,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 240,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "Pets_Decoy",
+        "nSummon": 29,
+        "Duration": 60,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "Pets_Decoy",
+        "nSummon": 29,
+        "Duration": 60,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "Pets_Decoy",
+        "nSummon": 29,
+        "Duration": 60,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 11,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 450,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "GlobalCrash",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 12,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 45,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": true,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "Pets_Terror",
+        "nSummon": 30,
+        "Duration": 45,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 13,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Caster",
+      "Teammate"
+    ],
+    "EntitiesAutoHit": [
+      "Caster",
+      "Teammate"
+    ],
+    "BaseRechargeTime": 240,
+    "AoEModifier": 4.75,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Buff_ToHit",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 120,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 14,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 16,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 14.9,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 3.725,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 7.45,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1.8625,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Stun",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 20,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 15,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 90,
+    "AoEModifier": 4.75,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Debuff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Res_Dmg",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Debuff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 16,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 240,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "Pets_Phantasm",
+        "nSummon": 31,
+        "Duration": 99999,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 17,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 10,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "FlightActive",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "FlightActive",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "FlightActive",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "FlightActive",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 18,
+    "PowerSetType": "Secondary",
+    "EntitiesAffected": [
+      "Caster",
+      "Friend"
+    ],
+    "EntitiesAutoHit": [
+      "Caster",
+      "Friend"
+    ],
+    "BaseRechargeTime": 360,
+    "AoEModifier": 4.75,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Heal",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 30,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 90,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 90,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 19,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Teleport",
+      "DeadOrAliveFoe"
+    ],
+    "EntitiesAutoHit": [
+      "DeadOrAliveTeammate",
+      "DeadOrAliveLeaguemate"
+    ],
+    "BaseRechargeTime": 20,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 1.5,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 15,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "Pets_TPFoeTaunt",
+        "nSummon": 78,
+        "Duration": 1,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 4,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 0"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Pool.Teleportation.Recall_Friend",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 20,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 6,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 5,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 21,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 120,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 15,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 22,
+    "PowerSetType": "Primary",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 8,
+    "AoEModifier": 5.5,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 14.9,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 11.174999,
+        "EffectId": "Immobilize",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 4,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 1"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 2"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 3"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 4"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 5"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 6"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 7"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 8"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 9"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 10"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 11"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 12"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 13"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 14"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "= 15"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Stacks:Controller_Control.Illusion_Control.Flash",
+            "Value": "\u003E 15"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 23,
+    "PowerSetType": "Pool",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 19,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 20,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 21,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 22,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Buff_Def",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 23,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 24,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Control",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 25,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 26,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 27,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 24,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 25,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Foe"
+    ],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 2,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [
+      "Range"
+    ],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Damage",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Active:Inherent.Inherent.Containment",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Boxing",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Kick",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Boxing",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Kick",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Cross_Punch",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [
+          {
+            "Key": "Taken:Pool.Fighting.Cross_Punch",
+            "Value": "True"
+          }
+        ],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 26,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.8,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 27,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 2,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.3,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 3,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 4,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 5,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 6,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 7,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 8,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 9,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 10,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 11,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 12,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 13,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 14,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 15,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 16,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 17,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 18,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 19,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 20,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 21,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 22,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 23,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 24,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 25,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.55,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 28,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "SpeedRunning",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "SpeedFlying",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 29,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "Leap",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "SpeedJumping",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 30,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "Res_Boolean",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 31,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 10.25,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 32,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [
+      "Caster"
+    ],
+    "EntitiesAutoHit": [
+      "Caster"
+    ],
+    "BaseRechargeTime": 60,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [
+      "RechargeTime",
+      "X_RechargeTime"
+    ],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      },
+      {
+        "Index": 1,
+        "Summon": "",
+        "nSummon": -1,
+        "Duration": 0.75,
+        "EffectId": "Ones",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  },
+  {
+    "BuildIndex": 33,
+    "PowerSetType": "Inherent",
+    "EntitiesAffected": [],
+    "EntitiesAutoHit": [],
+    "BaseRechargeTime": 0,
+    "AoEModifier": 1,
+    "HasGrantPowerEffect": false,
+    "HasPowerOverrideEffect": false,
+    "AbsorbSummonEffects": false,
+    "AbsorbSummonAttributes": false,
+    "IgnoreEnh": [],
+    "SubPowers": [],
+    "Effects": [
+      {
+        "Index": 0,
+        "Summon": "Redirects.Special_Set_Bonuses.Impervious_Skin_E",
+        "nSummon": 7204,
+        "Duration": 0,
+        "EffectId": "ImperviousSkinRegen",
+        "Reward": "",
+        "ActiveConditionals": [],
+        "IsEnhancementEffect": false,
+        "Absorbed_Power_nID": -1
+      }
+    ]
+  }
+]

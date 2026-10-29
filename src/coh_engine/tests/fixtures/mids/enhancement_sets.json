@@ -4,6 +4,8 @@
     "Uid": "Bonesnap",
     "DisplayName": "Bonesnap",
     "SetType": 1,
+    "LevelMin": 9,
+    "LevelMax": 24,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       63,
@@ -66,6 +68,8 @@
     "Uid": "Pulverizing_Fisticuffs",
     "DisplayName": "Pulverizing Fisticuffs",
     "SetType": 1,
+    "LevelMin": 9,
+    "LevelMax": 24,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       66,
@@ -128,6 +132,8 @@
     "Uid": "Bruising_Blow",
     "DisplayName": "Bruising Blow",
     "SetType": 1,
+    "LevelMin": 14,
+    "LevelMax": 29,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       69,
@@ -190,6 +196,8 @@
     "Uid": "Pounding_Slugfest",
     "DisplayName": "Pounding Slugfest",
     "SetType": 1,
+    "LevelMin": 14,
+    "LevelMax": 29,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       72,
@@ -261,6 +269,8 @@
     "Uid": "Smashing_Haymaker",
     "DisplayName": "Smashing Haymaker",
     "SetType": 1,
+    "LevelMin": 19,
+    "LevelMax": 34,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       76,
@@ -332,6 +342,8 @@
     "Uid": "Kinetic_Combat",
     "DisplayName": "Kinetic Combat",
     "SetType": 1,
+    "LevelMin": 19,
+    "LevelMax": 34,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       80,
@@ -412,6 +424,8 @@
     "Uid": "Focused_Smite",
     "DisplayName": "Focused Smite",
     "SetType": 1,
+    "LevelMin": 24,
+    "LevelMax": 39,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       85,
@@ -492,6 +506,8 @@
     "Uid": "Touch_of_Death",
     "DisplayName": "Touch of Death",
     "SetType": 1,
+    "LevelMin": 24,
+    "LevelMax": 39,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       90,
@@ -581,6 +597,8 @@
     "Uid": "Crushing_Impact",
     "DisplayName": "Crushing Impact",
     "SetType": 1,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       96,
@@ -670,6 +688,8 @@
     "Uid": "Makos_Bite",
     "DisplayName": "Mako\u0027s Bite",
     "SetType": 1,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       102,
@@ -759,6 +779,8 @@
     "Uid": "Cleaving_Blow",
     "DisplayName": "Cleaving Blow",
     "SetType": 4,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       108,
@@ -830,6 +852,8 @@
     "Uid": "Eradication",
     "DisplayName": "Eradication",
     "SetType": 4,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       745,
@@ -919,6 +943,8 @@
     "Uid": "Multi_Strike",
     "DisplayName": "Multi-Strike",
     "SetType": 4,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       112,
@@ -1008,6 +1034,8 @@
     "Uid": "Sciroccos_Dervish",
     "DisplayName": "Scirocco\u0027s Dervish",
     "SetType": 4,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       118,
@@ -1097,6 +1125,8 @@
     "Uid": "Obliteration",
     "DisplayName": "Obliteration",
     "SetType": 4,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       763,
@@ -1186,6 +1216,8 @@
     "Uid": "Far_Strike",
     "DisplayName": "Far Strike",
     "SetType": 2,
+    "LevelMin": 9,
+    "LevelMax": 24,
     "SetTypeName": "RangedST",
     "Enhancements": [
       124,
@@ -1248,6 +1280,8 @@
     "Uid": "Salvo",
     "DisplayName": "Salvo",
     "SetType": 2,
+    "LevelMin": 9,
+    "LevelMax": 24,
     "SetTypeName": "RangedST",
     "Enhancements": [
       127,
@@ -1310,6 +1344,8 @@
     "Uid": "Volley_Fire",
     "DisplayName": "Volley Fire",
     "SetType": 2,
+    "LevelMin": 14,
+    "LevelMax": 29,
     "SetTypeName": "RangedST",
     "Enhancements": [
       130,
@@ -1372,6 +1408,8 @@
     "Uid": "Tempest",
     "DisplayName": "Tempest",
     "SetType": 2,
+    "LevelMin": 14,
+    "LevelMax": 29,
     "SetTypeName": "RangedST",
     "Enhancements": [
       133,
@@ -1443,6 +1481,8 @@
     "Uid": "Maelstroms_Fury",
     "DisplayName": "Maelstrom\u0027s Fury",
     "SetType": 2,
+    "LevelMin": 19,
+    "LevelMax": 34,
     "SetTypeName": "RangedST",
     "Enhancements": [
       137,
@@ -1514,6 +1554,8 @@
     "Uid": "Entropic_Chaos",
     "DisplayName": "Entropic Chaos",
     "SetType": 2,
+    "LevelMin": 19,
+    "LevelMax": 34,
     "SetTypeName": "RangedST",
     "Enhancements": [
       141,
@@ -1594,6 +1636,8 @@
     "Uid": "Ruin",
     "DisplayName": "Ruin",
     "SetType": 2,
+    "LevelMin": 24,
+    "LevelMax": 39,
     "SetTypeName": "RangedST",
     "Enhancements": [
       146,
@@ -1674,6 +1718,8 @@
     "Uid": "Decimation",
     "DisplayName": "Decimation",
     "SetType": 2,
+    "LevelMin": 24,
+    "LevelMax": 39,
     "SetTypeName": "RangedST",
     "Enhancements": [
       151,
@@ -1763,6 +1809,8 @@
     "Uid": "Thunderstrike",
     "DisplayName": "Thunderstrike",
     "SetType": 2,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       157,
@@ -1852,6 +1900,8 @@
     "Uid": "Devastation",
     "DisplayName": "Devastation",
     "SetType": 2,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       163,
@@ -1941,6 +1991,8 @@
     "Uid": "Air_Burst",
     "DisplayName": "Air Burst",
     "SetType": 3,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       169,
@@ -2012,6 +2064,8 @@
     "Uid": "Detonation",
     "DisplayName": "Detonation",
     "SetType": 3,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       173,
@@ -2101,6 +2155,8 @@
     "Uid": "Positrons_Blast",
     "DisplayName": "Positron\u0027s Blast",
     "SetType": 3,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       179,
@@ -2190,6 +2246,8 @@
     "Uid": "Exploit_Weakness",
     "DisplayName": "Exploit Weakness",
     "SetType": 5,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       185,
@@ -2261,6 +2319,8 @@
     "Uid": "Calibrated_Accuracy",
     "DisplayName": "Calibrated Accuracy",
     "SetType": 5,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       189,
@@ -2350,6 +2410,8 @@
     "Uid": "Executioners_Contract",
     "DisplayName": "Executioner\u0027s Contract",
     "SetType": 5,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       195,
@@ -2439,6 +2501,8 @@
     "Uid": "Extreme_Measures",
     "DisplayName": "Extreme Measures",
     "SetType": 5,
+    "LevelMin": 34,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       201,
@@ -2528,6 +2592,8 @@
     "Uid": "Sting_of_the_Manticore",
     "DisplayName": "Sting of the Manticore",
     "SetType": 5,
+    "LevelMin": 34,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       207,
@@ -2617,6 +2683,8 @@
     "Uid": "Unquestioning_Loyalty",
     "DisplayName": "Unquestioning Loyalty",
     "SetType": 6,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Pets",
     "Enhancements": [
       213,
@@ -2688,6 +2756,8 @@
     "Uid": "Commanding_Presence",
     "DisplayName": "Commanding Presence",
     "SetType": 6,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Pets",
     "Enhancements": [
       217,
@@ -2770,6 +2840,8 @@
     "Uid": "Brilliant_Leadership",
     "DisplayName": "Brilliant Leadership",
     "SetType": 6,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Pets",
     "Enhancements": [
       222,
@@ -2859,6 +2931,8 @@
     "Uid": "Edict_of_the_Master",
     "DisplayName": "Edict of the Master",
     "SetType": 6,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Pets",
     "Enhancements": [
       228,
@@ -2950,6 +3024,8 @@
     "Uid": "Blood_Mandate",
     "DisplayName": "Blood Mandate",
     "SetType": 6,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Pets",
     "Enhancements": [
       234,
@@ -3039,6 +3115,8 @@
     "Uid": "Sovereign_Right",
     "DisplayName": "Sovereign Right",
     "SetType": 6,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Pets",
     "Enhancements": [
       240,
@@ -3130,6 +3208,8 @@
     "Uid": "Karma",
     "DisplayName": "Karma",
     "SetType": 7,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Defense",
     "Enhancements": [
       246,
@@ -3194,6 +3274,8 @@
     "Uid": "Kismet",
     "DisplayName": "Kismet",
     "SetType": 7,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Defense",
     "Enhancements": [
       249,
@@ -3274,6 +3356,8 @@
     "Uid": "Serendipity",
     "DisplayName": "Serendipity",
     "SetType": 7,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Defense",
     "Enhancements": [
       254,
@@ -3363,6 +3447,8 @@
     "Uid": "Gift_of_the_Ancients",
     "DisplayName": "Gift of the Ancients",
     "SetType": 7,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Defense",
     "Enhancements": [
       260,
@@ -3454,6 +3540,8 @@
     "Uid": "Red_Fortune",
     "DisplayName": "Red Fortune",
     "SetType": 7,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Defense",
     "Enhancements": [
       266,
@@ -3543,6 +3631,8 @@
     "Uid": "Luck_of_the_Gambler",
     "DisplayName": "Luck of the Gambler",
     "SetType": 7,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Defense",
     "Enhancements": [
       272,
@@ -3634,6 +3724,8 @@
     "Uid": "Steadfast_Protection",
     "DisplayName": "Steadfast Protection",
     "SetType": 8,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Resistance",
     "Enhancements": [
       278,
@@ -3700,6 +3792,8 @@
     "Uid": "Impervious_Skin",
     "DisplayName": "Impervious Skin",
     "SetType": 8,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Resistance",
     "Enhancements": [
       281,
@@ -3782,6 +3876,8 @@
     "Uid": "Reactive_Armor",
     "DisplayName": "Reactive Armor",
     "SetType": 8,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Resistance",
     "Enhancements": [
       286,
@@ -3871,6 +3967,8 @@
     "Uid": "Impervium_Armor",
     "DisplayName": "Impervium Armor",
     "SetType": 8,
+    "LevelMin": 14,
+    "LevelMax": 39,
     "SetTypeName": "Resistance",
     "Enhancements": [
       292,
@@ -3962,6 +4060,8 @@
     "Uid": "Titanium_Coating",
     "DisplayName": "Titanium Coating",
     "SetType": 8,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Resistance",
     "Enhancements": [
       298,
@@ -4051,6 +4151,8 @@
     "Uid": "Aegis",
     "DisplayName": "Aegis",
     "SetType": 8,
+    "LevelMin": 24,
+    "LevelMax": 49,
     "SetTypeName": "Resistance",
     "Enhancements": [
       304,
@@ -4142,6 +4244,8 @@
     "Uid": "Triage",
     "DisplayName": "Triage",
     "SetType": 9,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Heal",
     "Enhancements": [
       310,
@@ -4213,6 +4317,8 @@
     "Uid": "Regenerative_Tissue",
     "DisplayName": "Regenerative Tissue",
     "SetType": 9,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Heal",
     "Enhancements": [
       314,
@@ -4293,6 +4399,8 @@
     "Uid": "Harmonized_Healing",
     "DisplayName": "Harmonized Healing",
     "SetType": 9,
+    "LevelMin": 19,
+    "LevelMax": 39,
     "SetTypeName": "Heal",
     "Enhancements": [
       319,
@@ -4382,6 +4490,8 @@
     "Uid": "Miracle",
     "DisplayName": "Miracle",
     "SetType": 9,
+    "LevelMin": 19,
+    "LevelMax": 39,
     "SetTypeName": "Heal",
     "Enhancements": [
       325,
@@ -4471,6 +4581,8 @@
     "Uid": "Doctored_Wounds",
     "DisplayName": "Doctored Wounds",
     "SetType": 9,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "Heal",
     "Enhancements": [
       331,
@@ -4560,6 +4672,8 @@
     "Uid": "Numinas_Convalesence",
     "DisplayName": "Numina\u0027s Convalesence",
     "SetType": 9,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "Heal",
     "Enhancements": [
       337,
@@ -4649,6 +4763,8 @@
     "Uid": "Paralytic",
     "DisplayName": "Paralytic",
     "SetType": 10,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Hold",
     "Enhancements": [
       343,
@@ -4729,6 +4845,8 @@
     "Uid": "Neuronic_Shutdown",
     "DisplayName": "Neuronic Shutdown",
     "SetType": 10,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Hold",
     "Enhancements": [
       348,
@@ -4818,6 +4936,8 @@
     "Uid": "Basilisks_Gaze",
     "DisplayName": "Basilisk\u0027s Gaze",
     "SetType": 10,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Hold",
     "Enhancements": [
       724,
@@ -4907,6 +5027,8 @@
     "Uid": "Essence_of_Curare",
     "DisplayName": "Essence of Curare",
     "SetType": 10,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       354,
@@ -4996,6 +5118,8 @@
     "Uid": "Ghost_Widows_Embrace",
     "DisplayName": "Ghost Widow\u0027s Embrace",
     "SetType": 10,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       360,
@@ -5085,6 +5209,8 @@
     "Uid": "Lockdown",
     "DisplayName": "Lockdown",
     "SetType": 10,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       757,
@@ -5174,6 +5300,8 @@
     "Uid": "Stagger",
     "DisplayName": "Stagger",
     "SetType": 11,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Stun",
     "Enhancements": [
       366,
@@ -5254,6 +5382,8 @@
     "Uid": "Razzle_Dazzle",
     "DisplayName": "Razzle Dazzle",
     "SetType": 11,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Stun",
     "Enhancements": [
       371,
@@ -5343,6 +5473,8 @@
     "Uid": "Rope_A_Dope",
     "DisplayName": "Rope A Dope",
     "SetType": 11,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Stun",
     "Enhancements": [
       377,
@@ -5432,6 +5564,8 @@
     "Uid": "Stupefy",
     "DisplayName": "Stupefy",
     "SetType": 11,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Stun",
     "Enhancements": [
       383,
@@ -5521,6 +5655,8 @@
     "Uid": "Rooting_Grasp",
     "DisplayName": "Rooting Grasp",
     "SetType": 12,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Immob",
     "Enhancements": [
       389,
@@ -5601,6 +5737,8 @@
     "Uid": "Debiliative_Action",
     "DisplayName": "Debilitative Action",
     "SetType": 12,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Immob",
     "Enhancements": [
       394,
@@ -5690,6 +5828,8 @@
     "Uid": "Enfeebled_Operation",
     "DisplayName": "Enfeebled Operation",
     "SetType": 12,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Immob",
     "Enhancements": [
       400,
@@ -5779,6 +5919,8 @@
     "Uid": "Trap_of_the_Hunter",
     "DisplayName": "Trap of the Hunter",
     "SetType": 12,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Immob",
     "Enhancements": [
       406,
@@ -5868,6 +6010,8 @@
     "Uid": "Curtail_Speed",
     "DisplayName": "Curtail Speed",
     "SetType": 13,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Slow",
     "Enhancements": [
       412,
@@ -5948,6 +6092,8 @@
     "Uid": "Impeded_Swiftness",
     "DisplayName": "Impeded Swiftness",
     "SetType": 13,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Slow",
     "Enhancements": [
       417,
@@ -6037,6 +6183,8 @@
     "Uid": "Tempered_Readiness",
     "DisplayName": "Tempered Readiness",
     "SetType": 13,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Slow",
     "Enhancements": [
       423,
@@ -6126,6 +6274,8 @@
     "Uid": "Pacing_of_the_Turtle",
     "DisplayName": "Pacing of the Turtle",
     "SetType": 13,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Slow",
     "Enhancements": [
       429,
@@ -6215,6 +6365,8 @@
     "Uid": "Hibernation",
     "DisplayName": "Hibernation",
     "SetType": 14,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Sleep",
     "Enhancements": [
       435,
@@ -6295,6 +6447,8 @@
     "Uid": "Induced_Coma",
     "DisplayName": "Induced Coma",
     "SetType": 14,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Sleep",
     "Enhancements": [
       440,
@@ -6384,6 +6538,8 @@
     "Uid": "Lethargic_Repose",
     "DisplayName": "Lethargic Repose",
     "SetType": 14,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Sleep",
     "Enhancements": [
       446,
@@ -6473,6 +6629,8 @@
     "Uid": "Call_of_the_Sandman",
     "DisplayName": "Call of the Sandman",
     "SetType": 14,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Sleep",
     "Enhancements": [
       452,
@@ -6562,6 +6720,8 @@
     "Uid": "Horror",
     "DisplayName": "Horror",
     "SetType": 15,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Fear",
     "Enhancements": [
       458,
@@ -6642,6 +6802,8 @@
     "Uid": "Unspeakable_Terror",
     "DisplayName": "Unspeakable Terror",
     "SetType": 15,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Fear",
     "Enhancements": [
       463,
@@ -6731,6 +6893,8 @@
     "Uid": "Nightmare",
     "DisplayName": "Nightmare",
     "SetType": 15,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Fear",
     "Enhancements": [
       469,
@@ -6820,6 +6984,8 @@
     "Uid": "Glimpse_of_the_Abyss",
     "DisplayName": "Glimpse of the Abyss",
     "SetType": 15,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Fear",
     "Enhancements": [
       475,
@@ -6909,6 +7075,8 @@
     "Uid": "Befuddling_Aura",
     "DisplayName": "Befuddling Aura",
     "SetType": 16,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Confuse",
     "Enhancements": [
       481,
@@ -6989,6 +7157,8 @@
     "Uid": "Cacophany",
     "DisplayName": "Cacophany",
     "SetType": 16,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "Confuse",
     "Enhancements": [
       486,
@@ -7078,6 +7248,8 @@
     "Uid": "Perplex",
     "DisplayName": "Perplex",
     "SetType": 16,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Confuse",
     "Enhancements": [
       492,
@@ -7167,6 +7339,8 @@
     "Uid": "Malaises_Illusions",
     "DisplayName": "Malaise\u0027s Illusions",
     "SetType": 16,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Confuse",
     "Enhancements": [
       498,
@@ -7256,6 +7430,8 @@
     "Uid": "Soaring",
     "DisplayName": "Soaring",
     "SetType": 17,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Flight",
     "Enhancements": [
       504,
@@ -7318,6 +7494,8 @@
     "Uid": "Freebird",
     "DisplayName": "Freebird",
     "SetType": 17,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Flight",
     "Enhancements": [
       507,
@@ -7380,6 +7558,8 @@
     "Uid": "Springfoot",
     "DisplayName": "Springfoot",
     "SetType": 18,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Jump",
     "Enhancements": [
       510,
@@ -7442,6 +7622,8 @@
     "Uid": "Unbounded_Leap",
     "DisplayName": "Unbounded Leap",
     "SetType": 18,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Jump",
     "Enhancements": [
       513,
@@ -7504,6 +7686,8 @@
     "Uid": "Quickfoot",
     "DisplayName": "Quickfoot",
     "SetType": 19,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Run",
     "Enhancements": [
       516,
@@ -7566,6 +7750,8 @@
     "Uid": "Celerity",
     "DisplayName": "Celerity",
     "SetType": 19,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Run",
     "Enhancements": [
       519,
@@ -7628,6 +7814,8 @@
     "Uid": "Jaunt",
     "DisplayName": "Jaunt",
     "SetType": 20,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Teleport",
     "Enhancements": [
       522,
@@ -7690,6 +7878,8 @@
     "Uid": "TimeSpace_Manipulation",
     "DisplayName": "Time \u0026 Space Manipulation",
     "SetType": 20,
+    "LevelMin": 14,
+    "LevelMax": 49,
     "SetTypeName": "Teleport",
     "Enhancements": [
       525,
@@ -7752,6 +7942,8 @@
     "Uid": "Exploited_Vulnerability",
     "DisplayName": "Exploited Vulnerability",
     "SetType": 21,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "DefDebuff",
     "Enhancements": [
       700,
@@ -7814,6 +8006,8 @@
     "Uid": "Achilles_Heel",
     "DisplayName": "Achilles\u0027 Heel",
     "SetType": 21,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "DefDebuff",
     "Enhancements": [
       703,
@@ -7876,6 +8070,8 @@
     "Uid": "Undermined_Defenses",
     "DisplayName": "Undermined Defenses",
     "SetType": 21,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "DefDebuff",
     "Enhancements": [
       706,
@@ -7965,6 +8161,8 @@
     "Uid": "Touch_of_Lady_Grey",
     "DisplayName": "Touch of Lady Grey",
     "SetType": 21,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "DefDebuff",
     "Enhancements": [
       712,
@@ -8054,6 +8252,8 @@
     "Uid": "Adrenal_Adjustment",
     "DisplayName": "Adrenal Adjustment",
     "SetType": 22,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "EndMod",
     "Enhancements": [
       646,
@@ -8116,6 +8316,8 @@
     "Uid": "Energy_Manipulator",
     "DisplayName": "Energy Manipulator",
     "SetType": 22,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "EndMod",
     "Enhancements": [
       649,
@@ -8178,6 +8380,8 @@
     "Uid": "Efficacy_Adaptor",
     "DisplayName": "Efficacy Adaptor",
     "SetType": 22,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "EndMod",
     "Enhancements": [
       652,
@@ -8267,6 +8471,8 @@
     "Uid": "Performance_Shifter",
     "DisplayName": "Performance Shifter",
     "SetType": 22,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "EndMod",
     "Enhancements": [
       658,
@@ -8356,6 +8562,8 @@
     "Uid": "Volley_of_Velocity",
     "DisplayName": "Volley of Velocity",
     "SetType": 23,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "Knockback",
     "Enhancements": [
       628,
@@ -8418,6 +8626,8 @@
     "Uid": "Explosive_Strike",
     "DisplayName": "Explosive Strike",
     "SetType": 23,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "Knockback",
     "Enhancements": [
       631,
@@ -8480,6 +8690,8 @@
     "Uid": "Kinetic_Crash",
     "DisplayName": "Kinetic Crash",
     "SetType": 23,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Knockback",
     "Enhancements": [
       634,
@@ -8569,6 +8781,8 @@
     "Uid": "Force_Feedback",
     "DisplayName": "Force Feedback",
     "SetType": 23,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Knockback",
     "Enhancements": [
       640,
@@ -8658,6 +8872,8 @@
     "Uid": "Annoyance",
     "DisplayName": "Annoyance",
     "SetType": 24,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "Threat",
     "Enhancements": [
       610,
@@ -8720,6 +8936,8 @@
     "Uid": "Triumphant_Insult",
     "DisplayName": "Triumphant Insult",
     "SetType": 24,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "Threat",
     "Enhancements": [
       613,
@@ -8782,6 +9000,8 @@
     "Uid": "Mocking_Beratement",
     "DisplayName": "Mocking Beratement",
     "SetType": 24,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "Threat",
     "Enhancements": [
       616,
@@ -8871,6 +9091,8 @@
     "Uid": "Perfect_Zinger",
     "DisplayName": "Perfect Zinger",
     "SetType": 24,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "Threat",
     "Enhancements": [
       622,
@@ -8960,6 +9182,8 @@
     "Uid": "Encouraged_Accuracy",
     "DisplayName": "Encouraged Accuracy",
     "SetType": 25,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "ToHit",
     "Enhancements": [
       664,
@@ -9022,6 +9246,8 @@
     "Uid": "Rectified_Reticle",
     "DisplayName": "Rectified Reticle",
     "SetType": 25,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "ToHit",
     "Enhancements": [
       667,
@@ -9086,6 +9312,8 @@
     "Uid": "Adjusted_Targeting",
     "DisplayName": "Adjusted Targeting",
     "SetType": 25,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "ToHit",
     "Enhancements": [
       670,
@@ -9175,6 +9403,8 @@
     "Uid": "Gaussians_Synchronized_Fire-Control",
     "DisplayName": "Gaussian\u0027s Synchronized Fire-Control",
     "SetType": 25,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "ToHit",
     "Enhancements": [
       676,
@@ -9266,6 +9496,8 @@
     "Uid": "Discouraging_Words",
     "DisplayName": "Discouraging Words",
     "SetType": 26,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "ToHitDeb",
     "Enhancements": [
       682,
@@ -9328,6 +9560,8 @@
     "Uid": "Deflated_Ego",
     "DisplayName": "Deflated Ego",
     "SetType": 26,
+    "LevelMin": 9,
+    "LevelMax": 19,
     "SetTypeName": "ToHitDeb",
     "Enhancements": [
       685,
@@ -9390,6 +9624,8 @@
     "Uid": "Dampened_Spirits",
     "DisplayName": "Dampened Spirits",
     "SetType": 26,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "ToHitDeb",
     "Enhancements": [
       688,
@@ -9479,6 +9715,8 @@
     "Uid": "Dark_Watchers_Despair",
     "DisplayName": "Dark Watcher\u0027s Despair",
     "SetType": 26,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "ToHitDeb",
     "Enhancements": [
       694,
@@ -9568,6 +9806,8 @@
     "Uid": "Hecatomb",
     "DisplayName": "Hecatomb",
     "SetType": 1,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       550,
@@ -9657,6 +9897,8 @@
     "Uid": "Armageddon",
     "DisplayName": "Armageddon",
     "SetType": 4,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       568,
@@ -9746,6 +9988,8 @@
     "Uid": "Apocalypse",
     "DisplayName": "Apocalypse",
     "SetType": 2,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       556,
@@ -9835,6 +10079,8 @@
     "Uid": "Ragnarok",
     "DisplayName": "Ragnarok",
     "SetType": 3,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       562,
@@ -9924,6 +10170,8 @@
     "Uid": "Soulbound_Allegiance",
     "DisplayName": "Soulbound Allegiance",
     "SetType": 6,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Pets",
     "Enhancements": [
       574,
@@ -10013,6 +10261,8 @@
     "Uid": "Unbreakable_Constraint",
     "DisplayName": "Unbreakable Constraint",
     "SetType": 10,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       580,
@@ -10102,6 +10352,8 @@
     "Uid": "Fortunata_Hypnosis",
     "DisplayName": "Fortunata Hypnosis",
     "SetType": 14,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Sleep",
     "Enhancements": [
       598,
@@ -10191,6 +10443,8 @@
     "Uid": "Absolute_Amazement",
     "DisplayName": "Absolute Amazement",
     "SetType": 11,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Stun",
     "Enhancements": [
       586,
@@ -10280,6 +10534,8 @@
     "Uid": "Gravitational_Anchor",
     "DisplayName": "Gravitational Anchor",
     "SetType": 12,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Immob",
     "Enhancements": [
       592,
@@ -10369,6 +10625,8 @@
     "Uid": "Coercive_Persuasion",
     "DisplayName": "Coercive Persuasion ",
     "SetType": 16,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Confuse",
     "Enhancements": [
       604,
@@ -10458,6 +10716,8 @@
     "Uid": "Call_to_Arms",
     "DisplayName": "Call to Arms",
     "SetType": 27,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "PetRech",
     "Enhancements": [
       733,
@@ -10549,6 +10809,8 @@
     "Uid": "Expedient_Reinforcement",
     "DisplayName": "Expedient Reinforcement",
     "SetType": 27,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "PetRech",
     "Enhancements": [
       751,
@@ -10640,6 +10902,8 @@
     "Uid": "Theft_of_Essence",
     "DisplayName": "Theft of Essence",
     "SetType": 29,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "AccHeal",
     "Enhancements": [
       781,
@@ -10729,6 +10993,8 @@
     "Uid": "Touch_of_the_Nictus",
     "DisplayName": "Touch of the Nictus",
     "SetType": 29,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "AccHeal",
     "Enhancements": [
       787,
@@ -10818,6 +11084,8 @@
     "Uid": "Blessing_of_the_Zephyr",
     "DisplayName": "Blessing of the Zephyr",
     "SetType": 28,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Travel",
     "Enhancements": [
       730,
@@ -10882,6 +11150,8 @@
     "Uid": "Winters_Gift",
     "DisplayName": "Winter\u0027s Gift",
     "SetType": 28,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Travel",
     "Enhancements": [
       793,
@@ -10946,6 +11216,8 @@
     "Uid": "Shield_Breaker",
     "DisplayName": "Shield Breaker",
     "SetType": 30,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "AccDefDeb",
     "Enhancements": [
       769,
@@ -11035,6 +11307,8 @@
     "Uid": "Analyze_Weakness",
     "DisplayName": "Analyze Weakness",
     "SetType": 30,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "AccDefDeb",
     "Enhancements": [
       718,
@@ -11124,6 +11398,8 @@
     "Uid": "Cloud_Senses",
     "DisplayName": "Cloud Senses",
     "SetType": 31,
+    "LevelMin": 9,
+    "LevelMax": 29,
     "SetTypeName": "AccToHitDeb",
     "Enhancements": [
       739,
@@ -11213,6 +11489,8 @@
     "Uid": "Siphon_Insight",
     "DisplayName": "Siphon Insight",
     "SetType": 31,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "AccToHitDeb",
     "Enhancements": [
       775,
@@ -11302,6 +11580,8 @@
     "Uid": "Gladiators_Strike",
     "DisplayName": "Gladiator\u0027s Strike",
     "SetType": 1,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       803,
@@ -11431,6 +11711,8 @@
     "Uid": "Fury_of_the_Gladiator",
     "DisplayName": "Fury of the Gladiator",
     "SetType": 4,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       826,
@@ -11560,6 +11842,8 @@
     "Uid": "Javelin_Volley",
     "DisplayName": "Javelin Volley",
     "SetType": 3,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       802,
@@ -11689,6 +11973,8 @@
     "Uid": "Shield_Wall",
     "DisplayName": "Shield Wall",
     "SetType": 7,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Defense",
     "Enhancements": [
       838,
@@ -11821,6 +12107,8 @@
     "Uid": "Gladiators_Armor",
     "DisplayName": "Gladiator\u0027s Armor",
     "SetType": 8,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Resistance",
     "Enhancements": [
       815,
@@ -11953,6 +12241,8 @@
     "Uid": "Gladiators_Javelin",
     "DisplayName": "Gladiator\u0027s Javelin",
     "SetType": 2,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       809,
@@ -12082,6 +12372,8 @@
     "Uid": "Panacea",
     "DisplayName": "Panacea",
     "SetType": 9,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Heal",
     "Enhancements": [
       796,
@@ -12211,6 +12503,8 @@
     "Uid": "Gladiators_Net",
     "DisplayName": "Gladiator\u0027s Net",
     "SetType": 10,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       832,
@@ -12340,6 +12634,8 @@
     "Uid": "Dominion_of_Arachnos",
     "DisplayName": "Dominion of Arachnos",
     "SetType": 32,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Arachnos",
     "Enhancements": [
       844,
@@ -12429,6 +12725,8 @@
     "Uid": "Blasters_Wrath",
     "DisplayName": "Blaster\u0027s Wrath",
     "SetType": 33,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Blaster",
     "Enhancements": [
       850,
@@ -12518,6 +12816,8 @@
     "Uid": "Brutes_Fury",
     "DisplayName": "Brute\u0027s Fury",
     "SetType": 34,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Brute",
     "Enhancements": [
       856,
@@ -12609,6 +12909,8 @@
     "Uid": "Will_of_the_Controller",
     "DisplayName": "Will of the Controller",
     "SetType": 35,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Controller",
     "Enhancements": [
       862,
@@ -12703,6 +13005,8 @@
     "Uid": "Malice_of_the_Corruptor",
     "DisplayName": "Malice of the Corruptor",
     "SetType": 36,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Corruptor",
     "Enhancements": [
       868,
@@ -12792,6 +13096,8 @@
     "Uid": "Defenders_Bastion",
     "DisplayName": "Defender\u0027s Bastion",
     "SetType": 37,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Defender",
     "Enhancements": [
       874,
@@ -12881,6 +13187,8 @@
     "Uid": "Ascendency_of_the_Dominator",
     "DisplayName": "Ascendency of the Dominator",
     "SetType": 38,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Dominator",
     "Enhancements": [
       880,
@@ -12975,6 +13283,8 @@
     "Uid": "Command_of_the_Mastermind",
     "DisplayName": "Command of the Mastermind",
     "SetType": 40,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Mastermind",
     "Enhancements": [
       886,
@@ -13066,6 +13376,8 @@
     "Uid": "Scrappers_Strike",
     "DisplayName": "Scrapper\u0027s Strike",
     "SetType": 41,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Scrapper",
     "Enhancements": [
       892,
@@ -13157,6 +13469,8 @@
     "Uid": "Stalkers_Guile",
     "DisplayName": "Stalker\u0027s Guile",
     "SetType": 42,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Stalker",
     "Enhancements": [
       898,
@@ -13246,6 +13560,8 @@
     "Uid": "Might_of_the_Tanker",
     "DisplayName": "Might of the Tanker",
     "SetType": 43,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Tanker",
     "Enhancements": [
       904,
@@ -13335,6 +13651,8 @@
     "Uid": "Kheldians_Grace",
     "DisplayName": "Kheldian\u0027s Grace",
     "SetType": 39,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Kheldian",
     "Enhancements": [
       910,
@@ -13426,6 +13744,8 @@
     "Uid": "Superior_Dominion_of_Arachnos",
     "DisplayName": "Superior Dominion of Arachnos",
     "SetType": 32,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Arachnos",
     "Enhancements": [
       916,
@@ -13515,6 +13835,8 @@
     "Uid": "Superior_Blasters_Wrath",
     "DisplayName": "Superior Blaster\u0027s Wrath",
     "SetType": 33,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Blaster",
     "Enhancements": [
       922,
@@ -13604,6 +13926,8 @@
     "Uid": "Superior_Brutes_Fury",
     "DisplayName": "Superior Brute\u0027s Fury",
     "SetType": 34,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Brute",
     "Enhancements": [
       928,
@@ -13695,6 +14019,8 @@
     "Uid": "Superior_Will_of_the_Controller",
     "DisplayName": "Superior Will of the Controller",
     "SetType": 35,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Controller",
     "Enhancements": [
       934,
@@ -13789,6 +14115,8 @@
     "Uid": "Superior_Malice_of_the_Corruptor",
     "DisplayName": "Superior Malice of the Corruptor",
     "SetType": 36,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Corruptor",
     "Enhancements": [
       940,
@@ -13878,6 +14206,8 @@
     "Uid": "Superior_Defenders_Bastion",
     "DisplayName": "Superior Defender\u0027s Bastion",
     "SetType": 37,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Defender",
     "Enhancements": [
       946,
@@ -13967,6 +14297,8 @@
     "Uid": "Superior_Ascendency_of_the_Dominator",
     "DisplayName": "Superior Ascendency of the Dominator",
     "SetType": 38,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Dominator",
     "Enhancements": [
       952,
@@ -14061,6 +14393,8 @@
     "Uid": "Superior_Kheldians_Grace",
     "DisplayName": "Superior Kheldian\u0027s Grace",
     "SetType": 39,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Kheldian",
     "Enhancements": [
       958,
@@ -14152,6 +14486,8 @@
     "Uid": "Superior_Command_of_the_Mastermind",
     "DisplayName": "Superior Command of the Mastermind",
     "SetType": 40,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Mastermind",
     "Enhancements": [
       964,
@@ -14243,6 +14579,8 @@
     "Uid": "Superior_Scrappers_Strike",
     "DisplayName": "Superior Scrapper\u0027s Strike",
     "SetType": 41,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Scrapper",
     "Enhancements": [
       970,
@@ -14334,6 +14672,8 @@
     "Uid": "Superior_Stalkers_Guile",
     "DisplayName": "Superior Stalker\u0027s Guile",
     "SetType": 42,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Stalker",
     "Enhancements": [
       976,
@@ -14423,6 +14763,8 @@
     "Uid": "Superior_Might_of_the_Tanker",
     "DisplayName": "Superior Might of the Tanker",
     "SetType": 43,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Tanker",
     "Enhancements": [
       982,
@@ -14512,6 +14854,8 @@
     "Uid": "Overwhelming_Force",
     "DisplayName": "Overwhelming Force",
     "SetType": 44,
+    "LevelMin": 0,
+    "LevelMax": 49,
     "SetTypeName": "UniversalDamage",
     "Enhancements": [
       988,
@@ -14601,6 +14945,8 @@
     "Uid": "Annihilation",
     "DisplayName": "Annihilation",
     "SetType": 3,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       994,
@@ -14690,6 +15036,8 @@
     "Uid": "Preventive_Medicine",
     "DisplayName": "Preventive Medicine",
     "SetType": 9,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Heal",
     "Enhancements": [
       1000,
@@ -14781,6 +15129,8 @@
     "Uid": "Reactive_Defenses",
     "DisplayName": "Reactive Defenses",
     "SetType": 7,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Defense",
     "Enhancements": [
       1006,
@@ -14872,6 +15222,8 @@
     "Uid": "Unbreakable_Guard",
     "DisplayName": "Unbreakable Guard",
     "SetType": 8,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Resistance",
     "Enhancements": [
       1012,
@@ -14963,6 +15315,8 @@
     "Uid": "Defiant_Barrage",
     "DisplayName": "Defiant Barrage",
     "SetType": 33,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Blaster",
     "Enhancements": [
       1018,
@@ -15052,6 +15406,8 @@
     "Uid": "Superior_Defiant_Barrage",
     "DisplayName": "Superior Defiant Barrage",
     "SetType": 33,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Blaster",
     "Enhancements": [
       1024,
@@ -15141,6 +15497,8 @@
     "Uid": "Unrelenting_Fury",
     "DisplayName": "Unrelenting Fury",
     "SetType": 34,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Brute",
     "Enhancements": [
       1030,
@@ -15232,6 +15590,8 @@
     "Uid": "Superior_Unrelenting_Fury",
     "DisplayName": "Superior Unrelenting Fury",
     "SetType": 34,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Brute",
     "Enhancements": [
       1036,
@@ -15323,6 +15683,8 @@
     "Uid": "Overpowering_Presence",
     "DisplayName": "Overpowering Presence",
     "SetType": 35,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Controller",
     "Enhancements": [
       1042,
@@ -15417,6 +15779,8 @@
     "Uid": "Superior_Overpowering_Presence",
     "DisplayName": "Superior Overpowering Presence",
     "SetType": 35,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Controller",
     "Enhancements": [
       1048,
@@ -15511,6 +15875,8 @@
     "Uid": "Scourging_Blast",
     "DisplayName": "Scourging Blast",
     "SetType": 36,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Corruptor",
     "Enhancements": [
       1054,
@@ -15600,6 +15966,8 @@
     "Uid": "Superior_Scourging_Blast",
     "DisplayName": "Superior Scourging Blast",
     "SetType": 36,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Corruptor",
     "Enhancements": [
       1060,
@@ -15689,6 +16057,8 @@
     "Uid": "Vigilant_Assault",
     "DisplayName": "Vigilant Assault",
     "SetType": 37,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Defender",
     "Enhancements": [
       1066,
@@ -15778,6 +16148,8 @@
     "Uid": "Superior_Vigilant_Assault",
     "DisplayName": "Superior Vigilant Assault",
     "SetType": 37,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Defender",
     "Enhancements": [
       1072,
@@ -15867,6 +16239,8 @@
     "Uid": "Dominating_Grasp",
     "DisplayName": "Dominating Grasp",
     "SetType": 38,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Dominator",
     "Enhancements": [
       1078,
@@ -15961,6 +16335,8 @@
     "Uid": "Superior_Dominating_Grasp",
     "DisplayName": "Superior Dominating Grasp",
     "SetType": 38,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Dominator",
     "Enhancements": [
       1084,
@@ -16055,6 +16431,8 @@
     "Uid": "Essence_Transfer",
     "DisplayName": "Essence Transfer",
     "SetType": 39,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Kheldian",
     "Enhancements": [
       1090,
@@ -16144,6 +16522,8 @@
     "Uid": "Superior_Essence_Transfer",
     "DisplayName": "Superior Essence Transfer",
     "SetType": 39,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Kheldian",
     "Enhancements": [
       1096,
@@ -16233,6 +16613,8 @@
     "Uid": "Mark_of_Supremacy",
     "DisplayName": "Mark of Supremacy",
     "SetType": 40,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Mastermind",
     "Enhancements": [
       1102,
@@ -16326,6 +16708,8 @@
     "Uid": "Superior_Mark_of_Supremacy",
     "DisplayName": "Superior Mark of Supremacy",
     "SetType": 40,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Mastermind",
     "Enhancements": [
       1108,
@@ -16419,6 +16803,8 @@
     "Uid": "Critical_Strikes",
     "DisplayName": "Critical Strikes",
     "SetType": 41,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Scrapper",
     "Enhancements": [
       1114,
@@ -16508,6 +16894,8 @@
     "Uid": "Superior_Critical_Strikes",
     "DisplayName": "Superior Critical Strikes",
     "SetType": 41,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Scrapper",
     "Enhancements": [
       1120,
@@ -16597,6 +16985,8 @@
     "Uid": "Spiders_Bite",
     "DisplayName": "Spider\u0027s Bite",
     "SetType": 32,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Arachnos",
     "Enhancements": [
       1126,
@@ -16688,6 +17078,8 @@
     "Uid": "Superior_Spiders_Bite",
     "DisplayName": "Superior Spider\u0027s Bite",
     "SetType": 32,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Arachnos",
     "Enhancements": [
       1132,
@@ -16779,6 +17171,8 @@
     "Uid": "Assassins_Mark",
     "DisplayName": "Assassin\u0027s Mark",
     "SetType": 42,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Stalker",
     "Enhancements": [
       1138,
@@ -16868,6 +17262,8 @@
     "Uid": "Superior_Assassins_Mark",
     "DisplayName": "Superior Assassin\u0027s Mark",
     "SetType": 42,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Stalker",
     "Enhancements": [
       1144,
@@ -16957,6 +17353,8 @@
     "Uid": "Gauntleted_Fist",
     "DisplayName": "Gauntleted Fist",
     "SetType": 43,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Tanker",
     "Enhancements": [
       1150,
@@ -17047,6 +17445,8 @@
     "Uid": "Superior_Gauntleted_Fist",
     "DisplayName": "Superior Gauntleted Fist",
     "SetType": 43,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Tanker",
     "Enhancements": [
       1156,
@@ -17137,6 +17537,8 @@
     "Uid": "Blistering_Cold",
     "DisplayName": "Blistering Cold",
     "SetType": 1,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       1162,
@@ -17226,6 +17628,8 @@
     "Uid": "Superior_Blistering_Cold",
     "DisplayName": "Superior Blistering Cold",
     "SetType": 1,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "MeleeST",
     "Enhancements": [
       1168,
@@ -17315,6 +17719,8 @@
     "Uid": "Winters_Bite",
     "DisplayName": "Winter\u0027s Bite",
     "SetType": 2,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       1186,
@@ -17404,6 +17810,8 @@
     "Uid": "Superior_Winters_Bite",
     "DisplayName": "Superior Winter\u0027s Bite",
     "SetType": 2,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "RangedST",
     "Enhancements": [
       1192,
@@ -17493,6 +17901,8 @@
     "Uid": "Frozen_Blast",
     "DisplayName": "Frozen Blast",
     "SetType": 3,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       1198,
@@ -17582,6 +17992,8 @@
     "Uid": "Superior_Frozen_Blast",
     "DisplayName": "Superior Frozen Blast",
     "SetType": 3,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       1204,
@@ -17671,6 +18083,8 @@
     "Uid": "Avalanche",
     "DisplayName": "Avalanche",
     "SetType": 4,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       1174,
@@ -17760,6 +18174,8 @@
     "Uid": "Superior_Avalanche",
     "DisplayName": "Superior Avalanche",
     "SetType": 4,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "MeleeAoE",
     "Enhancements": [
       1180,
@@ -17849,6 +18265,8 @@
     "Uid": "Entomb",
     "DisplayName": "Entomb",
     "SetType": 10,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       1210,
@@ -17938,6 +18356,8 @@
     "Uid": "Superior_Entomb",
     "DisplayName": "Superior Entomb",
     "SetType": 10,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Hold",
     "Enhancements": [
       1216,
@@ -18027,6 +18447,8 @@
     "Uid": "Sentinels_Ward",
     "DisplayName": "Sentinel\u0027s Ward",
     "SetType": 45,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Sentinel",
     "Enhancements": [
       1222,
@@ -18116,6 +18538,8 @@
     "Uid": "Superior_Sentinels_Ward",
     "DisplayName": "Superior Sentinel\u0027s Ward",
     "SetType": 45,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Sentinel",
     "Enhancements": [
       1228,
@@ -18205,6 +18629,8 @@
     "Uid": "Opportunity_Strikes",
     "DisplayName": "Opportunity Strikes",
     "SetType": 45,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Sentinel",
     "Enhancements": [
       1234,
@@ -18294,6 +18720,8 @@
     "Uid": "Superior_Opportunity_Strikes",
     "DisplayName": "Superior Opportunity Strikes",
     "SetType": 45,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "Sentinel",
     "Enhancements": [
       1240,
@@ -18383,6 +18811,8 @@
     "Uid": "Sudden_Acceleration",
     "DisplayName": "Sudden Acceleration",
     "SetType": 23,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Knockback",
     "Enhancements": [
       1246,
@@ -18472,6 +18902,8 @@
     "Uid": "Experienced_Marksman",
     "DisplayName": "Experienced Marksman",
     "SetType": 5,
+    "LevelMin": 9,
+    "LevelMax": 49,
     "SetTypeName": "Snipe",
     "Enhancements": [
       1252,
@@ -18607,6 +19039,8 @@
     "Uid": "Synapses_Shock",
     "DisplayName": "Synapse\u0027s Shock",
     "SetType": 22,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "EndMod",
     "Enhancements": [
       1258,
@@ -18734,6 +19168,8 @@
     "Uid": "Power_Transfer",
     "DisplayName": "Power Transfer",
     "SetType": 22,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "EndMod",
     "Enhancements": [
       1264,
@@ -18859,6 +19295,8 @@
     "Uid": "Preemptive_Optimization",
     "DisplayName": "Preemptive Optimization",
     "SetType": 22,
+    "LevelMin": 20,
+    "LevelMax": 49,
     "SetTypeName": "EndMod",
     "Enhancements": [
       1270,
@@ -18984,6 +19422,8 @@
     "Uid": "Bombardment",
     "DisplayName": "Bombardment",
     "SetType": 3,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       1276,
@@ -19109,6 +19549,8 @@
     "Uid": "Artillery",
     "DisplayName": "Artillery",
     "SetType": 3,
+    "LevelMin": 29,
+    "LevelMax": 49,
     "SetTypeName": "RangedAoE",
     "Enhancements": [
       1282,
@@ -19234,6 +19676,8 @@
     "Uid": "Ice_Mistrals_Torment",
     "DisplayName": "Ice Mistral\u0027s Torment",
     "SetType": 13,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "Slow",
     "Enhancements": [
       1288,
@@ -19359,6 +19803,8 @@
     "Uid": "Hypersonic",
     "DisplayName": "Hypersonic",
     "SetType": 48,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "FlightNoSprint",
     "Enhancements": [
       1294,
@@ -19478,6 +19924,8 @@
     "Uid": "Launch",
     "DisplayName": "Launch",
     "SetType": 47,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "JumpNoSprint",
     "Enhancements": [
       1298,
@@ -19597,6 +20045,8 @@
     "Uid": "Thrust",
     "DisplayName": "Thrust",
     "SetType": 46,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "RunNoSprint",
     "Enhancements": [
       1302,
@@ -19718,6 +20168,8 @@
     "Uid": "Warp",
     "DisplayName": "Warp",
     "SetType": 49,
+    "LevelMin": 19,
+    "LevelMax": 49,
     "SetTypeName": "TeleportNoSprint",
     "Enhancements": [
       1306,
@@ -19837,6 +20289,8 @@
     "Uid": "Attuned_Cupids_Crush",
     "DisplayName": "Cupid\u0027s Crush",
     "SetType": 44,
+    "LevelMin": 49,
+    "LevelMax": 49,
     "SetTypeName": "UniversalDamage",
     "Enhancements": [
       1339,

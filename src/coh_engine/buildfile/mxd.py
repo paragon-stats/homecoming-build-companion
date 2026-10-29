@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from coh_engine.archetypes import ArchetypeDb
 from coh_engine.buildfile.binary import Cursor
 from coh_engine.buildfile.dbindex import EnhIndexEntry
-from coh_engine.buildfile.mbd import Enhancement, PowerEntry, Slot, SubPower
+from coh_engine.buildfile.mbd import ENH_GRADE, ENH_RELATIVE, Enhancement, PowerEntry, Slot, SubPower
 from coh_engine.maths import f32
 
 _MXD_HEADER = re.compile(r"^\|MxDz;[0-9]+;[0-9]+;[0-9]+;HEX;\|")
@@ -39,6 +39,15 @@ _HEX = re.compile(r"\A[0-9A-Fa-f]+\Z")
 # (mbd) — never the banner's dashes. This bound lets the reader accept the full
 # MxDBuildSaveString output (leading "Do not modify" banner + trailing dashes).
 _PAYLOAD_LINE = re.compile(r"\A[0-9A-Za-z+/=]+\Z")
+
+
+def _lines(text: str) -> list[str]:
+    """Split a share block into lines; ``||`` marks a line break in single-line files.
+
+    MidsReborn does the same before classifying or decoding
+    (``MidsCharacterFileFormat.cs:1157,1254``).
+    """
+    return [ln for ln in re.split(r"[\r\n]+", text.replace("||", "|\n|")) if ln != ""]
 
 
 def _find_header_index(lines: list[str]) -> int | None:
@@ -56,7 +65,7 @@ def classify(text: str) -> str | None:
     prefixes a "Do not modify" banner, so the header line is located rather than
     assumed to be line 0. Returns ``"mxd"``, ``"mbd"``, ``"unkbase64"``, or ``None``.
     """
-    lines = [ln for ln in re.split(r"[\r\n]+", text) if ln != ""]
+    lines = _lines(text)
     for line in lines:
         if _MXD_HEADER.match(line):
             return "mxd"
@@ -87,7 +96,7 @@ def decode_share_block(text: str) -> ShareBlock:
         ValueError: if there are fewer than 2 lines, the header is not exactly 5
             ``;``-separated items, or the sizes are not integers.
     """
-    lines = [ln for ln in re.split(r"[\r\n]+", text) if ln != ""]
+    lines = _lines(text)
     header_index = _find_header_index(lines)
     if header_index is None:
         raise ValueError("no |MxDz;…| or |MBD;…| header line found")
@@ -163,21 +172,6 @@ def decode_mxd(text: str) -> bytes:
 _MAGIC = bytes([0x4D, 0x78, 0x44, 0x0C])  # 'M','x','D',12
 _PRIOR_VERSION = f32(3.10)
 _THIS_VERSION = f32(3.20)
-
-# eEnhRelative / eEnhGrade ordinals -> the same names the .mbd stores (Enums.cs).
-_EENH_RELATIVE = (
-    "None",
-    "MinusThree",
-    "MinusTwo",
-    "MinusOne",
-    "Even",
-    "PlusOne",
-    "PlusTwo",
-    "PlusThree",
-    "PlusFour",
-    "PlusFive",
-)
-_EENH_GRADE = ("None", "TrainingO", "DualO", "SingleO")
 
 # Powerset FullName migrations applied on .mxd read (MidsCharacterFileFormat.cs:459-467).
 _POWERSET_MIGRATIONS = {
@@ -269,15 +263,15 @@ def _read_slot_data(
     if entry is None:  # -1 sentinel or unresolved -> empty slot
         return None
     if entry.type_id in ("Normal", "SpecialO"):
-        relative_level = _enum_name(_EENH_RELATIVE, cur.read_sbyte(), "relative level")
-        grade = _enum_name(_EENH_GRADE, cur.read_sbyte(), "grade")
+        relative_level = _enum_name(ENH_RELATIVE, cur.read_sbyte(), "relative level")
+        grade = _enum_name(ENH_GRADE, cur.read_sbyte(), "grade")
         return Enhancement(uid=entry.uid, grade=grade, io_level=1, relative_level=relative_level)
     if entry.type_id in ("InventO", "SetO"):
         io_level = cur.read_sbyte()
         io_level = min(io_level, 49)
         relative_level = "Even"
         if f_version > 1.0:
-            relative_level = _enum_name(_EENH_RELATIVE, cur.read_sbyte(), "relative level")
+            relative_level = _enum_name(ENH_RELATIVE, cur.read_sbyte(), "relative level")
         return Enhancement(uid=entry.uid, grade="None", io_level=io_level, relative_level=relative_level)
     # eType.None: reference present but no trailing fields.
     return Enhancement(uid=entry.uid, grade="None", io_level=1, relative_level="Even")

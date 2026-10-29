@@ -12,10 +12,11 @@ lands with the build-eval pipeline that wires the DTO loader to the engine modul
 import argparse
 import json
 import sys
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from pathlib import Path
 
 from coh_engine.base_totals import load_server_data
+from coh_engine.buildfile.mbd import io_bounds_by_nid, load_mbd_db, parse_mbd, powers_from_build, slots_from_build
 from coh_engine.chain_report import (
     MOVES,
     build_chain_setup,
@@ -27,14 +28,17 @@ from coh_engine.chain_report import (
 )
 from coh_engine.damage_model import Stance
 from coh_engine.diagnostics import Diagnostic, exit_code, format_json, format_text
-from coh_engine.effect import load_powers_effects
+from coh_engine.effect import Power, load_powers_effects
 from coh_engine.enh_aspects import registered_aspect_handlers
-from coh_engine.enhancement import load_build_slots, load_enhancement_effects
-from coh_engine.hard_limits import check_hard_limits, registered_hard_limit_rules
+from coh_engine.enhancement import SlotRef, load_build_slots, load_enhancement_effects
+from coh_engine.hard_limits import MbdFormat, check_hard_limits, registered_hard_limit_rules
 from coh_engine.legality import check_build_legality, load_enhancement_legality, registered_rules
 from coh_engine.levels import load_level_schedule
 from coh_engine.scoring import registered_metrics
 from coh_engine.set_bonuses import load_set_bonus_db
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+MIDS_FIXTURES = REPO_ROOT / "src" / "coh_engine" / "tests" / "fixtures" / "mids"  # the only dump the repository ships
 
 
 def _print_rules() -> None:
@@ -71,15 +75,37 @@ def run_validate(build_dir: Path, mids_dir: Path) -> list[Diagnostic]:
     """
     powers = load_powers_effects(build_dir / "powers_effects.json")
     slots = dict(load_build_slots(build_dir / "slots.json"))
+    return _fold_registries(powers, slots, mids_dir, None)
+
+
+def _fold_registries(
+    powers: Sequence[Power], slots: Mapping[int, Sequence[SlotRef]], mids_dir: Path, fmt: MbdFormat | None
+) -> list[Diagnostic]:
+    """Fold the hard-limits and legality registries over a loaded build; ``fmt`` arms the ``H-FMT`` rules."""
     enh_legality = load_enhancement_legality(mids_dir / "enhancements.json")
     set_db = load_set_bonus_db(mids_dir / "enhancement_sets.json", mids_dir / "set_bonus_powers.json")
     schedule = load_level_schedule(mids_dir / "levels.json")
     server = load_server_data(mids_dir / "server_data.json")
     enh_effects = dict(load_enhancement_effects(mids_dir / "enhancement_effects.json"))
     return [
-        *check_hard_limits(powers, slots, schedule, server.max_slots),
+        *check_hard_limits(powers, slots, schedule, server.max_slots, format=fmt),
         *check_build_legality(powers, slots, enh_legality, set_db, enh_effects),
     ]
+
+
+def run_validate_mbd(path: Path, mids_dir: Path) -> list[Diagnostic]:
+    """Validate a bare ``.mbd`` file: resolve it through the powers table, then fold both registries.
+
+    ``mids_dir`` holds the shared dumps, ``powers.json`` and ``archetypes.json`` among them. The file's
+    header ``Level`` text and ``PowerSets`` are read raw, because the ``H-FMT`` rules judge them as
+    written. A ``.mbd`` has no ``Chosen`` flag, so a granted pool sub-power counts as a pick
+    (see :mod:`coh_engine.buildfile.mbd`).
+    """
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    build = parse_mbd(raw)
+    db = load_mbd_db(mids_dir)
+    fmt = MbdFormat(build.power_sets, raw["Level"], io_bounds_by_nid(db))
+    return _fold_registries(powers_from_build(build, db), slots_from_build(build, db), mids_dir, fmt)
 
 
 def _emit(diagnostics: list[Diagnostic], as_json: bool) -> int:
@@ -142,9 +168,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("rules", help="list the registered legality/hard-limit rules + metrics")
     v = sub.add_parser("validate", help="run the legality + hard-limits registries over a dumped build")
-    v.add_argument("build_dir", type=Path, help="directory with powers_effects.json + slots.json")
+    v.add_argument("build_dir", type=Path, help="directory with powers_effects.json + slots.json, or a .mbd build file")
     v.add_argument(
-        "--mids-dir", type=Path, default=None, help="directory with the shared DB dumps (default: build_dir/../..)"
+        "--mids-dir",
+        type=Path,
+        default=None,
+        help="directory with the shared DB dumps (default: build_dir/../.. for a directory, "
+        "the repository's fixtures/mids for a .mbd file)",
     )
     v.add_argument("--format", choices=("text", "json"), default="text", help="output format")
     c = sub.add_parser("chain", help="plan the attack chain and layered damage of a dumped build")
@@ -166,6 +196,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         _print_rules()
         return 0
     if args.command == "validate":
+        if args.build_dir.suffix == ".mbd":
+            mids_dir = args.mids_dir or MIDS_FIXTURES
+            return _guarded(lambda: _emit(run_validate_mbd(args.build_dir, mids_dir), args.format == "json"))
         mids_dir = args.mids_dir or args.build_dir.parent.parent
         return _guarded(lambda: _emit(run_validate(args.build_dir, mids_dir), args.format == "json"))
     if args.command == "chain":

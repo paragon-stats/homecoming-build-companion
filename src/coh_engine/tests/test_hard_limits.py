@@ -13,6 +13,7 @@ import pytest
 from coh_engine.effect import Power
 from coh_engine.enhancement import SlotRef
 from coh_engine.hard_limits import (
+    MbdFormat,
     build_context,
     check_hard_limits,
     registered_hard_limit_rules,
@@ -77,6 +78,7 @@ def test_registry_lists_every_rule(schedule: LevelSchedule) -> None:
     names = registered_hard_limit_rules()
     assert "_rule_total_added_slots" in names
     assert "_rule_pool_count" in names
+    assert {"_rule_mbd_powersets", "_rule_mbd_io_levels", "_rule_mbd_level_text"} <= set(names)
     assert len(names) == len(set(names))  # no duplicate registration
 
 
@@ -187,6 +189,17 @@ def test_incarnates_do_not_count_toward_picks_or_grant_levels(schedule: LevelSch
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
     assert "H-POWER-001" not in _rule_ids(diags)
     assert "H-POWER-003" not in _rule_ids(diags)
+
+
+def test_accolades_do_not_count_toward_picks(schedule: LevelSchedule) -> None:
+    """An accolade (``Temporary_Powers.Accolades.*``) is earned, not picked, whether or not the file says so."""
+    powers = [
+        _power(i, f"Dominator_Control.Arsenal_Control.P{i}", pick_level=lv)
+        for i, lv in enumerate(schedule.power_pick_levels)
+    ]
+    powers += [_power(24, "Temporary_Powers.Accolades.Task_Force_Commander", level=1, pick_level=0)]
+    diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
+    assert "H-POWER-001" not in _rule_ids(diags) and "H-POWER-003" not in _rule_ids(diags)
 
 
 def test_auto_granted_subpower_does_not_count_toward_picks(schedule: LevelSchedule) -> None:
@@ -389,3 +402,46 @@ def test_virtual_power_excluded_from_picks(schedule: LevelSchedule) -> None:
     ctx = build_context(powers, {}, schedule, MAX_SLOTS)
     assert len(ctx.picks) == 1
     assert ctx.picks[0].full_name == "Scrapper_Melee.Dark_Melee.Smite"
+
+
+def _format(
+    power_sets: tuple[str, ...] = ("a",) * 8,
+    level_text: object = "49",
+    bounds: dict[int, tuple[int, int]] | None = None,
+) -> MbdFormat:
+    return MbdFormat(power_sets=power_sets, level_text=level_text, io_bounds_by_nid=bounds or {1: (9, 29)})
+
+
+def _fmt_ids(schedule: LevelSchedule, fmt: MbdFormat | None, io_level: int = 29) -> set[str]:
+    powers = [_power(0, "Scrapper_Melee.Dark_Melee.Smite", pick_level=0)]
+    slots = {0: (SlotRef(level=0, is_inherent=True, enh=1, grade=0, io_level=io_level, relative_level=4),)}
+    return _rule_ids(check_hard_limits(powers, slots, schedule, MAX_SLOTS, format=fmt))
+
+
+def test_format_rules_stay_silent_without_a_format(schedule: LevelSchedule) -> None:
+    """The directory path has no .mbd header to check: no H-FMT rule fires."""
+    assert not {i for i in _fmt_ids(schedule, None, io_level=99) if i.startswith("H-FMT")}
+
+
+def test_a_well_formed_mbd_has_no_format_violations(schedule: LevelSchedule) -> None:
+    assert _fmt_ids(schedule, _format()) == set()
+
+
+def test_seven_powersets_violate_h_fmt_001(schedule: LevelSchedule) -> None:
+    powers = [_power(0, "Scrapper_Melee.Dark_Melee.Smite", pick_level=0)]
+    diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS, format=_format(("a",) * 7))
+    found = [d for d in diags if d.rule_id == "H-FMT-001"]
+    assert len(found) == 1 and found[0].expected == 8 and found[0].actual == 7
+    assert "pad" in (found[0].fix or "")
+
+
+def test_an_io_level_outside_its_bounds_violates_h_fmt_002(schedule: LevelSchedule) -> None:
+    assert "H-FMT-002" in _fmt_ids(schedule, _format(), io_level=49)
+    assert "H-FMT-002" not in _fmt_ids(schedule, _format(), io_level=29)
+    assert "H-FMT-002" not in _fmt_ids(schedule, _format(bounds={2: (9, 29)}), io_level=49)  # an enh with no bounds
+
+
+def test_a_one_based_level_text_violates_h_fmt_003(schedule: LevelSchedule) -> None:
+    for bad in ("50", "-1", "x", 49):
+        assert "H-FMT-003" in _fmt_ids(schedule, _format(level_text=bad))
+    assert "H-FMT-003" not in _fmt_ids(schedule, _format(level_text="0"))

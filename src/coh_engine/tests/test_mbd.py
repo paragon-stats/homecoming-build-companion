@@ -5,7 +5,15 @@ from pathlib import Path
 
 import pytest
 
-from coh_engine.buildfile.mbd import Build, load_mbd, parse_mbd
+from coh_engine.buildfile.mbd import (
+    Build,
+    dump_mbd,
+    load_mbd,
+    load_mbd_db,
+    parse_mbd,
+    powers_from_build,
+    slots_from_build,
+)
 
 REPO = Path(__file__).resolve().parents[3]
 SAMPLES = REPO / "samples" / "builds"
@@ -236,3 +244,80 @@ def test_missing_builtwith_raises() -> None:
 def test_missing_file_raises(tmp_path: Path) -> None:
     with pytest.raises(FileNotFoundError):
         load_mbd(tmp_path / "nope.mbd")
+
+
+BANE = (
+    SAMPLES / "operator-builds" / "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd"
+)
+DB = load_mbd_db(REPO / "src" / "coh_engine" / "tests" / "fixtures" / "mids")
+
+
+def test_a_bane_build_resolves_to_24_picks_and_resolved_slots() -> None:
+    build = load_mbd(BANE)
+    powers = powers_from_build(build, DB)
+    slots = slots_from_build(build, DB)
+    assert sum(1 for p in powers if not p.full_name.startswith("Inherent.")) == 24
+    assert [p.build_index for p in powers] == list(range(len(build.power_entries)))
+    unresolved = [
+        build.power_entries[idx].power_name
+        for idx, refs in slots.items()
+        for slot, ref in zip(build.power_entries[idx].slot_entries, refs, strict=True)
+        if slot.enhancement and ref.enh < 0
+    ]
+    assert unresolved == [] and sum(len(refs) for refs in slots.values()) > 50
+    first = powers[0]
+    assert first.pick_level == build.power_entries[0].level and first.level >= 1 and first.chosen
+
+
+def test_a_slot_keeps_its_grade_relative_level_and_io_level() -> None:
+    build = parse_mbd(
+        {
+            **dump_mbd(load_mbd(BANE)),
+            "PowerEntries": [
+                {
+                    "PowerName": "Inherent.Inherent.Brawl",
+                    "Level": 1,
+                    "SlotEntries": [
+                        {
+                            "Level": 1,
+                            "IsInherent": True,
+                            "Enhancement": {
+                                "Uid": "Crafted_Accuracy",
+                                "Grade": "SingleO",
+                                "IoLevel": 30,
+                                "RelativeLevel": "PlusOne",
+                            },
+                        },
+                        {"Level": 3, "IsInherent": False, "Enhancement": None},
+                    ],
+                }
+            ],
+        }
+    )
+    ref, empty = slots_from_build(build, DB)[0]
+    assert (ref.grade, ref.relative_level, ref.io_level, ref.level, ref.is_inherent) == (3, 5, 30, 0, True)
+    assert ref.enh == DB.enhancements["Crafted_Accuracy"].nid
+    assert (empty.enh, empty.level) == (-1, 2)
+
+
+def test_an_enhancement_the_dump_lacks_is_refused_with_e78() -> None:
+    doc = dump_mbd(load_mbd(BANE))
+    entry = next(e for e in doc["PowerEntries"] if any(s["Enhancement"] for s in e["SlotEntries"]))
+    next(s for s in entry["SlotEntries"] if s["Enhancement"])["Enhancement"]["Uid"] = "Crafted_No_Such_Thing"
+    with pytest.raises(ValueError, match=r"E78: .*Crafted_No_Such_Thing.*enhancements.json"):
+        slots_from_build(parse_mbd(doc), DB)
+
+
+def test_a_power_the_dump_lacks_is_refused_with_e77() -> None:
+    doc = dump_mbd(load_mbd(BANE))
+    doc["PowerEntries"][0]["PowerName"] = "Nope.Nope.Nope"
+    with pytest.raises(ValueError, match=r"E77: .*Nope.Nope.Nope.*powers.json"):
+        powers_from_build(parse_mbd(doc), DB)
+
+
+def test_an_empty_placeholder_entry_resolves_to_no_power() -> None:
+    doc = dump_mbd(load_mbd(BANE))
+    doc["PowerEntries"].insert(1, {"PowerName": "", "Level": 5, "SlotEntries": []})
+    build = parse_mbd(doc)
+    assert [p.build_index for p in powers_from_build(build, DB)][:3] == [0, 2, 3]
+    assert 1 not in slots_from_build(build, DB)

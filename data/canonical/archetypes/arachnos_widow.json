@@ -18,6 +18,7 @@
   "secondary_category": "Teamwork",
   "power_pool_category": "Pool",
   "epic_pool_category": null,
+  "$comment": "epic_pool_category is null for every archetype in the game-data harvest, not only this one. Ancillary and patron pool availability is read from the Mids dump archetypes.json Ancillary field, which lists the four Epic.VEAT_* pools for both Arachnos archetypes.",
   "defiant_scale": 1.0,
   "deep_sleep_resistance": 0.1,
   "off_defiant_hit_points_attrib": 0,

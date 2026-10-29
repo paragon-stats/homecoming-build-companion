@@ -8,6 +8,7 @@ missing bonus powers, and the fail-loud slotting guard.
 """
 
 from collections.abc import Sequence
+from pathlib import Path
 
 import pytest
 
@@ -21,6 +22,7 @@ from coh_engine.set_bonuses import (
     SetBonusDb,
     SetBonusPower,
     build_set_bonus_power,
+    load_set_bonus_powers,
     power_accepts_set,
     validate_set_slotting,
 )
@@ -269,3 +271,11 @@ class TestBuildSetBonusPower:
             [_power(0)], {0: (_slot(10), _slot(11))}, enh_db, db, force_level=50, disable_pve=False
         )
         assert virtual.effects == ()
+
+
+def test_slow_set_bonus_effects_are_debuffs() -> None:
+    """A set-bonus power named for Slow carries debuff-mode effects; every other bonus is normal."""
+    powers = load_set_bonus_powers(Path(__file__).parent / "fixtures" / "mids" / "set_bonus_powers.json")
+    modes = {p.full_name: {fx.buff_mode for fx in p.effects} for p in powers.values() if p.effects}
+    assert modes["Set_Bonus.Set_Bonus.Improved_Slow_2"] == {"Debuff"}
+    assert modes["Set_Bonus.PVP_Set_Bonus.Energy_Neg_Mez_Res_2"] == {"Normal"}

@@ -12,8 +12,7 @@ pass reads that enhanced ``BuffedMag`` (``base Mag x multiplier``) — Pass5's
 multiply folded into the sum. With no slots every multiplier is 1 and
 ``BuffedMag`` collapses to raw ``Mag`` (the empty-slot path). The
 ``_selfEnhance`` accumulator (global enhancement buffs via
-``GetEnhancementMagSum``) stays zero: the committed fixtures produce none, so it
-is deferred rather than shipped unexercised (see :func:`compute_base_totals`).
+``GetEnhancementMagSum``) is added to each effect's multiplier after ED.
 
 Semantics ported verbatim from the C# control flow, including the quirks:
 
@@ -56,6 +55,7 @@ from coh_engine.effect import Effect, Power, effect_mag
 from coh_engine.enh_aspects import END, fold_scalar
 from coh_engine.enh_pipeline import aggregate_and_ed
 from coh_engine.enhancement import EnhancementRecord, SlotRef
+from coh_engine.expressions import ExpressionContext, effect_included
 from coh_engine.incarnate import Incarnate, IncarnateAddends, resolve_incarnates
 from coh_engine.maths import MathTables, f32
 from coh_engine.set_bonuses import (
@@ -265,12 +265,11 @@ class BaseTotals:
 class _BuffsX:
     """Working accumulator — ``Enums.BuffsX`` (``Enums.cs:1906``), current subset.
 
-    Mids' ``EffectAux`` (the debuff half of the speed-scalar split) is written
-    only by the ``_selfEnhance`` enhancement pass, which this port does not run
-    (see :func:`compute_base_totals`); it lands with that pass in a later CP.
+    ``effect_aux`` is the debuff half of the enhancement pass's speed-scalar split.
     """
 
     effect: list[float]
+    effect_aux: list[float]
     mez: list[float]
     mez_res: list[float]
     damage: list[float]
@@ -291,6 +290,7 @@ def _new_buffs(enums: EnumMaps) -> _BuffsX:
     n_damage = enums.size("eDamage")
     return _BuffsX(
         effect=[0.0] * n_effect,
+        effect_aux=[0.0] * n_effect,
         mez=[0.0] * n_mez,
         mez_res=[0.0] * n_mez,
         damage=[0.0] * n_damage,
@@ -322,19 +322,19 @@ class _MagContext:
     config: EngineConfig
     enh_mult: Mapping[tuple[int, int], float] = field(default_factory=dict)
     enhance_names: frozenset[str] = frozenset()
+    enums: EnumMaps | None = None
+    expr: ExpressionContext | None = None
 
 
-def _can_include(fx: Effect) -> bool:
-    """Partial port of ``Effect.CanInclude`` (``Effect.cs:1856+``).
+def _can_include(fx: Effect, ctx: _MagContext) -> bool:
+    """``Effect.CanInclude``: conditions are evaluated against the build when ``ctx`` carries it.
 
-    True only for unconditional effects. Effects with ``ActiveConditionals``
-    or a ``SpecialCase`` need the character-state evaluation leaves that are
-    not ported yet, so they are excluded. This diverges from Mids, which keeps
-    many default-true SpecialCase effects (see the module docstring); the
-    ``test_excluded_conditionals_do_not_affect_totals`` gate confirms the
-    committed fixtures have no such effect reaching a read bucket.
+    A ``SpecialCase`` effect stays excluded: the character-state switch is not ported. This diverges
+    from Mids, which keeps many default-true SpecialCase effects (see the module docstring); the
+    ``test_excluded_conditionals_do_not_affect_totals`` gate confirms the committed fixtures have no
+    such effect reaching a read bucket.
     """
-    return fx.active_conditionals_count == 0 and fx.special_case == "None"
+    return effect_included(fx, ctx.expr)
 
 
 def _pvx_include(fx: Effect, archetype_index: int, config: EngineConfig) -> bool:
@@ -375,7 +375,7 @@ def _get_effect_mag_sum(
             or fx.effect_type != i_effect
             or fx.effect_class in ("Ignored", "Special")
             or (fx.delayed_time > 5 and not include_delayed)
-            or not _can_include(fx)
+            or not _can_include(fx, ctx)
             or not _pvx_include(fx, ctx.archetype_index, ctx.config)
         ):
             continue
@@ -395,14 +395,7 @@ def _get_effect_mag_sum(
 
 
 def _mag(fx: Effect, power: Power, ctx: _MagContext) -> float:
-    return effect_mag(fx, power, ctx.mods, ctx.classes, ctx.archetype_index)
-
-
-# Enhancement aspects that enhance a power *scalar* (Accuracy/RechargeTime/
-# EndCost/Interrupt/Range), never a Totals effect bucket; slots granting only
-# these need no effect->aspect routing (GBPA_Pass1 handles them separately, and
-# none of them reach Totals).
-_SCALAR_ENHANCE_ASPECTS = frozenset({"Accuracy", "RechargeTime", "EnduranceDiscount", "Interrupt", "Range"})
+    return effect_mag(fx, power, ctx.mods, ctx.classes, ctx.archetype_index, expr=ctx.expr)
 
 
 def _enhance_names(enums: EnumMaps) -> frozenset[str]:
@@ -411,20 +404,21 @@ def _enhance_names(enums: EnumMaps) -> frozenset[str]:
 
 
 def _enhance_aspect(fx: Effect, enhance_names: frozenset[str]) -> str | None:
-    """The ``eEnhance`` aspect a Buffable effect is enhanced under (``GBPA_Pass1_EnhancePreED``).
+    """The ``eEnhance`` aspect whose slotted value enhances a Buffable effect's magnitude (``GBPA_Pass1_EnhancePreED``).
 
-    Faithful transcription of the Mids routing (clsToonX.cs:1790-1833): an effect is
-    enhanced under the ``eEnhance`` aspect whose *name* equals its ``EffectType`` name
-    (``IsEnumValue`` / ``StringToFlaggedEnum`` name-identity), plus the special cases the
-    name match misses — ``Enhancement`` + ``ETModifies == Accuracy → Accuracy``,
-    ``ResEffect`` + ``ETModifies == Defense → Defense``, and ``ResEffect`` +
-    ``ETModifies == Regeneration → Heal``. Non-Buffable effects and effect types that are
-    neither an ``eEnhance`` name nor a special case return ``None`` (unenhanced). ``Mids``
-    also has a per-enhancement ``GetAllowedEffectsFromEnhance`` fallback for effects outside
-    both; no ported build exercises it, so a slot enhancing such an aspect is refused loudly
-    by :func:`_check_enh_routing` rather than silently dropped.
+    An effect is enhanced under the ``eEnhance`` aspect whose *name* equals its ``EffectType`` name,
+    plus the special cases the name match misses — ``Enhancement`` + ``ETModifies == Accuracy →
+    Accuracy`` and ``ResEffect`` + ``ETModifies == Defense → Defense``. Every other effect reaches a
+    slot only through that enhancement's allowed-effects list, and of those only the Heal
+    enhancement's ``ResEffect`` + ``ETModifies == Regeneration`` is given a value. A Special damage
+    effect and a duration-typed Mez effect gain duration or nothing, never magnitude. ``None`` means
+    the slots leave the magnitude unenhanced.
     """
     if not fx.buffable:
+        return None
+    if fx.effect_type == "Damage" and fx.damage_type == "Special":
+        return None
+    if fx.effect_type == "Mez" and fx.attrib_type == "Duration":
         return None
     if fx.effect_type in enhance_names:
         return fx.effect_type
@@ -432,100 +426,102 @@ def _enhance_aspect(fx: Effect, enhance_names: frozenset[str]) -> str | None:
         return "Accuracy"
     if fx.effect_type == "ResEffect" and fx.et_modifies == "Defense":
         return "Defense"
-    if fx.effect_type == "ResEffect" and fx.et_modifies == "Regeneration":
+    if _is_allowed_list_only(fx):
         return "Heal"
     return None
 
 
-def _slot_granted_effect_aspects(
-    power_slots: Sequence[SlotRef], enh_db: Mapping[int, EnhancementRecord], force_level: int
-) -> set[str]:
-    """The effect-borne ``eEnhance`` aspects the power's in-gate filled slots grant.
-
-    Scalar aspects are dropped — they never reach a Totals effect bucket, so a
-    power slotted only with (say) Recharge IOs grants no effect-borne aspect and
-    needs no effect routing.
-    """
-    granted: set[str] = set()
-    for slot in power_slots:
-        if slot.enh < 0 or slot.level >= force_level:
-            continue
-        granted.update(fx.enhance for fx in enh_db[slot.enh].effects if fx.enhance not in _SCALAR_ENHANCE_ASPECTS)
-    return granted
+def _is_allowed_list_only(fx: Effect) -> bool:
+    """The one effect enhanced only through an enhancement's allowed-effects list, which ED never reaches."""
+    return fx.effect_type == "ResEffect" and fx.et_modifies == "Regeneration" and fx.mez_type == "None"
 
 
-def _check_enh_routing(
-    power: Power,
-    power_slots: Sequence[SlotRef],
-    enh_db: Mapping[int, EnhancementRecord],
-    force_level: int,
-    enhance_names: frozenset[str],
-) -> None:
-    """Fail loud (``P-ENH-001``) if a slot enhances an effect-borne aspect ``_enhance_aspect`` drops.
+# Effect types Pass 3 folds into the power's scalars instead of into each effect.
+_PASS3_SCALAR_TYPES = frozenset({"Accuracy", "EnduranceDiscount", "InterruptTime", "Range", "RechargeTime"})
+_PASS3_SPEED_TYPES = frozenset({"SpeedRunning", "SpeedJumping", "JumpHeight", "SpeedFlying"})
 
-    That aspect would be dropped from Totals, so the build is refused rather than silently
-    under-reported. Only meaningful for a slotted power (an unrouted aspect can only come
-    from a slot).
-    """
-    routed = {aspect for fx in power.effects if (aspect := _enhance_aspect(fx, enhance_names)) is not None}
-    unrouted = _slot_granted_effect_aspects(power_slots, enh_db, force_level) - routed
-    if unrouted:
-        raise ValueError(
-            f"P-ENH-001: slots in {power.full_name!r} enhance effect-borne aspect(s) "
-            f"{sorted(unrouted)} that the effect->aspect routing does not port; extend "
-            "_enhance_aspect against a validated reference fixture before computing this build"
-        )
+
+def _global_enhancement_term(fx: Effect, base_mag: float, self_enhance: _BuffsX | None, enums: EnumMaps) -> float:
+    """The build-wide enhancement buff Pass 3 adds to one effect's enhancement after ED (``_selfEnhance``)."""
+    if self_enhance is None or not fx.buffable or fx.effect_type in _PASS3_SCALAR_TYPES:
+        return 0.0
+    e_damage = enums.maps["eDamage"]
+    match fx.effect_type:
+        case "Damage":
+            return self_enhance.damage[e_damage[fx.damage_type]]
+        case "Defense":
+            return self_enhance.defense[e_damage[fx.damage_type]]
+        case "Mez":
+            return 0.0 if fx.attrib_type == "Duration" else self_enhance.mez[enums.maps["eMez"][fx.mez_type]]
+        case "Resistance":
+            return self_enhance.resistance[e_damage[fx.damage_type]]
+    e_type = enums.maps["eEffectType"]
+    if fx.effect_type == "Enhancement" and fx.et_modifies in _PASS3_SPEED_TYPES:
+        speed = fx.et_modifies
+    elif fx.effect_type in _PASS3_SPEED_TYPES:
+        speed = fx.effect_type
+    else:
+        return self_enhance.effect[e_type[fx.effect_type]]
+    if base_mag > 0:
+        return self_enhance.effect[e_type[speed]]
+    if base_mag < 0:
+        return self_enhance.effect_aux[e_type[speed]]
+    return 0.0
 
 
 def _effect_multiplier(
     power: Power,
     fx: Effect,
     power_slots: Sequence[SlotRef],
-    memo: dict[tuple[str, bool, bool, float, float], float],
+    memo: dict[tuple[str, int, bool, bool, bool, float, float, float], float],
     inc: tuple[float, float] | None,
     *,
     enh_db: Mapping[int, EnhancementRecord],
     tables: MathTables,
     force_level: int,
     ctx: _MagContext,
+    self_enhance: _BuffsX | None,
 ) -> float | None:
-    """One effect's enhancement multiplier ``1 + ED(Σ slot + incarnate pre) + incarnate post``.
+    """One effect's enhancement multiplier ``1 + ED(Σ slot + incarnate pre) + global + incarnate post``.
 
     Slotted-only and incarnate-touched effects flow through the *same* accumulator: ``inc`` is
     the incarnate ``(pre_ed, post_ed)`` for this effect or ``None`` (treated as ``(0, 0)``, which
-    is bit-identical to the slotted-only path). Returns ``None`` when the accumulator is zero —
-    an unenhanced effect the caller records as an absent key (multiplier 1). Pass1 gates on the
-    pre-Pass5 base ``Math_Mag`` — the unenhanced base magnitude used here — so the sign key
-    matches Mids' gate.
+    is bit-identical to the slotted-only path). The global term is the build-wide enhancement buff
+    (:func:`_global_enhancement_term`), added after ED and before the incarnate post-ED term.
+    Returns ``None`` when the accumulator is zero — an unenhanced effect the caller records as an
+    absent key (multiplier 1). Pass1 gates on the pre-Pass5 base ``Math_Mag`` — the unenhanced base
+    magnitude used here — so the sign key matches Mids' gate.
     """
+    assert ctx.enums is not None
     aspect = _enhance_aspect(fx, ctx.enhance_names)
-    if aspect is None and inc is None:
-        return None
     base_mag = _mag(fx, power, ctx)
+    glob = _global_enhancement_term(fx, base_mag, self_enhance, ctx.enums)
+    if aspect is None and inc is None and glob == 0.0:
+        return None
     # One accumulator for both the slotted-only and incarnate-touched effect: co-ED the
     # incarnate pre-ED term (0.0 when absent — bit-identical to no addend, since f32(x + 0) ==
-    # x) with the power's slotted aggregate through one ApplyED (Mids Pass1 accumulate + Pass2
-    # ED), then add the post-ED (IgnoreED) term. The result is shared per (aspect, sign, pre,
-    # post) across the power's effects; a slotted-only effect keys on (aspect, sign, 0, 0) and
-    # shares exactly as before. The ED schedule keys on the routed aspect, or — for an
-    # incarnate-touched effect whose type is neither an eEnhance name nor a special case — on
-    # the effect's own type (its slotted aggregate is 0, so only the schedule label matters).
-    # Accumulator 0 means neither slot nor incarnate enhances this aspect: multiplier 1, which
-    # the caller stores as an absent key.
+    # x) with the power's slotted aggregate through one ApplyED, then add the global and
+    # post-ED (IgnoreED) terms. The ED schedule keys on the routed aspect, or — for an effect
+    # whose type is neither an eEnhance name nor a special case — on the effect's own type (its
+    # slotted aggregate is 0, so only the schedule label matters).
     pre_ed, post_ed = inc if inc is not None else (0.0, 0.0)
     ed_aspect = aspect if aspect is not None else fx.effect_type
-    key = (ed_aspect, base_mag <= 0.0, base_mag >= 0.0, pre_ed, post_ed)
+    sub_enh = ctx.enums.maps["eMez"][fx.mez_type] if ed_aspect == "Mez" else -1
+    skip_ed = _is_allowed_list_only(fx)
+    key = (ed_aspect, sub_enh, skip_ed, base_mag <= 0.0, base_mag >= 0.0, pre_ed, glob, post_ed)
     if key not in memo:
         aggregate = aggregate_and_ed(
-            power_slots,
+            power_slots if aspect is not None else (),
             aspect=ed_aspect,
             enh_db=enh_db,
             force_level=force_level,
             tables=tables,
+            sub_enh=sub_enh,
             mag=base_mag,
             pre_ed_addend=pre_ed,
+            skip_ed=skip_ed,
         )
-        memo[key] = f32(aggregate + post_ed)
+        memo[key] = f32(f32(aggregate + glob) + post_ed)
     accumulator = memo[key]
     return f32(1.0 + accumulator) if accumulator != 0.0 else None
 
@@ -539,28 +535,23 @@ def _compute_enh_multipliers(
     force_level: int,
     ctx: _MagContext,
     incarnate_effect: Mapping[tuple[int, int], tuple[float, float]] = MappingProxyType({}),
+    self_enhance: _BuffsX | None = None,
 ) -> dict[tuple[int, int], float]:
-    """Per-effect enhancement multipliers ``1 + ED(Σ slot + incarnate pre) + incarnate post``.
+    """Per-effect enhancement multipliers ``1 + ED(Σ slot + incarnate pre) + global + incarnate post``.
 
-    For every effect of every slotted or incarnate-touched power, aggregate the aspect's
-    per-slot enhancement value plus any incarnate pre-ED contribution and apply ED once
-    (Pass1→2→4), then add the incarnate post-ED (``IgnoreED``) term. Only non-unit
-    multipliers are stored — an absent key means an unenhanced effect. ``ctx.enh_mult`` is
-    empty while this runs, so the base magnitudes fed to the buff/debuff sign gate are
-    unenhanced. ``incarnate_effect`` (:mod:`coh_engine.incarnate`) carries the raw
-    ``(pre_ed, post_ed)`` per effect; its pre-ED term co-EDs with the slots exactly as Mids
-    does, so a target effect may carry both slotted and incarnate enhancement.
+    For every effect of every build power, aggregate the aspect's per-slot enhancement value plus
+    any incarnate pre-ED contribution and apply ED once (Pass1→2), add the build-wide enhancement
+    buffs ``self_enhance`` carries (Pass3), then the incarnate post-ED (``IgnoreED``) term (Pass4
+    adds the 1). Only non-unit multipliers are stored — an absent key means an unenhanced effect.
+    ``ctx.enh_mult`` is empty while this runs, so the base magnitudes fed to the buff/debuff sign
+    gate are unenhanced. The set-bonus virtual power is not a build power and is never enhanced.
     """
     out: dict[tuple[int, int], float] = {}
     for power in included:
-        power_slots = slots.get(power.build_index, ())
-        has_incarnate = any((power.build_index, fx.index) in incarnate_effect for fx in power.effects)
-        if not power_slots and not has_incarnate:
+        if power.build_index == SET_BONUS_BUILD_INDEX:
             continue
-        # Harmless when power_slots is empty (no slot grants no aspect); an incarnate-only
-        # power reaches here and correctly finds nothing unrouted.
-        _check_enh_routing(power, power_slots, enh_db, force_level, ctx.enhance_names)
-        memo: dict[tuple[str, bool, bool, float, float], float] = {}
+        power_slots = slots.get(power.build_index, ())
+        memo: dict[tuple[str, int, bool, bool, bool, float, float, float], float] = {}
         for fx in power.effects:
             mult = _effect_multiplier(
                 power,
@@ -572,6 +563,7 @@ def _compute_enh_multipliers(
                 tables=tables,
                 force_level=force_level,
                 ctx=ctx,
+                self_enhance=self_enhance,
             )
             if mult is not None:
                 out[(power.build_index, fx.index)] = mult
@@ -795,8 +787,7 @@ def _apply_buff_effects(
 
 
 # Speed-scalar eEffectTypes routed buff-vs-debuff in the enhancement pass
-# (clsToonX.cs:686). The debuff half writes ``EffectAux``, which this port does
-# not model (see :func:`_route_enhance_main`).
+# (clsToonX.cs:686).
 _ENHANCE_SPEED_SCALARS = frozenset({"SpeedRunning", "SpeedFlying", "SpeedJumping", "JumpHeight"})
 
 
@@ -817,7 +808,7 @@ def _get_enhancement_mag_sum(power: Power, i_effect: str, ctx: _MagContext) -> l
             or fx.et_modifies != i_effect
             or fx.effect_type not in ("Enhancement", "DamageBuff")
             or (fx.absorbed_effect and fx.absorbed_power_type == "GlobalBoost")
-            or not _can_include(fx)
+            or not _can_include(fx, ctx)
             or not _pvx_include(fx, ctx.archetype_index, ctx.config)
             or fx.to_who == "Target"
         ):
@@ -827,14 +818,13 @@ def _get_enhancement_mag_sum(power: Power, i_effect: str, ctx: _MagContext) -> l
 
 
 def _route_enhance_main(
-    fx: Effect, value: float, buffs: _BuffsX, *, i_effect: str, eff_index: int, m: _BuffMaps, power_name: str
+    fx: Effect, value: float, buffs: _BuffsX, *, i_effect: str, eff_index: int, m: _BuffMaps
 ) -> None:
     """Enhancement-pass main routing for a DamageBuff/Enhancement effect (clsToonX.cs:630-704).
 
     Every branch is terminal (the C# ``continue``). ``Accuracy``/``Heal`` are dropped
     here — Accuracy is folded by the buff pass (BuffAcc/ToHit) and Heal by the boost
-    head. The speed-scalar *debuff* arm (``EffectAux``) is unported: it is refused
-    (``E13``) rather than silently dropped.
+    head. A speed scalar from a debuff-mode effect goes to ``EffectAux``.
     """
     etm = fx.et_modifies
     if etm == "Mez":
@@ -858,20 +848,13 @@ def _route_enhance_main(
     if etm in ("Accuracy", "Heal"):
         return
     if etm in _ENHANCE_SPEED_SCALARS:
-        # The buff arm writes Effect[etm], the debuff arm writes EffectAux
-        # (clsToonX.cs:686-698); the split reads Effect.buffMode and the EffectAux
-        # bucket, neither of which is ported. No committed fixture slots a movement
-        # set bonus, so refuse rather than guess which arm applies.
-        raise ValueError(
-            f"E13: {power_name!r} carries an enhancement-pass speed-scalar effect (ETModifies={etm}) whose "
-            "buff/debuff split (Effect vs EffectAux) is not ported; add a movement set-bonus fixture and the "
-            "EffectAux bucket before computing this build"
-        )
+        _add(buffs.effect_aux if fx.buff_mode == "Debuff" else buffs.effect, m.e_type[etm], value)
+        return
     _add(buffs.effect, eff_index, value)
 
 
 def _route_enhance_effect(
-    fx: Effect, value: float, buffs: _BuffsX, *, i_effect: str, eff_index: int, m: _BuffMaps, power_name: str
+    fx: Effect, value: float, buffs: _BuffsX, *, i_effect: str, eff_index: int, m: _BuffMaps
 ) -> None:
     """Route one enhancement-pass sub-effect (clsToonX.cs:576-704, enhancementPass=true).
 
@@ -882,7 +865,7 @@ def _route_enhance_effect(
     _apply_enhancement_boosts(fx, value, buffs, m, include_range=False)
     if fx.absorbed_power_type == "GlobalBoost":
         return
-    _route_enhance_main(fx, value, buffs, i_effect=i_effect, eff_index=eff_index, m=m, power_name=power_name)
+    _route_enhance_main(fx, value, buffs, i_effect=i_effect, eff_index=eff_index, m=m)
 
 
 def _apply_enhance_effects(power: Power, buffs: _BuffsX, ctx: _MagContext, *, enums: EnumMaps) -> None:
@@ -913,9 +896,7 @@ def _apply_enhance_effects(power: Power, buffs: _BuffsX, ctx: _MagContext, *, en
             pairs = _get_enhancement_mag_sum(power, i_effect, ctx)
         for fx, value in pairs:
             if fx.to_who in ("Self", "All"):
-                _route_enhance_effect(
-                    fx, value, buffs, i_effect=i_effect, eff_index=eff_index, m=m, power_name=power.full_name
-                )
+                _route_enhance_effect(fx, value, buffs, i_effect=i_effect, eff_index=eff_index, m=m)
 
 
 def _is_max_speed_cap(fx: Effect, mod: str) -> bool:
@@ -953,6 +934,7 @@ def compute_base_totals(
     tables: MathTables | None = None,
     set_db: SetBonusDb | None = None,
     incarnates: Iterable[Incarnate] | None = None,
+    expr: ExpressionContext | None = None,
 ) -> BaseTotals:
     """Compute ``Totals``/``TotalsCapped`` for a build.
 
@@ -983,15 +965,18 @@ def compute_base_totals(
     themselves are excluded from the buff/enhance passes — they are GrantPower delivery
     vehicles, not direct-effect powers, so their raw effects contribute nothing to Totals.
 
+    ``expr`` is the build state conditional effects and magnitude expressions read
+    (:class:`~coh_engine.expressions.ExpressionContext`). Without it only unconditional effects count
+    and an expression that needs the build is refused (``E08``). Pass the build's assembled powers
+    (:mod:`coh_engine.assembly`) for totals that include what Mids adds to each power before computing.
+
     Raises:
         ValueError: ``E09`` if ``class_name`` is unknown; ``E11`` if the
             enhancement inputs (``slots``/``enh_db``/``tables``) are supplied
-            partially; ``E13`` if a build needs the unported enhancement-pass
-            speed-scalar (movement set-bonus) path; ``E14`` if ``set_db`` is
-            supplied without ``slots``/``enh_db``; ``E21`` if ``incarnates`` is
-            supplied without the enhancement inputs; ``H-ENH-001`` if a set IO is
-            slotted in a power that does not accept it; ``P-ENH-001`` if a slot
-            enhances an unrouted effect-borne aspect.
+            partially; ``E14`` if ``set_db`` is supplied without
+            ``slots``/``enh_db``; ``E21`` if ``incarnates`` is supplied without the
+            enhancement inputs; ``H-ENH-001`` if a set IO is slotted in a power that
+            does not accept it.
         NotImplementedError: ``E19``/``E20`` for an unported incarnate delivery path
             (:mod:`coh_engine.incarnate`).
     """
@@ -1011,7 +996,13 @@ def compute_base_totals(
     # gate both read pre-Pass5 base magnitudes. The buff pass reads buff_ctx (the
     # enhanced BuffedMag).
     base_ctx = _MagContext(
-        mods=mods, classes=classes, archetype_index=archetype_index, config=config, enhance_names=_enhance_names(enums)
+        mods=mods,
+        classes=classes,
+        archetype_index=archetype_index,
+        config=config,
+        enhance_names=_enhance_names(enums),
+        enums=enums,
+        expr=expr,
     )
 
     self_buffs = _new_buffs(enums)
@@ -1042,6 +1033,11 @@ def compute_base_totals(
         if virtual.effects:
             included = [*included, virtual]
 
+    # The enhancement pass runs first: its build-wide buffs feed every effect's multiplier and
+    # the buff pass. The set-bonus virtual power takes part in it and in the buff pass.
+    for power in included:
+        _apply_enhance_effects(power, self_enhance, base_ctx, enums=enums)
+
     buff_ctx = base_ctx
     toggle_end_agg: dict[int, float] = {}
     if slots is not None and enh_db is not None and tables is not None:
@@ -1053,6 +1049,7 @@ def compute_base_totals(
             force_level=config.force_level,
             ctx=base_ctx,
             incarnate_effect=addends.effect if addends is not None else MappingProxyType({}),
+            self_enhance=self_enhance,
         )
         buff_ctx = replace(base_ctx, enh_mult=enh_mult)
         toggle_end_agg = _compute_toggle_end_agg(
@@ -1064,10 +1061,6 @@ def compute_base_totals(
             incarnate_scalar=incarnate_scalar,
         )
 
-    # Enhancement pass (step 6) before the buff pass (step 8), per
-    # GenerateBuffedPowerArray. The set-bonus virtual power participates in both.
-    for power in included:
-        _apply_enhance_effects(power, self_enhance, base_ctx, enums=enums)
     for power in included:
         _apply_buff_effects(
             power,

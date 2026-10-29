@@ -24,7 +24,6 @@ from coh_engine.base_totals import (
     _is_global_acc_source,
     _MagContext,
     _new_buffs,
-    _slot_granted_effect_aspects,
     calculate_pvp_dr,
     compute_base_totals,
     load_enum_maps,
@@ -33,6 +32,7 @@ from coh_engine.base_totals import (
 from coh_engine.ed import Schedule
 from coh_engine.effect import Effect, Power
 from coh_engine.enhancement import EnhancementRecord, EnhEffect, SlotRef
+from coh_engine.expressions import ExpressionContext
 from coh_engine.maths import MathTables, f32
 from coh_engine.set_bonuses import SET_BONUS_BUILD_INDEX, SetBonusDb
 
@@ -43,7 +43,8 @@ FIXTURES = Path(__file__).parent / "fixtures"
 PVE = EngineConfig(suppression=0, disable_pve=False, force_level=50, scaling_to_hit=0.75)
 PVP = EngineConfig(suppression=0, disable_pve=True, force_level=50, scaling_to_hit=0.75)
 # The eEnhance name-identity route set, loaded once for the plain _ctx helper (not a fixture).
-_ENHANCE_NAMES = _enhance_names(load_enum_maps(FIXTURES / "mids" / "enums.json"))
+_ENUMS = load_enum_maps(FIXTURES / "mids" / "enums.json")
+_ENHANCE_NAMES = _enhance_names(_ENUMS)
 
 
 @pytest.fixture(scope="module")
@@ -58,7 +59,12 @@ def server() -> ServerData:
 
 def _ctx(tiny_mods: AttribMods, tiny_classes: ArchetypeDb, config: EngineConfig = PVE) -> _MagContext:
     return _MagContext(
-        mods=tiny_mods, classes=tiny_classes, archetype_index=0, config=config, enhance_names=_ENHANCE_NAMES
+        mods=tiny_mods,
+        classes=tiny_classes,
+        archetype_index=0,
+        config=config,
+        enhance_names=_ENHANCE_NAMES,
+        enums=_ENUMS,
     )
 
 
@@ -674,6 +680,66 @@ class TestGbdTotals:
         factor = f32(1.0 - abs(math.atan(f32(1.2) * value)) * (2.0 / math.pi) * f32(1.0))
         assert calculate_pvp_dr(value) == f32(value * factor)
 
+    @pytest.mark.parametrize(("active", "want"), [(frozenset({"Pool.Fighting.Kick"}), 0.25), (frozenset(), 0.0)])
+    def test_conditional_effect_counts_when_its_conditions_hold(
+        self,
+        active: frozenset[str],
+        want: float,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        enums: EnumMaps,
+        server: ServerData,
+    ) -> None:
+        conditional = make_effect(
+            effect_type="Regeneration",
+            scale=0.25,
+            active_conditionals_count=1,
+            conditionals=(("Active:Pool.Fighting.Kick", "True"),),
+        )
+        expr = ExpressionContext(
+            prev_hp_max=0.0, build_power_names=active, active_power_names=active, variable_values={}
+        )
+        result = compute_base_totals(
+            [make_power(conditional)],
+            class_name="Class_Test",
+            mods=tiny_mods,
+            classes=tiny_classes,
+            enums=enums,
+            config=PVE,
+            server=server,
+            expr=expr,
+        )
+        assert result.totals.hp_regen == f32(want)
+
+    def test_expression_reads_the_previous_max_hit_points(
+        self,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        enums: EnumMaps,
+        server: ServerData,
+    ) -> None:
+        absorb = make_effect(
+            effect_type="Absorb", attrib_type="Expression", expr_magnitude="0.15*source>Max.kHitPoints"
+        )
+        expr = ExpressionContext(
+            prev_hp_max=1000.0, build_power_names=frozenset(), active_power_names=frozenset(), variable_values={}
+        )
+        result = compute_base_totals(
+            [make_power(absorb)],
+            class_name="Class_Test",
+            mods=tiny_mods,
+            classes=tiny_classes,
+            enums=enums,
+            config=PVE,
+            server=server,
+            expr=expr,
+        )
+        assert result.totals.absorb == f32(150.0)
+
     def test_stat_exclude_powers_contribute_nothing(
         self,
         make_effect: MakeEffect,
@@ -720,39 +786,246 @@ def _res_rech_record() -> EnhancementRecord:
     )
 
 
-class TestEnhancementGuards:
-    """The fail-loud guards that refuse builds the enhancement port cannot compute."""
+def _record(*aspects: tuple[str, int]) -> EnhancementRecord:
+    """An InventO granting each ``(aspect, sub id)`` on schedule A."""
+    return EnhancementRecord(
+        nid=1,
+        static_index=1,
+        type_name="InventO",
+        superior=False,
+        effects=tuple(
+            EnhEffect(enhance=aspect, enhance_sub_id=sub, schedule=int(Schedule.A), multiplier=1.0, buff_mode="Any")
+            for aspect, sub in aspects
+        ),
+    )
 
-    def test_slot_granted_effect_aspects_gates(self) -> None:
-        """Only filled, in-gate slots count; scalar aspects (RechargeTime) are dropped."""
-        enh_db = {1: _res_rech_record()}
-        filled = SlotRef(level=0, is_inherent=False, enh=1, grade=0, io_level=49, relative_level=4)
-        empty = SlotRef(level=0, is_inherent=False, enh=-1, grade=0, io_level=49, relative_level=4)
-        gated = SlotRef(level=50, is_inherent=False, enh=1, grade=0, io_level=49, relative_level=4)
-        granted = _slot_granted_effect_aspects((filled, empty, gated), enh_db, force_level=50)
-        assert granted == {"Resistance"}
 
-    def test_unrouted_aspect_raises(
+_IO50 = SlotRef(level=0, is_inherent=False, enh=1, grade=0, io_level=49, relative_level=4)
+
+
+def _multiplier(
+    fx: Effect,
+    record: EnhancementRecord,
+    slot_count: int,
+    make_power: MakePower,
+    ctx: _MagContext,
+    tables: MathTables,
+    self_enhance: _BuffsX | None = None,
+) -> float | None:
+    power = make_power(fx, build_index=0)
+    mults = _compute_enh_multipliers(
+        [power],
+        slots={0: (_IO50,) * slot_count},
+        enh_db={1: record},
+        tables=tables,
+        force_level=50,
+        ctx=ctx,
+        self_enhance=self_enhance,
+    )
+    return mults.get((0, fx.index))
+
+
+class TestEffectRouting:
+    """Which slotted aspect enhances which effect, and whether ED applies to it."""
+
+    def test_granted_aspect_without_a_matching_effect_is_inert(
         self,
-        make_power: MakePower,
         make_effect: MakeEffect,
+        make_power: MakePower,
         tiny_mods: AttribMods,
         tiny_classes: ArchetypeDb,
         tables: MathTables,
     ) -> None:
-        # The slot enhances Resistance, but the power's only effect is Recovery (routes to
-        # Recovery, not Resistance), so the Resistance aspect matches no effect -> refused.
-        power = make_power(make_effect(effect_type="Recovery", buffable=True), build_index=0)
-        slot = SlotRef(level=0, is_inherent=False, enh=1, grade=0, io_level=49, relative_level=4)
-        with pytest.raises(ValueError, match="P-ENH-001"):
-            _compute_enh_multipliers(
-                [power],
-                slots={0: (slot,)},
-                enh_db={1: _res_rech_record()},
-                tables=tables,
-                force_level=50,
-                ctx=_ctx(tiny_mods, tiny_classes),
-            )
+        fx = make_effect(effect_type="Recovery", buffable=True)
+        assert _multiplier(fx, _res_rech_record(), 1, make_power, _ctx(tiny_mods, tiny_classes), tables) is None
+
+    def test_regeneration_debuff_resistance_takes_heal_without_ed(
+        self,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+    ) -> None:
+        # Only the Heal enhancement's allowed-effects list reaches this effect, and ED skips it.
+        fx = make_effect(effect_type="ResEffect", et_modifies="Regeneration", buffable=True)
+        single = tables.mult_io[49][int(Schedule.A)]
+        raw = f32(f32(f32(single + single) + single) + single)
+        got = _multiplier(fx, _record(("Heal", -1)), 4, make_power, _ctx(tiny_mods, tiny_classes), tables)
+        assert got == f32(1.0 + raw)
+
+    @pytest.mark.parametrize(("mez_type", "enhanced"), [("Held", True), ("Stunned", False)])
+    def test_mez_effect_takes_only_its_own_subtype(
+        self,
+        mez_type: str,
+        enhanced: bool,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+        enums: EnumMaps,
+    ) -> None:
+        held = enums.maps["eMez"]["Held"]
+        fx = make_effect(effect_type="Mez", mez_type=mez_type, buffable=True)
+        ctx = _ctx(tiny_mods, tiny_classes)
+        got = _multiplier(fx, _record(("Mez", held)), 1, make_power, ctx, tables)
+        assert (got is not None) is enhanced
+
+    @pytest.mark.parametrize(
+        ("effect_type", "fields"),
+        [("Mez", {"mez_type": "Held", "attrib_type": "Duration"}), ("Damage", {"damage_type": "Special"})],
+    )
+    def test_effects_whose_magnitude_mids_leaves_unenhanced(
+        self,
+        effect_type: str,
+        fields: dict[str, str],
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+        enums: EnumMaps,
+    ) -> None:
+        held = enums.maps["eMez"]["Held"]
+        fx = make_effect(effect_type=effect_type, buffable=True, **fields)
+        ctx = _ctx(tiny_mods, tiny_classes)
+        record = _record(("Mez", held), ("Damage", -1))
+        assert _multiplier(fx, record, 1, make_power, ctx, tables) is None
+
+
+class TestGlobalEnhancementFold:
+    """The build-wide enhancement buffs folded into every buffable effect after ED."""
+
+    @pytest.mark.parametrize(
+        ("fields", "bucket", "key"),
+        [
+            ({"effect_type": "Regeneration"}, "effect", ("eEffectType", "Regeneration")),
+            ({"effect_type": "Defense", "damage_type": "Cold"}, "defense", ("eDamage", "Cold")),
+            ({"effect_type": "Resistance", "damage_type": "Cold"}, "resistance", ("eDamage", "Cold")),
+            ({"effect_type": "Damage", "damage_type": "Cold"}, "damage", ("eDamage", "Cold")),
+            ({"effect_type": "Mez", "mez_type": "Held"}, "mez", ("eMez", "Held")),
+            ({"effect_type": "SpeedFlying", "scale": 1.0}, "effect", ("eEffectType", "SpeedFlying")),
+            ({"effect_type": "SpeedFlying", "scale": -1.0}, "effect_aux", ("eEffectType", "SpeedFlying")),
+            (
+                {"effect_type": "Enhancement", "et_modifies": "SpeedJumping", "scale": -1.0},
+                "effect_aux",
+                ("eEffectType", "SpeedJumping"),
+            ),
+            (
+                {"effect_type": "Enhancement", "et_modifies": "SpeedJumping", "scale": 1.0},
+                "effect",
+                ("eEffectType", "SpeedJumping"),
+            ),
+        ],
+    )
+    def test_global_term_is_added_after_ed(
+        self,
+        fields: dict[str, object],
+        bucket: str,
+        key: tuple[str, str],
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+        enums: EnumMaps,
+    ) -> None:
+        self_enhance = _new_buffs(enums)
+        getattr(self_enhance, bucket)[enums.maps[key[0]][key[1]]] = f32(0.25)
+        fx = make_effect(buffable=True, **fields)
+        ctx = _ctx(tiny_mods, tiny_classes)
+        got = _multiplier(fx, _record(), 0, make_power, ctx, tables, self_enhance)
+        assert got == f32(1.25)
+
+    @pytest.mark.parametrize(
+        "fields",
+        [
+            {"effect_type": "RechargeTime"},  # a scalar aspect: folded into the power, not the effect
+            {"effect_type": "Regeneration", "buffable": False},
+            {"effect_type": "SpeedFlying", "scale": 0.0},
+            {"effect_type": "Mez", "mez_type": "Held", "attrib_type": "Duration"},
+        ],
+    )
+    def test_global_term_skips(
+        self,
+        fields: dict[str, object],
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+        enums: EnumMaps,
+    ) -> None:
+        self_enhance = _new_buffs(enums)
+        for name in ("RechargeTime", "Regeneration", "SpeedFlying"):
+            self_enhance.effect[enums.maps["eEffectType"][name]] = f32(0.25)
+            self_enhance.effect_aux[enums.maps["eEffectType"][name]] = f32(0.25)
+        self_enhance.mez[enums.maps["eMez"]["Held"]] = f32(0.25)
+        fx = make_effect(**{"buffable": True, **fields})
+        ctx = _ctx(tiny_mods, tiny_classes)
+        assert _multiplier(fx, _record(), 0, make_power, ctx, tables, self_enhance) is None
+
+    def test_set_bonus_power_takes_no_global_term(
+        self,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        tables: MathTables,
+        enums: EnumMaps,
+    ) -> None:
+        self_enhance = _new_buffs(enums)
+        self_enhance.effect[enums.maps["eEffectType"]["Regeneration"]] = f32(0.25)
+        power = make_power(make_effect(effect_type="Regeneration", buffable=True), build_index=SET_BONUS_BUILD_INDEX)
+        mults = _compute_enh_multipliers(
+            [power],
+            slots={},
+            enh_db={},
+            tables=tables,
+            force_level=50,
+            ctx=_ctx(tiny_mods, tiny_classes),
+            self_enhance=self_enhance,
+        )
+        assert mults == {}
+
+    def test_global_speed_buff_reaches_fly_speed(
+        self,
+        make_effect: MakeEffect,
+        make_power: MakePower,
+        tiny_mods: AttribMods,
+        tiny_classes: ArchetypeDb,
+        enums: EnumMaps,
+        server: ServerData,
+        tables: MathTables,
+    ) -> None:
+        """A self Enhancement(SpeedFlying) in one power raises another power's fly speed."""
+        booster = make_power(
+            make_effect(effect_type="Enhancement", et_modifies="SpeedFlying", to_who="Self", scale=0.5), build_index=0
+        )
+        flight = make_power(
+            make_effect(effect_type="SpeedFlying", to_who="Self", buffable=True),
+            make_effect(index=1, effect_type="Fly", to_who="Self"),
+            build_index=1,
+            power_type="Toggle",
+        )
+        result = compute_base_totals(
+            [booster, flight],
+            class_name="Class_Test",
+            mods=tiny_mods,
+            classes=tiny_classes,
+            enums=enums,
+            config=PVE,
+            server=server,
+            slots={},
+            enh_db={},
+            tables=tables,
+        )
+        assert result.totals.fly_spd == f32(f32(1 + f32(1.5)) * server.base_fly_speed)
+
+
+class TestEnhancementGuards:
+    """The fail-loud guards that refuse builds the enhancement port cannot compute."""
 
     def test_partial_enhancement_inputs_raise(
         self, tiny_mods: AttribMods, tiny_classes: ArchetypeDb, enums: EnumMaps, server: ServerData
@@ -951,17 +1224,23 @@ class TestEnhancePass:
         assert buffs.boosts[etype["Accuracy"]] == f32(1.0)  # boost head still fires...
         assert buffs.effect[etype["Accuracy"]] == 0.0  # ...but the main routing drops Accuracy.
 
-    def test_speed_scalar_enhancement_raises(
+    @pytest.mark.parametrize(("buff_mode", "bucket"), [("Normal", "effect"), ("Debuff", "effect_aux")])
+    def test_speed_scalar_enhancement_splits_on_buff_mode(
         self,
+        buff_mode: str,
+        bucket: str,
         make_effect: MakeEffect,
         make_power: MakePower,
         tiny_mods: AttribMods,
         tiny_classes: ArchetypeDb,
         enums: EnumMaps,
     ) -> None:
-        power = make_power(make_effect(effect_type="Enhancement", et_modifies="SpeedRunning", to_who="Self"))
-        with pytest.raises(ValueError, match="E13"):
-            _run_enhance_pass(power, tiny_mods, tiny_classes, enums)
+        fx = make_effect(effect_type="Enhancement", et_modifies="SpeedRunning", to_who="Self", buff_mode=buff_mode)
+        buffs = _run_enhance_pass(make_power(fx), tiny_mods, tiny_classes, enums)
+        index = enums.maps["eEffectType"]["SpeedRunning"]
+        assert getattr(buffs, bucket)[index] == f32(1.0)
+        other = "effect_aux" if bucket == "effect" else "effect"
+        assert getattr(buffs, other)[index] == 0.0
 
     def test_mez_none_subtype_takes_boost_elif_and_mez_zero(
         self,
