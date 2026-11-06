@@ -28,6 +28,9 @@ The counts came from throwaway measuring scripts that were not kept; Phase 0's t
 - **Current game:** each claim is dated by its guide, the patch timeline in `data/patches/` is searched for later changes to the same power or set,
   and a short catalog of game-wide changes retires whole classes of advice. Each claim ends as keep, correct or drop, with the patch record that decided it.
 - **Authority, highest first:** hard limits and legality, the exemplar-10 gate, the goal profile's targets and caps, intent, then raw numeric strength.
+  Hard limits are the game's own boundary; the exemplar-10 gate is the house rule that every build plays at low level.
+  Goal targets are what the build is for (soft-capped defense, perma-Hasten, a melee-only Blaster), intent is the guides' claims, and raw numbers only break ties.
+- **Content mode decides what blocks.** The player chooses the content (casual or theme, standard, Hard Mode or 4-star); a claim blocks only where that content requires it (3.2).
 - **First phase:** a tested guide subject index plus the internal-to-display power name resolver (#48), run once the crawl ends. No model reading.
   It also produces the per-archetype gap split that decides which versions are filled by transfer and which by writing.
 
@@ -39,7 +42,7 @@ The counts came from throwaway measuring scripts that were not kept; Phase 0's t
 | --- | ---: | --- | --- |
 | `community/pre-sunset/` (crawl running) | 1,398 at count | 2004 to 2012 | 7,835 threads in the ledger; 1,405 captured, 6,179 "not guide-shaped", 248 "not build-related" |
 | `community/` live Homecoming captures | 123 (excluding `pre-sunset/`) | 2019 to 2026 | 2,296 ledger rows; 175 captured; 1,145 duplicate URL rows in the ledger |
-| `community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | the build files themselves are not in the repo (see 2.5) |
+| `community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | staged locally under `tmp/build-archives/`, not in the repo; 3,923 distinct by content hash (see 2.5) |
 
 Pre-sunset folders: `archetypes/` 985, `mechanics/` 288, `powersets/` 104, `theme/` 21.
 By year: 2005 104, 2006 178, 2007 149, 2008 115, 2009 111, 2010 269, 2011 324, 2012 135.
@@ -240,13 +243,21 @@ and the effects tables (which code generates from `data/canonical/`, the effects
 Numbers are not a claim type. A guide sentence with a number is reduced to its intent ("Hoarfrost can be made permanent") and becomes an engine question
 the engine answers for the build at hand. The original number is never stored as knowledge.
 
-### 3.2 Severity follows trust
+### 3.2 Severity follows trust and content mode
 
-A check's severity in the gate comes from the claim's trust, so weak knowledge cannot block a build:
+A player can build whatever they want. A check blocks only where the chosen content mode needs the role or power to be viable,
+and only when the claim is strong enough to be trusted. Severity for `first-party` and `community-consensus` claims:
 
-- `first-party` and `community-consensus` must-take and required-role claims are **blocking** in the gate.
-- `single-author-opinion` and written claims raise **warnings** only.
-- P-INTENT-002, 004 and 005 are warnings at every trust level; they are reported, not blocking.
+| Claim | Casual or theme | Standard | Hard Mode or 4-star |
+| --- | --- | --- | --- |
+| Required role unfilled (P-INTENT-003), such as no mitigation or recovery | warning | warning | **blocking** |
+| Must-take core-mechanic power missing (P-INTENT-001) | info | warning | **blocking** |
+| Skip power taken, pitfall present, slotting intent unmet (P-INTENT-002, 004, 005) | info | warning | warning |
+| Choices with no material effect, such as which travel powers | not checked | not checked | not checked |
+
+- `single-author-opinion` and written claims are one step lower in every cell, and never block.
+- The content mode is part of the playstyle choice (7.2), next to the goal profile; it is not inferred.
+- The matrix is a starting point, to be tuned as builds are scored and played.
 - **Transferred claims** (5.4) keep their source trust, capped at `community-consensus`. They block only when three conditions hold:
   the source claim would block on its own archetype, the power mapping is `same` or `scale_only`, and the transfer test (5.5) has passed for that set's category
   and that source-to-target archetype pairing. Otherwise they warn. A claim transferred from a guide with no attributed archetype always warns.
@@ -368,7 +379,8 @@ Every later stage cites `(file, content_hash)`, so a refreshed capture shows whi
 - **Era.** `date_posted` mapped to the live issue by the dated records in `data/patches/`; an Issue marker in the title overrides it.
 - **Power snippets.** Guides with a bold heading per power name are split into per-power snippets, so the model reads a snippet rather than a whole guide.
 - **Pick counts.** Parse each Mids forum export (`find_forum_export` already locates them in `scripts/forum_scrape/scrape.py`) into `(power, pick level, added slots)`.
-  Do the same for the build archive's `.mxd`/`.mbd` files with the engine's parsers once they are restaged (#43 covers the single-line share blocks).
+  Do the same for the build archive's `.mxd`/`.mbd` files with the engine's parsers (#43 covers the single-line share blocks).
+  The archive's `Mids Builds Archives 1905 FX` folder repeats Parts 1 and 2, so builds are folded by content hash before counting: 3,923 distinct builds, not 7,922.
   Count, per (AT, powerset, power), how often it is taken and at what level, by era. If 9 of 10 i25 builds take a power, it is load-bearing, with no model involved.
 - **Ranking.** Per powerset, rank guides by subject match, era (later first), length and structure, and author (one vote per author).
 
@@ -395,7 +407,9 @@ Rough size: about 130 primary and secondary sets with coverage, each packet near
   - `first-party` only for developer statements: patch-note text (a set's introduction "Highlights" are design intent) and developer posts.
   - `community-consensus` when three or more distinct authors across two or more guides agree, nothing later contradicts it, and the pick counts do not argue against it
     (for example, a must-take power taken in fewer than a third of builds).
-  - `single-author-opinion` otherwise.
+  - `single-author-opinion` otherwise, with `provenance: written` for claims written from scratch (5.6).
+- **Build-help threads.** The opening post is usually an unoptimized build; the revisions posted in replies carry more weight than it,
+  scaled by the replying author's standing and by how many other replies agree. A reply nobody backs stays a single-author opinion.
 - **Contradictions** are kept with both sides. A newer guide outranks an older one only after reconciliation (section 6) shows the game changed between them;
   otherwise a stable split becomes two playstyle variants rather than one winner.
 - A capture's own `trust` field is not used: every pre-sunset capture carries the default, and consensus is a property of the claim, not the file.
@@ -581,7 +595,8 @@ and returns a frozen `PlaystyleProfile`: every matching record from the manifest
 From each family record it takes every claim for the build's own archetype version: captured, transferred, written and skeleton alike, each with its own severity.
 Transferred claims and their test results are already materialized in the record by code, so the loader makes no transfer decisions at build time.
 
-- The playstyle choice is the only input a session gives: a variant ID per powerset (or `default`) and a goal profile from `build_profiles.json`.
+- The playstyle choice is the only input a session gives: a variant ID per powerset (or `default`), a goal profile from `build_profiles.json`,
+  and a content mode (casual or theme, standard, Hard Mode or 4-star) that sets each check's severity (3.2).
 - The session never names files, records or claims. Which knowledge applies is decided by the build's own powersets.
 - Refusals, following `error-output.md`: E82 when a powerset or archetype has no manifest entry; E83 when a record fails its schema, its hash, or its `game_build` check;
   E84 when the playstyle names a variant the record does not define.
@@ -608,6 +623,7 @@ No dispatcher changes: each item is a new registered function or a new metric na
   and E82 to E84 from the loader. There is no flag that turns the gate off.
 - **Waivers are explicit and visible.** A spec may waive one diagnostic by rule ID with a reason, using the `noqa: <rule-id> -- <reason>` convention in `error-output.md`.
   Hard-limit and legality errors cannot be waived. Waivers are written into the build's sidecar and listed in the CI report.
+  A waiver is the player relaxing the playstyle, so the report states when a waived check materially lowers the build's fitness for the chosen content mode.
 - **The sidecar.** Every emitted build gets `<build>.playstyle.json`: the playstyle choice, the record hashes it was checked against, the diagnostics, and any waivers.
   The forum-export Markdown (B6) is rendered from the same written build, so it cannot exist without passing the gate.
 - **CI.** A job runs the same `validate` and `score` over every committed build under `samples/builds/generated/` and `samples/builds/operator-builds/` against its sidecar,
@@ -674,27 +690,36 @@ so the first real record changes builds the day it lands.
 - **Old advice that looks current.** The 2012 to 2019 gap has no patch records; direct comparison with canonical data catches changed powers, not changed play.
 - **Patch tagging errors** (wiki lines untagged, heading carry-over) feed reconciliation; the tagger needs its own checked sample.
 - **The data lags the game.** Until #20 lands, the two newest sets and the 2026 cap changes cannot be computed, and records target an old build.
-- **Intent against numbers.** A playstyle can demand a power the numbers rate weak. The order of authority settles it, but the user should confirm that order.
+- **Intent against numbers.** A playstyle can demand a power the numbers rate weak. The order of authority (section 1) settles it.
 - **Transfer carries a wrong idea further.** A mistaken source claim spreads to every version. Transferred claims regenerate from their source, so one fix corrects them all.
 - **A small test set.** At this snapshot only 14 sets have three or more own guides on two archetypes, almost all with Brutes or Blasters as one side.
   Many category and pairing cells will be unjudged, and their transferred claims will warn, until the crawl adds the other archetype forums.
 - **Inherents the engine does not model.** Hide, Gauntlet's taunt and Domination's control effects are not in the engine, so claims resting on them can only be demoted, not checked.
 - **Mapping by position can mislead** when two versions order their powers differently; the effect diff catches most of it, and `mechanic` mappings never transfer a check.
 
-### 9.2 Questions for the user
+### 9.2 Decisions and open questions
 
-1. **Use of forum text.** The forum's signal is `ai-train=no, use=reference`. Is model reading of captured guides to write attributed, quoted claims inside reference use as you read it?
-2. **Reconcile target.** Reconcile against the engine's data build after #20 refreshes it (recommended), or against today's patch notes even where the engine cannot compute them?
-3. **Trust for written claims.** Reuse `single-author-opinion` with `provenance: written` (recommended), or add a fourth trust value?
-4. **The build archive.** `builds_archive_index.json` points at `scratch/build-archives`, which is not in the checkout. Where are the 7,922 files, and may they be restaged?
-5. **Archive copies.** The index lists many folders twice (`Mids Archives - Part 1/...` and `Mids Builds Archives 1905 FX/Mids Archives/...`). Fold them by content hash?
-6. **The missing framework memory.** Issues #35 and #36 cite `project_at_powerset_framework.md`, which does not exist. Are the issue templates the whole framework?
-7. **Order of authority.** Confirm: hard limits, exemplar-10 gate, goal targets, intent, numbers.
-8. **Blocking threshold.** Is "consensus or first-party must-take and required-role claims block; everything else warns" the right line?
-9. **Waivers.** Should any intent diagnostic be waivable, or should a disagreement always go back into the record?
-10. **Dominator onramp sequencing.** #35 to #37 are marked post-CP10. Should the Arsenal pilot in Phase 4 wait for that?
-11. **Optimizer scope.** Widen #21 to include the power plan, or file the power plan separately?
-12. **Pools and epics.** Not measured here. Should they get records in the first pass, or skeletons until after the primaries and secondaries?
-13. **Transfer pass bar.** Are 80% claim agreement, no opposite verdicts, rank correlation 0.6 and the 70% must-take build share the right bar, and is three test pairs enough to judge a pairing?
-14. **Transferred trust.** Keep source trust capped at `community-consensus` and block only after the test passes (recommended), or never let transferred claims block?
-15. **Power-level transfer across sets.** Should claims move between differently named sets that share a power (Dark Blast to Dark Assault, for example), or only between versions of one set?
+Decided 2026-10-29. The body of this design reflects each decision; the section that carries it is named in brackets.
+
+1. **Use of forum text.** Model reading of captured guides to write attributed, quoted claims is reference use: what a player reads, learns and applies.
+2. **Reconcile target.** The engine's data and real builds. Until builds are played and tuned, technical feasibility is the only check available.
+3. **Trust for written claims.** `single-author-opinion` with `provenance: written`; build-help replies outweigh the opening build (4.4).
+4. **The build archive.** Staged under `tmp/build-archives/`, gitignored (2.1).
+5. **Archive copies.** Folded by content hash: 3,923 distinct builds (4.2).
+6. **The framework memory.** Removed and not restored. The templates in the #35 and #36 issue bodies are the framework.
+7. **Order of authority.** Accepted as listed, with content mode as a separate input (1). To be refined as the gate is used.
+8. **Blocking threshold.** The content-mode matrix replaces the trust-only line (3.2). To be refined as the gate is used.
+9. **Waivers.** Allowed with a reason; the report states material impact on the chosen content mode (7.3).
+10. **Arsenal pilot sequencing.** Phase 4 does not wait for CP10: the pilot is written from game data and does not need #22.
+13. **Transfer pass bar.** Accepted as the starting bar; three test pairs are enough to judge a pairing.
+14. **Transferred trust.** Capped at `community-consensus`; blocking only after the transfer test passes (3.2).
+16. **Where the source material lives.** `community/`, the pre-sunset crawl and the build archive move to a separate private repository (#91).
+    This repository keeps the code and a manifest of each source's URL, title, date and content hash. Paths in this design change when the move lands.
+
+Still open:
+
+11. **Optimizer scope.** #21 searches slots and enhancements for a fixed list of picks. Should it also choose the 24 picks and their levels (7.4 step 1),
+    or does picking get its own issue that runs before #21?
+12. **Pools and epics.** Phase 0 measured only primaries and secondaries. Do pool and epic sets get placeholder records in the first pass,
+    with claims added after the primaries and secondaries, or are they left out of the knowledge until then?
+15. **Power-level transfer across sets.** Should claims move between differently named sets that share a power (Dark Blast to Dark Assault), or only between versions of one set?

@@ -1,0 +1,22 @@
+{
+  "name": "Sonic_Aura",
+  "display_name": "Sonic Aura",
+  "display_fullname": "Redirects.Sonic Aura",
+  "display_help": "You can use your ability to manipulate sound and vibrations to protect yourself from incoming attacks as well as debuff the resistances of enemies around you. Although you specialize in preventing damage, you also can use various techniques to slowly regenerate and recover health over time.",
+  "display_short_help": "Sonic Aura",
+  "available_level": [
+    0
+  ],
+  "source_file": "DEFS/POWERS/REDIRECTS/SONIC_AURA.POWERSETS",
+  "icon": "brute_melee_set.ico",
+  "requires": "",
+  "power_names": [
+    "Redirects.Sonic_Aura.Disruption_Strike"
+  ],
+  "power_display_names": [
+    "Disruption Strike"
+  ],
+  "power_short_helps": [
+    "Toggle: Self +Res(Fire, Cold), Special"
+  ]
+}

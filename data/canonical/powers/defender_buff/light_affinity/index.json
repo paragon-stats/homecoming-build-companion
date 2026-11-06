@@ -1,0 +1,54 @@
+{
+  "name": "Light_Affinity",
+  "display_name": "Light Affinity",
+  "display_fullname": "Defender Buff.Light Affinity",
+  "display_help": "You can focus and refract beams of light to protect your allies and hamper your foes. Your Beams of light can charge up to Radiant Beams, casting new effects on everyone in range.",
+  "display_short_help": "Light Affinity",
+  "available_level": [
+    0,
+    0,
+    1,
+    5,
+    7,
+    11,
+    17,
+    21,
+    25
+  ],
+  "source_file": "DEFS/POWERS/DEFENDER_BUFF/LIGHT_AFFINITY.POWERSETS",
+  "icon": "kinetics_set.ico",
+  "requires": "",
+  "power_names": [
+    "Defender_Buff.Light_Affinity.Protective_Beam",
+    "Defender_Buff.Light_Affinity.Blinding_Beam",
+    "Defender_Buff.Light_Affinity.Mirror_Image",
+    "Defender_Buff.Light_Affinity.Clarifying_Beam",
+    "Defender_Buff.Light_Affinity.Lightfield",
+    "Defender_Buff.Light_Affinity.Magnify",
+    "Defender_Buff.Light_Affinity.Searing_Beam",
+    "Defender_Buff.Light_Affinity.Spotlight",
+    "Defender_Buff.Light_Affinity.Sanctuary_of_Light"
+  ],
+  "power_display_names": [
+    "Protective Beam",
+    "Blinding Beam",
+    "Radiance",
+    "Purifying Beam",
+    "Lightfield",
+    "Magnify",
+    "Searing Beam",
+    "Spotlight",
+    "Prismatic Shield"
+  ],
+  "power_short_helps": [
+    "Ally +Absorb, +Def (All)",
+    "Ranged Foe Hold, -ToHit, -Perception",
+    "Self +Special, Ally (+DMG, +ToHit, +End, +Perception), RES (ToHit, Perception)",
+    "Ally Heal, +Res (Energy, Negative)",
+    "Toggle: PBAoE Team +Res(Hold, Immobilize, Disorient), +Absorb",
+    "Ally +DMG, +Mez Duration, +Radius, +Range, +Healing/Absorb, +Res (DMG)",
+    "Ranged Foe -Regeneration, -Special, -Res (DMG), Fire DoT, Special vs. Undead",
+    "Toggle: Ally, +Absorb over time, +Heal over time, +Res (Mez, Knock, Debuff),+Str (Taunt)",
+    "Summon Prismatic Shield, Ally (+Def, +Res (DMG, Def)), Foe -DMG"
+  ]
+}
