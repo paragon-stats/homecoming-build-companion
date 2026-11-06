@@ -34,6 +34,8 @@ def test_supplemented_set_loads_and_its_links_resolve(directory: str) -> None:
     index = json.loads((CANONICAL / directory / "index.json").read_text(encoding="utf-8"))
     names = index["power_names"]
     powers = load_canonical_powers(CANONICAL / "powers", names)
+    unlisted = sorted(n for n, p in powers.items() if not isinstance(p["allowed_boostset_cats"], list))
+    assert not unlisted, f"E97: allowed_boostset_cats is not a list in {unlisted}; City of Data writes [] when empty"
     category = directory.split("/")[1]
     if category not in ("redirects", "pets"):
         internal = names[0].rsplit(".", 1)[0]

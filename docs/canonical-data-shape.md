@@ -32,6 +32,7 @@ Sidekick's JSON differs from City of Data's, so these fields were rewritten to C
 
 - `requires` and `requires_expression` are postfix token lists in Sidekick and infix strings here, for example `target>enttype eq 'critter'`.
 - `allowed_set_categories`, `num_allowed` and `priority_list` are renamed to `allowed_boostset_cats`, `number_allowed` and `priorities`.
+- A null `allowed_set_categories` becomes `[]`, which is how City of Data writes a power that takes no sets.
 - `effect_area` `Sphere` becomes `AoE`; `target_type` and `boosts_allowed` take City of Data's display names, such as `Foe (Alive)` and `Enhance Heal`.
 - Each set `index.json` is rebuilt with City of Data's keys (`name`, `display_help`, `power_names` and the rest).
 
