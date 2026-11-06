@@ -1,0 +1,26 @@
+{
+  "name": "Sonic_Aura",
+  "display_name": "Sonic Aura",
+  "display_fullname": "Pets.Sonic Aura",
+  "display_help": "Sonic Aura",
+  "display_short_help": "Sonic Aura",
+  "available_level": [
+    0,
+    0
+  ],
+  "source_file": "DEFS/POWERS/PETS/SONIC_AURA.POWERSETS",
+  "icon": "sonicaura_sonicboom",
+  "requires": "",
+  "power_names": [
+    "Pets.Sonic_Aura.Sonic_Boom",
+    "Pets.Sonic_Aura.Sonic_Boom_Teleport"
+  ],
+  "power_display_names": [
+    "Sonic Boom",
+    "Sonic Boom"
+  ],
+  "power_short_helps": [
+    "PBAoE Moderate DMG(Energy), Foe Knockdown; Self/Foe Teleport",
+    "PBAoE Moderate DMG(Energy), Foe Knockdown; Self/Foe Teleport"
+  ]
+}
