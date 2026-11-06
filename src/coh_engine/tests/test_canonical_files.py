@@ -3,9 +3,14 @@
 import json
 from pathlib import Path
 
-from coh_engine.attack_profile import canonical_power_path, load_canonical_powers
+import pytest
+
+from coh_engine.attack_profile import canonical_power_path, canonical_resolver, load_canonical_powers
+from coh_engine.power_names import PowerNameResolver
 
 CANONICAL = Path(__file__).parents[3] / "data" / "canonical"
+SUPPLEMENTS = json.loads((CANONICAL / "manifest.json").read_text(encoding="utf-8")).get("supplements", [])
+SUPPLEMENT_DIRS = [d for s in SUPPLEMENTS for d in s["directories"]]
 
 
 def test_no_canonical_file_is_zero_bytes() -> None:
@@ -22,3 +27,23 @@ def test_every_colon_power_resolves() -> None:
     names = [json.loads(canonical_power_path(powers, low).read_text(encoding="utf-8"))["full_name"] for low in lowered]
     assert [n.lower() for n in names] == lowered
     assert set(load_canonical_powers(powers, names)) == set(names)
+
+
+@pytest.mark.parametrize("directory", SUPPLEMENT_DIRS)
+def test_supplemented_set_loads_and_its_links_resolve(directory: str) -> None:
+    index = json.loads((CANONICAL / directory / "index.json").read_text(encoding="utf-8"))
+    names = index["power_names"]
+    powers = load_canonical_powers(CANONICAL / "powers", names)
+    category = directory.split("/")[1]
+    if category not in ("redirects", "pets"):
+        internal = names[0].rsplit(".", 1)[0]
+        listed = {ps.internal: ps for ps in PowerNameResolver.from_canonical(CANONICAL).powersets()}
+        assert internal in listed, (
+            f"E95: {internal} from {directory} is not a player powerset; check its category index"
+        )
+        assert [p.internal for p in listed[internal].powers] == names
+    resolve = canonical_resolver(CANONICAL / "powers")
+    params = [t.get("params") or {} for p in powers.values() for e in p["effects"] for t in e["templates"]]
+    links = {link for p in params for key in ("power_names", "redirects") for link in p.get(key) or ()}
+    missing = sorted(link for link in links if resolve(link) is None)
+    assert not missing, f"E96: {directory} links to {len(missing)} powers with no canonical file: {missing}"

@@ -63,5 +63,32 @@
     "Canonical Homecoming game data from City of Data v3 raw-data export.",
     "Format is CoD's snake_case JSON. See docs/canonical-data-shape.md for field reference.",
     "Powers reference each other and set bonuses by full path (e.g. set_bonus.set_bonus.luck_of_the_gambler)."
+  ],
+  "supplements": [
+    {
+      "powerset": "Light_Affinity",
+      "reason": "Added in Issue 28 Page 4, after the City of Data dump; that dump has no Light Affinity.",
+      "source": {
+        "project": "https://github.com/wednesdaywoe/CoH-Sidekick",
+        "commit": "fd4a2ee0ce896d99e197fc41ca4453574b6d1b1d",
+        "path": "exported_powers/<category>/light_affinity, exported_powers/redirects/light_affinity",
+        "exporter": "bin-crawler-export-manifest/3, parser_fingerprint a3935ddbb467983b773c22642b0fa78685d007e33f4d2e5f70e809f73d2bc625",
+        "client_bins": {
+          "assets/live/bin.pigg": "ae5752be81cc73eeb297c3216633f54c45eec263fb9f5e06e58c9ea103c5d089",
+          "assets/live/bin_powers.pigg": "cdacbd77e1029369c659c4783bc08d37c0c0941917b77074b96ebd86391b3a51",
+          "assets/live/bin_fxinfo.pigg": "d9613446c7c20bd25a1f685cae6599d431c730c83d50ba38af56f9b87dd5acee"
+        },
+        "client_bins_modified": "2026-10-17"
+      },
+      "directories": [
+        "powers/controller_buff/light_affinity",
+        "powers/corruptor_buff/light_affinity",
+        "powers/defender_buff/light_affinity",
+        "powers/mastermind_buff/light_affinity",
+        "powers/redirects/light_affinity"
+      ],
+      "file_count": 55,
+      "converted": "See docs/canonical-data-shape.md, section Supplementary powersets."
+    }
   ]
 }
