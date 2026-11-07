@@ -1,0 +1,29 @@
+{
+  "$schema": "https://alirezanet.github.io/Husky.Net/schema.json",
+  "tasks": [
+    {
+      "name": "dotnet-format",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["format", "--verify-no-changes", "--severity", "error"]
+    },
+    {
+      "name": "check-encoding",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/check-encoding.cs"]
+    },
+    {
+      "name": "build",
+      "group": "pre-push",
+      "command": "dotnet",
+      "args": ["build", "--nologo"]
+    },
+    {
+      "name": "test",
+      "group": "pre-push",
+      "command": "dotnet",
+      "args": ["test", "--no-build"]
+    }
+  ]
+}

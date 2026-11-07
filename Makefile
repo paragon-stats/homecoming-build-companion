@@ -80,6 +80,26 @@ validate: ## Validate a build JSON (validator not yet implemented). Usage: make 
 	@echo "error: E01: build validator not yet implemented (Phase 6); no scripts.build_validator module exists — track progress in docs/engine/mids-port-spec.md (CP6 legality)"; exit 1
 
 # ---------------------------------------------------------------------------
+# .NET solution (CohEngine.slnx)
+# ---------------------------------------------------------------------------
+
+.PHONY: dotnet-build
+dotnet-build: ## Build the .NET solution (warnings are errors)
+	dotnet build -warnaserror
+
+.PHONY: dotnet-test
+dotnet-test: ## Run the .NET tests
+	dotnet test
+
+.PHONY: dotnet-format
+dotnet-format: ## Verify .NET formatting (dotnet format --verify-no-changes)
+	dotnet format --verify-no-changes --severity error
+
+.PHONY: dotnet-publish
+dotnet-publish: ## Publish the Native AOT win-x64 CLI
+	dotnet publish src/CohEngine.Cli -c Release -r win-x64
+
+# ---------------------------------------------------------------------------
 # Help
 # ---------------------------------------------------------------------------
 
