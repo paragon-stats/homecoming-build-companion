@@ -39,15 +39,7 @@ Secret scanning, non-provider patterns and push protection are free on public re
 If the non-provider patterns setting is rejected, enable `secret_scanning` and `secret_scanning_push_protection` only.
 
 ```bash
-gh api -X PATCH repos/paragon-stats/homecoming-build-companion --input - <<'JSON'
-{
-  "security_and_analysis": {
-    "secret_scanning": { "status": "enabled" },
-    "secret_scanning_non_provider_patterns": { "status": "enabled" },
-    "secret_scanning_push_protection": { "status": "enabled" }
-  }
-}
-JSON
+gh api -X PATCH repos/paragon-stats/homecoming-build-companion --input docs/ci/github-rulesets/security-and-analysis.json
 ```
 
 Verify:
