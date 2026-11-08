@@ -9,6 +9,10 @@ public static class BuildFileFixtures
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
     private static readonly Lazy<IReadOnlyDictionary<int, string>> PowerIndexValue = new(() => DbIndex.LoadPowerIndex(Path.Combine(Store.MidsDirectory, "power_static_index.json")));
     private static readonly Lazy<IReadOnlyDictionary<int, EnhIndexEntry>> EnhIndexValue = new(() => DbIndex.LoadEnhancementIndex(Path.Combine(Store.MidsDirectory, "enhancements.json")));
+    private static readonly Lazy<MbdDb> DatabaseValue = new(() => Mbd.LoadMbdDb(Store.MidsDirectory));
+
+    /// <summary>Gets the reference tables a <c>.mbd</c> is checked and resolved against.</summary>
+    public static MbdDb Database => DatabaseValue.Value;
 
     /// <summary>Gets <c>tests/fixtures/buildfile</c>.</summary>
     public static string Root { get; } = Path.Combine(Store.Root, "buildfile");
