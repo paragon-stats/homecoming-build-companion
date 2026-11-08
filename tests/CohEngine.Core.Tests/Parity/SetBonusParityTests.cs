@@ -80,6 +80,61 @@ public sealed class SetBonusParityTests
         Assert.Empty(VirtualPower(name).Effects);
     }
 
+    [Theory]
+    [MemberData(nameof(SetBonusBuilds))]
+    public void Set_bonus_totals_match_mids(string name)
+    {
+        BaseTotals result = SetTotals(name);
+        MidsTotals expected = Fixtures.Store.Build(name).Totals;
+        EngineRun.CompareTotals(expected.Totals, result.Totals, $"{name}.Totals", EngineRun.NotCompared);
+        EngineRun.CompareTotals(expected.TotalsCapped, result.TotalsCapped, $"{name}.TotalsCapped", EngineRun.NotCompared);
+    }
+
+    [Fact]
+    public void Global_endurance_discount_folds_into_toggle_end_use()
+    {
+        // Reactive Defenses' 5-piece grants a global endurance discount that folds into every running toggle's cost.
+        BaseTotals result = SetTotals(GlobalEndRdxBuild);
+        TotalStatistics expected = Fixtures.Store.Build(GlobalEndRdxBuild).Totals.Totals;
+        ParityAssert.Equal(expected.BuffEndRdx, result.Totals.BuffEndRdx, "BuffEndRdx");
+        Assert.True(result.Totals.BuffEndRdx > 0.0);
+        ParityAssert.Equal(expected.EndUse, result.Totals.EndUse, "EndUse");
+    }
+
+    [Fact]
+    public void Set_db_is_a_no_op_without_set_ios()
+    {
+        BuildInputs inputs = new("shield_scrapper_slotted");
+        BaseTotals without = EngineRun.Totals(inputs, EngineRun.Slotted(inputs));
+        BaseTotals withSetDb = EngineRun.Totals(inputs, EngineRun.Slotted(inputs) with { SetDb = Fixtures.Store.SetBonuses });
+        BaseTotalsParityTests.AssertSame(without.Totals, withSetDb.Totals);
+        BaseTotalsParityTests.AssertSame(without.TotalsCapped, withSetDb.TotalsCapped);
+    }
+
+    [Fact]
+    public void Set_db_without_slots_is_refused()
+    {
+        BuildInputs inputs = new(SetBonusBuild);
+        ArgumentException error = Assert.Throws<ArgumentException>(() => EngineRun.Totals(inputs, new Pipeline.BuildOptions { SetDb = Fixtures.Store.SetBonuses }));
+        Assert.StartsWith("E14: set_db was supplied but slots and enh_db is None", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void An_illegal_set_piece_is_refused_before_any_total()
+    {
+        BuildInputs inputs = new(SetBonusBuild);
+        Power[] rejecting = [.. inputs.Powers.Select(power => power with { SetTypes = [] })];
+        Pipeline.BuildOptions options = EngineRun.Slotted(inputs) with { SetDb = Fixtures.Store.SetBonuses };
+        InvalidDataException error = Assert.Throws<InvalidDataException>(() => Pipeline.ComputeBaseTotals(rejecting, inputs.ClassName, EngineRun.Data, options));
+        Assert.StartsWith("H-ENH-001", error.Message, StringComparison.Ordinal);
+    }
+
+    private static BaseTotals SetTotals(string name)
+    {
+        BuildInputs inputs = new(name);
+        return EngineRun.Totals(inputs, EngineRun.Slotted(inputs) with { SetDb = Fixtures.Store.SetBonuses });
+    }
+
     private static Power VirtualPower(string name)
     {
         BuildInputs inputs = new(name);
