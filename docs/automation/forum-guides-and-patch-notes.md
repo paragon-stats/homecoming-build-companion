@@ -6,12 +6,16 @@ own fetch layer (robots.txt, one global delay, the declared user agent) and resu
 ## Guides
 
 ```bash
-python -m scripts.forum_scrape.guides --forum https://forums.homecomingservers.com/forum/44-guides/ --out community
+python -m scripts.forum_scrape.guides --forum https://forums.homecomingservers.com/forum/44-guides/
 ```
 
+Captures go to `<source root>/community/`. The source root is the private checkout named by `--source-root`,
+else `COH_SOURCE_ROOT`, else `../homecoming-source-material`; a missing directory exits with `E04`.
+`--out` overrides the destination.
+
 Walks the listing, fetches each thread's opening post, keeps the ones shaped like a guide, and
-writes each as `community/<folder>/<slug>.md` in the manual capture format
-([`community/CAPTURE.md`](../../community/CAPTURE.md)): the same frontmatter, a `## Summary`
+writes each as `<source root>/community/<folder>/<slug>.md` in the manual capture format
+(`<source root>/community/CAPTURE.md`): the same frontmatter, a `## Summary`
 stub to fill in on review, and the opening post verbatim with tables kept as rows.
 
 - A guide is an opening post of 500 or more words whose bold labels, list items and tables
@@ -52,7 +56,7 @@ After a change to how captures are placed (the archetype, powerset and theme rul
 the captures already on disk without fetching anything:
 
 ```bash
-python -m scripts.forum_scrape.guides --reclassify --out community
+python -m scripts.forum_scrape.guides --reclassify
 ```
 
 Only the captures whose folder changes move; each takes the new folder's lead tag, keeps every
@@ -62,7 +66,7 @@ section a thread was found in; a row written before it did keeps the archetype o
 capture root with its own ledger, is not touched; a move onto an existing file is named (`E70`)
 and skipped.
 
-After a run, regenerate `community/INDEX.md` with `scripts/regen-index.ps1` and review the
+After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
 
 ### The pre-sunset forum archive
@@ -75,7 +79,7 @@ capture's `source`, and the era is kept apart by its own output root and a tag:
 ```bash
 python -m scripts.forum_scrape.guides --base https://forumarchive.cityofheroes.dev \
   --forum "https://forumarchive.cityofheroes.dev/index.php?/forum/44-player-guides/" \
-  --tag pre-sunset --out community/pre-sunset
+  --tag pre-sunset --out "<source root>/community/pre-sunset"
 ```
 
 - The archive publishes no `robots.txt` and no terms; its operator is unnamed. Contact outcome:

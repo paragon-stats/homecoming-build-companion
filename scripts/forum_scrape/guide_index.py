@@ -1,6 +1,6 @@
 """Index the captured guides by subject and report which powersets and archetypes they cover.
 
-Stage 0 freezes the input: every capture under ``community/`` and ``community/pre-sunset/``
+Stage 0 freezes the input: every capture under ``<source root>/community/`` and ``<source root>/community/pre-sunset/``
 with its ``content_hash``, duplicate hashes and URLs folded. Stage 1 labels each capture with
 no model: document type, archetype, the powersets and powers it names, and the issue live
 when it was posted. The coverage report then says, per powerset and per (powerset, archetype)
@@ -15,12 +15,12 @@ Pool sets are left out of the subject match: their names are ordinary words ("Sp
 
 Usage::
 
-    python -m scripts.forum_scrape.guide_index
+    python -m scripts.forum_scrape.guide_index [--source-root PATH]
 
 Writes ``guides.jsonl``, ``folded.jsonl`` and ``coverage.json`` under ``knowledge/coh/_work``.
 Output is sorted, so a re-run on the same captures writes the same bytes.
 
-Errors: E23 no captures under the root, E24 a capture skipped for unreadable front matter,
+Errors: E04 source root missing, E23 no captures under the root, E24 a capture skipped for unreadable front matter,
 E25 no dated issue records in the patch index.
 """
 
@@ -50,6 +50,7 @@ from scripts.forum_scrape.guides import (
 )
 from scripts.forum_scrape.scoring import REQUEST_TITLE
 from scripts.forum_scrape.scrape import find_forum_export
+from scripts.forum_scrape.source_root import add_source_root_argument, source_root
 
 BODY_MIN_MENTIONS = 3
 TRANSFER_MIN_GUIDES = 3
@@ -237,19 +238,12 @@ def _archetype_of(parts: tuple[str, ...], title: str) -> str:
     return folder or archetype_in(title)
 
 
-def build_index(
-    community: Path,
-    resolver: PowerNameResolver,
-    timeline: list[tuple[str, str]],
-    aliases: Mapping[str, str] = ALIASES,
-) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
-    """``(rows, folded)``: one row per distinct capture, and the captures folded into another."""
-    groups = _group(resolver)
-    ledgers = {
-        era: {str(r["file"]): str(u) for u, r in _ledger(root).items() if r.get("file")}
-        for era, root in _roots(community)
-    }
-    captures: list[tuple[str, str, str, dict[str, str], str, str]] = []
+Capture = tuple[str, str, str, dict[str, str], str, str]
+
+
+def load_captures(community: Path) -> list[Capture]:
+    """``(relative, era, inner, keys, body, text)`` per capture, live ones first so a duplicate keeps the live one."""
+    captures: list[Capture] = []
     for path in sorted(community.rglob("*.md")):
         relative = path.relative_to(community).as_posix()
         text = path.read_text(encoding="utf-8")
@@ -261,8 +255,28 @@ def build_index(
             continue
         era = PRE_SUNSET if relative.startswith(PRE_SUNSET + "/") else "live"
         captures.append((relative, era, relative.removeprefix(PRE_SUNSET + "/"), keys, body, text))
-    # Live captures first, so a duplicate keeps the live one.
     captures.sort(key=lambda c: (c[1] == PRE_SUNSET, c[0]))
+    return captures
+
+
+def ledger_urls(community: Path) -> dict[str, dict[str, str]]:
+    """Per era, the topic URL each ledger recorded for a capture file."""
+    return {
+        era: {str(r["file"]): str(u) for u, r in _ledger(root).items() if r.get("file")}
+        for era, root in _roots(community)
+    }
+
+
+def build_index(
+    community: Path,
+    resolver: PowerNameResolver,
+    timeline: list[tuple[str, str]],
+    aliases: Mapping[str, str] = ALIASES,
+) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
+    """``(rows, folded)``: one row per distinct capture, and the captures folded into another."""
+    groups = _group(resolver)
+    ledgers = ledger_urls(community)
+    captures = load_captures(community)
 
     rows: list[dict[str, Any]] = []
     folded: list[dict[str, str]] = []
@@ -363,12 +377,13 @@ def main(argv: list[str] | None = None) -> int:
         prog="python -m scripts.forum_scrape.guide_index",
         description="Index the captured guides by subject and report powerset coverage.",
     )
-    parser.add_argument("--community", type=Path, default=Path("community"), help="capture root (default community)")
+    add_source_root_argument(parser)
     parser.add_argument("--out", type=Path, default=Path("knowledge/coh/_work"), help="output folder")
     parser.add_argument("--canonical", type=Path, default=Path("data/canonical"), help="canonical data")
     parser.add_argument("--patches", type=Path, default=Path("data/patches"), help="dated patch records")
     args = parser.parse_args(argv)
 
+    community = source_root(args.source_root) / "community"
     timeline = issue_timeline(args.patches)
     if not timeline:
         print(
@@ -376,9 +391,9 @@ def main(argv: list[str] | None = None) -> int:
             file=sys.stderr,
         )
     resolver = PowerNameResolver.from_canonical(args.canonical)
-    rows, folded = build_index(args.community, resolver, timeline)
+    rows, folded = build_index(community, resolver, timeline)
     if not rows:
-        print(f"E23: no captures under {args.community}; expected community/**/*.md with front matter", file=sys.stderr)
+        print(f"E23: no captures under {community}; expected **/*.md with front matter", file=sys.stderr)
         return 1
     write_outputs(args.out, rows, folded, build_coverage(rows, resolver))
     print(f"{len(rows)} capture(s) indexed, {len(folded)} folded, written to {args.out}")

@@ -62,9 +62,8 @@ homecoming-build-companion/
 │   ├── schema.json            JSON Schema for CharacterBuildData
 │   └── samples/               Sample builds: .mxd + .json + .forum.txt + .datalink.txt + sidecar
 ├── strategy/                  Curated tables: breakpoints, attack chains, set-bonus stacking rules
-└── community/                 Curated forum/wiki captures (manual, attributed)
-    ├── CAPTURE.md             How to add a new capture
-    └── INDEX.md               Auto-generated index of all captures
+└── data/source-material/      Manifest of the forum captures; the captures live in a private repository
+    └── manifest.json          One row per capture: URL, title, date, archetype, content hash
 ```
 
 ---
@@ -76,7 +75,8 @@ When a build question comes up:
 1. **For game-truth facts** ("what does this power actually do?", "what's the recharge of Foot Stomp?") — cite [data/canonical/](data/canonical/).
 2. **For build math and slotting validity** ("does this enhancement go in this power?", "what's the level rule?", "what's the set bonus piece count?") — cite [data/mids/](data/mids/).
 3. **For mechanics and strategy** ("how do procs scale?", "what's a soft-cap?", "how do attack chains work?") — cite [docs/](docs/).
-4. **For player-validated wisdom** ("is this build approach actually good?", "what's the meta?") — cite [community/](community/) and weigh by the `trust` and `date_posted` frontmatter fields.
+4. **For player-validated wisdom** ("is this build approach actually good?", "what's the meta?") — cite the captures in the private source-material checkout (listed in [data/source-material/](data/source-material/)).
+Weigh them by the `trust` and `date_posted` frontmatter fields.
 5. **When sources disagree** — say so explicitly. Prefer canonical for raw numbers, prefer Mids for slotting validity, prefer community for strategy. Never hide a discrepancy.
 6. **When proposing a build** — produce JSON conforming to [build-format/schema.json](build-format/schema.json). Paste into MidsReborn's File → Open or the Modern JSON load path.
 

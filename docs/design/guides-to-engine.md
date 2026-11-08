@@ -2,6 +2,7 @@
 
 Status: design, not yet started. Measured on 2026-10-27 while the pre-sunset crawl was still writing.
 Every count below is a snapshot; the crawl adds files until it finishes, so re-run the counts then.
+The source material has since moved to a private checkout (#91); paths below read `<source root>/community/` unless noted.
 
 The counts came from throwaway measuring scripts that were not kept; Phase 0's tested guide index reproduces them.
 
@@ -40,9 +41,9 @@ The counts came from throwaway measuring scripts that were not kept; Phase 0's t
 
 | Source | Files | Span | Notes |
 | --- | ---: | --- | --- |
-| `community/pre-sunset/` (crawl running) | 1,398 at count | 2004 to 2012 | 7,835 threads in the ledger; 1,405 captured, 6,179 "not guide-shaped", 248 "not build-related" |
-| `community/` live Homecoming captures | 123 (excluding `pre-sunset/`) | 2019 to 2026 | 2,296 ledger rows; 175 captured; 1,145 duplicate URL rows in the ledger |
-| `community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | staged locally under `tmp/build-archives/`, not in the repo; 3,923 distinct by content hash (see 2.5) |
+| `<source root>/community/pre-sunset/` (crawl running) | 1,398 at count | 2004 to 2012 | 7,835 threads in the ledger; 1,405 captured, 6,179 "not guide-shaped", 248 "not build-related" |
+| `<source root>/community/` live Homecoming captures | 123 (excluding `pre-sunset/`) | 2019 to 2026 | 2,296 ledger rows; 175 captured; 1,145 duplicate URL rows in the ledger |
+| `<source root>/community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | archive under `<source root>/build-archives/`, not in this repo; 3,923 distinct by content hash (see 2.5) |
 
 Pre-sunset folders: `archetypes/` 985, `mechanics/` 288, `powersets/` 104, `theme/` 21.
 By year: 2005 104, 2006 178, 2007 149, 2008 115, 2009 111, 2010 269, 2011 324, 2012 135.
@@ -328,6 +329,10 @@ Every player powerset has a record from the start. Where no guide covers a versi
 and the engine's power classifier: required roles the set can fill, no must-take claims. They load like any other claim and raise an info diagnostic naming the gap.
 
 ### 3.4 Where it lives
+
+The source material is not under this repository. Tools read `<source root>/community/` and `<source root>/build-archives/`,
+where the root is `--source-root`, else `COH_SOURCE_ROOT`, else `../homecoming-source-material`. A missing root exits with `E04`.
+`data/source-material/manifest.json` lists each capture: URL, title, date, archetype, content hash, path and era, with no post text.
 
 ```text
 knowledge/coh/
@@ -713,8 +718,8 @@ Decided 2026-10-29. The body of this design reflects each decision; the section 
 10. **Arsenal pilot sequencing.** Phase 4 does not wait for CP10: the pilot is written from game data and does not need #22.
 13. **Transfer pass bar.** Accepted as the starting bar; three test pairs are enough to judge a pairing.
 14. **Transferred trust.** Capped at `community-consensus`; blocking only after the transfer test passes (3.2).
-16. **Where the source material lives.** `community/`, the pre-sunset crawl and the build archive move to a separate private repository (#91).
-    This repository keeps the code and a manifest of each source's URL, title, date and content hash. Paths in this design change when the move lands.
+16. **Where the source material lives.** `<source root>/community/`, the pre-sunset crawl and the build archive live in a separate private repository (#91).
+    This repository keeps the code and `data/source-material/manifest.json`, one row per source with URL, title, date, archetype and content hash.
 
 Still open:
 

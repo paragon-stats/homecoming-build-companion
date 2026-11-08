@@ -1,6 +1,8 @@
 # Capture Workflow — concrete steps
 
-How to take one forum URL from [`community/CAPTURE_QUEUE.md`](../community/CAPTURE_QUEUE.md) and ingest it as a markdown file in `community/`. Every step spelled out — no hand-waving.
+How to take one forum URL from `<source root>/community/CAPTURE_QUEUE.md` and ingest it as a markdown file in `<source root>/community/`.
+The source root is the private `homecoming-source-material` checkout (`--source-root`, else `COH_SOURCE_ROOT`, else `../homecoming-source-material`).
+Every step spelled out — no hand-waving.
 
 Time per capture: 2-4 minutes once you've done one. First time: ~10 minutes including extension setup.
 
@@ -103,12 +105,12 @@ What you'll see if it works:
 ```text
 Saved → %USERPROFILE%\repos\homecoming-build-companion\inbox\<slug>.md
 Target derived from topic_tags[0]='mechanics': mechanics/<slug>.md
-Copied → %USERPROFILE%\repos\homecoming-build-companion\community\mechanics\<slug>.md
-Re-generating community/INDEX.md ...
+Copied → <source root>\community\mechanics\<slug>.md
+Re-generating <source root>/community/INDEX.md ...
 Wrote ...\community\INDEX.md  (N captures indexed)
 ```
 
-Done. The capture is now in the project, and `community/INDEX.md` lists it.
+Done. The capture is now in the project, and `<source root>/community/INDEX.md` lists it.
 
 If you want to be paranoid and also pass the URL for a sanity check (the script verifies the frontmatter URL matches):
 
@@ -174,6 +176,6 @@ It ingests every `inbox/*.md` in turn, moves successful ones to `inbox/.processe
 
 ## When you're done with a session
 
-Tell me (Claude Code) "I've captured guides X, Y, Z." I'll glob `community/**/*.md` and pull them into context for the next task — typically synthesizing Top 5 by AT.
+Tell me (Claude Code) "I've captured guides X, Y, Z." I'll glob `<source root>/community/**/*.md` and pull them into context for the next task — typically synthesizing Top 5 by AT.
 
 You don't need to do anything special to "link" the sessions — the captures live on disk. I just need to know to read them.
