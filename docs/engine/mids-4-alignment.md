@@ -19,6 +19,7 @@ There is no 4.0 release, prerelease or CI artifact, and the tool that produces i
 The calculation core is rewritten. `clsToonX.cs` is deleted.
 `Toon.GenerateBuffedPowerArray` (`Toon.cs:352-397`) now runs a `PlannerPowerPipeline` whose phases keep the `GBPA_*` pass names (`PlannerPowerPipeline.cs:206-1387`).
 Totals come from `ActorTotalsCalculator.Calculate` (`ActorTotalsCalculator.cs:20`) instead of the `GBD_*` methods.
+The .NET port's classes are mapped onto these phases in [dotnet-port.md § Numeric core](./dotnet-port.md#numeric-core).
 The engine's literal port in `base_totals.py` mirrors 3.x; when 4.0 ships, parity goldens re-baseline against this pipeline.
 
 ## The export is a City of Data v3 raw export

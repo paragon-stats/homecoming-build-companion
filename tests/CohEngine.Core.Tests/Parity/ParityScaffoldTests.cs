@@ -1,6 +1,9 @@
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
+using CohEngine.Core.SetBonuses;
 using CohEngine.Core.Totals;
+using CohEngine.Core.Totals.Incarnate;
+using CohEngine.Core.Totals.Phases;
 
 using Xunit.Sdk;
 
@@ -8,37 +11,92 @@ namespace CohEngine.Core.Tests.Parity;
 
 /// <summary>
 /// The parity gate over every build: the whole pipeline (assembly, slots, set bonuses, incarnates) against Mids'
-/// totals and per-power scalars. The fields the engine does not compute yet keep the <see cref="StandIn"/> value,
-/// and the gaps the Python engine also has are listed in <see cref="KnownGaps"/>, so a fix flips them loudly.
+/// totals, per-power scalars and effect magnitudes. A field the Python engine also misses is listed in
+/// <see cref="KnownGaps"/> with the Python engine's value, which the C# must equal while still differing from Mids.
+/// The per-power values neither engine computes (accuracy, range, damage, effect durations) keep the
+/// <see cref="StandIn"/> value.
 /// </summary>
 [Trait("Category", "Parity")]
 public sealed class ParityScaffoldTests
 {
     private const string Sniper = "Redirects.Arsenal_Assault.Sniper_Rifle_Normal";
+    private const string Cardiac = "arsenal_dominator_cardiac";
+    private const string Agility = "arsenal_dominator_incarnate";
+    private const string AgilitySlotted = "arsenal_dominator_incarnate_slotted";
+    private const string NoSlots = "arsenal_dominator_noslots";
+    private const string Stalker = "Stalker (Fiery Melee - Invulnerability)";
+    private const string Tanker = "wpss_tanker_leadership";
+    private const string Blaster = "Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)";
 
-    // Each entry is a build (or build-name prefix) and a field path the Python reference engine misses the same way:
+    // Each entry is a build, a field path, and the Python reference engine's value for it, measured on the same dumps:
     // Cardiac's global Range incarnate, the Stalker's Hidden stealth (a SpecialCase CanInclude drops), the Tanker's
-    // regeneration, recovery and range, the redirected Sniper Rifle (redirects are not ported), and one Blaster recharge.
-    private static readonly (string Build, string Path)[] KnownGaps =
+    // regeneration, recovery and range, the redirected Sniper Rifle (the engine reads Sniper_Rifle's cast and cost, as
+    // redirects are not ported), and one Blaster recharge.
+    private static readonly (string Build, string Path, double Python)[] KnownGaps =
     [
-        ("arsenal_dominator_cardiac", "Totals.BuffRange"),
-        ("arsenal_dominator_cardiac", "TotalsCapped.BuffRange"),
-
-        ("Stalker (Fiery Melee - Invulnerability)", "Totals.StealthPvE"),
-        ("Stalker (Fiery Melee - Invulnerability)", "Totals.StealthPvP"),
-        ("Stalker (Fiery Melee - Invulnerability)", "TotalsCapped.StealthPvE"),
-        ("Stalker (Fiery Melee - Invulnerability)", "TotalsCapped.StealthPvP"),
-        ("wpss_tanker_leadership", "Totals.HPRegen"),
-        ("wpss_tanker_leadership", "Totals.EndRec"),
-        ("wpss_tanker_leadership", "Totals.BuffRange"),
-        ("wpss_tanker_leadership", "TotalsCapped.HPRegen"),
-        ("wpss_tanker_leadership", "TotalsCapped.EndRec"),
-        ("wpss_tanker_leadership", "TotalsCapped.BuffRange"),
-
-        ("arsenal_dominator_", Sniper),
-
-        ("Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)", "Blaster_Support.Energy_Manipulation.Stun.RechargeTime"),
+        (Cardiac, "Totals.BuffRange", 0.0),
+        (Cardiac, "TotalsCapped.BuffRange", 0.0),
+        (Stalker, "Totals.StealthPvE", -264.0),
+        (Stalker, "Totals.StealthPvP", -371.0),
+        (Stalker, "TotalsCapped.StealthPvE", -264.0),
+        (Stalker, "TotalsCapped.StealthPvP", -371.0),
+        (Tanker, "Totals.HPRegen", 4.1373748779296875),
+        (Tanker, "Totals.EndRec", 1.3109599351882935),
+        (Tanker, "Totals.BuffRange", 0.0),
+        (Tanker, "TotalsCapped.HPRegen", 4.1373748779296875),
+        (Tanker, "TotalsCapped.EndRec", 1.3109599351882935),
+        (Tanker, "TotalsCapped.BuffRange", 0.0),
+        (Cardiac, $"{Sniper}.EndCost", 12.765517234802246),
+        (Cardiac, $"{Sniper}.CastTime", 1.1699999570846558),
+        (Cardiac, $"{Sniper}.Base.EndCost", 18.510000228881836),
+        (Cardiac, $"{Sniper}.Base.CastTime", 1.1699999570846558),
+        (Agility, $"{Sniper}.EndCost", 18.510000228881836),
+        (Agility, $"{Sniper}.RechargeTime", 15.03759479522705),
+        (Agility, $"{Sniper}.CastTime", 1.1699999570846558),
+        (Agility, $"{Sniper}.Base.EndCost", 18.510000228881836),
+        (Agility, $"{Sniper}.Base.CastTime", 1.1699999570846558),
+        (AgilitySlotted, $"{Sniper}.EndCost", 18.510000228881836),
+        (AgilitySlotted, $"{Sniper}.RechargeTime", 15.03759479522705),
+        (AgilitySlotted, $"{Sniper}.CastTime", 1.1699999570846558),
+        (AgilitySlotted, $"{Sniper}.Base.EndCost", 18.510000228881836),
+        (AgilitySlotted, $"{Sniper}.Base.CastTime", 1.1699999570846558),
+        (NoSlots, $"{Sniper}.EndCost", 18.510000228881836),
+        (NoSlots, $"{Sniper}.CastTime", 1.1699999570846558),
+        (NoSlots, $"{Sniper}.Base.EndCost", 18.510000228881836),
+        (NoSlots, $"{Sniper}.Base.CastTime", 1.1699999570846558),
+        (Blaster, "Blaster_Support.Energy_Manipulation.Stun.RechargeTime", 3.5563457012176514),
     ];
+
+    // The Python engine's effect magnitudes against Math_Mag, effects paired by identity: how many differ from Mids,
+    // how many it computes, and their sum in that order. The engine reads the pre-Pass5 enhanced magnitude, so Mids'
+    // post-buff multiply and its assembled effect order account for the differences; the C# must reproduce all three.
+    private static readonly Dictionary<string, (int Mismatches, int Count, double Sum)> PythonMagnitudes = new(StringComparer.Ordinal)
+    {
+        [Cardiac] = (30, 365, -7219.274378873408),
+        [Agility] = (41, 365, -7218.982433706522),
+        [AgilitySlotted] = (41, 365, -7218.147986970842),
+        [NoSlots] = (10, 357, -7336.5293788686395),
+        ["hasten_2rech"] = (7, 413, -2116.2152266576886),
+        ["Hollowmind - Dominator (Darkness Control - Psionic Assault)"] = (38, 305, -5642.98998228088),
+        ["Laser - Accretion - Scrapper (Dark Melee - Shield Defense)"] = (2, 452, 18736.789520915598),
+        ["Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)"] = (8, 366, -5977.609434219077),
+        ["Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)"] = (32, 403, -3367.4917501695454),
+        ["Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)"] = (0, 77, -10594.548815451562),
+        ["Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)"] = (34, 578, 4309.656440101564),
+        ["Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"] = (2, 391, -1560.686671094969),
+        [Blaster] = (17, 451, -1454.247169520706),
+        ["Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)"] = (6, 463, -4505.222934206948),
+        ["Melee Arachnos Widow (Night Widow Training - Widow Teamwork)"] = (62, 483, 2000.8581604007632),
+        ["Petless Mastermind (Demon Summoning - Force Field)"] = (90, 547, -4063.840803783387),
+        ["shield_scrapper_global_endrdx"] = (7, 413, -2116.2208532765508),
+        ["shield_scrapper_mixed_sets"] = (7, 413, -2115.8173507526517),
+        ["shield_scrapper_noslots"] = (7, 413, -2116.5592935457826),
+        ["shield_scrapper_set_bonuses"] = (106, 413, -2115.465677406639),
+        ["shield_scrapper_set_bonuses_exemplar25"] = (95, 413, -2115.8920972682536),
+        ["shield_scrapper_slotted"] = (7, 413, -2116.2152266576886),
+        [Stalker] = (2, 447, 3773.5004266239703),
+        [Tanker] = (121, 386, -8043.221250804141),
+    };
 
     public static TheoryData<string> Builds => Fixtures.Builds();
 
@@ -57,58 +115,76 @@ public sealed class ParityScaffoldTests
     [MemberData(nameof(Builds))]
     public void Enhanced_powers_match_mids(string name)
     {
-        (IReadOnlyList<Power> powers, BaseTotals totals, BuildInputs inputs) = Run(name);
-        PowerStatistics.StatsContext context = new()
-        {
-            Config = ForceLevel(name) is { } level ? Fixtures.Store.Config with { ForceLevel = level } : Fixtures.Store.Config,
-            Tables = Fixtures.Store.Maths,
-            EnhDb = Fixtures.Store.EnhancementEffects,
-            GlobalEnhance = totals.GlobalEnhance,
-            RechargeCap = Fixtures.Store.Archetypes.Classes[inputs.ArchetypeIndex].RechargeCap,
-            IncarnateScalar = totals.IncarnateAddends!.Scalar,
-        };
-        Dictionary<int, Power> byIndex = powers.ToDictionary(power => power.BuildIndex);
         IReadOnlyList<EnhancedPower> expected = Fixtures.Store.Build(name).EnhancedPowers;
+        List<(string Path, double Want, double Got)> rows = PowerRows(name);
+        ParityAssert.Count(expected.Count, Run(name).Powers.Count, $"{name}.EnhancedPowers");
+        foreach ((string path, double want, double got) in rows)
+        {
+            Check(name, want, got, path);
+        }
 
-        ParityAssert.Count(expected.Count, powers.Count, $"{name}.EnhancedPowers");
         foreach (EnhancedPower want in expected)
         {
-            Power power = byIndex[want.BuildIndex];
-            PowerStatistics.PowerStats got = PowerStatistics.ComputePowerStats(power, inputs.Slots.GetValueOrDefault(power.BuildIndex, []), context);
-            string path = $"{want.FullName}";
-            Check(name, want.Accuracy, StandIn(want.Accuracy), $"{path}.Accuracy");
-            Check(name, want.AccuracyMult, StandIn(want.AccuracyMult), $"{path}.AccuracyMult");
-            Check(name, want.EndCost, got.EndCost, $"{path}.EndCost");
-            Check(name, want.InterruptTime, got.InterruptTime, $"{path}.InterruptTime");
-            Check(name, want.Range, StandIn(want.Range), $"{path}.Range");
-            Check(name, want.RechargeTime, got.RechargeTime, $"{path}.RechargeTime");
-            Check(name, want.CastTime, got.CastTime, $"{path}.CastTime");
-            Check(name, want.DamagePerActivation, StandIn(want.DamagePerActivation), $"{path}.DamagePerActivation");
-            Check(name, want.Base.RechargeTime, power.RechargeTime, $"{path}.Base.RechargeTime");
-            Check(name, want.Base.EndCost, power.EndCost, $"{path}.Base.EndCost");
-            Check(name, want.Base.Accuracy, StandIn(want.Base.Accuracy), $"{path}.Base.Accuracy");
-            Check(name, want.Base.InterruptTime, power.InterruptTime, $"{path}.Base.InterruptTime");
-            Check(name, want.Base.Range, StandIn(want.Base.Range), $"{path}.Base.Range");
-            Check(name, want.Base.CastTime, power.CastTime, $"{path}.Base.CastTime");
+            Check(name, want.Accuracy, StandIn(want.Accuracy), $"{want.FullName}.Accuracy");
+            Check(name, want.AccuracyMult, StandIn(want.AccuracyMult), $"{want.FullName}.AccuracyMult");
+            Check(name, want.Range, StandIn(want.Range), $"{want.FullName}.Range");
+            Check(name, want.DamagePerActivation, StandIn(want.DamagePerActivation), $"{want.FullName}.DamagePerActivation");
+            Check(name, want.Base.Accuracy, StandIn(want.Base.Accuracy), $"{want.FullName}.Base.Accuracy");
+            Check(name, want.Base.Range, StandIn(want.Base.Range), $"{want.FullName}.Base.Range");
             for (int j = 0; j < want.Effects.Count; j++)
             {
-                Check(name, want.Effects[j].MathMag, StandIn(want.Effects[j].MathMag), $"{path}.Effects[{j}].Math_Mag");
-                Check(name, want.Effects[j].MathDuration, StandIn(want.Effects[j].MathDuration), $"{path}.Effects[{j}].Math_Duration");
+                Check(name, want.Effects[j].MathDuration, StandIn(want.Effects[j].MathDuration), $"{want.FullName}.Effects[{j}].Math_Duration");
             }
         }
     }
 
-    [Fact]
-    public void Every_known_gap_still_differs()
+    [Theory]
+    [MemberData(nameof(Builds))]
+    public void Effect_magnitudes_match_the_python_engine(string name)
     {
-        foreach ((string build, string field) in KnownGaps.Where(gap => gap.Path.StartsWith("Totals", StringComparison.Ordinal)))
+        (IReadOnlyList<Power> powers, _, BuildInputs inputs) = Run(name);
+        MagContext context = MagnitudeContext(name, inputs);
+        Dictionary<(int BuildIndex, int EffectIndex), double> mults = Multipliers(powers, inputs, context);
+        Dictionary<int, Power> byIndex = powers.ToDictionary(power => power.BuildIndex);
+        int mismatches = 0;
+        int count = 0;
+        double sum = 0.0;
+        foreach (EnhancedPower want in inputs.Fixture.EnhancedPowers)
         {
-            (string side, string scalar) = (field.Split('.')[0], field.Split('.')[1]);
-            MidsTotals expected = Fixtures.Store.Build(build).Totals;
-            BaseTotals actual = Run(build).Totals;
-            bool capped = string.Equals(side, "TotalsCapped", StringComparison.Ordinal);
-            (_, double want, double got) = EngineRun.Scalars(capped ? expected.TotalsCapped : expected.Totals, capped ? actual.TotalsCapped : actual.Totals).Single(item => string.Equals(item.Field, scalar, StringComparison.Ordinal));
-            Assert.NotEqual(F32.Round(want), got);
+            Power power = byIndex[want.BuildIndex];
+            Dictionary<(string, string, string, string), Queue<double>> dumped = [];
+            foreach (EnhancedEffect effect in want.Effects)
+            {
+                (string, string, string, string) key = (effect.EffectType, effect.DamageType, effect.MezType, effect.EtModifies);
+                dumped.TryAdd(key, new Queue<double>());
+                dumped[key].Enqueue(effect.MathMag);
+            }
+
+            foreach (Effect effect in power.Effects)
+            {
+                double mag = F32.Round(context.Mag(effect, power) * mults.GetValueOrDefault((power.BuildIndex, effect.Index), 1.0));
+                sum += mag;
+                count++;
+                if (!dumped.TryGetValue((effect.EffectType, effect.DamageType, effect.MezType, effect.EtModifies), out Queue<double>? queue) || queue.Count == 0 || F32.Round(queue.Dequeue()) != mag)
+                {
+                    mismatches++;
+                }
+            }
+
+            mismatches += dumped.Values.Sum(queue => queue.Count);
+        }
+
+        Assert.Equal(PythonMagnitudes[name], (mismatches, count, sum));
+    }
+
+    [Fact]
+    public void Every_known_gap_holds_the_python_value()
+    {
+        foreach ((string build, string path, double python) in KnownGaps)
+        {
+            (double mids, double got) = Gap(build, path);
+            Assert.True(got == F32.Round(python), FormattableString.Invariant($"{build}.{path}: the engine gives {got:R}, the Python engine {python:R}"));
+            Assert.True(got != F32.Round(mids), FormattableString.Invariant($"{build}.{path}: now matches Mids ({mids:R}); drop the gap"));
         }
     }
 
@@ -150,9 +226,99 @@ public sealed class ParityScaffoldTests
         return name.EndsWith("_exemplar25", StringComparison.Ordinal) ? 25 : null;
     }
 
+    private static EngineConfig Config(string name)
+    {
+        return ForceLevel(name) is { } level ? Fixtures.Store.Config with { ForceLevel = level } : Fixtures.Store.Config;
+    }
+
     private static (IReadOnlyList<Power> Powers, BaseTotals Totals, BuildInputs Inputs) Run(string name)
     {
         return EngineRun.Full(name, ForceLevel(name));
+    }
+
+    /// <summary>Every per-power scalar the engine computes, as (power.field path, Mids value, engine value).</summary>
+    private static List<(string Path, double Want, double Got)> PowerRows(string name)
+    {
+        (IReadOnlyList<Power> powers, BaseTotals totals, BuildInputs inputs) = Run(name);
+        PowerStatistics.StatsContext context = new()
+        {
+            Config = Config(name),
+            Tables = Fixtures.Store.Maths,
+            EnhDb = Fixtures.Store.EnhancementEffects,
+            GlobalEnhance = totals.GlobalEnhance,
+            RechargeCap = Fixtures.Store.Archetypes.Classes[inputs.ArchetypeIndex].RechargeCap,
+            IncarnateScalar = totals.IncarnateAddends!.Scalar,
+        };
+        Dictionary<int, Power> byIndex = powers.ToDictionary(power => power.BuildIndex);
+        List<(string Path, double Want, double Got)> rows = [];
+        foreach (EnhancedPower want in Fixtures.Store.Build(name).EnhancedPowers)
+        {
+            Power power = byIndex[want.BuildIndex];
+            PowerStatistics.PowerStats got = PowerStatistics.ComputePowerStats(power, inputs.Slots.GetValueOrDefault(power.BuildIndex, []), context);
+            string path = want.FullName;
+            rows.Add(($"{path}.EndCost", want.EndCost, got.EndCost));
+            rows.Add(($"{path}.InterruptTime", want.InterruptTime, got.InterruptTime));
+            rows.Add(($"{path}.RechargeTime", want.RechargeTime, got.RechargeTime));
+            rows.Add(($"{path}.CastTime", want.CastTime, got.CastTime));
+            rows.Add(($"{path}.Base.RechargeTime", want.Base.RechargeTime, power.RechargeTime));
+            rows.Add(($"{path}.Base.EndCost", want.Base.EndCost, power.EndCost));
+            rows.Add(($"{path}.Base.InterruptTime", want.Base.InterruptTime, power.InterruptTime));
+            rows.Add(($"{path}.Base.CastTime", want.Base.CastTime, power.CastTime));
+        }
+
+        return rows;
+    }
+
+    /// <summary>A known gap's Mids value and engine value.</summary>
+    private static (double Mids, double Got) Gap(string build, string path)
+    {
+        string[] parts = path.Split('.', 2);
+        if (parts[0] is "Totals" or "TotalsCapped")
+        {
+            MidsTotals expected = Fixtures.Store.Build(build).Totals;
+            BaseTotals actual = Run(build).Totals;
+            bool capped = string.Equals(parts[0], "TotalsCapped", StringComparison.Ordinal);
+            (_, double want, double got) = EngineRun.Scalars(capped ? expected.TotalsCapped : expected.Totals, capped ? actual.TotalsCapped : actual.Totals).Single(item => string.Equals(item.Field, parts[1], StringComparison.Ordinal));
+            return (want, got);
+        }
+
+        (_, double mids, double engine) = PowerRows(build).Single(row => string.Equals(row.Path, path, StringComparison.Ordinal));
+        return (mids, engine);
+    }
+
+    /// <summary>The magnitude context the totals pipeline reads its base magnitudes with.</summary>
+    private static MagContext MagnitudeContext(string name, BuildInputs inputs)
+    {
+        return new MagContext
+        {
+            Mods = Fixtures.Store.AttribMods,
+            Classes = Fixtures.Store.Archetypes,
+            ArchetypeIndex = inputs.ArchetypeIndex,
+            Config = Config(name),
+            EnhanceNames = PerPowerEnhancementMathPhase.EnhanceNames(Fixtures.Store.Enums),
+            Enums = Fixtures.Store.Enums,
+            Expr = inputs.Fixture.Has("power_assembly.json") ? inputs.Expression : null,
+        };
+    }
+
+    /// <summary>The per-effect multipliers, built as <c>Pipeline.ComputeBaseTotals</c> builds them.</summary>
+    private static Dictionary<(int BuildIndex, int EffectIndex), double> Multipliers(IReadOnlyList<Power> powers, BuildInputs inputs, MagContext context)
+    {
+        List<Power> included = [.. powers.Where(power => power.StatInclude)];
+        Power bonus = Accumulator.BuildSetBonusPower(powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, context.Config.ForceLevel, context.Config.DisablePve);
+        if (bonus.Effects.Count != 0)
+        {
+            included.Add(bonus);
+        }
+
+        BuffsX selfEnhance = new(Fixtures.Store.Enums);
+        foreach (Power power in included)
+        {
+            EnhancementBucketPhase.Apply(power, selfEnhance, context);
+        }
+
+        IncarnateAddends addends = IncarnateResolver.Resolve(inputs.Fixture.Incarnates, powers, Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, inputs.ArchetypeIndex);
+        return PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.Maths, context.Config.ForceLevel, context, addends.Effect, selfEnhance);
     }
 
     private static void CompareTotals(string name, TotalStatistics expected, TotalStatistics actual, string side)
@@ -161,9 +327,10 @@ public sealed class ParityScaffoldTests
         EngineRun.CompareTotals(expected, actual, $"{name}.{side}", skip);
     }
 
+    // A known gap is asserted by Every_known_gap_holds_the_python_value, not here.
     private static void Check(string name, double want, double got, string path)
     {
-        if (KnownGaps.Any(gap => name.StartsWith(gap.Build, StringComparison.Ordinal) && path.StartsWith(gap.Path, StringComparison.Ordinal)))
+        if (KnownGaps.Any(gap => string.Equals(gap.Build, name, StringComparison.Ordinal) && string.Equals(gap.Path, path, StringComparison.Ordinal)))
         {
             return;
         }
@@ -171,7 +338,7 @@ public sealed class ParityScaffoldTests
         ParityAssert.Equal(want, got, $"{name}.{path}");
     }
 
-    // Stand-in for a per-power value the engine does not compute yet (accuracy, range, damage, effect magnitudes).
+    // Stand-in for a per-power value neither engine computes yet (accuracy, range, damage, effect durations).
     private static double StandIn(double dumped)
     {
         return F32.Round(dumped);
