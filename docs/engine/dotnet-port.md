@@ -113,3 +113,55 @@ Loaders throw typed exceptions (`InvalidDataException`, `FileNotFoundException`,
 | E100-E109 | P3b |
 | E110-E119 | P3c |
 | E120 and up | CP work |
+
+## Build files
+
+`src/CohEngine.Core/BuildFile/` reads the two build formats and writes the modern one.
+The Python it ports is `src/coh_engine/buildfile/`.
+
+| Format | Reader | Notes |
+| --- | --- | --- |
+| `.mbd` | `Mbd.LoadMbd`, `Mbd.ParseMbd` | Plain JSON, read through `BuildFileJsonContext` into `MbdDocument`, then into `MbdBuild`. |
+| `.mxd` | `Mxd.ReadMxd`, `Mxd.ReadMxdBuild` | A share block of hex-coded zlib, then the little-endian stream `BinaryCursor` reads. |
+| Static indexes | `DbIndex` | `StaticIndex` to power name and to enhancement identity; negative indexes are dropped. |
+
+The model keeps the engine's levels, not the file's.
+A power's and a slot's stored `Level` is one more than the model's, so the reader subtracts one and the writer adds it back.
+A placeholder entry (empty `PowerName`) keeps its stored level.
+`LastPower` is raw on a `.mbd`.
+The header `Level` is the character level minus one, stored as text, and a JSON number is accepted on read.
+`.mxd` levels are the stored 0-based values, with no offset.
+
+A `.mbd` has no `Chosen` flag, so `Mbd.PowersFromBuild` leaves `Chosen` true on every entry.
+A pool sub-power that Mids grants without a pick (Translocation from Mystic Flight, Double Jump) therefore counts as one of the 24 picks, and a pick-count check can over-count a build that holds one.
+
+The writer's byte contract, which `RoundTripTests` pins to the Python writer's output for every sample and fixture build:
+
+- Two-space indent, LF line endings, one final newline.
+- UTF-8 without a BOM.
+- Keys in the order the document types declare them, which is the order `json.dumps` was given.
+- Every character past `~` as a lowercase `\uXXXX` escape (surrogate pairs as two), as `json.dumps` does with `ensure_ascii`.
+  `System.Text.Json` has no built-in encoder for that, and a custom one needs `unsafe`, so `Mbd.Serialize` rewrites the relaxed-escaping output.
+- `<`, `>`, `&`, `'` and `+` stay literal.
+
+The document types use settable properties.
+The source generator would write `default(T)` into an absent init-only property, which breaks the defaults an older file relies on.
+Keys the Python reads with `obj["Key"]` are nullable in the document type and checked in `ParseMbd`, which raises `E118`.
+
+The writer (`Mbd.WriteMbd`) walks a `BuildSpec` level by level, places added slots against the level schedule, and checks the result with `Mbd.CheckMbdInvariants` before returning it.
+It keeps the Python's `E46` to `E49` and `E73` to `E78` codes and messages.
+
+Errors that the Python raised as a bare `ValueError` carry codes in the P3c block, each prefixing its message:
+
+| Code | Meaning |
+| --- | --- |
+| `E110` | A read ran past the end of a binary buffer. |
+| `E111` | A 7-bit length prefix ran past five groups. |
+| `E112` | A share block lacks its header or payload line, or the header is malformed. |
+| `E113` | A share payload is not decodable: wrong format, bad hex, size mismatch or a zlib failure. |
+| `E114` | The `.mxd` magic number is absent. |
+| `E115` | The `.mxd` was saved by a newer version. |
+| `E116` | A qualified-names `.mxd`, or a class UID the archetype table lacks. |
+| `E117` | An enum ordinal or name is outside its table. |
+| `E118` | A `.mbd` or dump file is unreadable: invalid JSON, a missing required key or the `BuiltWith` block missing. |
+| `E119` | A length-prefixed string is not valid UTF-8. |
