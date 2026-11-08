@@ -15,7 +15,7 @@ Illegal placements and hard game-limit violations stay errors (legality.py); ove
 and unmet goals are warnings. The exemplar-10 rule is a universal gate applied across
 every profile (via :mod:`coh_engine.exemplar`), not a selectable target.
 
-Spec: docs/build-types-and-goals.md; .claude/rules/hard-limits.md; error-output.md.
+Spec: docs/build-types-and-goals.md; docs/style-guides/build-rules/hard-limits.md; error-output.md.
 """
 
 from collections.abc import Callable, Sequence

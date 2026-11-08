@@ -2,6 +2,8 @@
 
 Orientation for a Claude project that designs **City of Heroes (Homecoming)** builds against **MidsReborn**'s data. Snapshot from a forked MidsReborn repo plus the local Homecoming client.
 
+The binding rules for builds, naming and the engine are the guides in [docs/style-guides/](docs/style-guides/README.md); start with [build-authoring.md](docs/style-guides/build-authoring.md).
+
 ---
 
 ## Getting started — bootstrap the venv
@@ -95,7 +97,7 @@ These come from `data/mids/database/Levels.json` and the constants in [docs/slot
 - **Exemplar-to-10 *playability*** (universal). Every build must remain *playable* when exemplared to level 10.
   - "Playable" = can attack, defensive layer running, travel power picked, not dead weight.
   - **Level-50 endgame is the primary target; never trade level-50 quality for exemplar performance.**
-  - See [docs/slotting-and-leveling.md](docs/slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule) and [.claude/rules/exemplar-10.md](.claude/rules/exemplar-10.md).
+  - See [docs/slotting-and-leveling.md](docs/slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule) and [docs/style-guides/build-rules/exemplar-10.md](docs/style-guides/build-rules/exemplar-10.md).
 
 A build that violates any of these is invalid. If the user asks for something that requires breaking a hard limit, explain why it's impossible and propose the closest valid alternative.
 

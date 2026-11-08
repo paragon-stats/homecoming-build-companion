@@ -19,7 +19,7 @@ For MidsReborn forum exports:
 - IO level (when shown) goes after the name as `: Level XX` or `:XX`.
 - Default for set IOs at level 50: omit the IO level (assumed character level / attuned).
 
-Reference: [`MidsReborn/clsOutput.cs:240`](../../../MidsReborn/MidsReborn/clsOutput.cs).
+Reference: [`MidsReborn/clsOutput.cs:240`](../../../../MidsReborn/MidsReborn/clsOutput.cs).
 
 ### P2. Builds are level-by-level allocations
 
@@ -86,7 +86,7 @@ For specific numbers (recharge, end cost, damage scale, max targets, power pick 
 
 1. `data/canonical/powers/<role>/<set>/<power>.json` — primary source.
 2. `data/diff/current_overrides.json` — patch-history corrections.
-3. Community captures in `community/`.
+3. Captures in the source root (private `homecoming-source-material` repository, found through `--source-root`, else `COH_SOURCE_ROOT`, else `../homecoming-source-material`).
 4. Training memory — labeled "approximate; verify in MidsReborn" when used.
 
 For ancillary pool / patron pool composition, verify the powers exist in the canonical zip before listing them.
@@ -95,7 +95,7 @@ For ancillary pool / patron pool composition, verify the powers exist in the can
 
 Every build proposal produces two artifacts:
 
-- **JSON** — schema-valid per [`build-format/schema.json`](../../build-format/schema.json). The loadable artifact; the user pastes it into MidsReborn.
+- **JSON** — schema-valid per [`build-format/schema.json`](../../../build-format/schema.json). The loadable artifact; the user pastes it into MidsReborn.
 - **Markdown** — MidsReborn forum-export format. For review, comparison, and forum sharing.
 
 The JSON is the source of truth; the markdown is a view. They agree on every power, slot, and enhancement. When they conflict, the JSON wins.
@@ -284,7 +284,7 @@ Recorded here so future-you understands the precedent and the 5 Whys reasoning t
 
 ### L8. Defensive frontloading rule existed but wasn't applied (motivates P9)
 
-**Failure observed:** [docs/slotting-and-leveling.md](../../docs/slotting-and-leveling.md) says "≥ 2 added slots in defensive toggles by level 14."
+**Failure observed:** [docs/slotting-and-leveling.md](../../slotting-and-leveling.md) says "≥ 2 added slots in defensive toggles by level 14."
 The v1 build had only 1 added slot in Hardened Carapace by level 14.
 
 **5 Whys:**
@@ -303,8 +303,8 @@ The v1 build had only 1 added slot in Hardened Carapace by level 14.
 
 - [`hard-limits.md`](./hard-limits.md) — game-engine invariants.
 - [`exemplar-10.md`](./exemplar-10.md) — universal exemplar-10 playability rule.
-- [`no-user-name.md`](./no-user-name.md) — generic-reference rule.
-- [`../../docs/slotting-and-leveling.md`](../../docs/slotting-and-leveling.md) — slotting + leveling mechanics.
-- [`../../docs/build-types-and-goals.md`](../../docs/build-types-and-goals.md) — build type taxonomy.
-- [`../../build-format/schema.json`](../../build-format/schema.json) — JSON schema for build artifacts.
-- [`MidsReborn/clsOutput.cs`](../../../MidsReborn/MidsReborn/clsOutput.cs) — forum export emitter (source of truth for output format).
+- [`naming-and-words.md`](../naming-and-words.md) — generic-reference rule.
+- [`docs/slotting-and-leveling.md`](../../slotting-and-leveling.md) — slotting + leveling mechanics.
+- [`docs/build-types-and-goals.md`](../../build-types-and-goals.md) — build type taxonomy.
+- [`build-format/schema.json`](../../../build-format/schema.json) — JSON schema for build artifacts.
+- [`MidsReborn/clsOutput.cs`](../../../../MidsReborn/MidsReborn/clsOutput.cs) — forum export emitter (source of truth for output format).

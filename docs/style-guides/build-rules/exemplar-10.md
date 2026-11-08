@@ -29,7 +29,7 @@ A build that satisfies these is playable at exemplar 10. That's the bar.
   *That's expected* — the build's level-50 set bonuses still work at level 50, where the character lives most of the time.
   - **Engine note (Mids-modeled vs actual):** This −3 rule is *actual in-game* behavior and remains the guidance for human build-authoring.
     MidsReborn does **not** implement it — Mids retains a power's set bonuses whenever the power's pick level ≤ the exemplar (Force) level, with no −3 offset.
-    The build-calculation engine (see [`docs/engine/mids-port-spec.md`](../../docs/engine/mids-port-spec.md)) matches Mids as its reference implementation,
+    The build-calculation engine (see [`docs/engine/mids-port-spec.md`](../../engine/mids-port-spec.md)) matches Mids as its reference implementation,
     so any exemplar totals it reports are labeled *Mids-modeled* and are optimistic at deep exemplar relative to live CoH.
 - **PvP IO set bonuses — informational exception.** Persist at every exemplar level. Slot PvP sets when their level-50 bonuses are competitive with the alternative; never as an exemplar-driven choice.
 - **ATO sets, Winter-O sets** — min level 10, persist at exemplar 10 by the −3 rule. ATOs slot at level 10; Winter-Os are attuned-only.
@@ -81,4 +81,4 @@ Before emitting a build, confirm:
 
 ## Reference
 
-Full mechanics, lookup tables, and IO-type breakdown: [`docs/slotting-and-leveling.md` § Exemplar mechanics](../../docs/slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule).
+Full mechanics, lookup tables, and IO-type breakdown: [`docs/slotting-and-leveling.md` § Exemplar mechanics](../../slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule).

@@ -236,8 +236,6 @@ Prescribed flow:
 
 The compound script `scripts.github.triage_ci_failures` writes findings to `tmp/triage-findings.json`. Idempotent (overwritten each run), schema `triage-findings-v1`.
 
-Skill definition: `.claude/skills/triage-ci/SKILL.md`
-
 ## PR checklist handling (SSOT)
 
 - When drafting PR bodies, mark checklist items as complete only when verified.

@@ -43,7 +43,7 @@ Slot placements are ascending across the build. Confirm by walking levels 2–50
 
 ## AT-specific caps
 
-Per [`data/canonical/archetypes/<at>.json`](../../data/canonical/archetypes/) and [`strategy/breakpoints.json`](../../strategy/breakpoints.json):
+Per [`data/canonical/archetypes/<at>.json`](../../../data/canonical/archetypes/) and [`strategy/breakpoints.json`](../../../strategy/breakpoints.json):
 
 - **Resist cap** — Tanker 90%; all others 75%.
 - **Damage cap** — varies (Brute up to 850%; Blaster 500%; most others 400%).

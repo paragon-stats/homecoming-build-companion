@@ -49,7 +49,7 @@ Power assembly (:mod:`coh_engine.assembly`) also absorbs the granted sub-powers 
 effect list, as Mids does; those absorbed effects are GlobalBoost effects the totals passes skip, so the
 enhancement reaches other powers only through this module.
 
-Spec: docs/engine/mids-port-spec.md § gbpa-pass-pipeline; .claude/rules/check-registry.md.
+Spec: docs/engine/mids-port-spec.md § gbpa-pass-pipeline; docs/style-guides/engine-architecture.md.
 """
 
 from __future__ import annotations

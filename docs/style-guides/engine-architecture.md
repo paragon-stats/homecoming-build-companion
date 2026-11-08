@@ -123,7 +123,7 @@ The registries are code (testable, 100% covered); the **orchestration** is the s
 build run touches. Expose them through `python -m coh_engine`:
 
 - `validate <build>` — runs the legality + hard-limits rule registries → diagnostics
-  (text by default, `--format=json` per [`error-output.md`](./error-output.md)).
+  (text by default, `--format=json` per [`error-output.md`](error-output.md)).
 - `score <build> --profile <name>` — runs the metric + adherence registries → the profile
   score + warnings.
 
@@ -134,7 +134,7 @@ it in.
 
 ## Reference
 
-- [`error-output.md`](./error-output.md) — the `Diagnostic` contract every rule emits.
-- [`hard-limits.md`](./hard-limits.md) — the invariants the hard-limits validator registers.
-- [`build-creation.md`](./build-creation.md) — the P8 pre-flight checklist the validator mechanizes.
-- [`python.md`](./python.md) — pure check functions `(build, context) -> list[Violation]`.
+- [`error-output.md`](error-output.md) — the `Diagnostic` contract every rule emits.
+- [`hard-limits.md`](build-rules/hard-limits.md) — the invariants the hard-limits validator registers.
+- [`build-creation.md`](build-rules/build-creation.md) — the P8 pre-flight checklist the validator mechanizes.
+- [`python.md`](../repository-standards/style-guides/python-style-guide.md) — pure check functions `(build, context) -> list[Violation]`.

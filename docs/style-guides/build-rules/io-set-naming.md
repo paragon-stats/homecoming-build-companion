@@ -89,10 +89,10 @@ Discoverability, searchability, and future-readability all improve with the full
 | HO:Golgi | Golgi Exposure (Hami-O) |
 | HO:Microfil | Microfilament Exposure (Hami-O) |
 
-When an abbreviation appears in a Mids forum-export source and the full name isn't in this table, look it up in [`data/canonical/boost_sets/`](../../data/canonical/boost_sets/).
+When an abbreviation appears in a Mids forum-export source and the full name isn't in this table, look it up in [`data/canonical/boost_sets/`](../../../data/canonical/boost_sets/).
 The file name (snake-cased) and `display_name` field together resolve to the full set name.
 
 ## Reference
 
-- [`error-output.md`](./error-output.md) — diagnostic messages also follow this rule (full names in messages).
-- [`data/canonical/boost_sets/`](../../data/canonical/boost_sets/) — authoritative IO set composition and display names.
+- [`error-output.md`](../error-output.md) — diagnostic messages also follow this rule (full names in messages).
+- [`data/canonical/boost_sets/`](../../../data/canonical/boost_sets/) — authoritative IO set composition and display names.

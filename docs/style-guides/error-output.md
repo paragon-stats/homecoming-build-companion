@@ -52,7 +52,8 @@ The validator's `__main__.py` accepts `--format=json` to emit structured violati
 - **warning** — preference violation. Build is valid but suboptimal. Validator exits 2 if no errors and any warnings; exits 0 if no warnings either.
 - **info** — observation, no action required. Reserved for stats and summaries.
 
-Severity escalation rule: a fixable preference miss is a **warning**. A claim that doesn't match content (e.g. `build_goal: soft-cap-defense` but build only reaches 38% defense) is a warning unless explicitly upgraded by user-configured strictness.
+Severity escalation rule: a fixable preference miss is a **warning**.
+A claim that doesn't match content (e.g. `build_goal: soft-cap-defense` but build only reaches 38% defense) is a warning unless explicitly upgraded by user-configured strictness.
 
 ## Tone
 
@@ -79,6 +80,7 @@ The reason is **required** after `--`. A bare `noqa: P-SLOT-001` is rejected.
 
 ## Reference
 
-- [`docs/repository-standards/style-guides/error-output-style-guide.md`](../../docs/repository-standards/style-guides/error-output-style-guide.md) — full canonical error-output style guide imported from kloehnwars-homelab. This rule is the auto-loaded summary; that doc is the SSOT.
-- [`python.md`](./python.md) — Python conventions for tools that emit diagnostics.
-- [`c:/Users/petek/repos/repo-template/CLAUDE.md`](../../../repo-template/CLAUDE.md) — anti-sycophancy posture this rule mirrors.
+- [`docs/repository-standards/style-guides/error-output-style-guide.md`](../repository-standards/style-guides/error-output-style-guide.md) — full canonical error-output style guide imported from kloehnwars-homelab.
+  This rule is the auto-loaded summary; that doc is the SSOT.
+- [`python.md`](../repository-standards/style-guides/python-style-guide.md) — Python conventions for tools that emit diagnostics.
+- The anti-sycophancy posture this rule mirrors.
