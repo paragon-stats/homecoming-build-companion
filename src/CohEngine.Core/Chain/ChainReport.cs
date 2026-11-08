@@ -10,94 +10,6 @@ using CohEngine.Core.Totals;
 
 namespace CohEngine.Core.Chain;
 
-/// <summary>The universal breakpoints the chain planner reads from <c>strategy/breakpoints.json</c>.</summary>
-/// <param name="SoftCapDefensePve">The PvE defense soft cap, in percent.</param>
-/// <param name="RangedStandoffFt">The default ranged standoff.</param>
-/// <param name="MeleeRangeFtMax">The melee range threshold.</param>
-/// <param name="ChainMinCycles">The cycles a chain must last to be affordable.</param>
-public sealed record Breakpoints(double SoftCapDefensePve, double RangedStandoffFt, double MeleeRangeFtMax, double ChainMinCycles);
-
-/// <summary>Everything loaded once for a build; stance-specific contexts derive from the context.</summary>
-/// <param name="Context">The melee-stance context.</param>
-/// <param name="Health">The health budget.</param>
-/// <param name="Capped">The capped totals.</param>
-/// <param name="Breakpoints">The breakpoints.</param>
-/// <param name="ClicksAlwaysOn">Whether no clicks-off dump was found.</param>
-/// <param name="Source">The dump the figures came from.</param>
-/// <param name="Skipped">The (power, reason) of every power left out of the model.</param>
-public sealed record ChainSetup(
-    DamageContext Context,
-    HealthBudget Health,
-    TotalStatistics Capped,
-    Breakpoints Breakpoints,
-    bool ClicksAlwaysOn,
-    string Source,
-    IReadOnlyList<(string Name, string Reason)> Skipped);
-
-/// <summary>The inputs of <see cref="ChainReport.BuildChainSetup"/>.</summary>
-public sealed record ChainRequest
-{
-    /// <summary>Gets the Mids dump build directory.</summary>
-    public required string BuildDir { get; init; }
-
-    /// <summary>Gets the shared dump directory holding <c>archetypes.json</c>.</summary>
-    public required string MidsDir { get; init; }
-
-    /// <summary>Gets the clicks-off dump, or null.</summary>
-    public string? ClicksOffDir { get; init; }
-
-    /// <summary>Gets the canonical data root, or null for the repository's.</summary>
-    public string? Canonical { get; init; }
-
-    /// <summary>Gets the directory holding <c>AttribMod.json</c>, or null.</summary>
-    public string? MidsDb { get; init; }
-
-    /// <summary>Gets the scenario.</summary>
-    public Scenario? Scenario { get; init; }
-
-    /// <summary>Gets the movement mode: run, jump or fly.</summary>
-    public string Move { get; init; } = "run";
-
-    /// <summary>Gets the ranged standoff in feet, or null for the default.</summary>
-    public double? StandoffFt { get; init; }
-
-    /// <summary>Gets the assumption overrides.</summary>
-    public IReadOnlyDictionary<string, double>? Assumptions { get; init; }
-
-    /// <summary>Gets the repository root, or null to locate it.</summary>
-    public string? RepoRoot { get; init; }
-}
-
-/// <summary>One stance's evaluated model, its rotation and its diagnostics.</summary>
-/// <param name="Stance">The stance.</param>
-/// <param name="Report">The damage report.</param>
-/// <param name="Chain">The chosen rotation.</param>
-/// <param name="Diagnostics">The diagnostics.</param>
-/// <param name="Form">The form.</param>
-/// <param name="Plan">The plan.</param>
-public sealed record StanceReport(Stance Stance, DamageReport Report, ChainOption? Chain, IReadOnlyList<ChainDiagnostic> Diagnostics, string Form = "", ChainPlan? Plan = null);
-
-/// <summary>What a chain rule reads: one stance's evaluation and the setup it came from.</summary>
-/// <param name="Setup">The setup.</param>
-/// <param name="Context">The stance context.</param>
-/// <param name="Report">The report.</param>
-/// <param name="Chain">The chosen rotation.</param>
-/// <param name="Path">The anchor path.</param>
-public sealed record RuleContext(ChainSetup Setup, DamageContext Context, DamageReport Report, ChainOption? Chain, string Path);
-
-/// <summary>Replacement points the tests use to force classifier and pet outcomes.</summary>
-internal sealed record ChainHooks
-{
-    /// <summary>Gets a replacement for the attack classifier.</summary>
-    public Func<JsonElement, double, PowerResolver?, AttackProfile>? Classify { get; init; }
-
-    /// <summary>Gets a replacement for the pet builder.</summary>
-    public Func<IReadOnlyList<ChainAttack>, string, AttribMods, ArchetypeDb, IReadOnlyList<PetSummon>>? BuildPets { get; init; }
-
-    /// <summary>Gets a replacement for the attack builder.</summary>
-    public Func<IReadOnlyDictionary<string, PowerDamageRef>, string, double, (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string, string)> Skipped)>? Attacks { get; init; }
-}
-
 /// <summary>The chain report: build a damage context from a Mids dump, evaluate it per stance, and render it.</summary>
 public static class ChainReport
 {
@@ -539,6 +451,47 @@ public static class ChainReport
         return new ChainSetup(context, EnduranceBudgets.BuildHealthBudget(capped, archetype), capped, breakpoints, string.Equals(source, buildDir, StringComparison.Ordinal), source, skipped);
     }
 
+    internal static (Dictionary<string, JsonElement> Found, List<(string Name, string Reason)> Skipped) Candidates(IReadOnlyDictionary<string, PowerDamageRef> refs, string powersRoot)
+    {
+        List<KeyValuePair<string, PowerDamageRef>> kept = [.. refs.Where(pair => !pair.Key.StartsWith("Incarnate.", StringComparison.Ordinal))];
+        Dictionary<string, JsonElement> found = new(StringComparer.Ordinal);
+        foreach (KeyValuePair<string, JsonElement> pair in CanonicalJson.LoadCanonicalPowers(powersRoot, kept.Where(item => HasSignal(item.Value)).Select(item => item.Key)))
+        {
+            found[pair.Key] = pair.Value;
+        }
+
+        List<(string, string)> skipped = [];
+        foreach ((string name, PowerDamageRef reference) in kept)
+        {
+            if (HasSignal(reference))
+            {
+                continue;
+            }
+
+            JsonElement power;
+            try
+            {
+                power = CanonicalJson.LoadCanonicalPowers(powersRoot, [name])[name];
+            }
+            catch (ChainException error) when (error.Message.StartsWith("E35", StringComparison.Ordinal))
+            {
+                if (Reportable(name))
+                {
+                    skipped.Add((name, "no canonical file (E35)"));
+                }
+
+                continue;
+            }
+
+            if (CreatesEntity(power.ReqItems("effects")))
+            {
+                found[name] = power;
+            }
+        }
+
+        return (found, skipped);
+    }
+
     private static object? Get(PyObject source, string key)
     {
         return source.FirstOrDefault(pair => string.Equals(pair.Key, key, StringComparison.Ordinal)).Value;
@@ -604,48 +557,7 @@ public static class ChainReport
         return !name.StartsWith("Inherent.", StringComparison.Ordinal) && !name.StartsWith("Incarnate.", StringComparison.Ordinal);
     }
 
-    private static (Dictionary<string, JsonElement> Found, List<(string, string)> Skipped) Candidates(IReadOnlyDictionary<string, PowerDamageRef> refs, string powersRoot)
-    {
-        List<KeyValuePair<string, PowerDamageRef>> kept = [.. refs.Where(pair => !pair.Key.StartsWith("Incarnate.", StringComparison.Ordinal))];
-        Dictionary<string, JsonElement> found = new(StringComparer.Ordinal);
-        foreach (KeyValuePair<string, JsonElement> pair in CanonicalJson.LoadCanonicalPowers(powersRoot, kept.Where(item => HasSignal(item.Value)).Select(item => item.Key)))
-        {
-            found[pair.Key] = pair.Value;
-        }
-
-        List<(string, string)> skipped = [];
-        foreach ((string name, PowerDamageRef reference) in kept)
-        {
-            if (HasSignal(reference))
-            {
-                continue;
-            }
-
-            JsonElement power;
-            try
-            {
-                power = CanonicalJson.LoadCanonicalPowers(powersRoot, [name])[name];
-            }
-            catch (ChainException error) when (error.Message.StartsWith("E35", StringComparison.Ordinal))
-            {
-                if (Reportable(name))
-                {
-                    skipped.Add((name, "no canonical file (E35)"));
-                }
-
-                continue;
-            }
-
-            if (CreatesEntity(power.ReqItems("effects")))
-            {
-                found[name] = power;
-            }
-        }
-
-        return (found, skipped);
-    }
-
-    private static (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string, string)> Skipped) Attacks(
+    private static (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string Name, string Reason)> Skipped) Attacks(
         IReadOnlyDictionary<string, PowerDamageRef> refs,
         string canonicalRoot,
         double meleeRangeFtMax,
@@ -696,7 +608,7 @@ public static class ChainReport
         return (attacks, skipped);
     }
 
-    private static (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string, string)> Skipped) FillLinkedDebuffs(
+    private static (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string Name, string Reason)> Skipped) FillLinkedDebuffs(
         IReadOnlyList<ChainAttack> attacks,
         string canonical,
         AttribMods? mods,
@@ -728,7 +640,7 @@ public static class ChainReport
         return (filled, skipped);
     }
 
-    private static (IReadOnlyList<PetSummon> Pets, IReadOnlyList<(string, string)> Skipped) BuildPets(
+    private static (IReadOnlyList<PetSummon> Pets, IReadOnlyList<(string Name, string Reason)> Skipped) BuildPets(
         IReadOnlyList<ChainAttack> summons,
         string canonical,
         AttribMods attribmod,
@@ -764,11 +676,12 @@ public static class ChainReport
         double minimum = F32.Round(cycles * chain.CycleTime);
         if (chain.TimeToEmpty < minimum)
         {
+            string message = $"{rule.Context.Stance.Value()} stance: no affordable chain; the best chain empties endurance in "
+                + $"{PyFloat.Fixed(chain.TimeToEmpty, 1)} s, under {PyFloat.General(cycles)} cycles of {PyFloat.Fixed(chain.CycleTime, 2)} s ({PyFloat.Fixed(minimum, 1)} s)";
             yield return new ChainDiagnostic(
                 "P-END-002",
                 "warning",
-                $"{rule.Context.Stance.Value()} stance: no affordable chain; the best chain empties endurance in "
-                + $"{PyFloat.Fixed(chain.TimeToEmpty, 1)} s, under {PyFloat.General(cycles)} cycles of {PyFloat.Fixed(chain.CycleTime, 2)} s ({PyFloat.Fixed(minimum, 1)} s)",
+                message,
                 rule.Path,
                 "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
                 $">= {PyFloat.General(cycles)} cycles ({PyFloat.Fixed(minimum, 1)} s)",

@@ -7,11 +7,6 @@ using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.Statistics;
 
-/// <summary>Max HP (AT-capped) and the HP regenerated per second, which scales with it.</summary>
-/// <param name="MaxHp">The max HP.</param>
-/// <param name="RegenPerSec">The regeneration per second.</param>
-public sealed record HealthBudget(double MaxHp, double RegenPerSec);
-
 /// <summary>The endurance and health budgets a build starts from, and the Mids totals loader they read.</summary>
 public static class EnduranceBudgets
 {

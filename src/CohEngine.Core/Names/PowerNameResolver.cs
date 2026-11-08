@@ -5,20 +5,6 @@ using CohEngine.Core.Chain;
 
 namespace CohEngine.Core.Names;
 
-/// <summary>One player power: its full internal name, the name the game shows, and its powerset.</summary>
-/// <param name="Internal">The full internal name.</param>
-/// <param name="Display">The display name.</param>
-/// <param name="Powerset">The powerset's internal name.</param>
-public sealed record PowerName(string Internal, string Display, string Powerset);
-
-/// <summary>One player powerset with the archetypes that can take it and its powers in index order.</summary>
-/// <param name="Internal">The internal name.</param>
-/// <param name="Display">The display name.</param>
-/// <param name="Category">The category.</param>
-/// <param name="Archetypes">The archetypes.</param>
-/// <param name="Powers">The powers.</param>
-public sealed record PowersetName(string Internal, string Display, string Category, IReadOnlyList<string> Archetypes, IReadOnlyList<PowerName> Powers);
-
 /// <summary>Bidirectional internal/display lookup over the player powersets of the canonical data.</summary>
 public sealed class PowerNameResolver
 {
@@ -168,7 +154,7 @@ public sealed class PowerNameResolver
         return found;
     }
 
-    private static void Add(Dictionary<(string, string?), SortedSet<string>> found, (string, string?) key, string archetype)
+    private static void Add(Dictionary<(string Category, string? SetDir), SortedSet<string>> found, (string Category, string? SetDir) key, string archetype)
     {
         found.TryAdd(key, new SortedSet<string>(StringComparer.Ordinal));
         found[key].Add(archetype);

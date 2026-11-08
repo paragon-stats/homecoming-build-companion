@@ -1,9 +1,4 @@
-# The chain planner is a literal port: a Python module's dataclasses stay beside the functions that use them, so one
-# file holds several small types, and a function keeps the length the Python's has. Correctness analyzers stay on.
+# A function in the chain port keeps the length its Python original has: the operation order and the float32
+# narrowing points are the fidelity guarantee, so the method-length rule is off here. Everything else stays on.
 [*.cs]
-dotnet_diagnostic.MA0048.severity = none
 dotnet_diagnostic.MA0051.severity = none
-dotnet_diagnostic.SA1402.severity = none
-dotnet_diagnostic.SA1649.severity = none
-dotnet_diagnostic.SA1414.severity = none
-dotnet_diagnostic.SA1118.severity = none

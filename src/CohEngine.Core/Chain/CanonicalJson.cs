@@ -4,11 +4,6 @@ using System.Text.Json;
 
 namespace CohEngine.Core.Chain;
 
-/// <summary>Looks a power or entity up by name; null when the data has none.</summary>
-/// <param name="name">A power full name (dotted) or an entity definition name.</param>
-/// <returns>The record, or null.</returns>
-public delegate JsonElement? PowerResolver(string name);
-
 /// <summary>Reads and navigates the canonical data records (parsed JSON), with the Python mapping semantics the planner relies on.</summary>
 public static class CanonicalJson
 {
@@ -141,7 +136,7 @@ public static class CanonicalJson
             IEnumerable<string> candidates = [derived];
             if (!File.Exists(derived) || new FileInfo(derived).Length == 0)
             {
-                candidates = [.. Directory.EnumerateFiles(powersRoot, Path.GetFileName(derived), SearchOption.AllDirectories).Where(file => new FileInfo(file).Length > 0)];
+                candidates = Directory.Exists(powersRoot) ? [.. Directory.EnumerateFiles(powersRoot, Path.GetFileName(derived), SearchOption.AllDirectories).Where(file => new FileInfo(file).Length > 0)] : [];
             }
 
             JsonElement? data = null;
@@ -228,67 +223,5 @@ public static class CanonicalJson
 
             return value;
         };
-    }
-}
-
-/// <summary>Python <c>repr</c> and truthiness helpers for strings and lists.</summary>
-public static class PyText
-{
-    /// <summary>Python <c>repr(str)</c>.</summary>
-    /// <param name="text">The text.</param>
-    /// <returns>The quoted text.</returns>
-    public static string Repr(string text)
-    {
-        ArgumentNullException.ThrowIfNull(text);
-        char quote = text.Contains('\'', StringComparison.Ordinal) && !text.Contains('"', StringComparison.Ordinal) ? '"' : '\'';
-        StringBuilder builder = new();
-        builder.Append(quote);
-        foreach (char letter in text)
-        {
-            builder.Append(letter == quote || letter == '\\' ? "\\" + letter : letter == '\n' ? "\\n" : letter == '\t' ? "\\t" : letter == '\r' ? "\\r" : letter.ToString());
-        }
-
-        return builder.Append(quote).ToString();
-    }
-
-    /// <summary>Python <c>repr(list[str])</c>.</summary>
-    /// <param name="items">The items.</param>
-    /// <returns>The list text.</returns>
-    public static string Repr(IEnumerable<string> items)
-    {
-        ArgumentNullException.ThrowIfNull(items);
-        return "[" + string.Join(", ", items.Select(Repr)) + "]";
-    }
-
-    /// <summary>Python <c>repr(int)</c>.</summary>
-    /// <param name="value">The value.</param>
-    /// <returns>The text.</returns>
-    public static string Repr(int value)
-    {
-        return value.ToString(CultureInfo.InvariantCulture);
-    }
-}
-
-/// <summary>A required key missing from an input record; the Python port's <c>KeyError</c>.</summary>
-public sealed class MissingKeyException : Exception
-{
-    /// <summary>Initializes a new instance of the <see cref="MissingKeyException"/> class.</summary>
-    /// <param name="key">The missing key.</param>
-    public MissingKeyException(string key)
-        : base(PyText.Repr(key))
-    {
-    }
-
-    /// <summary>Initializes a new instance of the <see cref="MissingKeyException"/> class.</summary>
-    public MissingKeyException()
-    {
-    }
-
-    /// <summary>Initializes a new instance of the <see cref="MissingKeyException"/> class.</summary>
-    /// <param name="message">The message.</param>
-    /// <param name="innerException">The cause.</param>
-    public MissingKeyException(string message, Exception innerException)
-        : base(message, innerException)
-    {
     }
 }
