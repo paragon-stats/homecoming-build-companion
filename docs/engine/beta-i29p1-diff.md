@@ -144,13 +144,13 @@ The new `Atom_Smasher_AoE` redirect has 22 s recharge, radius 8, 4 targets and T
 
 ## Sonic Melee (Brute, Scrapper, Stalker, Tanker)
 
-Attune stops being a toggle and becomes a self-centred click that sets sonic modes on you and on nearby foes.
+Attune becomes a self-centred power that sets sonic modes on you and on nearby foes. Only its redirect copy changes type, from Toggle to Click.
 Every attack then adds a 15 s effect, at scale -1.6, that lowers the target's resistance to debuffs.
 It covers defense, endurance, to-hit, speeds, regeneration, recovery and recharge.
 
 | Power | Archetypes | Change |
 | --- | --- | --- |
-| Attune | all four | Toggle to Click; recharge 0.5 to 15 s; radius 0 to 20; targets 0 to 10; target Foe to Self |
+| Attune | all four | Recharge 0.5 to 15 s; radius 0 to 20; targets 0 to 10; target Foe to Self (the redirect copy goes Toggle to Click) |
 | Attune | all four | Endurance 0.104 to 0.13 (Stalker 1.6309) |
 | Sonic Thrust, Earsplitter, Strident Echo, Sonic Clap, Deafening Wave | all four | Adds the debuff-resistance effect and an `Execute_Power` |
 | Sandman's Whisper | Brute, Scrapper, Tanker | Adds the debuff-resistance effect and an `Execute_Power` |
@@ -173,12 +173,87 @@ Mission-maker attack copies (8 powers), villain-pet copies (15) and one pet mirr
 The Dominator Radioactive Assault villain-pet copy of Devastating Blow also changes radius 8 to 15 and targets 5 to 11.
 Alpha Silent powers (`Defense_Debuff_*`, `ToHit_Debuff_*`) differ only in the letter case of their names. Their numbers were not compared.
 
-## Patch notes cross-check
+## Patch notes
 
-No Issue 29 Page 1 record exists.
-`python -m scripts.forum_scrape.patch_notes --source forum-beta` ran on 2026-11-07, honoured robots.txt and a 2 s delay, and wrote 0 entries.
-The newest `forum-beta` record in `data/patches/index.jsonl` is dated 2022-10-16, and no record carries an `issue-29` label.
-There is nothing to cross-check the decode against yet. Re-run the collector when the open-beta thread is posted.
+Source: the opening post of the thread "Open Beta Patch Notes for November 3rd, 2026", posted 2026-11-03 by The Curator (Developer group):
+<https://forums.homecomingservers.com/topic/66292-open-beta-patch-notes-for-november-3rd-2026/#findComment-826387>.
+Only that post is used. Replies in the thread are not evidence and are not cited.
+The page was fetched with the repo's crawler user agent and a 2 s delay.
+The forum's signal is ai-train=no, use=reference, so the notes are paraphrased and only their numbers are repeated.
+The collector `python -m scripts.forum_scrape.patch_notes --source forum-beta` wrote 0 entries on 2026-11-07, and its newest record is dated 2022-10-16.
+No record is committed for this thread, so this section is the only record of it.
+
+The notes cover graphics, character creation, tasks and fixes as well as powers.
+For player powers they name three sets as reworked (Sonic Melee, Spines, Radiation Melee with Radioactive Assault).
+They add an Atom Smasher cast-time change shared with Radiation Manipulation, and three fixes: Teleport, Group Fly and Light Affinity Spotlight range.
+Each row below pairs the notes' statement with what the decode shows.
+
+### Confirmed by the notes
+
+| Finding | What the notes say | Decode |
+| --- | --- | --- |
+| Sonic: -1.6 debuff resistance | All Sonic Melee powers inflict scale -1.6 resistance versus debuffs for 15 s | Same value and duration on every attack |
+| Sonic: Attune cost and recharge | Endurance 0.208 to 0.52 per second; recharge 0.5 to 15 s | Per-tick cost 0.104 to 0.13; recharge 0.5 to 15 s |
+| Sonic: Attune on self | Toggle centred on self; more than one target can be Attuned | Self target, radius 20, 10 targets |
+| Sonic Clap arc | 180 to 130 degrees | 3.1416 to 2.2689 rad |
+| Sonic Clap and Deafening Wave echo | Echo in a 15 ft radius on up to 5 targets | Redirect radius 8 to 15 |
+| Assassin's Whisper debuff | Resistance -1.2 to -1.3333 (also Sandman's Whisper) | Same on the villain-pet copies |
+| Spines: Spine Poison | DoT removed from attacks; shared Spine Poison and a Poisoned status, up to 10 stacks of 15 s | DoT removed; `SpinePoison` redirect (10 s mode) and `Poison` temporary power added |
+| Spines: Lunge | Recharge 6 s, damage 1.08 to 1.32, endurance 6.032 to 6.864 | Same |
+| Spines: Spine Burst | Recharge 10 to 13 s, endurance to 12.688, damage 0.6 to 0.7507 | Same |
+| Spines: Impale | Recharge 9 s, endurance 9.359, damage 1.8, cast 2.23 to 1.433 s, 2 stacks | Same numbers; a granted power added |
+| Spines: Throw Spines | Damage 1.09 to 0.901 | Same |
+| Spines: Assassin's Impaler | Slow and -Jump 0.5 for 15 s, -Recharge 0.2 for 10 s, accepts slow enhancements | Same effects and categories |
+| Radiation: Siphon | No longer removes Contamination; -100% regeneration for 10 s, doubled when Contaminated | Revoke removed; two -Regeneration effects, one gated on Contaminated |
+| Radiation: Scrapper criticals | 100% Energy; Proton Sweep one hit of scale 1.43 Energy | Smashing and Toxic parts merged into Energy; Proton Sweep Energy 1.43 direct |
+| Radiation: Atom Smasher | Cast 2.93 to 2.8 s; own Contamination AoE, Toxic 0.155, 8 ft, main target plus up to 3 | `Atom_Smasher_AoE` redirect: radius 8, 4 targets, Toxic 0.155 |
+| Radiation: Devastating Blow AoE | 15 ft, 11 targets | Radius 17.8 to 15, targets 5 to 11 |
+| Radiation: other AoEs | Contamination AoEs hit the main target plus 5 others | Targets 5 to 6 |
+| Radiation: casts | Siphon 1.93 s, X-Ray Beam 1.33 s, Electron Haze 2.17 s | Same |
+| Radiation: Irradiated Ground | Deals Toxic instead of Fire | Fire becomes Toxic at the same scales |
+| Radiation: Haze knockback | Knockback reduced to Knockdown | Knockback table scale 1.0 to 0.67 |
+
+### Contradicted or unresolved
+
+- **Attune is not a click.** The notes say Attune is a toggle on self.
+  The decode shows Toggle to Click only on the redirect copy, so the first draft of this document wrongly applied it to the player power. That is corrected above.
+- **Quills.** The notes say Spine Poison applies to all Spines attacks except Quills.
+  The decode shows the Scrapper Quills attacks also lose their Toxic DoT and gain the same numeric changes as Spines.
+  The notes do not say what Quills uses instead.
+- **Spines Fire components.** The decode shows Fire scales rising with Lethal on Spine Burst, Impale and Lunge. The notes mention Lethal damage only.
+
+### In the decode, not in the notes
+
+- Endurance 0 on the Radiation Melee Devastating Blow, Siphon and Smash AoE redirects.
+- The Lunge mode 57 and `Global_Chance_Mod` effects are removed.
+- Sonic Clap and Deafening Wave redirects target DeadOrAliveFoe.
+- The Sentinel Electricity Mastery `Rehabilitating_Circuit` values, which are unreliable (see above).
+
+### In the notes, not found by the decode
+
+These are candidates for the 89 unreadable records, or for fields the diff did not compare.
+
+- **Sonic Melee:** Sonic Thrust knockdown chance 10% to 15%.
+  Sonic Clap damage 0.7838 to 0.8844 total. Strident Echo Scrapper critical 1.16 to 1.32.
+  Attune damage scale 0.25 to 0.2 (0.4 on repeat hits), tick 2 s to 1 s, -Res scale 0.6 to 1.2, and 10% potency.
+  Assassin's Whisper (Stealth) grants Sound Booster.
+  The Sonic Thrust and Strident Echo redirects are in the unreadable list, which fits.
+- **Spines:** Ripper knockdown chance 60% to 100%.
+  Ripper bonus Toxic by stacks (scale 0.13 at 1 stack to 0.85 at 10).
+  Spine Poison base scale 0.025 per second for 9.1 s, rising 1.9x per stack to 0.25.
+  Assassin's Impaler Stealth grants 6 stacks.
+- **Radiation:** Contamination chance rises: Proton Sweep 21% to 70%, Electron Haze 34% to 50%, Proton Volley quick 30% to 66% and sniper 30% to 100%.
+  Electron Haze knockdown chance 25% to 50%. Assassin's Corruption Irradiated Ground stacks.
+  Chance changes appear in the decode only as paired add and remove entries on those attacks, which is consistent but not quantified.
+- **Fixes:** Teleport and Anti-Teleport Grenade, Group Fly opt-out and Spotlight range.
+  The decode found no change on these powers, so the fix is in a field the diff did not compare.
+
+### Powers the notes do not mention
+
+The notes announce no change to these sets, which are the ones the decoder could not read:
+Electrical Blast, Psychic Blast, Storm Blast, Electrical Melee, Kinetic Attack, Shock Therapy, Electric Control, Pyrotechnic Control, Martial Assault and the Vulnerability inherent.
+So the notes give no sign that their numbers changed.
+That supports the inference above that the chain-effect record layout changed, though the notes do not say so.
 
 ## What this means for v1.0.0
 
