@@ -71,7 +71,7 @@ CURATED_FOLDERS = ("operator-builds", "community/Mids Archives")
 
 DB = load_mbd_db(MIDS)
 ARCHETYPES: ArchetypeDb = load_archetypes(MIDS / "archetypes.json")
-MODS = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+MODS = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 TABLES = load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
 ENH_DB = dict(load_enhancement_effects(MIDS / "enhancement_effects.json"))
 SET_DB = load_set_bonus_db(MIDS / "enhancement_sets.json", MIDS / "set_bonus_powers.json")

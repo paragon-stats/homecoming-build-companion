@@ -27,6 +27,17 @@ public static class TotalsData
         return Json.Load(path, TotalsJsonContext.Default.ServerData);
     }
 
+    /// <summary>Parses <c>enums.json</c> (the Python port's <c>base_totals.load_enum_maps</c>).</summary>
+    /// <param name="path">The file to read.</param>
+    /// <returns>The enum maps.</returns>
+    public static EnumMaps LoadEnumMaps(string path)
+    {
+        return new EnumMaps(Json.Load(path, TotalsJsonContext.Default.DictionaryStringDictionaryStringInt32).ToDictionary(
+            entry => entry.Key,
+            entry => (IReadOnlyDictionary<string, int>)entry.Value,
+            StringComparer.Ordinal));
+    }
+
     /// <summary>Parses <c>config.json</c>.</summary>
     /// <param name="path">The file to read.</param>
     /// <returns>The engine configuration.</returns>

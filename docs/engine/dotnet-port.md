@@ -14,7 +14,7 @@ This page covers its layout, the single-precision contract, how fixtures are fou
 | `src/CohEngine.Core/CliRunner.cs` | The whole CLI. `src/CohEngine.Cli/Program.cs` is a one-line shim. |
 | `tests/CohEngine.Core.Tests/` | `Maths/`, `Data/` (`[Trait("Category", "Fixtures")]`) and `Parity/` (`[Trait("Category", "Parity")]`). |
 | `tests/CohEngine.Cli.Tests/` | CLI tests, including the `rules` golden comparison. |
-| `tests/fixtures/` | The Mids reference dumps (`mids/`), `Maths.mhd`, and `rules-golden.txt`. Both the Python and the C# suites read them. |
+| `tests/fixtures/` | The Mids reference dumps (`mids/`), `attribmod/AttribMod.json`, `Maths.mhd`, and `rules-golden.txt`. Both the Python and the C# suites read them. |
 
 Records keep the Python field names in PascalCase (`n_magnitude` becomes `NMagnitude`) and the Python types.
 Expression strings stay strings until they are parsed in P2.
@@ -28,7 +28,8 @@ The Python port mirrors that with `maths.f32`, which rounds a double to the near
 It throws `OverflowException` for a finite value that would round past the single range, because Python's `struct.pack("f")` refuses that value too.
 
 On load, a field gets `[JsonConverter(typeof(F32JsonConverter))]` exactly when the Python loader wraps it in `f32()`.
-A field the Python reads raw, such as the archetype caps or the dumped totals, stays a plain `double`.
+A list the Python quantizes cell by cell, such as the totals vectors, gets `F32ListJsonConverter`.
+A field the Python loader reads raw, such as the archetype caps or the `enhanced_powers.json` values, stays a plain `double`.
 P2 code quantizes at the same points the Python does, and the Python code is the reference for where those points are.
 
 ## Finding fixtures
@@ -38,8 +39,6 @@ Shared database dumps load lazily as properties (`Archetypes`, `EnhancementEffec
 `Build(name)` returns a `BuildFixture` for `tests/fixtures/mids/builds/<name>/` with one lazy property per file.
 `BuildNames()` lists the build directories in ordinal order, so a theory over builds picks up a new dump without a code change.
 The test projects share one store through `Fixtures.Store` in `tests/CohEngine.Core.Tests/Fixtures.cs`.
-
-`AttribMod.json` still sits at `src/coh_engine/tests/fixtures/attribmod/`, and `FixtureStore.AttribMods` reads it from there.
 
 ## Writing a parity test
 

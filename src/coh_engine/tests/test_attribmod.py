@@ -9,7 +9,7 @@ from coh_engine.attribmod import AttribMods, get_modifier, load_attribmod
 from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
-ATTRIBMOD = FIXTURES / "attribmod" / "AttribMod.json"
+ATTRIBMOD = FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json"
 ARCHETYPES = FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "archetypes.json"
 
 # Melee_Damage (table 0), row 49 (character level 50), first ten class columns.

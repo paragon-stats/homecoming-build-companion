@@ -127,6 +127,33 @@ public sealed class FixtureLoadTests
         Assert.Equal(0.75, store.Config.ScalingToHit);
     }
 
+    // Printed once by load_enum_maps("tests/fixtures/mids/enums.json"): len(maps), size("eDamage"),
+    // size("eEffectType"), maps["eDamage"]["Psionic"], inverse["eDamage"][8].
+    [Fact]
+    public void The_enum_maps_load_with_their_inverse()
+    {
+        EnumMaps enums = Fixtures.Store.Enums;
+
+        Assert.Equal(19, enums.Maps.Count);
+        Assert.Equal(16, enums.Size("eDamage"));
+        Assert.Equal(86, enums.Size("eEffectType"));
+        Assert.Equal(8, enums.Maps["eDamage"]["Psionic"]);
+        Assert.Equal("Psionic", enums.Inverse["eDamage"][8]);
+    }
+
+    [Theory]
+    [MemberData(nameof(Builds))]
+    public void Dumped_totals_load_quantized(string name)
+    {
+        MidsTotals totals = Fixtures.Store.Build(name).Totals;
+
+        foreach (TotalStatistics side in new[] { totals.Totals, totals.TotalsCapped })
+        {
+            double[] cells = [.. side.Def, .. side.Res, .. side.Mez, .. side.MezRes, .. side.DebuffRes, .. side.Elusivity, side.HpRegen, side.HpMax, side.EndRec, side.BuffHaste];
+            Assert.All(cells, cell => Assert.Equal((double)(float)cell, cell));
+        }
+    }
+
     [Fact]
     public void The_attribmod_tables_load_quantized()
     {

@@ -58,7 +58,7 @@ def scrapper_index(classes: ArchetypeDb) -> int:
 @pytest.fixture(scope="module")
 def computed(classes: ArchetypeDb) -> tuple[BaseTotals, list[PowerStats]]:
     """The fixture build's totals + per-power stats (one real end-to-end compute)."""
-    mods: AttribMods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    mods: AttribMods = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
     enums: EnumMaps = load_enum_maps(MIDS / "enums.json")
     config: EngineConfig = load_engine_config(MIDS / "config.json")
     server: ServerData = load_server_data(MIDS / "server_data.json")

@@ -15,6 +15,7 @@ public sealed class FixtureStore
     private readonly ConcurrentDictionary<string, BuildFixture> builds = new(StringComparer.Ordinal);
     private readonly Lazy<ArchetypeDb> archetypes;
     private readonly Lazy<AttribMods> attribMods;
+    private readonly Lazy<EnumMaps> enums;
     private readonly Lazy<IReadOnlyDictionary<int, AssemblyPower>> assemblyPowers;
     private readonly Lazy<AssemblyEntities> assemblyEntities;
     private readonly Lazy<IReadOnlyDictionary<int, EnhancementRecord>> enhancementEffects;
@@ -33,8 +34,8 @@ public sealed class FixtureStore
         MidsDirectory = Path.Combine(Root, "mids");
         archetypes = new(() => ArchetypeData.LoadArchetypes(Mids("archetypes.json")));
 
-        // shortcut: AttribMod.json still sits with the Python suite's fixtures; read it there until it moves.
-        attribMods = new(() => ArchetypeData.LoadAttribMod(Path.Combine(repositoryRoot, "src", "coh_engine", "tests", "fixtures", "attribmod", "AttribMod.json")));
+        attribMods = new(() => ArchetypeData.LoadAttribMod(Path.Combine(Root, "attribmod", "AttribMod.json")));
+        enums = new(() => TotalsData.LoadEnumMaps(Mids("enums.json")));
         assemblyPowers = new(() => AssemblyData.LoadAssemblyPowers(Mids("assembly_powers.json")));
         assemblyEntities = new(() => AssemblyData.LoadAssemblyEntities(Mids("assembly_entities.json")));
         enhancementEffects = new(() => EnhancementData.LoadEnhancementEffects(Mids("enhancement_effects.json")));
@@ -59,6 +60,9 @@ public sealed class FixtureStore
 
     /// <summary>Gets the AttribMod tables.</summary>
     public AttribMods AttribMods => attribMods.Value;
+
+    /// <summary>Gets the enum name and ordinal maps.</summary>
+    public EnumMaps Enums => enums.Value;
 
     /// <summary>Gets the database-wide assembly powers.</summary>
     public IReadOnlyDictionary<int, AssemblyPower> AssemblyPowers => assemblyPowers.Value;

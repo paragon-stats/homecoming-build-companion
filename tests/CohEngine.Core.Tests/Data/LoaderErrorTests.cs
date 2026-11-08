@@ -106,6 +106,27 @@ public sealed class LoaderErrorTests : IDisposable
     }
 
     [Fact]
+    public void Totals_round_trip_through_the_quantizing_converters()
+    {
+        MidsTotals totals = Fixtures.Store.Build("shield_scrapper_slotted").Totals;
+        string path = Write("totals.json", JsonSerializer.Serialize(totals, TotalsJsonContext.Default.MidsTotals));
+
+        MidsTotals loaded = TotalsData.LoadTotals(path);
+
+        Assert.Equal(totals.Totals.Def, loaded.Totals.Def);
+        Assert.Equal(totals.TotalsCapped.HpMax, loaded.TotalsCapped.HpMax);
+    }
+
+    [Fact]
+    public void A_totals_vector_that_is_not_an_array_is_refused()
+    {
+        string json = JsonSerializer.Serialize(Fixtures.Store.Build("shield_scrapper_slotted").Totals, TotalsJsonContext.Default.MidsTotals);
+        string path = Write("totals.json", json.Replace("\"Def\":[", "\"Def\":5,\"Unused\":[", StringComparison.Ordinal));
+
+        Assert.Throws<JsonException>(() => TotalsData.LoadTotals(path));
+    }
+
+    [Fact]
     public void Requirement_groups_drop_blank_names_and_empty_groups()
     {
         Power stalker = Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)").Powers[0];

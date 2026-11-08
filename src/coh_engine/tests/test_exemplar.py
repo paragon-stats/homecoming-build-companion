@@ -87,7 +87,7 @@ class TestExemplarTotalsParity:
 
     @pytest.fixture(scope="class")
     def mods(self) -> AttribMods:
-        return load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+        return load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 
     @pytest.fixture(scope="class")
     def classes(self) -> ArchetypeDb:

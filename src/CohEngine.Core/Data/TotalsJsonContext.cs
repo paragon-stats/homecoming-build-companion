@@ -9,5 +9,6 @@ namespace CohEngine.Core.Data;
 [JsonSerializable(typeof(IReadOnlyList<EnhancedPower>))]
 [JsonSerializable(typeof(ServerData))]
 [JsonSerializable(typeof(EngineConfig))]
+[JsonSerializable(typeof(Dictionary<string, Dictionary<string, int>>))]
 [ExcludeFromCodeCoverage(Justification = "Source-generated serializer metadata; the loaders that use it are covered.")]
 public sealed partial class TotalsJsonContext : JsonSerializerContext;
