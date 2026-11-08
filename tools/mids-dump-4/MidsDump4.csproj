@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
+    <OutputType>Exe</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NoWarn>$(NoWarn);CS8600;CS8601;CS8602;CS8603;CS8604;CS8619;CS8620</NoWarn>
+    <RootNamespace>MidsDump4</RootNamespace>
+    <AssemblyName>MidsDump4</AssemblyName>
+    <!-- Override with -p:MidsFork4=<path> when this repo is a git worktree and the fork
+      is not three levels up. -->
+    <MidsFork4 Condition="'$(MidsFork4)' == ''">..\..\..\MidsReborn-4.0</MidsFork4>
+    <!-- Test-only harness: references the MidsReborn fork checked out as a sibling
+      of this repo. The fork's Core namespace holds the authoritative build math;
+      this harness loads the Homecoming DB headless and dumps JSON the Python
+      port's golden fixtures are baselined against. -->
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(MidsFork4)\MidsReborn\MidsReborn.csproj" />
+  </ItemGroup>
+</Project>
