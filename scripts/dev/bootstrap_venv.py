@@ -37,7 +37,7 @@ def repo_root_from_script(script_path: Path) -> Path:
     """Resolve repo root from script location.
 
     Uses parents[2] instead of tools.common.paths.repo_root() because
-    this bootstrapper runs before the venv exists — the package may not
+    this bootstrapper runs before the venv exists - the package may not
     be importable yet.
     """
     return script_path.resolve().parents[2]
