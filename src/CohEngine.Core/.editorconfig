@@ -11,9 +11,5 @@ dotnet_diagnostic.IDE0072.severity = none
 dotnet_diagnostic.IDE0075.severity = none
 dotnet_diagnostic.IDE0078.severity = none
 dotnet_diagnostic.IDE0083.severity = none
-# Collection and LINQ rewrites, which would reorder float32 accumulation.
-dotnet_diagnostic.IDE0028.severity = none
-dotnet_diagnostic.IDE0300.severity = none
-dotnet_diagnostic.IDE0305.severity = none
 # A phase stays one function where the Python's is one, however long.
 dotnet_diagnostic.MA0051.severity = none

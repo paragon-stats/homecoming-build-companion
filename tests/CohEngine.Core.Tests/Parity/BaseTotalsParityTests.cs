@@ -40,7 +40,7 @@ public sealed class BaseTotalsParityTests
     {
         BuildInputs inputs = new(name);
         BaseTotals excluded = EngineRun.Totals(inputs);
-        BaseTotals forced = EngineRun.Totals(inputs, new Pipeline.BuildOptions { CanInclude = (_, _) => true });
+        BaseTotals forced = EngineRun.Totals(inputs, new Pipeline.BuildOptions { IncludeAllConditionals = true });
         AssertSame(excluded.Totals, forced.Totals);
         AssertSame(excluded.TotalsCapped, forced.TotalsCapped);
     }

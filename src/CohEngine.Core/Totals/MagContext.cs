@@ -37,11 +37,19 @@ internal sealed record MagContext
     /// <summary>Gets the build state conditions and expressions read, or null.</summary>
     public ExpressionContext? Expr { get; init; }
 
+    /// <summary>Gets a value indicating whether every conditional and SpecialCase effect counts; it exists for the hazard-gate test.</summary>
+    public bool IncludeAllConditionals { get; init; }
+
     /// <summary>
-    /// Gets <c>Effect.CanInclude</c>. A SpecialCase effect stays excluded, as the character-state switch is not ported;
+    /// <c>Effect.CanInclude</c>. A SpecialCase effect stays excluded, as the character-state switch is not ported;
     /// this diverges from Mids, which keeps many default-true special cases.
     /// </summary>
-    public Func<Effect, ExpressionContext?, bool> CanInclude { get; init; } = Conditionals.EffectIncluded;
+    /// <param name="effect">The effect.</param>
+    /// <returns>True when the effect counts.</returns>
+    public bool CanInclude(Effect effect)
+    {
+        return IncludeAllConditionals || Conditionals.EffectIncluded(effect, Expr);
+    }
 
     /// <summary>Whether a power is IsGlobalAccuracySource: the set-bonus virtual power or a GlobalBoost.</summary>
     /// <param name="power">The power.</param>
@@ -105,7 +113,7 @@ internal sealed record MagContext
                 || !string.Equals(effect.EffectType, effectType, StringComparison.Ordinal)
                 || effect.EffectClass is "Ignored" or "Special"
                 || (effect.DelayedTime > 5 && !includeDelayed)
-                || !CanInclude(effect, Expr)
+                || !CanInclude(effect)
                 || !PvxInclude(effect))
             {
                 continue;
@@ -144,7 +152,7 @@ internal sealed record MagContext
                 || !string.Equals(effect.EtModifies, effectType, StringComparison.Ordinal)
                 || effect.EffectType is not ("Enhancement" or "DamageBuff")
                 || (effect.AbsorbedEffect && string.Equals(effect.AbsorbedPowerType, "GlobalBoost", StringComparison.Ordinal))
-                || !CanInclude(effect, Expr)
+                || !CanInclude(effect)
                 || !PvxInclude(effect)
                 || string.Equals(effect.ToWho, "Target", StringComparison.Ordinal))
             {

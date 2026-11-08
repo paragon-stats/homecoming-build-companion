@@ -54,7 +54,7 @@ internal static class Pipeline
             EnhanceNames = PerPowerEnhancementMathPhase.EnhanceNames(data.Enums),
             Enums = data.Enums,
             Expr = build.Expr,
-            CanInclude = build.CanInclude ?? Conditionals.EffectIncluded,
+            IncludeAllConditionals = build.IncludeAllConditionals,
         };
         BuffsX selfBuffs = new(data.Enums);
         BuffsX selfEnhance = new(data.Enums);
@@ -178,7 +178,7 @@ internal static class Pipeline
         /// <summary>Gets the build state conditions and expressions read.</summary>
         public ExpressionContext? Expr { get; init; }
 
-        /// <summary>Gets a replacement CanInclude, which the excluded-conditionals guard uses to force every effect in.</summary>
-        public Func<Effect, ExpressionContext?, bool>? CanInclude { get; init; }
+        /// <summary>Gets a value indicating whether every conditional and SpecialCase effect counts; it exists for the hazard-gate test.</summary>
+        public bool IncludeAllConditionals { get; init; }
     }
 }

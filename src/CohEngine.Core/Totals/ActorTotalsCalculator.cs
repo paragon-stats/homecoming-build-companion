@@ -174,7 +174,8 @@ internal static class ActorTotalsCalculator
         double minDmg = slice.Min();
         double maxDmg = slice.Max();
 
-        // LINQ Average over float[] sums in double, divides, then narrows; summed in order, as the Python does.
+        // LINQ Average over float[] sums in double in order, divides, then narrows; this matches Mids, not the
+        // Python port, whose sum() is compensated since Python 3.12.
         double sum = 0.0;
         foreach (double value in slice)
         {
