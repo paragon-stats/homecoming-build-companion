@@ -1,0 +1,47 @@
+diff --git a/MidsReborn/Core/PlannerPowerPipeline.cs b/MidsReborn/Core/PlannerPowerPipeline.cs
+index 48fb4b0fe..cbfc6f6f3 100644
+--- a/MidsReborn/Core/PlannerPowerPipeline.cs
++++ b/MidsReborn/Core/PlannerPowerPipeline.cs
+@@ -81,11 +81,15 @@ internal sealed class PlannerPowerPipeline
+
+     public void ExecutePerPowerEnhancementMathPhase()
+     {
+-        Parallel.For(0, _mathPowers.Length, hIDX =>
++        // Sequential in index order, as the 3.x harness patch does. The Homecoming ruleset takes no
++        // cross-power reads in this loop (AllowLegacyCrossPowerIncarnatePasses is false), so the order
++        // does not change its dumps; the guard keeps them deterministic if a ruleset or a later 4.0
++        // commit adds a cross-power read.
++        for (var hIDX = 0; hIDX < _mathPowers.Length; hIDX++)
+         {
+             if (_mathPowers[hIDX] == null)
+             {
+-                return;
++                continue;
+             }
+
+             GBPA_Pass1_EnhancePreED(ref _mathPowers[hIDX], hIDX);
+@@ -94,7 +98,7 @@ internal sealed class PlannerPowerPipeline
+             GBPA_Pass4_Add(ref _mathPowers[hIDX]);
+             GBPA_ApplyArchetypeCaps(ref _mathPowers[hIDX]);
+             GBPA_Pass5_MultiplyPreBuff(ref _mathPowers[hIDX], ref _buffedPowers[hIDX]);
+-        });
++        }
+
+         for (var index = 0; index < _mathPowers.Length; index++)
+         {
+@@ -117,13 +121,13 @@ internal sealed class PlannerPowerPipeline
+
+     public void ExecutePostBuffMultiplyPhase()
+     {
+-        Parallel.For(0, _mathPowers.Length, index =>
++        for (var index = 0; index < _mathPowers.Length; index++)
+         {
+             if (_mathPowers[index] != null)
+             {
+                 GBPA_Pass6_MultiplyPostBuff(ref _mathPowers[index], ref _buffedPowers[index]);
+             }
+-        });
++        }
+
+         for (var index = 0; index < _buffedPowers.Length; index++)
+         {

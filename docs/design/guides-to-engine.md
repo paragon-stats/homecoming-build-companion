@@ -2,6 +2,7 @@
 
 Status: design, not yet started. Measured on 2026-10-27 while the pre-sunset crawl was still writing.
 Every count below is a snapshot; the crawl adds files until it finishes, so re-run the counts then.
+The source material has since moved to a private checkout (#91); paths below read `<source root>/community/` unless noted.
 
 The counts came from throwaway measuring scripts that were not kept; Phase 0's tested guide index reproduces them.
 
@@ -40,9 +41,9 @@ The counts came from throwaway measuring scripts that were not kept; Phase 0's t
 
 | Source | Files | Span | Notes |
 | --- | ---: | --- | --- |
-| `community/pre-sunset/` (crawl running) | 1,398 at count | 2004 to 2012 | 7,835 threads in the ledger; 1,405 captured, 6,179 "not guide-shaped", 248 "not build-related" |
-| `community/` live Homecoming captures | 123 (excluding `pre-sunset/`) | 2019 to 2026 | 2,296 ledger rows; 175 captured; 1,145 duplicate URL rows in the ledger |
-| `community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | staged locally under `tmp/build-archives/`, not in the repo; 3,923 distinct by content hash (see 2.5) |
+| `<source root>/community/pre-sunset/` (crawl running) | 1,398 at count | 2004 to 2012 | 7,835 threads in the ledger; 1,405 captured, 6,179 "not guide-shaped", 248 "not build-related" |
+| `<source root>/community/` live Homecoming captures | 123 (excluding `pre-sunset/`) | 2019 to 2026 | 2,296 ledger rows; 175 captured; 1,145 duplicate URL rows in the ledger |
+| `<source root>/community/builds_archive_index.json` | index of 7,922 Mids build files | i9 to i26, 5,508 tagged i25 | archive under `<source root>/build-archives/`, not in this repo; 3,923 distinct by content hash (see 2.5) |
 
 Pre-sunset folders: `archetypes/` 985, `mechanics/` 288, `powersets/` 104, `theme/` 21.
 By year: 2005 104, 2006 178, 2007 149, 2008 115, 2009 111, 2010 269, 2011 324, 2012 135.
@@ -128,7 +129,7 @@ Radiation Melee (100), Street Justice (94), Psionic Melee (70) and Savage Melee 
 **Archetype gaps:** Sentinel has no pre-sunset guides (it is a Homecoming archetype), one live capture, and 192 archive builds.
 Arachnos Soldier and Widow have 5 pre-sunset captures and their archive builds sit under an untagged "Veat" folder.
 Controller has 16, Mastermind 12, Dominator 11 and the Kheldians 25 between them; all thin.
-`community/builds/` holds 7 build files (Blaster 2, Defender 1, Scrapper 3), so most archetypes have no curated sample build there; `samples/builds/` adds about 20 more `.mbd`/`.mxd` files.
+`<source root>/community/builds/` holds 7 build files (Blaster 2, Defender 1, Scrapper 3), so most archetypes have no curated sample build there; `samples/builds/` adds about 20 more `.mbd`/`.mxd` files.
 
 ### 2.6 The gap split by archetype version
 
@@ -208,7 +209,7 @@ Cannot compute yet, by open issue:
 
 ### 2.9 The knowledge tree and the navigation rule
 
-`knowledge/coh/` does not exist. `.claude/rules/coh-knowledge-navigation.md` and `CLAUDE.md` (reading order item 9) tell a session to read `knowledge/coh/INDEX.md`
+`knowledge/coh/` does not exist. `docs/style-guides/build-rules/knowledge-navigation.md` and `docs/style-guides/build-authoring.md` (pre-flight step 3) tell a session to read `knowledge/coh/INDEX.md`
 and load only the files it points to, and to stop and ask while it is missing.
 That is a reading instruction nothing enforces: a session can skip it, read part of it, or fill gaps from memory, and the build still looks finished.
 This design replaces it (section 7.5).
@@ -329,6 +330,10 @@ and the engine's power classifier: required roles the set can fill, no must-take
 
 ### 3.4 Where it lives
 
+The source material is not under this repository. Tools read `<source root>/community/` and `<source root>/build-archives/`,
+where the root is `--source-root`, else `COH_SOURCE_ROOT`, else `../homecoming-source-material`. A missing root exits with `E04`.
+`data/source-material/manifest.json` lists each capture: URL, title, date, archetype, content hash, path and era, with no post text.
+
 ```text
 knowledge/coh/
   manifest.json                    code-read: powerset or AT -> record file, content hash, schema version, game build
@@ -430,7 +435,7 @@ The repository has no general document framework beyond the Markdown style guide
 
 - **The AT and powerset templates in issues #35 and #36.** They are the user's own framework, written for the Dominator onramp,
   and say to source from forum guides, not memory. Their memory file is missing, so the issue bodies are the record.
-- **`community/CAPTURE.md`'s Summary rules:** lead with the conclusion, three to five bullets, preserve attribution.
+- **`<source root>/community/CAPTURE.md`'s Summary rules:** lead with the conclusion, three to five bullets, preserve attribution.
 - **The build rules:** B9 (trade-offs are real tensions; unverified specifics go in "What I would verify"), `io-set-naming.md` (full set names), `no-user-name.md` and the trust schema.
 
 The templates are kept and extended, not replaced: their sections become the record's fields and the rendered guide's fixed order, and their "effects catalog" becomes generated output.
@@ -643,9 +648,9 @@ The objective follows the order of authority in section 1. Whatever the search r
 
 ### 7.5 Replacing navigation-by-reading
 
-- Mark `.claude/rules/coh-knowledge-navigation.md` for replacement by a short rule: builds come only through the `.mbd` writer, and a build is emitted only when it passes
+- Mark `docs/style-guides/build-rules/knowledge-navigation.md` for replacement by a short rule: builds come only through the `.mbd` writer, and a build is emitted only when it passes
   `validate` and the playstyle `score`. A session states the playstyle; it does not hand-write build JSON or forum exports, and it does not choose knowledge files.
-- Update the references that point at the old rule: `CLAUDE.md` reading-order item 9 and the "Workflow for emitting a build" steps, and the pre-flight checklist in
+- Update the references that point at the old rule: `docs/style-guides/build-authoring.md` pre-flight step 3 and the rest of its pre-flight order, and the pre-flight checklist in
   `build-creation.md`, whose data and exemplar items become the checks `validate` and `score` run.
 - `knowledge/coh/INDEX.md` is not built. The manifest (3.4) is the only index, and only code reads it.
 
@@ -672,7 +677,7 @@ The objective follows the order of authority in section 1. Whatever the search r
 | 9 | Written claims for sets with no guided version and too few shared powers, including the Issue 28 Page 4 sets; sets that failed transfer | 4, 6, 8; #20 | batches, medium | file "written records for gap sets"; reuse #35, #37 |
 | 10 | Power plan search and slotting optimizer proposing builds through the gate | 3; #21; #31 and #40 for damage and procs | 2 PRs, large | widen #21 or file "power plan search" |
 
-**Start next: Phase 0.** It needs no model, writes nothing under `community/`, and every later phase stands on its output.
+**Start next: Phase 0.** It needs no model, writes nothing under `<source root>/community/`, and every later phase stands on its output.
 It can start the day the crawl finishes; the resolver half (#48) can start now. Phases 1 to 3 put the gate in place before any extracted knowledge exists,
 so the first real record changes builds the day it lands.
 
@@ -713,8 +718,8 @@ Decided 2026-10-29. The body of this design reflects each decision; the section 
 10. **Arsenal pilot sequencing.** Phase 4 does not wait for CP10: the pilot is written from game data and does not need #22.
 13. **Transfer pass bar.** Accepted as the starting bar; three test pairs are enough to judge a pairing.
 14. **Transferred trust.** Capped at `community-consensus`; blocking only after the transfer test passes (3.2).
-16. **Where the source material lives.** `community/`, the pre-sunset crawl and the build archive move to a separate private repository (#91).
-    This repository keeps the code and a manifest of each source's URL, title, date and content hash. Paths in this design change when the move lands.
+16. **Where the source material lives.** `<source root>/community/`, the pre-sunset crawl and the build archive live in a separate private repository (#91).
+    This repository keeps the code and `data/source-material/manifest.json`, one row per source with URL, title, date, archetype and content hash.
 
 Still open:
 

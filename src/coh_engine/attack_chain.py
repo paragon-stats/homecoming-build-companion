@@ -27,7 +27,7 @@ the damaging chain attacks on arcana cast times (``Power.ArcanaCastTime``, the o
 reused here), charges stance-switch movement, and ranks rotations by endurance sustainability then
 DPS. The search, the movement cost and the ranking are the port's own.
 
-Spec: .claude/rules/exemplar-10.md; docs/engine/build-types-and-goals.md.
+Spec: docs/style-guides/build-rules/exemplar-10.md; docs/engine/build-types-and-goals.md.
 """
 
 from collections.abc import Iterable, Sequence

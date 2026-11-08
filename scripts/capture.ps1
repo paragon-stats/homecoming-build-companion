@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
   Bridge between the Claude browser extension (or claude.ai chat) and the
-  project's community/ tree. Two modes:
+  source root's community/ tree. Two modes:
 
     1. -Paste     Take markdown from the Windows clipboard, save into
                   inbox/, then ingest.
@@ -37,6 +37,7 @@ param(
     [switch]$Prompt,
 
     [string]$Url,
+    [string]$SourceRoot,   # passed to the ingester
     [string]$Target,
     [switch]$Force
 )
@@ -258,6 +259,7 @@ function Save-FromClipboard {
         # their `suggested_filename` field (handled by the ingester).
         if ($Target -and $f -eq $savedFiles[0]) { $args_.Target = $Target }
         if ($Force) { $args_.Force = $true }
+        if ($SourceRoot) { $args_.SourceRoot = $SourceRoot }
         & $script:Ingest @args_
     }
 }
@@ -274,6 +276,7 @@ function Invoke-Drain {
         $args_ = @{ Path = $f.FullName }
         if ($Target) { $args_.Target = $Target }
         if ($Force)  { $args_.Force  = $true }
+        if ($SourceRoot) { $args_.SourceRoot = $SourceRoot }
         try {
             & $Ingest @args_
             # Move out of inbox after successful ingest

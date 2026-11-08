@@ -26,7 +26,7 @@ From `C:\Users\petek\repos\kloehnwars-homelab\`:
 
 ## DevSecOps considerations
 
-Per [`.claude/rules/devsecops.md`](../../.claude/rules/devsecops.md):
+Per [`docs/repository-standards/devsecops-workflow.md`](../../docs/repository-standards/devsecops-workflow.md):
 dependencies are pinned and reviewed. Auto-merge is a convenience for
 **patch-level** updates (no API changes); minor and major upgrades go
 through manual review. The dependabot-auto-merge workflow should encode

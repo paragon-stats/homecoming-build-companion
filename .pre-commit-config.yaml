@@ -61,7 +61,8 @@ repos:
             | data/canonical/
             | docs/engine/
             | scripts/lane-[ab]/
-            | community/
+            | data/diff/
+            | inbox/
           )
 
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
@@ -86,7 +87,8 @@ repos:
             | docs/engine/
             | scripts/[^/]+\.ps1$
             | scripts/lane-[ab]/
-            | community/
+            | data/diff/
+            | inbox/
           )
 
   - repo: https://github.com/pre-commit/pre-commit-hooks

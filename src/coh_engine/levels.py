@@ -11,7 +11,7 @@ alongside the 1-based ``GameLevel``. Slot placement levels (``SlotRef.level``) a
 power pick levels (``Power.pick_level``) are the same 0-based indices, so the
 schedule is keyed on ``LevelIndex`` to compare against them directly.
 
-Spec: docs/engine/mids-port-spec.md; .claude/rules/hard-limits.md § Slot rules.
+Spec: docs/engine/mids-port-spec.md; docs/style-guides/build-rules/hard-limits.md § Slot rules.
 """
 
 import json
