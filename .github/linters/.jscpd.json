@@ -17,7 +17,8 @@
     "**/.github/instructions/**",
     "**/data/canonical/**",
     "**/samples/**",
-    "**/src/coh_engine/tests/fixtures/**"
+    "**/src/coh_engine/tests/fixtures/**",
+    "**/tests/fixtures/**"
   ],
   "reporters": ["console"],
   "threshold": 3

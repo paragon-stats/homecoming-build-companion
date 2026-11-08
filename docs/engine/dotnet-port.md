@@ -58,7 +58,8 @@ Today the scaffold compares each dump with itself, and P2 replaces the actual si
 
 ## The literal-port boundary
 
-Totals/ and Enhancement/AspectRouting are literal ports of MidsReborn; header comment names the Mids file; no "simplify" refactors.
+Totals/ and Enhancement/AspectRouting are literal ports of MidsReborn, with no "simplify" refactors.
+Ported code carries no comments that cite the MidsReborn source; the parity tests prove fidelity.
 Everything else follows the registry pattern in `.claude/rules/check-registry.md`.
 A new rule is a new entry in an explicit list, and nothing is discovered by reflection.
 
