@@ -1,3 +1,6 @@
+using System.Buffers.Binary;
+using System.Security.Cryptography;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 using CohEngine.Core.SetBonuses;
@@ -68,34 +71,35 @@ public sealed class ParityScaffoldTests
     ];
 
     // The Python engine's effect magnitudes against Math_Mag, effects paired by identity: how many differ from Mids,
-    // how many it computes, and their sum in that order. The engine reads the pre-Pass5 enhanced magnitude, so Mids'
-    // post-buff multiply and its assembled effect order account for the differences; the C# must reproduce all three.
-    private static readonly Dictionary<string, (int Mismatches, int Count, double Sum)> PythonMagnitudes = new(StringComparer.Ordinal)
+    // how many it computes, and the SHA-256 of their float32 bit patterns (little-endian, in effect order). The engine
+    // reads the pre-Pass5 enhanced magnitude, so Mids' post-buff multiply and its assembled effect order account for
+    // the differences; the C# must reproduce all three.
+    private static readonly Dictionary<string, (int Mismatches, int Count, string Digest)> PythonMagnitudes = new(StringComparer.Ordinal)
     {
-        [Cardiac] = (30, 365, -7219.274378873408),
-        [Agility] = (41, 365, -7218.982433706522),
-        [AgilitySlotted] = (41, 365, -7218.147986970842),
-        [NoSlots] = (10, 357, -7336.5293788686395),
-        ["hasten_2rech"] = (7, 413, -2116.2152266576886),
-        ["Hollowmind - Dominator (Darkness Control - Psionic Assault)"] = (38, 305, -5642.98998228088),
-        ["Laser - Accretion - Scrapper (Dark Melee - Shield Defense)"] = (2, 452, 18736.789520915598),
-        ["Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)"] = (8, 366, -5977.609434219077),
-        ["Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)"] = (32, 403, -3367.4917501695454),
-        ["Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)"] = (0, 77, -10594.548815451562),
-        ["Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)"] = (34, 578, 4309.656440101564),
-        ["Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"] = (2, 391, -1560.686671094969),
-        [Blaster] = (17, 451, -1454.247169520706),
-        ["Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)"] = (6, 463, -4505.222934206948),
-        ["Melee Arachnos Widow (Night Widow Training - Widow Teamwork)"] = (62, 483, 2000.8581604007632),
-        ["Petless Mastermind (Demon Summoning - Force Field)"] = (90, 547, -4063.840803783387),
-        ["shield_scrapper_global_endrdx"] = (7, 413, -2116.2208532765508),
-        ["shield_scrapper_mixed_sets"] = (7, 413, -2115.8173507526517),
-        ["shield_scrapper_noslots"] = (7, 413, -2116.5592935457826),
-        ["shield_scrapper_set_bonuses"] = (106, 413, -2115.465677406639),
-        ["shield_scrapper_set_bonuses_exemplar25"] = (95, 413, -2115.8920972682536),
-        ["shield_scrapper_slotted"] = (7, 413, -2116.2152266576886),
-        [Stalker] = (2, 447, 3773.5004266239703),
-        [Tanker] = (121, 386, -8043.221250804141),
+        [Cardiac] = (30, 365, "68bf49d4847a3525849641fb1f4ea382ba689a9889f6f3693ecb85ee80de5502"),
+        [Agility] = (41, 365, "1848e99acad24882ac026d962050560e7ce58ccc4b83ab7086d622f7ce496068"),
+        [AgilitySlotted] = (41, 365, "fe4e4974111861f97e0ee9fc0c1bd7221fcc6c1a593a701b1ef4d0174104c859"),
+        [NoSlots] = (10, 357, "ddcfa43f9be75905938666c6ac575e65d90a8a539cda15a0b1a3c502d7377fd7"),
+        ["hasten_2rech"] = (7, 413, "cb9a6033ebdd9b6fb8daea5274d716859620b1a5274b3a5ea3048869692326f8"),
+        ["Hollowmind - Dominator (Darkness Control - Psionic Assault)"] = (38, 305, "5921ba6c74a7e2e578d67f0fa82a187b06510b63617e60789c0f09ebc17786f8"),
+        ["Laser - Accretion - Scrapper (Dark Melee - Shield Defense)"] = (2, 452, "89a3a460c977a53b0b30c431d91689b6aee0c344d90fbe71239c67a985fd3d51"),
+        ["Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)"] = (8, 366, "e5972a12ed7ce61473de8f10f35767e8b428e9ea3621d6ca94b91fa6a83d5c93"),
+        ["Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)"] = (32, 403, "bffd93920a1246ecb1ecd595323947bd47188c3c099c410c69c94a007df7bf5a"),
+        ["Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)"] = (0, 77, "2f98f0c1bc7b0b85091ac5085b7098b1114426f21c6ce5489e67456bf5022a7a"),
+        ["Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)"] = (34, 578, "b12e26882298e9dc2c413da58c2bd92339cffc416d599d8688cd0d4f15d04762"),
+        ["Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"] = (2, 391, "a186fcc4302a34c4bb8e024400ee932eb945e2dcea82a82285fa907de41bc246"),
+        [Blaster] = (17, 451, "5a9a829e9b49fca4ff8f23a015caf2b4cf37bfc56de59154e6ca6acc5e437361"),
+        ["Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)"] = (6, 463, "c9827c8d80034ac3bb224a447f3576a7e052b63b43d2919f91d87710f41168d1"),
+        ["Melee Arachnos Widow (Night Widow Training - Widow Teamwork)"] = (62, 483, "837a928e6ab6e6d9d8f263cf0903da3490b09075cdca69af47bac20df40e707d"),
+        ["Petless Mastermind (Demon Summoning - Force Field)"] = (90, 547, "c6016481822102046d9b6d24eb45d1812b2d5aefda430f392892f309a3726d4f"),
+        ["shield_scrapper_global_endrdx"] = (7, 413, "f32f4a4698cff98e08a2a7077d0eb7cdbff69f5f2f3c6e1eeacc97b985198c5c"),
+        ["shield_scrapper_mixed_sets"] = (7, 413, "f35c3bb6d3f81b344422b8741760ca8d056d1af7008d040cfefa86ed73b43181"),
+        ["shield_scrapper_noslots"] = (7, 413, "5402d89e7861f553e4e1fc6e55b9a274029cc2d2256b3d12b18e7f83a68edfc6"),
+        ["shield_scrapper_set_bonuses"] = (106, 413, "5614bddb594a1bf4e39e44ccffed445ed7ef4ac9059808b0263daabc925866f9"),
+        ["shield_scrapper_set_bonuses_exemplar25"] = (95, 413, "30e04235d70ef7390d46f34e04a8219d1b22ee7758fa187820b891d94863b759"),
+        ["shield_scrapper_slotted"] = (7, 413, "cb9a6033ebdd9b6fb8daea5274d716859620b1a5274b3a5ea3048869692326f8"),
+        [Stalker] = (2, 447, "98ccb536584966923e5428a555991c6259d1cfee00eb4f5c03eb9876fdac5144"),
+        [Tanker] = (121, 386, "7681f6164050022ed1db011391660a2dd0ae5b94e89b218d4b062762fa48ebad"),
     };
 
     public static TheoryData<string> Builds => Fixtures.Builds();
@@ -148,7 +152,8 @@ public sealed class ParityScaffoldTests
         Dictionary<int, Power> byIndex = powers.ToDictionary(power => power.BuildIndex);
         int mismatches = 0;
         int count = 0;
-        double sum = 0.0;
+        using IncrementalHash digest = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
+        byte[] bits = new byte[4];
         foreach (EnhancedPower want in inputs.Fixture.EnhancedPowers)
         {
             Power power = byIndex[want.BuildIndex];
@@ -163,7 +168,8 @@ public sealed class ParityScaffoldTests
             foreach (Effect effect in power.Effects)
             {
                 double mag = F32.Round(context.Mag(effect, power) * mults.GetValueOrDefault((power.BuildIndex, effect.Index), 1.0));
-                sum += mag;
+                BinaryPrimitives.WriteInt32LittleEndian(bits, BitConverter.SingleToInt32Bits((float)mag));
+                digest.AppendData(bits);
                 count++;
                 if (!dumped.TryGetValue((effect.EffectType, effect.DamageType, effect.MezType, effect.EtModifies), out Queue<double>? queue) || queue.Count == 0 || F32.Round(queue.Dequeue()) != mag)
                 {
@@ -174,7 +180,7 @@ public sealed class ParityScaffoldTests
             mismatches += dumped.Values.Sum(queue => queue.Count);
         }
 
-        Assert.Equal(PythonMagnitudes[name], (mismatches, count, sum));
+        Assert.Equal(PythonMagnitudes[name], (mismatches, count, Convert.ToHexStringLower(digest.GetHashAndReset())));
     }
 
     [Fact]
