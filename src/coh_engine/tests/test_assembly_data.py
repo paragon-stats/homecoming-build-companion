@@ -243,7 +243,7 @@ def test_enhancement_record_reads_its_own_power(tmp_path: Path) -> None:
         load_enhancement_effects(_write(tmp_path, "a.json", [record]))
 
 
-MIDS = Path(__file__).parent / "fixtures" / "mids"
+MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 SAMPLE_DUMPS = sorted(d for d in (MIDS / "builds").iterdir() if " " in d.name)
 
 

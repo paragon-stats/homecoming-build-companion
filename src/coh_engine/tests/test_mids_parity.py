@@ -17,7 +17,7 @@ import pytest
 
 from coh_engine.maths import MathTables, f32
 
-MIDS = Path(__file__).parent / "fixtures" / "mids"
+MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 
 
 @pytest.fixture(scope="module")

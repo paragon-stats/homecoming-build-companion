@@ -36,8 +36,8 @@ SPIDERLINGS = "Training_Gadgets.Crab_Spider_Training.Summon_Spiderlings"
 SOLDIERS = "Mastermind_Summon.Mercenaries.Soldiers"
 CLAW = "Villain_Pets.Arachnobot_Spiderling.Claw"
 
-MODS = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
-CLASSES = load_archetypes(FIXTURES / "mids" / "archetypes.json")
+MODS = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
+CLASSES = load_archetypes(FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "archetypes.json")
 UNLIMITED = EnduranceBudget(max_end=1.0e9, recovery_per_sec=0.0, toggle_drain_per_sec=0.0)
 MOVEMENT = Movement(speed_ft_per_sec=20.0, standoff_ft=40.0)
 

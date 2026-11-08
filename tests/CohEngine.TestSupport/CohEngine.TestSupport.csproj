@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Fixture discovery for the test projects; test-only, so it never ships in the CLI. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CohEngine.Core\CohEngine.Core.csproj" />
+  </ItemGroup>
+
+</Project>

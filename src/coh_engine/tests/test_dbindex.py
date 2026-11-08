@@ -10,7 +10,7 @@ from coh_engine.buildfile.dbindex import (
     load_power_index,
 )
 
-FIXTURES = Path(__file__).parent / "fixtures" / "mids"
+FIXTURES = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 
 
 def test_power_index_resolves_static_index_to_fullname() -> None:

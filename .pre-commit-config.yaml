@@ -98,9 +98,9 @@ repos:
       # unified-diff context lines carry significant leading/trailing whitespace) must
       # stay byte-identical to their sources — exempt from whitespace fixers.
       - id: trailing-whitespace
-        exclude: ^(src/coh_engine/tests/fixtures/|samples/|tools/mids-dump/patches/)
+        exclude: ^(src/coh_engine/tests/fixtures/|tests/fixtures/|samples/|tools/mids-dump/patches/)
       - id: end-of-file-fixer
-        exclude: ^(src/coh_engine/tests/fixtures/|samples/|tools/mids-dump/patches/)
+        exclude: ^(src/coh_engine/tests/fixtures/|tests/fixtures/|samples/|tools/mids-dump/patches/)
       - id: check-yaml
       - id: check-json
       - id: check-toml
@@ -112,4 +112,4 @@ repos:
         args: [--maxkb=15360]
       - id: mixed-line-ending
         args: [--fix=lf]
-        exclude: ^(src/coh_engine/tests/fixtures/|samples/|tools/mids-dump/patches/)
+        exclude: ^(src/coh_engine/tests/fixtures/|tests/fixtures/|samples/|tools/mids-dump/patches/)

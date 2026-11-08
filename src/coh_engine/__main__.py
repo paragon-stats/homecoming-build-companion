@@ -38,7 +38,7 @@ from coh_engine.scoring import registered_metrics
 from coh_engine.set_bonuses import load_set_bonus_db
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-MIDS_FIXTURES = REPO_ROOT / "src" / "coh_engine" / "tests" / "fixtures" / "mids"  # the only dump the repository ships
+MIDS_FIXTURES = REPO_ROOT / "tests" / "fixtures" / "mids"  # the only dump the repository ships
 
 
 def _print_rules() -> None:

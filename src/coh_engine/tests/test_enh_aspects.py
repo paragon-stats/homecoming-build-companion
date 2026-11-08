@@ -21,7 +21,7 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 @pytest.fixture(scope="module")
 def tables() -> MathTables:
-    return load_maths(FIXTURES / "Maths.mhd")
+    return load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
 
 
 @pytest.fixture

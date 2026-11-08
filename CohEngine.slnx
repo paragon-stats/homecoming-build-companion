@@ -8,5 +8,6 @@
     <Project Path="tests/CohEngine.Analyzers.Tests/CohEngine.Analyzers.Tests.csproj" />
     <Project Path="tests/CohEngine.Cli.Tests/CohEngine.Cli.Tests.csproj" />
     <Project Path="tests/CohEngine.Core.Tests/CohEngine.Core.Tests.csproj" />
+    <Project Path="tests/CohEngine.TestSupport/CohEngine.TestSupport.csproj" />
   </Folder>
 </Solution>
