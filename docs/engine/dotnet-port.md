@@ -66,7 +66,7 @@ The scaffold compares engine output on every build. A field the Python engine al
 
 Totals/ and Enhancement/AspectRouting are literal ports of MidsReborn, with no "simplify" refactors.
 Ported code carries no comments that cite the MidsReborn source; the parity tests prove fidelity.
-Everything else follows the registry pattern in `.claude/rules/check-registry.md`.
+Everything else follows the registry pattern in `docs/style-guides/engine-architecture.md`.
 A new rule is a new entry in an explicit list, and nothing is discovered by reflection.
 
 ## Numeric core
@@ -100,13 +100,46 @@ An effect carrying `ActiveConditionals` counts only when its conditions hold, an
 Mids keeps many default-true special cases, so a build where one feeds a read bucket under-reports until #31 lands.
 `BaseTotalsParityTests.Excluded_conditionals_do_not_affect_totals` forces every such effect back in through `Pipeline.BuildOptions.IncludeAllConditionals` and checks the committed builds' totals do not move.
 
+## Rule layer and CLI
+
+The rule layer follows `docs/style-guides/engine-architecture.md`: the context is built once, a rule is a pure function of it, and the runner folds the registered rules.
+A Python decorator becomes one line in an explicit list in `Registry/RuleRegistry.cs`, in the order the Python registered them.
+Nothing is found by reflection.
+
+| Python | C# registration | Rule body |
+| --- | --- | --- |
+| `@legality_rule` in `legality.py` | `RuleRegistry.LegalityRules`, run by `LegalityRunner` | `Registry/LegalityRules/*Rule.cs` |
+| `@hard_limit_rule` in `hard_limits.py` | `RuleRegistry.HardLimitRules`, run by `HardLimitRunner` | `Registry/HardLimitRules/*Rule.cs` |
+| `@metric` in `scoring.py` | `RuleRegistry.ScoringMetrics`, resolved by `Scoring.MetricValueOf` | `Registry/ScoringMetrics/*Metric.cs` |
+| `@_register` in `enh_aspects.py` | `RuleRegistry.EnhancementAspects` (identities only; the handlers are `Enhancement/AspectRouting`) | `Enhancement/` |
+| `diagnostics.py` | `Diagnostics/Diagnostic`, `DiagnosticFormatter` | |
+| `profiles.py`, `at_names.py` | `Profiles/ProfileResolver`, `AtNames` | |
+| `exemplar.py` | `Exemplar/ExemplarWindow` | |
+| `__main__.py` `rules`, `validate` | `CliRunner`, `ValidateArguments`, `Registry/ValidateCommand` | |
+
+`rules` lists the registries from `RuleInfo`, so the listing and the rule bodies cannot drift.
+`validate` takes a Mids dump directory.
+A `.mbd` file goes through `IMbdBuildSource`, which the build-file reader implements; with no source `validate` reports the form as unavailable (E72).
+`scoring.score_build` takes the attack chain's endurance per second as an argument, because the chain planner is a separate port.
+
+Messages, fixes and the expected and actual values are the Python strings.
+`Diagnostics/PyText` prints Python's `repr`, `str` and float repr, and `DiagnosticFormatter` writes the JSON by hand to match `json.dumps(indent=2)`: ASCII only, lowercase `\u` escapes.
+The stock JSON writer escapes `'` and `+` and writes non-ASCII differently, so it cannot reach byte equality.
+
+The CLI parity method: `tests/fixtures/cli/` holds the Python engine's stdout and exit code for `rules` and for `validate` in both formats over every build under `tests/fixtures/mids/builds/`.
+`CliParityTests` runs the same commands in process and compares the text exactly.
+The folder's README gives the capture commands.
+A new sample build needs a new capture, and `Every_sample_build_has_a_capture` fails until it has one.
+
 ## Error codes
 
 Existing codes keep their numbers.
 The loaders reuse the Python messages.
 `E85` is a record or effect missing a key in `assembly_powers.json`, `assembled_powers.json` or `power_assembly.json`, or a `slots.json` entry without `ProcInclude`.
 `E86` is a build power with no record.
-Loaders throw typed exceptions (`InvalidDataException`, `FileNotFoundException`, `JsonException`), and diagnostics arrive with P3a.
+Loaders throw typed exceptions (`InvalidDataException`, `FileNotFoundException`, `JsonException`).
+`Diagnostics/ErrorCodes.cs` lists every code the Python uses, and `EngineException` carries a message that already starts with its code.
+The CLI prints such a message as `error: <message>` on stderr and exits 1; a missing file, or a dump of the wrong shape, is E72.
 
 | Block | Owner |
 | --- | --- |
