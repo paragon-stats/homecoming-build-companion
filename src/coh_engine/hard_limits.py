@@ -3,7 +3,7 @@
 The Homecoming engine enforces invariant limits on every build: at most 67 added
 enhancement slots, 5 added slots per power, 24 power picks, 4 power pools, and a
 level/slot schedule that gates when a power may be picked and when a slot may be
-placed (.claude/rules/hard-limits.md). This module checks all of them.
+placed (docs/style-guides/build-rules/hard-limits.md). This module checks all of them.
 
 Built as a rule registry from birth (never an ``if/elif`` dispatch), mirroring
 :mod:`coh_engine.legality`: a pre-built :class:`HardLimitsContext` walks the build
@@ -21,7 +21,7 @@ Level convention: ``Power.pick_level`` and ``SlotRef.level`` are 0-based level i
 (in-game level minus 1); a power's DB minimum ``Power.level`` is the 1-based in-game
 level. The first-available check compares ``pick_level + 1`` against ``level``.
 
-Spec: .claude/rules/hard-limits.md; .claude/rules/error-output.md; .claude/rules/check-registry.md.
+Spec: docs/style-guides/build-rules/hard-limits.md; docs/style-guides/error-output.md; docs/style-guides/engine-architecture.md.
 """
 
 from collections.abc import Callable, Iterable, Mapping, Sequence
@@ -41,7 +41,7 @@ _TEMPORARY_GROUP = "Temporary_Powers"  # accolades and other earned temporary po
 _POOL_GROUP = "Pool"
 _ANCILLARY_GROUP = "Epic"  # Ancillary / Patron pools are the "Epic" group.
 
-# Hard game limits (.claude/rules/hard-limits.md § Character-level limits). MaxSlots is
+# Hard game limits (docs/style-guides/build-rules/hard-limits.md § Character-level limits). MaxSlots is
 # read from the server dump; the rest are ruleset invariants.
 MAX_POWER_PICKS = 24
 MAX_ADDED_SLOTS_PER_POWER = 5

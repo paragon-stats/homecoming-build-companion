@@ -10,11 +10,13 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$CommunityRoot = (Join-Path $PSScriptRoot '..\..\homecoming-build-companion\community')
+    [string]$SourceRoot    # private source-material checkout; else $env:COH_SOURCE_ROOT, else ..\homecoming-source-material
 )
 
 $ErrorActionPreference = 'Stop'
-$CommunityRoot = [System.IO.Path]::GetFullPath($CommunityRoot)
+. (Join-Path $PSScriptRoot 'SourceRoot.ps1')
+$SourceRoot    = Resolve-SourceRoot $SourceRoot
+$CommunityRoot = Join-Path $SourceRoot 'community'
 $Queue = Join-Path $CommunityRoot 'CAPTURE_QUEUE.md'
 if (-not (Test-Path $Queue)) { throw "CAPTURE_QUEUE.md not found at $Queue" }
 

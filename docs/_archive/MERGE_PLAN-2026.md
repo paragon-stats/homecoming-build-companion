@@ -7,14 +7,14 @@ Generated: 2026-04-27 17:39
 
 ## Result
 
-**Mismatches: 11 / 19**
+### Mismatches: 11 / 19
 
 The install has drifted from the repo snapshot — it has pulled an updated dataset (likely via MRB_Boostrap). **Lane A harvests from the install** and records the divergence here.
 
 ## Per-file detail
 
 | File | Match | Install (SHA256) | Repo (SHA256) |
-|---|:-:|---|---|
+| --- | :-: | --- | --- |
 | AttribMod.json | NO | 5289CF8AA113 | 3E5F168A3059 |
 | bbcode.mhd | NO | 459E3D242137 | 2F46B6663910 |
 | Compare.json | NO | MISSING | 736EBE89FE29 |

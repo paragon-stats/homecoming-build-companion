@@ -12,7 +12,7 @@ The severity contract (``error-output.md`` § Severity levels):
     errors -> exit 2.
 - ``info`` — observation, no action. Alone -> exit 0.
 
-Spec: .claude/rules/error-output.md.
+Spec: docs/style-guides/error-output.md.
 """
 
 from collections.abc import Sequence

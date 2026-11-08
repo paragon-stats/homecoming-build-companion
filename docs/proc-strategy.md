@@ -8,7 +8,7 @@ The deeper how-to of proc-loaded slotting, beyond the mechanics in [procs.md](pr
 
 A long-recharge single-target attack loaded with 4–5 damage procs typically out-DPSes the same attack slotted with a traditional damage IO set. The math:
 
-```
+```text
 proc_damage_avg = sum(per_proc_chance × per_proc_damage)
 ```
 
@@ -30,7 +30,8 @@ Looks like Crushing Impact wins (174 > 74)? Not so fast — the procs **add to**
 3. You can fit **6 procs** instead of 4 — at perma-Hasten, that's 6 × ~26% × 71 ≈ 110 average added damage, enough to compete with enhancement.
 4. You're slotting a power that already has +Recharge from set bonuses — slotting Crushing Impact for the rech bonus doesn't help if you can get rech elsewhere.
 
-**Bottom line:** Procs win on pure damage when base damage is high, the build is capped on buffs, or set bonuses aren't needed. Enhancement wins when the build needs the set bonuses or has spare damage cap.
+**Bottom line:** Procs win on pure damage when base damage is high, the build is capped on buffs, or set bonuses aren't needed.
+Enhancement wins when the build needs the set bonuses or has spare damage cap.
 
 ---
 
@@ -38,7 +39,8 @@ Looks like Crushing Impact wins (174 > 74)? Not so fast — the procs **add to**
 
 A build that maximizes procs by accepting trade-offs:
 
-- **Less +Recharge.** Procs lose chance per activation as global +Recharge rises (it shortens effective recharge → smaller PPM window). Procmonster builds typically run with +100% global rech, NOT +167% perma-Hasten.
+- **Less +Recharge.** Procs lose chance per activation as global +Recharge rises (it shortens effective recharge → smaller PPM window).
+  Procmonster builds typically run with +100% global rech, NOT +167% perma-Hasten.
 - **Heavy hitters loaded with damage procs.** AS (Stalker), Knockout Blow (Brute), Total Focus (Energy Melee), Lance from Fortunata, Sniper Blast, etc.
 - **Secondary hits via procs.** Damage procs are secondary effects — they fire alongside the regular attack damage; they don't replace it.
 - **Less set-bonus stacking.** The build skips full-set commitments and Frankenslots procs in.
@@ -79,7 +81,8 @@ A build that maximizes procs by accepting trade-offs:
 
 ### Special-effect procs
 
-- **Force Feedback: Chance for +Recharge** — 4.5 PPM, slotted in any KB-capable or fast-recharge power → +100% recharge for 5 sec. Stack the proc on multiple attacks for near-perma uptime. Game-changer.
+- **Force Feedback: Chance for +Recharge** — 4.5 PPM, slotted in any KB-capable or fast-recharge power → +100% recharge for 5 sec. Stack the proc on multiple attacks for near-perma uptime.
+  Game-changer.
 - **Achilles' Heel: Chance for Resist Debuff** — 3 PPM, single-target -20% Resist for 10 sec. Massive DPS amplifier; one attack carrying this debuffs the target for the whole rotation.
 - **Touch of Lady Grey: Chance for Negative Energy Damage** — debuff set proc that does damage.
 - **Cloud Senses: Chance for Negative Energy Damage** — slottable in to-hit debuff powers.
@@ -162,8 +165,8 @@ Mixed. Some procs work, but area_factor reduces chance:
 ### Hold / Stun / Sleep
 
 - 5–6x Basilisk's Gaze (Hold sets) for recharge bonus + IO mez/recharge.
-- + Lockdown: Chance for +2 Mag Hold proc (essential for boss-Mag holds).
-- + Ghost Widow's Embrace: Chance for Psionic Damage (proc damage in hold).
+  - Lockdown: Chance for +2 Mag Hold proc (essential for boss-Mag holds).
+  - Ghost Widow's Embrace: Chance for Psionic Damage (proc damage in hold).
 
 ### Travel power
 
@@ -179,5 +182,6 @@ Mixed. Some procs work, but area_factor reduces chance:
 - **Stacking Force Feedback +Rech in 1-second-recharge attacks.** Capped chance, doesn't help recharge much; better in heavy hitters.
 - **Damage procs in fast AoEs.** Area_factor + low recharge = low chance per target; usually not worth the slot.
 - **Procmonster + perma-Hasten in the same build.** Pick one; they fight each other.
-- **Multiple "unique" procs of the same name.** Each unique can only be slotted ONCE per build (Numina, Miracle, Panacea, Reg Tissue, Performance Shifter, Steadfast +Def, Shield Wall +Res, Gladiator's TP).
+- **Multiple "unique" procs of the same name.**
+  Each unique can only be slotted ONCE per build (Numina, Miracle, Panacea, Reg Tissue, Performance Shifter, Steadfast +Def, Shield Wall +Res, Gladiator's TP).
 - **Forgetting Accuracy** — procs need the parent attack to *hit* before they get a chance to fire. Slot Acc somewhere or rely on Tactics / Kismet / Build Up.

@@ -2,6 +2,8 @@
 
 Orientation for a Claude project that designs **City of Heroes (Homecoming)** builds against **MidsReborn**'s data. Snapshot from a forked MidsReborn repo plus the local Homecoming client.
 
+The binding rules for builds, naming and the engine are the guides in [docs/style-guides/](docs/style-guides/README.md); start with [build-authoring.md](docs/style-guides/build-authoring.md).
+
 ---
 
 ## Getting started — bootstrap the venv
@@ -62,9 +64,8 @@ homecoming-build-companion/
 │   ├── schema.json            JSON Schema for CharacterBuildData
 │   └── samples/               Sample builds: .mxd + .json + .forum.txt + .datalink.txt + sidecar
 ├── strategy/                  Curated tables: breakpoints, attack chains, set-bonus stacking rules
-└── community/                 Curated forum/wiki captures (manual, attributed)
-    ├── CAPTURE.md             How to add a new capture
-    └── INDEX.md               Auto-generated index of all captures
+└── data/source-material/      Manifest of the forum captures; the captures live in a private repository
+    └── manifest.json          One row per capture: URL, title, date, archetype, content hash
 ```
 
 ---
@@ -76,7 +77,7 @@ When a build question comes up:
 1. **For game-truth facts** ("what does this power actually do?", "what's the recharge of Foot Stomp?") — cite [data/canonical/](data/canonical/).
 2. **For build math and slotting validity** ("does this enhancement go in this power?", "what's the level rule?", "what's the set bonus piece count?") — cite [data/mids/](data/mids/).
 3. **For mechanics and strategy** ("how do procs scale?", "what's a soft-cap?", "how do attack chains work?") — cite [docs/](docs/).
-4. **For player-validated wisdom** ("is this build approach actually good?", "what's the meta?") — cite [community/](community/) and weigh by the `trust` and `date_posted` frontmatter fields.
+4. **For player-validated wisdom** ("what's the meta?") — cite the captures listed in [data/source-material/](data/source-material/), weighed by their `trust` and `date_posted` fields.
 5. **When sources disagree** — say so explicitly. Prefer canonical for raw numbers, prefer Mids for slotting validity, prefer community for strategy. Never hide a discrepancy.
 6. **When proposing a build** — produce JSON conforming to [build-format/schema.json](build-format/schema.json). Paste into MidsReborn's File → Open or the Modern JSON load path.
 
@@ -96,7 +97,7 @@ These come from `data/mids/database/Levels.json` and the constants in [docs/slot
 - **Exemplar-to-10 *playability*** (universal). Every build must remain *playable* when exemplared to level 10.
   - "Playable" = can attack, defensive layer running, travel power picked, not dead weight.
   - **Level-50 endgame is the primary target; never trade level-50 quality for exemplar performance.**
-  - See [docs/slotting-and-leveling.md](docs/slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule) and [.claude/rules/exemplar-10.md](.claude/rules/exemplar-10.md).
+  - See [docs/slotting-and-leveling.md](docs/slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule) and [docs/style-guides/build-rules/exemplar-10.md](docs/style-guides/build-rules/exemplar-10.md).
 
 A build that violates any of these is invalid. If the user asks for something that requires breaking a hard limit, explain why it's impossible and propose the closest valid alternative.
 

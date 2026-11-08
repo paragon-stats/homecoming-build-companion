@@ -14,7 +14,7 @@ Recovery scales with max endurance (``EndMax / 100 + 1``), and HP regeneration w
 (``Statistics.cs:51``), so a permanent pool increase also raises the per-second tick. Mids
 caps HP (``hp_cap``) but never max endurance; the canonical AT data carries both hard caps
 (``attrib_max_max``), so the planner clamps the pool -- and the recovery scaling -- at the
-canonical endurance cap when one is supplied (CLAUDE.md B5: canonical wins on numbers).
+canonical endurance cap when one is supplied (docs/style-guides/build-authoring.md: canonical wins on numbers).
 
 Spec: docs/engine/mids-port-spec.md; error-output.md.
 """

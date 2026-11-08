@@ -1,0 +1,10239 @@
+{
+  "Entities": [
+    {
+      "Nid": 1,
+      "UID": "Pets_IceStorm",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3687
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 2,
+      "UID": "Pets_Corruptor_IceStorm",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3677
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 3,
+      "UID": "Pets_Epic_IceStorm",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3684
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 4,
+      "UID": "Pets_Blizzard",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3674
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 5,
+      "UID": "Pets_Corruptor_Blizzard",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3676
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 6,
+      "UID": "Pets_RainofFire",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3478
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 7,
+      "UID": "Pets_Corruptor_RainofFire",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3678
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 8,
+      "UID": "Pets_IcePatch",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3509
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 9,
+      "UID": "Pets_IceSlick",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3510
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 12,
+      "UID": "Pets_LightningStorm",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3516
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 13,
+      "UID": "Pets_LightningStorm_Controller",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3517
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 20,
+      "UID": "Pets_Phoenix",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3528
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 21,
+      "UID": "Pets_Burn",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3475
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 22,
+      "UID": "Pets_Earthquake",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3497
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 23,
+      "UID": "Pets_Quicksand",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3501
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 24,
+      "UID": "Pets_VolcanicGas",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3568
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 25,
+      "UID": "Pets_VolcanicGeyser",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3569
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 27,
+      "UID": "Pets_Howling",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3508
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 28,
+      "UID": "Pets_HowlingVillain",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3686
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 29,
+      "UID": "Pets_Caltrops",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3476
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 30,
+      "UID": "Pets_Mine",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3688
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 31,
+      "UID": "Pets_Traps_Mine",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3660
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 38,
+      "UID": "Pets_RainofArrows_Visual",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3537
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 39,
+      "UID": "Pets_RainofArrows",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3695
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 40,
+      "UID": "Pets_RainofArrows_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3696
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 41,
+      "UID": "Pets_OilSlickOil",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3692
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 42,
+      "UID": "Pets_OilSlickBurn",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3691
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 43,
+      "UID": "Pets_Snowangel",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3538,
+        3546
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez",
+          "SpeedFlying",
+          "SpeedRunning"
+        ]
+      ]
+    },
+    {
+      "Nid": 44,
+      "UID": "Pets_Thorntrops",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3649
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 46,
+      "UID": "Pets_Fly_Trap",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3618
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "MezResist",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 47,
+      "UID": "Pets_Poison_Trap",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3706
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 48,
+      "UID": "Pets_Poison_Poison_Gas",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3705
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ],
+        [
+          "Mez",
+          "Endurance",
+          "Recovery",
+          "Null",
+          "Damage",
+          "Stealth"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 49,
+      "UID": "Pets_Traps_FF_Generator",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3653
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Mez",
+          "MezResist",
+          "PerceptionRadius",
+          "Resistance",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 50,
+      "UID": "Pets_Traps_Seeker1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3655
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 51,
+      "UID": "Pets_Traps_Seeker2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3656
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 52,
+      "UID": "Pets_Traps_Triage_Beacon",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3659,
+        3652
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 53,
+      "UID": "Pets_Traps_Poison_Trap",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3631
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 54,
+      "UID": "Pets_Traps_Poison_Gas",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3654
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 55,
+      "UID": "Pets_Traps_Acid_Mortar",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3652
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Translucency",
+          "Mez",
+          "Resistance",
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount",
+          "Fly",
+          "ThreatLevel",
+          "Regeneration",
+          "PerceptionRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 76,
+      "UID": "Pets_Omega_Bomb",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3365
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 77,
+      "UID": "Pets_Shield_Charge_Scrapper",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3710
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 78,
+      "UID": "Pets_Epic_Quicksand",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3685
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 81,
+      "UID": "Pets_Traps_FF_Generator_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3561
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Mez",
+          "MezResist",
+          "PerceptionRadius",
+          "Resistance",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 82,
+      "UID": "Pets_Traps_Seeker1_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3563
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 83,
+      "UID": "Pets_Traps_Seeker2_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3564
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 84,
+      "UID": "Pets_Traps_Poison_Trap_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3562
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 85,
+      "UID": "Pets_Traps_Acid_Mortar_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3560
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Translucency",
+          "Mez",
+          "Resistance",
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount",
+          "Fly",
+          "ThreatLevel",
+          "Regeneration",
+          "PerceptionRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 86,
+      "UID": "Pets_Shield_Charge_Brute",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3639
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 87,
+      "UID": "Pets_Shield_Charge_Tanker",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3709
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 88,
+      "UID": "Pets_RainofArrows_Corruptor",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3634
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 89,
+      "UID": "Pets_Embraced_IceStorm",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3683
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 91,
+      "UID": "Pets_Defender_RainofFire",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3681
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 92,
+      "UID": "Pets_DistortionField_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3494
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 93,
+      "UID": "Pets_DistortionField_Controller",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3682
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 94,
+      "UID": "Pets_Defenders_Bastion_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3484
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 95,
+      "UID": "Pets_Superior_Defenders_Bastion_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3550
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 96,
+      "UID": "Pets_DistortionField_Corruptor",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3704
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 97,
+      "UID": "Pets_DistortionField_Mastermind",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3605
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 98,
+      "UID": "Pets_SoulAbsorptionBuff",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3547
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 100,
+      "UID": "Pets_Shadow_Field_Dominator",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3708
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 101,
+      "UID": "Pets_Shadow_Field_Dominator_Domination",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3638
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 103,
+      "UID": "Pets_Whirlpool_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3703
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 104,
+      "UID": "Pets_Whirlpool_Blaster",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3701
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 105,
+      "UID": "Pets_Whirlpool_Corruptor",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3702
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 106,
+      "UID": "Pets_Vigilant_Assault_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3567
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 107,
+      "UID": "Pets_Superior_Vigilant_Assault_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3551
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 108,
+      "UID": "Pets_Scourging_Blast_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3636
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 109,
+      "UID": "Pets_Superior_Scourging_Blast_Proc",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3648
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 110,
+      "UID": "Pets_IceStorm_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3477
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 111,
+      "UID": "Pets_Blizzard_Sentinel",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3675
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 113,
+      "UID": "Pets_RainofArrows_Sentinel",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3697
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 114,
+      "UID": "Pets_StickyArrow_Blaster",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3548
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 115,
+      "UID": "Pets_Whirlpool_Sentinel",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3575
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 117,
+      "UID": "Pets_OilSlickOil_Blaster",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3693
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 118,
+      "UID": "Pets_OilSlickBurn_Blaster",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3524
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 120,
+      "UID": "Pets_Burst_of_Speed",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3520
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 121,
+      "UID": "Pets_Dimension_Shift",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3493
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 122,
+      "UID": "Pets_Dimension_Shift_Phased",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3493
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 123,
+      "UID": "Pets_Traps_Mine_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3521
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 196,
+      "UID": "Pets_LiquidNitrogen",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3518
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 197,
+      "UID": "Pets_Shadow_Field_Controller",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3707
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 209,
+      "UID": "Pets_Blizzard_Defender",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3468
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 228,
+      "UID": "IncarnatePets_Barrier_Rez_Single",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3352
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 229,
+      "UID": "IncarnatePets_Barrier_Rez_Double_Wide",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3352
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 230,
+      "UID": "IncarnatePets_Barrier_Rez_Double",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3352
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 231,
+      "UID": "IncarnatePets_Incandescent_Destiny_Shield",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        297
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 232,
+      "UID": "IncarnatePets_Incandescent_Destiny_Shield_Wide",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        297
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 233,
+      "UID": "IncarnatePets_Ion_Core_Final_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 234,
+      "UID": "IncarnatePets_Ion_Core_Final_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 235,
+      "UID": "IncarnatePets_Ion_Core_Final_Judgement_Jump4",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 236,
+      "UID": "IncarnatePets_Ion_Core_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 237,
+      "UID": "IncarnatePets_Ion_Core_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 238,
+      "UID": "IncarnatePets_Ion_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 239,
+      "UID": "IncarnatePets_Ion_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 240,
+      "UID": "IncarnatePets_Ion_Partial_Core_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 241,
+      "UID": "IncarnatePets_Ion_Partial_Core_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 242,
+      "UID": "IncarnatePets_Ion_Partial_Radial_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 243,
+      "UID": "IncarnatePets_Ion_Partial_Radial_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 244,
+      "UID": "IncarnatePets_Ion_Partial_Radial_Judgement_Jump4",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 245,
+      "UID": "IncarnatePets_Ion_Radial_Final_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 246,
+      "UID": "IncarnatePets_Ion_Radial_Final_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 247,
+      "UID": "IncarnatePets_Ion_Radial_Final_Judgement_Jump4",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 248,
+      "UID": "IncarnatePets_Ion_Radial_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 249,
+      "UID": "IncarnatePets_Ion_Radial_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 250,
+      "UID": "IncarnatePets_Ion_Total_Core_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 251,
+      "UID": "IncarnatePets_Ion_Total_Core_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 252,
+      "UID": "IncarnatePets_Ion_Total_Radial_Judgement_Jump2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 253,
+      "UID": "IncarnatePets_Ion_Total_Radial_Judgement_Jump3",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 254,
+      "UID": "IncarnatePets_Ion_Core_Final_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 255,
+      "UID": "IncarnatePets_Ion_Core_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 256,
+      "UID": "IncarnatePets_Ion_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 257,
+      "UID": "IncarnatePets_Ion_Partial_Core_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 258,
+      "UID": "IncarnatePets_Ion_Partial_Radial_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 259,
+      "UID": "IncarnatePets_Ion_Radial_Final_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 260,
+      "UID": "IncarnatePets_Ion_Radial_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 261,
+      "UID": "IncarnatePets_Ion_Total_Core_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 262,
+      "UID": "IncarnatePets_Ion_Total_Radial_Judgement_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 348,
+      "UID": "IncarnatePets_Ion_Partial_Core_Verdict_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        332,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 349,
+      "UID": "IncarnatePets_Ion_Total_Core_Verdict_Jump1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        332,
+        302
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 382,
+      "UID": "Pets_Enflame_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3498
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 383,
+      "UID": "Pets_Blue_Wisp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3515
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 384,
+      "UID": "Pets_DarkFairy_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3480
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 385,
+      "UID": "Pets_Fairy_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3515
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 386,
+      "UID": "Pets_Power_Drone_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3480
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 387,
+      "UID": "Pets_Power_Oscillator_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3480
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 388,
+      "UID": "Pets_Red_Wisp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3480
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 389,
+      "UID": "Pets_Shield_Drone_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3515
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 390,
+      "UID": "Pets_Shield_Oscillator_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3502,
+        3515
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 394,
+      "UID": "Pets_Shield_Charge_Stalker",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3711
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 395,
+      "UID": "Pets_OilSlickTarget",
+      "ClassNid": 35,
+      "PowersetNids": [
+        3694
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "RevokePower",
+          "EntCreate"
+        ],
+        [
+          "ThreatLevel"
+        ],
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "StealthRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 396,
+      "UID": "Pets_OilSlickTarget_Blaster",
+      "ClassNid": 35,
+      "PowersetNids": [
+        3525
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "RevokePower",
+          "EntCreate"
+        ],
+        [
+          "ThreatLevel"
+        ],
+        [
+          "Heal",
+          "Resistance",
+          "Damage",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "StealthRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 397,
+      "UID": "Pets_Recall_Marker",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 398,
+      "UID": "Pets_BasePortal_Door",
+      "ClassNid": 37,
+      "PowersetNids": [
+        3553
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "SilentKill"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 399,
+      "UID": "Pets_MonkeyGasDevolution",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3522
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 400,
+      "UID": "Pets_PPD_BackUp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3530
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 401,
+      "UID": "Pets_Arachnos_BackUp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3479
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 402,
+      "UID": "Pets_Resistance_BackUp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3542
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 403,
+      "UID": "Pets_PraetorianPD_BackUp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3531
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 404,
+      "UID": "Pets_SignatureSummon_BackAlleyBrawler",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 405,
+      "UID": "Pets_SignatureSummon_BlackScorpion",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 406,
+      "UID": "Pets_SignatureSummon_Positron",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 407,
+      "UID": "Pets_SignatureSummon_Scirocco",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 408,
+      "UID": "Pets_SignatureSummon_Manticore",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 409,
+      "UID": "Pets_SignatureSummon_GhostWidow",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 410,
+      "UID": "Pets_SignatureSummon_Statesman",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 411,
+      "UID": "Pets_SignatureSummon_LordRecluse",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 412,
+      "UID": "Pets_Warwolf_UndeadSurvivalKit",
+      "ClassNid": 18,
+      "PowersetNids": [
+        3554
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Endurance"
+        ]
+      ]
+    },
+    {
+      "Nid": 413,
+      "UID": "Pets_Beth_Jonsson_Astral",
+      "ClassNid": 18,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 414,
+      "UID": "Pets_Bane_Spider_Boss",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 416,
+      "UID": "Pets_Hero_Clone_Power_Boss_Female",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 417,
+      "UID": "WinterHorde_Holiday_Snowman_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 418,
+      "UID": "Objects_Keyes_DevastationBeam_Watcher",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 419,
+      "UID": "Pets_Summoned_Gears",
+      "ClassNid": 36,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 420,
+      "UID": "Coralax_Coral_Guardian_Lt_Pet",
+      "ClassNid": 22,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 421,
+      "UID": "Pets_Plant_Beast",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 422,
+      "UID": "Pets_Lost_Cure",
+      "ClassNid": 37,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 423,
+      "UID": "Pets_TarPatch",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3552
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 424,
+      "UID": "Pets_Lt_Wailer_Queen",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 425,
+      "UID": "Objects_Marauder_Debuff_Marker",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 426,
+      "UID": "Pets_High_Explosives",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3506
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 427,
+      "UID": "Pets_High_Explosives_Tech",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3507
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 428,
+      "UID": "Tsoo_CoV_Sorcerer_SpanPet",
+      "ClassNid": 22,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 429,
+      "UID": "Pets_I24_RogueSummon_Colleague",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 430,
+      "UID": "Pets_I24_RogueSummon_Network",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 431,
+      "UID": "Pets_I24_RogueSummon_SecondMeasure",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 432,
+      "UID": "SummerEvent_Coliseum_Favor_Marker",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 433,
+      "UID": "Pets_Knight_Errant",
+      "ClassNid": 18,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 437,
+      "UID": "Pets_Ouroboros_Door_Hero",
+      "ClassNid": 37,
+      "PowersetNids": [
+        3553
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "SilentKill"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 438,
+      "UID": "Objects_Keyes_Island_Marker",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 440,
+      "UID": "NPC_Pets_Pet_Rikti_Conscript",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 441,
+      "UID": "Objects_Disruptor_Pylon_Nuke",
+      "ClassNid": 18,
+      "PowersetNids": [
+        3536
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "GrantPower"
+        ]
+      ]
+    },
+    {
+      "Nid": 442,
+      "UID": "Pets_Rikti_Drone",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 443,
+      "UID": "RogueIslandPolice_Guard_Infected",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 444,
+      "UID": "Pets_Infected_Explosion",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3513
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 445,
+      "UID": "Pets_Spectre",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 446,
+      "UID": "SummerEvent_Heist_Hitter_Marker",
+      "ClassNid": 23,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 448,
+      "UID": "PracticeRobots_Trigger_VanguardDummy",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3566
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 449,
+      "UID": "Pets_Vanguard_Heavy_Pet",
+      "ClassNid": 17,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 450,
+      "UID": "DevouringEarth_Swarm",
+      "ClassNid": 36,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 451,
+      "UID": "Shivan_Decimator_Pet",
+      "ClassNid": 17,
+      "PowersetNids": [
+        3544
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Endurance"
+        ]
+      ]
+    },
+    {
+      "Nid": 452,
+      "UID": "Pets_Warburg_Chemical",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3572
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 453,
+      "UID": "Pets_Warburg_Afterglow",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3571
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 454,
+      "UID": "Pets_Warburg_Nuclear",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539,
+        3573
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 455,
+      "UID": "Pets_Warwolf",
+      "ClassNid": 18,
+      "PowersetNids": [
+        3554
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Endurance"
+        ]
+      ]
+    },
+    {
+      "Nid": 456,
+      "UID": "Pets_Ouroboros_Door_Villain",
+      "ClassNid": 37,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 457,
+      "UID": "PraetorianAngryCitizens_Burn",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3539
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 459,
+      "UID": "Pets_Protector_Traps_Seeker1",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3655
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 460,
+      "UID": "Pets_Protector_Traps_Seeker2",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3656
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "PerceptionRadius"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "Fly"
+        ],
+        [
+          "Null",
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 462,
+      "UID": "PracticeRobots_Summonable_VanguardDummy",
+      "ClassNid": 16,
+      "PowersetNids": [
+        3566
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 463,
+      "UID": "PracticeRobots_Summonable_VanguardDummy_ASF",
+      "ClassNid": 16,
+      "PowersetNids": [
+        3566
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 464,
+      "UID": "PracticeRobots_Summonable_LabyrinthDummy",
+      "ClassNid": 16,
+      "PowersetNids": [
+        3566
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "EntCreate",
+          "SilentKill"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 490,
+      "UID": "Pets_Traps_TimeBomb",
+      "ClassNid": 15,
+      "PowersetNids": [
+        3658
+      ],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "Heal",
+          "ResEffect",
+          "Fly",
+          "MezResist",
+          "EnduranceDiscount",
+          "HitPoints",
+          "Mez",
+          "StealthRadiusPlayer"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 492,
+      "UID": "Objects_Disruptor_Pylon",
+      "ClassNid": 21,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 0,
+      "UID": "Pets_FireImp",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning"
+        ]
+      ]
+    },
+    {
+      "Nid": 11,
+      "UID": "Pets_JackFrost",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight"
+        ],
+        [
+          "Damage",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Resistance",
+          "Defense",
+          "Mez",
+          "ResEffect"
+        ]
+      ]
+    },
+    {
+      "Nid": 14,
+      "UID": "Pets_Tornado",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 15,
+      "UID": "Pets_Decoy_Dominator",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Translucency",
+          "Mez",
+          "ThreatLevel",
+          "Heal"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Mez",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 16,
+      "UID": "Pets_Decoy",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Translucency",
+          "Mez",
+          "ThreatLevel",
+          "Heal"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 17,
+      "UID": "Pets_Terror",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 18,
+      "UID": "Pets_Phantasm",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Translucency",
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 26,
+      "UID": "Pets_Stone",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "ToHit",
+          "Translucency"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 33,
+      "UID": "Pets_Turret",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Regeneration",
+          "ThreatLevel",
+          "Heal",
+          "Translucency",
+          "Mez",
+          "SpeedFlying",
+          "Fly",
+          "PerceptionRadius",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount"
+        ],
+        [
+          "Null",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 34,
+      "UID": "Pets_DarkServant",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Damage"
+        ],
+        [
+          "DamageBuff",
+          "ToHit"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "ExecutePower",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 36,
+      "UID": "Pets_Fallout",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 37,
+      "UID": "Pets_Singularity",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "JumpHeight",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Mez",
+          "TokenAdd",
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Heal",
+          "Mez",
+          "ToHit",
+          "Fly",
+          "Translucency",
+          "MezResist"
+        ]
+      ]
+    },
+    {
+      "Nid": 45,
+      "UID": "Pets_Spirit_Tree",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "Damage",
+          "HitPoints",
+          "Mez",
+          "Fly",
+          "ThreatLevel",
+          "PerceptionRadius",
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 56,
+      "UID": "Pets_Patron_Powers_Fortunata_Seer",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Resistance",
+          "Accuracy",
+          "ResEffect"
+        ],
+        [
+          "Defense",
+          "Resistance",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "ToHit",
+          "ResEffect",
+          "PerceptionRadius",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 57,
+      "UID": "Pets_Patron_Powers_Fortunata_Mistress",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Resistance",
+          "Accuracy",
+          "ResEffect"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Defense",
+          "Resistance",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "RechargeTime",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 58,
+      "UID": "Pets_Patron_Powers_Blood_Widow",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Resistance",
+          "Accuracy",
+          "ResEffect"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "DamageBuff"
+        ],
+        [
+          "Defense",
+          "Resistance",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 59,
+      "UID": "Pets_Patron_Powers_Night_Widow",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "Resistance",
+          "Accuracy",
+          "ResEffect"
+        ],
+        [
+          "Defense",
+          "Resistance",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "StealthRadius",
+          "StealthRadiusPlayer",
+          "Defense",
+          "Translucency",
+          "None"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "PerceptionRadius",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 60,
+      "UID": "Pets_Patron_Powers_Arachnobot_Blaster",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction"
+        ],
+        [
+          "Resistance",
+          "SpeedRunning"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "MezResist",
+          "Fly"
+        ]
+      ]
+    },
+    {
+      "Nid": 61,
+      "UID": "Pets_Patron_Powers_Arachnobot_Spiderling",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction"
+        ],
+        [
+          "Resistance",
+          "SpeedRunning"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 62,
+      "UID": "Pets_Patron_Powers_Arachnobot_Disrupter",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Mez",
+          "Endurance"
+        ],
+        [
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Mez",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "MezResist",
+          "Fly"
+        ]
+      ]
+    },
+    {
+      "Nid": 63,
+      "UID": "Pets_Patron_Powers_Toxic_Tarantula",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Fly"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight",
+          "Defense"
+        ],
+        [
+          "Mez",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "MezResist",
+          "Fly"
+        ]
+      ]
+    },
+    {
+      "Nid": 64,
+      "UID": "Pets_Patron_Powers_Water_Spout",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 65,
+      "UID": "Pets_Patron_Powers_Blue_Corolax",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "SetMode"
+        ]
+      ]
+    },
+    {
+      "Nid": 66,
+      "UID": "Pets_Patron_Powers_Red_Corolax",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 67,
+      "UID": "Pets_Patron_Powers_Coral_Guardian_Warder",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Defense",
+          "MezResist",
+          "Damage"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ]
+      ]
+    },
+    {
+      "Nid": 68,
+      "UID": "Pets_Patron_Powers_Coral_Guardian_Sentinel",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "MezResist",
+          "Defense",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ]
+      ]
+    },
+    {
+      "Nid": 69,
+      "UID": "Pets_Patron_Powers_Mu_Adept",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Recovery",
+          "Mez",
+          "Endurance"
+        ],
+        [
+          "Regeneration",
+          "Mez",
+          "Endurance",
+          "Damage"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 70,
+      "UID": "Pets_Patron_Powers_Mu_Guardian",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Regeneration",
+          "Mez",
+          "Endurance",
+          "Damage"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "EntCreate"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 71,
+      "UID": "Pets_Patron_Powers_Mu_Striker",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Regeneration",
+          "Mez",
+          "Endurance",
+          "Damage"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Recovery",
+          "Endurance"
+        ]
+      ]
+    },
+    {
+      "Nid": 72,
+      "UID": "Pets_LightDrone1",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 73,
+      "UID": "Pets_LightDrone2",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 74,
+      "UID": "Pets_LightDrone3",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 75,
+      "UID": "Pets_Warshade_Extraction",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ]
+      ]
+    },
+    {
+      "Nid": 79,
+      "UID": "Pets_Patron_Powers_Water_Spout_Stalker",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 90,
+      "UID": "Pets_Gremlin",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Mez",
+          "Endurance",
+          "Damage",
+          "Recovery"
+        ],
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 99,
+      "UID": "Pets_Shade",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning",
+          "Fly",
+          "SpeedFlying"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "ToHit"
+        ]
+      ]
+    },
+    {
+      "Nid": 102,
+      "UID": "Pets_Umbra_Beast",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "SpeedRunning",
+          "SpeedFlying"
+        ],
+        [
+          "Mez",
+          "ToHit",
+          "MezResist",
+          "Fly",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "ToHit",
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 116,
+      "UID": "Pets_Living_Hellfire",
+      "ClassNid": 32,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "DamageBuff",
+          "HitPoints"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 119,
+      "UID": "Pets_Reverberant",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist",
+          "ExecutePower",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "RechargeTime",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Fly",
+          "Resistance",
+          "Mez",
+          "ToHit",
+          "Translucency",
+          "PerceptionRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 124,
+      "UID": "Pets_Overpowering_Presence_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "HitPoints"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 125,
+      "UID": "IncarnatePets_Lore_Arachnos_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 126,
+      "UID": "IncarnatePets_Lore_Arachnos_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 127,
+      "UID": "IncarnatePets_Lore_Arachnos_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 128,
+      "UID": "IncarnatePets_Lore_Banished_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "JumpHeight",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "EnduranceDiscount",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 129,
+      "UID": "IncarnatePets_Lore_Banished_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Defense",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 130,
+      "UID": "IncarnatePets_Lore_Banished_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Regeneration",
+          "Recovery",
+          "Endurance",
+          "RechargeTime"
+        ],
+        [
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 131,
+      "UID": "IncarnatePets_Lore_Carnival_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "RechargeTime",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 132,
+      "UID": "IncarnatePets_Lore_Carnival_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 133,
+      "UID": "IncarnatePets_Lore_Carnival_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "ToHit",
+          "DamageBuff"
+        ]
+      ]
+    },
+    {
+      "Nid": 134,
+      "UID": "IncarnatePets_Lore_Cimeroran_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 135,
+      "UID": "IncarnatePets_Lore_Cimeroran_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 136,
+      "UID": "IncarnatePets_Lore_Cimeroran_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 137,
+      "UID": "IncarnatePets_Lore_Clockwork_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "EntCreate"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 138,
+      "UID": "IncarnatePets_Lore_Clockwork_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 139,
+      "UID": "IncarnatePets_Lore_Clockwork_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 140,
+      "UID": "IncarnatePets_Lore_Demons_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 141,
+      "UID": "IncarnatePets_Lore_Demons_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 142,
+      "UID": "IncarnatePets_Lore_Demons_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 143,
+      "UID": "IncarnatePets_Lore_Demons_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 144,
+      "UID": "IncarnatePets_Lore_Demons_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 145,
+      "UID": "IncarnatePets_Lore_Demons_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 146,
+      "UID": "IncarnatePets_Lore_Drones_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 147,
+      "UID": "IncarnatePets_Lore_Drones_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 148,
+      "UID": "IncarnatePets_Lore_Elementals_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 149,
+      "UID": "IncarnatePets_Lore_Elementals_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 150,
+      "UID": "IncarnatePets_Lore_Elementals_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "PerceptionRadius",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 151,
+      "UID": "IncarnatePets_Lore_IDF_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 152,
+      "UID": "IncarnatePets_Lore_IDF_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 153,
+      "UID": "IncarnatePets_Lore_IDF_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 154,
+      "UID": "IncarnatePets_Lore_Knives_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Regeneration",
+          "Recovery",
+          "Mez"
+        ],
+        [
+          "DamageBuff",
+          "Defense",
+          "Endurance",
+          "ToHit",
+          "SpeedRunning",
+          "SpeedFlying",
+          "Mez",
+          "Heal",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 155,
+      "UID": "IncarnatePets_Lore_Knives_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Recovery",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "Regeneration",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 156,
+      "UID": "IncarnatePets_Lore_Knives_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "DamageBuff"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "MezResist",
+          "ResEffect"
+        ]
+      ]
+    },
+    {
+      "Nid": 157,
+      "UID": "IncarnatePets_Lore_Lights_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 158,
+      "UID": "IncarnatePets_Lore_Lights_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 159,
+      "UID": "IncarnatePets_Lore_Lights_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 160,
+      "UID": "IncarnatePets_Lore_Longbow_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 161,
+      "UID": "IncarnatePets_Lore_Longbow_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 162,
+      "UID": "IncarnatePets_Lore_Longbow_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 163,
+      "UID": "IncarnatePets_Lore_Nemesis_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 164,
+      "UID": "IncarnatePets_Lore_Nemesis_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 165,
+      "UID": "IncarnatePets_Lore_Nemesis_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ]
+      ]
+    },
+    {
+      "Nid": 166,
+      "UID": "IncarnatePets_Lore_Phantoms_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ]
+      ]
+    },
+    {
+      "Nid": 167,
+      "UID": "IncarnatePets_Lore_Phantoms_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 168,
+      "UID": "IncarnatePets_Lore_Phantoms_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "RechargeTime",
+          "ResEffect"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 169,
+      "UID": "IncarnatePets_Lore_Rikti_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 170,
+      "UID": "IncarnatePets_Lore_Rikti_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 171,
+      "UID": "IncarnatePets_Lore_Rikti_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "Recovery"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 172,
+      "UID": "IncarnatePets_Lore_Rularuu_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Defense",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 173,
+      "UID": "IncarnatePets_Lore_Rularuu_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 174,
+      "UID": "IncarnatePets_Lore_Rularuu_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 175,
+      "UID": "IncarnatePets_Lore_Seers_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage",
+          "Fly"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 176,
+      "UID": "IncarnatePets_Lore_Seers_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 177,
+      "UID": "IncarnatePets_Lore_Seers_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 178,
+      "UID": "IncarnatePets_Lore_Talons_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 179,
+      "UID": "IncarnatePets_Lore_Talons_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 180,
+      "UID": "IncarnatePets_Lore_Talons_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "RechargeTime",
+          "Recovery"
+        ],
+        [
+          "Heal",
+          "Defense",
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 181,
+      "UID": "IncarnatePets_Lore_Tsoo_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance",
+          "Null",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 182,
+      "UID": "IncarnatePets_Lore_Tsoo_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 183,
+      "UID": "IncarnatePets_Lore_Tsoo_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist",
+          "ResEffect",
+          "PerceptionRadius"
+        ],
+        [
+          "Translucency",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 184,
+      "UID": "IncarnatePets_Lore_Vanguard_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "ToHit"
+        ]
+      ]
+    },
+    {
+      "Nid": 185,
+      "UID": "IncarnatePets_Lore_Vanguard_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 186,
+      "UID": "IncarnatePets_Lore_Vanguard_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 187,
+      "UID": "IncarnatePets_Lore_Warworks_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 188,
+      "UID": "IncarnatePets_Lore_Warworks_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 189,
+      "UID": "Pets_IceElemental",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Resistance",
+          "Defense",
+          "Mez",
+          "ResEffect",
+          "Fly",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 190,
+      "UID": "Pets_CatherineWheel",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Resistance",
+          "Null",
+          "SetMode"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "ExecutePower"
+        ],
+        [
+          "Null",
+          "DamageBuff",
+          "Regeneration",
+          "Recovery",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "ExecutePower"
+        ],
+        [
+          "Translucency",
+          "MezResist",
+          "Mez",
+          "Resistance",
+          "ToHit",
+          "Fly",
+          "PerceptionRadius"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "ExecutePower"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "GrantPower",
+          "Translucency",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "ToHit"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 191,
+      "UID": "Pets_Dominating_Grasp_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "HitPoints"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 192,
+      "UID": "Pets_V_DarkServant",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Damage"
+        ],
+        [
+          "DamageBuff",
+          "ToHit"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "ExecutePower",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 193,
+      "UID": "Pets_Wellspring",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [],
+        [
+          "SetMode"
+        ],
+        [
+          "Null"
+        ],
+        [
+          "DamageBuff",
+          "SetMode"
+        ],
+        [
+          "Null",
+          "DamageBuff",
+          "SpeedRunning",
+          "JumpHeight",
+          "Fly",
+          "StealthRadius",
+          "Mez",
+          "GrantPower"
+        ],
+        [
+          "SpeedRunning",
+          "DamageBuff",
+          "JumpHeight",
+          "Fly",
+          "Null",
+          "StealthRadius",
+          "DesignerStatus",
+          "SetMode",
+          "GrantPower"
+        ],
+        [
+          "DamageBuff"
+        ],
+        [
+          "Mez",
+          "Null",
+          "DamageBuff"
+        ],
+        [
+          "Null"
+        ],
+        [
+          "Absorb",
+          "Defense"
+        ],
+        [
+          "Absorb",
+          "Defense"
+        ],
+        [
+          "Null",
+          "ThreatLevel",
+          "SpeedRunning",
+          "JumpHeight",
+          "Mez",
+          "MezResist",
+          "PerceptionRadius"
+        ],
+        [
+          "Resistance",
+          "Damage",
+          "GrantPower",
+          "SetMode",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 194,
+      "UID": "Pets_GalvanicSentinel",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "RevokePower"
+        ],
+        [
+          "Mez",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Heal",
+          "Endurance",
+          "XPDebtProtection",
+          "StealthRadius"
+        ],
+        [
+          "Resistance",
+          "ResEffect",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Null",
+          "Fly"
+        ],
+        [
+          "GrantPower"
+        ],
+        [
+          "DamageBuff",
+          "Regeneration",
+          "Recovery",
+          "Endurance"
+        ],
+        [
+          "Fly",
+          "SpeedFlying",
+          "Null"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "GrantPower",
+          "Mez",
+          "Endurance"
+        ],
+        [
+          "Endurance",
+          "Mez"
+        ],
+        [
+          "SetMode"
+        ]
+      ]
+    },
+    {
+      "Nid": 195,
+      "UID": "Pets_GunDrone_Tri_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Translucency",
+          "Mez",
+          "SpeedFlying",
+          "Fly",
+          "PerceptionRadius",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount",
+          "Resistance"
+        ],
+        [
+          "Null",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 198,
+      "UID": "Pets_Umbra_Beast_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "SpeedRunning",
+          "SpeedFlying"
+        ],
+        [
+          "Mez",
+          "ToHit",
+          "MezResist",
+          "Fly",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "ToHit",
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 199,
+      "UID": "Pets_Stone_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "ToHit",
+          "Translucency"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 200,
+      "UID": "Pets_Gremlin_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Mez",
+          "Endurance",
+          "Damage",
+          "Recovery"
+        ],
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 201,
+      "UID": "Pets_FireImp_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning"
+        ]
+      ]
+    },
+    {
+      "Nid": 202,
+      "UID": "Pets_Singularity_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "JumpHeight",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Mez",
+          "TokenAdd",
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist"
+        ],
+        [
+          "Damage",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Resistance",
+          "Heal",
+          "Mez",
+          "ToHit",
+          "Fly",
+          "Translucency",
+          "MezResist"
+        ]
+      ]
+    },
+    {
+      "Nid": 203,
+      "UID": "Pets_JackFrost_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight"
+        ],
+        [
+          "Damage",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Resistance",
+          "Defense",
+          "Mez",
+          "ResEffect"
+        ]
+      ]
+    },
+    {
+      "Nid": 204,
+      "UID": "Pets_Phantasm_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Translucency",
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 205,
+      "UID": "Pets_Fly_Trap_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "MezResist",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 206,
+      "UID": "Pets_CatherineWheel_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Resistance",
+          "Null",
+          "SetMode"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "ExecutePower"
+        ],
+        [
+          "Null",
+          "DamageBuff",
+          "Regeneration",
+          "Recovery",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "ExecutePower"
+        ],
+        [
+          "Translucency",
+          "MezResist",
+          "Mez",
+          "Resistance",
+          "ToHit",
+          "Fly",
+          "PerceptionRadius"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "ExecutePower"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "GrantPower",
+          "Translucency",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "ToHit"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 207,
+      "UID": "Pets_Reverberant_Controller",
+      "ClassNid": 34,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist",
+          "ExecutePower",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "RechargeTime",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Fly",
+          "Resistance",
+          "Mez",
+          "ToHit",
+          "Translucency",
+          "PerceptionRadius"
+        ]
+      ]
+    },
+    {
+      "Nid": 208,
+      "UID": "Pets_Wellspring_Def",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [],
+        [
+          "SetMode"
+        ],
+        [
+          "Null"
+        ],
+        [
+          "DamageBuff",
+          "SetMode"
+        ],
+        [
+          "Null",
+          "DamageBuff",
+          "SpeedRunning",
+          "JumpHeight",
+          "Fly",
+          "StealthRadius",
+          "Mez",
+          "GrantPower"
+        ],
+        [
+          "SpeedRunning",
+          "DamageBuff",
+          "JumpHeight",
+          "Fly",
+          "Null",
+          "StealthRadius",
+          "DesignerStatus",
+          "SetMode",
+          "GrantPower"
+        ],
+        [
+          "DamageBuff"
+        ],
+        [
+          "Mez",
+          "Null",
+          "DamageBuff"
+        ],
+        [
+          "Null"
+        ],
+        [
+          "Absorb",
+          "Defense"
+        ],
+        [
+          "Absorb",
+          "Defense"
+        ],
+        [
+          "Null",
+          "ThreatLevel",
+          "SpeedRunning",
+          "JumpHeight",
+          "Mez",
+          "MezResist",
+          "PerceptionRadius"
+        ],
+        [
+          "Resistance",
+          "Damage",
+          "GrantPower",
+          "SetMode",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 210,
+      "UID": "Pets_GunDrone_Tri",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Translucency",
+          "Mez",
+          "SpeedFlying",
+          "Fly",
+          "PerceptionRadius",
+          "ResEffect",
+          "MezResist",
+          "EnduranceDiscount",
+          "Resistance"
+        ],
+        [
+          "Null",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 211,
+      "UID": "Pets_Psionic_Nexus",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Resistance",
+          "MezResist",
+          "Defense",
+          "ToHit",
+          "Fly",
+          "SpeedFlying"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "SilentKill"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 212,
+      "UID": "IncarnatePets_Fate_Arachnos_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 213,
+      "UID": "IncarnatePets_Fate_Arachnos_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 214,
+      "UID": "IncarnatePets_Fate_Cimeroran_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 215,
+      "UID": "IncarnatePets_Fate_Cimeroran_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 216,
+      "UID": "IncarnatePets_Fate_Clockwork_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 217,
+      "UID": "IncarnatePets_Fate_Clockwork_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 218,
+      "UID": "IncarnatePets_Fate_IDF_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 219,
+      "UID": "IncarnatePets_Fate_IDF_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 220,
+      "UID": "IncarnatePets_Fate_Longbow_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 221,
+      "UID": "IncarnatePets_Fate_Longbow_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 222,
+      "UID": "IncarnatePets_Fate_Lights_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 223,
+      "UID": "IncarnatePets_Fate_Lights_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 224,
+      "UID": "IncarnatePets_Fate_Rikti_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 225,
+      "UID": "IncarnatePets_Fate_Drones_Boss",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 226,
+      "UID": "IncarnatePets_Fate_Vanguard_LT",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 227,
+      "UID": "IncarnatePets_Fate_Vanguard_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 263,
+      "UID": "IncarnatePets_Lore_Arachnos_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime",
+          "JumpHeight",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 264,
+      "UID": "IncarnatePets_Lore_Arachnos_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 265,
+      "UID": "IncarnatePets_Lore_Arachnos_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 266,
+      "UID": "IncarnatePets_Lore_Arachnos_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit",
+          "Resistance",
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 267,
+      "UID": "IncarnatePets_Lore_Banished_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "JumpHeight",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "EnduranceDiscount",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 268,
+      "UID": "IncarnatePets_Lore_Banished_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Defense",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 269,
+      "UID": "IncarnatePets_Lore_Banished_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Regeneration",
+          "Recovery",
+          "Endurance",
+          "RechargeTime"
+        ],
+        [
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 270,
+      "UID": "IncarnatePets_Lore_Banished_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Regeneration",
+          "Recovery",
+          "Endurance",
+          "RechargeTime"
+        ],
+        [
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 271,
+      "UID": "IncarnatePets_Lore_Carnival_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "RechargeTime",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 272,
+      "UID": "IncarnatePets_Lore_Carnival_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Fly",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 273,
+      "UID": "IncarnatePets_Lore_Carnival_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "ToHit",
+          "DamageBuff"
+        ]
+      ]
+    },
+    {
+      "Nid": 274,
+      "UID": "IncarnatePets_Lore_Carnival_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "ToHit",
+          "DamageBuff"
+        ]
+      ]
+    },
+    {
+      "Nid": 275,
+      "UID": "IncarnatePets_Lore_Cimeroran_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 276,
+      "UID": "IncarnatePets_Lore_Cimeroran_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 277,
+      "UID": "IncarnatePets_Lore_Cimeroran_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 278,
+      "UID": "IncarnatePets_Lore_Cimeroran_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 279,
+      "UID": "IncarnatePets_Lore_Clockwork_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "EntCreate"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 280,
+      "UID": "IncarnatePets_Lore_Clockwork_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 281,
+      "UID": "IncarnatePets_Lore_Clockwork_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 282,
+      "UID": "IncarnatePets_Lore_Clockwork_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 283,
+      "UID": "IncarnatePets_Lore_Demons_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "ToHit"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 284,
+      "UID": "IncarnatePets_Lore_IDF_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 285,
+      "UID": "IncarnatePets_Lore_IDF_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 286,
+      "UID": "IncarnatePets_Lore_IDF_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 287,
+      "UID": "IncarnatePets_Lore_IDF_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 288,
+      "UID": "IncarnatePets_Lore_Knives_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Regeneration",
+          "Recovery",
+          "Mez"
+        ],
+        [
+          "DamageBuff",
+          "Defense",
+          "Endurance",
+          "ToHit",
+          "SpeedRunning",
+          "SpeedFlying",
+          "Mez",
+          "Heal",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 289,
+      "UID": "IncarnatePets_Lore_Knives_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Recovery",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Regeneration",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "Regeneration",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 290,
+      "UID": "IncarnatePets_Lore_Knives_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "DamageBuff"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "MezResist",
+          "ResEffect"
+        ]
+      ]
+    },
+    {
+      "Nid": 291,
+      "UID": "IncarnatePets_Lore_Knives_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "DamageBuff"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Mez",
+          "MezResist",
+          "ResEffect"
+        ]
+      ]
+    },
+    {
+      "Nid": 292,
+      "UID": "IncarnatePets_Lore_Longbow_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 293,
+      "UID": "IncarnatePets_Lore_Longbow_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 294,
+      "UID": "IncarnatePets_Lore_Longbow_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 295,
+      "UID": "IncarnatePets_Lore_Longbow_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 296,
+      "UID": "IncarnatePets_Lore_Nemesis_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 297,
+      "UID": "IncarnatePets_Lore_Nemesis_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 298,
+      "UID": "IncarnatePets_Lore_Nemesis_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ]
+      ]
+    },
+    {
+      "Nid": 299,
+      "UID": "IncarnatePets_Lore_Nemesis_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ]
+      ]
+    },
+    {
+      "Nid": 300,
+      "UID": "IncarnatePets_Lore_Phantoms_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ]
+      ]
+    },
+    {
+      "Nid": 301,
+      "UID": "IncarnatePets_Lore_Phantoms_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 302,
+      "UID": "IncarnatePets_Lore_Phantoms_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "RechargeTime",
+          "ResEffect"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 303,
+      "UID": "IncarnatePets_Lore_Phantoms_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Recovery",
+          "Regeneration",
+          "RechargeTime",
+          "ResEffect"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 304,
+      "UID": "IncarnatePets_Lore_Lights_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 305,
+      "UID": "IncarnatePets_Lore_Lights_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 306,
+      "UID": "IncarnatePets_Lore_Lights_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 307,
+      "UID": "IncarnatePets_Lore_Lights_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 308,
+      "UID": "IncarnatePets_Lore_Rikti_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ],
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 309,
+      "UID": "IncarnatePets_Lore_Rikti_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 310,
+      "UID": "IncarnatePets_Lore_Rikti_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "Recovery"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 311,
+      "UID": "IncarnatePets_Lore_Rikti_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "Recovery"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 312,
+      "UID": "IncarnatePets_Lore_Drones_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 313,
+      "UID": "IncarnatePets_Lore_Drones_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 314,
+      "UID": "IncarnatePets_Lore_Drones_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 315,
+      "UID": "IncarnatePets_Lore_Drones_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 316,
+      "UID": "IncarnatePets_Lore_Drones_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 317,
+      "UID": "IncarnatePets_Lore_Rularuu_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage",
+          "Defense",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 318,
+      "UID": "IncarnatePets_Lore_Rularuu_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 319,
+      "UID": "IncarnatePets_Lore_Rularuu_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 320,
+      "UID": "IncarnatePets_Lore_Rularuu_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 321,
+      "UID": "IncarnatePets_Lore_Seers_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Mez",
+          "Damage",
+          "Fly"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 322,
+      "UID": "IncarnatePets_Lore_Seers_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez",
+          "Damage"
+        ],
+        [
+          "Damage",
+          "RechargeTime"
+        ]
+      ]
+    },
+    {
+      "Nid": 323,
+      "UID": "IncarnatePets_Lore_Seers_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 324,
+      "UID": "IncarnatePets_Lore_Seers_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "DamageBuff"
+        ],
+        [
+          "Heal"
+        ]
+      ]
+    },
+    {
+      "Nid": 325,
+      "UID": "IncarnatePets_Lore_Elementals_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 326,
+      "UID": "IncarnatePets_Lore_Elementals_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ]
+      ]
+    },
+    {
+      "Nid": 327,
+      "UID": "IncarnatePets_Lore_Elementals_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "PerceptionRadius",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 328,
+      "UID": "IncarnatePets_Lore_Elementals_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "ResEffect",
+          "MezResist",
+          "PerceptionRadius",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 329,
+      "UID": "IncarnatePets_Lore_Talons_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "JumpHeight",
+          "RechargeTime"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 330,
+      "UID": "IncarnatePets_Lore_Talons_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping",
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "MezResist",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Resistance",
+          "DamageBuff",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 331,
+      "UID": "IncarnatePets_Lore_Talons_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "RechargeTime",
+          "Recovery"
+        ],
+        [
+          "Heal",
+          "Defense",
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 332,
+      "UID": "IncarnatePets_Lore_Talons_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "RechargeTime",
+          "Recovery"
+        ],
+        [
+          "Heal",
+          "Defense",
+          "Resistance"
+        ]
+      ]
+    },
+    {
+      "Nid": 333,
+      "UID": "IncarnatePets_Lore_Tsoo_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance",
+          "Null",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 334,
+      "UID": "IncarnatePets_Lore_Tsoo_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 335,
+      "UID": "IncarnatePets_Lore_Tsoo_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist",
+          "ResEffect",
+          "PerceptionRadius"
+        ],
+        [
+          "Translucency",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 336,
+      "UID": "IncarnatePets_Lore_Tsoo_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Range",
+          "ToHit",
+          "Mez"
+        ],
+        [
+          "Heal",
+          "Mez",
+          "MezResist",
+          "ResEffect",
+          "PerceptionRadius"
+        ],
+        [
+          "Translucency",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 337,
+      "UID": "IncarnatePets_Lore_Vanguard_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Endurance",
+          "Recovery"
+        ],
+        [
+          "Damage",
+          "ToHit",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Damage",
+          "JumpHeight",
+          "RechargeTime",
+          "SpeedRunning",
+          "SpeedFlying",
+          "SpeedJumping"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "ToHit"
+        ]
+      ]
+    },
+    {
+      "Nid": 338,
+      "UID": "IncarnatePets_Lore_Vanguard_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Resistance"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "EntCreate"
+        ]
+      ]
+    },
+    {
+      "Nid": 339,
+      "UID": "IncarnatePets_Lore_Vanguard_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 340,
+      "UID": "IncarnatePets_Lore_Vanguard_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "DamageBuff",
+          "MezResist"
+        ],
+        [
+          "ToHit",
+          "DamageBuff",
+          "Regeneration",
+          "ExecutePower"
+        ]
+      ]
+    },
+    {
+      "Nid": 341,
+      "UID": "IncarnatePets_Lore_Warworks_Boss_Buff",
+      "ClassNid": 28,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Defense"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Defense"
+        ]
+      ]
+    },
+    {
+      "Nid": 342,
+      "UID": "IncarnatePets_Lore_Warworks_LT_Buff",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Regeneration"
+        ],
+        [
+          "Damage",
+          "Regeneration"
+        ]
+      ]
+    },
+    {
+      "Nid": 343,
+      "UID": "IncarnatePets_Lore_Warworks_Support",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 344,
+      "UID": "IncarnatePets_Lore_Warworks_Support_Attacks",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 345,
+      "UID": "IncarnatePets_Lore_Warworks_Support_Protected",
+      "ClassNid": 33,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Heal",
+          "Mez",
+          "MezResist"
+        ],
+        [
+          "Defense",
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 350,
+      "UID": "MastermindPets_Dire_Wolf",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 351,
+      "UID": "MastermindPets_Lioness",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 352,
+      "UID": "MastermindPets_Howler_Wolf",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 353,
+      "UID": "MastermindPets_Howler_Wolf_Alpha",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 354,
+      "UID": "MastermindPets_Fiery_Demonling",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 355,
+      "UID": "MastermindPets_Cold_Demonling",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 356,
+      "UID": "MastermindPets_Hellfire_Demonling",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 357,
+      "UID": "MastermindPets_Ember_Demon",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 358,
+      "UID": "MastermindPets_Hellfire_Gargoyle",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 359,
+      "UID": "MastermindPets_Demon_Prince",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 360,
+      "UID": "MastermindPets_Commando",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 361,
+      "UID": "MastermindPets_Soldier",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 362,
+      "UID": "MastermindPets_Medic",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 363,
+      "UID": "MastermindPets_Spec_Ops",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 364,
+      "UID": "MastermindPets_Lich",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 365,
+      "UID": "MastermindPets_Skeletal_Warrior",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 366,
+      "UID": "MastermindPets_Ghost_Boss",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "None"
+        ],
+        [
+          "None"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Translucency",
+          "Mez",
+          "Heal"
+        ],
+        [
+          "Mez",
+          "ResEffect",
+          "Translucency",
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 367,
+      "UID": "MastermindPets_Ghost_Lt",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "None"
+        ],
+        [
+          "None"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Translucency",
+          "Mez",
+          "Heal"
+        ],
+        [
+          "Mez",
+          "ResEffect",
+          "Translucency",
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 368,
+      "UID": "MastermindPets_Ghost_Minion",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "None"
+        ],
+        [
+          "None"
+        ],
+        [
+          "Fly",
+          "MovementControl",
+          "SpeedFlying",
+          "MovementFriction"
+        ],
+        [
+          "Damage",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Heal",
+          "ToHit"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Translucency",
+          "Mez",
+          "Heal"
+        ],
+        [
+          "Mez",
+          "ResEffect",
+          "Translucency",
+          "Resistance"
+        ],
+        [
+          "SilentKill"
+        ]
+      ]
+    },
+    {
+      "Nid": 369,
+      "UID": "MastermindPets_Zombie",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 370,
+      "UID": "MastermindPets_Genin",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 371,
+      "UID": "MastermindPets_Jonin",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 372,
+      "UID": "MastermindPets_Oni",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 373,
+      "UID": "MastermindPets_Assault_Bot",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 374,
+      "UID": "MastermindPets_Droid",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 375,
+      "UID": "MastermindPets_Protector_Bot",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 376,
+      "UID": "MastermindPets_Maintenance_Bot",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Heal"
+        ],
+        [
+          "Mez",
+          "MezResist",
+          "Resistance",
+          "Heal",
+          "Regeneration",
+          "HitPoints",
+          "Defense"
+        ],
+        [
+          "JumpHeight",
+          "SpeedJumping",
+          "SpeedRunning",
+          "MovementControl",
+          "MovementFriction"
+        ]
+      ]
+    },
+    {
+      "Nid": 377,
+      "UID": "MastermindPets_Thug_Boss",
+      "ClassNid": 29,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 378,
+      "UID": "MastermindPets_Thug_Lt",
+      "ClassNid": 30,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 379,
+      "UID": "MastermindPets_Thug",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 380,
+      "UID": "MastermindPets_Thug_Arsonist",
+      "ClassNid": 31,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Defense",
+          "StealthRadius",
+          "ThreatLevel"
+        ]
+      ]
+    },
+    {
+      "Nid": 415,
+      "UID": "Pets_Arachnos_Heavy_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": []
+    },
+    {
+      "Nid": 434,
+      "UID": "Miscellaneous_Labyrinth_Gladiator_Summon",
+      "ClassNid": 25,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Regeneration",
+          "MezResist"
+        ],
+        [
+          "JumpHeight",
+          "SpeedJumping"
+        ],
+        [
+          "Recovery"
+        ],
+        [
+          "SpeedRunning",
+          "SpeedFlying"
+        ]
+      ]
+    },
+    {
+      "Nid": 435,
+      "UID": "Pets_Zombie",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "None"
+        ],
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "Mez",
+          "MezResist",
+          "ResEffect"
+        ],
+        [
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 436,
+      "UID": "Pets_Longbow_Heavy_Pet",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "EntCreate"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Mez"
+        ],
+        [
+          "Damage",
+          "Regeneration",
+          "Mez"
+        ],
+        [
+          "Resistance"
+        ],
+        [
+          "EntCreate"
+        ],
+        [
+          "EntCreate",
+          "Damage"
+        ]
+      ]
+    },
+    {
+      "Nid": 439,
+      "UID": "Pets_Dust_Devil1",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Mez"
+        ]
+      ]
+    },
+    {
+      "Nid": 447,
+      "UID": "Pets_FireImp_Small",
+      "ClassNid": 15,
+      "PowersetNids": [],
+      "FirstPowersetEffectTypes": [
+        [
+          "Damage"
+        ],
+        [
+          "Resistance",
+          "JumpHeight",
+          "SpeedJumping",
+          "MovementControl",
+          "MovementFriction",
+          "SpeedRunning"
+        ]
+      ]
+    }
+  ],
+  "Powersets": [
+    {
+      "Nid": 297,
+      "FullName": "Incarnate.Destiny_Silent",
+      "SetType": "Pet",
+      "PowerNids": [
+        5086,
+        5087,
+        5088
+      ]
+    },
+    {
+      "Nid": 302,
+      "FullName": "Incarnate.Ion_Judgement",
+      "SetType": "Pet",
+      "PowerNids": [
+        5343,
+        5344,
+        5345,
+        5346,
+        5347,
+        5348,
+        5349,
+        5350,
+        5351,
+        5352,
+        5353,
+        5354,
+        5355,
+        5356,
+        5357,
+        5358,
+        5359,
+        5360,
+        5361,
+        5362,
+        5363,
+        5364,
+        5365,
+        5366,
+        5367,
+        5368,
+        5369,
+        5370,
+        5371,
+        5372
+      ]
+    },
+    {
+      "Nid": 332,
+      "FullName": "Incarnate.Lore_Pet_Generic",
+      "SetType": "Pet",
+      "PowerNids": [
+        5689,
+        5690,
+        5691,
+        5692,
+        5693,
+        5694,
+        5695
+      ]
+    },
+    {
+      "Nid": 3352,
+      "FullName": "Incarnate.Barrier_Rez",
+      "SetType": "Pet",
+      "PowerNids": [
+        5028,
+        5029,
+        5030
+      ]
+    },
+    {
+      "Nid": 3365,
+      "FullName": "Kheldian_Pets.Omega_Bomb",
+      "SetType": "Pet",
+      "PowerNids": [
+        6013,
+        6014,
+        6015
+      ]
+    },
+    {
+      "Nid": 3468,
+      "FullName": "Pets.Defender_Blizzard",
+      "SetType": "Pet",
+      "PowerNids": [
+        6802,
+        6803,
+        6804
+      ]
+    },
+    {
+      "Nid": 3475,
+      "FullName": "Pets.Burn",
+      "SetType": "Pet",
+      "PowerNids": [
+        6749
+      ]
+    },
+    {
+      "Nid": 3476,
+      "FullName": "Pets.Caltrops",
+      "SetType": "Pet",
+      "PowerNids": [
+        6750
+      ]
+    },
+    {
+      "Nid": 3477,
+      "FullName": "Pets.IceStorm_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        6866,
+        6867
+      ]
+    },
+    {
+      "Nid": 3478,
+      "FullName": "Pets.RainofFire",
+      "SetType": "Pet",
+      "PowerNids": [
+        6971,
+        6972
+      ]
+    },
+    {
+      "Nid": 3479,
+      "FullName": "Pets.Crab_Spider",
+      "SetType": "Pet",
+      "PowerNids": [
+        6758,
+        6759,
+        6760,
+        6761,
+        6762
+      ]
+    },
+    {
+      "Nid": 3480,
+      "FullName": "Pets.DarkFaerie",
+      "SetType": "Pet",
+      "PowerNids": [
+        6763,
+        6764
+      ]
+    },
+    {
+      "Nid": 3484,
+      "FullName": "Pets.Defenders_Bastion_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        6797
+      ]
+    },
+    {
+      "Nid": 3493,
+      "FullName": "Pets.DimensionShift",
+      "SetType": "Pet",
+      "PowerNids": [
+        6821,
+        6822,
+        6823
+      ]
+    },
+    {
+      "Nid": 3494,
+      "FullName": "Pets.DistortionField_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        6825
+      ]
+    },
+    {
+      "Nid": 3497,
+      "FullName": "Pets.Earthquake",
+      "SetType": "Pet",
+      "PowerNids": [
+        6831
+      ]
+    },
+    {
+      "Nid": 3498,
+      "FullName": "Pets.Enflame",
+      "SetType": "Pet",
+      "PowerNids": [
+        6833,
+        6834,
+        6835
+      ]
+    },
+    {
+      "Nid": 3501,
+      "FullName": "Pets.Quicksand",
+      "SetType": "Pet",
+      "PowerNids": [
+        6958
+      ]
+    },
+    {
+      "Nid": 3502,
+      "FullName": "Pets.FaerieResists",
+      "SetType": "Pet",
+      "PowerNids": [
+        6843
+      ]
+    },
+    {
+      "Nid": 3506,
+      "FullName": "Pets.High_Explosives",
+      "SetType": "Pet",
+      "PowerNids": [
+        6854,
+        6855,
+        6856
+      ]
+    },
+    {
+      "Nid": 3507,
+      "FullName": "Pets.High_Explosives_Tech",
+      "SetType": "Pet",
+      "PowerNids": [
+        6857,
+        6858,
+        6859
+      ]
+    },
+    {
+      "Nid": 3508,
+      "FullName": "Pets.Howling",
+      "SetType": "Pet",
+      "PowerNids": [
+        6860
+      ]
+    },
+    {
+      "Nid": 3509,
+      "FullName": "Pets.IcePatch",
+      "SetType": "Pet",
+      "PowerNids": [
+        6862
+      ]
+    },
+    {
+      "Nid": 3510,
+      "FullName": "Pets.IceSlick",
+      "SetType": "Pet",
+      "PowerNids": [
+        6863
+      ]
+    },
+    {
+      "Nid": 3513,
+      "FullName": "Pets.Infected_Explosion",
+      "SetType": "Pet",
+      "PowerNids": [
+        6874
+      ]
+    },
+    {
+      "Nid": 3515,
+      "FullName": "Pets.LightFaerie",
+      "SetType": "Pet",
+      "PowerNids": [
+        6881,
+        6882
+      ]
+    },
+    {
+      "Nid": 3516,
+      "FullName": "Pets.LightningStorm",
+      "SetType": "Pet",
+      "PowerNids": [
+        6883,
+        6884,
+        6885
+      ]
+    },
+    {
+      "Nid": 3517,
+      "FullName": "Pets.LightningStorm_Controller",
+      "SetType": "Pet",
+      "PowerNids": [
+        6886,
+        6887,
+        6888
+      ]
+    },
+    {
+      "Nid": 3518,
+      "FullName": "Pets.LiquidNitrogen",
+      "SetType": "Pet",
+      "PowerNids": [
+        6889,
+        6890
+      ]
+    },
+    {
+      "Nid": 3520,
+      "FullName": "Pets.Martial_Manipulation_Burst",
+      "SetType": "Pet",
+      "PowerNids": [
+        6898
+      ]
+    },
+    {
+      "Nid": 3521,
+      "FullName": "Pets.Traps_Trip_Mine_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7054,
+        7055,
+        7056
+      ]
+    },
+    {
+      "Nid": 3522,
+      "FullName": "Pets.MonkeyGasDevolution",
+      "SetType": "Pet",
+      "PowerNids": [
+        6902
+      ]
+    },
+    {
+      "Nid": 3524,
+      "FullName": "Pets.OilSlickBurn_Blaster",
+      "SetType": "Pet",
+      "PowerNids": [
+        6913,
+        6914,
+        6915,
+        6916
+      ]
+    },
+    {
+      "Nid": 3525,
+      "FullName": "Pets.OilSlickTarget_Blaster",
+      "SetType": "Pet",
+      "PowerNids": [
+        6927,
+        6928,
+        6929,
+        6930
+      ]
+    },
+    {
+      "Nid": 3528,
+      "FullName": "Pets.Phoenix",
+      "SetType": "Pet",
+      "PowerNids": [
+        6939
+      ]
+    },
+    {
+      "Nid": 3530,
+      "FullName": "Pets.PPD_Hard_Suit",
+      "SetType": "Pet",
+      "PowerNids": [
+        6942,
+        6943,
+        6944,
+        6945,
+        6946
+      ]
+    },
+    {
+      "Nid": 3531,
+      "FullName": "Pets.PPD_Sergeant",
+      "SetType": "Pet",
+      "PowerNids": [
+        6947,
+        6948,
+        6949,
+        6950,
+        6951
+      ]
+    },
+    {
+      "Nid": 3536,
+      "FullName": "Pets.Raid_Disruptor_Pylon_Nuke",
+      "SetType": "Pet",
+      "PowerNids": [
+        6963
+      ]
+    },
+    {
+      "Nid": 3537,
+      "FullName": "Pets.RainofArrows_Visual",
+      "SetType": "Pet",
+      "PowerNids": [
+        6970
+      ]
+    },
+    {
+      "Nid": 3538,
+      "FullName": "Pets.ResistAllFast",
+      "SetType": "Pet",
+      "PowerNids": [
+        6974
+      ]
+    },
+    {
+      "Nid": 3539,
+      "FullName": "Pets.ResistAll",
+      "SetType": "Pet",
+      "PowerNids": [
+        6973
+      ]
+    },
+    {
+      "Nid": 3542,
+      "FullName": "Pets.Resistance_Rifle",
+      "SetType": "Pet",
+      "PowerNids": [
+        6977,
+        6978,
+        6979,
+        6980,
+        6981
+      ]
+    },
+    {
+      "Nid": 3544,
+      "FullName": "Pets.Shivan_Summon_FX",
+      "SetType": "Pet",
+      "PowerNids": [
+        6991
+      ]
+    },
+    {
+      "Nid": 3546,
+      "FullName": "Pets.Snowangel",
+      "SetType": "Pet",
+      "PowerNids": [
+        6998
+      ]
+    },
+    {
+      "Nid": 3547,
+      "FullName": "Pets.SoulAbsorptionBuff",
+      "SetType": "Pet",
+      "PowerNids": [
+        6999
+      ]
+    },
+    {
+      "Nid": 3548,
+      "FullName": "Pets.StickyArrow_Blaster",
+      "SetType": "Pet",
+      "PowerNids": [
+        7000,
+        7001,
+        7002
+      ]
+    },
+    {
+      "Nid": 3550,
+      "FullName": "Pets.Superior_Defenders_Bastion_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        7007
+      ]
+    },
+    {
+      "Nid": 3551,
+      "FullName": "Pets.Superior_Vigilant_Assault_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        7008
+      ]
+    },
+    {
+      "Nid": 3552,
+      "FullName": "Pets.TarPatch",
+      "SetType": "Pet",
+      "PowerNids": [
+        7009
+      ]
+    },
+    {
+      "Nid": 3553,
+      "FullName": "Pets.Team_Transport",
+      "SetType": "Pet",
+      "PowerNids": [
+        7010,
+        7011
+      ]
+    },
+    {
+      "Nid": 3554,
+      "FullName": "Pets.TempPower_Warwolf_Wistel_Pet",
+      "SetType": "Pet",
+      "PowerNids": [
+        7012
+      ]
+    },
+    {
+      "Nid": 3560,
+      "FullName": "Pets.Traps_Acid_Mortar_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7041,
+        7042
+      ]
+    },
+    {
+      "Nid": 3561,
+      "FullName": "Pets.Traps_FF_Generator_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7043,
+        7044,
+        7045
+      ]
+    },
+    {
+      "Nid": 3562,
+      "FullName": "Pets.Traps_Poison_Trap_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7046,
+        7047
+      ]
+    },
+    {
+      "Nid": 3563,
+      "FullName": "Pets.Traps_Seeker1_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7048,
+        7049,
+        7050
+      ]
+    },
+    {
+      "Nid": 3564,
+      "FullName": "Pets.Traps_Seeker2_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7051,
+        7052,
+        7053
+      ]
+    },
+    {
+      "Nid": 3566,
+      "FullName": "Pets.Vanguard_MDC",
+      "SetType": "Pet",
+      "PowerNids": [
+        7061,
+        7062,
+        7063,
+        7064
+      ]
+    },
+    {
+      "Nid": 3567,
+      "FullName": "Pets.Vigilant_Assault_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        7065
+      ]
+    },
+    {
+      "Nid": 3568,
+      "FullName": "Pets.VolcanicGasses",
+      "SetType": "Pet",
+      "PowerNids": [
+        7066,
+        7067
+      ]
+    },
+    {
+      "Nid": 3569,
+      "FullName": "Pets.VolcanicGeyser",
+      "SetType": "Pet",
+      "PowerNids": [
+        7068,
+        7069
+      ]
+    },
+    {
+      "Nid": 3571,
+      "FullName": "Pets.Warburg_Afterglow",
+      "SetType": "Pet",
+      "PowerNids": [
+        7072
+      ]
+    },
+    {
+      "Nid": 3572,
+      "FullName": "Pets.Warburg_Chemical",
+      "SetType": "Pet",
+      "PowerNids": [
+        7073
+      ]
+    },
+    {
+      "Nid": 3573,
+      "FullName": "Pets.Warburg_Nuclear",
+      "SetType": "Pet",
+      "PowerNids": [
+        7074
+      ]
+    },
+    {
+      "Nid": 3575,
+      "FullName": "Pets.Whirlpool_Sentinel",
+      "SetType": "Pet",
+      "PowerNids": [
+        7089,
+        7090
+      ]
+    },
+    {
+      "Nid": 3605,
+      "FullName": "Villain_Pets.DistortionField_Mastermind",
+      "SetType": "Pet",
+      "PowerNids": [
+        10953
+      ]
+    },
+    {
+      "Nid": 3618,
+      "FullName": "Villain_Pets.Fly_Trap",
+      "SetType": "Pet",
+      "PowerNids": [
+        10979,
+        10980,
+        10981,
+        10982,
+        10983
+      ]
+    },
+    {
+      "Nid": 3631,
+      "FullName": "Villain_Pets.Traps_Poison_Trap",
+      "SetType": "Pet",
+      "PowerNids": [
+        11116,
+        11117
+      ]
+    },
+    {
+      "Nid": 3634,
+      "FullName": "Villain_Pets.RainofArrows_Corruptor",
+      "SetType": "Pet",
+      "PowerNids": [
+        11054,
+        11055
+      ]
+    },
+    {
+      "Nid": 3636,
+      "FullName": "Villain_Pets.Scourging_Blast_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        11058
+      ]
+    },
+    {
+      "Nid": 3638,
+      "FullName": "Villain_Pets.Shadow_Field_Dominator_Domination",
+      "SetType": "Pet",
+      "PowerNids": [
+        11067,
+        11068
+      ]
+    },
+    {
+      "Nid": 3639,
+      "FullName": "Villain_Pets.Shield_Charge_AoE",
+      "SetType": "Pet",
+      "PowerNids": [
+        11069
+      ]
+    },
+    {
+      "Nid": 3648,
+      "FullName": "Villain_Pets.Superior_Scourging_Blast_Proc",
+      "SetType": "Pet",
+      "PowerNids": [
+        11089
+      ]
+    },
+    {
+      "Nid": 3649,
+      "FullName": "Villain_Pets.Thorntrops",
+      "SetType": "Pet",
+      "PowerNids": [
+        11090
+      ]
+    },
+    {
+      "Nid": 3652,
+      "FullName": "Villain_Pets.Traps_Acid_Mortar",
+      "SetType": "Pet",
+      "PowerNids": [
+        11108,
+        11109
+      ]
+    },
+    {
+      "Nid": 3653,
+      "FullName": "Villain_Pets.Traps_FF_Generator",
+      "SetType": "Pet",
+      "PowerNids": [
+        11110,
+        11111,
+        11112
+      ]
+    },
+    {
+      "Nid": 3654,
+      "FullName": "Villain_Pets.Traps_Poison_Gas",
+      "SetType": "Pet",
+      "PowerNids": [
+        11113,
+        11114,
+        11115
+      ]
+    },
+    {
+      "Nid": 3655,
+      "FullName": "Villain_Pets.Traps_Seeker1",
+      "SetType": "Pet",
+      "PowerNids": [
+        11118,
+        11119,
+        11120
+      ]
+    },
+    {
+      "Nid": 3656,
+      "FullName": "Villain_Pets.Traps_Seeker2",
+      "SetType": "Pet",
+      "PowerNids": [
+        11121,
+        11122,
+        11123
+      ]
+    },
+    {
+      "Nid": 3658,
+      "FullName": "Villain_Pets.Traps_TimeBomb",
+      "SetType": "Pet",
+      "PowerNids": [
+        11125,
+        11126,
+        11127
+      ]
+    },
+    {
+      "Nid": 3659,
+      "FullName": "Villain_Pets.Traps_Triage_Beacon",
+      "SetType": "Pet",
+      "PowerNids": [
+        11128
+      ]
+    },
+    {
+      "Nid": 3660,
+      "FullName": "Villain_Pets.Traps_Trip_Mine",
+      "SetType": "Pet",
+      "PowerNids": [
+        11129,
+        11130,
+        11131
+      ]
+    },
+    {
+      "Nid": 3674,
+      "FullName": "Pets.Blizzard",
+      "SetType": "Pet",
+      "PowerNids": [
+        6723,
+        6724,
+        6725
+      ]
+    },
+    {
+      "Nid": 3675,
+      "FullName": "Pets.Blizzard_Sentinel",
+      "SetType": "Pet",
+      "PowerNids": [
+        6726,
+        6727,
+        6728
+      ]
+    },
+    {
+      "Nid": 3676,
+      "FullName": "Pets.Corruptor_Blizzard",
+      "SetType": "Pet",
+      "PowerNids": [
+        6751,
+        6752,
+        6753
+      ]
+    },
+    {
+      "Nid": 3677,
+      "FullName": "Pets.Corruptor_IceStorm",
+      "SetType": "Pet",
+      "PowerNids": [
+        6754,
+        6755
+      ]
+    },
+    {
+      "Nid": 3678,
+      "FullName": "Pets.Corruptor_RainofFire",
+      "SetType": "Pet",
+      "PowerNids": [
+        6756,
+        6757
+      ]
+    },
+    {
+      "Nid": 3681,
+      "FullName": "Pets.Defender_RainofFire",
+      "SetType": "Pet",
+      "PowerNids": [
+        6819,
+        6820
+      ]
+    },
+    {
+      "Nid": 3682,
+      "FullName": "Pets.DistortionField_Controller",
+      "SetType": "Pet",
+      "PowerNids": [
+        6824
+      ]
+    },
+    {
+      "Nid": 3683,
+      "FullName": "Pets.Embraced_IceStorm",
+      "SetType": "Pet",
+      "PowerNids": [
+        6832
+      ]
+    },
+    {
+      "Nid": 3684,
+      "FullName": "Pets.Epic_IceStorm",
+      "SetType": "Pet",
+      "PowerNids": [
+        6836,
+        6837
+      ]
+    },
+    {
+      "Nid": 3685,
+      "FullName": "Pets.Epic_Quicksand",
+      "SetType": "Pet",
+      "PowerNids": [
+        6842
+      ]
+    },
+    {
+      "Nid": 3686,
+      "FullName": "Pets.HowlingVillain",
+      "SetType": "Pet",
+      "PowerNids": [
+        6861
+      ]
+    },
+    {
+      "Nid": 3687,
+      "FullName": "Pets.IceStorm",
+      "SetType": "Pet",
+      "PowerNids": [
+        6864,
+        6865
+      ]
+    },
+    {
+      "Nid": 3688,
+      "FullName": "Pets.Mine",
+      "SetType": "Pet",
+      "PowerNids": [
+        6899,
+        6900,
+        6901
+      ]
+    },
+    {
+      "Nid": 3691,
+      "FullName": "Pets.OilSlickBurn",
+      "SetType": "Pet",
+      "PowerNids": [
+        6909,
+        6910,
+        6911,
+        6912
+      ]
+    },
+    {
+      "Nid": 3692,
+      "FullName": "Pets.OilSlickOil",
+      "SetType": "Pet",
+      "PowerNids": [
+        6917,
+        6918,
+        6919
+      ]
+    },
+    {
+      "Nid": 3693,
+      "FullName": "Pets.OilSlickOil_Blaster",
+      "SetType": "Pet",
+      "PowerNids": [
+        6920,
+        6921,
+        6922
+      ]
+    },
+    {
+      "Nid": 3694,
+      "FullName": "Pets.OilSlickTarget",
+      "SetType": "Pet",
+      "PowerNids": [
+        6923,
+        6924,
+        6925,
+        6926
+      ]
+    },
+    {
+      "Nid": 3695,
+      "FullName": "Pets.RainofArrows",
+      "SetType": "Pet",
+      "PowerNids": [
+        6964,
+        6965
+      ]
+    },
+    {
+      "Nid": 3696,
+      "FullName": "Pets.RainofArrows_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        6966,
+        6967
+      ]
+    },
+    {
+      "Nid": 3697,
+      "FullName": "Pets.RainofArrows_Sentinel",
+      "SetType": "Pet",
+      "PowerNids": [
+        6968,
+        6969
+      ]
+    },
+    {
+      "Nid": 3701,
+      "FullName": "Pets.Whirlpool_Blaster",
+      "SetType": "Pet",
+      "PowerNids": [
+        7083,
+        7084
+      ]
+    },
+    {
+      "Nid": 3702,
+      "FullName": "Pets.Whirlpool_Corruptor",
+      "SetType": "Pet",
+      "PowerNids": [
+        7085,
+        7086
+      ]
+    },
+    {
+      "Nid": 3703,
+      "FullName": "Pets.Whirlpool_Defender",
+      "SetType": "Pet",
+      "PowerNids": [
+        7087,
+        7088
+      ]
+    },
+    {
+      "Nid": 3704,
+      "FullName": "Villain_Pets.DistortionField_Corruptor",
+      "SetType": "Pet",
+      "PowerNids": [
+        10952
+      ]
+    },
+    {
+      "Nid": 3705,
+      "FullName": "Villain_Pets.Poison_Poison_Gas",
+      "SetType": "Pet",
+      "PowerNids": [
+        11045,
+        11046,
+        11047
+      ]
+    },
+    {
+      "Nid": 3706,
+      "FullName": "Villain_Pets.Poison_Trap",
+      "SetType": "Pet",
+      "PowerNids": [
+        11048,
+        11049
+      ]
+    },
+    {
+      "Nid": 3707,
+      "FullName": "Villain_Pets.Shadow_Field",
+      "SetType": "Pet",
+      "PowerNids": [
+        11063,
+        11064
+      ]
+    },
+    {
+      "Nid": 3708,
+      "FullName": "Villain_Pets.Shadow_Field_Dominator",
+      "SetType": "Pet",
+      "PowerNids": [
+        11065,
+        11066
+      ]
+    },
+    {
+      "Nid": 3709,
+      "FullName": "Villain_Pets.Shield_Charge_AoE2",
+      "SetType": "Pet",
+      "PowerNids": [
+        11070
+      ]
+    },
+    {
+      "Nid": 3710,
+      "FullName": "Villain_Pets.Shield_Charge_AoE3",
+      "SetType": "Pet",
+      "PowerNids": [
+        11071
+      ]
+    },
+    {
+      "Nid": 3711,
+      "FullName": "Villain_Pets.Shield_Charge_AoE4",
+      "SetType": "Pet",
+      "PowerNids": [
+        11072
+      ]
+    }
+  ]
+}
