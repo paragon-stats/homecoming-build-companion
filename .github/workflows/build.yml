@@ -42,6 +42,8 @@ jobs:
       - name: Check console output encoding
         run: dotnet run scripts/dev/check-encoding.cs
       - name: Check banned words
+        env:
+          COH_BANNED_NAMES: ${{ secrets.COH_BANNED_NAMES }}
         run: dotnet run scripts/dev/check-banned-words.cs
       - run: dotnet format --verify-no-changes --severity error --no-restore
       - run: dotnet build --no-restore
