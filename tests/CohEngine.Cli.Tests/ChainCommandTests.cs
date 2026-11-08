@@ -63,6 +63,50 @@ public sealed class ChainCommandTests
         Assert.Contains("\n\n== ranged stance ==", output, StringComparison.Ordinal);
     }
 
+    private static System.Text.Json.JsonElement Melee(params string[] flags)
+    {
+        (int code, string output, _) = Run([Build, "--stance", "melee", "--format", "json", .. flags]);
+        Assert.Equal(0, code);
+        return CanonicalPowers.Parse(output).EnumerateArray().Single();
+    }
+
+    private static double CritFactor(System.Text.Json.JsonElement report)
+    {
+        return report.Req("modifiers").EnumerateArray().Single(modifier => string.Equals(modifier.ReqStr("name"), "scrapper_critical_hit", StringComparison.Ordinal)).ReqNum("factor");
+    }
+
+    [Fact]
+    public void The_assume_flag_reaches_the_model()
+    {
+        System.Text.Json.JsonElement low = Melee("--assume", "Class_Scrapper.crit_chance=0");
+        System.Text.Json.JsonElement high = Melee("--assume", "Class_Scrapper.crit_chance=0.5");
+
+        Assert.Equal("1 True True", $"{CritFactor(low)} {CritFactor(high) > 1.0} {high.Req("dps").ReqNum("total") > low.Req("dps").ReqNum("total")}");
+    }
+
+    [Fact]
+    public void The_target_flag_changes_an_area_chain()
+    {
+        double single = Melee("--target", "single").Req("dps").Req("unscaled").ReqNum("chain");
+        double spawn = Melee("--target", "spawn:5").Req("dps").Req("unscaled").ReqNum("chain");
+
+        Assert.True(spawn > single);
+    }
+
+    [Fact]
+    public void An_error_raised_after_the_setup_is_an_e_code_on_stderr_and_not_a_traceback()
+    {
+        (int code, string output, string error) = Run(Build, "--assume", "Class_Scrapper.crit_chance=2");
+
+        Assert.Equal("1 True True", $"{code} {error.Contains("E50", StringComparison.Ordinal)} {output.Length == 0 && !error.Contains("Traceback", StringComparison.Ordinal)}");
+    }
+
+    [Fact]
+    public void The_form_flag_restricts_the_run_and_a_json_report_carries_the_form()
+    {
+        Assert.Equal(string.Empty, Melee("--form", string.Empty).ReqStr("form"));
+    }
+
     [Fact]
     public void A_warning_finding_exits_2()
     {
@@ -100,7 +144,7 @@ public sealed class ChainCommandTests
     {
         using TempTree tree = new();
 
-        Assert.Equal("error: E72: cannot read an input file: No such file or directory; check that the path exists and is readable\n", Run(Build, "--canonical", tree.FullPath("none")).Error);
+        Assert.Equal("error: E72: cannot read an input file: No such file or directory; check that the path exists and is readable\n", Run(Build, "--mids-db", tree.FullPath("none")).Error);
     }
 
     [Fact]

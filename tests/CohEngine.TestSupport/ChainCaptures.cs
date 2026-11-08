@@ -60,6 +60,8 @@ public static class ChainCaptures
     private static string Compose(int code, string output, string error)
     {
         string text = $"exit {code}\n{output}\n--- stderr ---\n{error}";
-        return text.Replace("\r\n", "\n", StringComparison.Ordinal).Replace("\\\\", "/", StringComparison.Ordinal).Replace('\\', '/');
+        return text.Replace("\r\n", "\n", StringComparison.Ordinal)
+            .Replace(@"tests\\fixtures\\mids\\builds\\", "tests/fixtures/mids/builds/", StringComparison.Ordinal)
+            .Replace(@"tests\fixtures\mids\builds\", "tests/fixtures/mids/builds/", StringComparison.Ordinal);
     }
 }
