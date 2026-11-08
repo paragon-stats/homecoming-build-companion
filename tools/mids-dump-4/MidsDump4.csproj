@@ -21,7 +21,12 @@
       this harness loads the Homecoming DB headless and dumps JSON the Python
       port's golden fixtures are baselined against. -->
   </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);MIDS4</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\mids-dump-common\Dumps.cs" Link="Dumps.cs" />
+    <Using Include="Mids_Reborn.Core.Toon" Alias="ToonX" />
     <ProjectReference Include="$(MidsFork4)\MidsReborn\MidsReborn.csproj" />
   </ItemGroup>
 </Project>

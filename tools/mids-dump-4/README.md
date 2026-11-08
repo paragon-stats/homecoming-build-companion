@@ -7,6 +7,8 @@ The 3.x dumps stay the parity goldens until a re-baseline PR (see [`mids-4-align
 
 The committed dumps come from `upstream/4.0` at commit `24ee176f4`, Homecoming database version 2026.6.1303, with `pipeline-sequential.patch` applied.
 
+Most dump code lives in [`tools/mids-dump-common`](../mids-dump-common/README.md), compiled into this harness as linked source.
+
 ## Prerequisites
 
 - .NET SDK 8.0 or later (built with 10.x). 4.0's `MidsReborn.csproj` targets `net8.0-windows10.0.19041.0`, the same as 3.x.

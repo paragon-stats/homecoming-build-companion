@@ -6,6 +6,8 @@ golden fixtures against. Mids is the reference implementation: every numeric cla
 port is validated against these dumps, per
 [`docs/engine/mids-port-spec.md`](../../docs/engine/mids-port-spec.md).
 
+Most dump code lives in [`tools/mids-dump-common`](../mids-dump-common/README.md), compiled into this harness as linked source.
+
 ## Prerequisites
 
 - .NET SDK 8.0+ (builds with 10.x).
