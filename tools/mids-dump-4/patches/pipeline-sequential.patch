@@ -1,15 +1,16 @@
 diff --git a/MidsReborn/Core/PlannerPowerPipeline.cs b/MidsReborn/Core/PlannerPowerPipeline.cs
-index 48fb4b0fe..37d81bbb3 100644
+index 48fb4b0fe..cbfc6f6f3 100644
 --- a/MidsReborn/Core/PlannerPowerPipeline.cs
 +++ b/MidsReborn/Core/PlannerPowerPipeline.cs
-@@ -81,11 +81,14 @@ internal sealed class PlannerPowerPipeline
+@@ -81,11 +81,15 @@ internal sealed class PlannerPowerPipeline
 
      public void ExecutePerPowerEnhancementMathPhase()
      {
 -        Parallel.For(0, _mathPowers.Length, hIDX =>
-+        // Sequential in index order: Pass1/Pass3 read other powers' _mathPowers and Pass1 writes
-+        // other powers' _buffedPowers (incarnate and set-bonus enhancement reaches across powers),
-+        // so a Parallel.For races. Index order is the order the 3.x interactive UI produced.
++        // Sequential in index order, as the 3.x harness patch does. The Homecoming ruleset takes no
++        // cross-power reads in this loop (AllowLegacyCrossPowerIncarnatePasses is false), so the order
++        // does not change its dumps; the guard keeps them deterministic if a ruleset or a later 4.0
++        // commit adds a cross-power read.
 +        for (var hIDX = 0; hIDX < _mathPowers.Length; hIDX++)
          {
              if (_mathPowers[hIDX] == null)
@@ -19,7 +20,7 @@ index 48fb4b0fe..37d81bbb3 100644
              }
 
              GBPA_Pass1_EnhancePreED(ref _mathPowers[hIDX], hIDX);
-@@ -94,7 +97,7 @@ internal sealed class PlannerPowerPipeline
+@@ -94,7 +98,7 @@ internal sealed class PlannerPowerPipeline
              GBPA_Pass4_Add(ref _mathPowers[hIDX]);
              GBPA_ApplyArchetypeCaps(ref _mathPowers[hIDX]);
              GBPA_Pass5_MultiplyPreBuff(ref _mathPowers[hIDX], ref _buffedPowers[hIDX]);
@@ -28,7 +29,7 @@ index 48fb4b0fe..37d81bbb3 100644
 
          for (var index = 0; index < _mathPowers.Length; index++)
          {
-@@ -117,13 +120,13 @@ internal sealed class PlannerPowerPipeline
+@@ -117,13 +121,13 @@ internal sealed class PlannerPowerPipeline
 
      public void ExecutePostBuffMultiplyPhase()
      {

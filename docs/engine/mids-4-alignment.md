@@ -133,11 +133,14 @@ In order, each its own issue and pull request, after the chain-planner branch (#
 ## Harness
 
 [`tools/mids-dump-4`](../../tools/mids-dump-4/README.md) loads the 4.0 branch headless and writes the same per-build dumps as the 3.x harness into `tests/fixtures/mids4/`.
-Build and run it as that README describes; it needs the `MidsReborn-4.0` worktree with `pipeline-sequential.patch` applied, because 4.0 still runs its per-power loops under `Parallel.For`.
+Build and run it as that README describes.
+At commit `24ee176f4` 4.0 still runs its per-power loops under `Parallel.For`, so the harness expects the `MidsReborn-4.0` worktree to carry `pipeline-sequential.patch`.
+That patch is a determinism guard that mirrors the 3.x harness, not a demonstrated race fix: 22 build dumps were byte-identical across three unpatched runs and one patched run (README, "Determinism guard").
 `dotnet run scripts/dev/diff-goldens.cs -- --summary` compares the two trees; without `--summary` it lists every differing field.
 
-The first baseline, [`tests/fixtures/mids4/DIFF-REPORT.md`](../../tests/fixtures/mids4/DIFF-REPORT.md), compares 22 builds: 1,411 differing fields in `totals.json` and 17,542 in `enhanced_powers.json`.
-Two of the 23 parity builds do not load in 4.0 ([`SKIPPED.md`](../../tests/fixtures/mids4/SKIPPED.md)).
+The first baseline, [`tests/fixtures/mids4/DIFF-REPORT.md`](../../tests/fixtures/mids4/DIFF-REPORT.md), compares 22 builds with powers keyed by name:
+1,411 differing fields in `totals.json`, 12,426 in `enhanced_powers.json`, and 94 powers present only in 3.x against 62 only in 4.0.
+Two of the 23 parity builds do not load in 4.0 ([`SKIPPED.md`](../../tests/fixtures/mids4/SKIPPED.md)), and 18 load after remapping powers ([`REMAPPED.md`](../../tests/fixtures/mids4/REMAPPED.md)).
 The two trees also use different database versions (2026.1.1242 against 2026.6.1303), so the counts mix code and data drift.
 
 The goldens move to 4.0 only in a dedicated PR that carries the current DIFF-REPORT.
