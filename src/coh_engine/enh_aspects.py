@@ -24,7 +24,7 @@ damage and typed defense/resistance are enhanced, stays a literal Mids transcrip
 is **not** registry-ised.
 
 Spec: docs/engine/mids-port-spec.md § gbpa-pass-pipeline (Pass 3);
-.claude/rules/check-registry.md.
+docs/style-guides/engine-architecture.md.
 """
 
 from __future__ import annotations

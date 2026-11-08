@@ -1,0 +1,57 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    # zizmor dependabot-cooldown: never take a day-0 release; a week of soak
+    # time is cheap insurance against a compromised upstream publish.
+    cooldown:
+      default-days: 7
+    # Conventional-Commit prefix so dependabot's commits pass the commitlint check.
+    commit-message:
+      prefix: "chore"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+  - package-ecosystem: nuget
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore"
+    groups:
+      analyzers:
+        patterns:
+          - "StyleCop.Analyzers"
+          - "Meziantou.Analyzer"
+      nuget-dependencies:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "StyleCop.Analyzers"
+          - "Meziantou.Analyzer"
+    ignore:
+      # An analyzer must be built against the OLDEST Roslyn it supports, not the
+      # newest: the compiler refuses to load an analyzer referencing a newer
+      # compiler than itself (CS9057). Patches still flow; raise the major/minor
+      # by hand, and only when the minimum supported SDK moves.
+      - dependency-name: "Microsoft.CodeAnalysis.CSharp"
+        update-types:
+          - "version-update:semver-major"
+          - "version-update:semver-minor"

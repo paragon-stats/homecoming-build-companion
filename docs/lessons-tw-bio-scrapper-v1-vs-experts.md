@@ -3,7 +3,7 @@
 **Status:** case study.
 Read this before producing a TW/Bio Scrapper build, and when generalizing to any other Scrapper / Brute / Tanker combo where Bio Armor is the secondary or where Titan Weapons is the primary.
 
-The v1 TW/Bio Scrapper Claude produced as a benchmark comparison failed in concrete ways captured in [`/.claude/rules/build-creation.md`](../../.claude/rules/build-creation.md) (see L1–L8).
+The v1 TW/Bio Scrapper Claude produced as a benchmark comparison failed in concrete ways captured in [`style-guides/build-rules/build-creation.md`](style-guides/build-rules/build-creation.md) (see L1–L8).
 Those lessons addressed *format and process* failures — slot notation, slot accounting, JSON+markdown round-tripping, citing canonical numbers.
 
 Beyond format, four community TW/Bio builds (Jaegernault, brasilgringo, mythozz, beowulfinia; the private source-material repository (see `data/source-material/README.md`)) reveal *strategic*
@@ -189,7 +189,7 @@ Missed attacks waste the same endurance as landed ones — a 75%-hit attack at 1
 Endurance bottlenecks a build long before damage ceilings do, especially before Stamina slot 1 unlocks at level 12.
 
 **What to take from this:** default attack slotting order is **Acc/Dmg → Acc/Dmg/X → Dmg/X → Dmg/X → Dmg/X → proc**. Damage-only pieces never appear before slot 3.
-The codified rule is in [`exemplar-10.md` § Slot-aspect priority for attacks](../.claude/rules/exemplar-10.md#slot-aspect-priority-for-attacks-accuracy-first); flag exceptions explicitly
+The codified rule is in [`exemplar-10.md` § Slot-aspect priority for attacks](style-guides/build-rules/exemplar-10.md#slot-aspect-priority-for-attacks-accuracy-first); flag exceptions explicitly
 (pre-buffed snipes, procmonster vehicles, auto-hit powers).
 
 ## 11. Slot allocation has a budget; experts run lean
@@ -204,7 +204,7 @@ Combat Jumping / Maneuvers / Weave / Scorpion Shield (defense toggles) get 1–2
 The 67-slot cap is *binding*. Every build above hits exactly 67 (or under by 1–2 with explicit "I don't need a 6th slot here" reasoning). The trim is intentional, not at-end clean-up.
 
 **What to take from this:** budget the heavy hitters first (30–36 slots), then survival (12–18), then mules (10–15), then cleanup. Walk the cap as you go.
-The rule in [`build-creation.md`](../../.claude/rules/build-creation.md#p3-track-running-constraints-during-draft) (P3) exists because running over the cap is the most common build failure.
+The rule in [`build-creation.md`](style-guides/build-rules/build-creation.md#p3-track-running-constraints-during-draft) (P3) exists because running over the cap is the most common build failure.
 
 ---
 
@@ -222,6 +222,6 @@ The slotting falls out of the architecture, not the other way around.
 
 - Build samples: the private source-material repository (see `data/source-material/README.md`).
 - Guide: the private source-material repository (see `data/source-material/README.md`).
-- Format/process rules: [`/.claude/rules/build-creation.md`](../../.claude/rules/build-creation.md).
+- Format/process rules: [`style-guides/build-rules/build-creation.md`](style-guides/build-rules/build-creation.md).
 - Procmonster math: [`docs/procs.md`](procs.md), [`docs/proc-strategy.md`](proc-strategy.md).
 - Set bonus ceilings: [`strategy/set_bonus_stacking_rules.json`](../strategy/set_bonus_stacking_rules.json), [`docs/min-maxing.md`](min-maxing.md).

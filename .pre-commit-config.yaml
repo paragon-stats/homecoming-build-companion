@@ -61,7 +61,6 @@ repos:
             | data/canonical/
             | docs/engine/
             | scripts/lane-[ab]/
-            | community/
             | data/diff/
             | inbox/
           )
@@ -88,7 +87,6 @@ repos:
             | docs/engine/
             | scripts/[^/]+\.ps1$
             | scripts/lane-[ab]/
-            | community/
             | data/diff/
             | inbox/
           )

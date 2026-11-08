@@ -135,4 +135,4 @@ In order, each its own issue and pull request, after the chain-planner branch (#
 - [`mids-port-spec.md`](./mids-port-spec.md): the 3.x port specification and its fidelity boundary.
 - [`chain-planner.md`](./chain-planner.md): the planner this branch delivered, and the data gaps that motivated the move.
 - [`../canonical-data-shape.md`](../canonical-data-shape.md): the canonical export's field reference.
-- [`../../.claude/rules/check-registry.md`](../../.claude/rules/check-registry.md): the fidelity boundary rule that the rewritten core affects.
+- [`../style-guides/engine-architecture.md`](../style-guides/engine-architecture.md): the fidelity boundary rule that the rewritten core affects.

@@ -50,3 +50,15 @@ data/patches/.cache/
 tools/mids-dump/bin/
 tools/mids-dump/obj/
 tools/mids-dump/out/
+
+# .NET
+bin/
+obj/
+TestResults/
+coveragereport/
+*.user
+
+# AI instruction files were tracked once; these entries are a tripwire.
+# Re-adding them takes a deliberate `git add -f`.
+/CLAUDE.md
+/.claude/
