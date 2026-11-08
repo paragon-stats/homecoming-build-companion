@@ -151,7 +151,7 @@ Keys the Python reads with `obj["Key"]` are nullable in the document type and ch
 The writer (`Mbd.WriteMbd`) walks a `BuildSpec` level by level, places added slots against the level schedule, and checks the result with `Mbd.CheckMbdInvariants` before returning it.
 It keeps the Python's `E46` to `E49` and `E73` to `E78` codes and messages.
 
-Errors that the Python raised as a bare `ValueError` carry codes in the P3c block, each prefixing its message:
+Errors that the Python raised as a bare `ValueError` now carry codes `E110` to `E119`, each prefixing its message and ending in a fix clause:
 
 | Code | Meaning |
 | --- | --- |
