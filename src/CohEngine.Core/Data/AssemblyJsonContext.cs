@@ -9,5 +9,6 @@ namespace CohEngine.Core.Data;
 [JsonSerializable(typeof(AssemblyEntitiesFile))]
 [JsonSerializable(typeof(IReadOnlyList<PowerAssemblyRecord>))]
 [JsonSerializable(typeof(IReadOnlyList<AssembledPower>))]
+[JsonSerializable(typeof(IReadOnlyList<EffectExtensions>))]
 [ExcludeFromCodeCoverage(Justification = "Source-generated serializer metadata; the loaders that use it are covered.")]
 public sealed partial class AssemblyJsonContext : JsonSerializerContext;

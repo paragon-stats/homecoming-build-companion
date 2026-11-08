@@ -51,10 +51,11 @@ A parity class follows `tests/CohEngine.Core.Tests/Parity/ParityScaffoldTests.cs
 4. Compute the actual side with the engine.
 5. Compare every field with `ParityAssert.Equal(expected, actual, path)`, where `path` names the build and the field, for example `"{name}.Totals.Def"`.
 
-`ParityAssert` passes both sides through `F32.Round` and compares them with `==`, which is the idiom in `src/coh_engine/tests/test_base_totals_parity.py`.
-So `0.0` equals `-0.0`, and NaN equals nothing.
-A failure reports the field path and both values.
-Today the scaffold compares each dump with itself, and P2 replaces the actual side with engine output.
+`ParityAssert` quantizes only the dumped side with `F32.Round` and compares it to the actual value with `==`, the `f32(want) == got` idiom in `src/coh_engine/tests/test_base_totals_parity.py`.
+Engine output must therefore already be single precision, and a missing final quantization fails the test.
+`0.0` equals `-0.0`, and NaN equals nothing.
+A failure reports the field path and both values, as does a count mismatch (`ParityAssert.Count`) and a dumped value past the single range.
+Today the scaffold's actual side is the dump quantized by a `StandIn` helper, and P2 replaces each stand-in with engine output.
 
 ## The literal-port boundary
 
@@ -66,7 +67,7 @@ A new rule is a new entry in an explicit list, and nothing is discovered by refl
 ## Error codes
 
 Existing codes keep their numbers.
-The loaders reuse the Python messages: `E85` for a missing extended assembly key and `E86` for a build power with no record.
+The loaders reuse the Python messages: `E85` for a record or effect missing a key in the assembly export (`assembly_powers.json`, `assembled_powers.json`, `power_assembly.json`, and `ProcInclude` in `slots.json`), and `E86` for a build power with no record.
 Loaders throw typed exceptions (`InvalidDataException`, `FileNotFoundException`, `JsonException`), and diagnostics arrive with P3a.
 
 | Block | Owner |

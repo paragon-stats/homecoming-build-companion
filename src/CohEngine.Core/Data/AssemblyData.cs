@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
+
 namespace CohEngine.Core.Data;
 
 /// <summary>Loaders for the assembly export (the Python port's <c>assembly_data</c>).</summary>
@@ -6,9 +9,15 @@ public static class AssemblyData
     /// <summary>Parses <c>assembly_powers.json</c>, keyed by database index.</summary>
     /// <param name="path">The file to read.</param>
     /// <returns>The powers by index.</returns>
+    /// <exception cref="InvalidDataException">E85 for a record or effect missing a key.</exception>
     public static IReadOnlyDictionary<int, AssemblyPower> LoadAssemblyPowers(string path)
     {
-        return Json.Load(path, AssemblyJsonContext.Default.IReadOnlyListAssemblyPower).ToDictionary(power => power.Nid);
+        IReadOnlyList<AssemblyPower> powers = LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListAssemblyPower);
+        IReadOnlyList<EffectExtensions> extensions = LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListEffectExtensions);
+        string name = Path.GetFileName(path);
+        return powers
+            .Select((power, i) => power with { Effects = Enrich(power.Effects, power.FullName, extensions[i].Effects, $"{name} power {power.FullName}") })
+            .ToDictionary(power => power.Nid);
     }
 
     /// <summary>Parses <c>assembly_entities.json</c>.</summary>
@@ -23,17 +32,24 @@ public static class AssemblyData
     /// <summary>Parses a build's <c>power_assembly.json</c> records in file order.</summary>
     /// <param name="path">The file to read.</param>
     /// <returns>The records.</returns>
+    /// <exception cref="InvalidDataException">E85 for a record or effect missing a key.</exception>
     public static IReadOnlyList<PowerAssemblyRecord> LoadPowerAssemblyRecords(string path)
     {
-        return Json.Load(path, AssemblyJsonContext.Default.IReadOnlyListPowerAssemblyRecord);
+        return LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListPowerAssemblyRecord);
     }
 
     /// <summary>Parses <c>assembled_powers.json</c>: Mids' assembled effects per StatInclude build power, by build index.</summary>
     /// <param name="path">The file to read.</param>
     /// <returns>The effects by build index.</returns>
+    /// <exception cref="InvalidDataException">E85 for a record or effect missing a key.</exception>
     public static IReadOnlyDictionary<int, IReadOnlyList<Effect>> LoadAssembledPowers(string path)
     {
-        return Json.Load(path, AssemblyJsonContext.Default.IReadOnlyListAssembledPower).ToDictionary(power => power.BuildIndex, power => power.Effects);
+        IReadOnlyList<AssembledPower> powers = LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListAssembledPower);
+        IReadOnlyList<EffectExtensions> extensions = LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListEffectExtensions);
+        string name = Path.GetFileName(path);
+        return powers
+            .Select((power, i) => (power.BuildIndex, Effects: (IReadOnlyList<Effect>)Enrich(power.Effects, power.FullName, extensions[i].Effects, $"{name} build power {power.BuildIndex}")))
+            .ToDictionary(power => power.BuildIndex, power => power.Effects);
     }
 
     /// <summary>Joins a build's <c>power_assembly.json</c> and <c>slots.json</c> onto its <c>powers_effects.json</c> powers.</summary>
@@ -89,14 +105,30 @@ public static class AssemblyData
                     AbsorbSummonEffects = record.AbsorbSummonEffects,
                     AbsorbSummonAttributes = record.AbsorbSummonAttributes,
                     IgnoreEnh = record.IgnoreEnh,
-                    Effects = Enrich(power, record.Effects, $"{name} build power {power.BuildIndex}"),
+                    Effects = Enrich(power.Effects, power.FullName, record.Effects, $"{name} build power {power.BuildIndex}"),
                 });
         }
 
         return result;
     }
 
-    private static Effect[] Enrich(Power power, IReadOnlyList<EffectExtension> extensions, string where)
+    /// <summary>Deserializes an extended-record file, reporting a missing key as E85 as the Python loader does.</summary>
+    private static T LoadExtended<T>(string path, JsonTypeInfo<T> typeInfo)
+    {
+        try
+        {
+            return Json.Load(path, typeInfo);
+        }
+        catch (JsonException exception)
+        {
+            throw new InvalidDataException(
+                $"E85: {Path.GetFileName(path)} is missing a key ({exception.Message}); expected every key of the assembly export record; "
+                + "re-run the Mids dump harness so the file carries them",
+                exception);
+        }
+    }
+
+    private static Effect[] Enrich(IReadOnlyList<Effect> effects, string fullName, IReadOnlyList<EffectExtension> extensions, string where)
     {
         Dictionary<int, EffectExtension> byIndex = [];
         foreach (EffectExtension extension in extensions)
@@ -104,17 +136,17 @@ public static class AssemblyData
             byIndex[extension.Index] = extension;
         }
 
-        int[] missing = [.. power.Effects.Select(effect => effect.Index).Where(index => !byIndex.ContainsKey(index))];
+        int[] missing = [.. effects.Select(effect => effect.Index).Where(index => !byIndex.ContainsKey(index))];
         if (missing.Length > 0)
         {
             throw new InvalidDataException(
-                $"E85: {where} has no extended keys for effect(s) [{string.Join(", ", missing)}] of {power.FullName}; expected one entry "
+                $"E85: {where} has no extended keys for effect(s) [{string.Join(", ", missing)}] of {fullName}; expected one entry "
                 + "per effect of powers_effects.json; re-run the Mids dump harness");
         }
 
         return
         [
-            .. power.Effects.Select(effect =>
+            .. effects.Select(effect =>
             {
                 EffectExtension extension = byIndex[effect.Index];
                 return effect with

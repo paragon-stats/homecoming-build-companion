@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 using CohEngine.Core.Data;
 
@@ -81,6 +82,29 @@ public sealed class LoaderErrorTests : IDisposable
         Assert.StartsWith("E85: power_assembly.json build power", exception.Message, StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("Summon")]
+    [InlineData("EffectType")]
+    public void An_assembly_power_effect_missing_a_key_is_E85(string key)
+    {
+        string path = Write("assembly_powers.json", DropEffectKey(Path.Combine(Fixtures.Store.MidsDirectory, "assembly_powers.json"), key));
+
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(() => AssemblyData.LoadAssemblyPowers(path));
+
+        Assert.StartsWith("E85: assembly_powers.json is missing a key", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void An_assembled_power_effect_missing_a_key_is_E85()
+    {
+        BuildFixture build = Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)");
+        string path = Write("assembled_powers.json", DropEffectKey(Path.Combine(build.Directory, "assembled_powers.json"), "Absorbed_Power_nID"));
+
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(() => AssemblyData.LoadAssembledPowers(path));
+
+        Assert.StartsWith("E85: assembled_powers.json is missing a key", exception.Message, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void Requirement_groups_drop_blank_names_and_empty_groups()
     {
@@ -118,6 +142,15 @@ public sealed class LoaderErrorTests : IDisposable
         PowerAssemblyRecord record = Assert.Single(AssemblyData.LoadPowerAssemblyRecords(path));
 
         Assert.Equal(new SubPower(5, StatInclude: true), Assert.Single(record.SubPowers));
+    }
+
+    // The dump's first power that has an effect, with one key dropped from that effect: a stale dump in miniature.
+    private static string DropEffectKey(string dumpPath, string key)
+    {
+        JsonArray powers = JsonNode.Parse(File.ReadAllText(dumpPath))!.AsArray();
+        JsonNode power = powers.First(candidate => candidate!["Effects"]!.AsArray().Count > 0)!.DeepClone();
+        Assert.True(power["Effects"]![0]!.AsObject().Remove(key), key);
+        return new JsonArray(power).ToJsonString();
     }
 
     private string Write(string name, string text)
