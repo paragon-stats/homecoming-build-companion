@@ -6,6 +6,7 @@
 // The rules are in docs/style-guides/naming-and-words.md. Names come only from the
 // COH_BANNED_NAMES environment variable (comma-separated) so a name never appears in the
 // repository; when it is unset the name check is skipped and the script says so.
+// A banned word matches at the start of a word, so "oracles" is caught too.
 // CI tooling, not shipped product code: exempt from the solution-wide analyzers.
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
@@ -17,8 +18,9 @@ using System.Text.RegularExpressions;
 string[] bannedWords = ["oracle"];
 
 string[] skipPrefixes = ["data/", "tests/fixtures/", "samples/"];
-// The script itself and the guide that defines the list must name the words.
-string[] skipFiles = ["scripts/dev/check-banned-words.cs", "docs/style-guides/naming-and-words.md"];
+// The script, the guide that defines the list and manifest.json (it catalogs data/ paths, which
+// include the game powerset "oracle_earth") must keep the word.
+string[] skipFiles = ["scripts/dev/check-banned-words.cs", "docs/style-guides/naming-and-words.md", "manifest.json"];
 string[] binaryExtensions =
 [
     ".png", ".jpg", ".jpeg", ".gif", ".ico", ".pdf", ".zip", ".gz", ".7z", ".dll", ".exe", ".pdb",
@@ -34,7 +36,7 @@ if (names.Length == 0)
 
 (Regex Pattern, string Label)[] rules =
 [
-    .. bannedWords.Select(w => (new Regex($@"\b{Regex.Escape(w)}\b", RegexOptions.IgnoreCase), $"banned word '{w}'")),
+    .. bannedWords.Select(w => (new Regex($@"\b{Regex.Escape(w)}", RegexOptions.IgnoreCase), $"banned word '{w}'")),
     .. names.Select(n => (new Regex($@"\b{Regex.Escape(n)}\b", RegexOptions.IgnoreCase), "operator name (COH_BANNED_NAMES)")),
 ];
 
@@ -52,10 +54,21 @@ if (seedAt >= 0)
 }
 else
 {
-    files = TrackedFiles().Where(p =>
-        !skipPrefixes.Any(p.StartsWith) &&
-        !skipFiles.Contains(p) &&
-        !binaryExtensions.Contains(Path.GetExtension(p).ToLowerInvariant()));
+    string[] tracked;
+    try
+    {
+        tracked = TrackedFiles();
+    }
+    catch (InvalidOperationException ex)
+    {
+        Console.Error.WriteLine($"[FAIL] {ex.Message}");
+        return 2;
+    }
+
+    files = tracked.Where(p =>
+        !skipPrefixes.Any(s => p.StartsWith(s, StringComparison.Ordinal)) &&
+        !skipFiles.Contains(p, StringComparer.Ordinal) &&
+        !binaryExtensions.Contains(Path.GetExtension(p), StringComparer.OrdinalIgnoreCase));
 }
 
 int hits = 0;
@@ -64,6 +77,11 @@ foreach (string path in files)
     if (!File.Exists(path))
     {
         continue; // tracked but deleted in the working tree
+    }
+
+    if (LooksBinary(path))
+    {
+        continue;
     }
 
     string[] lines = File.ReadAllLines(path);
@@ -89,14 +107,28 @@ if (hits > 0)
 Console.WriteLine("[OK] no banned words found.");
 return 0;
 
-static IEnumerable<string> TrackedFiles()
+static string[] TrackedFiles()
 {
-    using Process git = Process.Start(new ProcessStartInfo("git", "ls-files")
+    using Process git = Process.Start(new ProcessStartInfo("git", "ls-files -z")
     {
         RedirectStandardOutput = true,
         UseShellExecute = false,
-    })!;
+    }) ?? throw new InvalidOperationException("could not start git ls-files.");
     string output = git.StandardOutput.ReadToEnd();
     git.WaitForExit();
-    return output.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+    if (git.ExitCode != 0)
+    {
+        throw new InvalidOperationException($"git ls-files exited {git.ExitCode}; the file list is unknown.");
+    }
+
+    return output.Split('\0', StringSplitOptions.RemoveEmptyEntries);
+}
+
+// A NUL byte in the first 8 KB marks a binary file.
+static bool LooksBinary(string path)
+{
+    using FileStream stream = File.OpenRead(path);
+    byte[] head = new byte[8192];
+    int read = stream.Read(head, 0, head.Length);
+    return Array.IndexOf(head, (byte)0, 0, read) >= 0;
 }

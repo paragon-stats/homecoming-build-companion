@@ -36,6 +36,7 @@ source: forums.homecomingservers.com
 | "oracle" | "MCP surface" (the tool interface), "Mids dump harness" (the program that dumps Mids data), "Mids reference dumps" (its output), "parity tests" (the tests that compare against those dumps) |
 
 The list lives at the top of `scripts/dev/check-banned-words.cs`; add a word there and to this table together.
+The check matches a word at the start of a word, so plurals and suffixed forms are caught too.
 
 ## Plain words
 
