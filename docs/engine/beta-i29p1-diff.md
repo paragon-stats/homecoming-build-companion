@@ -47,6 +47,10 @@ A power that is in the live export and missing from the beta export is not a rem
 The 43 unreadable player powers are listed below, because they are the powers the beta touched in a way the decoder cannot see.
 Their numbers cannot be compared, so this document says nothing about their values.
 
+The unreadable powers are almost all chain or jump-target powers: Tesla Cage, Chain Induction, Jolting Chain, Synaptic Overload, the Shock Therapy circuits, Chain Lightning, Scramble Thoughts and Vulnerability.
+This is an inference, not a finding: it suggests Issue 29 Page 1 changed the chain-effect record layout rather than those powers' numbers.
+The Sidekick decoder, built against the live schema, will need updating before those powers can be read.
+
 `Epic.Sentinel_Electricity_Mastery.Rehabilitating_Circuit` parsed partly (effect groups and post-effect tail failed), so its row here is not trustworthy.
 
 Effect comparison covers PvE (critter) values. An effect keyed on `enttype player` is the PvP value and is mentioned only when it is the sole change.
