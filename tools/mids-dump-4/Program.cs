@@ -30,21 +30,26 @@ internal static class Program
     };
 
     [STAThread]
-    private static int Main(string[] args)
+    private static int Main(string[] rawArgs)
     {
+        // --allow-unpatched skips the E15 guard so the unpatched pipeline can be dumped and compared
+        // with the patched one (the determinism test in README.md). Never use it for committed dumps.
+        var allowUnpatched = rawArgs.Contains("--allow-unpatched");
+        var args = rawArgs.Where(a => a != "--allow-unpatched").ToArray();
         if (args.Length < 2)
         {
             Console.Error.WriteLine("usage: MidsDump4 <databases-dir> <output-dir>");
             return 2;
         }
 
-        if (!ForkIsPatched())
+        if (!allowUnpatched && !ForkIsPatched())
         {
             Console.Error.WriteLine(
-                "E15: the MidsReborn fork is unpatched: Toon.GenerateBuffedPowerArray still runs its pass loops "
-                + "under Parallel.For, which races and silently gives wrong endurance numbers on incarnate and "
-                + "set-bonus builds; apply tools/mids-dump-4/patches/pipeline-sequential.patch to the fork "
-                + "(git -C <fork> apply ...) and rebuild the harness");
+                "E15: the MidsReborn fork is unpatched: PlannerPowerPipeline still runs its per-power loops under "
+                + "Parallel.For. The 22 sample dumps were byte-identical patched and unpatched, so this guards "
+                + "determinism, not a demonstrated race, and keeps the order the 3.x goldens assume. Apply "
+                + $"git -C <fork4> apply {PatchPath()} and rebuild the harness, or pass --allow-unpatched to "
+                + "repeat the determinism comparison");
             return 2;
         }
 
@@ -66,7 +71,10 @@ internal static class Program
         ConfigData.Initialize();
         MidsContext.Config.DataPath = dataPath.TrimEnd(Path.DirectorySeparatorChar);
         MidsContext.Config.SavePath = MidsContext.Config.DataPath;
-        InstallHeadlessNotifier();
+        if (!InstallHeadlessNotifier())
+        {
+            return 1;
+        }
 
         if (!DatabaseAPI.LoadServerData(dataPath))
         {
@@ -79,6 +87,13 @@ internal static class Program
         if (!DatabaseAPI.LoadMainDatabase(dataPath))
         {
             Console.Error.WriteLine("E05: LoadMainDatabase failed");
+            return 1;
+        }
+
+        if (DatabaseAPI.Database.ClassAttributes.Count == 0)
+        {
+            // TryGetClassModifier returns 1.0 for a missing class, so an empty table would dump wrong totals silently.
+            Console.Error.WriteLine("E17: Database.ClassAttributes is empty after LoadMainDatabase; the class modifier tables did not load");
             return 1;
         }
 
@@ -198,24 +213,42 @@ internal static class Program
             return DialogResult.OK;
         }
 
-        public void ShowCompatibilitySummary(CompatibilityLoadSummary summary) => Note(summary.BuildDisplayMessage());
+        public void ShowCompatibilitySummary(CompatibilityLoadSummary summary) => Note(
+            $"lineage {summary.Lineage}, legacy tag {summary.LegacyTag}: remapped powers {summary.RemappedPowerCount}, "
+            + $"remapped enhancements {summary.RemappedEnhancementCount}, migrated Fitness powers {summary.MigratedFitnessPowerCount}, "
+            + $"removed legacy Fitness pool {summary.RemovedLegacyFitnessPool}");
 
         public void ShowCompatibilityFailure(CompatibilityFailureReport failureReport) => Note(failureReport.BuildDisplayMessage());
     }
 
     private static readonly HeadlessNotifier Notifier = new();
 
-    private static void InstallHeadlessNotifier()
+    private static bool InstallHeadlessNotifier()
     {
-        typeof(BuildManager)
-            .GetField("_notifier", BindingFlags.Instance | BindingFlags.NonPublic)!
-            .SetValue(BuildManager.Instance, Notifier);
+        var field = typeof(BuildManager).GetField("_notifier", BindingFlags.Instance | BindingFlags.NonPublic);
+        if (field == null)
+        {
+            Console.Error.WriteLine("E16: BuildManager has no private field '_notifier'; the headless notifier cannot be installed, so build-load dialogs would block the run");
+            return false;
+        }
+
+        field.SetValue(BuildManager.Instance, Notifier);
+        return true;
     }
+
+    // Notices a build raised while loading successfully (for example the LegacyLoadMap remaps): name -> text.
+    private static readonly SortedDictionary<string, string> Remapped = new(StringComparer.Ordinal);
 
     private static bool LoadBuild(string mbdPath)
     {
         Notifier.Notices.Clear();
-        return BuildManager.Instance.LoadFromFile(mbdPath);
+        var ok = BuildManager.Instance.LoadFromFile(mbdPath);
+        if (ok && Notifier.Notices.Count > 0)
+        {
+            Remapped[Path.GetFileNameWithoutExtension(mbdPath)] = string.Join(" | ", Notifier.Notices);
+        }
+
+        return ok;
     }
 
     // Builds Mids 4.0 could not load: name -> the notice text, written to SKIPPED.txt.
@@ -226,6 +259,14 @@ internal static class Program
         File.WriteAllLines(
             Path.Combine(outDir, "SKIPPED.txt"),
             Skipped.Select(kv => $"{kv.Key}\t{kv.Value}"));
+        File.WriteAllLines(
+            Path.Combine(outDir, "REMAPPED.txt"),
+            Remapped.Select(kv => $"{kv.Key}\t{kv.Value}"));
+    }
+
+    private static string PatchPath([System.Runtime.CompilerServices.CallerFilePath] string source = "")
+    {
+        return Path.Combine(Path.GetDirectoryName(source)!, "patches", "pipeline-sequential.patch");
     }
 
     // The patch replaces both Parallel.For lambdas in PlannerPowerPipeline with plain loops, so the compiled
