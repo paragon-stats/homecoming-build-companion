@@ -10,7 +10,10 @@ namespace CohEngine.Ai.Anthropic;
 /// <param name="Name">The tool name of a <c>tool_use</c> block.</param>
 /// <param name="Input">The arguments object of a <c>tool_use</c> block.</param>
 /// <param name="ToolUseId">The call id a <c>tool_result</c> block answers.</param>
-/// <param name="Content">The result text of a <c>tool_result</c> block.</param>
+/// <param name="Content">
+/// The content of a result block: a JSON string in a <c>tool_result</c> the client sends; a string or an array in
+/// a server tool's result block, such as <c>web_search_tool_result</c>, which the client skips.
+/// </param>
 internal sealed record AnthropicContentBlock(
     string Type,
     string? Text = null,
@@ -18,4 +21,4 @@ internal sealed record AnthropicContentBlock(
     string? Name = null,
     JsonElement? Input = null,
     string? ToolUseId = null,
-    string? Content = null);
+    JsonElement? Content = null);

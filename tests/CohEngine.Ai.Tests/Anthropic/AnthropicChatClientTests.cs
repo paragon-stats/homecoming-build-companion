@@ -94,7 +94,7 @@ public sealed class AnthropicChatClientTests
             new(ChatRole.System, "Be brief."),
             new(ChatRole.User, "Look up Fire Blast."),
             new(ChatRole.Assistant, [new FunctionCallContent("toolu_fixture_01", "lookup_power", arguments)]),
-            new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", "Ranged damage."), new FunctionResultContent("toolu_fixture_02", 42)]),
+            new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", "Ranged damage."), new FunctionResultContent("toolu_fixture_02", JsonElement.Parse("42")), new FunctionResultContent("toolu_fixture_04", null)]),
             new(ChatRole.Assistant, [new FunctionCallContent("toolu_fixture_03", "list_sets")]),
         ];
         ChatOptions options = new() { Instructions = "You answer build questions.", ModelId = "claude-other-model", MaxOutputTokens = 64 };
@@ -112,7 +112,34 @@ public sealed class AnthropicChatClientTests
         Assert.Equal("""{"type":"tool_use","id":"toolu_fixture_01","name":"lookup_power","input":{"powerset":"Fire Blast","level":50}}""", turns[1]!["content"]![0]!.ToJsonString());
         Assert.Equal("""{"type":"tool_result","tool_use_id":"toolu_fixture_01","content":"Ranged damage."}""", turns[2]!["content"]![0]!.ToJsonString());
         Assert.Equal("42", (string?)turns[2]!["content"]![1]!["content"]);
+        Assert.Equal("""{"type":"tool_result","tool_use_id":"toolu_fixture_04"}""", turns[2]!["content"]![2]!.ToJsonString());
         Assert.Equal("""{}""", turns[3]!["content"]![0]!["input"]!.ToJsonString());
+    }
+
+    [Fact]
+    public void A_tool_result_of_another_type_fails_with_E142_because_aot_cannot_serialize_it()
+    {
+        ChatMessage message = new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", 42)]);
+
+        ArgumentException exception = Assert.Throws<ArgumentException>(() => AnthropicChatClient.BuildRequest([message], null, stream: false, Model));
+
+        Assert.StartsWith("E142: tool result must be a string or JsonElement under AOT", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task A_server_tool_result_block_with_array_content_is_skipped_and_its_sibling_text_kept()
+    {
+        const string Body = """
+            {"id":"msg_fixture_text","model":"claude-test-model","stop_reason":"end_turn","content":[
+                {"type":"web_search_tool_result","tool_use_id":"srvtoolu_fixture_01","content":[{"type":"web_search_result","url":"https://example.invalid/"}]},
+                {"type":"text","text":"Fire Blast is ranged."}]}
+            """;
+        using FakeAnthropicHandler handler = new(HttpStatusCode.OK, Body);
+        using AnthropicChatClient client = NewClient(handler);
+
+        ChatResponse response = await client.GetResponseAsync("Hi", cancellationToken: TestContext.Current.CancellationToken);
+
+        Assert.Equal("Fire Blast is ranged.", Assert.IsType<TextContent>(Assert.Single(response.Messages[0].Contents)).Text);
     }
 
     [Theory]

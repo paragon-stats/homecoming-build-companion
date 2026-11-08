@@ -22,8 +22,12 @@ public sealed class AnthropicChatClient : IChatClient
     private const string DefaultBaseUrl = "https://api.anthropic.com";
     private const string ApiVersion = "2023-06-01";
 
-    // One connection pool for every client that brings no handler.
-    private static readonly HttpClient SharedHttp = new();
+    // One connection pool for every client that brings no handler. The pool recycles connections so DNS
+    // changes are seen, and the timeout allows a long generation that the 100 s default would cut off.
+    private static readonly HttpClient SharedHttp = new(new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(5) })
+    {
+        Timeout = TimeSpan.FromMinutes(10),
+    };
 
     private readonly HttpClient http;
     private readonly bool ownsHttp;
@@ -91,55 +95,22 @@ public sealed class AnthropicChatClient : IChatClient
         Stream body = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
         await using (body.ConfigureAwait(false))
         {
-            // Tool-call arguments arrive as JSON fragments per block index; the call is whole when its block stops.
-            Dictionary<int, (string CallId, string Name, StringBuilder Json)> pending = [];
-            string? responseId = null;
-            string? modelId = null;
-            int inputTokens = 0;
+            StreamState state = new();
             await foreach (SseEvent sse in SseParser.ReadAsync(body, cancellationToken).ConfigureAwait(false))
             {
-                AnthropicStreamEvent data = JsonSerializer.Deserialize(sse.Data, AnthropicJsonContext.Default.AnthropicStreamEvent)
-                    ?? throw new JsonException($"The Messages API sent a null {sse.Event} event.");
-                List<AIContent> contents = [];
-                ChatFinishReason? finishReason = null;
-                switch (sse.Event)
+                if (HandleEvent(state, sse, response) is { } update)
                 {
-                    case "message_start":
-                        responseId = data.Message?.MessageId;
-                        modelId = data.Message?.Model;
-                        inputTokens = data.Message?.Usage?.InputTokens ?? 0;
-                        break;
-                    case "content_block_start" when data.ContentBlock is { Type: "tool_use" } block:
-                        pending[data.Index] = (block.CallId ?? string.Empty, block.Name ?? string.Empty, new StringBuilder());
-                        break;
-                    case "content_block_delta" when data.Delta is { Type: "text_delta", Text: { } text }:
-                        contents.Add(new TextContent(text));
-                        break;
-                    case "content_block_delta" when data.Delta is { Type: "input_json_delta" } delta && pending.TryGetValue(data.Index, out var call):
-                        call.Json.Append(delta.PartialJson);
-                        break;
-                    case "content_block_stop" when pending.Remove(data.Index, out var call):
-                        contents.Add(ToCall(call.CallId, call.Name, ParseArguments(call.Json)));
-                        break;
-                    case "message_delta":
-                        finishReason = ToFinishReason(data.Delta?.StopReason);
-                        contents.Add(new UsageContent(ToUsage(inputTokens, data.Usage?.OutputTokens ?? 0)));
-                        break;
-                    case "error":
-                        throw ApiError(response, data.Error, fallbackMessage: null);
-                    default: // ping, message_stop, thinking deltas: nothing the caller needs.
-                        break;
+                    yield return update;
                 }
+            }
 
-                if (contents.Count > 0 || finishReason is not null)
-                {
-                    yield return new ChatResponseUpdate(ChatRole.Assistant, contents)
-                    {
-                        ResponseId = responseId,
-                        ModelId = modelId,
-                        FinishReason = finishReason,
-                    };
-                }
+            if (!state.Stopped || state.Pending.Count > 0)
+            {
+                throw new AnthropicApiException(
+                    (int)response.StatusCode,
+                    "incomplete_stream",
+                    $"{AnthropicErrorCodes.IncompleteStream}: the response stream ended before message_stop; retry the request",
+                    Redact(RequestIdOf(response)));
             }
         }
     }
@@ -220,8 +191,22 @@ public sealed class AnthropicChatClient : IChatClient
             FunctionResultContent result => new AnthropicContentBlock(
                 "tool_result",
                 ToolUseId: result.CallId,
-                Content: result.Result as string ?? JsonSerializer.Serialize(result.Result, AIJsonUtilities.DefaultOptions.GetTypeInfo(typeof(object)))),
+                Content: ToResultText(result.Result) is { } resultText ? JsonSerializer.SerializeToElement(resultText, AnthropicJsonContext.Default.String) : null),
             _ => throw new NotSupportedException($"The Anthropic client does not send {content.GetType().Name}."),
+        };
+    }
+
+    // Serializing an arbitrary object needs metadata that a Native AOT build does not have.
+    private static string? ToResultText(object? result)
+    {
+        return result switch
+        {
+            null => null,
+            string text => text,
+            JsonElement element => element.GetRawText(),
+            _ => throw new ArgumentException(
+                $"{AnthropicErrorCodes.UnsupportedToolResult}: tool result must be a string or JsonElement under AOT; serialise it before returning it",
+                nameof(result)),
         };
     }
 
@@ -281,7 +266,7 @@ public sealed class AnthropicChatClient : IChatClient
         };
     }
 
-    private static UsageDetails ToUsage(int input, int output)
+    private static UsageDetails ToUsage(int? input, int? output)
     {
         return new UsageDetails { InputTokenCount = input, OutputTokenCount = output, TotalTokenCount = input + output };
     }
@@ -325,9 +310,57 @@ public sealed class AnthropicChatClient : IChatClient
 
     private AnthropicApiException ApiError(HttpResponseMessage response, AnthropicError? error, string? fallbackMessage)
     {
-        // The API does not echo the key today; the replace keeps a future echo out of logs and exception text.
-        string message = (error?.Message ?? fallbackMessage ?? string.Empty).Replace(apiKey, "[redacted]", StringComparison.Ordinal);
-        return new AnthropicApiException((int)response.StatusCode, error?.Type ?? "unknown_error", message, RequestIdOf(response));
+        return new AnthropicApiException(
+            (int)response.StatusCode,
+            Redact(error?.Type) ?? "unknown_error",
+            Redact(error?.Message ?? fallbackMessage) ?? string.Empty,
+            Redact(RequestIdOf(response)));
+    }
+
+    private ChatResponseUpdate? HandleEvent(StreamState state, SseEvent sse, HttpResponseMessage response)
+    {
+        AnthropicStreamEvent data = JsonSerializer.Deserialize(sse.Data, AnthropicJsonContext.Default.AnthropicStreamEvent)
+            ?? throw new JsonException($"The Messages API sent a null {sse.Event} event.");
+        List<AIContent> contents = [];
+        ChatFinishReason? finishReason = null;
+        switch (sse.Event)
+        {
+            case "message_start":
+                state.ResponseId = data.Message?.MessageId;
+                state.ModelId = data.Message?.Model;
+                state.InputTokens = data.Message?.Usage?.InputTokens;
+                break;
+            case "content_block_start" when data.ContentBlock is { Type: "tool_use" } block:
+                state.Pending[data.Index] = new PendingCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, new StringBuilder());
+                break;
+            case "content_block_delta" when data.Delta is { Type: "text_delta", Text: { } text }:
+                contents.Add(new TextContent(text));
+                break;
+            case "content_block_delta" when data.Delta is { Type: "input_json_delta" } delta:
+                PendingCall open = state.Pending.TryGetValue(data.Index, out PendingCall? found)
+                    ? found
+                    : throw new JsonException($"The Messages API sent input_json_delta for content block {data.Index}, which no tool_use block started.");
+                open.Json.Append(delta.PartialJson);
+                break;
+            case "content_block_stop" when state.Pending.Remove(data.Index, out PendingCall? call):
+                contents.Add(ToCall(call.CallId, call.Name, ParseArguments(call.Json)));
+                break;
+            case "message_delta":
+                finishReason = ToFinishReason(data.Delta?.StopReason);
+                contents.Add(new UsageContent(ToUsage(state.InputTokens, data.Usage?.OutputTokens)));
+                break;
+            case "message_stop":
+                state.Stopped = true;
+                break;
+            case "error":
+                throw ApiError(response, data.Error, fallbackMessage: null);
+            default: // ping, thinking deltas: nothing the caller needs.
+                break;
+        }
+
+        return contents.Count > 0 || finishReason is not null
+            ? new ChatResponseUpdate(ChatRole.Assistant, contents) { ResponseId = state.ResponseId, ModelId = state.ModelId, FinishReason = finishReason }
+            : null;
     }
 
     private HttpRequestMessage CreateRequest(IEnumerable<ChatMessage> messages, ChatOptions? options, bool stream)
@@ -340,5 +373,29 @@ public sealed class AnthropicChatClient : IChatClient
         request.Headers.Add("x-api-key", apiKey);
         request.Headers.Add("anthropic-version", ApiVersion);
         return request;
+    }
+
+    private string? Redact(string? text)
+    {
+        // The API does not echo the key today; the replace keeps a future echo out of logs and exception text.
+        return text?.Replace(apiKey, "[redacted]", StringComparison.Ordinal);
+    }
+
+    /// <summary>A tool call whose argument fragments are still arriving.</summary>
+    private sealed record PendingCall(string CallId, string Name, StringBuilder Json);
+
+    /// <summary>What one stream has seen so far.</summary>
+    private sealed class StreamState
+    {
+        // Keyed by content-block index; a call is whole when its block stops.
+        public Dictionary<int, PendingCall> Pending { get; } = [];
+
+        public string? ResponseId { get; set; }
+
+        public string? ModelId { get; set; }
+
+        public int? InputTokens { get; set; }
+
+        public bool Stopped { get; set; }
     }
 }

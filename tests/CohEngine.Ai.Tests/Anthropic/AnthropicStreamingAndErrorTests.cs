@@ -49,14 +49,14 @@ public sealed class AnthropicStreamingAndErrorTests
             event: content_block_start
             data: {"type":"content_block_start","index":0,"content_block":{"type":"tool_use","id":"toolu_fixture_02","name":"list_sets","input":{}}}
 
-            event: content_block_delta
-            data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"{}"}}
-
             event: content_block_stop
             data: {"type":"content_block_stop","index":0}
 
             event: content_block_stop
             data: {"type":"content_block_stop","index":3}
+
+            event: message_stop
+            data: {"type":"message_stop"}
             """;
         using FakeAnthropicHandler handler = new(HttpStatusCode.OK, Stream, "text/event-stream");
         using AnthropicChatClient client = AnthropicChatClientTests.NewClient(handler);
@@ -65,6 +65,81 @@ public sealed class AnthropicStreamingAndErrorTests
 
         FunctionCallContent call = Assert.IsType<FunctionCallContent>(Assert.Single(Assert.Single(updates).Contents));
         Assert.Empty(call.Arguments!);
+    }
+
+    [Fact]
+    public async Task A_stream_that_ends_with_a_tool_call_still_open_fails_with_E141()
+    {
+        const string Stream = """
+            event: content_block_start
+            data: {"type":"content_block_start","index":0,"content_block":{"type":"tool_use","id":"toolu_fixture_02","name":"list_sets","input":{}}}
+
+            event: content_block_delta
+            data: {"type":"content_block_delta","index":0,"delta":{"type":"input_json_delta","partial_json":"{\"x\":"}}
+            """;
+        using FakeAnthropicHandler handler = new(HttpStatusCode.OK, Stream, "text/event-stream");
+        using AnthropicChatClient client = AnthropicChatClientTests.NewClient(handler);
+
+        AnthropicApiException exception = await Assert.ThrowsAsync<AnthropicApiException>(() => Collect(client));
+
+        Assert.Equal(200, exception.Status);
+        Assert.Equal("incomplete_stream", exception.ErrorType);
+        Assert.Equal("Anthropic API 200 incomplete_stream: E141: the response stream ended before message_stop; retry the request", exception.Message);
+    }
+
+    [Fact]
+    public async Task An_argument_fragment_for_a_block_no_tool_use_started_is_refused()
+    {
+        const string Stream = """
+            event: content_block_delta
+            data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"{}"}}
+            """;
+        using FakeAnthropicHandler handler = new(HttpStatusCode.OK, Stream, "text/event-stream");
+        using AnthropicChatClient client = AnthropicChatClientTests.NewClient(handler);
+
+        System.Text.Json.JsonException exception = await Assert.ThrowsAsync<System.Text.Json.JsonException>(() => Collect(client));
+
+        Assert.Contains("content block 3", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Null_token_counts_in_the_stream_leave_the_usage_counts_null()
+    {
+        const string Stream = """
+            event: message_start
+            data: {"type":"message_start","message":{"id":"msg_fixture_text","model":"claude-test-model","content":[],"usage":{"input_tokens":null}}}
+
+            event: message_delta
+            data: {"type":"message_delta","delta":{"stop_reason":"end_turn"},"usage":{"output_tokens":null}}
+
+            event: message_stop
+            data: {"type":"message_stop"}
+            """;
+        using FakeAnthropicHandler handler = new(HttpStatusCode.OK, Stream, "text/event-stream");
+        using AnthropicChatClient client = AnthropicChatClientTests.NewClient(handler);
+
+        List<ChatResponseUpdate> updates = await Collect(client);
+
+        UsageContent usage = Assert.IsType<UsageContent>(Assert.Single(Assert.Single(updates).Contents));
+        Assert.Null(usage.Details.InputTokenCount);
+        Assert.Null(usage.Details.OutputTokenCount);
+        Assert.Null(usage.Details.TotalTokenCount);
+    }
+
+    [Fact]
+    public async Task A_key_planted_in_the_error_type_or_request_id_is_redacted()
+    {
+        string key = AnthropicChatClientTests.FakeKey;
+        string body = $$$"""{"type":"error","error":{"type":"{{{key}}}_error","message":"denied"}}""";
+        using FakeAnthropicHandler handler = new(HttpStatusCode.Forbidden, body) { RequestId = "req_" + key };
+        using AnthropicChatClient client = AnthropicChatClientTests.NewClient(handler);
+
+        AnthropicApiException exception = await Assert.ThrowsAsync<AnthropicApiException>(
+            () => client.GetResponseAsync("Hi", cancellationToken: TestContext.Current.CancellationToken));
+
+        Assert.Equal("[redacted]_error", exception.ErrorType);
+        Assert.Equal("req_[redacted]", exception.RequestId);
+        Assert.DoesNotContain(key, exception.ToString(), StringComparison.Ordinal);
     }
 
     [Fact]
