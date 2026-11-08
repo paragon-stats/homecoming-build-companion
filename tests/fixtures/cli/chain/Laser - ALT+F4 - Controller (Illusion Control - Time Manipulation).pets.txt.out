@@ -1,0 +1,77 @@
+== melee stance ==
+rotation: Inherent.Inherent.Brawl > Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds
+  cycle 4.22 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl (chain 5.7 DPS)
+  best overall: Inherent.Inherent.Brawl > Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds (chain 34.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 6.7  [location patches cast on cooldown]
+    Controller_Buff.Time_Manipulation.Distortion_Field: 3.0
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 82.8  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%]
+    Decoy: 55.4
+  chain: 77.2  [chain, affordable: empties in 95.5 s, 23 cycles; damage is the Mids reference figure standing in for #31]
+    Inherent.Inherent.Brawl: 2.3
+    Controller_Control.Illusion_Control.Blind: 16.2
+    Controller_Control.Illusion_Control.Spectral_Wounds: 15.9
+  total: 166.7
+modifiers:
+  controller_containment: x1.500 (Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude))
+  target_debuff: x1.495 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime)
+endurance: max 100.0, recovery 3.48/s, toggles 1.70/s, chain 1.57/s, other 1.25/s, net -1.05/s, time to empty 95.5 s
+health: max 1158.2, regen 10.33/s
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-001: melee stance: melee defense is 42.5%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)
+
+== ranged stance ==
+rotation: Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds
+  cycle 4.07 s, gap 0.90 s, move 0.00 s, not sustainable
+  best sustainable: none
+  best overall: Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds (chain 33.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 6.7  [location patches cast on cooldown]
+    Controller_Buff.Time_Manipulation.Distortion_Field: 3.0
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 82.8  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%]
+    Decoy: 55.4
+  chain: 74.9  [chain, affordable: empties in 90.3 s, 22 cycles; damage is the Mids reference figure standing in for #31]
+    Controller_Control.Illusion_Control.Blind: 16.8
+    Controller_Control.Illusion_Control.Spectral_Wounds: 16.6
+  total: 164.4
+modifiers:
+  controller_containment: x1.500 (Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude))
+  target_debuff: x1.495 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime)
+endurance: max 100.0, recovery 3.48/s, toggles 1.70/s, chain 1.63/s, other 1.25/s, net -1.11/s, time to empty 90.3 s
+health: max 1158.2, regen 10.33/s
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)
+
+== hybrid stance ==
+rotation: Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds
+  cycle 4.07 s, gap 0.90 s, move 0.00 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl (chain 5.7 DPS)
+  best overall: Controller_Control.Illusion_Control.Blind > Controller_Control.Illusion_Control.Spectral_Wounds (chain 33.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 6.7  [location patches cast on cooldown]
+    Controller_Buff.Time_Manipulation.Distortion_Field: 3.0
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 82.8  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%]
+    Decoy: 55.4
+  chain: 74.9  [chain, affordable: empties in 90.3 s, 22 cycles; damage is the Mids reference figure standing in for #31]
+    Controller_Control.Illusion_Control.Blind: 16.8
+    Controller_Control.Illusion_Control.Spectral_Wounds: 16.6
+  total: 164.4
+modifiers:
+  controller_containment: x1.500 (Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude))
+  target_debuff: x1.495 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime)
+endurance: max 100.0, recovery 3.48/s, toggles 1.70/s, chain 1.63/s, other 1.25/s, net -1.11/s, time to empty 90.3 s
+health: max 1158.2, regen 10.33/s
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 42.5%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation):1:1: info: P-CHAIN-002: power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)

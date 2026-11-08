@@ -1,0 +1,54 @@
+== melee stance ==
+rotation: Tanker_Melee.Energy_Melee.Bone_Smasher > Tanker_Melee.Energy_Melee.Barrage > Tanker_Melee.Energy_Melee.Energy_Punch
+  cycle 4.09 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Tanker_Melee.Energy_Melee.Total_Focus > Tanker_Melee.Energy_Melee.Barrage > Inherent.Inherent.Brawl (chain 65.9 DPS)
+  best overall: Tanker_Melee.Energy_Melee.Bone_Smasher > Tanker_Melee.Energy_Melee.Barrage > Tanker_Melee.Energy_Melee.Energy_Punch (chain 108.5 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 108.5  [chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31]
+    Tanker_Melee.Energy_Melee.Bone_Smasher: 44.1
+    Tanker_Melee.Energy_Melee.Barrage: 35.5
+    Tanker_Melee.Energy_Melee.Energy_Punch: 28.9
+  total: 108.5
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+endurance: max 103.6, recovery 3.31/s, toggles 1.50/s, chain 3.31/s, other 0.00/s, net -1.49/s, time to empty 69.3 s
+health: max 2148.1, regen 21.30/s
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+
+== ranged stance ==
+rotation: none (no chain attack is usable in this stance)
+  best sustainable: none
+  best overall: none
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  total: 0.0
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+endurance: max 103.6, recovery 3.31/s, toggles 1.50/s, chain 0.00/s, other 0.00/s, net +1.81/s, time to empty sustainable
+health: max 2148.1, regen 21.30/s
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+
+== hybrid stance ==
+rotation: Tanker_Melee.Energy_Melee.Bone_Smasher > Tanker_Melee.Energy_Melee.Barrage > Tanker_Melee.Energy_Melee.Energy_Punch
+  cycle 4.09 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Tanker_Melee.Energy_Melee.Total_Focus > Tanker_Melee.Energy_Melee.Barrage > Inherent.Inherent.Brawl (chain 65.9 DPS)
+  best overall: Tanker_Melee.Energy_Melee.Bone_Smasher > Tanker_Melee.Energy_Melee.Barrage > Tanker_Melee.Energy_Melee.Energy_Punch (chain 108.5 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 108.5  [chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31]
+    Tanker_Melee.Energy_Melee.Bone_Smasher: 44.1
+    Tanker_Melee.Energy_Melee.Barrage: 35.5
+    Tanker_Melee.Energy_Melee.Energy_Punch: 28.9
+  total: 108.5
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+endurance: max 103.6, recovery 3.31/s, toggles 1.50/s, chain 3.31/s, other 0.00/s, net -1.49/s, time to empty 69.3 s
+health: max 2148.1, regen 21.30/s
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+tests\fixtures\mids\builds\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee):1:1: info: P-CHAIN-002: power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))

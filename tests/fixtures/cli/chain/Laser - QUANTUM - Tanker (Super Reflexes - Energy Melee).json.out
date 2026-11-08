@@ -1,0 +1,312 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Tanker_Melee.Energy_Melee.Bone_Smasher",
+        "Tanker_Melee.Energy_Melee.Barrage",
+        "Tanker_Melee.Energy_Melee.Energy_Punch"
+      ],
+      "cycle_time_s": 4.0920000076293945,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Tanker_Melee.Energy_Melee.Total_Focus",
+          "Tanker_Melee.Energy_Melee.Barrage",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 65.94912719726562,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Tanker_Melee.Energy_Melee.Bone_Smasher",
+          "Tanker_Melee.Energy_Melee.Barrage",
+          "Tanker_Melee.Energy_Melee.Energy_Punch"
+        ],
+        "chain_dps": 108.48681640625,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 108.48681640625,
+      "layers": {
+        "pet": 0.0,
+        "chain": 108.48681640625
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 108.48681640625
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Tanker_Melee.Energy_Melee.Bone_Smasher",
+            "dps": 44.11766052246094
+          },
+          {
+            "name": "Tanker_Melee.Energy_Melee.Barrage",
+            "dps": 35.509334564208984
+          },
+          {
+            "name": "Tanker_Melee.Energy_Melee.Energy_Punch",
+            "dps": 28.859811782836914
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.3147690296173096,
+      "toggle_drain_per_s": 1.5030429363250732,
+      "chain_drain_per_s": 3.3057596683502197,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -1.4940335750579834,
+      "time_to_empty_s": 69.34248352050781
+    },
+    "health": {
+      "max_hp": 2148.08251953125,
+      "regen_per_sec": 21.30181884765625
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Taunt against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Energy_Transfer against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": null,
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": null
+    },
+    "dps": {
+      "total": 0.0,
+      "layers": {
+        "pet": 0.0
+      },
+      "unscaled": {
+        "pet": 0.0
+      },
+      "detail": {},
+      "labels": {
+        "pet": "no pets summoned"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.3147690296173096,
+      "toggle_drain_per_s": 1.5030429363250732,
+      "chain_drain_per_s": 0,
+      "other_drain_per_s": 0.0,
+      "net_per_s": 1.8117260932922363,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 2148.08251953125,
+      "regen_per_sec": 21.30181884765625
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Taunt against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Energy_Transfer against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Tanker_Melee.Energy_Melee.Bone_Smasher",
+        "Tanker_Melee.Energy_Melee.Barrage",
+        "Tanker_Melee.Energy_Melee.Energy_Punch"
+      ],
+      "cycle_time_s": 4.0920000076293945,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Tanker_Melee.Energy_Melee.Total_Focus",
+          "Tanker_Melee.Energy_Melee.Barrage",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 65.94912719726562,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Tanker_Melee.Energy_Melee.Bone_Smasher",
+          "Tanker_Melee.Energy_Melee.Barrage",
+          "Tanker_Melee.Energy_Melee.Energy_Punch"
+        ],
+        "chain_dps": 108.48681640625,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 108.48681640625,
+      "layers": {
+        "pet": 0.0,
+        "chain": 108.48681640625
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 108.48681640625
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Tanker_Melee.Energy_Melee.Bone_Smasher",
+            "dps": 44.11766052246094
+          },
+          {
+            "name": "Tanker_Melee.Energy_Melee.Barrage",
+            "dps": 35.509334564208984
+          },
+          {
+            "name": "Tanker_Melee.Energy_Melee.Energy_Punch",
+            "dps": 28.859811782836914
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.3147690296173096,
+      "toggle_drain_per_s": 1.5030429363250732,
+      "chain_drain_per_s": 3.3057596683502197,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -1.4940335750579834,
+      "time_to_empty_s": 69.34248352050781
+    },
+    "health": {
+      "max_hp": 2148.08251953125,
+      "regen_per_sec": 21.30181884765625
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Taunt is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Taunt (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Taunt against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)",
+        "line": 1,
+        "column": 1,
+        "message": "power Tanker_Melee.Energy_Melee.Energy_Transfer is not modelled: not classifiable as an attack (E37: Tanker_Melee.Energy_Melee.Energy_Transfer (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Tanker_Melee.Energy_Melee.Energy_Transfer against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

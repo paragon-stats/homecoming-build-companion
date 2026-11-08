@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
@@ -11,7 +10,7 @@ using CohEngine.Core.Totals;
 namespace CohEngine.Core.Pets;
 
 /// <summary>Pet damage: summon powers to <see cref="PetSummon"/> to the pet damage source.</summary>
-public static partial class PetDamage
+public static class PetDamage
 {
     /// <summary>The pet damage enhancement assumed when a summon has no override: three pet-damage enhancements at the ED ceiling.</summary>
     public const double DefaultPetDamageEnhancement = 0.95;
@@ -181,9 +180,6 @@ public static partial class PetDamage
         };
     }
 
-    [GeneratedRegex(@"\Asource>combatlevel\s*>\s*(?<level>[0-9]+)\z", RegexOptions.None, 1000)]
-    private static partial Regex LevelGate();
-
     private static IEnumerable<(JsonElement Effect, JsonElement Template)> EffectsOf(IEnumerable<JsonElement> effects)
     {
         foreach (JsonElement effect in effects)
@@ -244,9 +240,26 @@ public static partial class PetDamage
     /// <summary>How a Create_Entity condition spawns: "" always, null never, else the alternate group's condition.</summary>
     private static string? SpawnKey(string condition, int casterLevel)
     {
+        const string head = "source>combatlevel";
         string text = condition.Trim();
-        Match gate = LevelGate().Match(text);
-        return gate.Success ? (casterLevel > int.Parse(gate.Groups["level"].Value, CultureInfo.InvariantCulture) ? string.Empty : null) : text;
+        if (!text.StartsWith(head, StringComparison.Ordinal))
+        {
+            return text;
+        }
+
+        string rest = text[head.Length..].TrimStart();
+        if (!rest.StartsWith('>'))
+        {
+            return text;
+        }
+
+        string digits = rest[1..].TrimStart();
+        if (digits.Length == 0 || !digits.All(char.IsAsciiDigit))
+        {
+            return text;
+        }
+
+        return casterLevel > int.Parse(digits, NumberStyles.None, CultureInfo.InvariantCulture) ? string.Empty : null;
     }
 
     private static List<Entity> Summoned(JsonElement power, int casterLevel)

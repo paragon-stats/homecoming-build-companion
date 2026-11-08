@@ -1,0 +1,53 @@
+== melee stance ==
+rotation: Widow_Training.Night_Widow_Training.NW_Slash > Widow_Training.Night_Widow_Training.NW_Eviscerate > Widow_Training.Widow_Training.Follow_Up > Widow_Training.Widow_Training.Swipe
+  cycle 6.20 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Widow_Training.Night_Widow_Training.NW_Slash > Inherent.Inherent.Brawl (chain 167.7 DPS)
+  best overall: Widow_Training.Night_Widow_Training.NW_Slash > Widow_Training.Night_Widow_Training.NW_Eviscerate > Widow_Training.Widow_Training.Follow_Up > Widow_Training.Widow_Training.Swipe (chain 343.6 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 343.6  [chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31]
+    Widow_Training.Night_Widow_Training.NW_Slash: 147.4
+    Widow_Training.Night_Widow_Training.NW_Eviscerate: 101.4
+    Widow_Training.Widow_Training.Follow_Up: 46.6
+    Widow_Training.Widow_Training.Swipe: 48.2
+  total: 343.6
+modifiers:
+  arachnos_widow_conditioning: x1.000 (Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json))
+endurance: max 103.6, recovery 3.43/s, toggles 1.52/s, chain 4.17/s, other 0.00/s, net -2.26/s, time to empty 45.9 s
+health: max 1573.0, regen 18.95/s
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)
+
+== ranged stance ==
+rotation: none (no chain attack is usable in this stance)
+  best sustainable: none
+  best overall: none
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  total: 0.0
+modifiers:
+  arachnos_widow_conditioning: x1.000 (Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json))
+endurance: max 103.6, recovery 3.43/s, toggles 1.52/s, chain 0.00/s, other 0.00/s, net +1.91/s, time to empty sustainable
+health: max 1573.0, regen 18.95/s
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)
+
+== hybrid stance ==
+rotation: Widow_Training.Night_Widow_Training.NW_Slash > Widow_Training.Night_Widow_Training.NW_Eviscerate > Widow_Training.Widow_Training.Follow_Up > Widow_Training.Widow_Training.Swipe
+  cycle 6.20 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Widow_Training.Night_Widow_Training.NW_Slash > Inherent.Inherent.Brawl (chain 167.7 DPS)
+  best overall: Widow_Training.Night_Widow_Training.NW_Slash > Widow_Training.Night_Widow_Training.NW_Eviscerate > Widow_Training.Widow_Training.Follow_Up > Widow_Training.Widow_Training.Swipe (chain 343.6 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 343.6  [chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31]
+    Widow_Training.Night_Widow_Training.NW_Slash: 147.4
+    Widow_Training.Night_Widow_Training.NW_Eviscerate: 101.4
+    Widow_Training.Widow_Training.Follow_Up: 46.6
+    Widow_Training.Widow_Training.Swipe: 48.2
+  total: 343.6
+modifiers:
+  arachnos_widow_conditioning: x1.000 (Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json))
+endurance: max 103.6, recovery 3.43/s, toggles 1.52/s, chain 4.17/s, other 0.00/s, net -2.26/s, time to empty 45.9 s
+health: max 1573.0, regen 18.95/s
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Melee Arachnos Widow (Night Widow Training - Widow Teamwork):1:1: info: P-CHAIN-002: power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)

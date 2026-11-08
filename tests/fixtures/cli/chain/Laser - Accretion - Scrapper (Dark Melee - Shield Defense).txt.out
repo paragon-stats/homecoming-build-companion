@@ -1,0 +1,63 @@
+== melee stance ==
+rotation: Scrapper_Melee.Dark_Melee.Midnight_Grasp > Scrapper_Melee.Dark_Melee.Shadow_Maul > Scrapper_Melee.Dark_Melee.Siphon_Life > Scrapper_Melee.Dark_Melee.Smite > Epic.Stalker_Soul_Mastery.Moonbeam
+  cycle 9.64 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Scrapper_Melee.Dark_Melee.Shadow_Maul > Inherent.Inherent.Brawl (chain 178.5 DPS)
+  best overall: Scrapper_Melee.Dark_Melee.Midnight_Grasp > Scrapper_Melee.Dark_Melee.Shadow_Maul > Scrapper_Melee.Dark_Melee.Siphon_Life > Scrapper_Melee.Dark_Melee.Smite > Epic.Stalker_Soul_Mastery.Moonbeam (chain 530.6 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 29.6  [location patches cast on cooldown]
+    Scrapper_Defense.Shield_Defense.Shield_Charge: 26.9
+  pet: 0.0  [no pets summoned]
+  chain: 583.7  [chain, affordable: empties in 43.1 s, 4 cycles; damage is the Mids reference figure standing in for #31]
+    Scrapper_Melee.Dark_Melee.Midnight_Grasp: 140.7
+    Scrapper_Melee.Dark_Melee.Shadow_Maul: 103.7
+    Scrapper_Melee.Dark_Melee.Siphon_Life: 94.3
+    Scrapper_Melee.Dark_Melee.Smite: 63.5
+    Epic.Stalker_Soul_Mastery.Moonbeam: 128.4
+  total: 613.2
+modifiers:
+  scrapper_critical_hit: x1.100 (Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text))
+endurance: max 100.0, recovery 3.59/s, toggles 2.01/s, chain 3.55/s, other 0.35/s, net -2.32/s, time to empty 43.1 s
+health: max 2043.7, regen 18.90/s
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range
+
+== ranged stance ==
+rotation: Epic.Stalker_Soul_Mastery.Moonbeam
+  cycle 8.57 s, gap 6.99 s, move 0.00 s, not sustainable
+  best sustainable: none
+  best overall: Epic.Stalker_Soul_Mastery.Moonbeam (chain 144.3 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 29.6  [location patches cast on cooldown]
+    Scrapper_Defense.Shield_Defense.Shield_Charge: 26.9
+  pet: 0.0  [no pets summoned]
+  chain: 158.8  [chain, affordable: empties in 1712.0 s, 200 cycles; damage is the Mids reference figure standing in for #31]
+    Epic.Stalker_Soul_Mastery.Moonbeam: 144.3
+  total: 188.4
+modifiers:
+  scrapper_critical_hit: x1.100 (Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text))
+endurance: max 100.0, recovery 3.59/s, toggles 2.01/s, chain 1.29/s, other 0.35/s, net -0.06/s, time to empty 1712.0 s
+health: max 2043.7, regen 18.90/s
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range
+
+== hybrid stance ==
+rotation: Scrapper_Melee.Dark_Melee.Midnight_Grasp > Scrapper_Melee.Dark_Melee.Shadow_Maul > Scrapper_Melee.Dark_Melee.Siphon_Life > Scrapper_Melee.Dark_Melee.Smite
+  cycle 8.05 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Scrapper_Melee.Dark_Melee.Shadow_Maul > Inherent.Inherent.Brawl (chain 178.5 DPS)
+  best overall: Scrapper_Melee.Dark_Melee.Midnight_Grasp > Scrapper_Melee.Dark_Melee.Shadow_Maul > Scrapper_Melee.Dark_Melee.Siphon_Life > Scrapper_Melee.Dark_Melee.Smite (chain 481.3 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 29.6  [location patches cast on cooldown]
+    Scrapper_Defense.Shield_Defense.Shield_Charge: 26.9
+  pet: 0.0  [no pets summoned]
+  chain: 529.4  [chain, affordable: empties in 60.8 s, 8 cycles; damage is the Mids reference figure standing in for #31]
+    Scrapper_Melee.Dark_Melee.Midnight_Grasp: 168.4
+    Scrapper_Melee.Dark_Melee.Shadow_Maul: 124.1
+    Scrapper_Melee.Dark_Melee.Siphon_Life: 112.8
+    Scrapper_Melee.Dark_Melee.Smite: 76.0
+  total: 559.0
+modifiers:
+  scrapper_critical_hit: x1.100 (Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text))
+endurance: max 100.0, recovery 3.59/s, toggles 2.01/s, chain 2.88/s, other 0.35/s, net -1.64/s, time to empty 60.8 s
+health: max 2043.7, regen 18.90/s
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - Accretion - Scrapper (Dark Melee - Shield Defense):1:1: info: P-CHAIN-002: Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range

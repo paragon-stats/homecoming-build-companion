@@ -183,6 +183,15 @@ public sealed class PetDamageTests
     }
 
     [Fact]
+    public void A_damage_template_with_no_finite_span_is_a_single_application()
+    {
+        using TempTree tree = World();
+        tree.Write("powers/pet/set/bite.json", PetWorld.Bite().Replace("\"duration\":\"0 seconds\"", "\"duration\":\"UntilKilled\"", StringComparison.Ordinal));
+
+        Assert.Equal(F32.Round(F32.Round(10.0) * 1.95), Assert.Single(Assert.Single(Build(tree)).PetAttacks).Damage);
+    }
+
+    [Fact]
     public void A_damage_over_time_template_counts_its_ticks()
     {
         using TempTree tree = World();
@@ -230,6 +239,17 @@ public sealed class PetDamageTests
     public void Alternate_costume_groups_spawn_only_the_largest()
     {
         using TempTree tree = World(effectExtra: ",\"requires_expression\":\"@CustomFX eq 'a'\"");
+
+        Assert.Equal(1, Assert.Single(Build(tree)).PetCount);
+    }
+
+    [Theory]
+    [InlineData("source>combatlevel < 3")]
+    [InlineData("source>combatlevel > x")]
+    [InlineData("source>combatlevel >")]
+    public void A_condition_that_only_looks_like_a_level_gate_is_an_alternate_group(string condition)
+    {
+        using TempTree tree = World(effectExtra: $",\"requires_expression\":\"{condition}\"");
 
         Assert.Equal(1, Assert.Single(Build(tree)).PetCount);
     }

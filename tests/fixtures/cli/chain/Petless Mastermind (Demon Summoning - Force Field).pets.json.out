@@ -1,0 +1,397 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Pool.Fighting.Cross_Punch",
+        "Mastermind_Summon.Demon_Summoning.Lash",
+        "Mastermind_Summon.Demon_Summoning.Corruption"
+      ],
+      "cycle_time_s": 5.28000020980835,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Mastermind_Summon.Demon_Summoning.Crack_Whip"
+        ],
+        "chain_dps": 19.57717514038086,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Pool.Fighting.Cross_Punch",
+          "Mastermind_Summon.Demon_Summoning.Lash",
+          "Mastermind_Summon.Demon_Summoning.Corruption"
+        ],
+        "chain_dps": 76.65648651123047,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 90.64846801757812,
+      "layers": {
+        "pet": 0.0,
+        "chain": 90.64846801757812
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 76.65648651123047
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Pool.Fighting.Cross_Punch",
+            "dps": 28.254697799682617
+          },
+          {
+            "name": "Mastermind_Summon.Demon_Summoning.Lash",
+            "dps": 28.550790786743164
+          },
+          {
+            "name": "Mastermind_Summon.Demon_Summoning.Corruption",
+            "dps": 19.851001739501953
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 54.4 s, 10 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "mastermind_supremacy",
+        "multiplier": 1.25,
+        "uptime": 1.0,
+        "factor": 1.1190476417541504,
+        "assumption": "Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json",
+        "applies_to": [
+          "pet"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.1825283765792847,
+        "uptime": 1.0,
+        "factor": 1.1825283765792847,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -18.3%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.857417345046997,
+      "toggle_drain_per_s": 1.7832070589065552,
+      "chain_drain_per_s": 2.914072036743164,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -1.8398617506027222,
+      "time_to_empty_s": 54.35190963745117
+    },
+    "health": {
+      "max_hp": 893.35693359375,
+      "regen_per_sec": 7.295748233795166
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 39.1%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "39.1%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Mastermind_Summon.Demon_Summoning.Hell_on_Earth against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Mastermind_Summon.Demon_Summoning.Corruption"
+      ],
+      "cycle_time_s": 2.419976234436035,
+      "gap_s": 0.9679762125015259,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Mastermind_Summon.Demon_Summoning.Crack_Whip"
+        ],
+        "chain_dps": 17.556859970092773,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Mastermind_Summon.Demon_Summoning.Corruption"
+        ],
+        "chain_dps": 43.311702728271484,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 47.37217330932617,
+      "layers": {
+        "pet": 0.0,
+        "chain": 47.37217330932617
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 43.311702728271484
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Mastermind_Summon.Demon_Summoning.Corruption",
+            "dps": 43.311702728271484
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 409.0 s, 169 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "mastermind_supremacy",
+        "multiplier": 1.25,
+        "uptime": 1.0,
+        "factor": 1.1190476417541504,
+        "assumption": "Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json",
+        "applies_to": [
+          "pet"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.09375,
+        "uptime": 1.0,
+        "factor": 1.09375,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -9.4%: Mastermind_Summon.Demon_Summoning.Corruption -9% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.857417345046997,
+      "toggle_drain_per_s": 1.7832070589065552,
+      "chain_drain_per_s": 1.3187042474746704,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -0.24449396133422852,
+      "time_to_empty_s": 409.008056640625
+    },
+    "health": {
+      "max_hp": 893.35693359375,
+      "regen_per_sec": 7.295748233795166
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 35.9%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "35.9%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Mastermind_Summon.Demon_Summoning.Hell_on_Earth against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Pool.Fighting.Cross_Punch",
+        "Mastermind_Summon.Demon_Summoning.Lash",
+        "Mastermind_Summon.Demon_Summoning.Corruption"
+      ],
+      "cycle_time_s": 6.193357944488525,
+      "gap_s": 0.0,
+      "move_time_s": 0.9133577942848206,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Mastermind_Summon.Demon_Summoning.Corruption"
+        ],
+        "chain_dps": 34.33599853515625,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Pool.Fighting.Cross_Punch",
+          "Mastermind_Summon.Demon_Summoning.Lash",
+          "Mastermind_Summon.Demon_Summoning.Corruption"
+        ],
+        "chain_dps": 65.35166931152344,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 76.23331451416016,
+      "layers": {
+        "pet": 0.0,
+        "chain": 76.23331451416016
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 65.35166931152344
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Pool.Fighting.Cross_Punch",
+            "dps": 24.087871551513672
+          },
+          {
+            "name": "Mastermind_Summon.Demon_Summoning.Lash",
+            "dps": 24.340299606323242
+          },
+          {
+            "name": "Mastermind_Summon.Demon_Summoning.Corruption",
+            "dps": 16.923500061035156
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 70.9 s, 11 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "mastermind_supremacy",
+        "multiplier": 1.25,
+        "uptime": 1.0,
+        "factor": 1.1190476417541504,
+        "assumption": "Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json",
+        "applies_to": [
+          "pet"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.1665090322494507,
+        "uptime": 1.0,
+        "factor": 1.1665090322494507,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -16.7%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.857417345046997,
+      "toggle_drain_per_s": 1.7832070589065552,
+      "chain_drain_per_s": 2.484323024749756,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -1.410112738609314,
+      "time_to_empty_s": 70.91631317138672
+    },
+    "health": {
+      "max_hp": 893.35693359375,
+      "regen_per_sec": 7.295748233795166
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 39.1%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "39.1%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Petless Mastermind (Demon Summoning - Force Field)",
+        "line": 1,
+        "column": 1,
+        "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Mastermind_Summon.Demon_Summoning.Hell_on_Earth against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

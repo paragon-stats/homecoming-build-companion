@@ -1,0 +1,55 @@
+== melee stance ==
+rotation: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast
+  cycle 6.45 s, gap 3.94 s, move 0.00 s, sustainable
+  best sustainable: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 17.8 DPS)
+  best overall: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 17.8 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 21.9  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Inherent.Inherent.Brawl: 3.4
+    Sentinel_Ranged.Fire_Blast.Fire_Blast: 14.4
+  total: 21.9
+modifiers:
+  sentinel_opportunity: x1.026 (Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed)
+  target_debuff: x1.200 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res)
+endurance: max 100.0, recovery 2.08/s, toggles 0.26/s, chain 0.93/s, other 0.00/s, net +0.89/s, time to empty sustainable
+health: max 1205.0, regen 7.03/s
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-001: melee stance: melee defense is 0.0%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== ranged stance ==
+rotation: Sentinel_Ranged.Fire_Blast.Fire_Blast
+  cycle 6.45 s, gap 5.00 s, move 0.00 s, sustainable
+  best sustainable: Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 14.4 DPS)
+  best overall: Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 14.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 17.7  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Sentinel_Ranged.Fire_Blast.Fire_Blast: 14.4
+  total: 17.7
+modifiers:
+  sentinel_opportunity: x1.026 (Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed)
+  target_debuff: x1.200 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res)
+endurance: max 100.0, recovery 2.08/s, toggles 0.26/s, chain 0.93/s, other 0.00/s, net +0.89/s, time to empty sustainable
+health: max 1205.0, regen 7.03/s
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-001: ranged stance: ranged defense is 0.0%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== hybrid stance ==
+rotation: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast
+  cycle 6.45 s, gap 1.12 s, move 2.82 s, sustainable
+  best sustainable: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 17.8 DPS)
+  best overall: Inherent.Inherent.Brawl > Sentinel_Ranged.Fire_Blast.Fire_Blast (chain 17.8 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 21.9  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Inherent.Inherent.Brawl: 3.4
+    Sentinel_Ranged.Fire_Blast.Fire_Blast: 14.4
+  total: 21.9
+modifiers:
+  sentinel_opportunity: x1.026 (Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed)
+  target_debuff: x1.200 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res)
+endurance: max 100.0, recovery 2.08/s, toggles 0.26/s, chain 0.93/s, other 0.00/s, net +0.89/s, time to empty sustainable
+health: max 1205.0, regen 7.03/s
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 0.0%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

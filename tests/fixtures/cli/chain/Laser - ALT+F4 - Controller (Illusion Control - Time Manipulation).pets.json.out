@@ -1,0 +1,469 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Inherent.Inherent.Brawl",
+        "Controller_Control.Illusion_Control.Blind",
+        "Controller_Control.Illusion_Control.Spectral_Wounds"
+      ],
+      "cycle_time_s": 4.223999977111816,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 5.657193183898926,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Controller_Control.Illusion_Control.Blind",
+          "Controller_Control.Illusion_Control.Spectral_Wounds"
+        ],
+        "chain_dps": 34.419498443603516,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 166.70001220703125,
+      "layers": {
+        "patch": 6.6802754402160645,
+        "buff_cast": 0.0,
+        "pet": 82.8340072631836,
+        "chain": 77.18572998046875
+      },
+      "unscaled": {
+        "patch": 2.978940963745117,
+        "buff_cast": 0.0,
+        "pet": 55.40736389160156,
+        "chain": 34.419498443603516
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Controller_Buff.Time_Manipulation.Distortion_Field",
+            "dps": 2.978940963745117
+          }
+        ],
+        "pet": [
+          {
+            "name": "Decoy",
+            "dps": 55.40736389160156
+          }
+        ],
+        "chain": [
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 2.2818593978881836
+          },
+          {
+            "name": "Controller_Control.Illusion_Control.Blind",
+            "dps": 16.20364761352539
+          },
+          {
+            "name": "Controller_Control.Illusion_Control.Spectral_Wounds",
+            "dps": 15.933989524841309
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%",
+        "chain": "chain, affordable: empties in 95.5 s, 23 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "controller_containment",
+        "multiplier": 1.5,
+        "uptime": 1.0,
+        "factor": 1.5,
+        "assumption": "Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.4950000047683716,
+        "uptime": 1.0,
+        "factor": 1.4950000047683716,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 3.4758338928222656,
+      "toggle_drain_per_s": 1.7033967971801758,
+      "chain_drain_per_s": 1.572561502456665,
+      "other_drain_per_s": 1.2465064525604248,
+      "net_per_s": -1.046630859375,
+      "time_to_empty_s": 95.54467010498047
+    },
+    "health": {
+      "max_hp": 1158.1575927734375,
+      "regen_per_sec": 10.326905250549316
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 42.5%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "42.5%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Controller_Control.Illusion_Control.Flash against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Controller_Control.Illusion_Control.Phantasm against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Controller_Control.Illusion_Control.Blind",
+        "Controller_Control.Illusion_Control.Spectral_Wounds"
+      ],
+      "cycle_time_s": 4.066695690155029,
+      "gap_s": 0.898695707321167,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": {
+        "attacks": [
+          "Controller_Control.Illusion_Control.Blind",
+          "Controller_Control.Illusion_Control.Spectral_Wounds"
+        ],
+        "chain_dps": 33.38075637817383,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 164.37063598632812,
+      "layers": {
+        "patch": 6.6802754402160645,
+        "buff_cast": 0.0,
+        "pet": 82.8340072631836,
+        "chain": 74.8563461303711
+      },
+      "unscaled": {
+        "patch": 2.978940963745117,
+        "buff_cast": 0.0,
+        "pet": 55.40736389160156,
+        "chain": 33.38075637817383
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Controller_Buff.Time_Manipulation.Distortion_Field",
+            "dps": 2.978940963745117
+          }
+        ],
+        "pet": [
+          {
+            "name": "Decoy",
+            "dps": 55.40736389160156
+          }
+        ],
+        "chain": [
+          {
+            "name": "Controller_Control.Illusion_Control.Blind",
+            "dps": 16.83042335510254
+          },
+          {
+            "name": "Controller_Control.Illusion_Control.Spectral_Wounds",
+            "dps": 16.55033302307129
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%",
+        "chain": "chain, affordable: empties in 90.3 s, 22 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "controller_containment",
+        "multiplier": 1.5,
+        "uptime": 1.0,
+        "factor": 1.5,
+        "assumption": "Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.4950000047683716,
+        "uptime": 1.0,
+        "factor": 1.4950000047683716,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 3.4758338928222656,
+      "toggle_drain_per_s": 1.7033967971801758,
+      "chain_drain_per_s": 1.633389949798584,
+      "other_drain_per_s": 1.2465064525604248,
+      "net_per_s": -1.107459306716919,
+      "time_to_empty_s": 90.29676818847656
+    },
+    "health": {
+      "max_hp": 1158.1575927734375,
+      "regen_per_sec": 10.326905250549316
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Controller_Control.Illusion_Control.Flash against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Controller_Control.Illusion_Control.Phantasm against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Controller_Control.Illusion_Control.Blind",
+        "Controller_Control.Illusion_Control.Spectral_Wounds"
+      ],
+      "cycle_time_s": 4.066695690155029,
+      "gap_s": 0.898695707321167,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 5.657193183898926,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Controller_Control.Illusion_Control.Blind",
+          "Controller_Control.Illusion_Control.Spectral_Wounds"
+        ],
+        "chain_dps": 33.38075637817383,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 164.37063598632812,
+      "layers": {
+        "patch": 6.6802754402160645,
+        "buff_cast": 0.0,
+        "pet": 82.8340072631836,
+        "chain": 74.8563461303711
+      },
+      "unscaled": {
+        "patch": 2.978940963745117,
+        "buff_cast": 0.0,
+        "pet": 55.40736389160156,
+        "chain": 33.38075637817383
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Controller_Buff.Time_Manipulation.Distortion_Field",
+            "dps": 2.978940963745117
+          }
+        ],
+        "pet": [
+          {
+            "name": "Decoy",
+            "dps": 55.40736389160156
+          }
+        ],
+        "chain": [
+          {
+            "name": "Controller_Control.Illusion_Control.Blind",
+            "dps": 16.83042335510254
+          },
+          {
+            "name": "Controller_Control.Illusion_Control.Spectral_Wounds",
+            "dps": 16.55033302307129
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Decoy x3 uptime 94%",
+        "chain": "chain, affordable: empties in 90.3 s, 22 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "controller_containment",
+        "multiplier": 1.5,
+        "uptime": 1.0,
+        "factor": 1.5,
+        "assumption": "Class_Controller.contained_share=0.5 of damage lands on controlled foes (default 0.5, approximate; verify in MidsReborn); containment adds +100% (approximate; verify in MidsReborn; data/canonical/powers/inherent/inherent/containment.json has no magnitude)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.4950000047683716,
+        "uptime": 1.0,
+        "factor": 1.4950000047683716,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -49.5%: Controller_Buff.Time_Manipulation.Slowed_Response -50% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 3.4758338928222656,
+      "toggle_drain_per_s": 1.7033967971801758,
+      "chain_drain_per_s": 1.633389949798584,
+      "other_drain_per_s": 1.2465064525604248,
+      "net_per_s": -1.107459306716919,
+      "time_to_empty_s": 90.29676818847656
+    },
+    "health": {
+      "max_hp": 1158.1575927734375,
+      "regen_per_sec": 10.326905250549316
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 42.5%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "42.5%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Flash is not modelled: not classifiable as an attack (E37: Controller_Control.Illusion_Control.Flash (type Click) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Controller_Control.Illusion_Control.Flash against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Controller_Control.Illusion_Control.Phantasm is not modelled: pet not modelled, data gap (E61: entity Pets_Phantasm_Controller has class 'minion_controllerpets' with no Class_minion_controllerpets or reversed-token class in the archetype table; add the class to the archetypes dump)",
+        "fix": "check Controller_Control.Illusion_Control.Phantasm against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

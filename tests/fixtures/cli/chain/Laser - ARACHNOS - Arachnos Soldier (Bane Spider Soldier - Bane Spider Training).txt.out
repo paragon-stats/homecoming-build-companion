@@ -1,0 +1,63 @@
+== melee stance ==
+rotation: Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control > Arachnos_Soldiers.Bane_Spider_Soldier.Shatter > Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize > Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade
+  cycle 8.32 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl > Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade (chain 29.8 DPS)
+  best overall: Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control > Arachnos_Soldiers.Bane_Spider_Soldier.Shatter > Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize > Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade (chain 242.0 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 365.6  [chain, affordable: empties in 52.2 s, 6 cycles; damage is the Mids reference figure standing in for #31]
+    Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control: 56.4
+    Arachnos_Soldiers.Bane_Spider_Soldier.Shatter: 95.8
+    Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize: 68.9
+    Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade: 20.9
+  total: 365.6
+modifiers:
+  arachnos_soldier_conditioning: x1.000 (Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json))
+  click_buff: x1.079 (click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime)
+  target_debuff: x1.400 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
+endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 2.87/s, other 0.97/s, net -2.02/s, time to empty 52.2 s
+health: max 1518.1, regen 17.31/s
+tests\fixtures\mids\builds\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== ranged stance ==
+rotation: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam
+  cycle 7.43 s, gap 1.88 s, move 0.00 s, not sustainable
+  best sustainable: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade (chain 23.4 DPS)
+  best overall: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam (chain 73.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 110.9  [chain, affordable: empties in 129.2 s, 17 cycles; damage is the Mids reference figure standing in for #31]
+    Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade: 23.4
+    Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast: 18.5
+    Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam: 31.5
+  total: 110.9
+modifiers:
+  arachnos_soldier_conditioning: x1.000 (Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json))
+  click_buff: x1.079 (click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime)
+  target_debuff: x1.400 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
+endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 1.67/s, other 0.97/s, net -0.82/s, time to empty 129.2 s
+health: max 1518.1, regen 17.31/s
+tests\fixtures\mids\builds\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== hybrid stance ==
+rotation: Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control > Arachnos_Soldiers.Bane_Spider_Soldier.Shatter > Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize
+  cycle 6.47 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam (chain 59.3 DPS)
+  best overall: Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control > Arachnos_Soldiers.Bane_Spider_Soldier.Shatter > Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize (chain 284.2 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 368.1  [chain, affordable: empties in 52.2 s, 8 cycles; damage is the Mids reference figure standing in for #31]
+    Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control: 72.5
+    Arachnos_Soldiers.Bane_Spider_Soldier.Shatter: 123.1
+    Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize: 88.6
+  total: 368.1
+modifiers:
+  arachnos_soldier_conditioning: x1.000 (Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json))
+  click_buff: x1.079 (click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime)
+  target_debuff: x1.200 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
+endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 2.87/s, other 0.97/s, net -2.02/s, time to empty 52.2 s
+health: max 1518.1, regen 17.31/s
+tests\fixtures\mids\builds\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

@@ -1,0 +1,295 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Widow_Training.Night_Widow_Training.NW_Slash",
+        "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+        "Widow_Training.Widow_Training.Follow_Up",
+        "Widow_Training.Widow_Training.Swipe"
+      ],
+      "cycle_time_s": 6.2039995193481445,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Widow_Training.Night_Widow_Training.NW_Slash",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 167.6793975830078,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Widow_Training.Night_Widow_Training.NW_Slash",
+          "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+          "Widow_Training.Widow_Training.Follow_Up",
+          "Widow_Training.Widow_Training.Swipe"
+        ],
+        "chain_dps": 343.5744323730469,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 343.5744323730469,
+      "layers": {
+        "pet": 0.0,
+        "chain": 343.5744323730469
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 343.5744323730469
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Widow_Training.Night_Widow_Training.NW_Slash",
+            "dps": 147.41017150878906
+          },
+          {
+            "name": "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+            "dps": 101.37385559082031
+          },
+          {
+            "name": "Widow_Training.Widow_Training.Follow_Up",
+            "dps": 46.57809066772461
+          },
+          {
+            "name": "Widow_Training.Widow_Training.Swipe",
+            "dps": 48.212310791015625
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_widow_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.4255735874176025,
+      "toggle_drain_per_s": 1.5173239707946777,
+      "chain_drain_per_s": 4.165293216705322,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -2.2570436000823975,
+      "time_to_empty_s": 45.900753021240234
+    },
+    "health": {
+      "max_hp": 1572.966796875,
+      "regen_per_sec": 18.95425033569336
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)",
+        "fix": "check Teamwork.Widow_Teamwork.NW_Pain_Tolerance against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": null,
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": null
+    },
+    "dps": {
+      "total": 0.0,
+      "layers": {
+        "pet": 0.0
+      },
+      "unscaled": {
+        "pet": 0.0
+      },
+      "detail": {},
+      "labels": {
+        "pet": "no pets summoned"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_widow_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.4255735874176025,
+      "toggle_drain_per_s": 1.5173239707946777,
+      "chain_drain_per_s": 0,
+      "other_drain_per_s": 0.0,
+      "net_per_s": 1.9082496166229248,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1572.966796875,
+      "regen_per_sec": 18.95425033569336
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)",
+        "fix": "check Teamwork.Widow_Teamwork.NW_Pain_Tolerance against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Widow_Training.Night_Widow_Training.NW_Slash",
+        "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+        "Widow_Training.Widow_Training.Follow_Up",
+        "Widow_Training.Widow_Training.Swipe"
+      ],
+      "cycle_time_s": 6.2039995193481445,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Widow_Training.Night_Widow_Training.NW_Slash",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 167.6793975830078,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Widow_Training.Night_Widow_Training.NW_Slash",
+          "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+          "Widow_Training.Widow_Training.Follow_Up",
+          "Widow_Training.Widow_Training.Swipe"
+        ],
+        "chain_dps": 343.5744323730469,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 343.5744323730469,
+      "layers": {
+        "pet": 0.0,
+        "chain": 343.5744323730469
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 343.5744323730469
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Widow_Training.Night_Widow_Training.NW_Slash",
+            "dps": 147.41017150878906
+          },
+          {
+            "name": "Widow_Training.Night_Widow_Training.NW_Eviscerate",
+            "dps": 101.37385559082031
+          },
+          {
+            "name": "Widow_Training.Widow_Training.Follow_Up",
+            "dps": 46.57809066772461
+          },
+          {
+            "name": "Widow_Training.Widow_Training.Swipe",
+            "dps": 48.212310791015625
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_widow_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Widow: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/widow_conditioning.json)",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 3.4255735874176025,
+      "toggle_drain_per_s": 1.5173239707946777,
+      "chain_drain_per_s": 4.165293216705322,
+      "other_drain_per_s": 0.0,
+      "net_per_s": -2.2570436000823975,
+      "time_to_empty_s": 45.900753021240234
+    },
+    "health": {
+      "max_hp": 1572.966796875,
+      "regen_per_sec": 18.95425033569336
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Melee Arachnos Widow (Night Widow Training - Widow Teamwork)",
+        "line": 1,
+        "column": 1,
+        "message": "power Teamwork.Widow_Teamwork.NW_Pain_Tolerance is not modelled: no canonical file (E35)",
+        "fix": "check Teamwork.Widow_Teamwork.NW_Pain_Tolerance against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

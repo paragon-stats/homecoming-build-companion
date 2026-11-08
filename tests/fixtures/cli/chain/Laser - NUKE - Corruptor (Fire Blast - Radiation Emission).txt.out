@@ -1,0 +1,79 @@
+== melee stance ==
+rotation: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast
+  cycle 5.68 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: none
+  best overall: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast (chain 165.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 4.5  [location patches cast on cooldown]
+    Corruptor_Buff.Radiation_Emission.Fallout: 2.9
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 255.8  [chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31]
+    Corruptor_Ranged.Fire_Blast.Fire_Ball: 19.1
+    Corruptor_Ranged.Fire_Blast.Blazing_Bolt: 79.2
+    Corruptor_Ranged.Fire_Blast.Blaze: 44.6
+    Corruptor_Ranged.Fire_Blast.Fire_Blast: 22.2
+  total: 260.2
+modifiers:
+  corruptor_scourge: x1.100 (Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text)
+  click_buff: x1.149 (click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime)
+  target_debuff: x1.225 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime)
+endurance: max 105.4, recovery -13.35/s, toggles 3.37/s, chain 4.86/s, other 0.51/s, net -22.09/s, time to empty 4.8 s
+health: max 1219.6, regen 8.74/s
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: warning: P-END-002: melee stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-001: melee stance: melee defense is 34.4%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+
+== ranged stance ==
+rotation: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast
+  cycle 5.68 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: none
+  best overall: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast (chain 165.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 4.5  [location patches cast on cooldown]
+    Corruptor_Buff.Radiation_Emission.Fallout: 2.9
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 255.8  [chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31]
+    Corruptor_Ranged.Fire_Blast.Fire_Ball: 19.1
+    Corruptor_Ranged.Fire_Blast.Blazing_Bolt: 79.2
+    Corruptor_Ranged.Fire_Blast.Blaze: 44.6
+    Corruptor_Ranged.Fire_Blast.Fire_Blast: 22.2
+  total: 260.2
+modifiers:
+  corruptor_scourge: x1.100 (Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text)
+  click_buff: x1.149 (click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime)
+  target_debuff: x1.225 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime)
+endurance: max 105.4, recovery -13.35/s, toggles 3.37/s, chain 4.86/s, other 0.51/s, net -22.09/s, time to empty 4.8 s
+health: max 1219.6, regen 8.74/s
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: warning: P-END-002: ranged stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+
+== hybrid stance ==
+rotation: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast
+  cycle 5.68 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: none
+  best overall: Corruptor_Ranged.Fire_Blast.Fire_Ball > Corruptor_Ranged.Fire_Blast.Blazing_Bolt > Corruptor_Ranged.Fire_Blast.Blaze > Corruptor_Ranged.Fire_Blast.Fire_Blast (chain 165.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  patch: 4.5  [location patches cast on cooldown]
+    Corruptor_Buff.Radiation_Emission.Fallout: 2.9
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 255.8  [chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31]
+    Corruptor_Ranged.Fire_Blast.Fire_Ball: 19.1
+    Corruptor_Ranged.Fire_Blast.Blazing_Bolt: 79.2
+    Corruptor_Ranged.Fire_Blast.Blaze: 44.6
+    Corruptor_Ranged.Fire_Blast.Fire_Blast: 22.2
+  total: 260.2
+modifiers:
+  corruptor_scourge: x1.100 (Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text)
+  click_buff: x1.149 (click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime)
+  target_debuff: x1.225 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime)
+endurance: max 105.4, recovery -13.35/s, toggles 3.37/s, chain 4.86/s, other 0.51/s, net -22.09/s, time to empty 4.8 s
+health: max 1219.6, regen 8.74/s
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: warning: P-END-002: hybrid stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 34.4%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)

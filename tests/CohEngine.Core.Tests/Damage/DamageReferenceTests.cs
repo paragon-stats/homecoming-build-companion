@@ -106,6 +106,26 @@ public sealed class DamageReferenceTests
     }
 
     [Fact]
+    public void A_later_type_with_a_larger_self_buff_wins()
+    {
+        using TempTree tree = Dump(
+            Enhanced(1, Magnitude(0, 0.25, 5.0), Magnitude(1, 0.5, 9.0)),
+            Structural("A.B.C", 1, Structure(0, "DamageBuff", "Self", "Fire"), Structure(1, "DamageBuff", "Self", "Cold")));
+
+        Assert.Equal(0.5, DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].SelfDamageBuff);
+    }
+
+    [Fact]
+    public void A_later_type_closer_to_zero_is_the_weakest_debuff()
+    {
+        string[] enhanced = [.. CoreTypes.Select((_, index) => Magnitude(index, -(0.1 * (8 - index)), 10.0 + index))];
+        string[] structural = [.. CoreTypes.Select((type, index) => Structure(index, "Resistance", "Target", type))];
+        using TempTree tree = Dump(Enhanced(1, enhanced), Structural("A.B.C", 1, structural));
+
+        Assert.Equal("0.10000000149011612 17", $"{DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuff} {DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuffDuration}");
+    }
+
+    [Fact]
     public void A_debuff_missing_a_core_type_counts_as_none()
     {
         using TempTree tree = Dump(Enhanced(1, Magnitude(0, -0.5, 10.0)), Structural("A.B.C", 1, Structure(0, "Resistance", "Target", "Fire")));

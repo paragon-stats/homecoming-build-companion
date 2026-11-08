@@ -1,0 +1,427 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Brute_Defense.Fiery_Aura.Burn",
+        "Brute_Melee.Radiation_Melee.Devastating_Blow",
+        "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+        "Brute_Melee.Radiation_Melee.Radioactive_Smash"
+      ],
+      "cycle_time_s": 9.239999771118164,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Brute_Defense.Fiery_Aura.Burn",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 135.99143981933594,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Brute_Defense.Fiery_Aura.Burn",
+          "Brute_Melee.Radiation_Melee.Devastating_Blow",
+          "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+          "Brute_Melee.Radiation_Melee.Radioactive_Smash"
+        ],
+        "chain_dps": 386.0860290527344,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 645.0328369140625,
+      "layers": {
+        "aura": 91.87971496582031,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 553.1531372070312
+      },
+      "unscaled": {
+        "aura": 64.12957000732422,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 386.0860290527344
+      },
+      "detail": {
+        "aura": [
+          {
+            "name": "Brute_Defense.Fiery_Aura.Blazing_Aura",
+            "dps": 64.12957000732422
+          }
+        ],
+        "chain": [
+          {
+            "name": "Brute_Defense.Fiery_Aura.Burn",
+            "dps": 104.66510009765625
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Devastating_Blow",
+            "dps": 132.10580444335938
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+            "dps": 85.122802734375
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Radioactive_Smash",
+            "dps": 64.19230651855469
+          }
+        ]
+      },
+      "labels": {
+        "aura": "damage auras at melee share 1.00; per-tick damage assumed",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "brute_fury",
+        "multiplier": 2.5,
+        "uptime": 1.0,
+        "factor": 1.2964427471160889,
+        "assumption": "Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.6895630359649658,
+        "uptime": 1.0,
+        "factor": 1.1362773180007935,
+        "assumption": "click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 110.0,
+      "recovery_per_s": 3.8131325244903564,
+      "toggle_drain_per_s": 2.680372714996338,
+      "chain_drain_per_s": 2.3704771995544434,
+      "other_drain_per_s": 0.3591494560241699,
+      "net_per_s": -1.5968668460845947,
+      "time_to_empty_s": 68.88489532470703
+    },
+    "health": {
+      "max_hp": 2259.8720703125,
+      "regen_per_sec": 31.638208389282227
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 44.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "44.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Brute_Melee.Radiation_Melee.Irradiated_Ground against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": null,
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": null
+    },
+    "dps": {
+      "total": 0.0,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0
+      },
+      "detail": {},
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "brute_fury",
+        "multiplier": 2.5,
+        "uptime": 1.0,
+        "factor": 1.2964427471160889,
+        "assumption": "Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.6895630359649658,
+        "uptime": 1.0,
+        "factor": 1.1362773180007935,
+        "assumption": "click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 110.0,
+      "recovery_per_s": 3.8131325244903564,
+      "toggle_drain_per_s": 2.680372714996338,
+      "chain_drain_per_s": 0,
+      "other_drain_per_s": 0.3591494858264923,
+      "net_per_s": 0.7736103534698486,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 2259.8720703125,
+      "regen_per_sec": 31.638208389282227
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 24.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "24.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Brute_Melee.Radiation_Melee.Irradiated_Ground against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Brute_Defense.Fiery_Aura.Burn",
+        "Brute_Melee.Radiation_Melee.Devastating_Blow",
+        "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+        "Brute_Melee.Radiation_Melee.Radioactive_Smash"
+      ],
+      "cycle_time_s": 9.239999771118164,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Brute_Defense.Fiery_Aura.Burn",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 135.99143981933594,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Brute_Defense.Fiery_Aura.Burn",
+          "Brute_Melee.Radiation_Melee.Devastating_Blow",
+          "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+          "Brute_Melee.Radiation_Melee.Radioactive_Smash"
+        ],
+        "chain_dps": 386.0860290527344,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 645.0328369140625,
+      "layers": {
+        "aura": 91.87971496582031,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 553.1531372070312
+      },
+      "unscaled": {
+        "aura": 64.12957000732422,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 386.0860290527344
+      },
+      "detail": {
+        "aura": [
+          {
+            "name": "Brute_Defense.Fiery_Aura.Blazing_Aura",
+            "dps": 64.12957000732422
+          }
+        ],
+        "chain": [
+          {
+            "name": "Brute_Defense.Fiery_Aura.Burn",
+            "dps": 104.66510009765625
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Devastating_Blow",
+            "dps": 132.10580444335938
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Radiation_Siphon",
+            "dps": 85.122802734375
+          },
+          {
+            "name": "Brute_Melee.Radiation_Melee.Radioactive_Smash",
+            "dps": 64.19230651855469
+          }
+        ]
+      },
+      "labels": {
+        "aura": "damage auras at melee share 1.00; per-tick damage assumed",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "brute_fury",
+        "multiplier": 2.5,
+        "uptime": 1.0,
+        "factor": 1.2964427471160889,
+        "assumption": "Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.6895630359649658,
+        "uptime": 1.0,
+        "factor": 1.1362773180007935,
+        "assumption": "click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 110.0,
+      "recovery_per_s": 3.8131325244903564,
+      "toggle_drain_per_s": 2.680372714996338,
+      "chain_drain_per_s": 2.3704771995544434,
+      "other_drain_per_s": 0.3591494560241699,
+      "net_per_s": -1.5968668460845947,
+      "time_to_empty_s": 68.88489532470703
+    },
+    "health": {
+      "max_hp": 2259.8720703125,
+      "regen_per_sec": 31.638208389282227
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 44.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "44.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)",
+        "line": 1,
+        "column": 1,
+        "message": "power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))",
+        "fix": "check Brute_Melee.Radiation_Melee.Irradiated_Ground against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

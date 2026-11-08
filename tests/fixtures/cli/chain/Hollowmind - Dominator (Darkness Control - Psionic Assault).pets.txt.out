@@ -1,0 +1,68 @@
+== melee stance ==
+rotation: Dominator_Assault.Psionic_Assault.Psychic_Shockwave > Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Epic.Dominator_Mu_Mastery.Ball_Lightning > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart
+  cycle 10.30 s, gap 0.14 s, move 0.00 s, not sustainable
+  best sustainable: Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Inherent.Inherent.Brawl > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 131.9 DPS)
+  best overall: Dominator_Assault.Psionic_Assault.Psychic_Shockwave > Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Epic.Dominator_Mu_Mastery.Ball_Lightning > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 137.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 66.0  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)]
+    Shade: 0.0
+    Umbra Beast: 66.0
+  chain: 137.1  [chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31]
+    Dominator_Assault.Psionic_Assault.Psychic_Shockwave: 8.5
+    Dominator_Assault.Psionic_Assault.Mind_Probe: 25.6
+    Dominator_Assault.Psionic_Assault.Telekinetic_Thrust: 19.3
+    Epic.Dominator_Mu_Mastery.Ball_Lightning: 14.3
+    Dominator_Assault.Psionic_Assault.Psionic_Lance: 57.9
+    Dominator_Assault.Psionic_Assault.Psionic_Dart: 11.4
+  total: 203.0
+modifiers:
+  dominator_domination: x1.000 (Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled)
+endurance: max 102.2, recovery 4.43/s, toggles 1.11/s, chain 4.70/s, other 0.10/s, net -1.48/s, time to empty 68.9 s
+health: max 1093.3, regen 15.08/s
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-001: melee stance: melee defense is 24.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== ranged stance ==
+rotation: Epic.Dominator_Mu_Mastery.Ball_Lightning > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Control.Darkness_Control.Living_Shadows > Dominator_Control.Darkness_Control.Dark_Grasp > Dominator_Assault.Psionic_Assault.Psionic_Dart
+  cycle 10.30 s, gap 1.06 s, move 0.00 s, not sustainable
+  best sustainable: Epic.Dominator_Mu_Mastery.Ball_Lightning > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 83.6 DPS)
+  best overall: Epic.Dominator_Mu_Mastery.Ball_Lightning > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Control.Darkness_Control.Living_Shadows > Dominator_Control.Darkness_Control.Dark_Grasp > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 93.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 66.0  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)]
+    Shade: 0.0
+    Umbra Beast: 66.0
+  chain: 93.4  [chain, affordable: empties in 78.3 s, 8 cycles; damage is the Mids reference figure standing in for #31]
+    Epic.Dominator_Mu_Mastery.Ball_Lightning: 14.3
+    Dominator_Assault.Psionic_Assault.Psionic_Lance: 57.9
+    Dominator_Control.Darkness_Control.Living_Shadows: 2.7
+    Dominator_Control.Darkness_Control.Dark_Grasp: 7.0
+    Dominator_Assault.Psionic_Assault.Psionic_Dart: 11.4
+  total: 159.4
+modifiers:
+  dominator_domination: x1.000 (Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled)
+endurance: max 102.2, recovery 4.43/s, toggles 1.11/s, chain 4.53/s, other 0.10/s, net -1.31/s, time to empty 78.3 s
+health: max 1093.3, regen 15.08/s
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-001: ranged stance: ranged defense is 34.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== hybrid stance ==
+rotation: Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart
+  cycle 9.65 s, gap 0.09 s, move 2.82 s, sustainable
+  best sustainable: Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 122.1 DPS)
+  best overall: Dominator_Assault.Psionic_Assault.Mind_Probe > Dominator_Assault.Psionic_Assault.Telekinetic_Thrust > Dominator_Assault.Psionic_Assault.Psionic_Lance > Dominator_Assault.Psionic_Assault.Psionic_Dart (chain 122.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 66.0  [pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)]
+    Shade: 0.0
+    Umbra Beast: 66.0
+  chain: 122.1  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Dominator_Assault.Psionic_Assault.Mind_Probe: 27.4
+    Dominator_Assault.Psionic_Assault.Telekinetic_Thrust: 20.6
+    Dominator_Assault.Psionic_Assault.Psionic_Lance: 61.9
+    Dominator_Assault.Psionic_Assault.Psionic_Dart: 12.2
+  total: 188.0
+modifiers:
+  dominator_domination: x1.000 (Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled)
+endurance: max 102.2, recovery 4.43/s, toggles 1.11/s, chain 2.66/s, other 0.10/s, net +0.55/s, time to empty sustainable
+health: max 1093.3, regen 15.08/s
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 24.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Hollowmind - Dominator (Darkness Control - Psionic Assault):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

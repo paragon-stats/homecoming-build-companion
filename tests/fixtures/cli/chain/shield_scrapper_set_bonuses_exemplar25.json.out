@@ -1,0 +1,387 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+        "Scrapper_Melee.Dark_Melee.Siphon_Life",
+        "Scrapper_Melee.Dark_Melee.Smite",
+        "Inherent.Inherent.Brawl"
+      ],
+      "cycle_time_s": 11.674665451049805,
+      "gap_s": 4.810666084289551,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 8.248798370361328,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
+          "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+          "Scrapper_Melee.Dark_Melee.Siphon_Life",
+          "Scrapper_Melee.Dark_Melee.Smite",
+          "Pool.Fighting.Boxing",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 43.04690933227539,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 39.734737396240234,
+      "layers": {
+        "patch": 2.4704601764678955,
+        "pet": 0.0,
+        "chain": 37.264278411865234
+      },
+      "unscaled": {
+        "patch": 2.245872735977173,
+        "pet": 0.0,
+        "chain": 33.876617431640625
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Scrapper_Defense.Shield_Defense.Shield_Charge",
+            "dps": 2.245872735977173
+          }
+        ],
+        "chain": [
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+            "dps": 12.673005104064941
+          },
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Siphon_Life",
+            "dps": 11.520915031433105
+          },
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Smite",
+            "dps": 7.758983135223389
+          },
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 1.9237149953842163
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 51.6 s, 4 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "scrapper_critical_hit",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 1.702608585357666,
+      "chain_drain_per_s": 2.1423940658569336,
+      "other_drain_per_s": 0.17623448371887207,
+      "net_per_s": -1.9379034042358398,
+      "time_to_empty_s": 51.60215759277344
+    },
+    "health": {
+      "max_hp": 1487.921630859375,
+      "regen_per_sec": 9.29951000213623
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 13.1%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "13.1%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Epic.Stalker_Soul_Mastery.Moonbeam"
+      ],
+      "cycle_time_s": 21.583999633789062,
+      "gap_s": 20.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": {
+        "attacks": [
+          "Epic.Stalker_Soul_Mastery.Moonbeam"
+        ],
+        "chain_dps": 10.8041353225708,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 14.355009078979492,
+      "layers": {
+        "patch": 2.4704601764678955,
+        "pet": 0.0,
+        "chain": 11.884549140930176
+      },
+      "unscaled": {
+        "patch": 2.245872735977173,
+        "pet": 0.0,
+        "chain": 10.8041353225708
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Scrapper_Defense.Shield_Defense.Shield_Charge",
+            "dps": 2.245872735977173
+          }
+        ],
+        "chain": [
+          {
+            "name": "Epic.Stalker_Soul_Mastery.Moonbeam",
+            "dps": 10.8041353225708
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 164.4 s, 8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "scrapper_critical_hit",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 1.702608585357666,
+      "chain_drain_per_s": 0.8125794529914856,
+      "other_drain_per_s": 0.1762344241142273,
+      "net_per_s": -0.6080887317657471,
+      "time_to_empty_s": 164.44969177246094
+    },
+    "health": {
+      "max_hp": 1487.921630859375,
+      "regen_per_sec": 9.29951000213623
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 33.4%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "33.4%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+        "Scrapper_Melee.Dark_Melee.Siphon_Life",
+        "Scrapper_Melee.Dark_Melee.Smite",
+        "Inherent.Inherent.Brawl"
+      ],
+      "cycle_time_s": 11.674665451049805,
+      "gap_s": 4.810666084289551,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 8.248798370361328,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
+          "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+          "Scrapper_Melee.Dark_Melee.Siphon_Life",
+          "Scrapper_Melee.Dark_Melee.Smite",
+          "Pool.Fighting.Boxing",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 43.04690933227539,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 39.734737396240234,
+      "layers": {
+        "patch": 2.4704601764678955,
+        "pet": 0.0,
+        "chain": 37.264278411865234
+      },
+      "unscaled": {
+        "patch": 2.245872735977173,
+        "pet": 0.0,
+        "chain": 33.876617431640625
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Scrapper_Defense.Shield_Defense.Shield_Charge",
+            "dps": 2.245872735977173
+          }
+        ],
+        "chain": [
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+            "dps": 12.673005104064941
+          },
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Siphon_Life",
+            "dps": 11.520915031433105
+          },
+          {
+            "name": "Scrapper_Melee.Dark_Melee.Smite",
+            "dps": 7.758983135223389
+          },
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 1.9237149953842163
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 51.6 s, 4 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "scrapper_critical_hit",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Scrapper.crit_chance=0.1 (default 0.10, approximate; verify in MidsReborn; rank-dependent), crit_damage_mult=2.0 (double damage per data/canonical/powers/inherent/inherent/critical_hit.json help text)",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 1.702608585357666,
+      "chain_drain_per_s": 2.1423940658569336,
+      "other_drain_per_s": 0.17623448371887207,
+      "net_per_s": -1.9379034042358398,
+      "time_to_empty_s": 51.60215759277344
+    },
+    "health": {
+      "max_hp": 1487.921630859375,
+      "regen_per_sec": 9.29951000213623
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 13.1%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "13.1%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\shield_scrapper_set_bonuses_exemplar25",
+        "line": 1,
+        "column": 1,
+        "message": "Scrapper_Defense.Shield_Defense.Shield_Charge is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
+      }
+    ]
+  }
+]

@@ -1,12 +1,11 @@
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 using CohEngine.Core.DamageLayers;
 
 namespace CohEngine.Core.Chain;
 
 /// <summary>Attack classification: one canonical power to one <see cref="AttackProfile"/>.</summary>
-public static partial class AttackProfiles
+public static class AttackProfiles
 {
     private const string PveAlways = "target>enttype eq 'critter'";
 
@@ -138,8 +137,19 @@ public static partial class AttackProfiles
         return null;
     }
 
-    [GeneratedRegex(@"\AAlways\z|\A!Source\.Mode\?\(\w+\)\z", RegexOptions.None, 1000)]
-    private static partial Regex NoModeRedirect();
+    private static bool IsNoModeRedirect(string condition)
+    {
+        const string prefix = "!Source.Mode?(";
+        if (string.Equals(condition, "Always", StringComparison.Ordinal))
+        {
+            return true;
+        }
+
+        return condition.StartsWith(prefix, StringComparison.Ordinal)
+            && condition.EndsWith(')')
+            && condition.Length > prefix.Length + 1
+            && condition[prefix.Length..^1].All(letter => char.IsLetterOrDigit(letter) || letter == '_');
+    }
 
     private static IEnumerable<JsonElement> PveTemplates(IEnumerable<JsonElement> effects)
     {
@@ -252,7 +262,7 @@ public static partial class AttackProfiles
         foreach (JsonElement redirect in power.Items("redirect"))
         {
             string condition = redirect.Str("condition_expression", "Always").Trim();
-            if (NoModeRedirect().IsMatch(condition))
+            if (IsNoModeRedirect(condition))
             {
                 return resolve(redirect.ReqStr("name"));
             }

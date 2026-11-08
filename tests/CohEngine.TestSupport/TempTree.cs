@@ -24,6 +24,22 @@ public sealed class TempTree : IDisposable
         return path;
     }
 
+    /// <summary>Copies the files of a directory (not its subdirectories) below the root.</summary>
+    /// <param name="source">The directory to copy.</param>
+    /// <param name="relative">The target below the root, with forward slashes.</param>
+    /// <returns>The target's full path.</returns>
+    public string CopyFiles(string source, string relative)
+    {
+        string target = FullPath(relative);
+        Directory.CreateDirectory(target);
+        foreach (string file in Directory.GetFiles(source))
+        {
+            File.Copy(file, Path.Combine(target, Path.GetFileName(file)));
+        }
+
+        return target;
+    }
+
     /// <summary>The full path of a name below the directory.</summary>
     /// <param name="relative">The path below the root, with forward slashes.</param>
     /// <returns>The full path.</returns>
