@@ -1,5 +1,6 @@
 using CohEngine.Core.Registry.HardLimitRules;
 using CohEngine.Core.Registry.LegalityRules;
+using CohEngine.Core.Registry.ScoringMetrics;
 
 namespace CohEngine.Core.Registry;
 
@@ -26,12 +27,15 @@ public static class RuleRegistry
     ];
 
     /// <summary>Gets the scoring metrics, sorted by name as the Python lists them.</summary>
-    public static IReadOnlyList<RuleInfo> Metrics { get; } =
+    public static IReadOnlyList<RuleInfo> Metrics => [.. ScoringMetrics.Select(metric => metric.Info)];
+
+    /// <summary>Gets the scoring metrics with their bodies, sorted by name; a new metric is a new line here.</summary>
+    internal static IReadOnlyList<RegisteredMetric> ScoringMetrics { get; } =
     [
-        new("defense_positional_min", "Lowest of Melee/Ranged/AoE defense as a percentage (the positional softcap metric)."),
-        new("perma_dom", "Perma-Domination: Domination's buffed recharge <= its 90s duration."),
-        new("perma_hasten", "Perma-Hasten: Hasten's buffed recharge <= its 120s duration."),
-        new("resist_min", "Lowest typed resistance (Smashing..Psionic) as a percentage."),
+        new(new("defense_positional_min", "Lowest of Melee/Ranged/AoE defense as a percentage (the positional softcap metric)."), DefensePositionalMinMetric.Evaluate),
+        new(new("perma_dom", "Perma-Domination: Domination's buffed recharge <= its 90s duration."), PermaDominationMetric.Evaluate),
+        new(new("perma_hasten", "Perma-Hasten: Hasten's buffed recharge <= its 120s duration."), PermaHastenMetric.Evaluate),
+        new(new("resist_min", "Lowest typed resistance (Smashing..Psionic) as a percentage."), ResistMinMetric.Evaluate),
     ];
 
     /// <summary>Gets the legality rules with their bodies, in registration order; a new rule is a new line here.</summary>
