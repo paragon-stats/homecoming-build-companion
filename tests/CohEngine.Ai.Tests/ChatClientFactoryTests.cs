@@ -1,4 +1,3 @@
-using System.ClientModel;
 using System.Net;
 
 using Microsoft.Extensions.AI;
@@ -9,6 +8,14 @@ public sealed class ChatClientFactoryTests
 {
     private const string CannedReply = """
         {"id":"c1","object":"chat.completion","created":1,"model":"m","choices":[{"index":0,"finish_reason":"stop","message":{"role":"assistant","content":"hello back"}}]}
+        """;
+
+    private const string StreamReply = """
+        data: {"id":"c1","object":"chat.completion.chunk","created":1,"model":"m","choices":[{"index":0,"delta":{"role":"assistant","content":"hi there"},"finish_reason":null}]}
+
+        data: [DONE]
+
+
         """;
 
     private const string TestKey = "fake-key-for-tests";
@@ -122,16 +129,61 @@ public sealed class ChatClientFactoryTests
     }
 
     [Fact]
-    public async Task A_401_surfaces_as_one_typed_exception_without_the_key()
+    public async Task A_401_surfaces_as_one_typed_exception_without_the_key_or_the_body()
     {
-        FakeHandler handler = new(HttpStatusCode.Unauthorized, """{"error":{"message":"Incorrect API key provided","type":"invalid_request_error"}}""");
+        FakeHandler handler = new(HttpStatusCode.Unauthorized, $$$"""{"error":{"message":"Incorrect API key provided: {{{TestKey}}}","type":"invalid_request_error"}}""");
         ChatProviderOptions options = new(ChatProvider.OpenAiCompatible, ChatPreset.OpenAi, "m");
 
-        ClientResultException error = await Assert.ThrowsAsync<ClientResultException>(() => WithKey("OPENAI_API_KEY", TestKey, () => AskAsync(options, handler)));
+        ChatProviderException error = await Assert.ThrowsAsync<ChatProviderException>(() => WithKey("OPENAI_API_KEY", TestKey, () => AskAsync(options, handler)));
+
+        Assert.Equal(401, error.Status);
+        Assert.Equal("E131: the provider returned HTTP 401; check the key in OPENAI_API_KEY and the base URL", error.Message);
+        Assert.DoesNotContain(TestKey, error.ToString(), StringComparison.Ordinal);
+        Assert.Single(handler.Requests);
+    }
+
+    [Fact]
+    public async Task A_streaming_401_surfaces_as_the_same_typed_exception()
+    {
+        FakeHandler handler = new(HttpStatusCode.Unauthorized, $$$"""{"error":{"message":"bad key {{{TestKey}}}"}}""");
+        using IChatClient client = ChatClientFactory.Create(Local("http://localhost:8000/v1") with { Handler = handler });
+
+        ChatProviderException error = await Assert.ThrowsAsync<ChatProviderException>(async () =>
+        {
+            await foreach (ChatResponseUpdate unused in client.GetStreamingResponseAsync([new ChatMessage(ChatRole.User, "hello")], cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false))
+            {
+            }
+        });
 
         Assert.Equal(401, error.Status);
         Assert.DoesNotContain(TestKey, error.ToString(), StringComparison.Ordinal);
-        Assert.Single(handler.Requests);
+        Assert.Contains("(no key variable)", error.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task A_streaming_reply_yields_the_assistant_text()
+    {
+        FakeHandler handler = new(HttpStatusCode.OK, StreamReply);
+        using IChatClient client = ChatClientFactory.Create(Local("http://localhost:8000/v1") with { Handler = handler });
+
+        string text = string.Empty;
+        await foreach (ChatResponseUpdate update in client.GetStreamingResponseAsync([new ChatMessage(ChatRole.User, "hello")], cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false))
+        {
+            text += update.Text;
+        }
+
+        Assert.Equal("hi there", text);
+    }
+
+    [Theory]
+    [InlineData("not a url")]
+    [InlineData("/v1")]
+    [InlineData("ftp://host/v1")]
+    public void A_base_url_that_is_not_absolute_http_fails_with_a_named_error(string baseUrl)
+    {
+        InvalidOperationException error = Assert.Throws<InvalidOperationException>(() => ChatClientFactory.Create(Local(baseUrl)));
+
+        Assert.Equal($"E132: base URL '{baseUrl}' is not an absolute http(s) URL; pass --base-url https://host/v1", error.Message);
     }
 
     [Fact]

@@ -13,7 +13,7 @@ public static class ChatClientFactory
     /// <summary>Creates the client; the API key comes from the environment variable only.</summary>
     /// <param name="options">Provider, preset and overrides.</param>
     /// <returns>A chat client that sends to the chosen server.</returns>
-    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E130).</exception>
+    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E130), or the base URL is not absolute http(s) (E132).</exception>
     public static IChatClient Create(ChatProviderOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -41,12 +41,18 @@ public static class ChatClientFactory
                     $"{AiErrorCodes.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
         }
 
-        OpenAIClientOptions clientOptions = new() { Endpoint = new Uri(options.BaseUrl ?? baseUrl) };
+        string url = options.BaseUrl ?? baseUrl;
+        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? endpoint) || endpoint.Scheme is not ("http" or "https"))
+        {
+            throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{url}' is not an absolute http(s) URL; pass --base-url https://host/v1");
+        }
+
+        OpenAIClientOptions clientOptions = new() { Endpoint = endpoint };
         if (options.Handler is not null)
         {
             clientOptions.Transport = new HttpClientPipelineTransport(new HttpClient(options.Handler, disposeHandler: false));
         }
 
-        return new OpenAIClient(new ApiKeyCredential(key), clientOptions).GetChatClient(options.Model).AsIChatClient();
+        return new ErrorMappingChatClient(new OpenAIClient(new ApiKeyCredential(key), clientOptions).GetChatClient(options.Model).AsIChatClient(), keyVariable);
     }
 }

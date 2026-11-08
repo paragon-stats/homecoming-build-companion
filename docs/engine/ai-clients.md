@@ -26,14 +26,19 @@ Each request is one `POST` to `<base URL>/chat/completions`.
 ## API keys
 
 The key is read from the environment variable and nowhere else. It is never written to a file,
-logged, or put in an error message. If the variable is empty or unset, `Create` throws
-`InvalidOperationException` with the message
-`E130: <variable> is not set; export the API key in that variable or pass --api-key-env`.
+or logged. If the variable is empty or unset, `Create` throws `InvalidOperationException` with the
+message `E130: <variable> is not set; export the API key in that variable or pass --api-key-env`.
+
+A malformed `BaseUrl` fails with
+`E132: base URL '<value>' is not an absolute http(s) URL; pass --base-url https://host/v1`.
+
+When the provider answers with an HTTP error, such as 401 for a rejected key, the call throws
+`ChatProviderException` with `Status` set and the message
+`E131: the provider returned HTTP <status>; check the key in <variable> and the base URL`. The
+response body is left out because a server may echo the key into it, and the SDK's own exception is
+not attached for the same reason.
 
 Error codes E130 to E139 are reserved for the chat clients (`AiErrorCodes`).
-
-A rejected key (HTTP 401) surfaces as one `System.ClientModel.ClientResultException` with
-`Status` 401.
 
 ## Pointing at a local server
 
