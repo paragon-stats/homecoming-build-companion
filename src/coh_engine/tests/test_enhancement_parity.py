@@ -42,7 +42,7 @@ from coh_engine.enhancement import (
 from coh_engine.maths import MathTables, f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 SLOTTED = "shield_scrapper_slotted"
 HASTEN_2RECH = "hasten_2rech"
@@ -55,7 +55,7 @@ SCALAR_FIELDS = MIDS_TOTALS_SCALAR_FIELDS
 
 @pytest.fixture(scope="module")
 def mods() -> AttribMods:
-    return load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    return load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 
 
 @pytest.fixture(scope="module")

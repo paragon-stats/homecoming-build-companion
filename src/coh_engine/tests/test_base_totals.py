@@ -43,18 +43,18 @@ FIXTURES = Path(__file__).parent / "fixtures"
 PVE = EngineConfig(suppression=0, disable_pve=False, force_level=50, scaling_to_hit=0.75)
 PVP = EngineConfig(suppression=0, disable_pve=True, force_level=50, scaling_to_hit=0.75)
 # The eEnhance name-identity route set, loaded once for the plain _ctx helper (not a fixture).
-_ENUMS = load_enum_maps(FIXTURES / "mids" / "enums.json")
+_ENUMS = load_enum_maps(FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "enums.json")
 _ENHANCE_NAMES = _enhance_names(_ENUMS)
 
 
 @pytest.fixture(scope="module")
 def enums() -> EnumMaps:
-    return load_enum_maps(FIXTURES / "mids" / "enums.json")
+    return load_enum_maps(FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "enums.json")
 
 
 @pytest.fixture(scope="module")
 def server() -> ServerData:
-    return load_server_data(FIXTURES / "mids" / "server_data.json")
+    return load_server_data(FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "server_data.json")
 
 
 def _ctx(tiny_mods: AttribMods, tiny_classes: ArchetypeDb, config: EngineConfig = PVE) -> _MagContext:

@@ -21,6 +21,8 @@
       port's golden fixtures are baselined against. -->
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\mids-dump-common\Dumps.cs" Link="Dumps.cs" />
+    <Using Include="Mids_Reborn.clsToonX" Alias="ToonX" />
     <ProjectReference Include="$(MidsFork)\MidsReborn\MidsReborn.csproj" />
   </ItemGroup>
 </Project>

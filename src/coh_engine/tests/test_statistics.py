@@ -42,13 +42,13 @@ from coh_engine.statistics import (
 )
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 BUILD = "shield_scrapper_set_bonuses"
 
 
 @pytest.fixture(scope="module")
 def mods() -> AttribMods:
-    return load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    return load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 
 
 @pytest.fixture(scope="module")
@@ -73,7 +73,7 @@ def server() -> ServerData:
 
 @pytest.fixture(scope="module")
 def tables() -> MathTables:
-    return load_maths(FIXTURES / "Maths.mhd")
+    return load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
 
 
 @pytest.fixture(scope="module")

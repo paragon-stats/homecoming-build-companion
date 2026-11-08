@@ -2,8 +2,8 @@
 
 A build's damage is not only its attack chain. Damage auras, location patches and pets run
 beside the chain without spending cast time, while click buffs, target debuffs and AT
-inherents scale everything. Each layer is one registered function (``.claude/rules/
-check-registry.md``): a new source is a ``@damage_source``, a new modifier a
+inherents scale everything. Each layer is one registered function (
+``docs/style-guides/engine-architecture.md``): a new source is a ``@damage_source``, a new modifier a
 ``@damage_modifier``, and :func:`evaluate_damage` folds them without per-kind logic.
 
 Timeline: sources that spend cast time outside the chain (summons, patches, click buffs)

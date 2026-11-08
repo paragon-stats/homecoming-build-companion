@@ -14,7 +14,7 @@ Two distinct concerns the checkpoint keeps separate:
     port matches Mids (its reference), not live CoH.
 
 Spec: docs/engine/mids-port-spec.md § set-bonuses-ruleof5 (the no--3 resolution);
-.claude/rules/exemplar-10.md (the +5 availability rule).
+docs/style-guides/build-rules/exemplar-10.md (the +5 availability rule).
 """
 
 from collections.abc import Sequence
@@ -24,7 +24,7 @@ from coh_engine.base_totals import EngineConfig
 from coh_engine.effect import Power
 
 # Real-CoH exemplar window: powers/slots taken at level <= exemplar + 5 remain
-# available (Effect availability, .claude/rules/exemplar-10.md § Mechanics summary).
+# available (Effect availability, docs/style-guides/build-rules/exemplar-10.md § Mechanics summary).
 AVAILABILITY_OFFSET = 5
 
 

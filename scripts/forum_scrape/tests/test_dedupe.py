@@ -13,7 +13,7 @@ from scripts.forum_scrape.dedupe import (
 )
 
 # The engine's tracked Mids reference dump, so these tests run without a local tools/mids-dump/out.
-DUMP = Path("src/coh_engine/tests/fixtures/mids")
+DUMP = Path("tests/fixtures/mids")
 
 BUILD = {
     "BuiltWith": {"App": "Mids Reborn", "Version": "3.8.6.0"},

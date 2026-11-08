@@ -1,0 +1,15 @@
+# The literal ports of MidsReborn's arithmetic keep the Python port's shape: operation order, branch order and
+# float32 narrowing points are the fidelity guarantee, so the style analyzers' simplification suggestions are off
+# here. Correctness analyzers stay on.
+[{Totals/**.cs,Enhancement/AspectRouting*.cs}]
+# Branch and switch rewrites (conditional expressions, switch expressions, pattern merges).
+dotnet_diagnostic.IDE0010.severity = none
+dotnet_diagnostic.IDE0045.severity = none
+dotnet_diagnostic.IDE0046.severity = none
+dotnet_diagnostic.IDE0066.severity = none
+dotnet_diagnostic.IDE0072.severity = none
+dotnet_diagnostic.IDE0075.severity = none
+dotnet_diagnostic.IDE0078.severity = none
+dotnet_diagnostic.IDE0083.severity = none
+# A phase stays one function where the Python's is one, however long.
+dotnet_diagnostic.MA0051.severity = none

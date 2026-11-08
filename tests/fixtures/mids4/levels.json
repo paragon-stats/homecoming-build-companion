@@ -1,0 +1,541 @@
+{
+  "Count": 50,
+  "Convention": "levelIndex is 0-based; gameLevel = levelIndex \u002B 1",
+  "SlotGrantLevels": [
+    {
+      "LevelIndex": 2,
+      "GameLevel": 3,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 4,
+      "GameLevel": 5,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 6,
+      "GameLevel": 7,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 8,
+      "GameLevel": 9,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 10,
+      "GameLevel": 11,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 12,
+      "GameLevel": 13,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 14,
+      "GameLevel": 15,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 16,
+      "GameLevel": 17,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 18,
+      "GameLevel": 19,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 20,
+      "GameLevel": 21,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 22,
+      "GameLevel": 23,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 24,
+      "GameLevel": 25,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 26,
+      "GameLevel": 27,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 28,
+      "GameLevel": 29,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 30,
+      "GameLevel": 31,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 32,
+      "GameLevel": 33,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 33,
+      "GameLevel": 34,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 35,
+      "GameLevel": 36,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 36,
+      "GameLevel": 37,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 38,
+      "GameLevel": 39,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 39,
+      "GameLevel": 40,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 41,
+      "GameLevel": 42,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 42,
+      "GameLevel": 43,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 44,
+      "GameLevel": 45,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 45,
+      "GameLevel": 46,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 47,
+      "GameLevel": 48,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 49,
+      "GameLevel": 50,
+      "Slots": 3
+    }
+  ],
+  "PowerPickLevels": [
+    {
+      "LevelIndex": 0,
+      "GameLevel": 1
+    },
+    {
+      "LevelIndex": 0,
+      "GameLevel": 1
+    },
+    {
+      "LevelIndex": 1,
+      "GameLevel": 2
+    },
+    {
+      "LevelIndex": 3,
+      "GameLevel": 4
+    },
+    {
+      "LevelIndex": 5,
+      "GameLevel": 6
+    },
+    {
+      "LevelIndex": 7,
+      "GameLevel": 8
+    },
+    {
+      "LevelIndex": 9,
+      "GameLevel": 10
+    },
+    {
+      "LevelIndex": 11,
+      "GameLevel": 12
+    },
+    {
+      "LevelIndex": 13,
+      "GameLevel": 14
+    },
+    {
+      "LevelIndex": 15,
+      "GameLevel": 16
+    },
+    {
+      "LevelIndex": 17,
+      "GameLevel": 18
+    },
+    {
+      "LevelIndex": 19,
+      "GameLevel": 20
+    },
+    {
+      "LevelIndex": 21,
+      "GameLevel": 22
+    },
+    {
+      "LevelIndex": 23,
+      "GameLevel": 24
+    },
+    {
+      "LevelIndex": 25,
+      "GameLevel": 26
+    },
+    {
+      "LevelIndex": 27,
+      "GameLevel": 28
+    },
+    {
+      "LevelIndex": 29,
+      "GameLevel": 30
+    },
+    {
+      "LevelIndex": 31,
+      "GameLevel": 32
+    },
+    {
+      "LevelIndex": 34,
+      "GameLevel": 35
+    },
+    {
+      "LevelIndex": 37,
+      "GameLevel": 38
+    },
+    {
+      "LevelIndex": 40,
+      "GameLevel": 41
+    },
+    {
+      "LevelIndex": 43,
+      "GameLevel": 44
+    },
+    {
+      "LevelIndex": 46,
+      "GameLevel": 47
+    },
+    {
+      "LevelIndex": 48,
+      "GameLevel": 49
+    }
+  ],
+  "PerLevel": [
+    {
+      "LevelIndex": 0,
+      "GameLevel": 1,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 1,
+      "GameLevel": 2,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 2,
+      "GameLevel": 3,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 3,
+      "GameLevel": 4,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 4,
+      "GameLevel": 5,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 5,
+      "GameLevel": 6,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 6,
+      "GameLevel": 7,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 7,
+      "GameLevel": 8,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 8,
+      "GameLevel": 9,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 9,
+      "GameLevel": 10,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 10,
+      "GameLevel": 11,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 11,
+      "GameLevel": 12,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 12,
+      "GameLevel": 13,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 13,
+      "GameLevel": 14,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 14,
+      "GameLevel": 15,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 15,
+      "GameLevel": 16,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 16,
+      "GameLevel": 17,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 17,
+      "GameLevel": 18,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 18,
+      "GameLevel": 19,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 19,
+      "GameLevel": 20,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 20,
+      "GameLevel": 21,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 21,
+      "GameLevel": 22,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 22,
+      "GameLevel": 23,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 23,
+      "GameLevel": 24,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 24,
+      "GameLevel": 25,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 25,
+      "GameLevel": 26,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 26,
+      "GameLevel": 27,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 27,
+      "GameLevel": 28,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 28,
+      "GameLevel": 29,
+      "Powers": 0,
+      "Slots": 2
+    },
+    {
+      "LevelIndex": 29,
+      "GameLevel": 30,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 30,
+      "GameLevel": 31,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 31,
+      "GameLevel": 32,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 32,
+      "GameLevel": 33,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 33,
+      "GameLevel": 34,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 34,
+      "GameLevel": 35,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 35,
+      "GameLevel": 36,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 36,
+      "GameLevel": 37,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 37,
+      "GameLevel": 38,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 38,
+      "GameLevel": 39,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 39,
+      "GameLevel": 40,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 40,
+      "GameLevel": 41,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 41,
+      "GameLevel": 42,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 42,
+      "GameLevel": 43,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 43,
+      "GameLevel": 44,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 44,
+      "GameLevel": 45,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 45,
+      "GameLevel": 46,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 46,
+      "GameLevel": 47,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 47,
+      "GameLevel": 48,
+      "Powers": 0,
+      "Slots": 3
+    },
+    {
+      "LevelIndex": 48,
+      "GameLevel": 49,
+      "Powers": 1,
+      "Slots": 0
+    },
+    {
+      "LevelIndex": 49,
+      "GameLevel": 50,
+      "Powers": 0,
+      "Slots": 3
+    }
+  ]
+}

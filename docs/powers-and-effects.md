@@ -1,6 +1,7 @@
 # Powers and effects
 
-A **Power** is the unit of "thing your character can do." Every attack, toggle, click buff, passive, summon, and inherent is a Power record. Every Power has zero or more **Effects** describing what it does to the target (or self).
+A **Power** is the unit of "thing your character can do." Every attack, toggle, click buff, passive, summon, and inherent is a Power record.
+Every Power has zero or more **Effects** describing what it does to the target (or self).
 
 Authoritative data: [data/canonical/powers.json](../data/canonical/powers.json) (game-truth) and [data/mids/database/Powers.json](../data/mids/database/Powers.json) (Mids interpretation).
 
@@ -32,7 +33,12 @@ The fields below are on every Power. Field names use MidsReborn's spelling — c
 - `Range` — for ranged attacks, max distance in feet.
 - `EffectArea` — `SingleTarget` / `Cone` / `Sphere` / `Location` / `Touch` / `Self`.
 - `Radius` — for AoEs, the radius in feet.
-- `MaxTargets` — cap on the number of targets an AoE affects. **Authoritative source for Homecoming-current values is the patch notes**, specifically [Issue 26 Page 4](https://homecoming.wiki/wiki/Issue_26_Page_4) which raised most Tanker melee AoE caps to 16 and reset others (e.g. Cleave) to 10. The canonical zip (`data/canonical/`) currently lags I26P4 — its `max_targets_hit` field reads pre-patch values for Tanker AoEs. See [data/diff/SUMMARY.md](../data/diff/SUMMARY.md) for the systemic drift. For Brute / Scrapper / Stalker / Sentinel AoEs, the canonical zip is current.
+- `MaxTargets` — cap on the number of targets an AoE affects.
+  **Authoritative source for Homecoming-current values is the patch notes**.
+  Specifically [Issue 26 Page 4](https://homecoming.wiki/wiki/Issue_26_Page_4) which raised most Tanker melee AoE caps to 16 and reset others (e.g. Cleave) to 10.
+  The canonical zip (`data/canonical/`) currently lags I26P4 — its `max_targets_hit` field reads pre-patch values for Tanker AoEs.
+  See [data/diff/SUMMARY.md](../data/diff/SUMMARY.md) for the systemic drift.
+  For Brute / Scrapper / Stalker / Sentinel AoEs, the canonical zip is current.
 - `Target` — `Self` / `Foe` / `Ally` / `Teammate` / `DeadTeammate` / `Caster` / etc.
 - `TargetLoS` — does the power require line of sight?
 

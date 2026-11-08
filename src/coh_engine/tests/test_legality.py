@@ -31,7 +31,7 @@ from coh_engine.legality import (
 from coh_engine.set_bonuses import SetBonusDb, load_set_bonus_db
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 
 @pytest.fixture(scope="module")
