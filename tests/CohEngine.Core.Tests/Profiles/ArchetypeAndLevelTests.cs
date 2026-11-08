@@ -62,6 +62,12 @@ public sealed class ArchetypeAndLevelTests
     }
 
     [Fact]
+    public void The_dump_carries_every_class_record_playable_or_not()
+    {
+        Assert.Equal(61, Archetypes.Classes.Count);
+    }
+
+    [Fact]
     public void The_schedule_grants_67_slots()
     {
         Assert.Equal(67, Levels.TotalSlotsGranted);

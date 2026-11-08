@@ -4,7 +4,7 @@ namespace CohEngine.TestSupport;
 
 /// <summary>
 /// The Python engine's captured CLI output under <c>tests/fixtures/cli</c>: one text file per command, build and format,
-/// and the exit code beside it. Line endings are LF in the files and are made LF again on the C# side before comparing.
+/// and the exit code beside it. The files are LF with no BOM, and the C# output is written with LF, so the two compare byte for byte.
 /// </summary>
 public sealed class CliCapture
 {
@@ -27,10 +27,10 @@ public sealed class CliCapture
     /// <returns>The stdout with LF line endings and the exit code.</returns>
     public static (string Output, int ExitCode) Run(params string[] args)
     {
-        using StringWriter output = new();
+        using StringWriter output = new() { NewLine = "\n" };
         using StringWriter error = new();
         int code = CliRunner.Run(args, output, error);
-        return (output.ToString().ReplaceLineEndings("\n"), code);
+        return (output.ToString(), code);
     }
 
     /// <summary>Lists the builds a command has a capture for, in ordinal order.</summary>
@@ -48,7 +48,7 @@ public sealed class CliCapture
     /// <returns>The captured stdout.</returns>
     public string Output(string command, string name, string extension)
     {
-        return File.ReadAllText(Path.Combine(directory, command, name + "." + extension)).ReplaceLineEndings("\n");
+        return System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Path.Combine(directory, command, name + "." + extension)));
     }
 
     /// <summary>Reads the captured exit code.</summary>
