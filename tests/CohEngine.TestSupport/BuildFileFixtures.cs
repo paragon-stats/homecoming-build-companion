@@ -45,6 +45,21 @@ public static class BuildFileFixtures
         return Files(Samples, "*.mbd");
     }
 
+    /// <summary>Lists every sample and fixture <c>.mbd</c> build.</summary>
+    /// <returns>The full paths.</returns>
+    public static IReadOnlyList<string> AllMbd()
+    {
+        return [.. SampleMbd(), .. FixtureMbd()];
+    }
+
+    /// <summary>Gets the path of the Python writer's output for a build file.</summary>
+    /// <param name="path">The build file.</param>
+    /// <returns>The reference file under <c>roundtrip</c>.</returns>
+    public static string RoundTripPath(string path)
+    {
+        return Path.Combine(Root, "roundtrip", Path.GetFileName(path));
+    }
+
     /// <summary>Lists the fixture <c>.mbd</c> builds the writer tests keep.</summary>
     /// <returns>The full paths.</returns>
     public static IReadOnlyList<string> FixtureMbd()
