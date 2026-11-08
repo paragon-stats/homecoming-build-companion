@@ -1,0 +1,2193 @@
+[
+  {
+    "FullName": "Incarnate.Alpha",
+    "DisplayName": "Alpha",
+    "PowerCount": 72,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|IgnoreED|granted",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Absorb|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Absorb|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Accuracy|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Accuracy|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|granted",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|IgnoreED|granted",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|EnduranceDiscount|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|EnduranceDiscount|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|JumpHeight|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|JumpHeight|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|granted",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Placate",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|IgnoreED|granted",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Placate",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|RechargeTime|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|RechargeTime|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Recovery|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Recovery|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Regeneration|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Regeneration|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedJumping|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedJumping|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|IgnoreED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "LevelShift|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SetMode|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Alpha_Silent",
+    "DisplayName": "Alpha_Silent",
+    "PowerCount": 100,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|IgnoreED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Absorb|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Absorb|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Accuracy|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Accuracy|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|IgnoreED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|EnduranceDiscount|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|EnduranceDiscount|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|JumpHeight|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|JumpHeight|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Knockback",
+          "Knockup",
+          "Melee",
+          "Placate",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|IgnoreED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Knockback",
+          "Knockup",
+          "Melee",
+          "Placate",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|RechargeTime|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|RechargeTime|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Recovery|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Recovery|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Regeneration|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Regeneration|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedJumping|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedJumping|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "InterruptTime|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "InterruptTime|None|Str|IgnoreED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Destiny",
+    "DisplayName": "Destiny",
+    "PowerCount": 45,
+    "DeliveredAspects": [
+      {
+        "Aspect": "CombatPhase|None|Cur|ED|direct",
+        "Types": [
+          "CombatPhase",
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Absorb|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Heal|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Ranged",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "EntCreate|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "HitPoints|None|Max|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "JumpHeight|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Intangible",
+          "Knockback",
+          "Knockup",
+          "Ranged",
+          "Sleep",
+          "Stunned",
+          "Teleport",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "MezProtect|None|Res|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Placate",
+          "Ranged",
+          "Repel",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "PerceptionRadius|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Regeneration|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Accuracy|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Defense|Res|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "ResEffect|Endurance|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|PerceptionRadius|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|RechargeTime|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Recovery|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Regeneration|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|SpeedFlying|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|SpeedRunning|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|ToHit|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Resistance|None|Res|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedFlying|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "StealthRadius|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "StealthRadiusPlayer|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Translucency|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Data",
+    "DisplayName": "Data",
+    "PowerCount": 9,
+    "DeliveredAspects": [
+      {
+        "Aspect": "EntCreate|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Defiler_Pets",
+    "DisplayName": "Defiler_Pets",
+    "PowerCount": 1,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Fate",
+    "DisplayName": "Fate",
+    "PowerCount": 9,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Heal|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Ranged",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "EntCreate|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "HitPoints|None|Max|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Knockback",
+          "Knockup",
+          "Ranged",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "MezProtect|None|Res|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Placate",
+          "Ranged",
+          "Repel",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Accuracy|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Defense|Res|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "ResEffect|Endurance|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|PerceptionRadius|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|RechargeTime|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Recovery|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|Regeneration|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|SpeedFlying|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|SpeedRunning|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "ResEffect|ToHit|Res|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Resistance|None|Res|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Genesis_Silent",
+    "DisplayName": "Genesis",
+    "PowerCount": 20,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Max|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Placate",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "HitPoints|None|Max|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Hybrid_Silent",
+    "DisplayName": "Hybrid",
+    "PowerCount": 63,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Damage|None|Abs|ED|direct",
+        "Types": [
+          "Energy",
+          "Lethal",
+          "Psionic",
+          "Smashing"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "EnduranceDiscount|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GlobalChanceMod|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "MezResist|None|Res|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Regeneration|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SetMode|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Interface_Silent",
+    "DisplayName": "Interface",
+    "PowerCount": 18,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Damage|None|Abs|ED|direct",
+        "Types": [
+          "Energy",
+          "Fire",
+          "Negative",
+          "Psionic",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Defense|None|Str|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Endurance|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "HitPoints|None|Max|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "JumpHeight|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Confused",
+          "Immobilized",
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Str|ED|direct",
+        "Types": [
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Knockback",
+          "Knockup",
+          "Melee",
+          "Repel",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Regeneration|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Resistance|None|Res|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "SpeedFlying|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SpeedFlying|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SpeedJumping|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "ToHit|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "ToHit|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Judgement",
+    "DisplayName": "Judgement",
+    "PowerCount": 54,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Damage|None|Abs|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Smashing"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Endurance|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "EntCreate|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "JumpHeight|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Held",
+          "Knockback",
+          "Knockup",
+          "Ranged",
+          "Stunned"
+        ]
+      },
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SetMode|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedFlying|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedJumping|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Mind",
+    "DisplayName": "Mind",
+    "PowerCount": 1,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Omega",
+    "DisplayName": "Omega",
+    "PowerCount": 1,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Socket",
+    "DisplayName": "Socket",
+    "PowerCount": 10,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Damage|None|Abs|ED|direct",
+        "Types": [
+          "Energy",
+          "Fire",
+          "Negative",
+          "Psionic",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "HitPoints|None|Max|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Confused",
+          "Immobilized",
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Resistance|None|Res|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Stance",
+    "DisplayName": "Stance",
+    "PowerCount": 1,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Verdict",
+    "DisplayName": "Verdict",
+    "PowerCount": 9,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Damage|None|Abs|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Negative",
+          "Smashing"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": []
+      },
+      {
+        "Aspect": "Endurance|None|Abs|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Endurance|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "EntCreate|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "JumpHeight|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Held",
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "RechargeTime|None|Str|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Recovery|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SetMode|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedFlying|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedJumping|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "SpeedRunning|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Vitae",
+    "DisplayName": "Vitae",
+    "PowerCount": 1,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Null|None|Cur|ED|direct",
+        "Types": [
+          "Ranged"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Genesis",
+    "DisplayName": "Genesis",
+    "PowerCount": 36,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Defense|Str|ED|granted",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Endurance|Str|ED|granted",
+        "Types": [
+          "Melee",
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Heal|Str|ED|granted",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|HitPoints|Str|ED|granted",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Mez|Str|ED|granted",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Placate",
+          "Ranged",
+          "Sleep",
+          "Stunned",
+          "Taunt",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|Range|Str|ED|granted",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedFlying|Str|ED|granted",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|SpeedRunning|Str|ED|granted",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "Enhancement|ToHit|Str|ED|granted",
+        "Types": [
+          "Ranged"
+        ]
+      },
+      {
+        "Aspect": "GlobalChanceMod|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GlobalChanceMod|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Hybrid",
+    "DisplayName": "Hybrid",
+    "PowerCount": 36,
+    "DeliveredAspects": [
+      {
+        "Aspect": "Accuracy|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "Defense|None|Cur|ED|direct",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "GlobalChanceMod|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Heal|None|Str|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Abs|ED|direct",
+        "Types": [
+          "Melee",
+          "Taunt"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Cur|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Mez|None|Str|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "MezProtect|None|Res|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "MezResist|None|Res|ED|direct",
+        "Types": [
+          "Afraid",
+          "Confused",
+          "Held",
+          "Immobilized",
+          "Melee",
+          "Sleep",
+          "Stunned",
+          "Terrorized"
+        ]
+      },
+      {
+        "Aspect": "Regeneration|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "Resistance|None|Res|ED|direct",
+        "Types": [
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Negative",
+          "Psionic",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Incarnate.Interface",
+    "DisplayName": "Interface",
+    "PowerCount": 72,
+    "DeliveredAspects": [
+      {
+        "Aspect": "DamageBuff|None|Str|ED|granted",
+        "Types": [
+          "AoE",
+          "Cold",
+          "Energy",
+          "Fire",
+          "Lethal",
+          "Melee",
+          "Negative",
+          "Psionic",
+          "Ranged",
+          "Smashing",
+          "Toxic"
+        ]
+      },
+      {
+        "Aspect": "GlobalChanceMod|None|Cur|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "GrantPower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      },
+      {
+        "Aspect": "RevokePower|None|Abs|ED|direct",
+        "Types": [
+          "Melee"
+        ]
+      }
+    ]
+  }
+]

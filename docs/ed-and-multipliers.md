@@ -1,8 +1,11 @@
 # Enhancement Diversification (ED) and Multipliers
 
-Enhancement Diversification (ED) is the diminishing-returns rule that prevents stacking same-aspect enhancements indefinitely. Without ED, slotting six damage IOs into one attack would multiply damage by ~7.5x; with ED, the practical cap is ~3.95x.
+Enhancement Diversification (ED) is the diminishing-returns rule that prevents stacking same-aspect enhancements indefinitely.
+Without ED, slotting six damage IOs into one attack would multiply damage by ~7.5x; with ED, the practical cap is ~3.95x.
 
-Authoritative data: [data/mids/derived/effect_tables.json](../data/mids/derived/effect_tables.json) — the `MultED`, `MultTO`, `MultDO`, `MultSO`, `MultIO` tables transcribed from `Database` jagged arrays. Reference code: `MidsReborn/Core/I9Slot.cs::GetScheduleMult()` and `MidsReborn/Core/Enhancement.cs::ApplyED()`.
+Authoritative data: [data/mids/derived/effect_tables.json](../data/mids/derived/effect_tables.json).
+The `MultED`, `MultTO`, `MultDO`, `MultSO`, `MultIO` tables transcribed from `Database` jagged arrays.
+Reference code: `MidsReborn/Core/I9Slot.cs::GetScheduleMult()` and `MidsReborn/Core/Enhancement.cs::ApplyED()`.
 
 ---
 
@@ -10,7 +13,7 @@ Authoritative data: [data/mids/derived/effect_tables.json](../data/mids/derived/
 
 For a single slot (one enhancement) the contribution is:
 
-```
+```text
 contribution = base_multiplier × schedule × relative_level_factor × superior_factor
 ```
 
@@ -55,9 +58,11 @@ ED applies to the _sum_ of same-aspect enhancements within a single power, compu
 | 100% – 200%  | 15% factor                | Hard diminishing returns.           |
 | 200%+        | 0%                        | Effectively no further increase.    |
 
-Example: six damage IOs each at 42.4% = 254.4% pre-ED → ~95% post-ED. Three damage IOs = 127% pre-ED → ~95% post-ED. **The third damage IO gets you most of the benefit; the fourth/fifth/sixth provide little additional damage.**
+Example: six damage IOs each at 42.4% = 254.4% pre-ED → ~95% post-ED. Three damage IOs = 127% pre-ED → ~95% post-ED.
+**The third damage IO gets you most of the benefit; the fourth/fifth/sixth provide little additional damage.**
 
-This is why **Frankenslotting** works: instead of six damage IOs, slot 3x Damage + 2x Accuracy + 1x EndRdx — each aspect stays under the ED knee, and you get utility from the other aspects you couldn't fit otherwise.
+This is why **Frankenslotting** works: instead of six damage IOs, slot 3x Damage + 2x Accuracy + 1x EndRdx.
+Each aspect stays under the ED knee, and you get utility from the other aspects you couldn't fit otherwise.
 
 The exact ED math lives in `Enhancement.ApplyED()`. Reproduce it from there if you need precise numbers; the table above is the standard community simplification.
 
@@ -65,7 +70,8 @@ The exact ED math lives in `Enhancement.ApplyED()`. Reproduce it from there if y
 
 ## What ED applies to
 
-ED is **per-aspect, per-power**. Each enhancement aspect (Damage, Accuracy, Defense, Resistance, Recharge, EndRdx, Heal, Range, Run Speed, etc.) is computed independently. Stacking 3 Damage IOs and 3 Accuracy IOs in the same power → both Damage and Accuracy are at ~95% post-ED, completely independent.
+ED is **per-aspect, per-power**. Each enhancement aspect (Damage, Accuracy, Defense, Resistance, Recharge, EndRdx, Heal, Range, Run Speed, etc.) is computed independently.
+Stacking 3 Damage IOs and 3 Accuracy IOs in the same power → both Damage and Accuracy are at ~95% post-ED, completely independent.
 
 ED does **NOT** apply to:
 
@@ -75,7 +81,8 @@ ED does **NOT** apply to:
 - **Inherent power buffs** — Containment, Fury, Defiance, Scourge, Vigilance, etc.
 - **Across-power buffs** — leadership toggles, Power Boost, Adrenaline Boost, etc.
 
-Alpha incarnate slots **partially bypass** ED on the chosen aspect: the +33% from Cardiac Core Paragon's End Reduction goes through ED-like checks but on a separate, more generous curve. Same for Spiritual / Musculature / etc.
+Alpha incarnate slots **partially bypass** ED on the chosen aspect: the +33% from Cardiac Core Paragon's End Reduction goes through ED-like checks but on a separate, more generous curve.
+Same for Spiritual / Musculature / etc.
 
 ---
 
@@ -95,7 +102,8 @@ For a defense toggle:
 - **5x LotG (set)** → defense + the +7.5% Recharge unique × however many you slot (up to 5 in build).
 - **3x Defense IO + 3x EndRdx IO (Frankenslotted)** → no set bonus, but stronger pure defense and end reduction.
 
-LotG +Recharge is so valuable that **most builds slot it as a 1-slot mule** in inherently-good defense toggles (Combat Jumping, Hover, Maneuvers, Stealth, etc.) — you get the +7.5% global recharge per copy without committing to the full set.
+LotG +Recharge is so valuable that **most builds slot it as a 1-slot mule** in inherently-good defense toggles (Combat Jumping, Hover, Maneuvers, Stealth, etc.).
+You get the +7.5% global recharge per copy without committing to the full set.
 
 ---
 
@@ -115,4 +123,5 @@ The structure (transcribed from `Database`):
 
 Each row indexes by schedule (0 = A, 1 = B, 2 = C, 3 = D). The values are the per-aspect contribution at full strength.
 
-`I9Slot.GetScheduleMult()` selects the right row based on the slotted enhancement's schedule and grade, then applies RelativeLevel and Superior modifiers. The result feeds into the `Enhancement.ApplyED()` piecewise function above.
+`I9Slot.GetScheduleMult()` selects the right row based on the slotted enhancement's schedule and grade, then applies RelativeLevel and Superior modifiers.
+The result feeds into the `Enhancement.ApplyED()` piecewise function above.

@@ -12,7 +12,7 @@ median 100 words with none.
 
 Usage::
 
-    python -m scripts.forum_scrape.guides --forum https://forums.homecomingservers.com/forum/44-guides/ --out community
+    python -m scripts.forum_scrape.guides --forum https://forums.homecomingservers.com/forum/44-guides/ --out <source root>/community
 
 Re-runs fetch only threads with activity newer than the ledger's; ``--force`` refetches all.
 """
@@ -41,6 +41,7 @@ from scripts.forum_scrape.scrape import (
     strip_html,
     walk_listing,
 )
+from scripts.forum_scrape.source_root import add_source_root_argument, source_root
 
 GUIDE_MIN_WORDS = 500
 GUIDE_MIN_STRUCTURE = 6
@@ -488,7 +489,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--pages", type=int, default=None, metavar="N", help="listing pages to walk per forum (default all)"
     )
-    parser.add_argument("--out", type=Path, default=Path("community"), help="capture root (default community)")
+    add_source_root_argument(parser)
+    parser.add_argument("--out", type=Path, default=None, help="capture root (default <source root>/community)")
     parser.add_argument(
         "--canonical", type=Path, default=Path("data/canonical"), help="canonical data, for powerset names"
     )
@@ -505,6 +507,7 @@ def main(argv: list[str] | None = None) -> int:
         "--tag", action="append", default=[], metavar="TAG", help="a tag added after the folder tag (repeatable)"
     )
     args = parser.parse_args(argv)
+    args.out = args.out or source_root(args.source_root) / "community"
     powersets = powersets_from_canonical(args.canonical)
     if args.reclassify:
         return _reclassify(args.out, powersets)
