@@ -1,0 +1,55 @@
+using CohEngine.Core.Chain;
+
+namespace CohEngine.Core.Tests.Chain;
+
+// Expected text is json.dumps(value, indent=2) from CPython 3.14.
+public sealed class PyJsonTests
+{
+    public static TheoryData<object?, string> Values => new()
+    {
+        { null, "null" },
+        { true, "true" },
+        { false, "false" },
+        { 7L, "7" },
+        { 1.0, "1.0" },
+        { 0.1, "0.1" },
+        { double.PositiveInfinity, "Infinity" },
+        { double.NegativeInfinity, "-Infinity" },
+        { double.NaN, "NaN" },
+        { "a\"b\\c\nd\re\tf\bg\fh", "\"a\\\"b\\\\c\\nd\\re\\tf\\bg\\fh\"" },
+        { "café \u0001 \u007f", "\"caf\\u00e9 \\u0001 \\u007f\"" },
+        { new PyObject(), "{}" },
+        { new List<object?>(), "[]" },
+        { new List<object?> { 1L, "x" }, "[\n  1,\n  \"x\"\n]" },
+        { new PyObject { { "a", 1L }, { "b", new List<object?> { new PyObject { { "c", null } } } } }, "{\n  \"a\": 1,\n  \"b\": [\n    {\n      \"c\": null\n    }\n  ]\n}" },
+    };
+
+    [Theory]
+    [MemberData(nameof(Values))]
+    public void Dumps_matches_python_json_with_indent_2(object? value, string expected)
+    {
+        Assert.Equal(expected, PyJson.Dumps(value));
+    }
+
+    [Fact]
+    public void A_diagnostic_renders_its_required_keys_only_when_nothing_else_is_set()
+    {
+        ChainDiagnostic diagnostic = new("P-X-001", "info", "message", "build");
+
+        Assert.Equal("{\"rule_id\":\"P-X-001\",\"severity\":\"info\",\"path\":\"build\",\"line\":1,\"column\":1,\"message\":\"message\"}", PyJson.Dumps(diagnostic.ToJson()).Replace("\n", string.Empty, StringComparison.Ordinal).Replace("  ", string.Empty, StringComparison.Ordinal).Replace(": ", ":", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void A_diagnostic_adds_fix_expected_and_actual_when_set()
+    {
+        ChainDiagnostic diagnostic = new("P-X-001", "warning", "message", "build", "do this", ">= 1", "0");
+
+        Assert.Equal("rule_id,severity,path,line,column,message,fix,expected,actual", string.Join(",", diagnostic.ToJson().Select(pair => pair.Key)));
+    }
+
+    [Fact]
+    public void A_diagnostic_text_line_is_path_line_column_severity_rule_message()
+    {
+        Assert.Equal("build:1:1: warning: P-X-001: message", new ChainDiagnostic("P-X-001", "warning", "message", "build").FormatText());
+    }
+}
