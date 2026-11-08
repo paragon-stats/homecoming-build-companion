@@ -11,6 +11,7 @@ This page covers its layout, the single-precision contract, how fixtures are fou
 | `src/CohEngine.Core/Maths/` | `F32` (single-precision quantization) and `MathTables` (the Maths.mhd tables). |
 | `src/CohEngine.Core/Data/` | One record per Python dataclass, one source-generated `JsonSerializerContext` per dump family, the family loaders (`EffectData`, `EnhancementData`, `AssemblyData`, `ArchetypeData`, `LevelData`, `SetBonusData`, `TotalsData`, `IncarnateData`). |
 | `src/CohEngine.Core/Registry/` | `RuleRegistry`: the legality, hard-limit, enhancement-aspect and metric registries as explicit lists. |
+| `src/CohEngine.Core/Expressions/`, `Assembly/`, `Enhancement/`, `SetBonuses/`, `Totals/` | The numeric core; see [Numeric core](#numeric-core). |
 | `src/CohEngine.Core/CliRunner.cs` | The whole CLI. `src/CohEngine.Cli/Program.cs` is a one-line shim. |
 | `tests/CohEngine.TestSupport/` | `FixtureStore` and `BuildFixture`. They are test-only, so they never ship in the CLI. |
 | `tests/CohEngine.Core.Tests/` | `Maths/`, `Data/` (`[Trait("Category", "Fixtures")]`) and `Parity/` (`[Trait("Category", "Parity")]`). |
@@ -59,7 +60,7 @@ A parity class follows `tests/CohEngine.Core.Tests/Parity/ParityScaffoldTests.cs
 Engine output must therefore already be single precision, and a missing final quantization fails the test.
 `0.0` equals `-0.0`, and NaN equals nothing.
 A failure reports the field path and both values, as does a count mismatch (`ParityAssert.Count`) and a dumped value past the single range.
-Today the scaffold's actual side is the dump quantized by a `StandIn` helper, and P2 replaces each stand-in with engine output.
+The scaffold compares engine output on every build. A per-power value the engine does not compute yet (accuracy, range, damage, effect magnitudes) keeps the dumped value through its `StandIn` helper, and a field the Python engine also misses is listed in its `KnownGaps` and asserted to still differ.
 
 ## The literal-port boundary
 
@@ -67,6 +68,37 @@ Totals/ and Enhancement/AspectRouting are literal ports of MidsReborn, with no "
 Ported code carries no comments that cite the MidsReborn source; the parity tests prove fidelity.
 Everything else follows the registry pattern in `.claude/rules/check-registry.md`.
 A new rule is a new entry in an explicit list, and nothing is discovered by reflection.
+
+## Numeric core
+
+The numeric core is laid out on the phases of Mids 4.0's `PlannerPowerPipeline` and `ActorTotalsCalculator`.
+Its arithmetic is the Python's, which is Mids 3.x, because the 3.x reference dumps are the only goldens.
+
+| Python | C# | Mids 4.0 phase |
+| --- | --- | --- |
+| `expressions.py` | `Expressions/Evaluator`, `Parser`, `Conditionals`, `ExpressionContext` | `Expressions.Parse`, `Effect.ValidateConditional`, `Effect.CanInclude` |
+| `assembly.py` per power | `Assembly/PowerAssembler`, `PetAbsorption`, `Absorption`, `Chance` | `ExecuteAssemblyPhase`, `GBPA_SubPass0_AssemblePowerEntry` |
+| `assembly.py` cross-power | `Assembly/CrossPowerPass` | `GBPA_ApplyCanonicalCrossPowerGlobalBoostEffects` |
+| `enhancement.py`, `ed.py`, `enh_pipeline.py` | `Enhancement/SlotValue`, `Ed`, `Pipeline` | `GBPA_Pass1_EnhancePreED`, `GBPA_Pass2_ApplyED` |
+| `pass3.py`, `enh_aspects.py` | `Enhancement/AspectRouting`, `GlobalEnhance` | `GBPA_Pass3_EnhancePostED`, `GBPA_Pass4_Add` |
+| `set_bonuses.py` | `SetBonuses/Accumulator`, `RuleOfFive`, `ExemplarGate`, `SetSlotting` | `Build.GenerateSetBonusData` |
+| `incarnate.py` | `Totals/Incarnate/IncarnateResolver` | `GBPA_ApplyIncarnateEnhancements` |
+| `effect.effect_mag` | `Totals/EffectMagnitude` | `Effect.Mag`, `DatabaseAPI.GetModifier` |
+| `base_totals._apply_enhance_effects` | `Totals/Phases/EnhancementBucketPhase` | `ExecuteEnhancementBucketPhase` |
+| `base_totals._compute_enh_multipliers` | `Totals/Phases/PerPowerEnhancementMathPhase` | `ExecutePerPowerEnhancementMathPhase` |
+| `base_totals._apply_buff_effects` | `Totals/Phases/SelfBuffBucketPhase` | `ExecuteSelfBuffBucketPhase` |
+| `base_totals._gbd_*` | `Totals/ActorTotalsCalculator` | `ActorTotalsCalculator.Calculate` |
+| `base_totals.compute_base_totals` | `Totals/Pipeline.ComputeBaseTotals` | `Toon.GenerateBuffedPowerArray` |
+| `statistics.compute_power_stats` | `Totals/PowerStatistics` | per-power buffed scalars |
+
+The quantization rule: every place the Python calls `f32(...)`, the C# calls `F32.Round(...)`, and nowhere else.
+Accumulations keep the Python's order, so a sum is a loop, never a LINQ `Sum`, which may vectorize and reorder.
+`src/CohEngine.Core/.editorconfig` turns off the simplification suggestions and the method-length rule for `Totals/` and `Enhancement/AspectRouting*`, and leaves the correctness analyzers on.
+
+One divergence is ported as it stands.
+An effect carrying `ActiveConditionals` counts only when its conditions hold, and an effect with a `SpecialCase` never counts, because the `CanInclude` character-state switch is unported.
+Mids keeps many default-true special cases, so a build where one feeds a read bucket under-reports until #31 lands.
+`BaseTotalsParityTests.Excluded_conditionals_do_not_affect_totals` forces every such effect back in through `Pipeline.BuildOptions.CanInclude` and checks the committed builds' totals do not move.
 
 ## Error codes
 
