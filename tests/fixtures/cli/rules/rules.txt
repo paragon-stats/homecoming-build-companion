@@ -1,0 +1,32 @@
+legality rules (a new dimension is a new @legality_rule):
+  _rule_placement
+  _rule_global_unique
+  _rule_mutex
+  _rule_lone_set_piece
+  _rule_per_power_set_dup
+hard-limit rules (a new limit is a new @hard_limit_rule):
+  _rule_total_added_slots
+  _rule_per_power_added_slots
+  _rule_slot_after_power
+  _rule_slot_on_grant_level
+  _rule_slot_budget_over_time
+  _rule_power_pick_count
+  _rule_first_available_level
+  _rule_pick_at_grant_level
+  _rule_pool_count
+  _rule_prerequisites
+  _rule_single_ancillary_pool
+  _rule_mbd_powersets
+  _rule_mbd_io_levels
+  _rule_mbd_level_text
+enhancement aspect handlers (a new aspect is a new @_register):
+  Accuracy
+  EnduranceDiscount
+  Interrupt
+  Range
+  RechargeTime
+scoring metrics (a new metric is a new @metric):
+  defense_positional_min
+  perma_dom
+  perma_hasten
+  resist_min
