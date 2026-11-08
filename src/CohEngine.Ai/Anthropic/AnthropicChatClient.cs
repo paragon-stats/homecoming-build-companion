@@ -161,7 +161,7 @@ public sealed class AnthropicChatClient : IChatClient
             }
 
             string role = message.Role == ChatRole.Assistant ? "assistant" : "user";
-            turns.Add(new AnthropicMessage(role, [.. message.Contents.Select(ToBlock)]));
+            turns.Add(new AnthropicMessage(role, [.. message.Contents.Select(content => ToBlock(content, nameof(messages)))]));
         }
 
         List<AnthropicTool>? tools = options?.Tools is { Count: > 0 } declared ? [.. declared.Select(ToTool)] : null;
@@ -176,7 +176,7 @@ public sealed class AnthropicChatClient : IChatClient
             stream ? true : null);
     }
 
-    private static AnthropicContentBlock ToBlock(AIContent content)
+    private static AnthropicContentBlock ToBlock(AIContent content, string messagesParameter)
     {
         return content switch
         {
@@ -191,13 +191,14 @@ public sealed class AnthropicChatClient : IChatClient
             FunctionResultContent result => new AnthropicContentBlock(
                 "tool_result",
                 ToolUseId: result.CallId,
-                Content: ToResultText(result.Result) is { } resultText ? JsonSerializer.SerializeToElement(resultText, AnthropicJsonContext.Default.String) : null),
+                Content: ToResultText(result.Result, messagesParameter) is { } resultText ? JsonSerializer.SerializeToElement(resultText, AnthropicJsonContext.Default.String) : null),
             _ => throw new NotSupportedException($"The Anthropic client does not send {content.GetType().Name}."),
         };
     }
 
     // Serializing an arbitrary object needs metadata that a Native AOT build does not have.
-    private static string? ToResultText(object? result)
+    // The error names the public parameter the bad result arrived through.
+    private static string? ToResultText(object? result, string messagesParameter)
     {
         return result switch
         {
@@ -205,8 +206,8 @@ public sealed class AnthropicChatClient : IChatClient
             string text => text,
             JsonElement element => element.GetRawText(),
             _ => throw new ArgumentException(
-                $"{AnthropicErrorCodes.UnsupportedToolResult}: tool result must be a string or JsonElement under AOT; serialise it before returning it",
-                nameof(result)),
+                $"{AnthropicErrorCodes.UnsupportedToolResult}: tool result must be a string or JsonElement under AOT; serialize it before returning it",
+                messagesParameter),
         };
     }
 

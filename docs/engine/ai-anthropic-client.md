@@ -20,7 +20,7 @@ Caller values have two limits under Native AOT:
   boolean;
 - tool results are not serialized at all. A result must be a string, a `JsonElement` or null; any
   other type throws `ArgumentException` with
-  `E142: tool result must be a string or JsonElement under AOT; serialise it before returning it`.
+  `E142: tool result must be a string or JsonElement under AOT; serialize it before returning it`.
 
 The project sets `IsAotCompatible`, so a trim or AOT warning (IL2026, IL3050) fails the build.
 

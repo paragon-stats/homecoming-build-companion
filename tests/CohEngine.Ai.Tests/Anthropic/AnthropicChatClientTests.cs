@@ -123,7 +123,8 @@ public sealed class AnthropicChatClientTests
 
         ArgumentException exception = Assert.Throws<ArgumentException>(() => AnthropicChatClient.BuildRequest([message], null, stream: false, Model));
 
-        Assert.StartsWith("E142: tool result must be a string or JsonElement under AOT", exception.Message, StringComparison.Ordinal);
+        Assert.Equal("E142: tool result must be a string or JsonElement under AOT; serialize it before returning it (Parameter 'messages')", exception.Message);
+        Assert.Equal("messages", exception.ParamName);
     }
 
     [Fact]
