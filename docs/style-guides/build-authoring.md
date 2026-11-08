@@ -30,7 +30,7 @@ They agree on every power, slot and enhancement.
   Also 4 power pools, pool tier prerequisites, pick and slot levels, Enhancement Diversification, the Rule of Five, and archetype caps.
   Keep a running slot tally and per-power count, and re-budget early. See [hard-limits.md](build-rules/hard-limits.md).
 - **Cite canonical data; treat training memory as approximate.** For specific numbers the order is `data/canonical/`, then `data/diff/current_overrides.json`.
-  Next come the captures in the source root (see the [source material manifest](../../data/source-material/README.md)).
+  Next come the captures in the source root (see the [source material manifest](../../data/source-material/README.md), lands with #91).
   Last is training memory, labelled "approximate; verify in MidsReborn".
   For format details read `MidsReborn/clsOutput.cs` (the emitter) and `build-format/schema.json`.
 - **Slot attacks accuracy-first.** See [attack-slotting.md](build-rules/attack-slotting.md).

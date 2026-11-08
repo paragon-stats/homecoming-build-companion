@@ -1,6 +1,6 @@
 """The harness export power assembly reads: the powers it pulls effects from, and the build's own powers.
 
-Four files feed it (``.claude/plans/assembly-seams.md`` § Seam 1):
+Four files feed it (``docs/design/seam-brief-template.md`` § Seam 1):
 
 - ``assembly_powers.json``, database wide: each enhancement's own power and every power reachable
     through a GrantPower or ExecutePower effect, with its effects in the extended record shape.

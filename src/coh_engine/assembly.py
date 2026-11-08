@@ -10,7 +10,7 @@ The output is plain :class:`Effect` records, re-indexed so ``Effect.index`` is t
 Their ``probability`` is what Mids' ``Probability`` reads after a recompute: the base probability plus
 the build's chance modifier for the effect's id (``ModifyEffects``), from the cross-power pass and the
 build powers' GlobalChanceMod effects, then the set-bonus virtual power's, each reward taken once.
-Contract: ``.claude/plans/assembly-seams.md`` § Seam 2.
+Contract: ``docs/design/seam-brief-template.md`` § Seam 2.
 
 Three things are refused rather than guessed: an override redirect (``E88``, the export carries no
 redirect target), an entity or powerset the export does not hold (``E89``) and a GrantPower gated on a

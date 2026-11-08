@@ -58,7 +58,7 @@ jobs:
           # - samples/, test fixtures/, data/canonical/: verbatim/harvested
           #   game data and captured pages, must stay byte-identical to their source.
           # - docs/engine/: generated extraction output (lint-exempt per
-          #   .claude/rules/markdown.md).
+          #   docs/style-guides/repository-conventions.md).
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
           FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'

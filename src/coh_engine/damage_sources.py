@@ -1,6 +1,6 @@
 """Damage sources for the layered damage model: attack chain, damage auras, location patches, buff casts.
 
-Each source is one ``@damage_source`` function (``.claude/rules/check-registry.md``). Patches and buff
+Each source is one ``@damage_source`` function (``docs/style-guides/engine-architecture.md``). Patches and buff
 clicks spend cast time outside the chain, so they report a ``timeline_share``; the chain source runs
 last (``fills_remainder=True``) on what they leave.
 

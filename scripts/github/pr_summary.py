@@ -11,7 +11,7 @@ Objective paragraph, then its commits). The result replaces the text between the
 ``<!-- auto-summary:start -->`` / ``<!-- auto-summary:end -->`` markers and nothing else.
 
 Ported from ``paragon-stats/tools/pr-summary.cs``; the body format follows this
-repository's ``.github/pull_request_template.md`` and ``.claude/rules/gitops.md``.
+repository's ``.github/pull_request_template.md`` and ``docs/style-guides/repository-conventions.md``.
 """
 
 from __future__ import annotations

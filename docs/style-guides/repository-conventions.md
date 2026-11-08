@@ -2,7 +2,7 @@
 
 Project-specific git, security, Python and Markdown conventions, moved here from the former agent rule files.
 The longer standards they summarise are in [repository-standards](../repository-standards/).
-Diagnostics emitted by tools follow the [diagnostic contract](engine-architecture.md#diagnostic-contract-summary).
+Diagnostics emitted by tools follow the [diagnostic contract](error-output.md).
 
 ## GitOps conventions — branches, commits, PRs
 
@@ -133,13 +133,14 @@ Every change to `.github/workflows/*.yml` is reviewed as a security change, not 
 - [`docs/repository-standards/devsecops-workflow.md`](../repository-standards/devsecops-workflow.md) — SSOT for DevSecOps practices.
 - [`.github/instructions/devsecops_workflow.instructions.md`](../../.github/instructions/devsecops_workflow.instructions.md) — Copilot instruction file mirroring the SSOT.
 - [`gitops.md`](#gitops-conventions--branches-commits-prs) — GitOps conventions (signing, branches, PR structure) that this rule complements.
-- [`error-output.md`](engine-architecture.md#diagnostic-contract-summary) — diagnostic message standard; security-relevant errors follow the same convention.
+- [`error-output.md`](error-output.md) — diagnostic message standard; security-relevant errors follow the same convention.
 
 ## Python conventions
 
 **Status:** MUST. Applies to every Python file authored or edited in this project.
 
 This project is Python-first. New tooling, validators, and migrations are written in Python. PowerShell remains only for legacy scripts under `scripts/` until the Phase 3 migration replaces them.
+Python remains for `scripts/forum_scrape` and the dev tooling until [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108); the engine is .NET.
 
 ### Baseline (python)
 
@@ -204,7 +205,7 @@ VENV detection auto-handles Linux (`.venv/bin/`) vs Windows (`.venv/Scripts/`).
 ### Reference (python)
 
 - [`docs/repository-standards/style-guides/python-style-guide.md`](../repository-standards/style-guides/python-style-guide.md) — full guide; this rule is the summary.
-- [`error-output.md`](engine-architecture.md#diagnostic-contract-summary) — diagnostic message standard for tool output.
+- [`error-output.md`](error-output.md) — diagnostic message standard for tool output.
 
 ## Markdown style and lint conformance
 
@@ -283,4 +284,4 @@ Future Phase 3 work: import the markdown-related Python checks from `repo-templa
 - [`.markdownlint.yaml`](../../.markdownlint.yaml) — lint config (single source of truth for rule selections).
 - [`.editorconfig`](../../.editorconfig) — editor settings driving indentation and line endings.
 - [`io-set-naming.md`](build-rules/io-set-naming.md) — full IO set names in prose; abbreviations only inside verbatim Mids forum-export blocks.
-- [`error-output.md`](engine-architecture.md#diagnostic-contract-summary) — diagnostic messages also follow this style guide.
+- [`error-output.md`](error-output.md) — diagnostic messages also follow this style guide.

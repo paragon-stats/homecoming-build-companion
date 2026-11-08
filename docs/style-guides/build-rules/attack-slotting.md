@@ -56,7 +56,7 @@ When the rule is intentionally not followed, the build's trade-offs section name
 - **AT-inherent accuracy boost** — e.g. Stalker Assassin's Strike from Hide grants high to-hit; the slotting profile changes accordingly.
 - **Auto-hit attacks** — confirm via canonical data that `accuracy = -1` (auto-hit) or that no to-hit check fires.
 
-Any deviation outside these exception types is an error per [`error-output.md`](../../repository-standards/style-guides/error-output-style-guide.md), validated as `P-SLOT-001` by the build validator.
+Any deviation outside these exception types is an error per [`error-output.md`](../error-output.md), validated as `P-SLOT-001` by the build validator.
 
 ## Reference
 

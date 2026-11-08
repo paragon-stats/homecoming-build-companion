@@ -12,7 +12,8 @@ Committed, tool-neutral guides for this repository. Mechanical rules also run as
 - [build-rules/attack-slotting.md](build-rules/attack-slotting.md): accuracy in slot (A) and the first added slot.
 - [build-rules/io-set-naming.md](build-rules/io-set-naming.md): full IO set names in prose.
 - [build-rules/knowledge-navigation.md](build-rules/knowledge-navigation.md): load only the knowledge files a build request needs.
-- [engine-architecture.md](engine-architecture.md): check registries, classify-once, the fidelity boundary, and the diagnostic contract.
+- [engine-architecture.md](engine-architecture.md): check registries, classify-once, and the fidelity boundary.
+- [error-output.md](error-output.md): the diagnostic and error-output contract every check emits.
 - [naming-and-words.md](naming-and-words.md): generic placeholders, banned words, plain words.
 - [repository-conventions.md](repository-conventions.md): git, DevSecOps, Python and Markdown conventions specific to this repository.
 - [dependencies.md](dependencies.md): dependency policy.

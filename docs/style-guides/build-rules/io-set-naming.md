@@ -94,5 +94,5 @@ The file name (snake-cased) and `display_name` field together resolve to the ful
 
 ## Reference
 
-- [`error-output.md`](../../repository-standards/style-guides/error-output-style-guide.md) — diagnostic messages also follow this rule (full names in messages).
+- [`error-output.md`](../error-output.md) — diagnostic messages also follow this rule (full names in messages).
 - [`data/canonical/boost_sets/`](../../../data/canonical/boost_sets/) — authoritative IO set composition and display names.
