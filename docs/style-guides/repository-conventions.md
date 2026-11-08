@@ -35,7 +35,7 @@ allow_squash_merge:  false
 allow_rebase_merge:  false
 ```
 
-This mirrors the intent of `pete.kloehn/kloehnwars-homelab` on GitLab (`merge_method: ff`,
+This mirrors the intent of the `kloehnwars-homelab` project on GitLab (`merge_method: ff`,
 `squash_option: default_off`): every commit reaches `main` with its own message intact.
 
 Why each option is set the way it is:
