@@ -130,6 +130,20 @@ In order, each its own issue and pull request, after the chain-planner branch (#
 4. Resolve `.mbd` builds against game data by name, so `validate` and `chain` run without the dump harness. The harness stays as the parity golden.
 5. Carry the hard-coded game rules above as named constants with their 4.0 citations.
 
+## Harness
+
+[`tools/mids-dump-4`](../../tools/mids-dump-4/README.md) loads the 4.0 branch headless and writes the same per-build dumps as the 3.x harness into `tests/fixtures/mids4/`.
+Build and run it as that README describes; it needs the `MidsReborn-4.0` worktree with `pipeline-sequential.patch` applied, because 4.0 still runs its per-power loops under `Parallel.For`.
+`dotnet run scripts/dev/diff-goldens.cs -- --summary` compares the two trees; without `--summary` it lists every differing field.
+
+The first baseline, [`tests/fixtures/mids4/DIFF-REPORT.md`](../../tests/fixtures/mids4/DIFF-REPORT.md), compares 22 builds: 1,411 differing fields in `totals.json` and 17,542 in `enhanced_powers.json`.
+Two of the 23 parity builds do not load in 4.0 ([`SKIPPED.md`](../../tests/fixtures/mids4/SKIPPED.md)).
+The two trees also use different database versions (2026.1.1242 against 2026.6.1303), so the counts mix code and data drift.
+
+The goldens move to 4.0 only in a dedicated PR that carries the current DIFF-REPORT.
+Every difference in it is justified by a 4.0 file and line, or filed as a bug.
+Until then the 3.x dumps stay the parity goldens, and the 4.0 comparison is informational.
+
 ## Reference
 
 - [`mids-port-spec.md`](./mids-port-spec.md): the 3.x port specification and its fidelity boundary.

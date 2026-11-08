@@ -82,6 +82,8 @@ These are emitted as `null` so the shapes match 3.x.
 ## Not dumped
 
 - The `_clicksoff` variants. No 3.x clicks-off dumps are committed, so there is nothing to compare them with.
+- `assembly_powers.json` is written but not committed. At 16.6 MB (10.4 MB in 3.x) it exceeds the 15 MB large-file hook limit.
+  The diff script does not read it. Regenerate it with the run above.
 - Anything new in 4.0. Shapes stay identical so the diff script compares like with like.
 
 `bin/`, `obj/` and `out/` are gitignored.
