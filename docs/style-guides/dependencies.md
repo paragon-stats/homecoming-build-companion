@@ -34,3 +34,9 @@ Nothing references them yet.
 
 - `Anthropic`, the official Anthropic NuGet package, is excluded because it is not Native AOT compatible.
   The tracker issue, [anthropics/anthropic-sdk-csharp issue 79](https://github.com/anthropics/anthropic-sdk-csharp/issues/79) ("Support AOT"), is open.
+
+## SDK pin
+
+`global.json` pins SDK 10.0.400 with `latestPatch`.
+The 10.0.3xx band resolves Microsoft.DotNet.ILCompiler 10.0.11, which carries GHSA-p3jp-9v83-76w9 (NU1903, fixed in 10.0.14) and fails restore under TreatWarningsAsErrors.
+The 10.0.4xx band resolves a patched ILCompiler.
