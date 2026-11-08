@@ -13,13 +13,14 @@ public sealed class SseParserTests
 
         List<SseEvent> events = await Collect(stream);
 
-        List<SseEvent> deltas = [.. events.Where(sse => sse.Event == "content_block_delta")];
+        List<SseEvent> deltas = [.. events.Where(sse => string.Equals(sse.Event, "content_block_delta", StringComparison.Ordinal))];
         Assert.Equal(2, deltas.Count);
         Assert.Contains("\"text\":\"Hello\"", deltas[0].Data, StringComparison.Ordinal);
         Assert.Contains("\"text\":\", hero.\"", deltas[1].Data, StringComparison.Ordinal);
         Assert.Equal(
             ["message_start", "content_block_start", "ping", "content_block_delta", "content_block_delta", "content_block_stop", "message_delta", "message_stop"],
-            events.Select(sse => sse.Event));
+            events.Select(sse => sse.Event),
+            StringComparer.Ordinal);
     }
 
     [Fact]
@@ -36,7 +37,7 @@ public sealed class SseParserTests
     private static async Task<List<SseEvent>> Collect(Stream stream)
     {
         List<SseEvent> events = [];
-        await foreach (SseEvent sse in SseParser.ReadAsync(stream, TestContext.Current.CancellationToken))
+        await foreach (SseEvent sse in SseParser.ReadAsync(stream, TestContext.Current.CancellationToken).ConfigureAwait(true))
         {
             events.Add(sse);
         }
