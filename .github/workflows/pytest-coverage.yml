@@ -115,7 +115,7 @@ jobs:
 
       - name: Report status context
         if: ${{ !cancelled() && github.event_name == 'pull_request' }}
-        uses: ./.github/actions/report-status-context
+        uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ github.event.pull_request.number }}
@@ -151,7 +151,7 @@ jobs:
 
       - name: Report status context
         if: ${{ !cancelled() && github.event_name == 'pull_request' }}
-        uses: ./.github/actions/report-status-context
+        uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ github.event.pull_request.number }}

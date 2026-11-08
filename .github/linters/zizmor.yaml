@@ -7,7 +7,3 @@ rules:
     # persisted token. Every other workflow sets persist-credentials: false.
     ignore:
       - release.yml
-  self-repository:
-    # The report-status-context composite action is referenced by its local path
-    # (./.github/actions/...); the rewrite zizmor suggests is not adopted here.
-    disable: true
