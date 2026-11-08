@@ -34,7 +34,7 @@ from coh_engine.maths import MathTables, f32, load_maths
 from coh_engine.set_bonuses import SetBonusDb, load_set_bonus_db
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 BASE_BUILD = "shield_scrapper_set_bonuses"
 EXEMPLAR_BUILD = "shield_scrapper_set_bonuses_exemplar25"
@@ -103,7 +103,7 @@ class TestExemplarTotalsParity:
 
     @pytest.fixture(scope="class")
     def tables(self) -> MathTables:
-        return load_maths(FIXTURES / "Maths.mhd")
+        return load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
 
     @pytest.fixture(scope="class")
     def enh_db(self) -> dict[int, EnhancementRecord]:

@@ -249,7 +249,7 @@ def test_missing_file_raises(tmp_path: Path) -> None:
 BANE = (
     SAMPLES / "operator-builds" / "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd"
 )
-DB = load_mbd_db(REPO / "src" / "coh_engine" / "tests" / "fixtures" / "mids")
+DB = load_mbd_db(REPO / "tests" / "fixtures" / "mids")
 
 
 def test_a_bane_build_resolves_to_24_picks_and_resolved_slots() -> None:

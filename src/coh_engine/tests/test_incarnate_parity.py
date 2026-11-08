@@ -41,7 +41,7 @@ from coh_engine.maths import MathTables, f32
 from coh_engine.statistics import StatsContext, compute_build_stats
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 INCARNATE = "arsenal_dominator_incarnate"
 SLOTTED = "arsenal_dominator_incarnate_slotted"

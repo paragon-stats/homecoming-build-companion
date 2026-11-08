@@ -40,7 +40,7 @@ from coh_engine.set_bonuses import SetBonusDb, load_set_bonus_db
 from coh_engine.statistics import PowerStats, StatsContext, compute_build_stats
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 STRATEGY = Path(__file__).parents[3] / "strategy"
 BUILD = "shield_scrapper_set_bonuses"
 
@@ -62,7 +62,7 @@ def computed(classes: ArchetypeDb) -> tuple[BaseTotals, list[PowerStats]]:
     enums: EnumMaps = load_enum_maps(MIDS / "enums.json")
     config: EngineConfig = load_engine_config(MIDS / "config.json")
     server: ServerData = load_server_data(MIDS / "server_data.json")
-    tables: MathTables = load_maths(FIXTURES / "Maths.mhd")
+    tables: MathTables = load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
     enh_db: dict[int, EnhancementRecord] = dict(load_enhancement_effects(MIDS / "enhancement_effects.json"))
     set_db: SetBonusDb = load_set_bonus_db(MIDS / "enhancement_sets.json", MIDS / "set_bonus_powers.json")
     powers: tuple[Power, ...] = load_powers_effects(MIDS / "builds" / BUILD / "powers_effects.json")

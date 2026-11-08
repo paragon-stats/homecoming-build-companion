@@ -22,7 +22,7 @@ from coh_engine.damage_model import (
 )
 from coh_engine.maths import f32
 
-_ARCHETYPES = Path(__file__).parent / "fixtures" / "mids" / "archetypes.json"
+_ARCHETYPES = Path(__file__).parents[3] / "tests" / "fixtures" / "mids" / "archetypes.json"
 _PLAYABLE = [a["ClassName"] for a in json.loads(_ARCHETYPES.read_text(encoding="utf-8")) if a["Playable"]]
 
 

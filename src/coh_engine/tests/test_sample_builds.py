@@ -48,7 +48,7 @@ from coh_engine.maths import f32, load_maths
 from coh_engine.set_bonuses import build_set_bonus_power, load_set_bonus_db
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 SAMPLES = Path(__file__).resolve().parents[3] / "samples" / "builds"
 
 # The classes with a committed sample; Defender, Peacebringer and Warshade have only .mxd files to take.
@@ -72,7 +72,7 @@ CURATED_FOLDERS = ("operator-builds", "community/Mids Archives")
 DB = load_mbd_db(MIDS)
 ARCHETYPES: ArchetypeDb = load_archetypes(MIDS / "archetypes.json")
 MODS = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
-TABLES = load_maths(FIXTURES / "Maths.mhd")
+TABLES = load_maths(FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd")
 ENH_DB = dict(load_enhancement_effects(MIDS / "enhancement_effects.json"))
 SET_DB = load_set_bonus_db(MIDS / "enhancement_sets.json", MIDS / "set_bonus_powers.json")
 ASSEMBLY_POWERS = load_assembly_powers(MIDS / "assembly_powers.json")

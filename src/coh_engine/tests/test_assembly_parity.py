@@ -22,7 +22,7 @@ from coh_engine.enhancement import load_build_slots, load_enhancement_effects
 from coh_engine.expressions import ExpressionContext, conditionals_met
 from coh_engine.set_bonuses import build_set_bonus_power, load_set_bonus_db
 
-MIDS = Path(__file__).parent / "fixtures" / "mids"
+MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 BUILDS = sorted(p.parent.name for p in (MIDS / "builds").glob("*/assembled_powers.json"))
 FIELDS = (
     "effect_type",

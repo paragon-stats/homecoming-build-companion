@@ -11,7 +11,7 @@ from coh_engine.__main__ import _emit, main, run_validate
 from coh_engine.buildfile.mbd import io_level_bounds, load_mbd_db
 
 FIXTURES = Path(__file__).parent / "fixtures"
-BUILD_DIR = FIXTURES / "mids" / "builds" / "shield_scrapper_set_bonuses"
+BUILD_DIR = FIXTURES.parents[3] / "tests" / "fixtures" / "mids" / "builds" / "shield_scrapper_set_bonuses"
 
 
 def test_rules_lists_all_three_registries(capsys: pytest.CaptureFixture[str]) -> None:
@@ -36,7 +36,7 @@ def test_no_command_prints_status(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_run_validate_returns_diagnostics() -> None:
     """run_validate loads the dumped build and folds both registries over it."""
-    diags = run_validate(BUILD_DIR, FIXTURES / "mids")
+    diags = run_validate(BUILD_DIR, FIXTURES.parents[3] / "tests" / "fixtures" / "mids")
     # The authored totals-fixture is not slot-schedule-legal, so it has findings.
     assert any(d.rule_id.startswith("H-") for d in diags)
 
@@ -55,7 +55,7 @@ def test_run_validate_arms_the_pure_proc_exemption() -> None:
     from coh_engine.legality import check_build_legality, load_enhancement_legality
     from coh_engine.set_bonuses import load_set_bonus_db
 
-    mids = FIXTURES / "mids"
+    mids = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
     powers = load_powers_effects(BUILD_DIR / "powers_effects.json")
     slots = dict(load_build_slots(BUILD_DIR / "slots.json"))
     armed = check_build_legality(
@@ -279,7 +279,7 @@ def test_validate_mbd_reports_seven_powersets(capsys: pytest.CaptureFixture[str]
 
 
 def test_validate_mbd_reports_an_io_level_above_its_set(capsys: pytest.CaptureFixture[str], tmp_path: Path) -> None:
-    db = load_mbd_db(FIXTURES / "mids")
+    db = load_mbd_db(FIXTURES.parents[3] / "tests" / "fixtures" / "mids")
 
     def raise_io_level(doc: dict[str, Any]) -> None:
         for entry in doc["PowerEntries"]:

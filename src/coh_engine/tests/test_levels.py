@@ -5,7 +5,7 @@ from pathlib import Path
 from coh_engine.levels import load_level_schedule
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 
 def test_schedule_grants_67_total_slots() -> None:

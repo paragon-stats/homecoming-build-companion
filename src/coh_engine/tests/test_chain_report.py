@@ -40,7 +40,7 @@ from coh_engine.damage_reference import PowerDamageRef
 from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 BUILD = MIDS / "builds" / "shield_scrapper_set_bonuses"
 ALL_STANCES = list(Stance)
 

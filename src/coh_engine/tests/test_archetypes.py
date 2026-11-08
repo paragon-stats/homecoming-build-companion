@@ -6,7 +6,7 @@ import pytest
 
 from coh_engine.archetypes import Archetype, ArchetypeDb, load_archetypes
 
-FIXTURES = Path(__file__).parent / "fixtures" / "mids"
+FIXTURES = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 
 
 @pytest.fixture

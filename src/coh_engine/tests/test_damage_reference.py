@@ -9,7 +9,7 @@ import pytest
 from coh_engine.damage_reference import load_damage_refs
 from coh_engine.maths import f32
 
-_BUILDS = Path(__file__).parent / "fixtures" / "mids" / "builds"
+_BUILDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids" / "builds"
 _TYPES = ("Smashing", "Lethal", "Fire", "Cold", "Energy", "Negative", "Toxic", "Psionic")
 
 

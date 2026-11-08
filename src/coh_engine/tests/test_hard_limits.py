@@ -21,7 +21,7 @@ from coh_engine.hard_limits import (
 from coh_engine.levels import LevelSchedule, load_level_schedule
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 MAX_SLOTS = 67
 

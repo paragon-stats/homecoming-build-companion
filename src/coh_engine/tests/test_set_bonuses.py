@@ -275,7 +275,7 @@ class TestBuildSetBonusPower:
 
 def test_slow_set_bonus_effects_are_debuffs() -> None:
     """A set-bonus power named for Slow carries debuff-mode effects; every other bonus is normal."""
-    powers = load_set_bonus_powers(Path(__file__).parent / "fixtures" / "mids" / "set_bonus_powers.json")
+    powers = load_set_bonus_powers(Path(__file__).parents[3] / "tests" / "fixtures" / "mids" / "set_bonus_powers.json")
     modes = {p.full_name: {fx.buff_mode for fx in p.effects} for p in powers.values() if p.effects}
     assert modes["Set_Bonus.Set_Bonus.Improved_Slow_2"] == {"Debuff"}
     assert modes["Set_Bonus.PVP_Set_Bonus.Energy_Neg_Mez_Res_2"] == {"Normal"}

@@ -27,7 +27,7 @@ from coh_engine.levels import LevelSchedule, load_level_schedule
 from coh_engine.tests.wpss_tanker_spec import SPEC
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 DB = load_mbd_db(MIDS)
 PICK_LEVELS = (1, 1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 35, 38, 41, 44, 47, 49)
 
