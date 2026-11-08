@@ -50,5 +50,7 @@ def test_main_writes_identical_bytes_and_no_post_text(tmp_path: Path, capsys: py
 
 def test_main_reports_an_empty_root(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["--source-root", str(tmp_path), "--out", str(tmp_path / "m.json")]) == 1
-    assert "E05: no captures under" in capsys.readouterr().err
+    err = capsys.readouterr().err
+    assert f"E05: no captures under {tmp_path / 'community'}" in err
+    assert "pass --source-root" in err
     assert not (tmp_path / "m.json").exists()

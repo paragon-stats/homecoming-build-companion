@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from scripts.forum_scrape.guide_index import _archetype_of, _unquote, ledger_urls, load_captures
+from scripts.forum_scrape.guide_index import archetype_of, ledger_urls, load_captures, unquote
 from scripts.forum_scrape.guides import _capture_url, content_hash, stored_hash
 from scripts.forum_scrape.source_root import add_source_root_argument, source_root
 
@@ -30,13 +30,13 @@ def build_manifest(community: Path) -> list[dict[str, str]]:
     ledgers = ledger_urls(community)
     rows = []
     for relative, era, inner, keys, body, text in load_captures(community):
-        title = _unquote(keys["title"])
+        title = unquote(keys["title"])
         rows.append(
             {
                 "url": _capture_url(text) or ledgers[era].get(inner, ""),
                 "title": title,
-                "date_posted": _unquote(keys.get("date_posted", '""')),
-                "archetype": _archetype_of(Path(inner).parts[:-1], title),
+                "date_posted": unquote(keys.get("date_posted", '""')),
+                "archetype": archetype_of(Path(inner).parts[:-1], title),
                 "content_hash": stored_hash(text) or content_hash(body),
                 "path": f"community/{relative}",
                 "era": era,
@@ -61,10 +61,12 @@ def main(argv: list[str] | None = None) -> int:
         "--out", type=Path, default=Path("data/source-material/manifest.json"), help="manifest file to write"
     )
     args = parser.parse_args(argv)
-    rows = build_manifest(source_root(args.source_root) / "community")
+    community = source_root(args.source_root) / "community"
+    rows = build_manifest(community)
     if not rows:
         print(
-            f"E05: no captures under {args.source_root or 'the source root'}; expected community/**/*.md",
+            f"E05: no captures under {community}; expected community/**/*.md with front matter;"
+            " check the checkout is current, or pass --source-root",
             file=sys.stderr,
         )
         return 1

@@ -66,7 +66,7 @@ section a thread was found in; a row written before it did keeps the archetype o
 capture root with its own ledger, is not touched; a move onto an existing file is named (`E70`)
 and skipped.
 
-After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1` and review the
+After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1 -SourceRoot <path>` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
 
 ### The pre-sunset forum archive
@@ -79,7 +79,7 @@ capture's `source`, and the era is kept apart by its own output root and a tag:
 ```bash
 python -m scripts.forum_scrape.guides --base https://forumarchive.cityofheroes.dev \
   --forum "https://forumarchive.cityofheroes.dev/index.php?/forum/44-player-guides/" \
-  --tag pre-sunset --out "<source root>/community/pre-sunset"
+  --source-root ../homecoming-source-material --tag pre-sunset --out ../homecoming-source-material/community/pre-sunset
 ```
 
 - The archive publishes no `robots.txt` and no terms; its operator is unnamed. Contact outcome:

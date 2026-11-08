@@ -97,7 +97,7 @@ Switch to your **PowerShell** window (the one from one-time setup B; reopen if y
 Paste this and hit `Enter`:
 
 ```powershell
-& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste
+& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste -SourceRoot "$env:USERPROFILE\repos\homecoming-source-material"
 ```
 
 What you'll see if it works:
@@ -116,7 +116,7 @@ If you want to be paranoid and also pass the URL for a sanity check (the script 
 
 ```powershell
 $url = "https://forums.homecomingservers.com/topic/5290-procs-per-minute-ppm-information-guide/"
-& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste -Url $url
+& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste -SourceRoot "$env:USERPROFILE\repos\homecoming-source-material" -Url $url
 ```
 
 Move on to the next URL.
@@ -144,7 +144,7 @@ This processes every file in `inbox/` — yours plus any others that previously 
 You already captured this URL. Either skip it, or pass `-Force` to overwrite:
 
 ```powershell
-& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste -Force
+& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\capture.ps1" -Paste -SourceRoot "$env:USERPROFILE\repos\homecoming-source-material" -Force
 ```
 
 ### Claude in the extension produces a long preamble before the markdown

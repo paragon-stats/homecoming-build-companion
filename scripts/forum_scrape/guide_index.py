@@ -97,7 +97,7 @@ def _json_line(value: object) -> str:
     return json.dumps(value, ensure_ascii=False, sort_keys=True)
 
 
-def _unquote(raw: str) -> str:
+def unquote(raw: str) -> str:
     try:
         return str(json.loads(raw))
     except json.JSONDecodeError:
@@ -233,7 +233,7 @@ def powers_named(body: str, members: tuple[PowersetName, ...]) -> set[str]:
     return {p.internal for m in members for p in m.powers if _pattern((p.display.lower(),)).search(body)}
 
 
-def _archetype_of(parts: tuple[str, ...], title: str) -> str:
+def archetype_of(parts: tuple[str, ...], title: str) -> str:
     folder = parts[1] if len(parts) > 1 and parts[0] == "archetypes" else ""
     return folder or archetype_in(title)
 
@@ -294,11 +294,11 @@ def build_index(
         seen_hash[digest] = relative
         if url:
             seen_url[url] = relative
-        title = _unquote(keys["title"])
-        archetype = _archetype_of(Path(inner).parts[:-1], title)
+        title = unquote(keys["title"])
+        archetype = archetype_of(Path(inner).parts[:-1], title)
         names = subjects(title, body, archetype, groups, aliases)
         scoped = [m for n in names for m in _on_archetype(groups[n], archetype)]
-        posted = _unquote(keys.get("date_posted", '""'))
+        posted = unquote(keys.get("date_posted", '""'))
         rows.append(
             {
                 "file": relative,

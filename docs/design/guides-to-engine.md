@@ -129,7 +129,7 @@ Radiation Melee (100), Street Justice (94), Psionic Melee (70) and Savage Melee 
 **Archetype gaps:** Sentinel has no pre-sunset guides (it is a Homecoming archetype), one live capture, and 192 archive builds.
 Arachnos Soldier and Widow have 5 pre-sunset captures and their archive builds sit under an untagged "Veat" folder.
 Controller has 16, Mastermind 12, Dominator 11 and the Kheldians 25 between them; all thin.
-`community/builds/` holds 7 build files (Blaster 2, Defender 1, Scrapper 3), so most archetypes have no curated sample build there; `samples/builds/` adds about 20 more `.mbd`/`.mxd` files.
+`<source root>/community/builds/` holds 7 build files (Blaster 2, Defender 1, Scrapper 3), so most archetypes have no curated sample build there; `samples/builds/` adds about 20 more `.mbd`/`.mxd` files.
 
 ### 2.6 The gap split by archetype version
 
@@ -435,7 +435,7 @@ The repository has no general document framework beyond the Markdown style guide
 
 - **The AT and powerset templates in issues #35 and #36.** They are the user's own framework, written for the Dominator onramp,
   and say to source from forum guides, not memory. Their memory file is missing, so the issue bodies are the record.
-- **`community/CAPTURE.md`'s Summary rules:** lead with the conclusion, three to five bullets, preserve attribution.
+- **`<source root>/community/CAPTURE.md`'s Summary rules:** lead with the conclusion, three to five bullets, preserve attribution.
 - **The build rules:** B9 (trade-offs are real tensions; unverified specifics go in "What I would verify"), `io-set-naming.md` (full set names), `no-user-name.md` and the trust schema.
 
 The templates are kept and extended, not replaced: their sections become the record's fields and the rendered guide's fixed order, and their "effects catalog" becomes generated output.
@@ -677,7 +677,7 @@ The objective follows the order of authority in section 1. Whatever the search r
 | 9 | Written claims for sets with no guided version and too few shared powers, including the Issue 28 Page 4 sets; sets that failed transfer | 4, 6, 8; #20 | batches, medium | file "written records for gap sets"; reuse #35, #37 |
 | 10 | Power plan search and slotting optimizer proposing builds through the gate | 3; #21; #31 and #40 for damage and procs | 2 PRs, large | widen #21 or file "power plan search" |
 
-**Start next: Phase 0.** It needs no model, writes nothing under `community/`, and every later phase stands on its output.
+**Start next: Phase 0.** It needs no model, writes nothing under `<source root>/community/`, and every later phase stands on its output.
 It can start the day the crawl finishes; the resolver half (#48) can start now. Phases 1 to 3 put the gate in place before any extracted knowledge exists,
 so the first real record changes builds the day it lands.
 
