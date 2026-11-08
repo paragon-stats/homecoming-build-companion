@@ -5,7 +5,7 @@
   block per URL.
 
 .DESCRIPTION
-  No hand-editing: pete picks the section he's about to capture, copies the
+  No hand-editing: the operator picks the section to capture, copies the
   prompt block, pastes it into the Claude for Chrome extension on the
   matching page. The prompt has the URL, today's date, the suggested topic
   tags, and the trust level pre-filled.
