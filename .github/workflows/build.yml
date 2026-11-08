@@ -1,0 +1,107 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false  # required check: a cancelled run must still report
+
+jobs:
+  build:
+    # Windows only: Homecoming does not run natively on Linux. The matrix shape is
+    # kept for the one entry on purpose - collapsing it would rename the required
+    # check from "build (windows-latest)" to "build", and a required context that
+    # never reports under its old name freezes every PR.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # MinVer derives the version from git history + tags
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68  # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: dotnet restore
+      - run: dotnet tool restore
+      - name: Check console output encoding
+        run: dotnet run scripts/dev/check-encoding.cs
+      - run: dotnet format --verify-no-changes --severity error --no-restore
+      - run: dotnet build --no-restore
+      # Visual Studio XML coverage: dotnet-coverage supports the Microsoft.Testing.Platform
+      # runner; coverlet.collector / OpenCover do not.
+      - name: Test with coverage
+        run: dotnet tool run dotnet-coverage collect "dotnet test --no-build" -f xml -o coverage.xml
+      - name: Coverage report
+        run: >
+          dotnet tool run reportgenerator -reports:coverage.xml
+          -targetdir:coveragereport
+          -reporttypes:"MarkdownSummaryGithub;JsonSummary"
+          -assemblyfilters:"-*.Tests.dll"
+      # No `if: always()`: coverage measured over a failed test run is partial,
+      # and publishing it invites chasing a number that reflects the failure
+      # rather than the code.
+      - name: Publish coverage summary
+        run: if (Test-Path coveragereport/SummaryGithub.md) { Get-Content coveragereport/SummaryGithub.md >> $env:GITHUB_STEP_SUMMARY }
+      - name: Coverage gate
+        env:
+          MIN_COVERAGE: '100'  # every human-written line
+        run: |
+          $s = (Get-Content coveragereport/Summary.json -Raw | ConvertFrom-Json).summary
+          if ($null -eq $s.linecoverage -or $s.coverablelines -eq 0) {
+            Write-Host '::notice::No production code to cover yet - coverage gate passes (bootstrap).'
+            exit 0
+          }
+          $cov = [double]$s.linecoverage
+          $min = [double]$env:MIN_COVERAGE
+          Write-Host "Line coverage: $cov% (gate: >= $min%)"
+          if ($cov -lt $min) {
+            Write-Error "Coverage $cov% is below the $min% gate."
+            exit 1
+          }
+
+  # The only check that exercises what users download: every test above runs
+  # in-process, so Native AOT trimming failures are invisible to them. Gated
+  # behind `build` because an artifact from a tree that does not build or whose
+  # tests fail cannot be reliably judged. win-x64 only, the single published RID.
+  binary:
+    name: binary
+    needs: build
+    runs-on: windows-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # MinVer stamps the version --version prints
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68  # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: dotnet publish src/CohEngine.Cli -c Release -r win-x64
+      - name: Run the published binary
+        run: |
+          $exe = 'src/CohEngine.Cli/bin/Release/net10.0/win-x64/publish/CohEngine.Cli.exe'
+          $version = & $exe --version
+          if ($LASTEXITCODE -ne 0 -or $version -notmatch '^coh-engine \d') { throw "--version failed: exit $LASTEXITCODE, output '$version'" }
+          Write-Host $version
+          $usage = & $exe --help
+          if ($LASTEXITCODE -ne 0 -or $usage -notmatch '^usage: coh-engine') { throw "--help failed: exit $LASTEXITCODE, output '$usage'" }
+          Write-Host $usage
