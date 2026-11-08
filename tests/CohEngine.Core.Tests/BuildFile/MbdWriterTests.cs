@@ -227,7 +227,8 @@ public sealed class MbdWriterTests
     {
         PickSpec health = TankerSpec.Pick("Inherent.Fitness.Health", 1, ["Crafted_Numinas_Convalesence_F", "Crafted_Miracle_F"], true);
         BuildSpec spec = Spec(Full(), [TankerSpec.Pick("Inherent.Inherent.Brawl", 1, [null]), TankerSpec.Pick("Inherent.Inherent.Gauntlet", 1, []), health])
-            with { Incarnates = ["Incarnate.Alpha.Cardiac_Radial_Paragon"] };
+            with
+        { Incarnates = ["Incarnate.Alpha.Cardiac_Radial_Paragon"] };
 
         MbdBuild build = Written(spec);
 

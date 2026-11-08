@@ -52,6 +52,11 @@ public sealed class MxdTests
         Assert.Equal("unkbase64", Mxd.Classify("dGVzdGRhdGE="));
         Assert.Null(Mxd.Classify("not a share block !!!"));
         Assert.Null(Mxd.Classify("   "));
+        Assert.Null(Mxd.Classify("|MxDz;1;2;x;HEX;|"));
+        Assert.Null(Mxd.Classify("|MxDz;1;2;3|"));
+        Assert.Null(Mxd.Classify("|MxDz;;2;3;HEX;|"));
+        Assert.Null(Mxd.Classify("a=b"));
+        Assert.Null(Mxd.Classify("ab==="));
         Assert.Null(Mxd.Classify("|----|\r\n|garbage line with spaces|"));
         Assert.Null(Mxd.Classify("dGVzdA==\r\ndGVzdA=="));
     }

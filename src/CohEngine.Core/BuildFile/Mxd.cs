@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.IO.Compression;
-using System.Text.RegularExpressions;
 
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
@@ -8,11 +7,9 @@ using CohEngine.Core.Maths;
 namespace CohEngine.Core.BuildFile;
 
 /// <summary>The reader for the legacy <c>.mxd</c> build: the share-text envelope, the zlib payload and the binary stream.</summary>
-public static partial class Mxd
+public static class Mxd
 {
     internal static readonly byte[] Magic = [0x4D, 0x78, 0x44, 0x0C];
-
-    private const int RegexTimeoutMs = 1000;
 
     private static readonly double PriorVersion = F32.Round(3.10);
     private static readonly double ThisVersion = F32.Round(3.20);
@@ -31,19 +28,19 @@ public static partial class Mxd
     {
         foreach (string line in Lines(text))
         {
-            if (MxdHeader().IsMatch(line))
+            if (IsHeader(line, "MxDz", "HEX"))
             {
                 return "mxd";
             }
 
-            if (MbdHeader().IsMatch(line))
+            if (IsHeader(line, "MBD", "BASE64"))
             {
                 return "mbd";
             }
         }
 
         string stripped = text.Trim();
-        return stripped.Length > 0 && !stripped.Contains('\n', StringComparison.Ordinal) && UnkBase64().IsMatch(stripped) ? "unkbase64" : null;
+        return stripped.Length > 0 && !stripped.Contains('\n', StringComparison.Ordinal) && IsUnkBase64(stripped) ? "unkbase64" : null;
     }
 
     /// <summary>Parses a share-text envelope.</summary>
@@ -53,7 +50,7 @@ public static partial class Mxd
     public static ShareBlock DecodeShareBlock(string text)
     {
         string[] lines = Lines(text);
-        int headerIndex = Array.FindIndex(lines, line => HeaderPrefix().IsMatch(line));
+        int headerIndex = Array.FindIndex(lines, line => line.StartsWith("|MxDz;", StringComparison.Ordinal) || line.StartsWith("|MBD;", StringComparison.Ordinal));
         if (headerIndex < 0)
         {
             throw new InvalidDataException($"{BuildFileErrorCodes.ShareEnvelope}: no |MxDz;…| or |MBD;…| header line found");
@@ -86,7 +83,7 @@ public static partial class Mxd
                 continue;
             }
 
-            if (!PayloadLine().IsMatch(token))
+            if (!token.All(symbol => IsBase64Symbol(symbol) || symbol == '='))
             {
                 break;
             }
@@ -104,7 +101,7 @@ public static partial class Mxd
     public static byte[] HexDecode(string data)
     {
         ArgumentNullException.ThrowIfNull(data);
-        if (!HexPayload().IsMatch(data) || data.Length % 2 != 0)
+        if (data.Length == 0 || data.Length % 2 != 0 || !data.All(char.IsAsciiHexDigit))
         {
             throw new InvalidDataException($"{BuildFileErrorCodes.SharePayload}: mxd payload is not valid hex");
         }
@@ -350,21 +347,37 @@ public static partial class Mxd
         return text.Replace("||", "|\n|", StringComparison.Ordinal).Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries);
     }
 
-    [GeneratedRegex(@"^\|MxDz;[0-9]+;[0-9]+;[0-9]+;HEX;\|", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex MxdHeader();
+    private static bool IsHeader(string line, string magic, string encoding)
+    {
+        string prefix = $"|{magic};";
+        if (!line.StartsWith(prefix, StringComparison.Ordinal))
+        {
+            return false;
+        }
 
-    [GeneratedRegex(@"^\|MBD;[0-9]+;[0-9]+;[0-9]+;BASE64;\|", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex MbdHeader();
+        ReadOnlySpan<char> rest = line.AsSpan(prefix.Length);
+        for (int size = 0; size < 3; size++)
+        {
+            int digits = rest.IndexOfAnyExceptInRange('0', '9');
+            if (digits <= 0 || rest[digits] != ';')
+            {
+                return false;
+            }
 
-    [GeneratedRegex(@"^\|(?:MxDz|MBD);", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex HeaderPrefix();
+            rest = rest[(digits + 1)..];
+        }
 
-    [GeneratedRegex(@"^[A-Za-z0-9+/]+={0,2}$", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex UnkBase64();
+        return rest.StartsWith($"{encoding};|", StringComparison.Ordinal);
+    }
 
-    [GeneratedRegex(@"\A[0-9A-Fa-f]+\z", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex HexPayload();
+    private static bool IsBase64Symbol(char symbol)
+    {
+        return char.IsAsciiLetterOrDigit(symbol) || symbol is '+' or '/';
+    }
 
-    [GeneratedRegex(@"\A[0-9A-Za-z+/=]+\z", RegexOptions.None, RegexTimeoutMs)]
-    private static partial Regex PayloadLine();
+    private static bool IsUnkBase64(string text)
+    {
+        string body = text.TrimEnd('=');
+        return body.Length > 0 && text.Length - body.Length <= 2 && body.All(IsBase64Symbol);
+    }
 }
