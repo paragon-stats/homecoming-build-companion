@@ -1,21 +1,15 @@
+using CohEngine.Core.Registry.LegalityRules;
+
 namespace CohEngine.Core.Registry;
 
 /// <summary>
 /// The rule registries as explicit lists, in the order <c>python -m coh_engine rules</c> prints them.
-/// A new rule is a new entry here; nothing is discovered by reflection. Only identities live here so far:
-/// the rule bodies are ported in P3a.
+/// A new rule is a new entry in the matching list at the bottom; nothing is discovered by reflection.
 /// </summary>
 public static class RuleRegistry
 {
     /// <summary>Gets the legality rules, in registration order.</summary>
-    public static IReadOnlyList<RuleInfo> Legality { get; } =
-    [
-        new("_rule_placement", "Per-slot placement (``classify_placement``): unknown-enh H-ENH-007, else the verdict."),
-        new("_rule_global_unique", "H-ENH-004: a ``Unique`` IO slotted more than once build-wide."),
-        new("_rule_mutex", "H-ENH-005: stealth procs, and superior/attuned versions of one set piece, are mutex."),
-        new("_rule_lone_set_piece", "P-SET-001: a single piece of a set in one power, earning no set bonus."),
-        new("_rule_per_power_set_dup", "H-ENH-006: the same set piece slotted twice in one power."),
-    ];
+    public static IReadOnlyList<RuleInfo> Legality => [.. LegalityRules.Select(rule => rule.Info)];
 
     /// <summary>Gets the hard-limit rules, in registration order.</summary>
     public static IReadOnlyList<RuleInfo> HardLimits { get; } =
@@ -53,5 +47,15 @@ public static class RuleRegistry
         new("perma_dom", "Perma-Domination: Domination's buffed recharge <= its 90s duration."),
         new("perma_hasten", "Perma-Hasten: Hasten's buffed recharge <= its 120s duration."),
         new("resist_min", "Lowest typed resistance (Smashing..Psionic) as a percentage."),
+    ];
+
+    /// <summary>Gets the legality rules with their bodies, in registration order; a new rule is a new line here.</summary>
+    internal static IReadOnlyList<RegisteredRule<LegalityContext>> LegalityRules { get; } =
+    [
+        new(new("_rule_placement", "Per-slot placement (``classify_placement``): unknown-enh H-ENH-007, else the verdict."), PlacementRule.Run),
+        new(new("_rule_global_unique", "H-ENH-004: a ``Unique`` IO slotted more than once build-wide."), GlobalUniqueRule.Run),
+        new(new("_rule_mutex", "H-ENH-005: stealth procs, and superior/attuned versions of one set piece, are mutex."), MutexRule.Run),
+        new(new("_rule_lone_set_piece", "P-SET-001: a single piece of a set in one power, earning no set bonus."), LoneSetPieceRule.Run),
+        new(new("_rule_per_power_set_dup", "H-ENH-006: the same set piece slotted twice in one power."), PerPowerSetDuplicateRule.Run),
     ];
 }
