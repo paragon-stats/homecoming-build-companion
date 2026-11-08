@@ -65,7 +65,7 @@
   description: "Archetype and powerset profiles"
 - name: "area::community"
   color: "6f42c1"
-  description: "community/ — captured guides and expert builds"
+  description: "captured guides and expert builds, held in the private source-material repository"
 - name: "area::tools"
   color: "6f42c1"
   description: "tools/mids-dump — the C# reference-dump harness"

@@ -59,11 +59,9 @@ jobs:
           #   game data and captured pages, must stay byte-identical to their source.
           # - docs/engine/: generated extraction output (lint-exempt per
           #   .claude/rules/markdown.md).
-          # - community/: captured third-party forum guides and builds, kept
-          #   byte-identical to their source.
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
-          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|docs/engine/|community/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
+          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
           JSCPD_LINTER_RULES: /github/workspace/.github/linters/.jscpd.json
           # Checkov path/framework carve-outs live in ONE place:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).
