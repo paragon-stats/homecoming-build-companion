@@ -208,7 +208,7 @@ Cannot compute yet, by open issue:
 
 ### 2.9 The knowledge tree and the navigation rule
 
-`knowledge/coh/` does not exist. `.claude/rules/coh-knowledge-navigation.md` and `CLAUDE.md` (reading order item 9) tell a session to read `knowledge/coh/INDEX.md`
+`knowledge/coh/` does not exist. `docs/style-guides/build-rules/knowledge-navigation.md` and `docs/style-guides/build-authoring.md` (pre-flight step 3) tell a session to read `knowledge/coh/INDEX.md`
 and load only the files it points to, and to stop and ask while it is missing.
 That is a reading instruction nothing enforces: a session can skip it, read part of it, or fill gaps from memory, and the build still looks finished.
 This design replaces it (section 7.5).
@@ -643,9 +643,9 @@ The objective follows the order of authority in section 1. Whatever the search r
 
 ### 7.5 Replacing navigation-by-reading
 
-- Mark `.claude/rules/coh-knowledge-navigation.md` for replacement by a short rule: builds come only through the `.mbd` writer, and a build is emitted only when it passes
+- Mark `docs/style-guides/build-rules/knowledge-navigation.md` for replacement by a short rule: builds come only through the `.mbd` writer, and a build is emitted only when it passes
   `validate` and the playstyle `score`. A session states the playstyle; it does not hand-write build JSON or forum exports, and it does not choose knowledge files.
-- Update the references that point at the old rule: `CLAUDE.md` reading-order item 9 and the "Workflow for emitting a build" steps, and the pre-flight checklist in
+- Update the references that point at the old rule: `docs/style-guides/build-authoring.md` pre-flight step 3 and the rest of its pre-flight order, and the pre-flight checklist in
   `build-creation.md`, whose data and exemplar items become the checks `validate` and `score` run.
 - `knowledge/coh/INDEX.md` is not built. The manifest (3.4) is the only index, and only code reads it.
 

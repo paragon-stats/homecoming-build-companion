@@ -1,5 +1,8 @@
 # Contract: power assembly, split into four seams
 
+This is the template for splitting an issue across agents by file ownership.
+Copy it, replace the issue-specific contract, and give each agent only the files its seam owns.
+
 Issue #42. Goal: every one of the 12 sample builds computes totals that match Mids' own `totals.json`,
 exactly, on the fields the parity tests compare, with the engine assembling each power itself.
 
@@ -42,7 +45,7 @@ Codes from E85 up are reserved, one block per seam. E08 stays the refusal for an
 | 3 | E92–E94 |
 | 4 | E95–E97 |
 
-Every diagnostic follows `.claude/rules/error-output.md`: code, what failed, expected and found, where, and
+Every diagnostic follows `docs/style-guides/engine-architecture.md` (diagnostic contract summary): code, what failed, expected and found, where, and
 the smallest fix.
 
 ## Seam 1: harness export
