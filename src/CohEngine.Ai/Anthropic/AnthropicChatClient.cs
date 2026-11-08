@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.Json;
 
 using Microsoft.Extensions.AI;
@@ -60,7 +61,7 @@ public sealed class AnthropicChatClient : IChatClient
     {
         using HttpRequestMessage request = CreateRequest(messages, options, stream: false);
         using HttpResponseMessage response = await http.SendAsync(request, cancellationToken).ConfigureAwait(false);
-        response.EnsureSuccessStatusCode();
+        await ThrowIfFailedAsync(response, cancellationToken).ConfigureAwait(false);
         Stream body = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
         await using (body.ConfigureAwait(false))
         {
@@ -79,12 +80,68 @@ public sealed class AnthropicChatClient : IChatClient
     }
 
     /// <inheritdoc/>
-    public IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(
+    public async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(
         IEnumerable<ChatMessage> messages,
         ChatOptions? options = null,
-        CancellationToken cancellationToken = default)
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        throw new NotSupportedException("Streaming lands in the next change.");
+        using HttpRequestMessage request = CreateRequest(messages, options, stream: true);
+        using HttpResponseMessage response = await http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+        await ThrowIfFailedAsync(response, cancellationToken).ConfigureAwait(false);
+        Stream body = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+        await using (body.ConfigureAwait(false))
+        {
+            // Tool-call arguments arrive as JSON fragments per block index; the call is whole when its block stops.
+            Dictionary<int, (string CallId, string Name, StringBuilder Json)> pending = [];
+            string? responseId = null;
+            string? modelId = null;
+            int inputTokens = 0;
+            await foreach (SseEvent sse in SseParser.ReadAsync(body, cancellationToken).ConfigureAwait(false))
+            {
+                AnthropicStreamEvent data = JsonSerializer.Deserialize(sse.Data, AnthropicJsonContext.Default.AnthropicStreamEvent)
+                    ?? throw new JsonException($"The Messages API sent a null {sse.Event} event.");
+                List<AIContent> contents = [];
+                ChatFinishReason? finishReason = null;
+                switch (sse.Event)
+                {
+                    case "message_start":
+                        responseId = data.Message?.MessageId;
+                        modelId = data.Message?.Model;
+                        inputTokens = data.Message?.Usage?.InputTokens ?? 0;
+                        break;
+                    case "content_block_start" when data.ContentBlock is { Type: "tool_use" } block:
+                        pending[data.Index] = (block.CallId ?? string.Empty, block.Name ?? string.Empty, new StringBuilder());
+                        break;
+                    case "content_block_delta" when data.Delta is { Type: "text_delta", Text: { } text }:
+                        contents.Add(new TextContent(text));
+                        break;
+                    case "content_block_delta" when data.Delta is { Type: "input_json_delta" } delta && pending.TryGetValue(data.Index, out var call):
+                        call.Json.Append(delta.PartialJson);
+                        break;
+                    case "content_block_stop" when pending.Remove(data.Index, out var call):
+                        contents.Add(ToCall(call.CallId, call.Name, ParseArguments(call.Json)));
+                        break;
+                    case "message_delta":
+                        finishReason = ToFinishReason(data.Delta?.StopReason);
+                        contents.Add(new UsageContent(ToUsage(inputTokens, data.Usage?.OutputTokens ?? 0)));
+                        break;
+                    case "error":
+                        throw ApiError(response, data.Error, fallbackMessage: null);
+                    default: // ping, message_stop, thinking deltas: nothing the caller needs.
+                        break;
+                }
+
+                if (contents.Count > 0 || finishReason is not null)
+                {
+                    yield return new ChatResponseUpdate(ChatRole.Assistant, contents)
+                    {
+                        ResponseId = responseId,
+                        ModelId = modelId,
+                        FinishReason = finishReason,
+                    };
+                }
+            }
+        }
     }
 
     /// <inheritdoc/>
@@ -227,6 +284,50 @@ public sealed class AnthropicChatClient : IChatClient
     private static UsageDetails ToUsage(int input, int output)
     {
         return new UsageDetails { InputTokenCount = input, OutputTokenCount = output, TotalTokenCount = input + output };
+    }
+
+    private static JsonElement? ParseArguments(StringBuilder json)
+    {
+        if (json.Length == 0)
+        {
+            return null;
+        }
+
+        using JsonDocument document = JsonDocument.Parse(json.ToString());
+        return document.RootElement.Clone();
+    }
+
+    private static string? RequestIdOf(HttpResponseMessage response)
+    {
+        return response.Headers.TryGetValues("request-id", out IEnumerable<string>? values) ? values.FirstOrDefault() : null;
+    }
+
+    private async Task ThrowIfFailedAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+    {
+        if (response.IsSuccessStatusCode)
+        {
+            return;
+        }
+
+        string text = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+        AnthropicError? error = null;
+        try
+        {
+            error = JsonSerializer.Deserialize(text, AnthropicJsonContext.Default.AnthropicErrorEnvelope)?.Error;
+        }
+        catch (JsonException)
+        {
+            // A proxy's HTML error page: fall back to the status line below.
+        }
+
+        throw ApiError(response, error, response.ReasonPhrase);
+    }
+
+    private AnthropicApiException ApiError(HttpResponseMessage response, AnthropicError? error, string? fallbackMessage)
+    {
+        // The API does not echo the key today; the replace keeps a future echo out of logs and exception text.
+        string message = (error?.Message ?? fallbackMessage ?? string.Empty).Replace(apiKey, "[redacted]", StringComparison.Ordinal);
+        return new AnthropicApiException((int)response.StatusCode, error?.Type ?? "unknown_error", message, RequestIdOf(response));
     }
 
     private HttpRequestMessage CreateRequest(IEnumerable<ChatMessage> messages, ChatOptions? options, bool stream)

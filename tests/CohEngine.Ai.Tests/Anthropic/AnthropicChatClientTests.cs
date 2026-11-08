@@ -12,7 +12,7 @@ namespace CohEngine.Ai.Tests.Anthropic;
 public sealed class AnthropicChatClientTests
 {
     private const string Model = "claude-test-model";
-    private const string FakeKey = "fake-key-for-tests-only";
+    internal const string FakeKey = "fake-key-for-tests-only";
 
     [Fact]
     public void A_missing_key_variable_fails_with_E140_and_names_the_variable()
