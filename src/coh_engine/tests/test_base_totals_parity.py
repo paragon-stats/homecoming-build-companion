@@ -34,7 +34,7 @@ from coh_engine.endurance_budget import MIDS_TOTALS_SCALAR_FIELDS, MIDS_TOTALS_V
 from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 BUILDS = ["shield_scrapper_noslots", "arsenal_dominator_noslots"]
 
 VECTOR_FIELDS = MIDS_TOTALS_VECTOR_FIELDS
@@ -43,7 +43,7 @@ SCALAR_FIELDS = MIDS_TOTALS_SCALAR_FIELDS
 
 @pytest.fixture(scope="module")
 def mods() -> AttribMods:
-    return load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    return load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 
 
 @pytest.fixture(scope="module")

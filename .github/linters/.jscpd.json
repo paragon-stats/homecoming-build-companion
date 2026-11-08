@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/jscpd.json",
   "absolute": true,
   "gitignore": true,
   "ignore": [
@@ -16,8 +15,11 @@
     "**/src/**/tests/**",
     "**/.github/instructions/**",
     "**/data/canonical/**",
+    "**/data/patches/**",
+    "**/data/diff/**",
     "**/samples/**",
-    "**/src/coh_engine/tests/fixtures/**"
+    "**/src/coh_engine/tests/fixtures/**",
+    "**/tests/fixtures/**"
   ],
   "reporters": ["console"],
   "threshold": 3

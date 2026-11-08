@@ -1,0 +1,54 @@
+[
+  {
+    "PowerFullName": "Scrapper_Defense.Shield_Defense.One_with_the_Shield",
+    "SetTypes": [
+      22,
+      9,
+      8
+    ],
+    "PowerEnhancements": [
+      19,
+      7,
+      8,
+      11
+    ],
+    "EnhUid": "Crafted_Recharge",
+    "EnhNid": 43,
+    "EnhTypeName": "InventO",
+    "EnhNidSet": -1,
+    "IsValid": false
+  },
+  {
+    "PowerFullName": "Scrapper_Melee.Dark_Melee.Soul_Drain",
+    "SetTypes": [
+      4,
+      41,
+      25,
+      44
+    ],
+    "PowerEnhancements": [
+      8,
+      18,
+      4,
+      25,
+      1
+    ],
+    "EnhUid": "Crafted_Force_Feedback_A",
+    "EnhNid": 640,
+    "EnhTypeName": "SetO",
+    "EnhNidSet": 106,
+    "IsValid": false
+  },
+  {
+    "PowerFullName": "Pool.Speed.Hasten",
+    "SetTypes": [],
+    "PowerEnhancements": [
+      18
+    ],
+    "EnhUid": "Crafted_Recharge",
+    "EnhNid": 43,
+    "EnhTypeName": "InventO",
+    "EnhNidSet": -1,
+    "IsValid": true
+  }
+]

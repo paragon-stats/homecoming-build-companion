@@ -41,7 +41,7 @@ from coh_engine.maths import MathTables, f32
 from coh_engine.statistics import StatsContext, compute_build_stats
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 INCARNATE = "arsenal_dominator_incarnate"
 SLOTTED = "arsenal_dominator_incarnate_slotted"
@@ -56,7 +56,7 @@ SCALAR_FIELDS = {k: v for k, v in MIDS_TOTALS_SCALAR_FIELDS.items() if k not in 
 
 @pytest.fixture(scope="module")
 def mods() -> AttribMods:
-    return load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    return load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
 
 
 @pytest.fixture(scope="module")

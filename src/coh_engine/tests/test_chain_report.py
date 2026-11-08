@@ -40,7 +40,7 @@ from coh_engine.damage_reference import PowerDamageRef
 from coh_engine.maths import f32
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 BUILD = MIDS / "builds" / "shield_scrapper_set_bonuses"
 ALL_STANCES = list(Stance)
 
@@ -236,7 +236,7 @@ def test_pet_build_with_mids_db_builds_pets(monkeypatch: pytest.MonkeyPatch) -> 
         return ("pet",)
 
     monkeypatch.setattr(chain_report, "build_pet_summons", fake)
-    setup = _setup(mids_db=FIXTURES / "attribmod")
+    setup = _setup(mids_db=FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod")
     assert setup.context.pets == ("pet",)  # type: ignore[comparison-overlap]
     assert seen["names"] == ["Inherent.Inherent.Brawl"]
     assert seen["attribmod"].tables
@@ -253,7 +253,7 @@ def _table_value(mods: Any, classes: Any, class_name: str, table: str) -> float:
 
 def test_linked_res_debuff_reads_a_patch_entitys_minus_res() -> None:
     """Acid Mortar: -2.0 x Ranged_Res_Dmg on every type, from its mortar entity, which lives 60 s."""
-    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    mods = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
     classes = load_archetypes(MIDS / "archetypes.json")
     resolve = canonical_resolver(CANONICAL_POWERS)
     power = resolve(ACID_MORTAR)
@@ -266,7 +266,7 @@ def test_linked_res_debuff_reads_a_patch_entitys_minus_res() -> None:
 
 def test_linked_res_debuff_counts_freezing_rain_once() -> None:
     """Freezing Rain's two identical templates are a PvP/PvE pair; the PvE one counts once."""
-    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    mods = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
     classes = load_archetypes(MIDS / "archetypes.json")
     resolve = canonical_resolver(CANONICAL_POWERS)
     power = resolve("Defender_Buff.Storm_Summoning.Fog")
@@ -283,7 +283,7 @@ def test_linked_res_debuff_counts_freezing_rain_once() -> None:
 
 def test_linked_res_debuff_with_an_unknown_table_is_e61() -> None:
     """A -Res template naming a table the AttribMod data lacks fails loud instead of counting 0."""
-    mods = load_attribmod(FIXTURES / "attribmod" / "AttribMod.json")
+    mods = load_attribmod(FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod" / "AttribMod.json")
     classes = load_archetypes(MIDS / "archetypes.json")
     template = {
         "attribs": ["Fire_Dmg"],
@@ -314,7 +314,7 @@ def _with_patch(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_patch_minus_res_is_filled_from_canonical_with_the_mids_db(monkeypatch: pytest.MonkeyPatch) -> None:
     """A dump-zero patch debuff is read from its linked templates for the build's own AT."""
     _with_patch(monkeypatch)
-    setup = _setup(mids_db=FIXTURES / "attribmod")
+    setup = _setup(mids_db=FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod")
     mortar = next(a for a in setup.context.attacks if a.full_name == ACID_MORTAR)
     assert mortar.target_res_debuff > 0.0
     assert mortar.target_res_debuff_duration == 60.0
@@ -338,7 +338,7 @@ def test_a_pet_data_gap_skips_that_summon_and_reports_it(monkeypatch: pytest.Mon
         raise ValueError("E61: entity X has class 'minion_controllerpets' with no class in the archetype table")
 
     monkeypatch.setattr(chain_report, "build_pet_summons", gap)
-    setup = _setup(mids_db=FIXTURES / "attribmod")
+    setup = _setup(mids_db=FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod")
     assert setup.context.pets == ()
     (skip,) = [s for s in setup.skipped if s[0] == "Inherent.Inherent.Brawl"]
     assert "E61" in skip[1] and "pet" in skip[1]
@@ -353,7 +353,7 @@ def test_a_non_data_gap_pet_error_still_propagates(monkeypatch: pytest.MonkeyPat
 
     monkeypatch.setattr(chain_report, "build_pet_summons", boom)
     with pytest.raises(ValueError, match="E36"):
-        _setup(mids_db=FIXTURES / "attribmod")
+        _setup(mids_db=FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod")
 
 
 def test_only_e37_is_skipped_when_classifying(monkeypatch: pytest.MonkeyPatch) -> None:

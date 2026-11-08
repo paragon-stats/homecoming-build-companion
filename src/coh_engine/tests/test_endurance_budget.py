@@ -22,7 +22,7 @@ from coh_engine.maths import f32
 from coh_engine.scoring import endurance_recovery_per_sec
 
 CANONICAL_ARCHETYPES = Path(__file__).parents[3] / "data" / "canonical" / "archetypes"
-MIDS = Path(__file__).parent / "fixtures" / "mids"
+MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 TOTALS_JSON = MIDS / "builds" / "shield_scrapper_set_bonuses" / "totals.json"
 
 

@@ -245,7 +245,7 @@ def dump_mbd(build: Build) -> dict[str, Any]:
 # --- writing: a build walked level by level, as the game grants it ----------------------
 
 HOMECOMING = MetaData(app="Mids Reborn", version="3.8.6.0", database="Homecoming", database_version="2026.1.1242")
-_EXEMPLAR_LEVEL = 15  # .claude/rules/exemplar-10.md: essentials hold two added slots by this level
+_EXEMPLAR_LEVEL = 15  # docs/style-guides/build-rules/exemplar-10.md: essentials hold two added slots by this level
 _EXEMPLAR_SLOTS = 2
 
 

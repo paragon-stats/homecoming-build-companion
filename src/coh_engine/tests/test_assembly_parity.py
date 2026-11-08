@@ -1,7 +1,7 @@
 """Parity: the engine assembles every StatInclude power of the 12 sample builds as Mids does.
 
 Each build is assembled from its Mids dump and compared with ``assembled_powers.json``, Mids' own assembled
-effect lists, effect by effect on the fields totals read (``.claude/plans/assembly-seams.md`` § Seam 2).
+effect lists, effect by effect on the fields totals read (``docs/design/seam-brief-template.md`` § Seam 2).
 """
 
 import json
@@ -22,7 +22,7 @@ from coh_engine.enhancement import load_build_slots, load_enhancement_effects
 from coh_engine.expressions import ExpressionContext, conditionals_met
 from coh_engine.set_bonuses import build_set_bonus_power, load_set_bonus_db
 
-MIDS = Path(__file__).parent / "fixtures" / "mids"
+MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
 BUILDS = sorted(p.parent.name for p in (MIDS / "builds").glob("*/assembled_powers.json"))
 FIELDS = (
     "effect_type",

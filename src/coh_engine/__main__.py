@@ -1,7 +1,7 @@
 """CLI entry point: ``python -m coh_engine``.
 
 The registries are code; this is the thin execution surface a build run touches
-(.claude/rules/check-registry.md § Execution during build). ``rules`` lists the
+(docs/style-guides/engine-architecture.md § Execution during build). ``rules`` lists the
 registered legality rules, hard-limit rules, and scoring metrics — the introspectable
 registries. ``validate`` runs the legality + hard-limits registries over a build loaded
 from a Mids-dump directory and reports diagnostics (text, or ``--format=json``), exiting
@@ -38,7 +38,7 @@ from coh_engine.scoring import registered_metrics
 from coh_engine.set_bonuses import load_set_bonus_db
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-MIDS_FIXTURES = REPO_ROOT / "src" / "coh_engine" / "tests" / "fixtures" / "mids"  # the only dump the repository ships
+MIDS_FIXTURES = REPO_ROOT / "tests" / "fixtures" / "mids"  # the only dump the repository ships
 
 
 def _print_rules() -> None:

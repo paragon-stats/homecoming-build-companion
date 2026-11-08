@@ -1,0 +1,48 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>paragon-stats contributors</Authors>
+    <Copyright>Copyright (c) 2026 paragon-stats contributors</Copyright>
+    <!-- This repository's LICENSE file is pending the operator's decision; Apache-2.0 is the intended expression. -->
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <!--
+    Version is derived from git tags by MinVer (tags look like v0.1.0). The release
+    workflow owns the tags; MinVer stamps the assembly/file/AOT version. Between tags
+    MinVer auto-increments the minor: the next dev build reads X.(Y+1).0-alpha.
+  -->
+  <PropertyGroup>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerAutoIncrement>minor</MinVerAutoIncrement>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all" />
+    <PackageReference Include="MinVer" PrivateAssets="all" />
+    <!-- StyleCop settings (usings outside namespaces). -->
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <!--
+    PS0001, the in-repo minimum-identifier-length rule, loads into every other
+    project's compile. It excludes itself, which would be circular.
+  -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'CohEngine.Analyzers'">
+    <ProjectReference Include="$(MSBuildThisFileDirectory)src\CohEngine.Analyzers\CohEngine.Analyzers.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

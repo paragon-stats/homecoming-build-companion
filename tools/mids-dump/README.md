@@ -6,6 +6,8 @@ golden fixtures against. Mids is the reference implementation: every numeric cla
 port is validated against these dumps, per
 [`docs/engine/mids-port-spec.md`](../../docs/engine/mids-port-spec.md).
 
+Most dump code lives in [`tools/mids-dump-common`](../mids-dump-common/README.md), compiled into this harness as linked source.
+
 ## Prerequisites
 
 - .NET SDK 8.0+ (builds with 10.x).
@@ -108,7 +110,7 @@ ordinals the power accepts) so the port can map which IO sets are slottable wher
 ## Re-baselining
 
 After any Homecoming DB update in the fork: re-run the dump, refresh
-`src/coh_engine/tests/fixtures/mids/`, and re-run `pytest src/coh_engine/tests`.
+`tests/fixtures/mids/`, and re-run `pytest src/coh_engine/tests`.
 `test_mids_parity.py` fails loudly if the port and the Mids reference dumps drift.
 
 Float caveat: .NET serializes `float` with shortest-round-trip strings ("0.7"), which

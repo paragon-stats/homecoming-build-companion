@@ -4,7 +4,7 @@ Mids evaluates an ``Expression`` magnitude by replacing its keywords with text a
 math engine, and decides whether a conditional effect counts by evaluating its ``ActiveConditionals``. This
 module reproduces both. The keyword substitution is textual and ordered, so floats are rendered as .NET
 renders them and the constants are replaced before the function patterns.
-Spec: .claude/plans/assembly-seams.md, seam 3.
+Spec: docs/design/seam-brief-template.md, seam 3.
 """
 
 import ast

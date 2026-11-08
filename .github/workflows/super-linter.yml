@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -48,7 +48,7 @@ jobs:
         run: grep -v '^#' .github/super-linter.env >> "$GITHUB_ENV"
 
       - name: Super-Linter
-        uses: super-linter/super-linter@v8
+        uses: super-linter/super-linter@2da136927bd4a73596db63044b504547c62cb854  # v9.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: origin/${{ github.event.repository.default_branch }}
@@ -58,12 +58,10 @@ jobs:
           # - samples/, test fixtures/, data/canonical/: verbatim/harvested
           #   game data and captured pages, must stay byte-identical to their source.
           # - docs/engine/: generated extraction output (lint-exempt per
-          #   .claude/rules/markdown.md).
-          # - community/: captured third-party forum guides and builds, kept
-          #   byte-identical to their source.
+          #   docs/style-guides/repository-conventions.md).
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
-          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|docs/engine/|community/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
+          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|data/diff/|inbox/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
           JSCPD_LINTER_RULES: /github/workspace/.github/linters/.jscpd.json
           # Checkov path/framework carve-outs live in ONE place:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).
@@ -73,7 +71,7 @@ jobs:
       # --- Spoke-specific: report status for ruleset required checks ---
       - name: Report required status context
         if: ${{ github.event_name == 'pull_request' && always() }}
-        uses: ./.github/actions/report-status-context
+        uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: ${{ github.event.pull_request.number }}
