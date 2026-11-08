@@ -66,7 +66,7 @@ The scaffold compares engine output on every build. A field the Python engine al
 
 Totals/ and Enhancement/AspectRouting are literal ports of MidsReborn, with no "simplify" refactors.
 Ported code carries no comments that cite the MidsReborn source; the parity tests prove fidelity.
-Everything else follows the registry pattern in `.claude/rules/check-registry.md`.
+Everything else follows the registry pattern in `docs/style-guides/engine-architecture.md`.
 A new rule is a new entry in an explicit list, and nothing is discovered by reflection.
 
 ## Numeric core
@@ -102,7 +102,7 @@ Mids keeps many default-true special cases, so a build where one feeds a read bu
 
 ## Rule layer and CLI
 
-The rule layer follows `.claude/rules/check-registry.md`: the context is built once, a rule is a pure function of it, and the runner folds the registered rules.
+The rule layer follows `docs/style-guides/engine-architecture.md`: the context is built once, a rule is a pure function of it, and the runner folds the registered rules.
 A Python decorator becomes one line in an explicit list in `Registry/RuleRegistry.cs`, in the order the Python registered them.
 Nothing is found by reflection.
 
