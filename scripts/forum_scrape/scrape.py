@@ -77,6 +77,7 @@ import brotli
 
 from coh_engine.buildfile.mbd import parse_mbd
 from coh_engine.buildfile.mxd import classify, decode_mxd, decode_share_block
+from scripts.forum_scrape.source_root import add_source_root_argument, source_root
 
 BASE = "https://forums.homecomingservers.com"
 # Identify honestly as what this is: a named developer tool, run by a person, built on
@@ -1298,7 +1299,10 @@ def main(argv: list[str] | None = None) -> int:
         "a narrowed run costs fewer requests as well as less disk.",
     )
     parser.add_argument("--pages", type=int, default=1, help="listing pages to walk per --forum (default 1)")
-    parser.add_argument("--out", type=Path, required=True, help="output directory")
+    add_source_root_argument(parser)
+    parser.add_argument(
+        "--out", type=Path, default=None, help="output directory (default <source root>/build-archives)"
+    )
     parser.add_argument(
         "--delay",
         type=float,
@@ -1333,6 +1337,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Mids dump dir, needed to parse legacy .mxd builds during --dedupe",
     )
     args = parser.parse_args(argv)
+    args.out = args.out or source_root(args.source_root) / "build-archives"
 
     formats = tuple(f.strip() for f in args.formats.split(",") if f.strip())
     unknown = sorted(set(formats) - set(ALL_FORMATS))

@@ -132,11 +132,11 @@ Rows marked "not in the repository" trace to a web source that was read for this
 
 | Power | Granted by | Game change | Source |
 | --- | --- | --- | --- |
-| Swift, Hurdle, Health, Stamina | every character (Inherent group) | Issue 19 (launch patch notes dated 2010-11-30) made the four Fitness powers inherent at level 2; Issue 27 Page 2 moved the grant to level 1 | In the repository: this document, above, and `community/mechanics/guide-to-power-pools.md`. Not in the repository: [Issue 19 launch notes](https://forumarchive.cityofheroes.dev/topic/245825), [Homecoming wiki, Fitness](https://homecoming.wiki/wiki/Fitness) |
+| Swift, Hurdle, Health, Stamina | every character (Inherent group) | Issue 19 (launch patch notes dated 2010-11-30) made the four Fitness powers inherent at level 2; Issue 27 Page 2 moved the grant to level 1 | In the repository: this document, above. In the source-material checkout: `<source root>/community/mechanics/guide-to-power-pools.md`. Not in the repository: [Issue 19 launch notes](https://forumarchive.cityofheroes.dev/topic/245825), [Homecoming wiki, Fitness](https://homecoming.wiki/wiki/Fitness) |
 | Translocation, Arcane Power | Mystic Flight and the Sorcery pool (Pool group) | Pool Powerset Update: Sorcery, 20 April 2021 | In the repository: `data/diff/patch_history/Issue_27_Page_2.md` (the Translocation endurance row only); the page is [Issue 27 Page 2](https://homecoming.wiki/wiki/Issue_27_Page_2). The grant of Arcane Power itself is not traced |
 | Double Jump, Afterburner, Speed Phase | the Jump, Flight and Speed pools (Pool group) | Travel Power Updates, Issue 27 | Not traced: the repository holds only the Sorcery rows and no release note naming these grants was found |
 | Fast Snipe | a prerequisite power named in its `Requires` (Inherent group; present in the samples at level 50) | The snipe rework | Not traced: no source found in the repository or the web search |
-| Prestige sprints, Prestige Ninja Run, Prestige Athletic Run | the Prestige power-slide purchases (Inherent group) | The Pay-to-Win store | In the repository: `community/mechanics/a-p2w-store-primer.md` |
+| Prestige sprints, Prestige Ninja Run, Prestige Athletic Run | the Prestige power-slide purchases (Inherent group) | The Pay-to-Win store | In the source-material checkout: `<source root>/community/mechanics/a-p2w-store-primer.md` |
 
 ---
 
