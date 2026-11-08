@@ -1,10 +1,12 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/CohEngine.Ai/CohEngine.Ai.csproj" />
     <Project Path="src/CohEngine.Analyzers/CohEngine.Analyzers.csproj" />
     <Project Path="src/CohEngine.Cli/CohEngine.Cli.csproj" />
     <Project Path="src/CohEngine.Core/CohEngine.Core.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/CohEngine.Ai.Tests/CohEngine.Ai.Tests.csproj" />
     <Project Path="tests/CohEngine.Analyzers.Tests/CohEngine.Analyzers.Tests.csproj" />
     <Project Path="tests/CohEngine.Cli.Tests/CohEngine.Cli.Tests.csproj" />
     <Project Path="tests/CohEngine.Core.Tests/CohEngine.Core.Tests.csproj" />
