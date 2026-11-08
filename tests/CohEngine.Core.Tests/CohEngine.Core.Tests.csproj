@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\CohEngine.Core\CohEngine.Core.csproj" />
+    <ProjectReference Include="..\CohEngine.TestSupport\CohEngine.TestSupport.csproj" />
   </ItemGroup>
 
 </Project>

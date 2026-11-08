@@ -5,6 +5,25 @@ namespace CohEngine.Core.Data;
 /// <summary>One resolved build power with its database effect records (the Python port's <c>effect.Power</c>).</summary>
 public sealed record Power
 {
+    /// <summary>Initializes a new instance of the <see cref="Power"/> class.</summary>
+    /// <remarks>
+    /// The fields older dumps lack arrive through this constructor so an absent key keeps the Python default; the
+    /// JSON source generator would write default(T) into an absent init-only property instead.
+    /// </remarks>
+    /// <param name="requiresPowers">The prerequisite groups, or none.</param>
+    /// <param name="requiresPowersNot">The forbidden groups, or none.</param>
+    /// <param name="chosen">Whether a pick was spent on the power.</param>
+    [JsonConstructor]
+    public Power(
+        IReadOnlyList<IReadOnlyList<string>>? requiresPowers = null,
+        IReadOnlyList<IReadOnlyList<string>>? requiresPowersNot = null,
+        bool chosen = true)
+    {
+        RequiresPowers = requiresPowers ?? [];
+        RequiresPowersNot = requiresPowersNot ?? [];
+        Chosen = chosen;
+    }
+
     /// <summary>Gets the power's index in the build.</summary>
     public required int BuildIndex { get; init; }
 
@@ -77,16 +96,14 @@ public sealed record Power
     /// <summary>Gets the eEnhance names the power ignores.</summary>
     public required IReadOnlyList<string> IgnoreEnh { get; init; }
 
-    // The optional properties are settable, not init: the JSON source generator writes default(T) into an absent
-    // init-only property, which would lose the initializer value the Python loader defaults to.
     /// <summary>Gets the prerequisite OR list of AND groups of power full names; absent in older dumps.</summary>
-    public IReadOnlyList<IReadOnlyList<string>> RequiresPowers { get; set; } = [];
+    public IReadOnlyList<IReadOnlyList<string>> RequiresPowers { get; init; }
 
     /// <summary>Gets the forbidden OR list of AND groups of power full names; absent in older dumps.</summary>
-    public IReadOnlyList<IReadOnlyList<string>> RequiresPowersNot { get; set; } = [];
+    public IReadOnlyList<IReadOnlyList<string>> RequiresPowersNot { get; init; }
 
     /// <summary>Gets a value indicating whether a pick was spent on the power; older dumps carry only real picks.</summary>
-    public bool Chosen { get; set; } = true;
+    public bool Chosen { get; init; }
 
     /// <summary>Gets the AoE modifier magnitude expressions read; Mids' default for a power with no record.</summary>
     [JsonIgnore]

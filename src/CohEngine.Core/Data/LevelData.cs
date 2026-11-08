@@ -10,7 +10,7 @@ public static class LevelData
     {
         LevelsFile raw = Json.Load(path, LevelsJsonContext.Default.LevelsFile);
         return new LevelSchedule(
-            raw.SlotGrantLevels.ToDictionary(entry => entry.LevelIndex, entry => entry.Slots),
+            raw.SlotGrantLevels.ToLastWinsDictionary(entry => entry.LevelIndex, entry => entry.Slots),
             [.. raw.PowerPickLevels.Select(entry => entry.LevelIndex)]);
     }
 }

@@ -1,8 +1,9 @@
 using System.Collections.Concurrent;
 
+using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.Data;
+namespace CohEngine.TestSupport;
 
 /// <summary>
 /// The Mids reference dumps under <c>tests/fixtures</c>, loaded lazily and shared: each file is read once,

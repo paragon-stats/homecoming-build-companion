@@ -8,7 +8,7 @@ public static class SetBonusData
     /// <returns>The sets by index.</returns>
     public static IReadOnlyDictionary<int, EnhancementSetDef> LoadEnhancementSets(string path)
     {
-        return Json.Load(path, SetBonusJsonContext.Default.IReadOnlyListEnhancementSetDef).ToDictionary(set => set.Nid);
+        return Json.Load(path, SetBonusJsonContext.Default.IReadOnlyListEnhancementSetDef).ToLastWinsDictionary(set => set.Nid);
     }
 
     /// <summary>Parses <c>set_bonus_powers.json</c>, keyed by global power id.</summary>
@@ -16,7 +16,7 @@ public static class SetBonusData
     /// <returns>The powers by id.</returns>
     public static IReadOnlyDictionary<int, SetBonusPower> LoadSetBonusPowers(string path)
     {
-        return Json.Load(path, SetBonusJsonContext.Default.IReadOnlyListSetBonusPower).ToDictionary(
+        return Json.Load(path, SetBonusJsonContext.Default.IReadOnlyListSetBonusPower).ToLastWinsDictionary(
             power => power.PowerId,
             power =>
             {

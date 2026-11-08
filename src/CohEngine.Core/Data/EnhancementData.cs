@@ -8,7 +8,7 @@ public static class EnhancementData
     /// <returns>The records by index.</returns>
     public static IReadOnlyDictionary<int, EnhancementRecord> LoadEnhancementEffects(string path)
     {
-        return Json.Load(path, EnhancementJsonContext.Default.IReadOnlyListEnhancementRecord).ToDictionary(record => record.Nid);
+        return Json.Load(path, EnhancementJsonContext.Default.IReadOnlyListEnhancementRecord).ToLastWinsDictionary(record => record.Nid);
     }
 
     /// <summary>Parses a build's <c>slots.json</c>, keyed by the power's build index.</summary>
@@ -16,7 +16,7 @@ public static class EnhancementData
     /// <returns>The slots by build index.</returns>
     public static IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> LoadBuildSlots(string path)
     {
-        return LoadSlotEntries(path).ToDictionary(entry => entry.BuildIndex, entry => entry.Slots);
+        return LoadSlotEntries(path).ToLastWinsDictionary(entry => entry.BuildIndex, entry => entry.Slots);
     }
 
     /// <summary>Parses a build's <c>slots.json</c> entries in file order.</summary>

@@ -1,4 +1,6 @@
-namespace CohEngine.Core.Data;
+using CohEngine.Core.Data;
+
+namespace CohEngine.TestSupport;
 
 /// <summary>One build's Mids reference dump; each file is read on first use.</summary>
 public sealed class BuildFixture

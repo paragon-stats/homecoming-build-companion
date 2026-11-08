@@ -9,14 +9,19 @@ This page covers its layout, the single-precision contract, how fixtures are fou
 | Path | Holds |
 | --- | --- |
 | `src/CohEngine.Core/Maths/` | `F32` (single-precision quantization) and `MathTables` (the Maths.mhd tables). |
-| `src/CohEngine.Core/Data/` | One record per Python dataclass, one source-generated `JsonSerializerContext` per dump family, the family loaders (`EffectData`, `EnhancementData`, `AssemblyData`, `ArchetypeData`, `LevelData`, `SetBonusData`, `TotalsData`, `IncarnateData`), and `FixtureStore`. |
+| `src/CohEngine.Core/Data/` | One record per Python dataclass, one source-generated `JsonSerializerContext` per dump family, the family loaders (`EffectData`, `EnhancementData`, `AssemblyData`, `ArchetypeData`, `LevelData`, `SetBonusData`, `TotalsData`, `IncarnateData`). |
 | `src/CohEngine.Core/Registry/` | `RuleRegistry`: the legality, hard-limit, enhancement-aspect and metric registries as explicit lists. |
 | `src/CohEngine.Core/CliRunner.cs` | The whole CLI. `src/CohEngine.Cli/Program.cs` is a one-line shim. |
+| `tests/CohEngine.TestSupport/` | `FixtureStore` and `BuildFixture`. They are test-only, so they never ship in the CLI. |
 | `tests/CohEngine.Core.Tests/` | `Maths/`, `Data/` (`[Trait("Category", "Fixtures")]`) and `Parity/` (`[Trait("Category", "Parity")]`). |
 | `tests/CohEngine.Cli.Tests/` | CLI tests, including the `rules` golden comparison. |
 | `tests/fixtures/` | The Mids reference dumps (`mids/`), `attribmod/AttribMod.json`, `Maths.mhd`, and `rules-golden.txt`. Both the Python and the C# suites read them. |
 
 Records keep the Python field names in PascalCase (`n_magnitude` becomes `NMagnitude`) and the Python types.
+They are immutable, because the test fixture store shares them across tests.
+A field older dumps lack takes its Python default from a `[JsonConstructor]` parameter default, since the source generator writes `default(T)` into an absent init-only property.
+A Python `frozenset` is an `IReadOnlySet<T>`, filled from an internal `ISet<T>` that the JSON binds to.
+A repeated key keeps the last record, as a Python dict comprehension does.
 Expression strings stay strings until they are parsed in P2.
 Serialization uses source generation only. Reflection-based `JsonSerializer` calls are not allowed, because the CLI publishes Native AOT.
 
@@ -66,7 +71,9 @@ A new rule is a new entry in an explicit list, and nothing is discovered by refl
 ## Error codes
 
 Existing codes keep their numbers.
-The loaders reuse the Python messages: `E85` for a record or effect missing a key in the assembly export (`assembly_powers.json`, `assembled_powers.json`, `power_assembly.json`, and `ProcInclude` in `slots.json`), and `E86` for a build power with no record.
+The loaders reuse the Python messages.
+`E85` is a record or effect missing a key in `assembly_powers.json`, `assembled_powers.json` or `power_assembly.json`, or a `slots.json` entry without `ProcInclude`.
+`E86` is a build power with no record.
 Loaders throw typed exceptions (`InvalidDataException`, `FileNotFoundException`, `JsonException`), and diagnostics arrive with P3a.
 
 | Block | Owner |

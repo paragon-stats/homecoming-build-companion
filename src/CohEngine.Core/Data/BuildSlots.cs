@@ -10,5 +10,5 @@ public sealed record BuildSlots
     public required IReadOnlyList<SlotRef> Slots { get; init; }
 
     /// <summary>Gets the ProcInclude flag; null in dumps predating it.</summary>
-    public bool? ProcInclude { get; set; }
+    public bool? ProcInclude { get; init; }
 }

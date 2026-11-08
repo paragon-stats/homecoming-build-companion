@@ -7,5 +7,5 @@ public sealed record LevelEntry
     public required int LevelIndex { get; init; }
 
     /// <summary>Gets the slots granted at the level (slot-grant entries only).</summary>
-    public int Slots { get; set; }
+    public int Slots { get; init; }
 }

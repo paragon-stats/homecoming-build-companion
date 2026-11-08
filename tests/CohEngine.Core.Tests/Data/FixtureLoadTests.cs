@@ -1,6 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core.Data;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Data;
 

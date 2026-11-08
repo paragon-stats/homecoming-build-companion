@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace CohEngine.Core.Data;
 
 /// <summary>Source-generated JSON metadata for the assembly family.</summary>
-[JsonSourceGenerationOptions(PropertyNameCaseInsensitive = true)]
+[JsonSourceGenerationOptions(PropertyNameCaseInsensitive = true, RespectRequiredConstructorParameters = true)]
 [JsonSerializable(typeof(IReadOnlyList<AssemblyPower>))]
 [JsonSerializable(typeof(AssemblyEntitiesFile))]
 [JsonSerializable(typeof(IReadOnlyList<PowerAssemblyRecord>))]

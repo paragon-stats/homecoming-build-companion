@@ -17,7 +17,7 @@ public static class AssemblyData
         string name = Path.GetFileName(path);
         return powers
             .Select((power, i) => power with { Effects = Enrich(power.Effects, power.FullName, extensions[i].Effects, $"{name} power {power.FullName}") })
-            .ToDictionary(power => power.Nid);
+            .ToLastWinsDictionary(power => power.Nid);
     }
 
     /// <summary>Parses <c>assembly_entities.json</c>.</summary>
@@ -26,7 +26,7 @@ public static class AssemblyData
     public static AssemblyEntities LoadAssemblyEntities(string path)
     {
         AssemblyEntitiesFile raw = Json.Load(path, AssemblyJsonContext.Default.AssemblyEntitiesFile);
-        return new AssemblyEntities(raw.Entities.ToDictionary(entity => entity.Nid), raw.Powersets.ToDictionary(set => set.Nid));
+        return new AssemblyEntities(raw.Entities.ToLastWinsDictionary(entity => entity.Nid), raw.Powersets.ToLastWinsDictionary(set => set.Nid));
     }
 
     /// <summary>Parses a build's <c>power_assembly.json</c> records in file order.</summary>
@@ -49,7 +49,7 @@ public static class AssemblyData
         string name = Path.GetFileName(path);
         return powers
             .Select((power, i) => (power.BuildIndex, Effects: (IReadOnlyList<Effect>)Enrich(power.Effects, power.FullName, extensions[i].Effects, $"{name} build power {power.BuildIndex}")))
-            .ToDictionary(power => power.BuildIndex, power => power.Effects);
+            .ToLastWinsDictionary(power => power.BuildIndex, power => power.Effects);
     }
 
     /// <summary>Joins a build's <c>power_assembly.json</c> and <c>slots.json</c> onto its <c>powers_effects.json</c> powers.</summary>
@@ -63,8 +63,8 @@ public static class AssemblyData
         ArgumentNullException.ThrowIfNull(powers);
         string name = Path.GetFileName(powerAssemblyPath);
         string slotsName = Path.GetFileName(slotsPath);
-        Dictionary<int, PowerAssemblyRecord> records = LoadPowerAssemblyRecords(powerAssemblyPath).ToDictionary(record => record.BuildIndex);
-        Dictionary<int, bool> procInclude = EnhancementData.LoadSlotEntries(slotsPath).ToDictionary(
+        Dictionary<int, PowerAssemblyRecord> records = LoadPowerAssemblyRecords(powerAssemblyPath).ToLastWinsDictionary(record => record.BuildIndex);
+        Dictionary<int, bool> procInclude = EnhancementData.LoadSlotEntries(slotsPath).ToLastWinsDictionary(
             entry => entry.BuildIndex,
             entry => entry.ProcInclude ?? throw new InvalidDataException(
                 $"E85: {slotsName} build power {entry.BuildIndex} is missing ['ProcInclude']; expected every key of the assembly export record; "
@@ -86,25 +86,21 @@ public static class AssemblyData
                 power.BuildIndex,
                 include,
                 record.SubPowers,
-                new AssemblyPower
+                new AssemblyPower(record.EntitiesAffectedJson, record.EntitiesAutoHitJson, power.Enhancements.ToHashSet(), record.IgnoreEnhJson)
                 {
                     Nid = power.NidPower,
                     FullName = power.FullName,
                     PowerType = power.PowerType,
                     PowerSetType = record.PowerSetType,
-                    EntitiesAffected = record.EntitiesAffected,
-                    EntitiesAutoHit = record.EntitiesAutoHit,
                     ActivatePeriod = power.ActivatePeriod,
                     RechargeTime = power.RechargeTime,
                     BaseRechargeTime = record.BaseRechargeTime,
                     CastTime = power.CastTime,
                     AoeModifier = record.AoeModifier,
-                    Enhancements = power.Enhancements.ToHashSet(),
                     HasGrantPowerEffect = record.HasGrantPowerEffect,
                     HasPowerOverrideEffect = record.HasPowerOverrideEffect,
                     AbsorbSummonEffects = record.AbsorbSummonEffects,
                     AbsorbSummonAttributes = record.AbsorbSummonAttributes,
-                    IgnoreEnh = record.IgnoreEnh,
                     Effects = Enrich(power.Effects, power.FullName, record.Effects, $"{name} build power {power.BuildIndex}"),
                 });
         }

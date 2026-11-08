@@ -5,6 +5,25 @@ namespace CohEngine.Core.Data;
 /// <summary>A power as assembly reads it (the Python port's <c>assembly_data.AssemblyPower</c>).</summary>
 public sealed record AssemblyPower
 {
+    /// <summary>Initializes a new instance of the <see cref="AssemblyPower"/> class.</summary>
+    /// <remarks>The sets are copied into read-only sets, so a shared cached record cannot be changed.</remarks>
+    /// <param name="entitiesAffectedJson">The EntitiesAffected members as the dump lists them.</param>
+    /// <param name="entitiesAutoHitJson">The EntitiesAutoHit members as the dump lists them.</param>
+    /// <param name="enhancementsJson">The Enhancements members as the dump lists them.</param>
+    /// <param name="ignoreEnhJson">The IgnoreEnh members as the dump lists them.</param>
+    [JsonConstructor]
+    public AssemblyPower(ISet<string> entitiesAffectedJson, ISet<string> entitiesAutoHitJson, ISet<int> enhancementsJson, ISet<string> ignoreEnhJson)
+    {
+        ArgumentNullException.ThrowIfNull(entitiesAffectedJson);
+        ArgumentNullException.ThrowIfNull(entitiesAutoHitJson);
+        ArgumentNullException.ThrowIfNull(enhancementsJson);
+        ArgumentNullException.ThrowIfNull(ignoreEnhJson);
+        EntitiesAffected = entitiesAffectedJson.ToHashSet(StringComparer.Ordinal);
+        EntitiesAutoHit = entitiesAutoHitJson.ToHashSet(StringComparer.Ordinal);
+        Enhancements = enhancementsJson.ToHashSet();
+        IgnoreEnh = ignoreEnhJson.ToHashSet(StringComparer.Ordinal);
+    }
+
     /// <summary>Gets the database index.</summary>
     public required int Nid { get; init; }
 
@@ -18,10 +37,12 @@ public sealed record AssemblyPower
     public required string PowerSetType { get; init; }
 
     /// <summary>Gets the eEntity names the power affects.</summary>
-    public required ISet<string> EntitiesAffected { get; init; }
+    [JsonIgnore]
+    public IReadOnlySet<string> EntitiesAffected { get; }
 
     /// <summary>Gets the eEntity names the power auto-hits.</summary>
-    public required ISet<string> EntitiesAutoHit { get; init; }
+    [JsonIgnore]
+    public IReadOnlySet<string> EntitiesAutoHit { get; }
 
     /// <summary>Gets the activate period.</summary>
     [JsonConverter(typeof(F32JsonConverter))]
@@ -44,7 +65,8 @@ public sealed record AssemblyPower
     public required double AoeModifier { get; init; }
 
     /// <summary>Gets the EnhancementClass ids the power accepts.</summary>
-    public required ISet<int> Enhancements { get; init; }
+    [JsonIgnore]
+    public IReadOnlySet<int> Enhancements { get; }
 
     /// <summary>Gets a value indicating whether the power has a GrantPower effect.</summary>
     public required bool HasGrantPowerEffect { get; init; }
@@ -59,8 +81,29 @@ public sealed record AssemblyPower
     public required bool AbsorbSummonAttributes { get; init; }
 
     /// <summary>Gets the eEnhance names the power ignores.</summary>
-    public required ISet<string> IgnoreEnh { get; init; }
+    [JsonIgnore]
+    public IReadOnlySet<string> IgnoreEnh { get; }
 
     /// <summary>Gets the effects in the extended record shape.</summary>
     public required IReadOnlyList<Effect> Effects { get; init; }
+
+    /// <summary>Gets <see cref="EntitiesAffected"/> in the shape JSON reads and writes it.</summary>
+    [JsonInclude]
+    [JsonPropertyName("EntitiesAffected")]
+    internal ISet<string> EntitiesAffectedJson => (ISet<string>)EntitiesAffected;
+
+    /// <summary>Gets <see cref="EntitiesAutoHit"/> in the shape JSON reads and writes it.</summary>
+    [JsonInclude]
+    [JsonPropertyName("EntitiesAutoHit")]
+    internal ISet<string> EntitiesAutoHitJson => (ISet<string>)EntitiesAutoHit;
+
+    /// <summary>Gets <see cref="Enhancements"/> in the shape JSON reads and writes it.</summary>
+    [JsonInclude]
+    [JsonPropertyName("Enhancements")]
+    internal ISet<int> EnhancementsJson => (ISet<int>)Enhancements;
+
+    /// <summary>Gets <see cref="IgnoreEnh"/> in the shape JSON reads and writes it.</summary>
+    [JsonInclude]
+    [JsonPropertyName("IgnoreEnh")]
+    internal ISet<string> IgnoreEnhJson => (ISet<string>)IgnoreEnh;
 }

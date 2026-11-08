@@ -8,6 +8,40 @@ namespace CohEngine.Core.Data;
 /// </summary>
 public sealed record Effect
 {
+    /// <summary>Initializes a new instance of the <see cref="Effect"/> class.</summary>
+    /// <remarks>
+    /// The optional fields arrive through this constructor so an absent key keeps the Python default; the JSON source
+    /// generator would write default(T) into an absent init-only property instead.
+    /// </remarks>
+    /// <param name="isEnhancementEffect">Whether <c>GBPA_AddEnhFX</c> added the effect.</param>
+    /// <param name="summon">The summoned entity's UID.</param>
+    /// <param name="nSummon">The summoned entity's index, or -1.</param>
+    /// <param name="duration">The effect duration.</param>
+    /// <param name="effectId">The effect id.</param>
+    /// <param name="reward">The reward name.</param>
+    /// <param name="conditionals">The active conditionals, or none.</param>
+    /// <param name="absorbedPowerNid">The absorbed power's index, or -1.</param>
+    [JsonConstructor]
+    public Effect(
+        bool isEnhancementEffect = false,
+        string summon = "",
+        int nSummon = -1,
+        double duration = 0.0,
+        string effectId = "",
+        string reward = "",
+        IReadOnlyList<KeyValuePair<string, string>>? conditionals = null,
+        int absorbedPowerNid = -1)
+    {
+        IsEnhancementEffect = isEnhancementEffect;
+        Summon = summon;
+        NSummon = nSummon;
+        Duration = duration;
+        EffectId = effectId;
+        Reward = reward;
+        Conditionals = conditionals ?? [];
+        AbsorbedPowerNid = absorbedPowerNid;
+    }
+
     /// <summary>Gets the effect's index within its power.</summary>
     public required int Index { get; init; }
 
@@ -129,36 +163,34 @@ public sealed record Effect
     /// <summary>Gets a value indicating whether the magnitude displays as a percentage.</summary>
     public required bool DisplayPercentage { get; init; }
 
-    // The optional properties are settable, not init: the JSON source generator writes default(T) into an absent
-    // init-only property, which would lose the initializer value the Python loader defaults to.
     /// <summary>Gets a value indicating whether <c>GBPA_AddEnhFX</c> added the effect; false for a raw database effect.</summary>
-    public bool IsEnhancementEffect { get; set; }
+    public bool IsEnhancementEffect { get; init; }
 
     /// <summary>Gets the eBuffMode name: Debuff only on the effects of a set-bonus power named for Slow.</summary>
     [JsonIgnore]
     public string BuffMode { get; init; } = "Normal";
 
     /// <summary>Gets the summoned entity's UID (assembly records only).</summary>
-    public string Summon { get; set; } = string.Empty;
+    public string Summon { get; init; }
 
     /// <summary>Gets the summoned entity's index (assembly records only).</summary>
-    public int NSummon { get; set; } = -1;
+    public int NSummon { get; init; }
 
     /// <summary>Gets the effect duration (assembly records only).</summary>
     [JsonConverter(typeof(F32JsonConverter))]
-    public double Duration { get; set; }
+    public double Duration { get; init; }
 
     /// <summary>Gets the effect id (assembly records only).</summary>
-    public string EffectId { get; set; } = string.Empty;
+    public string EffectId { get; init; }
 
     /// <summary>Gets the reward name (assembly records only).</summary>
-    public string Reward { get; set; } = string.Empty;
+    public string Reward { get; init; }
 
     /// <summary>Gets the active conditionals as key/value pairs (assembly records only).</summary>
     [JsonPropertyName("ActiveConditionals")]
-    public IReadOnlyList<KeyValuePair<string, string>> Conditionals { get; set; } = [];
+    public IReadOnlyList<KeyValuePair<string, string>> Conditionals { get; init; }
 
     /// <summary>Gets the absorbed power's index, or -1 (assembly records only).</summary>
     [JsonPropertyName("Absorbed_Power_nID")]
-    public int AbsorbedPowerNid { get; set; } = -1;
+    public int AbsorbedPowerNid { get; init; }
 }

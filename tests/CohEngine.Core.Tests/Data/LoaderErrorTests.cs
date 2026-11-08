@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 using CohEngine.Core.Data;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Data;
 
@@ -124,6 +125,55 @@ public sealed class LoaderErrorTests : IDisposable
         string path = Write("totals.json", json.Replace("\"Def\":[", "\"Def\":5,\"Unused\":[", StringComparison.Ordinal));
 
         Assert.Throws<JsonException>(() => TotalsData.LoadTotals(path));
+    }
+
+    [Fact]
+    public void A_repeated_key_keeps_the_last_record_as_a_python_dict_does()
+    {
+        string path = Write(
+            "slots.json",
+            """[{"BuildIndex": 7, "Slots": []}, {"BuildIndex": 7, "Slots": [{"Level": 2, "IsInherent": false, "Enh": 5, "Grade": 0, "IOLevel": 49, "RelativeLevel": 4}]}]""");
+
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(path);
+
+        Assert.Equal(5, Assert.Single(Assert.Single(slots).Value).Enh);
+    }
+
+    [Fact]
+    public void Set_fields_round_trip_through_their_json_shape()
+    {
+        AssemblyPower power = Fixtures.Store.AssemblyPowers.Values.First(candidate => candidate.EntitiesAffected.Count > 0);
+        AssemblyEntity entity = Fixtures.Store.AssemblyEntities.Entities.Values.First(candidate => candidate.FirstPowersetEffectTypes.Count > 0);
+        PowerAssemblyRecord record = AssemblyData.LoadPowerAssemblyRecords(Path.Combine(Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)").Directory, "power_assembly.json"))[0];
+        IncarnateSubPower sub = Fixtures.Store.Build("arsenal_dominator_incarnate").Incarnates[0].SubPowers[0];
+
+        AssemblyPower powerAgain = Assert.Single(JsonSerializer.Deserialize(
+            JsonSerializer.Serialize<IReadOnlyList<AssemblyPower>>([power], AssemblyJsonContext.Default.IReadOnlyListAssemblyPower),
+            AssemblyJsonContext.Default.IReadOnlyListAssemblyPower)!);
+        AssemblyEntity entityAgain = JsonSerializer.Deserialize(
+            JsonSerializer.Serialize(new AssemblyEntitiesFile { Entities = [entity], Powersets = [] }, AssemblyJsonContext.Default.AssemblyEntitiesFile),
+            AssemblyJsonContext.Default.AssemblyEntitiesFile)!.Entities[0];
+        PowerAssemblyRecord recordAgain = Assert.Single(JsonSerializer.Deserialize(
+            JsonSerializer.Serialize<IReadOnlyList<PowerAssemblyRecord>>([record], AssemblyJsonContext.Default.IReadOnlyListPowerAssemblyRecord),
+            AssemblyJsonContext.Default.IReadOnlyListPowerAssemblyRecord)!);
+        IncarnateSubPower subAgain = JsonSerializer.Deserialize(
+            JsonSerializer.Serialize<IReadOnlyList<Incarnate>>([new Incarnate { BuildIndex = 0, FullName = "x", SubPowers = [sub] }], IncarnateJsonContext.Default.IReadOnlyListIncarnate),
+            IncarnateJsonContext.Default.IReadOnlyListIncarnate)![0].SubPowers[0];
+
+        Assert.True(power.EntitiesAffected.SetEquals(powerAgain.EntitiesAffected));
+        Assert.True(power.Enhancements.SetEquals(powerAgain.Enhancements));
+        Assert.True(entity.FirstPowersetEffectTypes[0].SetEquals(entityAgain.FirstPowersetEffectTypes[0]));
+        Assert.True(record.IgnoreEnh.SetEquals(recordAgain.IgnoreEnh));
+        Assert.True(sub.Enhancements.SetEquals(subAgain.Enhancements));
+    }
+
+    [Fact]
+    public void A_constructor_field_keeps_its_quantizing_converter()
+    {
+        IEnumerable<Effect> effects = Fixtures.Store.AssemblyPowers.Values.SelectMany(power => power.Effects);
+
+        Assert.All(effects, effect => Assert.Equal((double)(float)effect.Duration, effect.Duration));
+        Assert.Contains(effects, effect => effect.Duration != 0.0);
     }
 
     [Fact]

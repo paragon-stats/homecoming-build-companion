@@ -1,6 +1,7 @@
 using CohEngine.Core;
 using CohEngine.Core.Data;
 using CohEngine.Core.Registry;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Cli.Tests;
 
