@@ -3,6 +3,7 @@ using System.IO.Compression;
 using System.Text;
 
 using CohEngine.Core.BuildFile;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.BuildFile;
 
@@ -32,6 +33,19 @@ public sealed class MxdTests
         }
 
         return builder.ToString().TrimEnd('\r', '\n');
+    }
+
+    private static (byte[] Raw, int UncompressedSize) FixturePayload()
+    {
+        string text = File.ReadAllText(Path.Combine(BuildFileFixtures.Root, "mxd", "Scrapper - Dark-Shield.mxd"));
+        ShareBlock block = Mxd.DecodeShareBlock(text);
+        return (Mxd.HexDecode(block.Payload), block.UncompressedSize);
+    }
+
+    private static string Reshare(byte[] raw, int uncompressedSize)
+    {
+        string encoded = Convert.ToHexString(raw);
+        return $"|MxDz;{uncompressedSize};{raw.Length};{encoded.Length};HEX;|\r\n" + BreakString(encoded);
     }
 
     private static string[] HeaderItems(string share)
@@ -86,10 +100,10 @@ public sealed class MxdTests
     }
 
     [Theory]
-    [InlineData("|MxDz;100;40;HEX;|\r\n|DEADBEEF|", "E112: share header must have exactly 5 items, got 4")]
-    [InlineData("|MxDz;abc;40;80;HEX;|\r\n|DEADBEEF|", "E112: share header sizes must be integers")]
-    [InlineData("|MxDz;100;40;80;HEX;|", "E112: share block needs a header line and at least one payload line")]
-    [InlineData("|----|\r\n|AABBCC|", "E112: no |MxDz;…| or |MBD;…| header line found")]
+    [InlineData("|MxDz;100;40;HEX;|\r\n|DEADBEEF|", "E112: share header must have exactly 5 items, got 4; copy the header line unchanged from the Mids export")]
+    [InlineData("|MxDz;abc;40;80;HEX;|\r\n|DEADBEEF|", "E112: share header sizes must be integers; copy the header line unchanged from the Mids export")]
+    [InlineData("|MxDz;100;40;80;HEX;|", "E112: share block needs a header line and at least one payload line; copy the payload lines under the header")]
+    [InlineData("|----|\r\n|AABBCC|", "E112: no |MxDz;…| or |MBD;…| header line found; copy the whole share block, header line included")]
     public void A_malformed_envelope_is_E112(string text, string message)
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.DecodeShareBlock(text));
@@ -110,7 +124,7 @@ public sealed class MxdTests
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.HexDecode(data));
 
-        Assert.Equal("E113: mxd payload is not valid hex", exception.Message);
+        Assert.Equal("E113: mxd payload is not valid hex; copy the payload lines unchanged from the Mids export", exception.Message);
     }
 
     [Fact]
@@ -118,7 +132,30 @@ public sealed class MxdTests
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.DecodeMxd("|MBD;10;8;16;BASE64;|\r\ndGVzdA=="));
 
-        Assert.Equal("E113: not an mxd share block", exception.Message);
+        Assert.Equal("E113: not an mxd share block; pass a MxDz block, not another format", exception.Message);
+    }
+
+    [Theory]
+    [InlineData(5, 0)]
+    [InlineData(-1, 0)]
+    [InlineData(0, 4)]
+    public void A_truncated_or_checksum_stripped_payload_is_E113(int cutFromEnd, int stripTrailer)
+    {
+        (byte[] raw, int size) = FixturePayload();
+        byte[] damaged = cutFromEnd >= 0 ? raw[..^cutFromEnd] : raw[..(raw.Length / 2)];
+        damaged = damaged[..^stripTrailer];
+
+        InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.DecodeMxd(Reshare(damaged, size)));
+
+        Assert.StartsWith("E113: mxd zlib inflate failed;", exception.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Bytes_after_the_zlib_trailer_are_accepted()
+    {
+        (byte[] raw, int size) = FixturePayload();
+
+        Assert.Equal(Mxd.DecodeMxd(Reshare(raw, size)), Mxd.DecodeMxd(Reshare([.. raw, 1, 2, 3], size)));
     }
 
     [Fact]
@@ -138,7 +175,7 @@ public sealed class MxdTests
     {
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.DecodeMxd("|MxDz;10;6;12;HEX;|\r\n|FFFFFFFFFFFF|"));
 
-        Assert.Equal("E113: mxd zlib inflate failed", exception.Message);
+        Assert.Equal("E113: mxd zlib inflate failed; the payload is truncated or corrupt, re-export it from Mids", exception.Message);
     }
 
     [Theory]
