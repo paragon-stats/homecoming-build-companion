@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+using System.Text;
 
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
@@ -9,7 +9,7 @@ namespace CohEngine.Core.Registry.LegalityRules;
 /// H-ENH-005: stealth procs, and superior or attuned versions of one set piece, are mutually exclusive. It gates on the
 /// mutex name, never on the <c>Superior</c> flag: purples carry <c>Superior</c> with no mutex.
 /// </summary>
-internal static partial class MutexRule
+internal static class MutexRule
 {
     /// <summary>Runs the rule.</summary>
     /// <param name="context">The legality context.</param>
@@ -39,7 +39,7 @@ internal static partial class MutexRule
                 continue;
             }
 
-            string baseVersion = VersionPrefix().Replace(enhancement.Uid, string.Empty);
+            string baseVersion = StripVersionPrefixes(enhancement.Uid);
             if (versions.TryGetValue(baseVersion, out string? other))
             {
                 yield return Conflict(enhancement, power, $"a version of the same piece in {PyText.Repr(other)}", "one version");
@@ -51,8 +51,30 @@ internal static partial class MutexRule
         }
     }
 
-    [GeneratedRegex("(?:Attuned_|Superior_)", RegexOptions.None, matchTimeoutMilliseconds: 1000)]
-    private static partial Regex VersionPrefix();
+    // The Python strips every "Attuned_" and "Superior_" in one left-to-right pass (re.sub), so a prefix that two
+    // removals would join is not removed.
+    private static string StripVersionPrefixes(string uid)
+    {
+        StringBuilder stripped = new();
+        int index = 0;
+        while (index < uid.Length)
+        {
+            if (uid.AsSpan(index).StartsWith("Attuned_", StringComparison.Ordinal))
+            {
+                index += "Attuned_".Length;
+            }
+            else if (uid.AsSpan(index).StartsWith("Superior_", StringComparison.Ordinal))
+            {
+                index += "Superior_".Length;
+            }
+            else
+            {
+                stripped.Append(uid[index++]);
+            }
+        }
+
+        return stripped.ToString();
+    }
 
     private static Diagnostic Conflict(EnhancementLegality enhancement, Power power, string conflict, string limit)
     {
