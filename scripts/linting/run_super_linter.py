@@ -123,7 +123,7 @@ def _maybe_append_default_filter_excludes(env_pairs: list[tuple[str, str]], *, i
     # docs, and the legacy PowerShell capture lane.  Mirrors the pattern in
     # .github/workflows/super-linter.yml (keep the two in sync).
     ci_pattern = (
-        r"((.*/)?(samples/|src/coh_engine/tests/fixtures/|tests/fixtures/|data/canonical/|docs/engine/).*"
+        r"((.*/)?(samples/|src/coh_engine/tests/fixtures/|tests/fixtures/|data/canonical/|data/diff/|inbox/|docs/engine/).*"
         r"|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)"
     )
 

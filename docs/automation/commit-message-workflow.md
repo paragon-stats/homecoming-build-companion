@@ -4,7 +4,7 @@ Every message written during development feeds something downstream: a version b
 changelog entry, an issue closure, or the permanent history on `main`. This document maps
 which message goes where, which gate protects it, and why each gate exists.
 
-The rules themselves live in [`.claude/rules/gitops.md`](../../.claude/rules/gitops.md); this
+The rules themselves live in [`docs/repository-standards/git-standards.md`](../repository-standards/git-standards.md); this
 is the mechanical picture behind them.
 
 ## The pipeline
@@ -147,7 +147,7 @@ change that satisfies both goals; signature enforcement is untouched.
 
 ## Reference
 
-- [`.claude/rules/gitops.md`](../../.claude/rules/gitops.md) — the binding conventions.
+- [`docs/repository-standards/git-standards.md`](../repository-standards/git-standards.md) — the binding conventions.
 - [`scripts/testing/hooks/check_commit_message.py`](../../scripts/testing/hooks/check_commit_message.py) — the single validator all three gates call.
 - [`.github/workflows/commitlint.yml`](../../.github/workflows/commitlint.yml) — the three gates.
 - [`pyproject.toml`](../../pyproject.toml) `[tool.semantic_release]` — the bump rules the release workflow applies.

@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
   Ingest one Chrome+extension-captured forum-guide markdown file into the
-  project's community/ tree. Validates frontmatter, copies to the right
+  source root's community/ tree. Validates frontmatter, copies to the right
   folder, and re-runs the community INDEX.md regenerator.
 
 .DESCRIPTION
@@ -27,18 +27,19 @@ param(
 
     [string]$Target,              # optional, e.g. "mechanics/ppm-information-guide.md"
 
-    [string]$ProjectRoot = (Join-Path $PSScriptRoot '..\..\homecoming-build-companion'),
+    [string]$SourceRoot,   # private source-material checkout; else $env:COH_SOURCE_ROOT, else ..\homecoming-source-material
 
     [switch]$Force                # overwrite if destination exists
 )
 
 $ErrorActionPreference = 'Stop'
 $Path        = [System.IO.Path]::GetFullPath($Path)
-$ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
-$CommunityRoot = Join-Path $ProjectRoot 'community'
+. (Join-Path $PSScriptRoot 'SourceRoot.ps1')
+$SourceRoot = Resolve-SourceRoot $SourceRoot
+$CommunityRoot = Join-Path $SourceRoot 'community'
 
 if (-not (Test-Path $Path)) { throw "Source not found: $Path" }
-if (-not (Test-Path $CommunityRoot)) { throw "community/ not found at $CommunityRoot" }
+if (-not (Test-Path $CommunityRoot)) { throw "E04: expected a directory at $CommunityRoot, which was not found; set -SourceRoot or COH_SOURCE_ROOT" }
 
 # Standard topic folder names. First topic_tag is matched against these
 # (case-insensitive) and falls back to "_meta" if no match.
@@ -150,5 +151,5 @@ Write-Host "Copied → $dest" -ForegroundColor Green
 $regen = Join-Path $PSScriptRoot 'regen-index.ps1'
 if (Test-Path $regen) {
     Write-Host "Re-generating community/INDEX.md ..." -ForegroundColor Cyan
-    & $regen -CommunityRoot $CommunityRoot
+    & $regen -SourceRoot $SourceRoot
 }

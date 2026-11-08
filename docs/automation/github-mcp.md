@@ -34,8 +34,8 @@ own `.mcp.json` instead.
 ### The server must also be enabled
 
 `.mcp.json` alone does nothing. Claude Code only loads a project-scoped server when it is
-named in `enabledMcpjsonServers` in [`.claude/settings.json`](../../.claude/settings.json),
-which is tracked for that reason:
+named in `enabledMcpjsonServers` in `.claude/settings.json` (local, not committed; see [the AI-assistance policy](../style-guides/ai-assistance-policy.md)),
+which a contributor sets up locally:
 
 ```json
 { "enabledMcpjsonServers": ["github"] }
@@ -69,7 +69,7 @@ variable through to the container. The token is never written to disk.
 ### Image pinning
 
 The image is pinned by digest rather than a tag, per
-[`devsecops.md`](../../.claude/rules/devsecops.md) (pin third-party components in security
+[`devsecops.md`](../repository-standards/devsecops-workflow.md) (pin third-party components in security
 paths). The pinned digest is `github-mcp-server` v1.11.0. To upgrade:
 
 ```bash
