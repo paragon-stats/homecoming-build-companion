@@ -1,6 +1,7 @@
 # Procs
 
-A **proc** is an enhancement that has a *chance* to fire an effect when the slotting power activates. Distinct from a "buff" enhancement, which always provides its multiplier. Procs are the highest-leverage slotting choice in modern endgame builds — and the trickiest to optimize.
+A **proc** is an enhancement that has a *chance* to fire an effect when the slotting power activates. Distinct from a "buff" enhancement, which always provides its multiplier.
+Procs are the highest-leverage slotting choice in modern endgame builds — and the trickiest to optimize.
 
 Authoritative data: filtered subset of [data/mids/database/Enhancement.json](../data/mids/database/Enhancement.json) where `IsProc: true` or any effect has `EffectChance > 0`.
 
@@ -11,7 +12,8 @@ Authoritative data: filtered subset of [data/mids/database/Enhancement.json](../
 Same slot, different behavior:
 
 - **Buff enhancement** (e.g. "Crushing Impact: Damage") — adds a fixed % to the power's damage every time it fires. Predictable.
-- **Proc** (e.g. "Crushing Impact: Chance for Smashing Damage") — has a chance per activation to add a *separate* damage hit. The proc's damage is independent of the power's base damage and ignores the power's enhancement values.
+- **Proc** (e.g. "Crushing Impact: Chance for Smashing Damage") — has a chance per activation to add a *separate* damage hit.
+  The proc's damage is independent of the power's base damage and ignores the power's enhancement values.
 
 The two main flavors of proc:
 
@@ -24,7 +26,7 @@ The two main flavors of proc:
 
 For a PPM proc slotted into a power, the per-activation chance is:
 
-```
+```text
 chance = PPM × (recharge_after_slotting + cast_time × area_factor) / 60
 ```
 
@@ -100,7 +102,9 @@ Reproduce the exact formula MidsReborn uses by reading `MidsReborn/Core/Base/Dat
 
 ### When procs beat enhanced damage
 
-A long-recharge single-target attack (e.g. Tanker's Total Focus, Brute's Knockout Blow, Stalker's Assassin Strike) loaded with 4–5 damage procs often **out-damages** the same attack slotted with traditional damage IOs. The math: each proc fires at 60–90% chance for ~71+ damage, completely outside ED, while damage IOs are ED-capped.
+A long-recharge single-target attack loaded with 4–5 damage procs often **out-damages** the same attack slotted with traditional damage IOs.
+E.g. Tanker's Total Focus, Brute's Knockout Blow, Stalker's Assassin Strike.
+The math: each proc fires at 60–90% chance for ~71+ damage, completely outside ED, while damage IOs are ED-capped.
 
 Rule of thumb: **slow + single-target = procmonster; fast + AoE = enhance normally.**
 

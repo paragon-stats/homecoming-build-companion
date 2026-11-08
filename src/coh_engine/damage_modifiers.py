@@ -1,6 +1,6 @@
 """Damage modifiers for the layered damage model: click buffs and target resistance debuffs.
 
-Each modifier is one ``@damage_modifier`` function (``.claude/rules/check-registry.md``).
+Each modifier is one ``@damage_modifier`` function (``docs/style-guides/engine-architecture.md``).
 
 **Novel to the port — no Mids parity reference.** Click buffs, support powers and location-patch debuffs
 are fired on cooldown, since their casts are charged to the timeline as such. Persistent debuff toggles

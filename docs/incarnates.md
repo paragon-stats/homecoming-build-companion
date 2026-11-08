@@ -36,7 +36,8 @@ Each slot has 4 tiers:
 - **T3 — Rare** (substantial, **+1 level shift in iTrials**)
 - **T4 — Very Rare** (best, **+1 additional level shift**, total +2 against +4 incarnate content)
 
-Crafting flows: T1/T2 from common Empyrean salvage, T3 from rare salvage + Threads/Empyrean, T4 from very-rare salvage + significant resources. Most builds aim for **T4 in every slot they care about**.
+Crafting flows: T1/T2 from common Empyrean salvage, T3 from rare salvage + Threads/Empyrean, T4 from very-rare salvage + significant resources.
+Most builds aim for **T4 in every slot they care about**.
 
 ---
 
@@ -121,4 +122,7 @@ For pure damage, Reactive Radial is the default. For specialty roles, the others
 - **Alpha is the headline.** Picking the right Alpha can enable the rest of your build (Cardiac fixes endurance, Spiritual hits recharge breakpoints, Agility softcaps defense). Decide Alpha first.
 - **Hybrid + Destiny on a 120s rotation** — both have ~120s recharge. Build a routine: pop Destiny on a tough fight, run Hybrid for the duration, re-pop both as they refresh.
 - **Judgement + Lore + Hybrid** — three "burst" buttons that synergize on hard fights. Most teams call them out for boss spawns.
-- **Don't over-rely on Incarnate buffs in slotting.** The build should be functional without them; Incarnates push it from "good" to "endgame-strong." Plan slots to soft-cap **before** Alpha; Alpha should push past softcap, not be the reason you reach it.
+- **Don't over-rely on Incarnate buffs in slotting.**
+  The build should be functional without them.
+  Incarnates push it from "good" to "endgame-strong."
+  Plan slots to soft-cap **before** Alpha; Alpha should push past softcap, not be the reason you reach it.

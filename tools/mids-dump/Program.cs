@@ -297,7 +297,7 @@ internal static class Program
 
     // The forum export is MidsReborn's own emitter (ClsOutput.Build), so the markdown a build
     // proposal ships is generated rather than hand-transcribed — the format is a spec, not a
-    // style choice (.claude/rules/build-creation.md P1).
+    // style choice (docs/style-guides/build-rules/build-creation.md P1).
     // Returns the failure count so Main's non-zero exit covers a failed export too.
     private static int DumpForumExport(string buildDir, string name)
     {
@@ -1412,7 +1412,7 @@ internal static class Program
         // and must reproduce these effects (structural key + Mag) before the fold.
         var vp = toon.CurrentBuild?.SetBonusVirtualPower;
         var effects = vp?.Effects.Select((fx, fxIdx) => SerializeVirtualEffect(fx, fxIdx)).ToList()
-                      ?? new List<object>();
+                        ?? new List<object>();
         WriteJson(buildDir, "set_bonus_virtual_power.json", new { EffectCount = effects.Count, Effects = effects });
     }
 

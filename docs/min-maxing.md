@@ -10,7 +10,8 @@ This is the playbook of levers experienced builders pull. Each section gives the
 
 **Target:** 45% defense (PvE) on the relevant defense types. At 45%, mobs hit you 5% of the time — the floor.
 
-**Why it matters:** Going from 40% to 45% reduces incoming damage by ~50%. Going from 45% to 50% reduces it by ~10%. The marginal value drops off a cliff above the soft-cap; below it, every percent matters.
+**Why it matters:** Going from 40% to 45% reduces incoming damage by ~50%. Going from 45% to 50% reduces it by ~10%.
+The marginal value drops off a cliff above the soft-cap; below it, every percent matters.
 
 **How to budget defense slots:**
 
@@ -54,7 +55,8 @@ Where the +167.5% comes from on a typical build:
 - Incarnate Alpha Spiritual Core Paragon = +33% (post-ED)
 - Force Feedback +Recharge proc procs (situational)
 
-Total: ~100–130% from set bonuses + 33% from Alpha = ~135–165%. Tight; often needs Spiritual + 5x LotG + careful set selection. Worth it: perma-Hasten unlocks every other recharge-gated mechanic (perma-Dom, perma-Build Up, perma-Aim, perma-pet-summon, etc.).
+Total: ~100–130% from set bonuses + 33% from Alpha = ~135–165%. Tight; often needs Spiritual + 5x LotG + careful set selection.
+Worth it: perma-Hasten unlocks every other recharge-gated mechanic (perma-Dom, perma-Build Up, perma-Aim, perma-pet-summon, etc.).
 
 ---
 
@@ -68,7 +70,8 @@ Total: ~100–130% from set bonuses + 33% from Alpha = ~135–165%. Tight; often
 - 5x +5% Recharge from set bonuses caps independently of the LotG stack.
 - 5x +1.88% S/L defense from a Decimation 2-piece bonus caps.
 
-**Implication:** When stacking a particular bonus, mix sets that give the _same value_ differently — e.g. five LotG (+7.5% rech) PLUS five Crushing Impact 4-piece (+5% rech) PLUS five Decimation 4-piece (+6.25% rech) all stack with each other (different values).
+**Implication:** When stacking a particular bonus, mix sets that give the _same value_ differently.
+E.g. five LotG (+7.5% rech) PLUS five Crushing Impact 4-piece (+5% rech) PLUS five Decimation 4-piece (+6.25% rech) all stack with each other (different values).
 
 **Tooling:** Mids-in-app shows when you've hit the cap on a bonus (the bonus turns red). Re-run the build through Mids before trusting it.
 
@@ -84,7 +87,7 @@ Total: ~100–130% from set bonuses + 33% from Alpha = ~135–165%. Tight; often
 - You want maximum enhancement per aspect (post-ED ~95% per slotted aspect).
 - The power is critical and needs every drop of effectiveness.
 
-**Example: Foot Stomp slotting**
+### Example: Foot Stomp slotting
 
 - 6-set Crushing Impact: +95% damage (post-ED), set bonuses ≈ +7% acc + +5% rech + +3% damage + +2.5% Neg/Tox res.
 - Frankenslotted (Acc/Dmg + Dmg/Rech + Acc/Dmg/EndRdx + Acc/Dmg/Rech + Dmg/EndRdx + Knockback/Dmg/Acc): +95% damage + +50%+ acc + +40% rech + +40% endrdx — better at every aspect.
