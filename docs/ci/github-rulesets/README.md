@@ -15,7 +15,7 @@ The repository admin applies it by hand; nothing in CI changes repository settin
 
 The one bypass actor is the repository operator (user id 35460307) in `pull_request` mode.
 The operator can merge their own pull request without a second reviewer.
-Direct pushes to `main` stay blocked, and each bypass is recorded on the pull request.
+Direct pushes to `main` stay blocked, and each bypass is recorded in the repository audit log.
 Nobody else can bypass.
 
 ## Apply the ruleset
@@ -30,13 +30,16 @@ Verify:
 gh api repos/paragon-stats/homecoming-build-companion/rulesets/15875338 --jq '.bypass_actors, (.rules[]|select(.type=="pull_request").parameters)'
 ```
 
+Expect `required_approving_review_count` 1, `require_code_owner_review` true, and exactly one bypass actor in `pull_request` mode.
+
 The required status check list still names `All Tests Passed`.
 Swap it for the dotnet checks when issue #108 lands.
 
 ## Enable secret scanning
 
 Secret scanning, non-provider patterns and push protection are free on public repositories.
-If the non-provider patterns setting is rejected, enable `secret_scanning` and `secret_scanning_push_protection` only.
+If the PATCH is refused because non-provider patterns is unavailable on this plan, run the same command with `--input docs/ci/github-rulesets/security-and-analysis.fallback.json`.
+That body enables `secret_scanning` and `secret_scanning_push_protection` only.
 
 ```bash
 gh api -X PATCH repos/paragon-stats/homecoming-build-companion --input docs/ci/github-rulesets/security-and-analysis.json

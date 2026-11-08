@@ -32,6 +32,27 @@ def test_ruleset_carries_no_read_only_field() -> None:
     assert not set(_READ_ONLY) & set(_load("main-ruleset.json"))
 
 
+def test_ruleset_pins_every_rule_type() -> None:
+    types = sorted(r["type"] for r in _load("main-ruleset.json")["rules"])
+    assert types == [
+        "code_quality",
+        "deletion",
+        "non_fast_forward",
+        "pull_request",
+        "required_signatures",
+        "required_status_checks",
+    ]
+
+
+def test_fallback_body_enables_the_two_remaining_settings() -> None:
+    assert _load("security-and-analysis.fallback.json") == {
+        "security_and_analysis": {
+            "secret_scanning": {"status": "enabled"},
+            "secret_scanning_push_protection": {"status": "enabled"},
+        }
+    }
+
+
 def test_security_body_enables_exactly_the_three_settings() -> None:
     body = _load("security-and-analysis.json")
     assert body == {
