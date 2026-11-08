@@ -65,6 +65,12 @@ Rules:
 - Capture linter error output to `tmp/` for post-loop diagnosis.
 - After the loop, diagnose failed files individually by running the specific hook that failed.
 
+## Code owners and bypass
+
+`.github/CODEOWNERS` assigns every path to the sole maintainer, and the `main` ruleset requires code-owner review.
+The maintainer bypasses it on their own pull requests only.
+See [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md) for the ruleset, the bypass and the admin commands.
+
 ## Roles
 
 - **Agent**: makes local changes, runs validations, creates commits, can create PRs after the user publishes a branch.

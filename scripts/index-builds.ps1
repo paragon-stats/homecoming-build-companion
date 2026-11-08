@@ -1,13 +1,13 @@
 <#
 .SYNOPSIS
   Walk extracted Mids build archives, parse filename / path metadata, emit a
-  searchable index JSON inside homecoming-build-companion/community/.
+  searchable index JSON inside <source root>/community/.
 
 .DESCRIPTION
   Inputs: a staging dir holding extracted .mxd files (any nesting), e.g.
   homecoming-build-companion/scratch/build-archives/.
 
-  Output: homecoming-build-companion/community/builds_archive_index.json — one record per
+  Output: <source root>/community/builds_archive_index.json — one record per
   build, with:
     rel_path        relative to the staging root
     file_size       bytes
@@ -30,13 +30,14 @@
 [CmdletBinding()]
 param(
     [string]$StageDir = (Join-Path $PSScriptRoot '..\scratch\build-archives'),
-    [string]$ProjectRoot = (Join-Path $PSScriptRoot '..\..\homecoming-build-companion')
+    [string]$SourceRoot    # private source-material checkout; else $env:COH_SOURCE_ROOT, else ..\homecoming-source-material
 )
 
 $ErrorActionPreference = 'Stop'
 $StageDir    = [System.IO.Path]::GetFullPath($StageDir)
-$ProjectRoot = [System.IO.Path]::GetFullPath($ProjectRoot)
-$OutDir      = Join-Path $ProjectRoot 'community'
+. (Join-Path $PSScriptRoot 'SourceRoot.ps1')
+$SourceRoot  = Resolve-SourceRoot $SourceRoot
+$OutDir      = Join-Path $SourceRoot 'community'
 $Out         = Join-Path $OutDir 'builds_archive_index.json'
 
 if (-not (Test-Path $StageDir)) { throw "Missing stage dir: $StageDir" }
