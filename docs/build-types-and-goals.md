@@ -1,8 +1,12 @@
 # Build Types and Goals
 
-Every build optimizes for *something*. Knowing which something is the first decision — it shapes every slotting choice that follows. This is a taxonomy of the canonical build archetypes plus heuristics for picking among them.
+Every build optimizes for *something*. Knowing which something is the first decision — it shapes every slotting choice that follows.
+This is a taxonomy of the canonical build archetypes plus heuristics for picking among them.
 
-> **Universal house rule (applies on top of every build type below).** Every build must remain *playable* when exemplared as low as level 10 — character can attack, has a defensive layer running, has a travel power. **Level-50 endgame quality is the primary objective; never trade level-50 build quality for exemplar performance.** Mostly a pick-ordering check (matches normal leveling anyway). See [slotting-and-leveling.md § Exemplar mechanics and the universal exemplar-10 rule](slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule).
+> **Universal house rule (applies on top of every build type below).**
+> Every build must remain *playable* when exemplared as low as level 10 — character can attack, has a defensive layer running, has a travel power.
+> **Level-50 endgame quality is the primary objective; never trade level-50 build quality for exemplar performance.** Mostly a pick-ordering check (matches normal leveling anyway).
+> See [slotting-and-leveling.md § Exemplar mechanics and the universal exemplar-10 rule](slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule).
 
 ---
 
