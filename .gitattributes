@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.sln eol=crlf
+*.slnx eol=lf
+*.bat eol=crlf
+*.cmd eol=crlf
+*.sh eol=lf
+Makefile eol=lf
+*.mhd binary
+*.pigg binary
