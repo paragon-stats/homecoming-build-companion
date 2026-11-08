@@ -1,6 +1,7 @@
 # Archetypes
 
-An **archetype (AT)** is the character's class. It determines: what powerset categories you can pick from, what your inherent power is, what your base hit points and recovery are, and the per-AT caps for resistance, damage, regen, recovery, and recharge.
+An **archetype (AT)** is the character's class.
+It determines: what powerset categories you can pick from, what your inherent power is, what your base hit points and recovery are, and the per-AT caps for resistance, damage, regen, recovery, and recharge.
 
 Authoritative data: [data/mids/database/Archetypes.json](../data/mids/database/Archetypes.json) and [data/canonical/archetypes.json](../data/canonical/archetypes.json).
 
@@ -63,9 +64,11 @@ Each AT exposes four categories:
 - **Primary** — your defining set (Defense for Tankers, Melee for Scrappers, etc.).
 - **Secondary** — complementary set (Melee for Tankers, Defense for Scrappers).
 - **Ancillary / Patron Pool** — unlocked at level 35; AT-specific endgame powerset.
-- **Pool** — universal pools (Fighting, Speed, Leaping, Leadership, Concealment, Medicine, Presence, Teleportation, Flight, Sorcery, Force of Will, Experimentation, Gadgetry, Utility Belt). Pool slots are limited to 4 chosen pools per build (each with up to 4 powers).
+- **Pool** — universal pools (Fighting, Speed, Leaping, Leadership, Concealment, Medicine, Presence, Teleportation, Flight, Sorcery, Force of Will, Experimentation, Gadgetry, Utility Belt).
+  Pool slots are limited to 4 chosen pools per build (each with up to 4 powers).
 
-The exact list of available powersets per AT lives in `Archetypes.json` as `Primary[]`, `Secondary[]`, `Ancillary[]` arrays of powerset indices. Resolve them through `PowerSets.json` to get the named sets.
+The exact list of available powersets per AT lives in `Archetypes.json` as `Primary[]`, `Secondary[]`, `Ancillary[]` arrays of powerset indices.
+Resolve them through `PowerSets.json` to get the named sets.
 
 ---
 
@@ -97,7 +100,8 @@ Per AT in `Archetypes.json`:
 }
 ```
 
-Tankers have higher `BaseThreat` (4.0+) so enemies attack them preferentially. Brutes have moderate threat (~3.0). Scrappers/Stalkers are ~1.0. This affects taunt/aggro mechanics; Claude should mention threat when discussing tank-vs-non-tank survivability.
+Tankers have higher `BaseThreat` (4.0+) so enemies attack them preferentially. Brutes have moderate threat (~3.0). Scrappers/Stalkers are ~1.0.
+This affects taunt/aggro mechanics; Claude should mention threat when discussing tank-vs-non-tank survivability.
 
 ---
 
