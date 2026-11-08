@@ -58,3 +58,8 @@ obj/
 TestResults/
 coveragereport/
 *.user
+
+# AI instruction files were tracked once; these entries are a tripwire.
+# Re-adding them takes a deliberate `git add -f`.
+/CLAUDE.md
+/.claude/

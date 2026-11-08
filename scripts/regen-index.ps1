@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Regenerate homecoming-build-companion/community/INDEX.md from frontmatter.
+  Regenerate <source root>/community/INDEX.md from frontmatter.
 
 .DESCRIPTION
   Walks community/ for *.md files (skipping CAPTURE.md and INDEX.md itself),
@@ -10,12 +10,14 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$CommunityRoot = (Join-Path $PSScriptRoot '..\..\homecoming-build-companion\community')
+    [string]$SourceRoot    # private source-material checkout; else $env:COH_SOURCE_ROOT, else ..\homecoming-source-material
 )
 
 $ErrorActionPreference = 'Stop'
-$CommunityRoot = [System.IO.Path]::GetFullPath($CommunityRoot)
-if (-not (Test-Path $CommunityRoot)) { throw "Not found: $CommunityRoot" }
+. (Join-Path $PSScriptRoot 'SourceRoot.ps1')
+$SourceRoot    = Resolve-SourceRoot $SourceRoot
+$CommunityRoot = Join-Path $SourceRoot 'community'
+if (-not (Test-Path $CommunityRoot)) { throw "E04: expected a directory at $CommunityRoot, which was not found; set -SourceRoot or COH_SOURCE_ROOT" }
 
 function Read-Frontmatter {
     param([string]$Path)

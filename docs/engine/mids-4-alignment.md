@@ -152,4 +152,4 @@ Until then the 3.x dumps stay the parity goldens, and the 4.0 comparison is info
 - [`mids-port-spec.md`](./mids-port-spec.md): the 3.x port specification and its fidelity boundary.
 - [`chain-planner.md`](./chain-planner.md): the planner this branch delivered, and the data gaps that motivated the move.
 - [`../canonical-data-shape.md`](../canonical-data-shape.md): the canonical export's field reference.
-- [`../../.claude/rules/check-registry.md`](../../.claude/rules/check-registry.md): the fidelity boundary rule that the rewritten core affects.
+- [`../style-guides/engine-architecture.md`](../style-guides/engine-architecture.md): the fidelity boundary rule that the rewritten core affects.

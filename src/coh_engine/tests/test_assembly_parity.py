@@ -1,7 +1,7 @@
 """Parity: the engine assembles every StatInclude power of the 12 sample builds as Mids does.
 
 Each build is assembled from its Mids dump and compared with ``assembled_powers.json``, Mids' own assembled
-effect lists, effect by effect on the fields totals read (``.claude/plans/assembly-seams.md`` § Seam 2).
+effect lists, effect by effect on the fields totals read (``docs/design/seam-brief-template.md`` § Seam 2).
 """
 
 import json

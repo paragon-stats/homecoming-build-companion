@@ -293,7 +293,8 @@ def _install_fake_resolver(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_write_outputs_and_main_are_byte_identical_across_runs(tmp_path: Path, monkeypatch, capsys) -> None:
     _install_fake_resolver(monkeypatch)
-    community, patches, out = tmp_path / "community", tmp_path / "patches", tmp_path / "out"
+    root, patches, out = tmp_path / "root", tmp_path / "patches", tmp_path / "out"
+    community = root / "community"
     capture(community, "mechanics/b.md", "Claws guide", "x", digest="h2", url="u2")
     capture(community, "mechanics/a.md", "Bio Armor guide", "x", digest="h1", url="u1")
     capture(community, "mechanics/dup.md", "Bio Armor guide", "x", digest="h1", url="u1")
@@ -301,7 +302,7 @@ def test_write_outputs_and_main_are_byte_identical_across_runs(tmp_path: Path, m
     (patches / "index.jsonl").write_text(
         json.dumps({"published": "2010-01-01", "issue": "issue-18"}) + "\n", encoding="utf-8"
     )
-    argv = ["--community", str(community), "--out", str(out), "--canonical", str(tmp_path), "--patches", str(patches)]
+    argv = ["--source-root", str(root), "--out", str(out), "--canonical", str(tmp_path), "--patches", str(patches)]
 
     assert main(argv) == 0
     first = {p.name: p.read_bytes() for p in out.iterdir()}
@@ -317,7 +318,7 @@ def test_write_outputs_and_main_are_byte_identical_across_runs(tmp_path: Path, m
 def test_main_reports_empty_roots_and_a_missing_patch_index(tmp_path: Path, monkeypatch, capsys) -> None:
     _install_fake_resolver(monkeypatch)
     argv = [
-        "--community",
+        "--source-root",
         str(tmp_path),
         "--out",
         str(tmp_path / "out"),
@@ -328,7 +329,7 @@ def test_main_reports_empty_roots_and_a_missing_patch_index(tmp_path: Path, monk
     ]
     assert main(argv) == 1
     err = capsys.readouterr().err
-    assert "E25:" in err and f"E23: no captures under {tmp_path}" in err
+    assert "E25:" in err and f"E23: no captures under {tmp_path / 'community'}" in err
     assert not (tmp_path / "out").exists()
 
 
