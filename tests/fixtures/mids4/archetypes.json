@@ -1,0 +1,4651 @@
+[
+  {
+    "Index": 0,
+    "ClassName": "Class_Blaster",
+    "DisplayName": "Blaster",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Blaster_Dark_Mastery",
+      "Epic.Blaster_Mace_Mastery",
+      "Epic.Blaster_Mu_Mastery",
+      "Epic.Cold_Mastery",
+      "Epic.Electrical_Mastery",
+      "Epic.Flame_Mastery",
+      "Epic.Force_Mastery",
+      "Epic.Mastermind_Leviathan_Mastery",
+      "Epic.Mastermind_Soul_Mastery",
+      "Epic.Munitions_Mastery"
+    ],
+    "Column": 0,
+    "Playable": true,
+    "Hitpoints": 1205,
+    "HPCap": 1847.2968,
+    "ResCap": 0.75,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 1,
+    "ClassName": "Class_Controller",
+    "DisplayName": "Controller",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Controller_Dark_Mastery",
+      "Epic.Controller_Mace_Mastery",
+      "Epic.Dominator_Leviathan_Mastery",
+      "Epic.Dominator_Mu_Mastery",
+      "Epic.Dominator_Soul_Mastery",
+      "Epic.Fire_Mastery",
+      "Epic.Ice_Mastery",
+      "Epic.Primal_Forces_Mastery",
+      "Epic.Psionic_Mastery",
+      "Epic.Stone_Mastery"
+    ],
+    "Column": 1,
+    "Playable": true,
+    "Hitpoints": 1017,
+    "HPCap": 1606.3451,
+    "ResCap": 0.75,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 7.5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 2,
+    "ClassName": "Class_Defender",
+    "DisplayName": "Defender",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Corruptor_Leviathan_Mastery",
+      "Epic.Corruptor_Mace_Mastery",
+      "Epic.Corruptor_Mu_Mastery",
+      "Epic.Corruptor_Soul_Mastery",
+      "Epic.Dark_Mastery",
+      "Epic.Defender_Fire_Mastery",
+      "Epic.Defender_Ice_Mastery",
+      "Epic.Electricity_Mastery",
+      "Epic.Power_Mastery",
+      "Epic.Psychic_Mastery"
+    ],
+    "Column": 2,
+    "Playable": true,
+    "Hitpoints": 1017,
+    "HPCap": 1606.3451,
+    "ResCap": 0.75,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 6.25,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Vigilance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 3,
+    "ClassName": "Class_Scrapper",
+    "DisplayName": "Scrapper",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Blaze_Mastery",
+      "Epic.Body_Mastery",
+      "Epic.Darkness_Mastery",
+      "Epic.Melee_Psionic_Mastery",
+      "Epic.Scrapper_Ice_Mastery",
+      "Epic.Stalker_Leviathan_Mastery",
+      "Epic.Stalker_Mace_Mastery",
+      "Epic.Stalker_Mu_Mastery",
+      "Epic.Stalker_Soul_Mastery",
+      "Epic.Weapon_Mastery"
+    ],
+    "Column": 3,
+    "Playable": true,
+    "Hitpoints": 1339,
+    "HPCap": 2409.5176,
+    "ResCap": 0.75,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 7.5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Critical_Hit",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 4,
+    "ClassName": "Class_Tanker",
+    "DisplayName": "Tanker",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Arctic_Mastery",
+      "Epic.Brute_Leviathan_Mastery",
+      "Epic.Brute_Mace_Mastery",
+      "Epic.Brute_Mu_Mastery",
+      "Epic.Brute_Soul_Mastery",
+      "Epic.Earth_Mastery",
+      "Epic.Energy_Mastery",
+      "Epic.Pyre_Mastery",
+      "Epic.Tank_Dark_Mastery",
+      "Epic.Tank_Psionic_Mastery"
+    ],
+    "Column": 4,
+    "Playable": true,
+    "Hitpoints": 1874,
+    "HPCap": 3533.959,
+    "ResCap": 0.9,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 6.25,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 4,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Gauntlet",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 5,
+    "ClassName": "Class_Peacebringer",
+    "DisplayName": "Peacebringer",
+    "ClassType": "HeroEpic",
+    "Ancillary": [],
+    "Column": 5,
+    "Playable": true,
+    "Hitpoints": 1071,
+    "HPCap": 2409.5176,
+    "ResCap": 0.85,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Cosmic_Balance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 6,
+    "ClassName": "Class_Warshade",
+    "DisplayName": "Warshade",
+    "ClassType": "HeroEpic",
+    "Ancillary": [],
+    "Column": 6,
+    "Playable": true,
+    "Hitpoints": 1071,
+    "HPCap": 2409.5176,
+    "ResCap": 0.85,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Dark_Sustenance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 7,
+    "ClassName": "Class_Sentinel",
+    "DisplayName": "Sentinel",
+    "ClassType": "Hero",
+    "Ancillary": [
+      "Epic.Sentinel_Dark_Mastery",
+      "Epic.Sentinel_Electricity_Mastery",
+      "Epic.Sentinel_Fire_Mastery",
+      "Epic.Sentinel_Ice_Mastery",
+      "Epic.Sentinel_Leviathan_Mastery",
+      "Epic.Sentinel_Mace_Mastery",
+      "Epic.Sentinel_Mu_Mastery",
+      "Epic.Sentinel_Ninja_Mastery",
+      "Epic.Sentinel_Psionic_Mastery",
+      "Epic.Sentinel_Soul_Mastery"
+    ],
+    "Column": 7,
+    "Playable": true,
+    "Hitpoints": 1205,
+    "HPCap": 2088.2485,
+    "ResCap": 0.75,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1268.3,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 2.5,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 8,
+    "ClassName": "Class_Brute",
+    "DisplayName": "Brute",
+    "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Arctic_Mastery",
+      "Epic.Brute_Leviathan_Mastery",
+      "Epic.Brute_Mace_Mastery",
+      "Epic.Brute_Mu_Mastery",
+      "Epic.Brute_Soul_Mastery",
+      "Epic.Earth_Mastery",
+      "Epic.Energy_Mastery_Brute",
+      "Epic.Pyre_Mastery",
+      "Epic.Tank_Dark_Mastery",
+      "Epic.Tank_Psionic_Mastery"
+    ],
+    "Column": 8,
+    "Playable": true,
+    "Hitpoints": 1606,
+    "HPCap": 3212.6902,
+    "ResCap": 0.9,
+    "DamageCap": 7,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 6.25,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 4,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 9,
+    "ClassName": "Class_Stalker",
+    "DisplayName": "Stalker",
+    "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Blaze_Mastery",
+      "Epic.Body_Mastery_Stalker",
+      "Epic.Darkness_Mastery",
+      "Epic.Melee_Psionic_Mastery",
+      "Epic.Scrapper_Ice_Mastery",
+      "Epic.Stalker_Leviathan_Mastery",
+      "Epic.Stalker_Mace_Mastery",
+      "Epic.Stalker_Mu_Mastery",
+      "Epic.Stalker_Soul_Mastery",
+      "Epic.Weapon_Mastery_Stalker"
+    ],
+    "Column": 9,
+    "Playable": true,
+    "Hitpoints": 1205,
+    "HPCap": 2088.2485,
+    "ResCap": 0.75,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 7.5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 10,
+    "ClassName": "Class_Mastermind",
+    "DisplayName": "Mastermind",
+    "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Charge_Mastery",
+      "Epic.Chill_Mastery",
+      "Epic.Field_Mastery",
+      "Epic.Heat_Mastery_Stalker",
+      "Epic.Mastermind_Dark_Mastery",
+      "Epic.Mastermind_Leviathan_Mastery",
+      "Epic.Mastermind_Mace_Mastery",
+      "Epic.Mastermind_Mu_Mastery",
+      "Epic.Mastermind_Soul_Mastery"
+    ],
+    "Column": 10,
+    "Playable": true,
+    "Hitpoints": 803,
+    "HPCap": 1606.3451,
+    "ResCap": 0.75,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 7.5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Supremacy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 11,
+    "ClassName": "Class_Dominator",
+    "DisplayName": "Dominator",
+    "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Dominator_Dark_Mastery",
+      "Epic.Dominator_Leviathan_Mastery",
+      "Epic.Dominator_Mace_Mastery",
+      "Epic.Dominator_Mu_Mastery",
+      "Epic.Dominator_Soul_Mastery",
+      "Epic.Fire_Mastery_Dominator",
+      "Epic.Ice_Mastery_Dominator",
+      "Epic.Primal_Forces_Mastery_Dominator",
+      "Epic.Psionic_Mastery_Domingator"
+    ],
+    "Column": 11,
+    "Playable": true,
+    "Hitpoints": 1017,
+    "HPCap": 1606.3451,
+    "ResCap": 0.75,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 7.5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 12,
+    "ClassName": "Class_Corruptor",
+    "DisplayName": "Corruptor",
+    "ClassType": "Villain",
+    "Ancillary": [
+      "Epic.Corruptor_Fire_Mastery",
+      "Epic.Corruptor_Leviathan_Mastery",
+      "Epic.Corruptor_Mace_Mastery",
+      "Epic.Corruptor_Mu_Mastery",
+      "Epic.Corruptor_Soul_Mastery",
+      "Epic.Dark_Mastery",
+      "Epic.Defender_Ice_Mastery",
+      "Epic.Electricity_Mastery",
+      "Epic.Power_Mastery",
+      "Epic.Psychic_Mastery"
+    ],
+    "Column": 12,
+    "Playable": true,
+    "Hitpoints": 1071,
+    "HPCap": 1606.3451,
+    "ResCap": 0.75,
+    "DamageCap": 5,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1153,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Scourge",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 13,
+    "ClassName": "Class_Arachnos_Widow",
+    "DisplayName": "Arachnos Widow",
+    "ClassType": "VillainEpic",
+    "Ancillary": [
+      "Epic.VEAT_Leviathan_Mastery",
+      "Epic.VEAT_Mace_Mastery",
+      "Epic.VEAT_Mu_Mastery",
+      "Epic.VEAT_Soul_Mastery"
+    ],
+    "Column": 13,
+    "Playable": true,
+    "Hitpoints": 1071,
+    "HPCap": 2409.5176,
+    "ResCap": 0.85,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1268.3,
+    "BaseRecovery": 1.05,
+    "BaseRegen": 0.3,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Widow_Conditioning",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 14,
+    "ClassName": "Class_Arachnos_Soldier",
+    "DisplayName": "Arachnos Soldier",
+    "ClassType": "VillainEpic",
+    "Ancillary": [
+      "Epic.VEAT_Leviathan_Mastery",
+      "Epic.VEAT_Mace_Mastery",
+      "Epic.VEAT_Mu_Mastery",
+      "Epic.VEAT_Soul_Mastery"
+    ],
+    "Column": 14,
+    "Playable": true,
+    "Hitpoints": 1071,
+    "HPCap": 2409.5176,
+    "ResCap": 0.85,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1268.3,
+    "BaseRecovery": 1.05,
+    "BaseRegen": 0.3,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Spider_Conditioning",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 15,
+    "ClassName": "Class_Minion_Pets",
+    "DisplayName": "Pet",
+    "ClassType": "Pet",
+    "Ancillary": [],
+    "Column": 18,
+    "Playable": false,
+    "Hitpoints": 1071,
+    "HPCap": 1606.3451,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1.5,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 16,
+    "ClassName": "Class_Boss_Archvillain",
+    "DisplayName": "Arch-villain",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 19,
+    "Playable": false,
+    "Hitpoints": 28272,
+    "HPCap": 282716.72,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.2,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 17,
+    "ClassName": "Class_Boss_Elite",
+    "DisplayName": "Elite Boss",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 21,
+    "Playable": false,
+    "Hitpoints": 5354,
+    "HPCap": 53544.836,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 18,
+    "ClassName": "Class_Boss_Grunt",
+    "DisplayName": "Boss",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 23,
+    "Playable": false,
+    "Hitpoints": 2570,
+    "HPCap": 25701.521,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 19,
+    "ClassName": "Class_Boss_Hamidon",
+    "DisplayName": "Monstrosity",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 25,
+    "Playable": false,
+    "Hitpoints": 47119,
+    "HPCap": 471194.56,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.18,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 20,
+    "ClassName": "Class_Boss_Mito",
+    "DisplayName": "Hamidon",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 28,
+    "Playable": false,
+    "Hitpoints": 7845,
+    "HPCap": 78453.89,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.18,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 21,
+    "ClassName": "Class_Boss_Monster",
+    "DisplayName": "Giant Monster",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 29,
+    "Playable": false,
+    "Hitpoints": 70679,
+    "HPCap": 706791.8,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.3,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 22,
+    "ClassName": "Class_Lt_Grunt",
+    "DisplayName": "Lieutenant",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 36,
+    "Playable": false,
+    "Hitpoints": 858,
+    "HPCap": 8575.205,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 4.0038,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 23,
+    "ClassName": "Class_Minion_Grunt",
+    "DisplayName": "Minion",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 41,
+    "Playable": false,
+    "Hitpoints": 431,
+    "HPCap": 4307.682,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 2.2105,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.08,
+    "BaseThreat": 0.6,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 24,
+    "ClassName": "Class_Boss_PraetorianGrunt",
+    "DisplayName": "Boss",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 56,
+    "Playable": false,
+    "Hitpoints": 2570,
+    "HPCap": 25701.521,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 25,
+    "ClassName": "Class_Boss_PraetorianElite",
+    "DisplayName": "Elite Boss",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 57,
+    "Playable": false,
+    "Hitpoints": 5354,
+    "HPCap": 53544.836,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 26,
+    "ClassName": "Class_Boss_PraetorianArchvillain",
+    "DisplayName": "Arch-villain",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 58,
+    "Playable": false,
+    "Hitpoints": 28272,
+    "HPCap": 282716.72,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.2,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 27,
+    "ClassName": "Class_Boss_ChallengeArchvillain",
+    "DisplayName": "Giant Monster",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 70679,
+    "HPCap": 706791.8,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 10,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.125,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 28,
+    "ClassName": "Class_Boss_PraetorianGrunt_Pet",
+    "DisplayName": "Boss",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 2570,
+    "HPCap": 3855.2283,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 2,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 29,
+    "ClassName": "Class_Henchman_Boss",
+    "DisplayName": "Henchman",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 964,
+    "HPCap": 1445.7106,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 30,
+    "ClassName": "Class_Henchman_Lt",
+    "DisplayName": "Henchman",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 771,
+    "HPCap": 1156.5684,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 31,
+    "ClassName": "Class_Henchman_Minion",
+    "DisplayName": "Henchman",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 578,
+    "HPCap": 867.4263,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 32,
+    "ClassName": "Class_Henchman_Minion_Small",
+    "DisplayName": "Henchman",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 578,
+    "HPCap": 867.4263,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 3,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 33,
+    "ClassName": "Class_Lt_PraetorianGrunt_Pet",
+    "DisplayName": "Lieutenant",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 858,
+    "HPCap": 1286.2808,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 4.0038,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.13,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 34,
+    "ClassName": "Class_Minion_ControllerPets",
+    "DisplayName": "Pet",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 1071,
+    "HPCap": 1606.3451,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1.5,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 35,
+    "ClassName": "Class_Minion_OilSlickTarget",
+    "DisplayName": "OilSlickTarget",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 1071,
+    "HPCap": 10708.967,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 5,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.25,
+    "BaseThreat": 1.5,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 36,
+    "ClassName": "Class_Minion_Small",
+    "DisplayName": "Underling",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 161,
+    "HPCap": 1606.3451,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 1.5,
+    "BaseRecovery": 0.6,
+    "BaseRegen": 0.08,
+    "BaseThreat": 0.6,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  },
+  {
+    "Index": 37,
+    "ClassName": "Class_Minion_UnkillableNPC",
+    "DisplayName": "Minion_UnkillableNPC",
+    "ClassType": "None",
+    "Ancillary": [],
+    "Column": 0,
+    "Playable": false,
+    "Hitpoints": 431,
+    "HPCap": 4307.682,
+    "ResCap": 90,
+    "DamageCap": 4,
+    "RechargeCap": 5,
+    "RecoveryCap": 5,
+    "RegenCap": 5,
+    "PerceptionCap": 4.0038,
+    "BaseRecovery": 1,
+    "BaseRegen": 0.03,
+    "BaseThreat": 1,
+    "InherentPowers": [
+      {
+        "FullName": "Inherent.Inherent.Assassination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Blood_Frenzy",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Brawl",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Combo_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Containment",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Defiance",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Domination_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Exhausted",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Fast_Mode",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Insight",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Opportunity_Meter",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Pack_Mentality",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_1",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_2",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Perfection_Level_3",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rage_Buff",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Sprint",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Stalker_Hidden",
+        "Level": 1
+      },
+      {
+        "FullName": "Inherent.Inherent.Rest",
+        "Level": 2
+      }
+    ]
+  }
+]
