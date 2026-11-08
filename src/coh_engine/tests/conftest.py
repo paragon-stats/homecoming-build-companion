@@ -78,7 +78,7 @@ _POWER_DEFAULTS: dict[str, Any] = {
 @pytest.fixture(scope="session")
 def maths_path() -> Path:
     """Path to the Homecoming Maths.mhd fixture (verbatim copy from the MidsReborn fork)."""
-    return FIXTURES / "Maths.mhd"
+    return FIXTURES.parents[3] / "tests" / "fixtures" / "Maths.mhd"
 
 
 @pytest.fixture(scope="session")

@@ -33,6 +33,6 @@ Defender, Peacebringer and Warshade have no sample: the archive holds only `.mxd
 - `test_mbd.py` parses every `.mbd` under this folder and resolves the Arachnos Soldier build to powers and slots.
 - `test_mbd_writer.py` round-trips every build through `dump_mbd` and the format invariants.
 - `test_sample_builds.py` runs, for each curated build, the round trip, both validator registries, and the unenhanced totals against the archetype caps.
-  Each build's Mids dump is committed under `src/coh_engine/tests/fixtures/mids/builds/<file name without .mbd>`.
+  Each build's Mids dump is committed under `tests/fixtures/mids/builds/<file name without .mbd>`.
   Three builds are listed there as still refused by the engine (an unported expression evaluator or movement split).
 - `python -m coh_engine validate "<file>.mbd"` validates one file against the committed dump tables.

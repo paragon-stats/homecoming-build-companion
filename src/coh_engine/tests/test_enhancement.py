@@ -24,7 +24,7 @@ from coh_engine.enhancement import (
 from coh_engine.maths import MathTables
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 # eEnhRelative ordinals (Enums.cs:665-677).
 REL_NONE = 0

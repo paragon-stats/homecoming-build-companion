@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[3]
 SAMPLES = REPO / "samples" / "builds"
 FIXTURES = Path(__file__).parent / "fixtures"
 MXD_DIR = FIXTURES / "mxd"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 ARCHETYPES = load_archetypes(MIDS / "archetypes.json")
 
 

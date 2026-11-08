@@ -108,7 +108,7 @@ ordinals the power accepts) so the port can map which IO sets are slottable wher
 ## Re-baselining
 
 After any Homecoming DB update in the fork: re-run the dump, refresh
-`src/coh_engine/tests/fixtures/mids/`, and re-run `pytest src/coh_engine/tests`.
+`tests/fixtures/mids/`, and re-run `pytest src/coh_engine/tests`.
 `test_mids_parity.py` fails loudly if the port and the Mids reference dumps drift.
 
 Float caveat: .NET serializes `float` with shortest-round-trip strings ("0.7"), which

@@ -22,7 +22,7 @@ from coh_engine.enhancement import (
 from coh_engine.maths import MathTables
 
 FIXTURES = Path(__file__).parent / "fixtures"
-MIDS = FIXTURES / "mids"
+MIDS = FIXTURES.parents[3] / "tests" / "fixtures" / "mids"
 
 FORCE_LEVEL = 50  # config.json ForceLevel; every level-50 slot passes the gate.
 HASTEN_INDEX = 6

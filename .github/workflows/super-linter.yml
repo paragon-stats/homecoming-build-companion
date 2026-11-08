@@ -37,7 +37,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
           fetch-depth: 0
           persist-credentials: false
@@ -61,7 +61,7 @@ jobs:
           #   docs/style-guides/repository-conventions.md).
           # - scripts/*.ps1 + scripts/lane-*/: legacy PowerShell capture lane,
           #   replaced by Python in the Phase 3 migration.
-          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
+          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|data/diff/|inbox/|docs/engine/).*|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)'
           JSCPD_LINTER_RULES: /github/workspace/.github/linters/.jscpd.json
           # Checkov path/framework carve-outs live in ONE place:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).

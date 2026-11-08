@@ -1,8 +1,10 @@
 # Enhancements and IO Sets
 
-Enhancements are slotted into powers to improve them. There are several distinct **types**, each with different rules. **Invention Origin (IO) Sets** are the endgame system: slot 2+ pieces from the same set into one power and you collect **set bonuses** that apply to your whole character.
+Enhancements are slotted into powers to improve them. There are several distinct **types**, each with different rules.
+**Invention Origin (IO) Sets** are the endgame system: slot 2+ pieces from the same set into one power and you collect **set bonuses** that apply to your whole character.
 
-Authoritative data: [data/mids/database/Enhancement.json](../data/mids/database/Enhancement.json), [data/mids/database/EnhancementClasses.json](../data/mids/database/EnhancementClasses.json), [data/mids/derived/effect_tables.json](../data/mids/derived/effect_tables.json).
+Authoritative data: [data/mids/database/Enhancement.json](../data/mids/database/Enhancement.json), [data/mids/database/EnhancementClasses.json](../data/mids/database/EnhancementClasses.json).
+[data/mids/derived/effect_tables.json](../data/mids/derived/effect_tables.json).
 
 ---
 
@@ -54,14 +56,16 @@ Attuned IOs always equal character level (RelativeLevel = 0); they sidestep the 
 
 ## IO Sets and set bonuses
 
-An **IO Set** (e.g. _Luck of the Gambler_) is a group of related IOs (typically 5 or 6 distinct IOs in the set). Slot two or more from the same set into the same power and you collect set bonuses applied to your whole character.
+An **IO Set** (e.g. _Luck of the Gambler_) is a group of related IOs (typically 5 or 6 distinct IOs in the set).
+Slot two or more from the same set into the same power and you collect set bonuses applied to your whole character.
 
 ### Bonus structure
 
 Each `EnhancementSet` has:
 
 - `Bonus[5]` — five tiers of bonuses, awarded for slotting 2/3/4/5/6 pieces.
-- `SpecialBonus[6]` — additional bonuses tied to specific named IOs in the set (e.g. "LotG: +Recharge" is a special bonus that applies whenever you slot the named IO, independent of how many other LotG pieces are in the power).
+- `SpecialBonus[6]` — additional bonuses tied to specific named IOs in the set.
+  (e.g. "LotG: +Recharge" is a special bonus that applies whenever you slot the named IO, independent of how many other LotG pieces are in the power).
 
 Two examples:
 
@@ -84,7 +88,8 @@ Two examples:
 
 ### Rule of Five
 
-A set bonus value of "+7.5% Recharge" can stack at most **5 times** across the entire build. So if you have 5 LotG +Recharge globals, slotting a 6th gives you no additional bonus. You can have many _different_ recharge bonuses (e.g. 5x 7.5%, plus 5x 5%, plus 5x 3%) — each numeric value caps independently.
+A set bonus value of "+7.5% Recharge" can stack at most **5 times** across the entire build. So if you have 5 LotG +Recharge globals, slotting a 6th gives you no additional bonus.
+You can have many _different_ recharge bonuses (e.g. 5x 7.5%, plus 5x 5%, plus 5x 3%) — each numeric value caps independently.
 
 This is the "Rule of Five" — internalize it before recommending any set.
 
@@ -111,7 +116,8 @@ For most modern builds, **attuned is preferred** unless you specifically want to
 ### Superior IOs (purples and ATOs)
 
 - **Purple sets** (Apocalypse, Hecatomb, Ragnarok, Armageddon, etc.) — global rarity, available at level 50+, full set bonuses on first piece, very strong damage procs.
-- **Archetype Origin (ATO) sets** — AT-specific, drop from missions or convertible. Each AT has 2 ATO sets. **Superior ATO** versions are unlocked via Hero/Villain Merit purchase; the Superior versions get ×1.25 multiplier on the enhancement aspects + improved set bonuses.
+- **Archetype Origin (ATO) sets** — AT-specific, drop from missions or convertible. Each AT has 2 ATO sets.
+  **Superior ATO** versions are unlocked via Hero/Villain Merit purchase; the Superior versions get ×1.25 multiplier on the enhancement aspects + improved set bonuses.
 
 ---
 
@@ -137,5 +143,6 @@ See [docs/min-maxing.md](min-maxing.md) and [docs/proc-strategy.md](proc-strateg
 - **Heal click**: 5–6 piece Numina's Convalescence (regen + recovery global) or Doctored Wounds (recharge bonus).
 - **Hold/Stun/Sleep**: 5–6 piece Basilisk's Gaze (recharge), Lockdown (chance for +2 Mag Hold), or Coercive Persuasion (purple-tier).
 - **Travel**: 1x LotG +Recharge global (in Combat Jumping or Hover), 1x Celerity Stealth proc (in Sprint), 1x Blessing of the Zephyr (KB protection in any travel power).
-- **Health (inherent)**: Numina's +Regen/+Recovery (unique), Miracle +Recovery (unique), Panacea +Health/+End (unique), Regenerative Tissue +Regen (unique). These four go in Health, +1 LotG slot for the 4th IO.
+- **Health (inherent)**: Numina's +Regen/+Recovery (unique), Miracle +Recovery (unique), Panacea +Health/+End (unique), Regenerative Tissue +Regen (unique).
+  These four go in Health, +1 LotG slot for the 4th IO.
 - **Stamina (inherent)**: Performance Shifter +End proc (unique), Power Transfer +Heal proc (unique), then 2-3 EndMod IOs.
