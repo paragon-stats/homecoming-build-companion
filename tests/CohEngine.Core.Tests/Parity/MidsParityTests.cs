@@ -81,6 +81,6 @@ public sealed class MidsParityTests
 
     private static JsonDocument Load(string file)
     {
-        return JsonDocument.Parse(File.ReadAllText(Path.Combine(Fixtures.Store.MidsDirectory, file)));
+        return JsonDocument.Parse(File.ReadAllText(Path.Join(Fixtures.Store.MidsDirectory, file)));
     }
 }

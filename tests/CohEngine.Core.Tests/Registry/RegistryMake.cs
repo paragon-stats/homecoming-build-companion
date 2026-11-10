@@ -10,7 +10,7 @@ namespace CohEngine.Core.Tests.Registry;
 internal static class RegistryMake
 {
     private static readonly Lazy<IReadOnlyDictionary<int, EnhancementLegality>> Legality =
-        new(() => EnhancementLegality.Load(Path.Combine(Fixtures.Store.MidsDirectory, "enhancements.json")));
+        new(() => EnhancementLegality.Load(Path.Join(Fixtures.Store.MidsDirectory, "enhancements.json")));
 
     public static IReadOnlyDictionary<int, EnhancementLegality> EnhLeg => Legality.Value;
 
@@ -50,7 +50,7 @@ internal static class RegistryMake
 
     public static IReadOnlyList<JsonElement> Probe()
     {
-        using JsonDocument document = JsonDocument.Parse(File.ReadAllText(Path.Combine(Fixtures.Store.MidsDirectory, "legality_probe.json")));
+        using JsonDocument document = JsonDocument.Parse(File.ReadAllText(Path.Join(Fixtures.Store.MidsDirectory, "legality_probe.json")));
         return [.. document.RootElement.EnumerateArray().Select(element => element.Clone())];
     }
 

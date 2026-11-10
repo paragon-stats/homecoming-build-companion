@@ -7,9 +7,9 @@ namespace CohEngine.Core.Tests.BuildFile;
 /// <summary>Port of <c>test_mbd.py</c>: the <c>.mbd</c> reader and the resolution of a build against the Mids dump.</summary>
 public sealed class MbdTests : IDisposable
 {
-    private static readonly string DarkShield = Path.Combine(BuildFileFixtures.Samples, "community", "Scrapper - Dark-Shield.mbd");
+    private static readonly string DarkShield = Path.Join(BuildFileFixtures.Samples, "community", "Scrapper - Dark-Shield.mbd");
 
-    private static readonly string Bane = Path.Combine(BuildFileFixtures.Samples, "operator-builds", "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd");
+    private static readonly string Bane = Path.Join(BuildFileFixtures.Samples, "operator-builds", "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd");
 
     private readonly string directory = Directory.CreateTempSubdirectory("coh-engine-").FullName;
 
@@ -140,7 +140,7 @@ public sealed class MbdTests : IDisposable
     [Fact]
     public void A_missing_file_raises()
     {
-        Assert.Throws<FileNotFoundException>(() => Mbd.LoadMbd(Path.Combine(directory, "nope.mbd")));
+        Assert.Throws<FileNotFoundException>(() => Mbd.LoadMbd(Path.Join(directory, "nope.mbd")));
     }
 
     [Theory]
@@ -148,7 +148,7 @@ public sealed class MbdTests : IDisposable
     [InlineData("""{"BuiltWith":{},"Level":"7","Class":"Class_Blaster"}""", 7)]
     public void The_header_level_may_be_a_string_or_a_number(string json, int expected)
     {
-        string path = Path.Combine(directory, "level.mbd");
+        string path = Path.Join(directory, "level.mbd");
         File.WriteAllText(path, json);
 
         Assert.Equal(expected, Mbd.LoadMbd(path).Level);
@@ -160,7 +160,7 @@ public sealed class MbdTests : IDisposable
     [InlineData("""{"BuiltWith":{},"Level":null,"Class":"Class_Blaster"}""")]
     public void Unreadable_json_is_E118(string json)
     {
-        string path = Path.Combine(directory, "bad.mbd");
+        string path = Path.Join(directory, "bad.mbd");
         File.WriteAllText(path, json);
 
         Assert.StartsWith("E118:", Assert.Throws<InvalidDataException>(() => Mbd.LoadMbd(path)).Message, StringComparison.Ordinal);
@@ -171,10 +171,10 @@ public sealed class MbdTests : IDisposable
     {
         foreach (string file in new[] { "enhancements.json", "enhancement_sets.json", "powers.json" })
         {
-            File.WriteAllText(Path.Combine(directory, file), "[{}]");
+            File.WriteAllText(Path.Join(directory, file), "[{}]");
         }
 
-        File.Copy(Path.Combine(Fixtures.Store.MidsDirectory, "archetypes.json"), Path.Combine(directory, "archetypes.json"));
+        File.Copy(Path.Join(Fixtures.Store.MidsDirectory, "archetypes.json"), Path.Join(directory, "archetypes.json"));
 
         Assert.StartsWith("E118:", Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message, StringComparison.Ordinal);
     }

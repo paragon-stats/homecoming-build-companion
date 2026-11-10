@@ -7,11 +7,11 @@ namespace CohEngine.Core.Tests.Profiles;
 
 public sealed class ProfileTests
 {
-    private static readonly string Strategy = Path.Combine(Fixtures.Store.RepositoryRoot, "strategy");
+    private static readonly string Strategy = Path.Join(Fixtures.Store.RepositoryRoot, "strategy");
 
-    private static readonly JsonElement Breakpoints = ProfileResolver.LoadBreakpoints(Path.Combine(Strategy, "breakpoints.json"));
+    private static readonly JsonElement Breakpoints = ProfileResolver.LoadBreakpoints(Path.Join(Strategy, "breakpoints.json"));
 
-    private static readonly JsonElement RawProfiles = ProfileResolver.LoadBuildProfiles(Path.Combine(Strategy, "build_profiles.json"));
+    private static readonly JsonElement RawProfiles = ProfileResolver.LoadBuildProfiles(Path.Join(Strategy, "build_profiles.json"));
 
     private static BuildProfile Resolve(string name, string atKey = "Scrapper")
     {

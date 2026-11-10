@@ -36,7 +36,7 @@ public sealed class RoundTripTests
 
     private static IEnumerable<string> Curated()
     {
-        return CuratedFolders.SelectMany(folder => BuildFileFixtures.Files(Path.Combine(BuildFileFixtures.Samples, folder), "*.mbd"));
+        return CuratedFolders.SelectMany(folder => BuildFileFixtures.Files(Path.Join(BuildFileFixtures.Samples, folder), "*.mbd"));
     }
 
     [Theory]
@@ -83,7 +83,7 @@ public sealed class RoundTripTests
     {
         Assert.Equal(
             BuildFileFixtures.AllMbd().Select(Path.GetFileName).Order(StringComparer.Ordinal),
-            BuildFileFixtures.Files(Path.Combine(BuildFileFixtures.Root, "roundtrip"), "*.mbd").Select(Path.GetFileName).Order(StringComparer.Ordinal),
+            BuildFileFixtures.Files(Path.Join(BuildFileFixtures.Root, "roundtrip"), "*.mbd").Select(Path.GetFileName).Order(StringComparer.Ordinal),
             StringComparer.Ordinal);
     }
 }
