@@ -27,6 +27,17 @@ public sealed class ChatClientFactoryTests
         return response.Text;
     }
 
+    private static async Task<string> StreamTextAsync(IChatClient client)
+    {
+        List<string> parts = [];
+        await foreach (ChatResponseUpdate update in client.GetStreamingResponseAsync([new ChatMessage(ChatRole.User, "hello")], cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false))
+        {
+            parts.Add(update.Text);
+        }
+
+        return string.Concat(parts);
+    }
+
     private static ChatProviderOptions Local(string? baseUrl) =>
         new(ChatProvider.OpenAiCompatible, ChatPreset.Local, "llama3", baseUrl);
 
@@ -148,12 +159,7 @@ public sealed class ChatClientFactoryTests
         FakeHandler handler = new(HttpStatusCode.Unauthorized, $$$"""{"error":{"message":"bad key {{{TestKey}}}"}}""");
         using IChatClient client = ChatClientFactory.Create(Local("http://localhost:8000/v1") with { Handler = handler });
 
-        ChatProviderException error = await Assert.ThrowsAsync<ChatProviderException>(async () =>
-        {
-            await foreach (ChatResponseUpdate unused in client.GetStreamingResponseAsync([new ChatMessage(ChatRole.User, "hello")], cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false))
-            {
-            }
-        });
+        ChatProviderException error = await Assert.ThrowsAsync<ChatProviderException>(() => StreamTextAsync(client));
 
         Assert.Equal(401, error.Status);
         Assert.DoesNotContain(TestKey, error.ToString(), StringComparison.Ordinal);
@@ -166,13 +172,7 @@ public sealed class ChatClientFactoryTests
         FakeHandler handler = new(HttpStatusCode.OK, StreamReply);
         using IChatClient client = ChatClientFactory.Create(Local("http://localhost:8000/v1") with { Handler = handler });
 
-        string text = string.Empty;
-        await foreach (ChatResponseUpdate update in client.GetStreamingResponseAsync([new ChatMessage(ChatRole.User, "hello")], cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false))
-        {
-            text += update.Text;
-        }
-
-        Assert.Equal("hi there", text);
+        Assert.Equal("hi there", await StreamTextAsync(client));
     }
 
     [Theory]
