@@ -47,8 +47,8 @@ def build_manifest(community: Path) -> list[dict[str, str]]:
 
 
 def render(rows: list[dict[str, Any]]) -> str:
-    """The manifest file's text."""
-    return json.dumps(rows, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+    """The manifest file's text; non-ASCII is escaped so a no-break space in a title never reaches the JSON linter."""
+    return json.dumps(rows, ensure_ascii=True, sort_keys=True, indent=2) + "\n"
 
 
 def main(argv: list[str] | None = None) -> int:

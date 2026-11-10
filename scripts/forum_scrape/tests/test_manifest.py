@@ -3,12 +3,27 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pytest
 
 from scripts.forum_scrape.guides import content_hash
-from scripts.forum_scrape.manifest import build_manifest, main
+from scripts.forum_scrape.manifest import build_manifest, main, render
+
+IRREGULAR_WHITESPACE = re.compile(
+    "["
+    + "".join(map(chr, [0xA0, 0x1680, 0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF, *range(0x2000, 0x200C)]))
+    + "]"
+)
+
+
+def test_render_escapes_irregular_whitespace_and_round_trips() -> None:
+    title = "".join(map(chr, [0x46, 0xA0, 0x42, 0x2003, 0x67, 0x20, 0x3000, 0x20, 0xE9]))
+    text = render([{"title": title}])
+    assert not IRREGULAR_WHITESPACE.search(text) and text.isascii()
+    assert json.loads(text) == [{"title": title}]
+
 
 SOURCE = Path(__file__).parent / "fixtures" / "source"
 BIO_BODY = "# Bio Armor notes\n\nNo stored hash and no URL here; both come from the body and the ledger.\n"
