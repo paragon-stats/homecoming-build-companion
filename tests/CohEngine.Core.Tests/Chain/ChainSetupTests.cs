@@ -2,6 +2,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
+using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;
 using CohEngine.TestSupport;
 
@@ -220,7 +221,7 @@ public sealed class ChainSetupTests
 
         (double magnitude, double duration) = ChainReport.LinkedResDebuff(resolve(AcidMortar)!.Value, resolve, mods, classes, classes.NidFromUidClass("Class_Mastermind"));
 
-        Assert.True(magnitude > 0.0 && duration == 60.0);
+        Assert.True(magnitude > 0.0 && Exact.Same(duration, 60.0));
     }
 
     [Fact]

@@ -194,7 +194,7 @@ public sealed class AttackChainsTests
     [Fact]
     public void The_melee_stance_never_pays_switches()
     {
-        Assert.All(Plan([Atk("M"), Atk("R", melee: false)]).Ranked, option => Assert.True(option.Switches == 0 && option.MoveTime == 0.0));
+        Assert.All(Plan([Atk("M"), Atk("R", melee: false)]).Ranked, option => Assert.True(option.Switches == 0 && Exact.Same(option.MoveTime, 0.0)));
     }
 
     [Fact]
@@ -287,7 +287,7 @@ public sealed class AttackChainsTests
         ChainPlan plan = Plan([Atk("M", recharge: 0.1), Atk("R", melee: false, recharge: 0.1)], Stance.Hybrid, move);
         ChainOption mixed = plan.Ranked.First(option => option.Switches == 2);
 
-        Assert.True(mixed.Gap.Equals(0.0) && mixed.GapFree);
+        Assert.True(Exact.Same(mixed.Gap, 0.0) && mixed.GapFree);
     }
 
     [Fact]

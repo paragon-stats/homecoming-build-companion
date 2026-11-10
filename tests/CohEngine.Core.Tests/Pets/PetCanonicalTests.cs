@@ -5,6 +5,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
+using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;
 using CohEngine.TestSupport;
 
@@ -197,7 +198,7 @@ public sealed class PetCanonicalTests
         Near.Rel(1.0 + PetDamage.DefaultPetDamageEnhancement, pet.DamageBuffBaseline);
         Assert.Contains("level 48", pet.Label, StringComparison.Ordinal);
         Assert.Equal("Villain_Pets.Arachnobot_Spiderling.Chain_Gun,Villain_Pets.Arachnobot_Spiderling.Claw", string.Join(',', pet.PetAttacks.Select(attack => attack.FullName).Order(StringComparer.Ordinal)));
-        Assert.All(pet.PetAttacks, attack => Assert.True(attack.EndCost == 0.0 && attack.Profile.Role == Role.Chain));
+        Assert.All(pet.PetAttacks, attack => Assert.True(Exact.Same(attack.EndCost, 0.0) && attack.Profile.Role == Role.Chain));
     }
 
     [Fact]
@@ -234,7 +235,7 @@ public sealed class PetCanonicalTests
         PetSummon medic = pets[1];
 
         Assert.Equal("Soldier 2 True Medic 1", $"{soldier.PetName} {soldier.PetCount} {double.IsPositiveInfinity(soldier.Duration)} {medic.PetName} {medic.PetCount}");
-        Assert.True(soldier.SummonCastTime > 0 && medic.SummonCastTime == 0.0 && soldier.SummonEndCost > 0 && medic.SummonEndCost == 0.0);
+        Assert.True(soldier.SummonCastTime > 0 && Exact.Same(medic.SummonCastTime, 0.0) && soldier.SummonEndCost > 0 && Exact.Same(medic.SummonEndCost, 0.0));
         Assert.Equal("5 5", $"{soldier.SummonRecharge} {medic.SummonRecharge}");
         Assert.Equal("Mastermind_Pets.Soldier.ASMG_Burst,Mastermind_Pets.Soldier.Brawl", string.Join(',', soldier.PetAttacks.Select(attack => attack.FullName).Order(StringComparer.Ordinal)));
         Assert.All(pets.SelectMany(pet => pet.PetAttacks), attack => Assert.True(attack.Damage > 0));
@@ -347,7 +348,7 @@ public sealed class PetCanonicalTests
 
         SourceResult result = PetDamage.PetSource(Context(pets: [pets[0], pets[1]]))!;
 
-        Assert.True(result.Dps > 0 && result.TimelineShare == 0.0);
+        Assert.True(result.Dps > 0 && Exact.Same(result.TimelineShare, 0.0));
         Assert.Equal("Soldier,Medic", string.Join(',', result.Detail.Select(item => item.Name)));
     }
 

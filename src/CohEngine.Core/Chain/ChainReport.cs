@@ -582,8 +582,8 @@ public static class ChainReport
 
     private static bool HasSignal(PowerDamageRef reference)
     {
-        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !reference.SelfDamageBuff.Equals(0.0);
-        return !reference.DamagePerActivation.Equals(0.0) || clickBuff || !reference.TargetResDebuff.Equals(0.0);
+        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !Exact.Same(reference.SelfDamageBuff, 0.0);
+        return !Exact.Same(reference.DamagePerActivation, 0.0) || clickBuff || !Exact.Same(reference.TargetResDebuff, 0.0);
     }
 
     private static bool Reportable(string name)

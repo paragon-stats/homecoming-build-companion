@@ -118,7 +118,7 @@ public static class DamageReference
         (double buffMag, double buffDuration) = buff.Count > 0 ? buff.Values.First() : (0.0, 0.0);
         foreach ((double mag, double duration) in buff.Values)
         {
-            if (mag > buffMag || (mag.Equals(buffMag) && duration > buffDuration))
+            if (mag > buffMag || (Exact.Same(mag, buffMag) && duration > buffDuration))
             {
                 (buffMag, buffDuration) = (mag, duration);
             }

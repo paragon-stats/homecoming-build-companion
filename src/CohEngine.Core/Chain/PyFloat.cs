@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Numerics;
 
 using CohEngine.Core.Diagnostics;
+using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.Chain;
 
@@ -31,7 +32,7 @@ public static class PyFloat
             total = next;
         }
 
-        return !compensation.Equals(0.0) && double.IsFinite(compensation) ? total + compensation : total;
+        return !Exact.Same(compensation, 0.0) && double.IsFinite(compensation) ? total + compensation : total;
     }
 
     /// <summary><c>format(value, ".Nf")</c>, or <c>"+.Nf"</c> when <paramref name="plus"/> is set.</summary>
@@ -46,7 +47,7 @@ public static class PyFloat
             return NonFinite(value);
         }
 
-        BigInteger numerator = Exact(Math.Abs(value), out BigInteger denominator);
+        BigInteger numerator = ExactFraction(Math.Abs(value), out BigInteger denominator);
         BigInteger scaled = RoundHalfEven(numerator * BigInteger.Pow(10, digits), denominator);
         string text = scaled.ToString(CultureInfo.InvariantCulture).PadLeft(digits + 1, '0');
         string body = digits == 0 ? text : text[..^digits] + "." + text[^digits..];
@@ -72,7 +73,7 @@ public static class PyFloat
             return NonFinite(value);
         }
 
-        if (value.Equals(0.0))
+        if (Exact.Same(value, 0.0))
         {
             return double.IsNegative(value) ? "-0" : "0";
         }
@@ -113,7 +114,7 @@ public static class PyFloat
         return double.IsNaN(value) ? "nan" : value > 0 ? "inf" : "-inf";
     }
 
-    private static BigInteger Exact(double value, out BigInteger denominator)
+    private static BigInteger ExactFraction(double value, out BigInteger denominator)
     {
         long bits = BitConverter.DoubleToInt64Bits(value);
         int exponent = (int)((bits >> 52) & 0x7FF);
@@ -141,7 +142,7 @@ public static class PyFloat
 
     private static (string Digits, int Exponent) Significant(double value, int count)
     {
-        BigInteger numerator = Exact(value, out BigInteger denominator);
+        BigInteger numerator = ExactFraction(value, out BigInteger denominator);
         int exponent = (int)Math.Floor(Math.Log10(value));
         while (true)
         {
