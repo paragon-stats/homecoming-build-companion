@@ -34,7 +34,7 @@ public sealed class HandshakeTests
 
         IList<McpClientTool> tools = await harness.Client.ListToolsAsync(cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(true);
 
-        string[] expected = ["rules"];
+        string[] expected = ["chain", "check_hard_limits", "check_legality", "power_lookup", "rules", "score", "set_bonus_lookup", "totals"];
         Assert.Equal(expected, tools.Select(tool => tool.Name).Order(StringComparer.Ordinal), StringComparer.Ordinal);
     }
 }

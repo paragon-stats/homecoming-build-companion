@@ -188,4 +188,30 @@ public static class ErrorCodes
 
     /// <summary>An assembly effect error.</summary>
     public const string E94 = "E94";
+
+    // E160-E169: the MCP surface and validate --expect.
+
+    /// <summary>A <c>validate --expect</c> claim does not match the computed metric.</summary>
+    public const string E160 = "E160";
+
+    /// <summary>A <c>validate --expect</c> names a metric the registry does not hold.</summary>
+    public const string E161 = "E161";
+
+    /// <summary>A <c>validate --expect</c> value is not valid for its metric.</summary>
+    public const string E162 = "E162";
+
+    /// <summary>A <c>validate --expect</c> was given a <c>.mbd</c> file, which this build cannot compute.</summary>
+    public const string E163 = "E163";
+
+    /// <summary>A path an MCP tool was given does not exist.</summary>
+    public const string E164 = "E164";
+
+    /// <summary>The MCP <c>chain</c> tool is not available in this build.</summary>
+    public const string E165 = "E165";
+
+    /// <summary>An MCP set lookup names a set the loaded data does not hold.</summary>
+    public const string E166 = "E166";
+
+    /// <summary>An MCP power lookup names a power the dump does not hold.</summary>
+    public const string E167 = "E167";
 }
