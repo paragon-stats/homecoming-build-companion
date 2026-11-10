@@ -36,7 +36,8 @@ public static class DumpScoring
     /// <returns>The totals and every metric.</returns>
     public static ComputedBuild Compute(string buildDirectory, string midsDirectory, string? attribModPath = null, string? mathsPath = null)
     {
-        BuiltBuild built = Build(buildDirectory, midsDirectory, attribModPath, mathsPath);
+        ArgumentNullException.ThrowIfNull(midsDirectory);
+        BuiltBuild built = Build(buildDirectory, LoadShared(midsDirectory, attribModPath, mathsPath));
         PowerStatistics.StatsContext context = new()
         {
             Config = built.Data.Config,
@@ -75,21 +76,36 @@ public static class DumpScoring
             TotalsData.LoadServerData(Path.Join(midsDirectory, "server_data.json")));
     }
 
-    /// <summary>Runs the phases up to the totals.</summary>
-    /// <param name="buildDirectory">The build's dump directory.</param>
+    /// <summary>Loads the read-only dumps every build shares. The result is never written to, so callers may keep it and reuse it across builds and threads.</summary>
     /// <param name="midsDirectory">The shared-dump directory.</param>
     /// <param name="attribModPath"><c>AttribMod.json</c>, or null for the default.</param>
     /// <param name="mathsPath"><c>Maths.mhd</c>, or null for the default.</param>
+    /// <returns>The shared dumps.</returns>
+    internal static SharedDumps LoadShared(string midsDirectory, string? attribModPath = null, string? mathsPath = null)
+    {
+        ArgumentNullException.ThrowIfNull(midsDirectory);
+        return new SharedDumps(
+            LoadDatabase(midsDirectory, attribModPath),
+            MathTables.Load(mathsPath ?? Path.Join(SharedRoot(midsDirectory), "Maths.mhd")),
+            EnhancementData.LoadEnhancementEffects(Path.Join(midsDirectory, "enhancement_effects.json")),
+            SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json")),
+            new Lazy<IReadOnlyDictionary<int, AssemblyPower>>(() => AssemblyData.LoadAssemblyPowers(Path.Join(midsDirectory, "assembly_powers.json"))),
+            new Lazy<AssemblyEntities>(() => AssemblyData.LoadAssemblyEntities(Path.Join(midsDirectory, "assembly_entities.json"))));
+    }
+
+    /// <summary>Runs the phases up to the totals.</summary>
+    /// <param name="buildDirectory">The build's dump directory.</param>
+    /// <param name="shared">The shared dumps.</param>
     /// <param name="forceLevel">The exemplar level, or null for the dumped configuration.</param>
     /// <returns>The build and what was computed for it.</returns>
-    internal static BuiltBuild Build(string buildDirectory, string midsDirectory, string? attribModPath = null, string? mathsPath = null, int? forceLevel = null)
+    internal static BuiltBuild Build(string buildDirectory, SharedDumps shared, int? forceLevel = null)
     {
         ArgumentNullException.ThrowIfNull(buildDirectory);
-        ArgumentNullException.ThrowIfNull(midsDirectory);
-        Pipeline.Database data = LoadDatabase(midsDirectory, attribModPath);
-        MathTables tables = MathTables.Load(mathsPath ?? Path.Join(SharedRoot(midsDirectory), "Maths.mhd"));
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb = EnhancementData.LoadEnhancementEffects(Path.Join(midsDirectory, "enhancement_effects.json"));
-        SetBonusDb setDb = SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json"));
+        ArgumentNullException.ThrowIfNull(shared);
+        Pipeline.Database data = shared.Data;
+        MathTables tables = shared.Tables;
+        IReadOnlyDictionary<int, EnhancementRecord> enhDb = shared.EnhDb;
+        SetBonusDb setDb = shared.SetDb;
         string slotsPath = Path.Join(buildDirectory, "slots.json");
         IReadOnlyList<Power> raw = EffectData.LoadPowersEffects(Path.Join(buildDirectory, "powers_effects.json"));
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadSlotEntries(slotsPath).ToDictionary(entry => entry.BuildIndex, entry => entry.Slots);
@@ -106,7 +122,7 @@ public static class DumpScoring
         string assemblyPath = Path.Join(buildDirectory, "power_assembly.json");
         bool assembled = File.Exists(assemblyPath);
         IReadOnlyList<Power> powers = assembled
-            ? Assemble(raw, AssemblyData.LoadBuildPowerAssembly(assemblyPath, slotsPath, raw), slots, enhDb, setDb, midsDirectory, archetypeIndex, expression)
+            ? Assemble(raw, AssemblyData.LoadBuildPowerAssembly(assemblyPath, slotsPath, raw), slots, shared, archetypeIndex, expression)
             : raw;
         Pipeline.BuildOptions options = new()
         {
@@ -125,21 +141,19 @@ public static class DumpScoring
         IReadOnlyList<Power> raw,
         IReadOnlyDictionary<int, BuildPowerAssembly> assembly,
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots,
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
-        SetBonusDb setDb,
-        string midsDirectory,
+        SharedDumps shared,
         int archetypeIndex,
         ExpressionContext expression)
     {
-        Power bonus = Accumulator.BuildSetBonusPower(raw, slots, enhDb, setDb, 50, false);
+        Power bonus = Accumulator.BuildSetBonusPower(raw, slots, shared.EnhDb, shared.SetDb, 50, false);
         Dictionary<int, AssembledEffects> effects = CrossPowerPass.AssembleBuild(
             assembly,
             slots,
             raw.ToLastWinsDictionary(power => power.BuildIndex, power => power.StatInclude),
-            enhDb,
-            setDb,
-            AssemblyData.LoadAssemblyPowers(Path.Join(midsDirectory, "assembly_powers.json")),
-            AssemblyData.LoadAssemblyEntities(Path.Join(midsDirectory, "assembly_entities.json")),
+            shared.EnhDb,
+            shared.SetDb,
+            shared.AssemblyPowers.Value,
+            shared.AssemblyEntities.Value,
             archetypeIndex,
             effect => Conditionals.ConditionalsMet(effect, expression),
             bonus.Effects);

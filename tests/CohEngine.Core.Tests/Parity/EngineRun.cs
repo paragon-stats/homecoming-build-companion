@@ -12,6 +12,9 @@ internal static class EngineRun
     /// <summary>Gets the database every build is computed against.</summary>
     public static Pipeline.Database Data { get; } = new(Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, Fixtures.Store.Enums, Fixtures.Store.Config, Fixtures.Store.ServerData);
 
+    /// <summary>Gets the shared dumps, loaded once for the run; no build writes to them.</summary>
+    private static Lazy<SharedDumps> Shared { get; } = new(() => DumpScoring.LoadShared(Fixtures.Store.MidsDirectory));
+
     /// <summary>Gets the fields the set-bonus, incarnate and sample-build tests leave out: speed caps, stealth and threat.</summary>
     public static IReadOnlySet<string> NotCompared { get; } = new HashSet<string>(["MaxFlySpd", "MaxJumpSpd", "StealthPvE", "StealthPvP", "ThreatLevel", "MaxRunSpd"], StringComparer.Ordinal);
 
@@ -44,7 +47,7 @@ internal static class EngineRun
     public static (IReadOnlyList<Power> Powers, BaseTotals Totals, BuildInputs Inputs) Full(string name, int? forceLevel = null)
     {
         BuildInputs inputs = new(name);
-        BuiltBuild built = DumpScoring.Build(inputs.Fixture.Directory, Fixtures.Store.MidsDirectory, forceLevel: forceLevel);
+        BuiltBuild built = DumpScoring.Build(inputs.Fixture.Directory, Shared.Value, forceLevel);
         return (built.Powers, built.Result, inputs);
     }
 
