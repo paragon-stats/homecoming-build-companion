@@ -1,6 +1,6 @@
 using CohEngine.Core.Assembly;
 using CohEngine.Core.Data;
-using CohEngine.Core.Expressions;
+using CohEngine.Core.Registry;
 using CohEngine.Core.SetBonuses;
 using CohEngine.Core.Totals;
 
@@ -44,19 +44,8 @@ internal static class EngineRun
     public static (IReadOnlyList<Power> Powers, BaseTotals Totals, BuildInputs Inputs) Full(string name, int? forceLevel = null)
     {
         BuildInputs inputs = new(name);
-        IReadOnlyList<Power> powers = inputs.Powers;
-        ExpressionContext? expr = null;
-        if (inputs.Fixture.Has("power_assembly.json"))
-        {
-            expr = inputs.Expression;
-            Power bonus = Accumulator.BuildSetBonusPower(inputs.Powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, false);
-            Dictionary<int, AssembledEffects> assembled = AssemblyParityTests.AssembleBuild(inputs, bonus.Effects);
-            powers = PowerAssembler.ApplyAssembly(inputs.Powers, inputs.Fixture.PowerAssembly, assembled);
-        }
-
-        Pipeline.BuildOptions options = Slotted(inputs) with { SetDb = Fixtures.Store.SetBonuses, Incarnates = inputs.Fixture.Incarnates, Expr = expr };
-        Pipeline.Database data = forceLevel is { } level ? Data with { Config = Data.Config with { ForceLevel = level } } : Data;
-        return (powers, Pipeline.ComputeBaseTotals(powers, inputs.ClassName, data, options), inputs);
+        BuiltBuild built = DumpScoring.Build(inputs.Fixture.Directory, Fixtures.Store.MidsDirectory, forceLevel: forceLevel);
+        return (built.Powers, built.Result, inputs);
     }
 
     /// <summary>Compares every field of two totals.</summary>

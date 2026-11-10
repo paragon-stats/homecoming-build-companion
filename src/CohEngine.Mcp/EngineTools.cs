@@ -41,7 +41,7 @@ public sealed class EngineTools
         [Description("Path to the build's Mids dump directory.")] string buildDir,
         [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null)
     {
-        return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.Legality));
+        return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.Legality), Given(buildDir, midsDir));
     }
 
     /// <summary>Runs the hard-limit registry over a build dump.</summary>
@@ -54,64 +54,82 @@ public sealed class EngineTools
         [Description("Path to the build's Mids dump directory.")] string buildDir,
         [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null)
     {
-        return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.HardLimits));
+        return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.HardLimits), Given(buildDir, midsDir));
     }
 
     /// <summary>Computes the registered scoring metrics for a build dump.</summary>
     /// <param name="buildDir">The build's Mids dump directory.</param>
     /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent.</param>
+    /// <param name="attribModPath">The AttribMod.json file; defaults to attribmod/AttribMod.json beside the shared directory.</param>
+    /// <param name="mathsPath">The Maths.mhd file; defaults to Maths.mhd beside the shared directory.</param>
     /// <returns>The metrics.</returns>
     [McpServerTool(Name = "score", ReadOnly = true)]
     [Description("Compute the registered scoring metrics (positional defense minimum, minimum resistance, perma-Hasten, perma-Domination) for a build dump.")]
     public static ScoreResult Score(
         [Description("Path to the build's Mids dump directory.")] string buildDir,
-        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null)
+        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null,
+        [Description("Path to AttribMod.json; defaults to attribmod/AttribMod.json in the shared directory's parent.")] string? attribModPath = null,
+        [Description("Path to Maths.mhd; defaults to Maths.mhd in the shared directory's parent.")] string? mathsPath = null)
     {
-        return Guard(() =>
-        {
-            ComputedBuild build = Compute(buildDir, midsDir, out _);
-            return new ScoreResult(
-                DataVersion,
-                build.ClassName,
-                [.. build.Metrics.Select(metric => new MetricView(metric.Name, metric.Value.IsFlag ? null : metric.Value.Number, metric.Value.IsFlag ? metric.Value.Number != 0.0 : null))]);
-        });
+        return Guard(
+            () =>
+            {
+                ComputedBuild build = Compute(buildDir, midsDir, attribModPath, mathsPath, out _);
+                return new ScoreResult(
+                    DataVersion,
+                    build.ClassName,
+                    [.. build.Metrics.Select(metric => new MetricView(metric.Name, metric.Value.IsFlag ? null : metric.Value.Number, metric.Value.IsFlag ? metric.Value.IsTrue : null))]);
+            },
+            Given(buildDir, midsDir));
     }
 
     /// <summary>Computes a build dump's base totals.</summary>
     /// <param name="buildDir">The build's Mids dump directory.</param>
     /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent.</param>
+    /// <param name="attribModPath">The AttribMod.json file; defaults to attribmod/AttribMod.json beside the shared directory.</param>
+    /// <param name="mathsPath">The Maths.mhd file; defaults to Maths.mhd beside the shared directory.</param>
     /// <returns>The uncapped and capped totals.</returns>
     [McpServerTool(Name = "totals", ReadOnly = true)]
     [Description("Compute a build dump's base totals (defense, resistance, recovery, recharge and the rest), uncapped and capped, with defense and resistance already as percentages.")]
     public static TotalsResult Totals(
         [Description("Path to the build's Mids dump directory.")] string buildDir,
-        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null)
+        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null,
+        [Description("Path to AttribMod.json; defaults to attribmod/AttribMod.json in the shared directory's parent.")] string? attribModPath = null,
+        [Description("Path to Maths.mhd; defaults to Maths.mhd in the shared directory's parent.")] string? mathsPath = null)
     {
-        return Guard(() =>
-        {
-            ComputedBuild build = Compute(buildDir, midsDir, out string mids);
-            EnumMaps enums = TotalsData.LoadEnumMaps(Path.Join(mids, "enums.json"));
-            return new TotalsResult(DataVersion, build.ClassName, View(build.Totals, enums), View(build.TotalsCapped, enums));
-        });
+        return Guard(
+            () =>
+            {
+                ComputedBuild build = Compute(buildDir, midsDir, attribModPath, mathsPath, out string mids);
+                EnumMaps enums = TotalsData.LoadEnumMaps(Path.Join(mids, "enums.json"));
+                return new TotalsResult(DataVersion, build.ClassName, View(build.Totals, enums), View(build.TotalsCapped, enums));
+            },
+            Given(buildDir, midsDir));
     }
 
     /// <summary>Looks a set's bonuses up.</summary>
     /// <param name="setName">The set UID.</param>
     /// <param name="buildDir">A build dump directory, whose class picks the modifier column.</param>
     /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent.</param>
+    /// <param name="attribModPath">The AttribMod.json file; defaults to attribmod/AttribMod.json beside the shared directory.</param>
     /// <returns>The set's bonuses with every magnitude resolved.</returns>
     [McpServerTool(Name = "set_bonus_lookup", ReadOnly = true)]
     [Description("Look up an enhancement set's bonuses by set name (UID). Magnitudes come back resolved through the modifier tables, with a percentage where the game shows one; no scale arithmetic is needed.")]
     public static SetBonusResult SetBonusLookup(
         [Description("The set's UID, for example the name as the Mids database spells it.")] string setName,
         [Description("Path to any build dump directory; its class picks the modifier column.")] string buildDir,
-        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null)
+        [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null,
+        [Description("Path to AttribMod.json; defaults to attribmod/AttribMod.json in the shared directory's parent.")] string? attribModPath = null)
     {
-        return Guard(() =>
-        {
-            RequireDirectory(buildDir, nameof(buildDir));
-            return new SetBonusResult(DataVersion, Core.Registry.SetBonusLookup.Find(setName, buildDir, MidsOf(buildDir, midsDir)));
-        });
+        return Guard(
+            () =>
+            {
+                RequireDirectory(buildDir, nameof(buildDir));
+                string mids = MidsOf(buildDir, midsDir);
+                RequireFile(attribModPath, nameof(attribModPath));
+                return new SetBonusResult(DataVersion, Core.Registry.SetBonusLookup.Find(setName, buildDir, mids, attribModPath));
+            },
+            Given(buildDir, midsDir));
     }
 
     /// <summary>Looks a power up in a build dump.</summary>
@@ -124,26 +142,28 @@ public sealed class EngineTools
         [Description("The power's full name, for example Scrapper_Melee.Dark_Melee.Shadow_Punch.")] string fullName,
         [Description("Path to the build's Mids dump directory.")] string buildDir)
     {
-        return Guard(() =>
-        {
-            RequireDirectory(buildDir, nameof(buildDir));
-            Power power = EffectData.LoadPowersEffects(Path.Join(buildDir, "powers_effects.json"))
-                .FirstOrDefault(candidate => string.Equals(candidate.FullName, fullName, StringComparison.OrdinalIgnoreCase))
-                ?? throw new EngineException($"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json");
-            return new PowerResult(
-                DataVersion,
-                new PowerView(
-                    power.FullName,
-                    power.PowerType,
-                    power.Level + 1,
-                    power.PickLevel + 1,
-                    power.RechargeTime,
-                    power.CastTime,
-                    power.EndCost,
-                    power.ActivatePeriod,
-                    power.StatInclude,
-                    [.. power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal)]));
-        });
+        return Guard(
+            () =>
+            {
+                RequireDirectory(buildDir, nameof(buildDir));
+                Power power = EffectData.LoadPowersEffects(Path.Join(buildDir, "powers_effects.json"))
+                    .FirstOrDefault(candidate => string.Equals(candidate.FullName, fullName, StringComparison.OrdinalIgnoreCase))
+                    ?? throw new EngineException($"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json");
+                return new PowerResult(
+                    DataVersion,
+                    new PowerView(
+                        power.FullName,
+                        power.PowerType,
+                        power.Level + 1,
+                        power.PickLevel + 1,
+                        power.RechargeTime,
+                        power.CastTime,
+                        power.EndCost,
+                        power.ActivatePeriod,
+                        power.StatInclude,
+                        [.. power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal)]));
+            },
+            Given(buildDir, null));
     }
 
     /// <summary>The attack-chain planner, which is not part of this build.</summary>
@@ -155,20 +175,52 @@ public sealed class EngineTools
         throw new McpException($"{ErrorCodes.E165}: the chain tool is not available in this build; use score or totals for the build's numbers instead");
     }
 
-    private static T Guard<T>(Func<T> run)
+    /// <summary>Names a per-type vector by its enum, as a percentage when asked.</summary>
+    /// <param name="values">The vector, indexed by the enum.</param>
+    /// <param name="enums">The enum maps.</param>
+    /// <param name="enumName">The enum the vector is indexed by.</param>
+    /// <param name="percent">Whether to scale the values to percentages.</param>
+    /// <returns>The values by member name.</returns>
+    /// <exception cref="EngineException">E168: the enum maps hold no name for an index of the vector.</exception>
+    internal static Dictionary<string, double> Named(IReadOnlyList<double> values, EnumMaps enums, string enumName, bool percent)
+    {
+        IReadOnlyDictionary<int, string> names = enums.Inverse.GetValueOrDefault(enumName) ?? new Dictionary<int, string>();
+        Dictionary<string, double> named = new(StringComparer.Ordinal);
+        for (int index = 0; index < values.Count; index++)
+        {
+            string name = names.GetValueOrDefault(index)
+                ?? throw new EngineException($"{ErrorCodes.E168}: the shared enums.json has no {enumName} member at index {index}; use the enums.json dumped with the build");
+            named[name] = percent ? Math.Round(values[index] * 100.0, 4, MidpointRounding.ToEven) : values[index];
+        }
+
+        return named;
+    }
+
+    /// <summary>Maps the engine's failures to tool errors; a message never carries a path the client did not supply.</summary>
+    private static T Guard<T>(Func<T> run, string given)
     {
         try
         {
             return run();
         }
-        catch (Exception exception) when (exception is EngineException or ArgumentException or InvalidDataException)
+        catch (Exception exception) when (exception is EngineException or ArgumentException)
         {
             throw new McpException(exception.Message, exception);
         }
-        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or KeyNotFoundException or JsonException)
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            throw new McpException($"{ErrorCodes.E72}: cannot read an input ({exception.Message}); check that the path exists, is readable and holds a Mids dump", exception);
+            string file = exception is FileNotFoundException { FileName: { } path } ? $"'{Path.GetFileName(path)}'" : "an input file";
+            throw new McpException($"{ErrorCodes.E72}: cannot read {file} (from {given}); check that the path exists, is readable and holds a Mids dump", exception);
         }
+        catch (Exception exception) when (exception is InvalidDataException or KeyNotFoundException or JsonException)
+        {
+            throw new McpException($"{ErrorCodes.E72}: an input from {given} is missing a key or holds the wrong shape; re-dump the build or check the data matches its schema", exception);
+        }
+    }
+
+    private static string Given(string buildDir, string? midsDir)
+    {
+        return midsDir is null ? $"buildDir '{buildDir}'" : $"buildDir '{buildDir}', midsDir '{midsDir}'";
     }
 
     private static void RequireDirectory(string path, string parameter)
@@ -179,15 +231,19 @@ public sealed class EngineTools
         }
     }
 
+    private static void RequireFile(string? path, string parameter)
+    {
+        if (path is not null && !File.Exists(path))
+        {
+            throw new EngineException($"{ErrorCodes.E164}: {parameter} '{path}' does not exist; give an existing file");
+        }
+    }
+
     private static string MidsOf(string buildDir, string? midsDir)
     {
-        if (midsDir is null)
-        {
-            return DumpScoring.DefaultMidsDirectory(buildDir);
-        }
-
-        RequireDirectory(midsDir, nameof(midsDir));
-        return midsDir;
+        string mids = midsDir ?? DumpScoring.DefaultMidsDirectory(buildDir);
+        RequireDirectory(mids, nameof(midsDir));
+        return mids;
     }
 
     private static DiagnosticsResult Diagnose(string buildDir, string? midsDir, ValidateChecks checks)
@@ -198,11 +254,13 @@ public sealed class EngineTools
         return new DiagnosticsResult(DataVersion, DiagnosticFormatter.ExitCode(diagnostics), document.RootElement.Clone());
     }
 
-    private static ComputedBuild Compute(string buildDir, string? midsDir, out string mids)
+    private static ComputedBuild Compute(string buildDir, string? midsDir, string? attribModPath, string? mathsPath, out string mids)
     {
         RequireDirectory(buildDir, nameof(buildDir));
         mids = MidsOf(buildDir, midsDir);
-        return DumpScoring.Compute(buildDir, mids);
+        RequireFile(attribModPath, nameof(attribModPath));
+        RequireFile(mathsPath, nameof(mathsPath));
+        return DumpScoring.Compute(buildDir, mids, attribModPath, mathsPath);
     }
 
     private static List<RuleView> View(IReadOnlyList<RuleInfo> rules)
@@ -246,11 +304,5 @@ public sealed class EngineTools
                 ["BuffRange"] = totals.BuffRange,
                 ["BuffHeal"] = totals.BuffHeal,
             });
-    }
-
-    private static Dictionary<string, double> Named(IReadOnlyList<double> values, EnumMaps enums, string enumName, bool percent)
-    {
-        IReadOnlyDictionary<int, string> names = enums.Inverse[enumName];
-        return values.Select((value, index) => (Name: names[index], Value: percent ? Math.Round(value * 100.0, 4, MidpointRounding.ToEven) : value)).ToDictionary(item => item.Name, item => item.Value, StringComparer.Ordinal);
     }
 }

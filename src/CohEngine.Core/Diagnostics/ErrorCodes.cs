@@ -214,4 +214,7 @@ public static class ErrorCodes
 
     /// <summary>An MCP power lookup names a power the dump does not hold.</summary>
     public const string E167 = "E167";
+
+    /// <summary>The shared enum maps do not cover an index in the build's totals.</summary>
+    public const string E168 = "E168";
 }

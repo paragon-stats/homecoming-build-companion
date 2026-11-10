@@ -219,7 +219,7 @@ public sealed class ToolTests
         {
             string error = await harness.CallErrorAsync("check_hard_limits", ("buildDir", empty)).ConfigureAwait(true);
 
-            Assert.StartsWith("E72: cannot read an input", error, StringComparison.Ordinal);
+            Assert.StartsWith("E72: cannot read 'powers_effects.json' (from buildDir '", error, StringComparison.Ordinal);
         }
         finally
         {

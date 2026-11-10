@@ -41,11 +41,22 @@ A manifest hash replaces it once Core exposes one.
 Tools that take a build take `buildDir`: a Mids dump directory, as `validate` takes.
 `midsDir` is the shared dump directory.
 When it is left out, the engine uses the build directory's grandparent, as `validate` does.
+A build directory at or next to the filesystem root has no grandparent, so `midsDir` is required there (`E164`).
+
+`score`, `totals` and `set_bonus_lookup` also read `AttribMod.json`, and `score` and `totals` read `Maths.mhd`.
+By default these sit in the parent of the shared dump directory, at `attribmod/AttribMod.json` and `Maths.mhd` (the `tests/fixtures` layout).
+`attribModPath` and `mathsPath` override those two locations.
+When the shared dump directory is a filesystem root, give both explicitly.
 
 A path that does not exist is rejected with `E164`, naming the parameter and the path.
-The tools read only fixed file names inside `buildDir` and `midsDir`, plus `attribmod/AttribMod.json` and `Maths.mhd` beside `midsDir`.
+The tools read only fixed file names inside `buildDir` and `midsDir`, plus the two files above.
 No file name comes from the client.
+
 A directory that exists but lacks a dump file is `E72`.
+The error names the missing file by name and echoes the client's own `buildDir` and `midsDir`.
+It never carries a path the client did not supply.
+A dump file of the wrong shape is also `E72`, without the file's path.
+`E168` is a data-shape error: the shared `enums.json` has no name for an index in the totals.
 
 ## Tools
 
@@ -54,9 +65,9 @@ A directory that exists but lacks a dump file is `E72`.
 | `rules` | none | `legality`, `hard_limits`, `enhancement_aspects` and `metrics`, each a list of `rule_id` and `summary`, in the order `coh-engine rules` prints them. |
 | `check_legality` | `buildDir`, optional `midsDir` | `exit_code` and `diagnostics`: the enhancement legality rules' findings, in the JSON `validate --format json` prints. |
 | `check_hard_limits` | `buildDir`, optional `midsDir` | The same shape for the hard-limit rules (slots, picks, pools, levels). |
-| `score` | `buildDir`, optional `midsDir` | `class_name` and `metrics`: each registered metric with a `number` or a `flag`. |
-| `totals` | `buildDir`, optional `midsDir` | `totals` and `totals_capped`. Defense and resistance are percentages per damage type; mez, mez resistance, debuff resistance and elusivity are named by type; `scalars` holds the single-value totals. |
-| `set_bonus_lookup` | `setName`, `buildDir`, optional `midsDir` | The set's `tiers` by piece count and its `special` per-piece bonuses. Each effect has its resolved `magnitude` and, where the game shows a percentage, `percent`. |
+| `score` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `class_name` and `metrics`: each registered metric with a `number` or a `flag`. |
+| `totals` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `totals` and `totals_capped`. Defense and resistance are percentages per damage type; mez, mez resistance, debuff resistance and elusivity are named by type; `scalars` holds the single-value totals. |
+| `set_bonus_lookup` | `setName`, `buildDir`, optional `midsDir`, `attribModPath` | The set's `tiers` by piece count and its `special` per-piece bonuses. Each effect has its resolved `magnitude` and, where the game shows a percentage, `percent`. |
 | `power_lookup` | `fullName`, `buildDir` | The power's record: `available_level` and `pick_level` as game levels, base recharge, cast time, endurance cost, `stat_include` and the effect types it carries. |
 | `chain` | none | Always an `E165` error: the chain planner is not part of this build. |
 
@@ -113,5 +124,6 @@ The metric names are the ones `coh-engine rules` lists under scoring metrics.
 | `E165` | The `chain` tool is not available in this build. |
 | `E166` | `set_bonus_lookup` found no set with that name. |
 | `E167` | `power_lookup` found no power with that full name in the dump. |
+| `E168` | The shared `enums.json` does not cover an index in the build's totals. |
 
 A claim that is not of the form `metric=value` is a usage error (exit 2), like any other bad argument.

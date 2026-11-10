@@ -13,9 +13,10 @@ public static class SetBonusLookup
     /// <param name="setName">The set UID.</param>
     /// <param name="buildDirectory">A build dump directory; its class picks the modifier column.</param>
     /// <param name="midsDirectory">The shared-dump directory.</param>
+    /// <param name="attribModPath"><c>AttribMod.json</c>; by default <c>attribmod/AttribMod.json</c> in the shared directory's parent.</param>
     /// <returns>The set's bonuses.</returns>
     /// <exception cref="EngineException">E166: the loaded data holds no such set.</exception>
-    public static SetBonusView Find(string setName, string buildDirectory, string midsDirectory)
+    public static SetBonusView Find(string setName, string buildDirectory, string midsDirectory, string? attribModPath = null)
     {
         ArgumentNullException.ThrowIfNull(setName);
         ArgumentNullException.ThrowIfNull(buildDirectory);
@@ -23,7 +24,7 @@ public static class SetBonusLookup
         SetBonusDb setDb = SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json"));
         EnhancementSetDef def = setDb.Sets.Values.FirstOrDefault(candidate => string.Equals(candidate.Uid, setName, StringComparison.OrdinalIgnoreCase))
             ?? throw new EngineException($"{ErrorCodes.E166}: no set named '{setName}' in the loaded set-bonus data; check the set's UID spelling");
-        Pipeline.Database data = DumpScoring.LoadDatabase(midsDirectory);
+        Pipeline.Database data = DumpScoring.LoadDatabase(midsDirectory, attribModPath);
         int archetypeIndex = data.Classes.NidFromUidClass(TotalsData.LoadTotals(Path.Join(buildDirectory, "totals.json")).Class);
         return new SetBonusView(
             def.Uid,
@@ -37,7 +38,7 @@ public static class SetBonusLookup
         return new BonusTierView(
             item.Slotted,
             PvModes[item.PvMode],
-            [.. item.Index.Select(powerId => setDb.Powers.GetValueOrDefault(powerId)).OfType<SetBonusPower>().SelectMany(power => power.Effects.Select(effect => Resolve(power, effect, data, archetypeIndex)))]);
+            [.. item.Index.Where(setDb.Powers.ContainsKey).Select(powerId => setDb.Powers[powerId]).SelectMany(power => power.Effects.Select(effect => Resolve(power, effect, data, archetypeIndex)))]);
     }
 
     private static BonusEffectView Resolve(SetBonusPower bonus, Effect effect, Pipeline.Database data, int archetypeIndex)

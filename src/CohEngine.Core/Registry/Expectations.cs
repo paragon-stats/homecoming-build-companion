@@ -46,7 +46,7 @@ public static class Expectations
         if (reading.Value.IsFlag)
         {
             return bool.TryParse(expectation.Value, out bool flag)
-                ? (flag == (reading.Value.Number != 0.0), flag)
+                ? (flag == reading.Value.IsTrue, flag)
                 : throw new EngineException($"{ErrorCodes.E162}: --expect {reading.Name}={expectation.Value} is not true or false; {reading.Name} is a flag metric");
         }
 
