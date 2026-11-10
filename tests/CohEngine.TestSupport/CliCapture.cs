@@ -1,4 +1,5 @@
 using CohEngine.Core;
+using CohEngine.Core.Registry;
 
 namespace CohEngine.TestSupport;
 
@@ -27,10 +28,27 @@ public sealed class CliCapture
     /// <returns>The stdout with LF line endings and the exit code.</returns>
     public static (string Output, int ExitCode) Run(params string[] args)
     {
+        return Run(null, args);
+    }
+
+    /// <summary>Runs the CLI in process with a <c>.mbd</c> source and returns its stdout and exit code.</summary>
+    /// <param name="source">What resolves a <c>.mbd</c> file; null leaves the <c>.mbd</c> form unavailable.</param>
+    /// <param name="args">The command-line arguments.</param>
+    /// <returns>The stdout with LF line endings and the exit code.</returns>
+    public static (string Output, int ExitCode) Run(IMbdBuildSource? source, params string[] args)
+    {
         using StringWriter output = new() { NewLine = "\n" };
         using StringWriter error = new();
-        int code = CliRunner.Run(args, output, error);
+        int code = CliRunner.Run(args, output, error, source);
         return (output.ToString(), code);
+    }
+
+    /// <summary>Finds the <c>.mbd</c> build a capture was made from.</summary>
+    /// <param name="name">The build's file name without <c>.mbd</c>.</param>
+    /// <returns>The full path under <c>samples/builds</c> or <c>tests/fixtures/buildfile/builds</c>.</returns>
+    public static string MbdPath(string name)
+    {
+        return BuildFileFixtures.AllMbd().Single(path => string.Equals(Path.GetFileNameWithoutExtension(path), name, StringComparison.Ordinal));
     }
 
     /// <summary>Lists the builds a command has a capture for, in ordinal order.</summary>

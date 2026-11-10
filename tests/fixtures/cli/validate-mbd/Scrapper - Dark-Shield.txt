@@ -1,0 +1,4 @@
+build.json:1:1: error: H-SLOT-004: a slot in 'Scrapper_Defense.Shield_Defense.Shield_Charge' is placed at level 47, which grants no enhancement slot in the level schedule
+build.json:1:1: error: H-SLOT-004: a slot in 'Epic.Stalker_Soul_Mastery.Moonbeam' is placed at level 47, which grants no enhancement slot in the level schedule
+build.json:1:1: error: H-SLOT-004: a slot in 'Pool.Speed.Hasten' is placed at level 49, which grants no enhancement slot in the level schedule
+build.json:1:1: error: H-SLOT-005: by level 47, 63 added slots are placed but only 61 have been granted (a slot cannot be placed before it is earned)
