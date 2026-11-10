@@ -284,15 +284,15 @@ public static partial class Mbd
         for (int index = 0; index < powers.Count; index++)
         {
             PickSpec pick = powers[index];
-            if (pick.SlotLevels is null || !need.ContainsKey(index))
+            if (pick.SlotLevels is null || !need.TryGetValue(index, out int needed))
             {
                 continue;
             }
 
-            if (pick.SlotLevels.Count != need[index])
+            if (pick.SlotLevels.Count != needed)
             {
                 string plural = pick.SlotLevels.Count != 1 ? "s" : string.Empty;
-                throw new InvalidDataException($"E48: {pick.Power} names {pick.SlotLevels.Count} slot level{plural} for {need[index]} added slots");
+                throw new InvalidDataException($"E48: {pick.Power} names {pick.SlotLevels.Count} slot level{plural} for {needed} added slots");
             }
 
             foreach (int level in pick.SlotLevels)
@@ -322,12 +322,9 @@ public static partial class Mbd
         foreach (int level in grants.Reverse())
         {
             int? latest = null;
-            foreach (int index in counts.Keys.Where(index => counts[index] > 0 && powers[index].Level <= level))
+            foreach (int index in counts.Keys.Where(index => counts[index] > 0 && powers[index].Level <= level && (latest is null || powers[index].Level > powers[latest.Value].Level)))
             {
-                if (latest is null || powers[index].Level > powers[latest.Value].Level)
-                {
-                    latest = index;
-                }
+                latest = index;
             }
 
             if (latest is { } chosen)

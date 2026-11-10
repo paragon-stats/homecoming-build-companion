@@ -50,12 +50,9 @@ internal static class CrossPowerPass
         Dictionary<string, double> mods = new(StringComparer.Ordinal);
         foreach (int target in order)
         {
-            foreach (int source in order)
+            foreach (int source in order.Where(source => source != target && statInclude[source]))
             {
-                if (source != target && statInclude[source])
-                {
-                    AbsorbGlobal(assembled[target].Effects, assembled[target].Power, assembled[source].Effects, assembled[source].Power, inputs, mods);
-                }
+                AbsorbGlobal(assembled[target].Effects, assembled[target].Power, assembled[source].Effects, assembled[source].Power, inputs, mods);
             }
         }
 
@@ -167,10 +164,12 @@ internal static class CrossPowerPass
 
     private static bool Skipped(Effect effect, AssemblyPower source)
     {
-        return string.Equals(effect.EffectClass, "Ignored", StringComparison.Ordinal)
-            || effect.EffectType is "Enhancement" or "DamageBuff"
-            || effect.IgnoreEd
-            || (!string.Equals(source.PowerType, "GlobalBoost", StringComparison.Ordinal) && !(effect.AbsorbedEffect && string.Equals(effect.AbsorbedPowerType, "GlobalBoost", StringComparison.Ordinal)))
+        if (string.Equals(effect.EffectClass, "Ignored", StringComparison.Ordinal) || effect.EffectType is "Enhancement" or "DamageBuff" || effect.IgnoreEd)
+        {
+            return true;
+        }
+
+        return (!string.Equals(source.PowerType, "GlobalBoost", StringComparison.Ordinal) && !(effect.AbsorbedEffect && string.Equals(effect.AbsorbedPowerType, "GlobalBoost", StringComparison.Ordinal)))
             || (string.Equals(effect.EffectType, "GrantPower", StringComparison.Ordinal) && effect.AbsorbedEffect);
     }
 
@@ -180,12 +179,9 @@ internal static class CrossPowerPass
         List<string> flags = [];
         for (int k = start; k < targetFx.Count; k++)
         {
-            foreach (Effect? effect in new[] { grantRoot(k - start), targetFx[k] })
+            foreach (Effect effect in new[] { grantRoot(k - start), targetFx[k] }.OfType<Effect>().Where(effect => effect.EffectId.Trim().Length != 0 && !flags.Contains(effect.EffectId, StringComparer.Ordinal)))
             {
-                if (effect is not null && effect.EffectId.Trim().Length != 0 && !flags.Contains(effect.EffectId, StringComparer.Ordinal))
-                {
-                    flags.Add(effect.EffectId);
-                }
+                flags.Add(effect.EffectId);
             }
         }
 
@@ -194,12 +190,9 @@ internal static class CrossPowerPass
             if (!mods.ContainsKey(flag))
             {
                 double sum = 0.0;
-                foreach (Effect effect in sourceFx)
+                foreach (Effect effect in sourceFx.Where(effect => string.Equals(effect.Reward, flag, StringComparison.Ordinal)))
                 {
-                    if (string.Equals(effect.Reward, flag, StringComparison.Ordinal))
-                    {
-                        sum += effect.Scale;
-                    }
+                    sum += effect.Scale;
                 }
 
                 mods[flag] = F32.Round(sum);
@@ -220,12 +213,9 @@ internal static class CrossPowerPass
     private static void GlobalChanceMods(int[] order, Dictionary<int, (AssemblyPower Power, List<Effect> Effects)> assembled, IReadOnlyDictionary<int, bool> statInclude, IReadOnlyList<Effect> setBonusEffects, Dictionary<string, double> mods)
     {
         IEnumerable<Effect> sources = order.Where(i => statInclude[i]).SelectMany(i => assembled[i].Effects);
-        foreach (Effect effect in sources.Concat(setBonusEffects))
+        foreach (Effect effect in sources.Concat(setBonusEffects).Where(effect => string.Equals(effect.EffectType, "GlobalChanceMod", StringComparison.Ordinal) && effect.Reward.Length != 0 && !mods.ContainsKey(effect.Reward)))
         {
-            if (string.Equals(effect.EffectType, "GlobalChanceMod", StringComparison.Ordinal) && effect.Reward.Length != 0 && !mods.ContainsKey(effect.Reward))
-            {
-                mods[effect.Reward] = effect.Scale;
-            }
+            mods[effect.Reward] = effect.Scale;
         }
     }
 }

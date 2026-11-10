@@ -134,13 +134,10 @@ internal static class PowerAssembler
         }
 
         effects = ExpandExecutes(effects, byName);
-        foreach (SubPower sub in buildPower.SubPowers)
+        foreach (SubPower sub in buildPower.SubPowers.Where(sub => sub.NidPower > -1 && sub.StatInclude))
         {
-            if (sub.NidPower > -1 && sub.StatInclude)
-            {
-                AssemblyPower subPower = AssemblyInputs.Record(inputs.Powers, sub.NidPower, "sub-power", $"build power {buildPower.BuildIndex} ({power.FullName})");
-                effects.AddRange(subPower.Effects.Select(effect => effect with { AbsorbedEffect = true, AbsorbedPowerNid = sub.NidPower, AbsorbedPowerType = subPower.PowerType }));
-            }
+            AssemblyPower subPower = AssemblyInputs.Record(inputs.Powers, sub.NidPower, "sub-power", $"build power {buildPower.BuildIndex} ({power.FullName})");
+            effects.AddRange(subPower.Effects.Select(effect => effect with { AbsorbedEffect = true, AbsorbedPowerNid = sub.NidPower, AbsorbedPowerType = subPower.PowerType }));
         }
 
         return (power, effects);

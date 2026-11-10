@@ -155,12 +155,9 @@ internal static class IncarnateResolver
         }
 
         GuardSupported(inc, subFullName);
-        foreach (Effect target in power.Effects)
+        foreach (Effect target in power.Effects.Where(target => MatchesEffect(target, inc)))
         {
-            if (MatchesEffect(target, inc))
-            {
-                AddSplit(effect, (power.BuildIndex, target.Index), mag, inc.IgnoreEd);
-            }
+            AddSplit(effect, (power.BuildIndex, target.Index), mag, inc.IgnoreEd);
         }
     }
 

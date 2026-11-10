@@ -114,12 +114,9 @@ internal static class Accumulator
         List<int> output = [];
         if (info.SlottedCount > 1)
         {
-            foreach (BonusItem bonus in setDef.Bonus)
+            foreach (BonusItem bonus in setDef.Bonus.Where(bonus => bonus.Slotted <= info.SlottedCount && (bonus.PvMode == pvMode || bonus.PvMode == PvxAny)))
             {
-                if (bonus.Slotted <= info.SlottedCount && (bonus.PvMode == pvMode || bonus.PvMode == PvxAny))
-                {
-                    output.AddRange(bonus.Index);
-                }
+                output.AddRange(bonus.Index);
             }
         }
 
@@ -131,12 +128,9 @@ internal static class Accumulator
                 continue;
             }
 
-            foreach (int enh in info.EnhIndexes)
+            foreach (int enh in info.EnhIndexes.Where(enh => enh == setDef.Enhancements[i]))
             {
-                if (enh == setDef.Enhancements[i])
-                {
-                    output.AddRange(setDef.SpecialBonus[i].Index);
-                }
+                output.AddRange(setDef.SpecialBonus[i].Index);
             }
         }
 
