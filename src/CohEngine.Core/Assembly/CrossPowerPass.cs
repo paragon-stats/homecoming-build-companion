@@ -164,22 +164,10 @@ internal static class CrossPowerPass
 
     private static bool Skipped(Effect effect, AssemblyPower source)
     {
-        if (string.Equals(effect.EffectClass, "Ignored", StringComparison.Ordinal))
-        {
-            return true;
-        }
-
-        if (effect.EffectType is "Enhancement" or "DamageBuff")
-        {
-            return true;
-        }
-
-        if (effect.IgnoreEd)
-        {
-            return true;
-        }
-
-        return (!string.Equals(source.PowerType, "GlobalBoost", StringComparison.Ordinal) && !(effect.AbsorbedEffect && string.Equals(effect.AbsorbedPowerType, "GlobalBoost", StringComparison.Ordinal)))
+        return string.Equals(effect.EffectClass, "Ignored", StringComparison.Ordinal)
+            || effect.EffectType is "Enhancement" or "DamageBuff"
+            || effect.IgnoreEd
+            || (!string.Equals(source.PowerType, "GlobalBoost", StringComparison.Ordinal) && !(effect.AbsorbedEffect && string.Equals(effect.AbsorbedPowerType, "GlobalBoost", StringComparison.Ordinal)))
             || (string.Equals(effect.EffectType, "GrantPower", StringComparison.Ordinal) && effect.AbsorbedEffect);
     }
 

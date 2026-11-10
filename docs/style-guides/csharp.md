@@ -81,4 +81,7 @@ An alert that cannot be fixed without changing ported behaviour is dismissed on 
 It is never suppressed with a comment or a query filter in code.
 
 - `src/CohEngine.Core/Maths/Exact.cs:16`: the one exact float comparison; the rest of the code calls it.
+- `src/CohEngine.Core/Assembly/CrossPowerPass.cs:167`: a complex condition kept as the literal port of the Mids branch order.
+- `src/CohEngine.Core/Totals/ActorTotalsCalculator.cs:101`: the loop calls `Mag` for every Fly effect, and `Mag` can throw for an unported expression.
+  `Any` stops at the first match, so it would change which effects are evaluated.
 - `src/CohEngine.Core/Enhancement/SlotValue.cs:84-85`: `!(mag <= 0.0)` and `!(mag >= 0.0)` are true for NaN, which `mag > 0.0` and `mag < 0.0` are not, and the long condition keeps Mids' branch order.

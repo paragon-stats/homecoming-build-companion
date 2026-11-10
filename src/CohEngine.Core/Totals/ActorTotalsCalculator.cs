@@ -98,7 +98,13 @@ internal static class ActorTotalsCalculator
                 totals.EndUse = F32.Round(totals.EndUse + cost);
             }
 
-            canFly = power.Effects.Aggregate(canFly, (flying, effect) => flying | (string.Equals(effect.EffectType, "Fly", StringComparison.Ordinal) && request.Context.Mag(effect, power) > 0));
+            foreach (Effect effect in power.Effects)
+            {
+                if (string.Equals(effect.EffectType, "Fly", StringComparison.Ordinal) && request.Context.Mag(effect, power) > 0)
+                {
+                    canFly = true;
+                }
+            }
         }
 
         return canFly;
