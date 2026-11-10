@@ -321,7 +321,8 @@ public sealed class CombatLogClassifierTests
     [Fact]
     public void A_line_with_no_timestamp_is_ignored_as_a_continuation()
     {
-        CombatLogLine continuation = Assert.Single(CombatLogReader.Read(new StringReader("second half of a message")));
+        using StringReader reader = new("second half of a message");
+        CombatLogLine continuation = Assert.Single(CombatLogReader.Read(reader));
 
         IgnoredEvent ignored = Assert.IsType<IgnoredEvent>(new CombatLogClassifier().Classify(continuation));
 
@@ -331,7 +332,8 @@ public sealed class CombatLogClassifierTests
     [Fact]
     public void A_line_nobody_recognises_is_unknown_with_its_text_and_position_intact()
     {
-        CombatLogLine line = Assert.Single(CombatLogReader.Read(new StringReader("2024-04-24 00:55:01 Your Energy Drain increases your defense!")));
+        using StringReader reader = new("2024-04-24 00:55:01 Your Energy Drain increases your defense!");
+        CombatLogLine line = Assert.Single(CombatLogReader.Read(reader));
 
         UnknownEvent unknown = Assert.IsType<UnknownEvent>(new CombatLogClassifier().Classify(line));
 
@@ -391,7 +393,8 @@ public sealed class CombatLogClassifierTests
     [Fact]
     public void Classifying_a_whole_file_yields_one_event_per_line_in_order()
     {
-        CombatLogLine[] lines = [.. CombatLogReader.Read(new StringReader("2024-04-24 00:00:01 Hasten is recharged.\n2024-04-24 00:00:02 ???\n"))];
+        using StringReader reader = new("2024-04-24 00:00:01 Hasten is recharged.\n2024-04-24 00:00:02 ???\n");
+        CombatLogLine[] lines = [.. CombatLogReader.Read(reader)];
 
         CombatEvent[] events = [.. new CombatLogClassifier().ClassifyAll(lines)];
 
@@ -410,7 +413,8 @@ public sealed class CombatLogClassifierTests
 
     private static CombatLogLine Line(string text)
     {
-        return Assert.Single(CombatLogReader.Read(new StringReader("2024-04-24 00:55:01 " + text)));
+        using StringReader reader = new("2024-04-24 00:55:01 " + text);
+        return Assert.Single(CombatLogReader.Read(reader));
     }
 
     private static CombatEvent Classify(string text, string? characterName = null)

@@ -140,19 +140,22 @@ public sealed class CombatLogClassifier
     {
         ReadOnlySpan<char> counterpart;
         ReadOnlySpan<char> tail;
-        CombatDirection direction = CombatDirection.Outgoing;
-        bool hit = true;
+        CombatDirection direction;
+        bool hit;
         if (Scan.After(body, "HIT ", out ReadOnlySpan<char> afterHit) && Scan.Split(afterHit, "! Your ", out counterpart, out tail))
         {
-            // outgoing hit
+            direction = CombatDirection.Outgoing;
+            hit = true;
         }
         else if (Scan.After(body, "MISSED ", out ReadOnlySpan<char> afterMissed) && Scan.Split(afterMissed, "!! Your ", out counterpart, out tail))
         {
+            direction = CombatDirection.Outgoing;
             hit = false;
         }
         else if (Scan.Split(body, " HITS you! ", out counterpart, out tail))
         {
             direction = CombatDirection.Incoming;
+            hit = true;
         }
         else if (Scan.Split(body, " MISSES! ", out counterpart, out tail))
         {
@@ -206,10 +209,10 @@ public sealed class CombatLogClassifier
     {
         ReadOnlySpan<char> counterpart;
         ReadOnlySpan<char> rest;
-        CombatDirection direction = CombatDirection.Outgoing;
+        CombatDirection direction;
         if (Scan.After(body, "You hit ", out ReadOnlySpan<char> afterHit) && Scan.Split(afterHit, " with your ", out counterpart, out rest))
         {
-            // outgoing
+            direction = CombatDirection.Outgoing;
         }
         else if (Scan.Split(body, " hits you with their ", out counterpart, out rest))
         {
@@ -303,19 +306,22 @@ public sealed class CombatLogClassifier
     private static Heal? MatchHeal(CombatLogLine line, ReadOnlySpan<char> body)
     {
         ReadOnlySpan<char> rest;
-        string? healer = null;
-        string? recipient = null;
+        string? healer;
+        string? recipient;
         if (Scan.After(body, "You are healed by your ", out rest))
         {
-            // the log owner healed themself
+            healer = null;
+            recipient = null;
         }
         else if (Scan.After(body, "You heal ", out ReadOnlySpan<char> afterHeal) && Scan.Split(afterHeal, " with ", out ReadOnlySpan<char> target, out rest))
         {
+            healer = null;
             recipient = target.ToString();
         }
         else if (Scan.Split(body, " heals you with their ", out ReadOnlySpan<char> source, out rest))
         {
             healer = source.ToString();
+            recipient = null;
         }
         else
         {
@@ -399,12 +405,10 @@ public sealed class CombatLogClassifier
         }
 
         long debt = 0;
-        if (Scan.TrimStart(ref rest, ", work off "))
+        if (Scan.TrimStart(ref rest, ", work off ")
+            && (!Scan.Split(rest, " debt", out ReadOnlySpan<char> debtText, out rest) || !Scan.Whole(debtText, out debt)))
         {
-            if (!Scan.Split(rest, " debt", out ReadOnlySpan<char> debtText, out rest) || !Scan.Whole(debtText, out debt))
-            {
-                return null;
-            }
+            return null;
         }
 
         if (rest.IsEmpty)

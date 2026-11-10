@@ -121,8 +121,9 @@ public sealed class CombatLogReaderTests
         Assert.True(reopened.CanWrite);
     }
 
-    private static IEnumerable<CombatLogLine> Read(string text)
+    private static CombatLogLine[] Read(string text)
     {
-        return CombatLogReader.Read(new StringReader(text));
+        using StringReader reader = new(text);
+        return [.. CombatLogReader.Read(reader)];
     }
 }
