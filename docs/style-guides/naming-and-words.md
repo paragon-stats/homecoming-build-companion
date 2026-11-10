@@ -8,7 +8,9 @@ The mechanical part is enforced by `scripts/dev/check-banned-words.cs`, which ru
 
 In conversation use "you" and "your". In code, comments, prose, frontmatter values, log output and tooling strings use generic placeholders.
 The operator's first name, or any other personally identifying name, stays out of project artifacts. The check reads the names to look for from the
-`COH_BANNED_NAMES` environment variable (comma-separated), so the name itself never appears in the repository. When the variable is unset the check skips the name test and says so.
+`COH_BANNED_NAMES` environment variable (comma-separated), so the name itself never appears in the repository.
+When the variable is unset locally the check skips the name test and says so.
+In CI the variable comes from the `COH_BANNED_NAMES` repository secret, and the check fails if it is missing.
 
 | Context | Use |
 | --- | --- |

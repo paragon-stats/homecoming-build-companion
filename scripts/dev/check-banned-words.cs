@@ -5,7 +5,8 @@
 //
 // The rules are in docs/style-guides/naming-and-words.md. Names come only from the
 // COH_BANNED_NAMES environment variable (comma-separated) so a name never appears in the
-// repository; when it is unset the name check is skipped and the script says so.
+// repository. Unset locally, the name check is skipped and the script says so; unset in CI
+// (GITHUB_ACTIONS set), the script fails, so the gate cannot pass without the secret.
 // A banned word matches at the start of a word, so "oracles" is caught too.
 // CI tooling, not shipped product code: exempt from the solution-wide analyzers.
 #:property TreatWarningsAsErrors=false
@@ -31,6 +32,12 @@ string[] names = (Environment.GetEnvironmentVariable("COH_BANNED_NAMES") ?? stri
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 if (names.Length == 0)
 {
+    if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is not null)
+    {
+        Console.Error.WriteLine("[FAIL] COH_BANNED_NAMES is unset in CI: add the repository secret and pass it to this step.");
+        return 1;
+    }
+
     Console.WriteLine("[SKIP] COH_BANNED_NAMES is unset: the operator-name check was not run.");
 }
 
