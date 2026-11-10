@@ -1,0 +1,3 @@
+build.json:1:1: error: H-SLOT-001: total added slots (68) exceeds the cap (67)
+build.json:1:1: error: H-SLOT-004: a slot in 'Pool.Fighting.Weave' is placed at level 26, which grants no enhancement slot in the level schedule
+build.json:1:1: error: H-SLOT-005: by level 27, 27 added slots are placed but only 26 have been granted (a slot cannot be placed before it is earned)

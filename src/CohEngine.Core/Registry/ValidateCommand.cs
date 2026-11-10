@@ -21,8 +21,8 @@ public static class ValidateCommand
     public static IReadOnlyList<Diagnostic> RunDump(string buildDirectory, string midsDirectory)
     {
         ArgumentNullException.ThrowIfNull(buildDirectory);
-        IReadOnlyList<Power> powers = EffectData.LoadPowersEffects(Path.Combine(buildDirectory, "powers_effects.json"));
-        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Combine(buildDirectory, "slots.json"));
+        IReadOnlyList<Power> powers = EffectData.LoadPowersEffects(Path.Join(buildDirectory, "powers_effects.json"));
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Join(buildDirectory, "slots.json"));
         return Fold(powers, slots, midsDirectory, null);
     }
 
@@ -34,18 +34,18 @@ public static class ValidateCommand
     public static IReadOnlyList<Diagnostic> RunMbd(IMbdBuildSource source, string path, string midsDirectory)
     {
         ArgumentNullException.ThrowIfNull(source);
-        MbdBuild build = source.Load(path, midsDirectory);
+        MbdValidationInput build = source.Load(path, midsDirectory);
         return Fold(build.Powers, build.Slots, midsDirectory, build.Format);
     }
 
     private static IReadOnlyList<Diagnostic> Fold(IReadOnlyList<Power> powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots, string midsDirectory, MbdFormat? format)
     {
         ArgumentNullException.ThrowIfNull(midsDirectory);
-        IReadOnlyDictionary<int, EnhancementLegality> enhancements = EnhancementLegality.Load(Path.Combine(midsDirectory, "enhancements.json"));
-        SetBonusDb setDb = SetBonusData.LoadSetBonusDb(Path.Combine(midsDirectory, "enhancement_sets.json"), Path.Combine(midsDirectory, "set_bonus_powers.json"));
-        LevelSchedule schedule = LevelData.LoadLevelSchedule(Path.Combine(midsDirectory, "levels.json"));
-        ServerData server = TotalsData.LoadServerData(Path.Combine(midsDirectory, "server_data.json"));
-        IReadOnlyDictionary<int, EnhancementRecord> enhEffects = EnhancementData.LoadEnhancementEffects(Path.Combine(midsDirectory, "enhancement_effects.json"));
+        IReadOnlyDictionary<int, EnhancementLegality> enhancements = EnhancementLegality.Load(Path.Join(midsDirectory, "enhancements.json"));
+        SetBonusDb setDb = SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json"));
+        LevelSchedule schedule = LevelData.LoadLevelSchedule(Path.Join(midsDirectory, "levels.json"));
+        ServerData server = TotalsData.LoadServerData(Path.Join(midsDirectory, "server_data.json"));
+        IReadOnlyDictionary<int, EnhancementRecord> enhEffects = EnhancementData.LoadEnhancementEffects(Path.Join(midsDirectory, "enhancement_effects.json"));
         return
         [
             .. HardLimitRunner.Check(powers, slots, schedule, server.MaxSlots, format),

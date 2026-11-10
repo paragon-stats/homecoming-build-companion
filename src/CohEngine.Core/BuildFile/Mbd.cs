@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.BuildFile;
 
@@ -41,11 +42,11 @@ public static partial class Mbd
     {
         ArgumentNullException.ThrowIfNull(document);
         MbdBuiltWithDoc meta = document.BuiltWith
-            ?? throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: mbd build is missing the required BuiltWith block; add the block or re-save the build from Mids");
+            ?? throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: mbd build is missing the required BuiltWith block; add the block or re-save the build from Mids");
         string levelText = Need(document.Level, "Level");
         if (!int.TryParse(levelText, NumberStyles.Integer, CultureInfo.InvariantCulture, out int level))
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: mbd Level '{levelText}' is not an integer; write the character level minus one as text");
+            throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: mbd Level '{levelText}' is not an integer; write the character level minus one as text");
         }
 
         return new MbdBuild(
@@ -83,7 +84,7 @@ public static partial class Mbd
         }
         catch (JsonException exception)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: {path} is not a readable .mbd: {exception.Message}; fix the JSON or re-save the build from Mids", exception);
+            throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: {path} is not a readable .mbd: {exception.Message}; fix the JSON or re-save the build from Mids", exception);
         }
     }
 
@@ -124,17 +125,17 @@ public static partial class Mbd
         try
         {
             return new MbdDb(
-                Json.Load(Path.Combine(midsDir, "enhancements.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementDbRecord)
+                Json.Load(Path.Join(midsDir, "enhancements.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementDbRecord)
                     .ToLastWinsDictionary(record => record.UID, record => new EnhInfo(record.Nid, record.TypeName, record.SetNid, record.LevelMin, record.LevelMax)),
-                Json.Load(Path.Combine(midsDir, "enhancement_sets.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementSetRecord)
+                Json.Load(Path.Join(midsDir, "enhancement_sets.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementSetRecord)
                     .ToLastWinsDictionary(record => record.Nid, record => (record.LevelMin, record.LevelMax)),
-                ArchetypeData.LoadArchetypes(Path.Combine(midsDir, "archetypes.json")),
-                Json.Load(Path.Combine(midsDir, "powers.json"), BuildFileJsonContext.Default.IReadOnlyListPowerDbRecord)
+                ArchetypeData.LoadArchetypes(Path.Join(midsDir, "archetypes.json")),
+                Json.Load(Path.Join(midsDir, "powers.json"), BuildFileJsonContext.Default.IReadOnlyListPowerDbRecord)
                     .ToLastWinsDictionary(record => record.FullName, ToTemplate));
         }
         catch (JsonException exception)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: a Mids dump file lacks a field; re-dump with the current harness: {exception.Message}", exception);
+            throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: a Mids dump file lacks a field; re-dump with the current harness: {exception.Message}", exception);
         }
     }
 
@@ -263,13 +264,13 @@ public static partial class Mbd
     private static T Need<T>(T? value, string key)
         where T : class
     {
-        return value ?? throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: a required key '{key}' is missing or null; add the key or re-save the build from Mids");
+        return value ?? throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: a required key '{key}' is missing or null; add the key or re-save the build from Mids");
     }
 
     private static T Need<T>(T? value, string key)
         where T : struct
     {
-        return value ?? throw new InvalidDataException($"{BuildFileErrorCodes.DocumentUnreadable}: a required key '{key}' is missing or null; add the key or re-save the build from Mids");
+        return value ?? throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: a required key '{key}' is missing or null; add the key or re-save the build from Mids");
     }
 
     private static SlottedEnhancement? ParseEnhancement(MbdEnhancementDoc? enhancement)
@@ -380,6 +381,6 @@ public static partial class Mbd
             }
         }
 
-        throw new InvalidDataException($"{BuildFileErrorCodes.EnumOutOfRange}: {kind} '{name}' is not one of {string.Join(", ", table)}; use one of those names");
+        throw new InvalidDataException($"{ErrorCodes.EnumOutOfRange}: {kind} '{name}' is not one of {string.Join(", ", table)}; use one of those names");
     }
 }

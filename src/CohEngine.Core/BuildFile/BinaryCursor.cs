@@ -1,6 +1,8 @@
 using System.Buffers.Binary;
 using System.Text;
 
+using CohEngine.Core.Diagnostics;
+
 namespace CohEngine.Core.BuildFile;
 
 /// <summary>A forward-only reader over a <c>.mxd</c> binary buffer, with .NET <c>BinaryReader</c> encodings.</summary>
@@ -87,7 +89,7 @@ public sealed class BinaryCursor
             }
         }
 
-        throw new InvalidDataException($"{BuildFileErrorCodes.LengthPrefixTooLong}: 7-bit length prefix too long; the file is corrupt or not a Mids export, re-export it from Mids");
+        throw new InvalidDataException($"{ErrorCodes.LengthPrefixTooLong}: 7-bit length prefix too long; the file is corrupt or not a Mids export, re-export it from Mids");
     }
 
     /// <summary>Reads a length-prefixed UTF-8 string.</summary>
@@ -102,7 +104,7 @@ public sealed class BinaryCursor
         }
         catch (DecoderFallbackException exception)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.StringEncoding}: string is not valid UTF-8; the file is corrupt or not a Mids export, re-export it from Mids", exception);
+            throw new InvalidDataException($"{ErrorCodes.StringEncoding}: string is not valid UTF-8; the file is corrupt or not a Mids export, re-export it from Mids", exception);
         }
     }
 
@@ -117,7 +119,7 @@ public sealed class BinaryCursor
     {
         if (count > buffer.Length - position)
         {
-            throw new EndOfStreamException($"{BuildFileErrorCodes.StreamTruncated}: read past end of buffer at {position} (+{count}); the file is truncated or not a Mids export, re-export it from Mids");
+            throw new EndOfStreamException($"{ErrorCodes.StreamTruncated}: read past end of buffer at {position} (+{count}); the file is truncated or not a Mids export, re-export it from Mids");
         }
 
         ReadOnlySpan<byte> chunk = buffer.AsSpan(position, (int)count);

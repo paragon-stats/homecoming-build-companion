@@ -161,7 +161,7 @@ public sealed class ValidateCommandTests
     {
         BuildFixture fixture = Store.Build(Build);
         MbdFormat format = new(["a", "b"], "50", new Dictionary<int, (int Min, int Max)>());
-        FixedSource source = new(Store.MidsDirectory, new MbdBuild(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), format));
+        FixedSource source = new(Store.MidsDirectory, new MbdValidationInput(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), format));
 
         (int code, string output, _) = Run(source, "validate", "x.mbd", "--format", "json");
 
@@ -171,7 +171,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void A_mbd_uses_the_given_mids_directory_over_the_default()
     {
-        FixedSource source = new(Path.Join(Path.GetTempPath(), "coh-not-there"), new MbdBuild([], new Dictionary<int, IReadOnlyList<SlotRef>>(), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
+        FixedSource source = new(Path.Join(Path.GetTempPath(), "coh-not-there"), new MbdValidationInput([], new Dictionary<int, IReadOnlyList<SlotRef>>(), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
 
         Assert.Equal((0, "no violations\n"), Run(source, "validate", "x.mbd", "--mids-dir", Store.MidsDirectory) is (var code, var output, _) ? (code, output) : default);
     }
@@ -220,17 +220,17 @@ public sealed class ValidateCommandTests
     {
         public string DefaultMidsDirectory => string.Empty;
 
-        public MbdBuild Load(string path, string midsDirectory)
+        public MbdValidationInput Load(string path, string midsDirectory)
         {
             throw exception;
         }
     }
 
-    private sealed class FixedSource(string defaultMids, MbdBuild build) : IMbdBuildSource
+    private sealed class FixedSource(string defaultMids, MbdValidationInput build) : IMbdBuildSource
     {
         public string DefaultMidsDirectory => defaultMids;
 
-        public MbdBuild Load(string path, string midsDirectory)
+        public MbdValidationInput Load(string path, string midsDirectory)
         {
             return build;
         }
