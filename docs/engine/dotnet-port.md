@@ -198,3 +198,17 @@ Errors that the Python raised as a bare `ValueError` now carry codes `E110` to `
 | `E117` | An enum ordinal or name is outside its table. |
 | `E118` | A `.mbd` or dump file is unreadable: invalid JSON, a missing required key or the `BuiltWith` block missing. |
 | `E119` | A length-prefixed string is not valid UTF-8. |
+
+## Validating a `.mbd`
+
+`validate <file>.mbd` works in the shipped CLI.
+`CliRunner.Run` takes an `IMbdBuildSource`, and `Program.cs` passes `BuildFile/MbdBuildSource`.
+The adapter resolves the file with `Mbd.ParseMbd`, `LoadMbdDb`, `PowersFromBuild`, `SlotsFromBuild` and `IoBoundsByNid`.
+It hands the result to the registries as a `Registry/MbdValidationInput`.
+Like `run_validate_mbd`, it passes the header `Level` text and `PowerSets` as written, because the `H-FMT` rules judge them as written.
+With no source the command still reports the form as unavailable (E72).
+
+A `.mbd` has no `Chosen` flag, so every entry resolves as chosen: a pool sub-power Mids grants without a pick counts as one of the picks, and a pick-count check can over-count a build that holds one.
+
+Without `--mids-dir` the source reads `tests/fixtures/mids`, found by walking up from the binary to `CohEngine.slnx`; a binary run outside the repository needs the flag.
+`tests/fixtures/cli/validate-mbd/` holds the Python output for each build file, and `MbdValidateTests` compares it byte for byte.
