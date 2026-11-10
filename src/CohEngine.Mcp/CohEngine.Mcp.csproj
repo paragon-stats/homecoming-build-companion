@@ -9,8 +9,7 @@
   <ItemGroup>
     <PackageReference Include="ModelContextProtocol" />
     <PackageReference Include="ModelContextProtocol.Core" />
-    <!-- The container the MCP builder registers into; not pinned centrally, so versioned here at the version the MCP package resolves its abstractions to. -->
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="10.0.14" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
   </ItemGroup>
 
   <ItemGroup>
