@@ -60,7 +60,11 @@ A parity class follows `tests/CohEngine.Core.Tests/Parity/ParityScaffoldTests.cs
 Engine output must therefore already be single precision, and a missing final quantization fails the test.
 `0.0` equals `-0.0`, and NaN equals nothing.
 A failure reports the field path and both values, as does a count mismatch (`ParityAssert.Count`) and a dumped value past the single range.
-The scaffold compares engine output on every build. A field the Python engine also misses is listed in its `KnownGaps` with the Python engine's value, and the C# must equal that value while still differing from Mids. Effect magnitudes are compared against the Python engine's per-build mismatch count, effect count and a SHA-256 digest of the magnitude sequence, since the engine reads the pre-Pass5 magnitude and differs from `Math_Mag` on most builds. The per-power values neither engine computes (accuracy, range, damage, effect durations) keep the dumped value through its `StandIn` helper.
+The scaffold compares engine output on every build.
+A field the Python engine also misses is listed in its `KnownGaps` with the Python engine's value, and the C# must equal that value while still differing from Mids.
+Effect magnitudes are compared against the Python engine's per-build mismatch count, effect count and a SHA-256 digest of the magnitude sequence,
+since the engine reads the pre-Pass5 magnitude and differs from `Math_Mag` on most builds.
+The per-power values neither engine computes (accuracy, range, damage, effect durations) keep the dumped value through its `StandIn` helper.
 
 ## The literal-port boundary
 
@@ -98,7 +102,8 @@ Accumulations keep the Python's order, so a sum is a loop, never a LINQ `Sum`, w
 One divergence is ported as it stands.
 An effect carrying `ActiveConditionals` counts only when its conditions hold, and an effect with a `SpecialCase` never counts, because the `CanInclude` character-state switch is unported.
 Mids keeps many default-true special cases, so a build where one feeds a read bucket under-reports until #31 lands.
-`BaseTotalsParityTests.Excluded_conditionals_do_not_affect_totals` forces every such effect back in through `Pipeline.BuildOptions.IncludeAllConditionals` and checks the committed builds' totals do not move.
+`BaseTotalsParityTests.Excluded_conditionals_do_not_affect_totals` forces every such effect back in through
+`Pipeline.BuildOptions.IncludeAllConditionals` and checks the committed builds' totals do not move.
 
 ## Rule layer and CLI
 

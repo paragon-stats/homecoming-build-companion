@@ -226,10 +226,6 @@ The repo's `.markdownlint.yaml` is the single source of truth for lint rules. Au
 
 Run the lint check before committing markdown. Pre-commit hook will enforce this once Phase 3 wires it in.
 
-**Exemption (user-directed, 2026-07-02):** generated engine-extraction docs under [`docs/engine/`](../engine/) carry a file-level `<!-- markdownlint-disable -->`.
-The assembler normalizes their heading flow; the body is verbatim deep-math extraction (long cited lines, dense tables) and is not hand-lint-fixed.
-Keep the disable comment when regenerating.
-
 ### Core requirements (summary — see canonical guide for full text)
 
 #### Structure
@@ -268,7 +264,8 @@ Keep the disable comment when regenerating.
 
 #### Verbatim Mids forum-export blocks
 
-This project's specific exception to the "no abbreviations in prose" rule (see [`io-set-naming.md`](build-rules/io-set-naming.md)): inside ```text``` fences holding a verbatim Mids' Reborn forum-export block, IO set abbreviations stay as the export emits them. Outside the fence, prose uses full names.
+This project's specific exception to the "no abbreviations in prose" rule (see [`io-set-naming.md`](build-rules/io-set-naming.md)):
+inside ```text``` fences holding a verbatim Mids' Reborn forum-export block, IO set abbreviations stay as the export emits them. Outside the fence, prose uses full names.
 
 ### Tooling
 
@@ -276,7 +273,8 @@ This project's specific exception to the "no abbreviations in prose" rule (see [
 - **EditorConfig** (via the imported `.editorconfig`) — indentation, line endings, charset, final newline.
 - **VS Code** picks up both automatically when the workspace is opened via `homecoming-build-companion.code-workspace`.
 
-Future Phase 3 work: import the markdown-related Python checks from `repo-template/scripts/linting/` (heading numbering for runbook-style docs, mermaid label safety) and wire them as pre-commit hooks once the Python tooling is in place.
+Future Phase 3 work: import the markdown-related Python checks from `repo-template/scripts/linting/` (heading numbering for runbook-style docs, mermaid label safety) and wire them as pre-commit hooks
+once the Python tooling is in place.
 
 ### Reference (markdown)
 

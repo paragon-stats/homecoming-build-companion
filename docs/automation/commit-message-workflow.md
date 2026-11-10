@@ -20,7 +20,6 @@ flowchart TD
     subgraph Gates
         CL[commitlint job<br/>lints each PR commit]
         PL[pr-title job<br/>lints the PR title]
-        ML[main-commits job<br/>lints commits landing on main]
     end
 
     subgraph Merge
@@ -37,8 +36,6 @@ flowchart TD
     CM --> CL --> HIST
     PT --> PL --> MC
     PB --> MC
-    MC --> ML
-    HIST --> ML
     HIST --> VER
     HIST --> CHG
     HIST --> ISS
@@ -51,12 +48,11 @@ flowchart TD
 | --- | --- | --- | --- |
 | Each commit on a PR | `commitlint` | `pull_request` | Type drives the version bump and the changelog group |
 | PR title | `pr-title` | `pull_request` including `edited` | Becomes the merge commit subject on `main` |
-| Commits landing on `main` | `main-commits` | `push` to `main` | Catches the merge commit and any direct push |
 
-All three run the same validator, `scripts/testing/hooks/check_commit_message.py`, so they
+Both run the same validator, `scripts/testing/hooks/check_commit_message.py`, so they
 cannot disagree about what a valid message is.
 
-## Why the two newer gates exist
+## Why the title is gated
 
 **The PR title was load-bearing and ungated.** The repository sets
 `merge_commit_title = PR_TITLE`, so the title becomes the subject of the merge commit that
@@ -65,16 +61,10 @@ the `pr-title` job existed, nothing validated it — a mistyped title put a non-
 commit on `main` with no gate anywhere in the pipeline. The job includes the `edited` trigger
 because a title can be changed after the PR opens, long after the last commit was pushed.
 
-**The merge commit is invisible to a pull request run.** It does not exist until merge time,
-so no `pull_request` job can see it. The `main-commits` job runs on pushes to `main` and lints
-whatever actually landed. It is a safety net rather than a gate — it reports after the fact —
-but it is the only check that sees the merge commit at all.
-
-Direct pushes to `main` are already blocked by the ruleset's pull-request rule, so in practice
-this job fires on the merge commit and nothing else.
-
-Merge commits whose subject begins with the word `Merge` are exempt inside the validator, so
-this job stays correct whichever way `merge_commit_title` is configured.
+The merge commit is not linted on its own. Its subject is the PR title, which `pr-title`
+lints, and merge commits whose subject begins with the word `Merge` are exempt inside the
+validator, so the title gate covers it whichever way `merge_commit_title` is configured.
+Direct pushes to `main` are blocked by the ruleset's pull-request rule.
 
 ## Where the version comes from
 
