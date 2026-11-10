@@ -32,9 +32,22 @@ internal sealed class McpHarness : IAsyncDisposable
         AnonymousPipeServerStream responses = new(PipeDirection.In);
         AnonymousPipeClientStream serverReads = new(PipeDirection.In, requests.ClientSafePipeHandle);
         AnonymousPipeClientStream serverWrites = new(PipeDirection.Out, responses.ClientSafePipeHandle);
-        Task running = McpCommand.RunAsync([], serverReads, serverWrites, TextWriter.Null, CancellationToken.None);
-        McpClient client = await McpClient.CreateAsync(new StreamClientTransport(requests, responses), cancellationToken: cancellation).ConfigureAwait(false);
-        return new McpHarness(client, running, [requests, responses, serverReads, serverWrites]);
+        IDisposable[] pipes = [requests, responses, serverReads, serverWrites];
+        McpHarness? harness = null;
+        try
+        {
+            Task running = McpCommand.RunAsync([], serverReads, serverWrites, TextWriter.Null, CancellationToken.None);
+            McpClient client = await McpClient.CreateAsync(new StreamClientTransport(requests, responses), cancellationToken: cancellation).ConfigureAwait(false);
+            harness = new McpHarness(client, running, pipes);
+            return harness;
+        }
+        finally
+        {
+            if (harness is null)
+            {
+                DisposeAll(pipes);
+            }
+        }
     }
 
     public static string BuildDir(string name)
@@ -44,7 +57,7 @@ internal sealed class McpHarness : IAsyncDisposable
 
     public async Task<CallToolResult> CallAsync(string tool, params (string Name, object Value)[] arguments)
     {
-        Dictionary<string, object?> named = arguments.ToDictionary(item => item.Name, item => (object?)item.Value, StringComparer.Ordinal);
+        Dictionary<string, object?> named = arguments.ToDictionary(item => item.Name, object? (item) => item.Value, StringComparer.Ordinal);
         return await Client.CallToolAsync(tool, named, cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false);
     }
 
@@ -69,19 +82,24 @@ internal sealed class McpHarness : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-        await Client.DisposeAsync().ConfigureAwait(false);
+        try
+        {
+            await Client.DisposeAsync().ConfigureAwait(false);
+        }
+        finally
+        {
+            DisposeAll(streams);
+        }
+
+        // The pipes closed under the server, which is how a client ends the session; how it ends is not under test here.
+        await Task.WhenAny(serverRun).ConfigureAwait(false);
+    }
+
+    private static void DisposeAll(IDisposable[] streams)
+    {
         foreach (IDisposable stream in streams)
         {
             stream.Dispose();
-        }
-
-        try
-        {
-            await serverRun.ConfigureAwait(false);
-        }
-        catch (Exception exception) when (exception is OperationCanceledException or IOException or ObjectDisposedException)
-        {
-            // The pipes closed under the server: that is how a client ends the session.
         }
     }
 

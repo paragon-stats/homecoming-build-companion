@@ -39,9 +39,7 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
                 continue;
             }
 
-            string name = arg.Split('=')[0];
-            string? value = arg.Contains('=', StringComparison.Ordinal) ? arg[(name.Length + 1)..] : (index + 1 < args.Count ? args[++index] : null);
-            if (value is null)
+            if (!TryTakeValue(args, ref index, out string name, out string value))
             {
                 problem = $"argument {name}: expected one argument";
                 return false;
@@ -53,7 +51,8 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
             }
             else if (string.Equals(name, "--expect", StringComparison.Ordinal))
             {
-                if (!TryParseExpectation(value, expectations, out problem))
+                problem = ParseExpectation(value, expectations);
+                if (problem.Length != 0)
                 {
                     return false;
                 }
@@ -79,15 +78,32 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
         return true;
     }
 
-    private static bool TryParseExpectation(string value, List<Expectation> expectations, out string problem)
+    /// <summary>Reads an option's value, from <c>--opt=value</c> or from the next argument, which it then consumes.</summary>
+    private static bool TryTakeValue(IReadOnlyList<string> args, ref int index, out string name, out string value)
     {
-        int split = value.IndexOf('=', StringComparison.Ordinal);
-        problem = split < 1 || split == value.Length - 1 ? $"argument --expect: expected metric=value, got '{value}'" : string.Empty;
-        if (problem.Length == 0)
+        string arg = args[index];
+        name = arg.Split('=')[0];
+        if (arg.Contains('=', StringComparison.Ordinal))
         {
-            expectations.Add(new Expectation(value[..split], value[(split + 1)..]));
+            value = arg[(name.Length + 1)..];
+            return true;
         }
 
-        return problem.Length == 0;
+        index++;
+        value = index < args.Count ? args[index] : string.Empty;
+        return index < args.Count;
+    }
+
+    /// <summary>Adds a <c>metric=value</c> claim; returns the reason it is malformed, or an empty string.</summary>
+    private static string ParseExpectation(string value, List<Expectation> expectations)
+    {
+        int split = value.IndexOf('=', StringComparison.Ordinal);
+        if (split < 1 || split == value.Length - 1)
+        {
+            return $"argument --expect: expected metric=value, got '{value}'";
+        }
+
+        expectations.Add(new Expectation(value[..split], value[(split + 1)..]));
+        return string.Empty;
     }
 }
