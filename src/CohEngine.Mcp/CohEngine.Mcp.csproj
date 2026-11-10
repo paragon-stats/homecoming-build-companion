@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Surface trim/AOT violations at build time, not at the post-merge publish. -->
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModelContextProtocol" />
+    <PackageReference Include="ModelContextProtocol.Core" />
+    <!-- The container the MCP builder registers into; not pinned centrally, so versioned here at the version the MCP package resolves its abstractions to. -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" VersionOverride="10.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CohEngine.Core\CohEngine.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CohEngine.Mcp.Tests" />
+  </ItemGroup>
+
+</Project>
