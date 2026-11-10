@@ -24,7 +24,7 @@ internal static class ParityAssert
         }
 
         // Plain ==, as the Python parity tests compare: 0.0 equals -0.0 and NaN equals nothing.
-        if (want != actual)
+        if (!Exact.Same(want, actual))
         {
             throw new XunitException(FormattableString.Invariant($"{path}: expected {want:R}, got {actual:R}"));
         }
