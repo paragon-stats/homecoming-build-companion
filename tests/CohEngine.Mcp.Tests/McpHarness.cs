@@ -11,41 +11,41 @@ namespace CohEngine.Mcp.Tests;
 /// <summary>The shared fixture store and an in-process client wired to the server over a pair of pipes.</summary>
 internal sealed class McpHarness : IAsyncDisposable
 {
+    private readonly AnonymousPipeServerStream requests;
+    private readonly AnonymousPipeServerStream responses;
+    private readonly AnonymousPipeClientStream serverReads;
+    private readonly AnonymousPipeClientStream serverWrites;
     private readonly Task serverRun;
-    private readonly IDisposable[] streams;
+    private McpClient? client;
 
-    private McpHarness(McpClient client, Task serverRun, IDisposable[] streams)
+    private McpHarness()
     {
-        Client = client;
-        this.serverRun = serverRun;
-        this.streams = streams;
+        requests = new(PipeDirection.Out);
+        responses = new(PipeDirection.In);
+        serverReads = new(PipeDirection.In, requests.ClientSafePipeHandle);
+        serverWrites = new(PipeDirection.Out, responses.ClientSafePipeHandle);
+        serverRun = McpCommand.RunAsync([], serverReads, serverWrites, TextWriter.Null, CancellationToken.None);
     }
 
     public static FixtureStore Store { get; } = FixtureStore.Locate(AppContext.BaseDirectory);
 
-    public McpClient Client { get; }
+    public McpClient Client => client ?? throw new InvalidOperationException("the harness has not connected");
 
     public static async Task<McpHarness> StartAsync()
     {
-        CancellationToken cancellation = TestContext.Current.CancellationToken;
-        AnonymousPipeServerStream requests = new(PipeDirection.Out);
-        AnonymousPipeServerStream responses = new(PipeDirection.In);
-        AnonymousPipeClientStream serverReads = new(PipeDirection.In, requests.ClientSafePipeHandle);
-        AnonymousPipeClientStream serverWrites = new(PipeDirection.Out, responses.ClientSafePipeHandle);
-        IDisposable[] pipes = [requests, responses, serverReads, serverWrites];
-        McpHarness? harness = null;
+        McpHarness harness = new();
+        bool connected = false;
         try
         {
-            Task running = McpCommand.RunAsync([], serverReads, serverWrites, TextWriter.Null, CancellationToken.None);
-            McpClient client = await McpClient.CreateAsync(new StreamClientTransport(requests, responses), cancellationToken: cancellation).ConfigureAwait(false);
-            harness = new McpHarness(client, running, pipes);
+            harness.client = await McpClient.CreateAsync(new StreamClientTransport(harness.requests, harness.responses), cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(false);
+            connected = true;
             return harness;
         }
         finally
         {
-            if (harness is null)
+            if (!connected)
             {
-                DisposeAll(pipes);
+                await harness.DisposeAsync().ConfigureAwait(false);
             }
         }
     }
@@ -84,23 +84,21 @@ internal sealed class McpHarness : IAsyncDisposable
     {
         try
         {
-            await Client.DisposeAsync().ConfigureAwait(false);
+            if (client is not null)
+            {
+                await client.DisposeAsync().ConfigureAwait(false);
+            }
         }
         finally
         {
-            DisposeAll(streams);
+            await requests.DisposeAsync().ConfigureAwait(false);
+            await responses.DisposeAsync().ConfigureAwait(false);
+            await serverReads.DisposeAsync().ConfigureAwait(false);
+            await serverWrites.DisposeAsync().ConfigureAwait(false);
         }
 
         // The pipes closed under the server, which is how a client ends the session; how it ends is not under test here.
         await Task.WhenAny(serverRun).ConfigureAwait(false);
-    }
-
-    private static void DisposeAll(IDisposable[] streams)
-    {
-        foreach (IDisposable stream in streams)
-        {
-            stream.Dispose();
-        }
     }
 
     private static string TextOf(CallToolResult result)
