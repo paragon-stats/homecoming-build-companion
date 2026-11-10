@@ -1,7 +1,9 @@
 name: coh-engine CodeQL config
 
 # obj/ holds generated, intermediate build files — xUnit/MSBuild emit C# there (the
-# test entry point, AssemblyInfo, GlobalUsings) that we don't author or edit. Exclude
-# it so security-and-quality runs only on real source. (bin/ has no .cs to analyze.)
+# test entry point, AssemblyInfo, GlobalUsings) that we don't author or edit.
+# GitHub documents paths-ignore for interpreted languages and for compiled languages
+# analyzed without a build. The C# job builds (build-mode: manual), so the filter
+# does not reach the generated files, and alerts in obj/ are dismissed by hand.
 paths-ignore:
   - "**/obj/**"
