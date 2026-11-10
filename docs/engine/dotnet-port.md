@@ -210,5 +210,20 @@ With no source the command still reports the form as unavailable (E72).
 
 A `.mbd` has no `Chosen` flag, so every entry resolves as chosen: a pool sub-power Mids grants without a pick counts as one of the picks, and a pick-count check can over-count a build that holds one.
 
-Without `--mids-dir` the source reads `tests/fixtures/mids`, found by walking up from the binary to `CohEngine.slnx`; a binary run outside the repository needs the flag.
+The header `Level` keeps the form the file holds, as Python's `json` gives it: a string, a bool, an integer of any size or a float.
+`H-FMT-003` prints its repr (`5.5`, `1e+30`, `True`), so `Level` as a number or bool reports the same finding as the Python.
+
+Four inputs get a coded E118 where the Python does not:
+
+| Input | Python | C# |
+| --- | --- | --- |
+| No `Level` key | E72 (missing key) | E118 |
+| `Level` text that is not an integer | a bare `ValueError` | E118 |
+| No `BuiltWith` block | an uncoded `ValueError` | E118 |
+| `Level` null | a `TypeError` traceback | E118 |
+
+These differences are deliberate: the Python does not report them as input errors.
+
+Without `--mids-dir` the source reads `tests/fixtures/mids`, found by walking up from the binary to `CohEngine.slnx`.
+A binary run outside the repository needs the flag, and without it the command stops with an E72 that names the directory tried.
 `tests/fixtures/cli/validate-mbd/` holds the Python output for each build file, and `MbdValidateTests` compares it byte for byte.

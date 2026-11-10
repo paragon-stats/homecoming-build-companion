@@ -11,7 +11,8 @@ The C# tests in `tests/CohEngine.Cli.Tests/` run `validate` on each build in pro
 | `<build>.exit` | The exit code, which is the same for both formats. |
 
 `<build>` is the file name without `.mbd` of each build under `tests/fixtures/buildfile/builds/` and `samples/builds/`.
-One sample, `arsen-arsen_-_Dominator_Arsenal_Control_-_Arsenal_Assault.mbd`, has no capture: the Python reports E78 on stderr for it and exits 1 before any finding, and the C# test checks that message instead.
+One sample, `arsen-arsen_-_Dominator_Arsenal_Control_-_Arsenal_Assault.mbd`, has no capture.
+The Python reports E78 on stderr for it and exits 1 before any finding, and the C# test checks that message instead.
 Every captured build ended with nothing on stderr.
 
 ## How they were made

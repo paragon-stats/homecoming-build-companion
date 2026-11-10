@@ -1,5 +1,8 @@
+using System.Globalization;
+using System.Numerics;
 using System.Text.Json;
 
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
 
 namespace CohEngine.Core.BuildFile;
@@ -35,22 +38,42 @@ public sealed class MbdBuildSource(string defaultMidsDirectory) : IMbdBuildSourc
     }
 
     /// <inheritdoc/>
+    /// <exception cref="EngineException">E72: the default shared-dump directory holds no <c>powers.json</c>.</exception>
     public MbdValidationInput Load(string path, string midsDirectory)
     {
+        if (string.Equals(midsDirectory, DefaultMidsDirectory, StringComparison.Ordinal) && !File.Exists(Path.Join(midsDirectory, "powers.json")))
+        {
+            throw new EngineException($"{ErrorCodes.E72}: cannot read the default Mids dump directory {midsDirectory}, which holds no powers.json; pass --mids-dir <dir> with the shared dumps");
+        }
+
         MbdDocument document = Mbd.ReadDocument(path);
-        MbdBuild build = Mbd.ParseMbd(document);
+        object? level = RawLevel(path);
+
+        // A missing or null Level fails in ParseMbd (E118). Otherwise the header Level is judged as written, so the parsed integer is unused here; a number or bool token has no integer form to parse.
+        MbdBuild build = Mbd.ParseMbd(level is null or string ? document : document with { Level = "0" });
         MbdDb database = Mbd.LoadMbdDb(midsDirectory);
         return new MbdValidationInput(
             Mbd.PowersFromBuild(build, database),
             Mbd.SlotsFromBuild(build, database),
-            new MbdFormat(build.PowerSets, RawLevel(path), Mbd.IoBoundsByNid(database)));
+            new MbdFormat(build.PowerSets, level, Mbd.IoBoundsByNid(database)));
     }
 
-    // The converter that reads a Level number as text has already accepted the file, so the token is a string or an integer.
-    private static object RawLevel(string path)
+    // Python's json gives a str, a bool, an int of any size or a float; the rule prints its repr.
+    private static object? RawLevel(string path)
     {
         using JsonDocument raw = JsonDocument.Parse(File.ReadAllBytes(path));
-        JsonElement level = raw.RootElement.GetProperty("Level");
-        return level.ValueKind == JsonValueKind.Number ? level.GetInt64() : level.GetString()!;
+        if (!raw.RootElement.TryGetProperty("Level", out JsonElement level))
+        {
+            return null;
+        }
+
+        string token = level.GetRawText();
+        return level.ValueKind switch
+        {
+            JsonValueKind.Number when token.AsSpan().IndexOfAny('.', 'e', 'E') >= 0 => double.Parse(token, CultureInfo.InvariantCulture),
+            JsonValueKind.Number => BigInteger.Parse(token, CultureInfo.InvariantCulture),
+            JsonValueKind.True or JsonValueKind.False => level.GetBoolean(),
+            _ => level.GetString(),
+        };
     }
 }

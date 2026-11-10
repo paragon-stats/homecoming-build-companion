@@ -88,14 +88,67 @@ public sealed class MbdValidateTests : IDisposable
         Assert.Contains("H-FMT-002", Ids(CliCapture.Run(Source, "validate", path, "--format", "json").Output));
     }
 
+    // Each message and exit code is the Python engine's output for the same file, captured once at commit 1adeb627.
     [Theory]
-    [InlineData("\"50\"")]
-    [InlineData("49")]
-    public void A_one_based_level_is_reported(string level)
+    [InlineData("\"50\"", "'50'", 1)]
+    [InlineData("5", "5", 1)]
+    [InlineData("-1", "-1", 1)]
+    [InlineData("5.5", "5.5", 1)]
+    [InlineData("1e30", "1e+30", 1)]
+    [InlineData("12345678901234567890", "12345678901234567890", 1)]
+    [InlineData("true", "True", 1)]
+    [InlineData("false", "False", 1)]
+    public void A_header_level_is_judged_as_written(string token, string shown, int exitCode)
     {
-        string path = Mutated(document => document["Level"] = JsonNode.Parse(level));
+        string path = WithLevel(token);
 
-        Assert.Contains("H-FMT-003", Ids(CliCapture.Run(Source, "validate", path, "--format", "json").Output));
+        (string output, int code) = CliCapture.Run(Source, "validate", path, "--format", "json");
+
+        Assert.Equal((exitCode, $"the header Level {shown} is not a string of an integer from 0 to 49"), (code, Rules(output).Single(rule => string.Equals(rule.Id, "H-FMT-003", StringComparison.Ordinal)).Message));
+    }
+
+    [Fact]
+    public void A_string_level_in_range_is_not_reported()
+    {
+        Assert.DoesNotContain("H-FMT-003", Ids(CliCapture.Run(Source, "validate", WithLevel("\"5\""), "--format", "json").Output));
+    }
+
+    [Theory]
+    [InlineData("null")]
+    [InlineData("\"abc\"")]
+    [InlineData("\"5.5\"")]
+    public void A_level_that_is_not_an_integer_is_e118(string token)
+    {
+        Assert.Equal((1, true), RunErrorStartsWith(WithLevel(token), "error: E118: "));
+    }
+
+    [Fact]
+    public void A_missing_level_key_is_e118()
+    {
+        string path = Mutated(document => document.AsObject().Remove("Level"));
+
+        Assert.Equal((1, true), RunErrorStartsWith(path, "error: E118: "));
+    }
+
+    [Fact]
+    public void A_missing_built_with_block_is_e118()
+    {
+        string path = Mutated(document => document.AsObject().Remove("BuiltWith"));
+
+        Assert.Equal((1, true), RunErrorStartsWith(path, "error: E118: "));
+    }
+
+    [Fact]
+    public void A_default_directory_without_dumps_names_the_directory_and_the_flag()
+    {
+        string missing = Path.Combine(scratch, "no-dumps");
+        MbdBuildSource source = new(missing);
+
+        using StringWriter output = new();
+        using StringWriter error = new() { NewLine = "\n" };
+        int code = CliRunner.Run(["validate", Bane], output, error, source);
+
+        Assert.Equal((1, $"error: E72: cannot read the default Mids dump directory {missing}, which holds no powers.json; pass --mids-dir <dir> with the shared dumps\n"), (code, error.ToString()));
     }
 
     [Fact]
@@ -177,10 +230,16 @@ public sealed class MbdValidateTests : IDisposable
         Assert.DoesNotContain(diagnostics, diagnostic => string.Equals(diagnostic.Severity, "error", StringComparison.Ordinal));
     }
 
-    private static List<(string Id, string Severity)> Rules(string json)
+    private static List<(string Id, string Severity, string Message)> Rules(string json)
     {
         using JsonDocument document = JsonDocument.Parse(json);
-        return [.. document.RootElement.EnumerateArray().Select(item => (item.GetProperty("rule_id").GetString()!, item.GetProperty("severity").GetString()!))];
+        return [.. document.RootElement.EnumerateArray().Select(item => (item.GetProperty("rule_id").GetString()!, item.GetProperty("severity").GetString()!, item.GetProperty("message").GetString()!))];
+    }
+
+    private static (int Code, bool Matches) RunErrorStartsWith(string path, string prefix)
+    {
+        (int code, string error) = RunError(path);
+        return (code, error.StartsWith(prefix, StringComparison.Ordinal));
     }
 
     private static HashSet<string> Ids(string json)
@@ -202,6 +261,14 @@ public sealed class MbdValidateTests : IDisposable
         mutate(document);
         string path = Path.Combine(scratch, "mutated.mbd");
         File.WriteAllText(path, document.ToJsonString());
+        return path;
+    }
+
+    // The token is written as given, so a number keeps the form the file holds.
+    private string WithLevel(string token)
+    {
+        string path = Mutated(document => document["Level"] = "@@");
+        File.WriteAllText(path, File.ReadAllText(path).Replace("\"@@\"", token, StringComparison.Ordinal));
         return path;
     }
 }
