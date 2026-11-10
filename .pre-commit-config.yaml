@@ -59,7 +59,6 @@ repos:
             (.*/)?(samples|fixtures|canonical)/
             | src/coh_engine/tests/fixtures/
             | data/canonical/
-            | docs/engine/
             | scripts/lane-[ab]/
             | data/diff/
             | inbox/
@@ -84,7 +83,6 @@ repos:
             (.*/)?(samples|fixtures|canonical)/
             | src/coh_engine/tests/fixtures/
             | data/canonical/
-            | docs/engine/
             | scripts/[^/]+\.ps1$
             | scripts/lane-[ab]/
             | data/diff/
