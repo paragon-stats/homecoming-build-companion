@@ -17,12 +17,12 @@ public sealed class EngineToolCatalogTests
         string power = McpHarness.Store.Build(Slotted).Powers.First(candidate => candidate.PickLevel > 0).FullName;
         Dictionary<string, string> arguments = new(StringComparer.Ordinal) { ["setName"] = "blessing_of_the_zephyr", ["fullName"] = power };
 
-        foreach (EngineToolSpec tool in EngineToolCatalog.DumpTools)
+        Assert.All(EngineToolCatalog.DumpTools, tool =>
         {
             using JsonDocument result = JsonDocument.Parse(EngineToolCatalog.Call(tool, buildDir, arguments));
 
             Assert.Equal(JsonValueKind.Object, result.RootElement.ValueKind);
-        }
+        });
     }
 
     [Fact]
@@ -34,12 +34,12 @@ public sealed class EngineToolCatalogTests
     [Fact]
     public void Every_schema_is_a_json_object_schema()
     {
-        foreach (string schemaJson in EngineToolCatalog.DumpTools.Select(tool => tool.SchemaJson))
+        Assert.All(EngineToolCatalog.DumpTools, tool =>
         {
-            using JsonDocument schema = JsonDocument.Parse(schemaJson);
+            using JsonDocument schema = JsonDocument.Parse(tool.SchemaJson);
 
             Assert.Equal("object", schema.RootElement.GetProperty("type").GetString());
-        }
+        });
     }
 
     [Fact]
