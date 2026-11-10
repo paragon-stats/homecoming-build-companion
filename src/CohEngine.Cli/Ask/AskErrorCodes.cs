@@ -9,6 +9,9 @@ public static class AskErrorCodes
     /// <summary>The model was still calling tools when the round limit was reached.</summary>
     public const string RoundLimit = "E171";
 
-    /// <summary>The provider could not be reached, or its reply could not be read.</summary>
+    /// <summary>The provider could not be reached, did not answer in time, or its reply could not be read or held no text.</summary>
     public const string ProviderReply = "E172";
+
+    /// <summary>The reply stopped at the output limit, so the answer printed is incomplete.</summary>
+    public const string ReplyCutOff = "E173";
 }

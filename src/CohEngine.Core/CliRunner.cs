@@ -12,7 +12,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask <question> --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] | validate <build> [--mids-dir DIR] [--format text|json] [--expect metric=value]...]";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--expect metric=value]...]";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>

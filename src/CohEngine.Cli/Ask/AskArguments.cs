@@ -16,7 +16,7 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
 {
     private static readonly string[] Options = ["--build", "--provider", "--model", "--base-url", "--api-key-env"];
 
-    /// <summary>Parses the arguments after <c>ask</c>, accepting <c>--opt value</c> and <c>--opt=value</c>.</summary>
+    /// <summary>Parses the arguments after <c>ask</c>, accepting <c>--opt value</c> and <c>--opt=value</c>, and <c>--</c> before a question that starts with a dash.</summary>
     /// <param name="args">The arguments after the command name.</param>
     /// <param name="parsed">The parsed arguments, when parsing succeeded.</param>
     /// <param name="problem">The reason, when parsing failed.</param>
@@ -24,17 +24,60 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
     public static bool TryParse(IReadOnlyList<string> args, [NotNullWhen(true)] out AskArguments? parsed, out string problem)
     {
         parsed = null;
-        string? question = null;
-        Dictionary<string, string> values = new(StringComparer.Ordinal);
+        if (!TryScan(args, out string? question, out Dictionary<string, string> values, out problem))
+        {
+            return false;
+        }
+
+        string provider = values.GetValueOrDefault("--provider", "anthropic");
+        (ChatProvider Wire, ChatPreset Preset)? choice = provider switch
+        {
+            "anthropic" => (ChatProvider.Anthropic, ChatPreset.OpenAi),
+            "openai" => (ChatProvider.OpenAiCompatible, ChatPreset.OpenAi),
+            "mistral" => (ChatProvider.OpenAiCompatible, ChatPreset.Mistral),
+            "local" => (ChatProvider.OpenAiCompatible, ChatPreset.Local),
+            _ => null,
+        };
+        problem = (question, choice, values.GetValueOrDefault("--build"), values.GetValueOrDefault("--model")) switch
+        {
+            (null or "", _, _, _) => "the following arguments are required: question",
+            (_, null, _, _) => $"argument --provider: invalid choice: '{provider}' (choose from 'anthropic', 'openai', 'mistral', 'local')",
+            (_, _, null, _) => "the following arguments are required: --build",
+            (_, _, _, null) => "the following arguments are required: --model",
+            _ => string.Empty,
+        };
+        if (problem.Length != 0)
+        {
+            return false;
+        }
+
+        parsed = new AskArguments(question!, values["--build"], choice!.Value.Wire, choice.Value.Preset, values["--model"], values.GetValueOrDefault("--base-url"), values.GetValueOrDefault("--api-key-env"));
+        return true;
+    }
+
+    /// <summary>Splits the arguments into the question and the option values, and checks each value is usable.</summary>
+    private static bool TryScan(IReadOnlyList<string> args, out string? question, out Dictionary<string, string> values, out string problem)
+    {
+        question = null;
+        values = new(StringComparer.Ordinal);
+        bool literal = false;
         for (int index = 0; index < args.Count; index++)
         {
             string arg = args[index];
-            string name = arg.Split('=')[0];
+            if (!literal && string.Equals(arg, "--", StringComparison.Ordinal))
+            {
+                literal = true;
+                continue;
+            }
+
+            string name = literal ? string.Empty : arg.Split('=')[0];
             if (!Options.Contains(name, StringComparer.Ordinal))
             {
-                if (arg.StartsWith('-') || question is not null)
+                bool looksLikeOption = !literal && arg.StartsWith('-');
+                if (looksLikeOption || question is not null)
                 {
-                    problem = "unrecognized arguments: " + arg;
+                    // An unknown option is named without its value, which could be a key.
+                    problem = "unrecognized arguments: " + (looksLikeOption ? arg.Split('=')[0] : arg);
                     return false;
                 }
 
@@ -57,29 +100,22 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
             }
         }
 
-        string provider = values.GetValueOrDefault("--provider", "anthropic");
-        (ChatProvider Wire, ChatPreset Preset)? choice = provider switch
+        problem = string.Empty;
+        if (values.FirstOrDefault(option => option.Value.Length == 0) is { Key: { } empty })
         {
-            "anthropic" => (ChatProvider.Anthropic, ChatPreset.OpenAi),
-            "openai" => (ChatProvider.OpenAiCompatible, ChatPreset.OpenAi),
-            "mistral" => (ChatProvider.OpenAiCompatible, ChatPreset.Mistral),
-            "local" => (ChatProvider.OpenAiCompatible, ChatPreset.Local),
-            _ => null,
-        };
-        problem = (question, choice, values.GetValueOrDefault("--build"), values.GetValueOrDefault("--model")) switch
+            problem = $"argument {empty}: expected a non-empty value";
+        }
+        else if (values.TryGetValue("--api-key-env", out string? keyVariable) && !IsEnvironmentName(keyVariable))
         {
-            (null, _, _, _) => "the following arguments are required: question",
-            (_, null, _, _) => $"argument --provider: invalid choice: '{provider}' (choose from 'anthropic', 'openai', 'mistral', 'local')",
-            (_, _, null, _) => "the following arguments are required: --build",
-            (_, _, _, null) => "the following arguments are required: --model",
-            _ => string.Empty,
-        };
-        if (problem.Length != 0)
-        {
-            return false;
+            // The name is echoed in the missing-key message, so a key passed here by mistake must not get that far.
+            problem = "argument --api-key-env: takes the name of an environment variable, not a key";
         }
 
-        parsed = new AskArguments(question!, values["--build"], choice!.Value.Wire, choice.Value.Preset, values["--model"], values.GetValueOrDefault("--base-url"), values.GetValueOrDefault("--api-key-env"));
-        return true;
+        return problem.Length == 0;
+    }
+
+    private static bool IsEnvironmentName(string name)
+    {
+        return (char.IsAsciiLetter(name[0]) || name[0] == '_') && name.All(character => char.IsAsciiLetterOrDigit(character) || character == '_');
     }
 }

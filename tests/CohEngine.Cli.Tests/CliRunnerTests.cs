@@ -29,7 +29,7 @@ public sealed class CliRunnerTests
 
         Assert.Equal(0, code);
         Assert.StartsWith("usage: coh-engine", output.ToString(), StringComparison.Ordinal);
-        Assert.Contains("ask <question> --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME]", output.ToString(), StringComparison.Ordinal);
+        Assert.Contains("ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question>", output.ToString(), StringComparison.Ordinal);
         Assert.Equal(string.Empty, error.ToString());
     }
 

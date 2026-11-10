@@ -17,7 +17,10 @@ public static class AskCommand
     /// <summary>The most model replies one question may take; a tool call and its answer count as one round.</summary>
     public const int MaxRounds = 8;
 
-    private const string Usage = "usage: coh-engine ask <question> --build <dump-dir|file.mbd> --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME]";
+    /// <summary>The output limit per reply; the Anthropic client's default of 1024 cuts a long answer short.</summary>
+    public const int MaxOutputTokens = 4096;
+
+    private const string Usage = "usage: coh-engine ask --build <dump-dir|file.mbd> --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question>";
 
     /// <summary>Runs the command.</summary>
     /// <param name="args">The arguments after <c>ask</c>.</param>
@@ -44,8 +47,22 @@ public static class AskCommand
         {
             IReadOnlyList<AIFunction> tools = LoadTools(parsed.BuildPath, mbdSource);
             using IChatClient client = ChatClientFactory.Create(new ChatProviderOptions(parsed.Provider, parsed.Preset, parsed.Model, parsed.BaseUrl, parsed.ApiKeyEnvironmentVariable, handler));
-            output.WriteLine(await AskLoop.RunAsync(client, tools, parsed.Question, MaxRounds, cancellationToken).ConfigureAwait(false));
-            return 0;
+            AskReply reply = await AskLoop.RunAsync(client, tools, parsed.Question, MaxRounds, cancellationToken).ConfigureAwait(false);
+            output.WriteLine(reply.Text);
+            if (!reply.Truncated)
+            {
+                return 0;
+            }
+
+            message = $"{AskErrorCodes.ReplyCutOff}: the reply stopped at the output limit of {AskCommand.MaxOutputTokens} tokens, so the answer above is incomplete; ask a narrower question";
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            return 1;
+        }
+        catch (OperationCanceledException)
+        {
+            message = $"{AskErrorCodes.ProviderReply}: the provider did not answer in time; check the base URL or try again";
         }
         catch (Exception exception) when (exception is EngineException or InvalidOperationException or ChatProviderException or AnthropicApiException)
         {
@@ -64,30 +81,27 @@ public static class AskCommand
     private static List<AIFunction> LoadTools(string buildPath, IMbdBuildSource? mbdSource)
     {
         EngineToolSpec rules = EngineToolCatalog.DumpTools.First(tool => string.Equals(tool.Name, "rules", StringComparison.Ordinal));
-        if (string.Equals(Path.GetExtension(buildPath), ".mbd", StringComparison.Ordinal))
+        if (string.Equals(Path.GetExtension(buildPath), ".mbd", StringComparison.OrdinalIgnoreCase))
         {
             // A .mbd holds no dump, so only the rules and the validation of the file itself are on offer.
-            string validation = ValidateMbd(buildPath, mbdSource);
+            string validation = Load(buildPath, () => DiagnosticFormatter.FormatJson(ValidateCommand.RunMbd(mbdSource ?? throw new EngineException(".mbd builds are not available in this build"), buildPath, mbdSource.DefaultMidsDirectory)));
             return [Wrap(rules, buildPath), new EngineAiFunction("validate", "Validate the build file against the legality, hard-limit and format rules.", """{"type":"object","properties":{}}""", _ => validation)];
         }
 
-        if (!Directory.Exists(buildPath))
-        {
-            throw new EngineException($"{AskErrorCodes.BuildUnreadable}: '{buildPath}' is not a Mids dump directory or a .mbd file; give the build's dump directory or a readable .mbd");
-        }
-
+        // The loader validate uses: a directory that is not a dump fails here, before any model call.
+        Load(buildPath, () => ValidateCommand.RunDump(buildPath, DumpScoring.DefaultMidsDirectory(buildPath)));
         return [.. EngineToolCatalog.DumpTools.Select(tool => Wrap(tool, buildPath))];
     }
 
-    private static string ValidateMbd(string path, IMbdBuildSource? source)
+    private static T Load<T>(string path, Func<T> read)
     {
         try
         {
-            return DiagnosticFormatter.FormatJson(ValidateCommand.RunMbd(source ?? throw new EngineException(".mbd builds are not available in this build"), path, source.DefaultMidsDirectory));
+            return read();
         }
         catch (Exception exception) when (exception is EngineException or IOException or UnauthorizedAccessException or InvalidDataException or JsonException or KeyNotFoundException or ArgumentException)
         {
-            throw new EngineException($"{AskErrorCodes.BuildUnreadable}: cannot read the build file '{path}' ({exception.Message}); give a readable .mbd or a Mids dump directory", exception);
+            throw new EngineException($"{AskErrorCodes.BuildUnreadable}: cannot read the build '{path}' ({exception.Message}); give a Mids dump directory or a readable .mbd", exception);
         }
     }
 

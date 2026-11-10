@@ -209,9 +209,9 @@ public sealed class AskCommandTests : IDisposable
         (int noSourceExit, _, string noSourceError) = await RunAsync(handler, null, Args("anthropic", "COH_ASK_TEST_KEY_G", Bane));
 
         Assert.Equal((1, 1, 1), (missingExit, brokenExit, noSourceExit));
-        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: '", missingError, StringComparison.Ordinal);
-        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build file", brokenError, StringComparison.Ordinal);
-        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build file", noSourceError, StringComparison.Ordinal);
+        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build '", missingError, StringComparison.Ordinal);
+        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build '", brokenError, StringComparison.Ordinal);
+        Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build '", noSourceError, StringComparison.Ordinal);
         Assert.Empty(handler.Sent);
     }
 
