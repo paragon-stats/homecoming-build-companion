@@ -1,0 +1,34 @@
+[
+  {
+    "rule_id": "H-SLOT-001",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "total added slots (68) exceeds the cap (67)",
+    "fix": "remove 1 slot(s) from one or more powers",
+    "expected": 67,
+    "actual": 68
+  },
+  {
+    "rule_id": "H-SLOT-004",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "a slot in 'Pool.Fighting.Weave' is placed at level 26, which grants no enhancement slot in the level schedule",
+    "fix": "move the slot to a level that grants a slot",
+    "actual": 26
+  },
+  {
+    "rule_id": "H-SLOT-005",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "by level 27, 27 added slots are placed but only 26 have been granted (a slot cannot be placed before it is earned)",
+    "fix": "move the excess slot(s) to a later grant level, or remove them",
+    "expected": 26,
+    "actual": 27
+  }
+]

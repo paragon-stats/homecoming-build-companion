@@ -2,6 +2,7 @@ using System.Globalization;
 using System.IO.Compression;
 
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.BuildFile;
@@ -53,25 +54,25 @@ public static class Mxd
         int headerIndex = Array.FindIndex(lines, line => line.StartsWith("|MxDz;", StringComparison.Ordinal) || line.StartsWith("|MBD;", StringComparison.Ordinal));
         if (headerIndex < 0)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.ShareEnvelope}: no |MxDz;…| or |MBD;…| header line found; copy the whole share block, header line included");
+            throw new InvalidDataException($"{ErrorCodes.ShareEnvelope}: no |MxDz;…| or |MBD;…| header line found; copy the whole share block, header line included");
         }
 
         if (headerIndex == lines.Length - 1)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.ShareEnvelope}: share block needs a header line and at least one payload line; copy the payload lines under the header");
+            throw new InvalidDataException($"{ErrorCodes.ShareEnvelope}: share block needs a header line and at least one payload line; copy the payload lines under the header");
         }
 
         string[] items = lines[headerIndex].Trim('|').Trim().Split(';', StringSplitOptions.RemoveEmptyEntries);
         if (items.Length != 5)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.ShareEnvelope}: share header must have exactly 5 items, got {items.Length}; copy the header line unchanged from the Mids export");
+            throw new InvalidDataException($"{ErrorCodes.ShareEnvelope}: share header must have exactly 5 items, got {items.Length}; copy the header line unchanged from the Mids export");
         }
 
         if (!int.TryParse(items[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out int uncompressed)
             || !int.TryParse(items[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out int compressed)
             || !int.TryParse(items[3], NumberStyles.Integer, CultureInfo.InvariantCulture, out int encoded))
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.ShareEnvelope}: share header sizes must be integers; copy the header line unchanged from the Mids export");
+            throw new InvalidDataException($"{ErrorCodes.ShareEnvelope}: share header sizes must be integers; copy the header line unchanged from the Mids export");
         }
 
         List<string> parts = [];
@@ -103,7 +104,7 @@ public static class Mxd
         ArgumentNullException.ThrowIfNull(data);
         if (data.Length == 0 || data.Length % 2 != 0 || !data.All(char.IsAsciiHexDigit))
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.SharePayload}: mxd payload is not valid hex; copy the payload lines unchanged from the Mids export");
+            throw new InvalidDataException($"{ErrorCodes.SharePayload}: mxd payload is not valid hex; copy the payload lines unchanged from the Mids export");
         }
 
         return Convert.FromHexString(data);
@@ -117,14 +118,14 @@ public static class Mxd
     {
         if (!string.Equals(Classify(text), "mxd", StringComparison.Ordinal))
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.SharePayload}: not an mxd share block; pass a MxDz block, not another format");
+            throw new InvalidDataException($"{ErrorCodes.SharePayload}: not an mxd share block; pass a MxDz block, not another format");
         }
 
         ShareBlock block = DecodeShareBlock(text);
         byte[] raw = HexDecode(block.Payload);
         if (raw.Length != block.CompressedSize)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.SharePayload}: mxd compressed size mismatch: header {block.CompressedSize}, actual {raw.Length}; the payload is truncated or edited, re-export it from Mids");
+            throw new InvalidDataException($"{ErrorCodes.SharePayload}: mxd compressed size mismatch: header {block.CompressedSize}, actual {raw.Length}; the payload is truncated or edited, re-export it from Mids");
         }
 
         byte[] buffer = Inflate(raw);
@@ -152,14 +153,14 @@ public static class Mxd
 
         if (cursor.ReadBoolean())
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.Unsupported}: qualified-names .mxd builds are not supported; re-save the build from Mids as a .mbd");
+            throw new InvalidDataException($"{ErrorCodes.Unsupported}: qualified-names .mxd builds are not supported; re-save the build from Mids as a .mbd");
         }
 
         bool hasSubPower = cursor.ReadBoolean();
         string className = cursor.ReadString();
         if (archetypes is not null && archetypes.NidFromUidClass(className) < 0)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.Unsupported}: invalid class UID: '{className}'; re-dump the Mids data or check the build's class");
+            throw new InvalidDataException($"{ErrorCodes.Unsupported}: invalid class UID: '{className}'; re-dump the Mids data or check the build's class");
         }
 
         string originUid = cursor.ReadString();
@@ -204,7 +205,7 @@ public static class Mxd
     {
         if (version > ThisVersion)
         {
-            throw new InvalidDataException(FormattableString.Invariant($"{BuildFileErrorCodes.VersionTooNew}: mxd saved by a newer version ({version}); cannot read; update this tool or re-save the build from an older Mids"));
+            throw new InvalidDataException(FormattableString.Invariant($"{ErrorCodes.VersionTooNew}: mxd saved by a newer version ({version}); cannot read; update this tool or re-save the build from an older Mids"));
         }
 
         if (version < PriorVersion)
@@ -220,7 +221,7 @@ public static class Mxd
         int position = buffer.AsSpan().IndexOf(Magic);
         if (position < 0)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.MagicMissing}: mxd magic number MxD\\x0c not found; the file is not a decoded .mxd, re-export it from Mids");
+            throw new InvalidDataException($"{ErrorCodes.MagicMissing}: mxd magic number MxD\\x0c not found; the file is not a decoded .mxd, re-export it from Mids");
         }
 
         return position + Magic.Length;
@@ -322,7 +323,7 @@ public static class Mxd
             return table[ordinal];
         }
 
-        throw new InvalidDataException($"{BuildFileErrorCodes.EnumOutOfRange}: corrupt .mxd: {kind} ordinal {ordinal} out of range; the file is corrupt, re-export it from Mids");
+        throw new InvalidDataException($"{ErrorCodes.EnumOutOfRange}: corrupt .mxd: {kind} ordinal {ordinal} out of range; the file is corrupt, re-export it from Mids");
     }
 
     private static byte[] Inflate(byte[] raw)
@@ -346,7 +347,7 @@ public static class Mxd
         }
         catch (InvalidDataException exception)
         {
-            throw new InvalidDataException($"{BuildFileErrorCodes.SharePayload}: mxd zlib inflate failed; the payload is truncated or corrupt, re-export it from Mids", exception);
+            throw new InvalidDataException($"{ErrorCodes.SharePayload}: mxd zlib inflate failed; the payload is truncated or corrupt, re-export it from Mids", exception);
         }
     }
 

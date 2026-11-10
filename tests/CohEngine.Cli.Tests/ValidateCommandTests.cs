@@ -14,7 +14,7 @@ public sealed class ValidateCommandTests
 
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
 
-    private static string BuildDirectory => Path.Combine(Store.MidsDirectory, "builds", Build);
+    private static string BuildDirectory => Path.Join(Store.MidsDirectory, "builds", Build);
 
     private static (int Code, string Output, string Error) Run(IMbdBuildSource? source, params string[] args)
     {
@@ -74,7 +74,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void Missing_dump_files_are_e72_naming_the_file()
     {
-        string empty = Path.Combine(Path.GetTempPath(), "coh-empty-" + Guid.NewGuid().ToString("N"));
+        string empty = Path.Join(Path.GetTempPath(), "coh-empty-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(empty);
         try
         {
@@ -161,7 +161,7 @@ public sealed class ValidateCommandTests
     {
         BuildFixture fixture = Store.Build(Build);
         MbdFormat format = new(["a", "b"], "50", new Dictionary<int, (int Min, int Max)>());
-        FixedSource source = new(Store.MidsDirectory, new MbdBuild(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), format));
+        FixedSource source = new(Store.MidsDirectory, new MbdValidationInput(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), format));
 
         (int code, string output, _) = Run(source, "validate", "x.mbd", "--format", "json");
 
@@ -171,7 +171,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void A_mbd_uses_the_given_mids_directory_over_the_default()
     {
-        FixedSource source = new(Path.Combine(Path.GetTempPath(), "coh-not-there"), new MbdBuild([], new Dictionary<int, IReadOnlyList<SlotRef>>(), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
+        FixedSource source = new(Path.Join(Path.GetTempPath(), "coh-not-there"), new MbdValidationInput([], new Dictionary<int, IReadOnlyList<SlotRef>>(), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
 
         Assert.Equal((0, "no violations\n"), Run(source, "validate", "x.mbd", "--mids-dir", Store.MidsDirectory) is (var code, var output, _) ? (code, output) : default);
     }
@@ -181,7 +181,7 @@ public sealed class ValidateCommandTests
     {
         BuildFixture fixture = Store.Build(Build);
         Dictionary<int, IReadOnlyList<SlotRef>> slots = fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots);
-        IReadOnlyDictionary<int, EnhancementLegality> enhancements = EnhancementLegality.Load(Path.Combine(Store.MidsDirectory, "enhancements.json"));
+        IReadOnlyDictionary<int, EnhancementLegality> enhancements = EnhancementLegality.Load(Path.Join(Store.MidsDirectory, "enhancements.json"));
 
         int armed = LegalityRunner.Check(fixture.Powers, slots, enhancements, Store.SetBonuses, Store.EnhancementEffects).Count(IsLoneSetPiece);
         int bare = LegalityRunner.Check(fixture.Powers, slots, enhancements, Store.SetBonuses).Count(IsLoneSetPiece);
@@ -220,17 +220,17 @@ public sealed class ValidateCommandTests
     {
         public string DefaultMidsDirectory => string.Empty;
 
-        public MbdBuild Load(string path, string midsDirectory)
+        public MbdValidationInput Load(string path, string midsDirectory)
         {
             throw exception;
         }
     }
 
-    private sealed class FixedSource(string defaultMids, MbdBuild build) : IMbdBuildSource
+    private sealed class FixedSource(string defaultMids, MbdValidationInput build) : IMbdBuildSource
     {
         public string DefaultMidsDirectory => defaultMids;
 
-        public MbdBuild Load(string path, string midsDirectory)
+        public MbdValidationInput Load(string path, string midsDirectory)
         {
             return build;
         }

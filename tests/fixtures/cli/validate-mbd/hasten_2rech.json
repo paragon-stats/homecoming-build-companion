@@ -1,0 +1,24 @@
+[
+  {
+    "rule_id": "H-SLOT-001",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "total added slots (68) exceeds the cap (67)",
+    "fix": "remove 1 slot(s) from one or more powers",
+    "expected": 67,
+    "actual": 68
+  },
+  {
+    "rule_id": "H-SLOT-005",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "by level 13, 13 added slots are placed but only 12 have been granted (a slot cannot be placed before it is earned)",
+    "fix": "move the excess slot(s) to a later grant level, or remove them",
+    "expected": 12,
+    "actual": 13
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "rule_id": "H-SLOT-004",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "a slot in 'Scrapper_Defense.Shield_Defense.Shield_Charge' is placed at level 47, which grants no enhancement slot in the level schedule",
+    "fix": "move the slot to a level that grants a slot",
+    "actual": 47
+  },
+  {
+    "rule_id": "H-SLOT-004",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "a slot in 'Epic.Stalker_Soul_Mastery.Moonbeam' is placed at level 47, which grants no enhancement slot in the level schedule",
+    "fix": "move the slot to a level that grants a slot",
+    "actual": 47
+  },
+  {
+    "rule_id": "H-SLOT-004",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "a slot in 'Pool.Speed.Hasten' is placed at level 49, which grants no enhancement slot in the level schedule",
+    "fix": "move the slot to a level that grants a slot",
+    "actual": 49
+  },
+  {
+    "rule_id": "H-SLOT-005",
+    "severity": "error",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "by level 47, 63 added slots are placed but only 61 have been granted (a slot cannot be placed before it is earned)",
+    "fix": "move the excess slot(s) to a later grant level, or remove them",
+    "expected": 61,
+    "actual": 63
+  }
+]
