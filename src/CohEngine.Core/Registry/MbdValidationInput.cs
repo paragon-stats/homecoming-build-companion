@@ -6,4 +6,4 @@ namespace CohEngine.Core.Registry;
 /// <param name="Powers">The build's powers.</param>
 /// <param name="Slots">The build's slots by build index.</param>
 /// <param name="Format">The file facts that arm the <c>H-FMT</c> rules.</param>
-public sealed record MbdBuild(IReadOnlyList<Power> Powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> Slots, MbdFormat Format);
+public sealed record MbdValidationInput(IReadOnlyList<Power> Powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> Slots, MbdFormat Format);

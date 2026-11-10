@@ -1,4 +1,5 @@
 using CohEngine.Core;
+using CohEngine.Core.Registry;
 
 namespace CohEngine.TestSupport;
 
@@ -16,7 +17,7 @@ public sealed class CliCapture
     {
         ArgumentNullException.ThrowIfNull(store);
         Store = store;
-        directory = Path.Combine(store.Root, "cli");
+        directory = Path.Join(store.Root, "cli");
     }
 
     /// <summary>Gets the fixture store.</summary>
@@ -27,10 +28,27 @@ public sealed class CliCapture
     /// <returns>The stdout with LF line endings and the exit code.</returns>
     public static (string Output, int ExitCode) Run(params string[] args)
     {
+        return Run(null, args);
+    }
+
+    /// <summary>Runs the CLI in process with a <c>.mbd</c> source and returns its stdout and exit code.</summary>
+    /// <param name="source">What resolves a <c>.mbd</c> file; null leaves the <c>.mbd</c> form unavailable.</param>
+    /// <param name="args">The command-line arguments.</param>
+    /// <returns>The stdout with LF line endings and the exit code.</returns>
+    public static (string Output, int ExitCode) Run(IMbdBuildSource? source, params string[] args)
+    {
         using StringWriter output = new() { NewLine = "\n" };
         using StringWriter error = new();
-        int code = CliRunner.Run(args, output, error);
+        int code = CliRunner.Run(args, output, error, source);
         return (output.ToString(), code);
+    }
+
+    /// <summary>Finds the <c>.mbd</c> build a capture was made from.</summary>
+    /// <param name="name">The build's file name without <c>.mbd</c>.</param>
+    /// <returns>The full path under <c>samples/builds</c> or <c>tests/fixtures/buildfile/builds</c>.</returns>
+    public static string MbdPath(string name)
+    {
+        return BuildFileFixtures.AllMbd().Single(path => string.Equals(Path.GetFileNameWithoutExtension(path), name, StringComparison.Ordinal));
     }
 
     /// <summary>Lists the builds a command has a capture for, in ordinal order.</summary>
@@ -38,7 +56,7 @@ public sealed class CliCapture
     /// <returns>The build names.</returns>
     public IReadOnlyList<string> Names(string command)
     {
-        return [.. Directory.GetFiles(Path.Combine(directory, command), "*.exit").Select(Path.GetFileNameWithoutExtension).OfType<string>().Order(StringComparer.Ordinal)];
+        return [.. Directory.GetFiles(Path.Join(directory, command), "*.exit").Select(Path.GetFileNameWithoutExtension).OfType<string>().Order(StringComparer.Ordinal)];
     }
 
     /// <summary>Reads a captured output file with LF line endings.</summary>
@@ -48,7 +66,7 @@ public sealed class CliCapture
     /// <returns>The captured stdout.</returns>
     public string Output(string command, string name, string extension)
     {
-        return System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Path.Combine(directory, command, name + "." + extension)));
+        return System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Path.Join(directory, command, name + "." + extension)));
     }
 
     /// <summary>Reads the captured exit code.</summary>
@@ -57,7 +75,7 @@ public sealed class CliCapture
     /// <returns>The exit code.</returns>
     public int ExitCode(string command, string name)
     {
-        return int.Parse(File.ReadAllText(Path.Combine(directory, command, name + ".exit")).Trim(), System.Globalization.CultureInfo.InvariantCulture);
+        return int.Parse(File.ReadAllText(Path.Join(directory, command, name + ".exit")).Trim(), System.Globalization.CultureInfo.InvariantCulture);
     }
 
     /// <summary>Gets a build's dump directory.</summary>
@@ -65,6 +83,6 @@ public sealed class CliCapture
     /// <returns>The directory.</returns>
     public string BuildDirectory(string name)
     {
-        return Path.Combine(Store.MidsDirectory, "builds", name);
+        return Path.Join(Store.MidsDirectory, "builds", name);
     }
 }

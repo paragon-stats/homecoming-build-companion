@@ -129,7 +129,7 @@ public sealed class ValidateExpectTests
     public void A_mbd_file_cannot_be_checked_against_a_claim()
     {
         BuildFixture fixture = Store.Build(Clean);
-        FixedSource source = new(Store.MidsDirectory, new MbdBuild(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
+        FixedSource source = new(Store.MidsDirectory, new MbdValidationInput(fixture.Powers, fixture.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots), new MbdFormat(new string[8], "49", new Dictionary<int, (int Min, int Max)>())));
         using StringWriter output = new();
         using StringWriter error = new();
 
@@ -149,11 +149,11 @@ public sealed class ValidateExpectTests
         Assert.Contains("--expect metric=value", output, StringComparison.Ordinal);
     }
 
-    private sealed class FixedSource(string defaultMids, MbdBuild build) : IMbdBuildSource
+    private sealed class FixedSource(string defaultMids, MbdValidationInput build) : IMbdBuildSource
     {
         public string DefaultMidsDirectory => defaultMids;
 
-        public MbdBuild Load(string path, string midsDirectory)
+        public MbdValidationInput Load(string path, string midsDirectory)
         {
             return build;
         }

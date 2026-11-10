@@ -1,0 +1,13 @@
+[
+  {
+    "rule_id": "P-SET-001",
+    "severity": "warning",
+    "path": "build.json",
+    "line": 1,
+    "column": 1,
+    "message": "\"Numina's Convalesence: Heal/Endurance\" is the only 'Numinas_Convalesence' piece in 'Tanker_Defense.Willpower.Fast_Healing'; set bonuses need at least 2 pieces of one set in the same power, so this piece adds no set bonus (its own enhancement value, and any proc it carries, still apply)",
+    "fix": "slot a second 'Numinas_Convalesence' piece in this power, use a piece carrying a global, or confirm the lone piece is a deliberate proc carrier or mule",
+    "expected": 2,
+    "actual": 1
+  }
+]
