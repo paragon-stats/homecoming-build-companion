@@ -143,7 +143,8 @@ public static class AttackChains
         }
 
         List<ChainOption> ranked = PySort.Sorted(options, Rank);
-        ChainOption? bestOverall = ranked.Aggregate((ChainOption?)null, (best, option) => best is null || Tail(option, best) < 0 ? option : best);
+        ChainOption? seed = null;
+        ChainOption? bestOverall = ranked.Aggregate(seed, (best, option) => best is null || Tail(option, best) < 0 ? option : best);
 
         return new ChainPlan(
             stance,
