@@ -34,9 +34,9 @@ public sealed class EngineToolCatalogTests
     [Fact]
     public void Every_schema_is_a_json_object_schema()
     {
-        foreach (EngineToolSpec tool in EngineToolCatalog.DumpTools)
+        foreach (string schemaJson in EngineToolCatalog.DumpTools.Select(tool => tool.SchemaJson))
         {
-            using JsonDocument schema = JsonDocument.Parse(tool.SchemaJson);
+            using JsonDocument schema = JsonDocument.Parse(schemaJson);
 
             Assert.Equal("object", schema.RootElement.GetProperty("type").GetString());
         }
