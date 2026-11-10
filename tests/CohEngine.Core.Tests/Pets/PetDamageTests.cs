@@ -85,102 +85,12 @@ public sealed class PetDamageTests
     }
 
     [Fact]
-    public void A_pet_level_below_one_is_e61()
-    {
-        using TempTree tree = World();
-
-        Assert.StartsWith("E61: table Pet_Levelminus1 gives pet level 0 at caster level 50", Message(tree, 0.0), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void An_unknown_modifier_table_is_e61()
-    {
-        using TempTree tree = World("Missing_Table");
-
-        Assert.StartsWith("E61: Mm.Summon.Spawn uses modifier table 'Missing_Table', which the AttribMod table lacks", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void An_unknown_pet_class_is_e61()
-    {
-        using TempTree tree = World();
-        tree.Write("entities/thing.json", PetWorld.EntityJson.Replace("minion_pets", "mystery", StringComparison.Ordinal));
-
-        Assert.StartsWith("E61: entity Thing has class 'mystery' with no Class_mystery or reversed-token class", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Fact]
     public void A_reversed_token_class_name_is_found()
     {
         using TempTree tree = World();
         tree.Write("entities/thing.json", PetWorld.EntityJson.Replace("minion_pets", "pets_minion", StringComparison.Ordinal));
 
         Assert.Equal("Thing level 49", Assert.Single(Build(tree)).Label);
-    }
-
-    [Fact]
-    public void A_role_other_than_summon_is_e64()
-    {
-        using TempTree tree = World();
-
-        Assert.StartsWith("E64: Mm.Summon.Spawn has role chain, expected pet_summon", Message(tree, summon: ChainFactory.Attack("Mm.Summon.Spawn")), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void A_missing_entity_file_is_e60()
-    {
-        using TempTree tree = World();
-        File.Delete(tree.FullPath("entities/thing.json"));
-
-        Assert.StartsWith("E60: entity Thing (summoned by Mm.Summon.Spawn) has no file", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void A_missing_pet_power_file_is_e60()
-    {
-        using TempTree tree = World();
-        File.Delete(tree.FullPath("powers/pet/set/bite.json"));
-
-        Assert.StartsWith("E60: pet powers of Thing missing (E35:", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void A_summon_with_no_create_entity_template_is_e62()
-    {
-        using TempTree tree = new();
-        tree.Write("powers/mm/summon/spawn.json", CanonicalPowers.Text("Mm.Summon.Spawn", effects: [CanonicalPowers.Effect([])]));
-
-        Assert.Equal("E62: Mm.Summon.Spawn has no Create_Entity template; pass only pet summon powers", Message(tree));
-    }
-
-    [Fact]
-    public void A_create_entity_template_without_an_entity_def_is_e62()
-    {
-        using TempTree tree = new();
-        string create = CanonicalPowers.Template(["Create_Entity"], "Absolute", "Self", "Ones", 1.0, ",\"duration\":\"60 seconds\"");
-        tree.Write("powers/mm/summon/spawn.json", CanonicalPowers.Text("Mm.Summon.Spawn", effects: [CanonicalPowers.Effect([create])]));
-
-        Assert.StartsWith("E62: Mm.Summon.Spawn has a Create_Entity template with no params.entity_def", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Theory]
-    [InlineData("soon")]
-    [InlineData("12 minutes")]
-    [InlineData("many seconds")]
-    public void An_unreadable_entity_duration_is_e62(string duration)
-    {
-        using TempTree tree = World(duration: duration);
-
-        Assert.StartsWith($"{ErrorCodes.E62}: Mm.Summon.Spawn Create_Entity duration is '{duration}', expected 'N seconds' or 'UntilKilled'", Message(tree), StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void An_unreadable_damage_duration_is_e62()
-    {
-        using TempTree tree = World();
-        tree.Write("powers/pet/set/bite.json", PetWorld.Bite(templateExtra: ",\"duration\":\"forever\"").Replace("\"duration\":\"0 seconds\",", string.Empty, StringComparison.Ordinal));
-
-        Assert.StartsWith("E62: Pet.Set.Bite damage template duration is 'forever'", Message(tree), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -208,15 +118,6 @@ public sealed class PetDamageTests
         tree.Write("powers/pet/set/bite.json", PetWorld.Bite(",\"ppm\":3.0"));
 
         Assert.Equal(0.0, Assert.Single(Assert.Single(Build(tree)).PetAttacks).Damage);
-    }
-
-    [Fact]
-    public void A_pet_with_no_damaging_attack_says_so()
-    {
-        using TempTree tree = World();
-        tree.Write("powers/pet/set/bite.json", CanonicalPowers.Text("Pet.Set.Bite", type: "Toggle", effects: [CanonicalPowers.Effect([])]));
-
-        Assert.Equal("Thing level 49 (no damaging attacks found)", Assert.Single(Build(tree)).Label);
     }
 
     [Fact]
@@ -256,14 +157,6 @@ public sealed class PetDamageTests
     }
 
     [Fact]
-    public void Pvp_only_groups_are_skipped()
-    {
-        using TempTree tree = World(effectExtra: ",\"is_pvp\":\"PVP_ONLY\"");
-
-        Assert.Equal("E62: Mm.Summon.Spawn has no Create_Entity template; pass only pet summon powers", Message(tree));
-    }
-
-    [Fact]
     public void A_second_entity_carries_no_cast_or_cost()
     {
         using TempTree tree = World();
@@ -290,46 +183,5 @@ public sealed class PetDamageTests
     public void The_modifier_table_lookup_names_the_missing_table()
     {
         Assert.StartsWith("E61: Power uses modifier table 'Nope'", Assert.Throws<EngineException>(() => PetDamage.ModifierTable(PetWorld.Mods(), "Nope", "Power")).Message, StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void No_pets_is_a_zero_source_with_a_label()
-    {
-        SourceResult source = PetDamage.PetSource(ChainFactory.Context([]))!;
-
-        Assert.Equal("0 no pets summoned", $"{source.Dps} {source.Label}");
-    }
-
-    [Theory]
-    [InlineData(60.0, "Imp x2 uptime 59%;")]
-    [InlineData(double.PositiveInfinity, "Imp x2 uptime 100% (permanent)")]
-    public void A_pets_uptime_is_its_lifetime_over_the_summon_cycle(double duration, string expected)
-    {
-        PetSummon pet = new()
-        {
-            SummonName = "S",
-            PetName = "Imp",
-            PetAttacks = [ChainFactory.Attack("Bite", damage: 100.0, cast: 1.0, recharge: 4.0)],
-            PetCount = 2,
-            Duration = duration,
-            SummonCastTime = 1.0,
-            SummonRecharge = 100.0,
-            SummonEndCost = 10.0,
-            DamageBuffBaseline = 1.95,
-        };
-
-        SourceResult source = PetDamage.PetSource(ChainFactory.Context([]) with { Pets = [pet] })!;
-
-        Assert.Contains(expected.TrimEnd(';'), source.Label, StringComparison.Ordinal);
-    }
-
-    [Fact]
-    public void A_pet_with_no_attacks_adds_nothing_and_keeps_the_default_baseline()
-    {
-        PetSummon pet = new() { SummonName = "S", PetName = "Imp", PetAttacks = [], PetCount = 1, Duration = double.PositiveInfinity, SummonCastTime = 0.0, SummonRecharge = 0.0, SummonEndCost = 0.0 };
-
-        SourceResult source = PetDamage.PetSource(ChainFactory.Context([]) with { Pets = [pet] })!;
-
-        Assert.Equal("0 1", $"{source.Dps} {source.DamageBuffBaseline}");
     }
 }

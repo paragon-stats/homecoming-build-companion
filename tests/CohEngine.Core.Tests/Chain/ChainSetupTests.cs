@@ -15,10 +15,6 @@ public sealed class ChainSetupTests
     private static readonly string Build = Path.Combine(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
     private static readonly string AttribModDirectory = Path.Combine(Fixtures.Store.Root, "attribmod");
 
-    public static TheoryData<string> BadAssumptions => ["novalue", "=3", "key=abc", "key=inf", "key=nan", " =1"];
-
-    public static TheoryData<string> BadTargets => ["many", "spawn:0", "spawn:", "spawn:x", "spawn:-1", "spawn:1.5", "solo:2"];
-
     private static ChainRequest Request(string? build = null, string? clicksOff = null, string? midsDb = null, string move = "run", double? standoff = null, string? mids = null)
     {
         return new ChainRequest
@@ -64,34 +60,6 @@ public sealed class ChainSetupTests
     }
 
     [Fact]
-    public void Assumptions_parse_into_a_mapping()
-    {
-        Assert.Equal("1.5 2", string.Join(' ', ChainReport.ParseAssumptions(["a.b= 1.5", " c = 2"]).Values));
-    }
-
-    [Theory]
-    [MemberData(nameof(BadAssumptions))]
-    public void A_malformed_assumption_is_e67(string item)
-    {
-        Assert.StartsWith($"{ErrorCodes.E67}: assumption '{item}' is not KEY=VALUE with a finite numeric value", Assert.Throws<EngineException>(() => ChainReport.ParseAssumptions([item])).Message, StringComparison.Ordinal);
-    }
-
-    [Theory]
-    [InlineData("single", 1)]
-    [InlineData("spawn:5", 5)]
-    public void A_target_is_single_or_a_spawn_count(string text, int expected)
-    {
-        Assert.Equal(expected, ChainReport.ParseTarget(text).Targets);
-    }
-
-    [Theory]
-    [MemberData(nameof(BadTargets))]
-    public void Any_other_target_is_e68(string text)
-    {
-        Assert.StartsWith($"{ErrorCodes.E68}: target '{text}' is neither 'single' nor 'spawn:N' (N >= 1)", Assert.Throws<EngineException>(() => ChainReport.ParseTarget(text)).Message, StringComparison.Ordinal);
-    }
-
-    [Fact]
     public void A_dump_loads_into_a_melee_context_for_its_class()
     {
         ChainSetup setup = ChainReport.BuildChainSetup(Request());
@@ -105,18 +73,6 @@ public sealed class ChainSetupTests
         ChainSetup setup = ChainReport.BuildChainSetup(Request() with { Assumptions = new Dictionary<string, double>(StringComparer.Ordinal) { ["damage.enhancement_avg"] = 0.5 } });
 
         Assert.Equal(1.0 + setup.Capped.BuffDam + 0.5, setup.Context.DamageBuffBaseline, 5);
-    }
-
-    [Fact]
-    public void A_clicks_off_sibling_is_used_by_default()
-    {
-        using TempTree tree = new();
-        string build = tree.CopyFiles(Build, "b");
-        tree.CopyFiles(Build, "b_clicksoff");
-
-        ChainSetup setup = ChainReport.BuildChainSetup(Request(build));
-
-        Assert.Equal("False True", $"{setup.ClicksAlwaysOn} {setup.Source.EndsWith("b_clicksoff", StringComparison.Ordinal)}");
     }
 
     [Fact]

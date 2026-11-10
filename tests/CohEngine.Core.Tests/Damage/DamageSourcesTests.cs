@@ -5,170 +5,273 @@ using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.DamageLayers;
 
+// Ported from tests/test_damage_sources.py.
 public sealed class DamageSourcesTests
 {
-    private static readonly IReadOnlyDictionary<string, double> HybridShare = new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 0.4 };
+    private const double AuraFull = 10.0 * 3 / 2.0;
 
-    public static TheoryData<string, double> BudgetLabels => new()
+    private static ChainAttack Attack(string name, Role role = Role.Chain, Delivery delivery = Delivery.Ranged, Shape shape = Shape.SingleTarget, double damage = 100.0, double cast = 1.0, double recharge = 1.0, double end = 5.0, double period = 0.0, double debuff = 0.0, double buff = 0.0, double buffDuration = 0.0)
     {
-        { "sustainable", 100.0 },
-        { "affordable: empties in", 0.0 },
-    };
-
-    private static ChainAttack Melee(string name)
-    {
-        return ChainFactory.Attack(name, delivery: Delivery.Melee);
+        AttackProfile profile = new(name, delivery, shape, role, 80.0, 0.0, 0.0, 0, [], []);
+        return new ChainAttack { FullName = name, Damage = damage, CastTime = cast, RechargeTime = recharge, EndCost = end, Profile = profile, ActivatePeriod = period, TargetResDebuff = debuff, SelfDamageBuff = buff, SelfDamageBuffDuration = buffDuration };
     }
 
-    private static DamageContext Hybrid(params ChainAttack[] attacks)
+    private static DamageContext Context(Stance stance = Stance.Melee, IReadOnlyDictionary<string, double>? assumptions = null, double timeline = 1.0, string form = "", Scenario? scenario = null, EnduranceBudget? budget = null, params ChainAttack[] attacks)
     {
-        return ChainFactory.Context(attacks, Stance.Hybrid);
+        return new DamageContext
+        {
+            Attacks = attacks,
+            Budget = budget ?? new EnduranceBudget(100.0, 10.0, 0.0),
+            Stance = stance,
+            Scenario = scenario ?? new Scenario(3),
+            Movement = new Movement(20.0, 40.0),
+            ArchetypeClass = "Class_Test",
+            Assumptions = assumptions ?? new Dictionary<string, double>(StringComparer.Ordinal),
+            TimelineAvailable = timeline,
+            Form = form,
+        };
     }
 
-    [Fact]
-    public void The_base_form_uses_attacks_with_no_required_mode()
+    private static DamageContext Of(Stance stance = Stance.Melee, params ChainAttack[] attacks)
     {
-        ChainAttack nova = ChainFactory.Attack("Nova") with { Profile = ChainFactory.Profile(modes: ["Nova"]) };
-
-        Assert.Equal("Plain", string.Join(',', DamageSources.AttacksForForm(ChainFactory.Context([ChainFactory.Attack("Plain"), nova])).Select(attack => attack.FullName)));
+        return Context(stance, attacks: attacks);
     }
 
-    [Fact]
-    public void A_form_uses_the_attacks_that_require_it()
+    private static ChainAttack Aura(double period = 2.0)
     {
-        ChainAttack nova = ChainFactory.Attack("Nova") with { Profile = ChainFactory.Profile(modes: ["Nova"]) };
-
-        Assert.Equal("Nova", string.Join(',', DamageSources.AttacksForForm(ChainFactory.Context([ChainFactory.Attack("Plain"), nova]) with { Form = "Nova" }).Select(attack => attack.FullName)));
+        return Attack("Aura", Role.Aura, Delivery.Melee, Shape.Pbaoe, damage: 10.0, period: period);
     }
 
-    [Fact]
-    public void The_chosen_chain_is_null_without_a_usable_attack()
+    private static ChainAttack MeleeHit(string name = "M")
     {
-        Assert.Null(DamageSources.ChosenChain(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura)])));
+        return Attack(name, delivery: Delivery.Melee, recharge: 10.0);
     }
 
-    [Fact]
-    public void The_chain_source_is_null_without_a_usable_attack()
+    private static ChainAttack RangedHit(string name = "R")
     {
-        Assert.Null(DamageSources.ChainSource(ChainFactory.Context([])));
+        return Attack(name, recharge: 10.0);
     }
 
-    [Theory]
-    [MemberData(nameof(BudgetLabels))]
-    public void The_chain_label_says_how_affordable_the_rotation_is(string expected, double recovery)
+    private static ChainAttack Patch(double damage = 50.0, string name = "Patch")
     {
-        DamageContext context = ChainFactory.Context([ChainFactory.Attack("Hit")]) with { Budget = new EnduranceBudget(100.0, recovery, 0.0) };
-
-        Assert.Contains(expected, DamageSources.ChainSource(context)!.Label, StringComparison.Ordinal);
+        return Attack(name, Role.Patch, Delivery.Ranged, Shape.Location, damage, 1.0, 10.0, 12.0);
     }
 
-    [Fact]
-    public void A_chain_that_empties_before_the_minimum_cycles_is_not_affordable()
+    private static ChainAttack Form(string name, double damage, params string[] modes)
     {
-        DamageContext context = ChainFactory.Context([ChainFactory.Attack("Hit")]) with { Budget = new EnduranceBudget(10.0, 0.0, 0.0) };
-
-        Assert.Contains("not affordable (best overall): empties in 15.5 s, 2.5 cycles", DamageSources.ChainSource(context)!.Label, StringComparison.Ordinal);
-    }
-
-    [Theory]
-    [InlineData(Stance.Melee, 1.0)]
-    [InlineData(Stance.Ranged, 0.0)]
-    public void Melee_and_ranged_stances_fix_the_melee_share(Stance stance, double expected)
-    {
-        Assert.Equal(expected, DamageSources.MeleeShare(ChainFactory.Context([], stance)));
+        ChainAttack attack = Attack(name, damage: damage);
+        return attack with { Profile = attack.Profile with { ModesRequired = modes } };
     }
 
     [Fact]
-    public void A_hybrid_share_assumption_overrides_the_rotation()
+    public void Every_source_returns_none_when_its_role_is_absent()
     {
-        Assert.Equal(0.4, DamageSources.MeleeShare(ChainFactory.Context([], Stance.Hybrid, assumptions: HybridShare)));
+        DamageContext context = Of(attacks: Attack("Bolt", Role.PetSummon));
+
+        Assert.True(DamageSources.ChainSource(context) is null && DamageSources.ChosenChain(context) is null && DamageSources.AuraSource(context) is null && DamageSources.PatchSource(context) is null && DamageSources.BuffCastSource(context) is null);
     }
 
     [Fact]
-    public void A_hybrid_share_outside_zero_to_one_is_e56()
+    public void The_chain_reports_the_planners_rotation_per_attack_dps_and_a_sustainable_label()
     {
-        DamageContext context = ChainFactory.Context([], Stance.Hybrid, assumptions: new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 1.5 });
+        DamageContext context = Context(timeline: 0.5, attacks: [Attack("A", damage: 100.0), Attack("B", damage: 60.0, recharge: 3.0)]);
+        ChainOption option = DamageSources.ChosenChain(context)!;
 
-        Assert.Equal("E56: assumption hybrid.melee_share=1.5 is outside [0, 1]; set it within that range", Assert.Throws<EngineException>(() => DamageSources.MeleeShare(context)).Message);
+        SourceResult result = DamageSources.ChainSource(context)!;
+
+        Assert.True(option.Sustainable);
+        Assert.Equal("chain", result.Source);
+        Assert.Equal((option.Dps, option.EndPerSec), (result.Dps, result.EndPerSec));
+        Assert.Equal(string.Join(',', option.Rotation), string.Join(',', result.Detail.Select(item => item.Name)));
+        Near.Rel(100.0 / option.CycleTime * 0.5, result.Detail.Single(item => string.Equals(item.Name, "A", StringComparison.Ordinal)).Dps, 1e-5);
+        Near.Rel(option.Dps, result.Detail.Sum(item => item.Dps), 1e-5);
+        Assert.Contains("sustainable", result.Label, StringComparison.Ordinal);
+        Assert.DoesNotContain("not sustainable", result.Label, StringComparison.Ordinal);
+        Assert.Contains("#31", result.Label, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void A_hybrid_stance_with_no_chain_stands_nowhere()
+    public void When_no_option_lasts_its_minimum_cycles_the_pick_is_the_best_overall()
     {
-        Assert.Equal(0.0, DamageSources.MeleeShare(Hybrid()));
+        DamageContext context = Context(budget: new EnduranceBudget(100.0, 1.0, 0.0), attacks: Attack("Heavy", end: 500.0));
+
+        Assert.False(DamageSources.ChosenChain(context)!.Sustainable);
+        Assert.Contains("not affordable (best overall)", DamageSources.ChainSource(context)!.Label, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void A_hybrid_rotation_with_no_melee_attack_has_no_melee_share()
+    public void A_draining_pick_that_lasts_its_minimum_cycles_is_labelled_affordable_with_its_cycle_count()
     {
-        Assert.Equal(0.0, DamageSources.MeleeShare(Hybrid(ChainFactory.Attack("Ranged"))));
+        DamageContext context = Context(budget: new EnduranceBudget(100.0, 2.0, 0.0), attacks: Attack("A"));
+
+        string label = DamageSources.ChainSource(context)!.Label;
+
+        Assert.Contains("affordable: empties in", label, StringComparison.Ordinal);
+        Assert.Contains("cycles", label, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void A_hybrid_rotation_of_only_melee_attacks_is_all_melee()
+    public void Melee_counts_the_aura_fully_and_ranged_drops_it()
     {
-        Assert.Equal(1.0, DamageSources.MeleeShare(Hybrid(Melee("Close"))));
+        SourceResult full = DamageSources.AuraSource(Of(attacks: Aura()))!;
+
+        Near.Rel(AuraFull, full.Dps);
+        Assert.Equal((0.0, 0.0), (full.EndPerSec, full.TimelineShare));
+        Assert.Equal(("Aura", full.Dps), Assert.Single(full.Detail));
+        Assert.Null(DamageSources.AuraSource(Of(Stance.Ranged, Aura())));
     }
 
     [Fact]
-    public void A_mixed_hybrid_rotation_splits_the_cycle()
+    public void A_hybrid_aura_share_is_zero_for_an_all_ranged_rotation()
     {
-        double share = DamageSources.MeleeShare(Hybrid(Melee("Close"), ChainFactory.Attack("Far")));
-
-        Assert.InRange(share, 0.01, 0.99);
+        Assert.Null(DamageSources.AuraSource(Of(Stance.Hybrid, Aura(), RangedHit())));
     }
 
     [Fact]
-    public void Auras_are_absent_without_an_aura_power()
+    public void A_hybrid_aura_share_is_zero_without_any_chain_attack()
     {
-        Assert.Null(DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Hit")])));
+        Assert.Null(DamageSources.AuraSource(Of(Stance.Hybrid, Aura())));
     }
 
     [Fact]
-    public void Auras_are_absent_while_standing_at_range()
+    public void A_hybrid_aura_share_is_one_for_an_all_melee_rotation()
     {
-        Assert.Null(DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura) with { ActivatePeriod = 2.0 }], Stance.Ranged)));
+        Near.Rel(AuraFull, DamageSources.AuraSource(Of(Stance.Hybrid, Aura(), MeleeHit()))!.Dps);
     }
 
     [Fact]
-    public void An_aura_without_a_tick_period_is_e55()
+    public void A_hybrid_aura_share_of_a_mixed_rotation_is_melee_time_over_cycle()
     {
-        Assert.StartsWith("E55: aura Aura has activate_period 0.0 but must be > 0", Assert.Throws<EngineException>(() => DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura)]))).Message, StringComparison.Ordinal);
+        DamageContext context = Of(Stance.Hybrid, Aura(), MeleeHit(), RangedHit());
+        ChainOption chain = DamageSources.ChosenChain(context)!;
+        double cast = AttackChains.ArcanaCastTime(1.0);
+        double expected = (cast + (chain.MoveTime / 2.0)) / chain.CycleTime;
+
+        Assert.Equal("M,R", string.Join(',', chain.Rotation));
+        Assert.InRange(expected, 0.0, 1.0);
+        Near.Rel(AuraFull * expected, DamageSources.AuraSource(context)!.Dps, 1e-4);
     }
 
     [Fact]
-    public void An_aura_deals_damage_per_tick_over_the_period()
+    public void The_hybrid_melee_share_assumption_overrides_the_rotation()
     {
-        SourceResult aura = DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura, damage: 10.0) with { ActivatePeriod = 2.0 }]))!;
+        DamageContext context = Context(Stance.Hybrid, new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 0.25 }, attacks: [Aura(), RangedHit()]);
 
-        Assert.Equal("5 damage auras at melee share 1.00; per-tick damage assumed", aura.Dps + " " + aura.Label);
+        Near.Rel(AuraFull * 0.25, DamageSources.AuraSource(context)!.Dps);
     }
 
     [Fact]
-    public void Patches_without_damage_are_absent()
+    public void A_zero_tick_period_is_e55_and_a_melee_share_outside_zero_to_one_is_e56()
     {
-        Assert.Null(DamageSources.PatchSource(ChainFactory.Context([ChainFactory.Attack("Decoy", Role.Patch, damage: 0.0)])));
+        DamageContext bad = Context(Stance.Hybrid, new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 1.5 }, attacks: Aura());
+
+        Assert.StartsWith("E55", Assert.Throws<EngineException>(() => DamageSources.AuraSource(Of(attacks: Aura(0.0)))).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E56", Assert.Throws<EngineException>(() => DamageSources.AuraSource(bad)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
-    public void A_patch_casts_on_cooldown_and_claims_its_cast_share()
+    public void A_patch_casts_on_cooldown_with_dps_over_the_full_cycle()
     {
-        SourceResult patch = DamageSources.PatchSource(ChainFactory.Context([ChainFactory.Attack("Patch", Role.Patch, damage: 60.0, cast: 1.0, recharge: 10.0, end: 5.0)]))!;
+        SourceResult result = DamageSources.PatchSource(Of(Stance.Ranged, Patch()) with { Scenario = new Scenario(3) })!;
+        double cast = AttackChains.ArcanaCastTime(1.0);
+        double cycle = cast + 10.0;
 
-        Assert.True(patch.Dps > 0.0 && patch.TimelineShare > 0.0 && patch.EndPerSec > 0.0);
+        Assert.Equal(("patch", "Patch"), (result.Source, result.Detail[0].Name));
+        Near.Rel(50.0 * 3 / cycle, result.Dps, 1e-5);
+        Near.Rel(cast / cycle, result.TimelineShare, 1e-5);
+        Near.Rel(12.0 / cycle, result.EndPerSec, 1e-5);
     }
 
     [Fact]
-    public void Buff_casts_are_absent_without_buff_clicks()
+    public void A_patch_without_damage_is_not_charged_timeline_or_endurance()
     {
-        Assert.Null(DamageSources.BuffCastSource(ChainFactory.Context([ChainFactory.Attack("Hit")])));
+        ChainAttack decoy = Patch(0.0, "Decoy");
+        ChainAttack real = Patch();
+
+        SourceResult both = DamageSources.PatchSource(Of(attacks: [decoy, real]))!;
+        SourceResult alone = DamageSources.PatchSource(Of(attacks: real))!;
+
+        Assert.Null(DamageSources.PatchSource(Of(attacks: decoy)));
+        Assert.Equal("Patch", Assert.Single(both.Detail).Name);
+        Assert.Equal((alone.Dps, alone.TimelineShare, alone.EndPerSec), (both.Dps, both.TimelineShare, both.EndPerSec));
     }
 
     [Fact]
-    public void Buff_clicks_and_support_powers_spend_time_and_endurance_for_no_damage()
+    public void A_buff_click_deals_no_damage_but_takes_its_cast_share_and_endurance()
     {
-        SourceResult cast = DamageSources.BuffCastSource(ChainFactory.Context([ChainFactory.Attack("Buff", Role.BuffClick), ChainFactory.Attack("Aid", Role.Support)]))!;
+        SourceResult result = DamageSources.BuffCastSource(Of(attacks: Attack("Buff", Role.BuffClick, end: 8.0, cast: 1.0, recharge: 10.0)))!;
+        double cast = AttackChains.ArcanaCastTime(1.0);
 
-        Assert.True(cast.Dps == 0.0 && cast.TimelineShare > 0.0 && cast.EndPerSec > 0.0);
+        Assert.Equal(("buff_cast", 0.0), (result.Source, result.Dps));
+        Near.Rel(cast / (cast + 10.0), result.TimelineShare, 1e-5);
+        Near.Rel(8.0 / (cast + 10.0), result.EndPerSec, 1e-5);
+    }
+
+    [Fact]
+    public void A_support_power_takes_the_same_cooldown_cast_share_in_the_one_buff_cast_source()
+    {
+        double cast = AttackChains.ArcanaCastTime(1.5);
+        double fastCast = AttackChains.ArcanaCastTime(1.0);
+
+        SourceResult result = DamageSources.BuffCastSource(Of(attacks: [Attack("Melt", Role.Support, cast: 1.5, recharge: 100.0, end: 10.0), Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0, end: 8.0)]))!;
+
+        Assert.Equal("buff_cast", result.Source);
+        Near.Rel((cast / (cast + 100.0)) + (fastCast / (fastCast + 10.0)), result.TimelineShare, 1e-5);
+        Near.Rel((10.0 / (cast + 100.0)) + (8.0 / (fastCast + 10.0)), result.EndPerSec, 1e-5);
+    }
+
+    [Fact]
+    public void The_form_filter_keeps_mode_free_attacks_in_the_base_form_and_the_forms_attacks_in_a_form()
+    {
+        ChainAttack human = Form("Blast", 100.0);
+        ChainAttack nova = Form("Nova Bolt", 100.0, "Nova");
+
+        Assert.Equal("Blast|Nova Bolt", string.Join('|', DamageSources.AttacksForForm(Of(attacks: [human, nova])).Select(attack => attack.FullName)) + "|" + string.Join(',', DamageSources.AttacksForForm(Context(form: "Nova", attacks: [human, nova])).Select(attack => attack.FullName)));
+    }
+
+    [Fact]
+    public void Each_forms_chain_picks_only_its_own_attacks_though_the_other_forms_hit_harder()
+    {
+        DamageContext context = Of(attacks: [Form("Blast", 100.0), Form("Nova Bolt", 500.0, "Nova")]);
+        DamageContext nova = context with { Form = "Nova" };
+
+        Assert.Equal("Blast Nova Bolt True", $"{string.Join(',', DamageSources.ChosenChain(context)!.Rotation)} {string.Join(',', DamageSources.ChosenChain(nova)!.Rotation)} {DamageSources.ChainSource(nova) is not null}");
+    }
+
+    [Fact]
+    public void The_melee_share_is_the_public_helper_other_layers_reuse()
+    {
+        Assert.Equal(1.0, DamageSources.MeleeShare(Of()));
+    }
+
+    [Fact]
+    public void The_end_to_end_fold_gives_the_chain_the_timeline_left_by_patch_and_buff()
+    {
+        ChainAttack chain = Attack("Smite", damage: 120.0, debuff: 0.2) with { TargetResDebuffDuration = 4.0 };
+        ChainAttack buff = Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0, end: 8.0, buff: 0.5, buffDuration: 5.5);
+        DamageContext context = Context(scenario: new Scenario(1), attacks: [chain, Patch(), buff]);
+        SourceRegistration[] sources =
+        [
+            new(DamageSources.ChainSource, FillsRemainder: true),
+            new(DamageSources.AuraSource, FillsRemainder: false),
+            new(DamageSources.PatchSource, FillsRemainder: false),
+            new(DamageSources.BuffCastSource, FillsRemainder: false),
+            new(_ => new SourceResult { Source = "pet", Dps = 100.0 }, FillsRemainder: false),
+        ];
+
+        DamageReport report = DamageModel.Evaluate(context, sources, [DamageModifiers.ClickBuffModifier, DamageModifiers.TargetDebuffModifier]);
+        double cast = AttackChains.ArcanaCastTime(1.0);
+        double cycle = cast + 10.0;
+        double share = 2 * cast / cycle;
+        double chainDps = 120.0 / Math.Max(cast, cast + 1.0) * (1.0 - share);
+        double click = 1.0 + (0.5 * (5.5 / cycle));
+        double Scaled(string name) => report.ScaledDps.Single(pair => string.Equals(pair.Key, name, StringComparison.Ordinal)).Value;
+
+        Near.Rel(chainDps, report.Sources.Single(source => string.Equals(source.Source, "chain", StringComparison.Ordinal)).Dps, 1e-4);
+        Near.Rel(chainDps * click * 1.2, Scaled("chain"), 1e-4);
+        Near.Rel(50.0 / cycle * click * 1.2, Scaled("patch"), 1e-4);
+        Near.Rel(100.0 * 1.2, Scaled("pet"), 1e-4);
+        Assert.Equal(0.0, Scaled("buff_cast"));
+        Near.Rel(report.Sources.Single(source => string.Equals(source.Source, "chain", StringComparison.Ordinal)).EndPerSec + ((12.0 + 8.0) / cycle), report.TotalDrainPerSec, 1e-4);
     }
 }
