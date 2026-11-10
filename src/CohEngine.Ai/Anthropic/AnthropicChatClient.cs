@@ -52,9 +52,11 @@ public sealed class AnthropicChatClient : IChatClient
 
         Uri root = new(baseUrl ?? DefaultBaseUrl);
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
+        metadata = new ChatClientMetadata("anthropic", root, model);
+
+        // Last, so no later statement can throw and leave the owned client undisposed.
         ownsHttp = handler is not null;
         http = handler is null ? SharedHttp : new HttpClient(handler, disposeHandler: false);
-        metadata = new ChatClientMetadata("anthropic", root, model);
     }
 
     /// <inheritdoc/>
@@ -63,7 +65,8 @@ public sealed class AnthropicChatClient : IChatClient
         ChatOptions? options = null,
         CancellationToken cancellationToken = default)
     {
-        using HttpRequestMessage request = CreateRequest(messages, options, stream: false);
+        using HttpRequestMessage request = new(HttpMethod.Post, endpoint);
+        FillRequest(request, messages, options, stream: false);
         using HttpResponseMessage response = await http.SendAsync(request, cancellationToken).ConfigureAwait(false);
         await ThrowIfFailedAsync(response, cancellationToken).ConfigureAwait(false);
         Stream body = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
@@ -89,7 +92,8 @@ public sealed class AnthropicChatClient : IChatClient
         ChatOptions? options = null,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        using HttpRequestMessage request = CreateRequest(messages, options, stream: true);
+        using HttpRequestMessage request = new(HttpMethod.Post, endpoint);
+        FillRequest(request, messages, options, stream: true);
         using HttpResponseMessage response = await http.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
         await ThrowIfFailedAsync(response, cancellationToken).ConfigureAwait(false);
         Stream body = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
@@ -288,6 +292,19 @@ public sealed class AnthropicChatClient : IChatClient
         return response.Headers.TryGetValues("request-id", out IEnumerable<string>? values) ? values.FirstOrDefault() : null;
     }
 
+    private static AnthropicError? ReadError(string text)
+    {
+        try
+        {
+            return JsonSerializer.Deserialize(text, AnthropicJsonContext.Default.AnthropicErrorEnvelope)?.Error;
+        }
+        catch (JsonException)
+        {
+            // A proxy's HTML error page: the caller falls back to the status line.
+            return null;
+        }
+    }
+
     private async Task ThrowIfFailedAsync(HttpResponseMessage response, CancellationToken cancellationToken)
     {
         if (response.IsSuccessStatusCode)
@@ -296,17 +313,7 @@ public sealed class AnthropicChatClient : IChatClient
         }
 
         string text = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-        AnthropicError? error = null;
-        try
-        {
-            error = JsonSerializer.Deserialize(text, AnthropicJsonContext.Default.AnthropicErrorEnvelope)?.Error;
-        }
-        catch (JsonException)
-        {
-            // A proxy's HTML error page: fall back to the status line below.
-        }
-
-        throw ApiError(response, error, response.ReasonPhrase);
+        throw ApiError(response, ReadError(text), response.ReasonPhrase);
     }
 
     private AnthropicApiException ApiError(HttpResponseMessage response, AnthropicError? error, string? fallbackMessage)
@@ -324,6 +331,8 @@ public sealed class AnthropicChatClient : IChatClient
             ?? throw new JsonException($"The Messages API sent a null {sse.Event} event.");
         List<AIContent> contents = [];
         ChatFinishReason? finishReason = null;
+
+        // Events with no case here (ping, thinking deltas) carry nothing the caller needs.
         switch (sse.Event)
         {
             case "message_start":
@@ -355,8 +364,6 @@ public sealed class AnthropicChatClient : IChatClient
                 break;
             case "error":
                 throw ApiError(response, data.Error, fallbackMessage: null);
-            default: // ping, thinking deltas: nothing the caller needs.
-                break;
         }
 
         return contents.Count > 0 || finishReason is not null
@@ -364,16 +371,13 @@ public sealed class AnthropicChatClient : IChatClient
             : null;
     }
 
-    private HttpRequestMessage CreateRequest(IEnumerable<ChatMessage> messages, ChatOptions? options, bool stream)
+    // The caller owns the request under a using declaration, so a throw here cannot leak it.
+    private void FillRequest(HttpRequestMessage request, IEnumerable<ChatMessage> messages, ChatOptions? options, bool stream)
     {
         AnthropicRequest body = BuildRequest(messages, options, stream, metadata.DefaultModelId!);
-        HttpRequestMessage request = new(HttpMethod.Post, endpoint)
-        {
-            Content = JsonContent.Create(body, AnthropicJsonContext.Default.AnthropicRequest),
-        };
+        request.Content = JsonContent.Create(body, AnthropicJsonContext.Default.AnthropicRequest);
         request.Headers.Add("x-api-key", apiKey);
         request.Headers.Add("anthropic-version", ApiVersion);
-        return request;
     }
 
     private string? Redact(string? text)

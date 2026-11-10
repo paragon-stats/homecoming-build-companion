@@ -16,12 +16,22 @@ internal sealed class FakeAnthropicHandler(HttpStatusCode status, string body, s
     {
         Requests.Add(request);
         Bodies.Add(request.Content is null ? string.Empty : await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
-        HttpResponseMessage response = new(status) { Content = new StringContent(body, Encoding.UTF8, mediaType) };
-        if (RequestId is not null)
+        HttpResponseMessage response = new(status);
+        try
         {
-            response.Headers.Add("request-id", RequestId);
-        }
+            response.Content = new StringContent(body, Encoding.UTF8, mediaType);
+            if (RequestId is not null)
+            {
+                response.Headers.Add("request-id", RequestId);
+            }
 
-        return response;
+            return response;
+        }
+        catch
+        {
+            // The client owns the response only once it is returned.
+            response.Dispose();
+            throw;
+        }
     }
 }

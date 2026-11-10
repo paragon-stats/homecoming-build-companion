@@ -43,6 +43,8 @@ internal static class SseParser
             string field = colon < 0 ? line : line[..colon];
             string value = colon < 0 ? string.Empty : line[(colon + 1)..];
             value = value.StartsWith(' ') ? value[1..] : value;
+
+            // id and retry drive reconnection, which the client does not do, so they fall through unread.
             switch (field)
             {
                 case "event":
@@ -50,8 +52,6 @@ internal static class SseParser
                     break;
                 case "data":
                     data.Append(data.Length > 0 ? "\n" : string.Empty).Append(value);
-                    break;
-                default:
                     break;
             }
         }

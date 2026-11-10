@@ -19,7 +19,7 @@ public sealed class AnthropicChatClientTests
     {
         string variable = NewVariable(value: null);
 
-        InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new AnthropicChatClient(Model, apiKeyEnvironmentVariable: variable));
+        InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new AnthropicChatClient(Model, apiKeyEnvironmentVariable: variable).Dispose());
 
         Assert.StartsWith("E140: " + variable + " is not set", exception.Message, StringComparison.Ordinal);
     }
@@ -222,7 +222,7 @@ public sealed class AnthropicChatClientTests
     public void A_client_without_a_handler_uses_the_shared_connection_pool_and_disposes_cleanly()
     {
         string variable = NewVariable(FakeKey);
-        AnthropicChatClient client = new(Model, apiKeyEnvironmentVariable: variable);
+        using AnthropicChatClient client = new(Model, apiKeyEnvironmentVariable: variable);
 
         client.Dispose();
         client.Dispose();
