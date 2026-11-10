@@ -65,6 +65,22 @@ public sealed class ToolTests
     }
 
     [Fact]
+    public async Task Score_gives_metrics_that_validate_expect_accepts()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+
+        JsonNode result = await harness.CallJsonAsync("score", ("buildDir", buildDir)).ConfigureAwait(true);
+
+        foreach (JsonNode? metric in result["metrics"]!.AsArray())
+        {
+            string claim = metric!["flag"] is { } flag ? flag.GetValue<bool>().ToString().ToLowerInvariant() : Math.Round(metric["number"]!.GetValue<double>(), 2).ToString("F2", CultureInfo.InvariantCulture);
+            (string Output, int ExitCode) cli = CliCapture.Run("validate", buildDir, "--expect", metric["name"]!.GetValue<string>() + "=" + claim);
+            Assert.DoesNotContain("P-EXPECT-001", cli.Output, StringComparison.Ordinal);
+        }
+    }
+
+    [Fact]
     public async Task Score_runs_the_assembly_path_for_an_assembly_era_build()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
