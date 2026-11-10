@@ -199,9 +199,8 @@ public static class AttackProfiles
             string table = template.Str("table");
             string aspect = template.ReqStr("aspect");
             string target = template.ReqStr("target");
-            foreach (JsonElement attribElement in template.ReqItems("attribs"))
+            foreach (string attrib in template.ReqItems("attribs").Select(item => item.GetString() ?? string.Empty))
             {
-                string attrib = attribElement.GetString() ?? string.Empty;
                 bool damage = attrib.EndsWith("_Dmg", StringComparison.Ordinal) && !string.Equals(attrib, "Heal_Dmg", StringComparison.Ordinal);
                 found.CreatesEntity |= string.Equals(attrib, "Create_Entity", StringComparison.Ordinal);
                 found.FoeDamage |= damage && string.Equals(aspect, "Absolute", StringComparison.Ordinal) && !string.Equals(target, "Self", StringComparison.Ordinal);
@@ -248,13 +247,9 @@ public static class AttackProfiles
             }
         }
 
-        foreach (string name in names)
+        foreach (JsonElement linked in names.Select(name => resolve(name)).OfType<JsonElement>())
         {
-            JsonElement? linked = resolve(name);
-            if (linked is not null)
-            {
-                yield return linked.Value;
-            }
+            yield return linked;
         }
     }
 

@@ -319,13 +319,11 @@ public static class PetDamage
     private static int ClassIndex(JsonElement entity, ArchetypeDb classes)
     {
         string raw = entity.Req("defaults").ReqStr("character_class_name");
-        foreach (string candidate in new[] { "Class_" + raw, "Class_" + string.Join('_', raw.Split('_').Reverse()) })
+        string[] candidates = ["Class_" + raw, "Class_" + string.Join('_', raw.Split('_').Reverse())];
+        int found = candidates.Select(candidate => classes.NidFromUidClass(candidate)).FirstOrDefault(index => index >= 0, -1);
+        if (found >= 0)
         {
-            int index = classes.NidFromUidClass(candidate);
-            if (index >= 0)
-            {
-                return index;
-            }
+            return found;
         }
 
         throw new EngineException(

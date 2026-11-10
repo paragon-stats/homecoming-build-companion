@@ -142,13 +142,9 @@ public sealed class PowerNameResolver
                 Add(found, (record.ReqStr(field).ToLowerInvariant(), null), entry.Name);
             }
 
-            foreach (JsonElement pair in entry.Value.EnumerateArray())
+            foreach (string[] parts in entry.Value.EnumerateArray().Select(pair => pair[1].GetString()!.Split('.')).Where(parts => string.Equals(parts[0], "epic", StringComparison.Ordinal)))
             {
-                string[] parts = pair[1].GetString()!.Split('.');
-                if (string.Equals(parts[0], "epic", StringComparison.Ordinal))
-                {
-                    Add(found, (parts[0], parts[1]), entry.Name);
-                }
+                Add(found, (parts[0], parts[1]), entry.Name);
             }
         }
 

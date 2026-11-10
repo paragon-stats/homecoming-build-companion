@@ -6,6 +6,8 @@ namespace CohEngine.Core.DamageLayers;
 /// <summary>The Python enum values of the model enums.</summary>
 public static class EnumText
 {
+    private static readonly Stance[] Stances = [Stance.Melee, Stance.Ranged, Stance.Hybrid];
+
     /// <summary>The Python value of a stance.</summary>
     /// <param name="stance">The stance.</param>
     /// <returns>Its text.</returns>
@@ -50,13 +52,10 @@ public static class EnumText
     /// <returns>Whether the text names a stance.</returns>
     public static bool TryParseStance(string text, out Stance stance)
     {
-        foreach (Stance candidate in new[] { Stance.Melee, Stance.Ranged, Stance.Hybrid })
+        foreach (Stance candidate in Stances.Where(candidate => string.Equals(candidate.Value(), text, StringComparison.Ordinal)))
         {
-            if (string.Equals(candidate.Value(), text, StringComparison.Ordinal))
-            {
-                stance = candidate;
-                return true;
-            }
+            stance = candidate;
+            return true;
         }
 
         stance = Stance.Melee;

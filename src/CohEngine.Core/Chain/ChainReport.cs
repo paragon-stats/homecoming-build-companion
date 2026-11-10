@@ -116,24 +116,17 @@ public static class ChainReport
         {
             int table = PetDamage.ModifierTable(mods, template.Str("table"), power.ReqStr("full_name"));
             double value = Math.Abs(template.ReqNum("scale") * template.Num("magnitude", 1.0) * EffectMagnitude.Modifier(mods, classes.Classes, classIndex, table, 49));
-            foreach (JsonElement attrib in template.ReqItems("attribs"))
+            foreach (string key in template.ReqItems("attribs").Select(attrib => attrib.GetString() ?? string.Empty))
             {
-                string key = attrib.GetString() ?? string.Empty;
                 totals[key] = totals.GetValueOrDefault(key) + value;
             }
 
             duration = Math.Max(duration, Seconds(template.Opt("duration")?.GetString()));
         }
 
-        foreach (JsonElement effect in power.Items("effects"))
+        foreach (JsonElement template in power.Items("effects").SelectMany(effect => effect.Items("templates")).Where(template => template.ReqItems("attribs").Any(item => string.Equals(item.GetString(), "Create_Entity", StringComparison.Ordinal))))
         {
-            foreach (JsonElement template in effect.Items("templates"))
-            {
-                if (template.ReqItems("attribs").Any(item => string.Equals(item.GetString(), "Create_Entity", StringComparison.Ordinal)))
-                {
-                    duration = Math.Max(duration, Seconds(template.Opt("duration")?.GetString()));
-                }
-            }
+            duration = Math.Max(duration, Seconds(template.Opt("duration")?.GetString()));
         }
 
         double smallest = CoreTypes.Min(type => totals.GetValueOrDefault(type));
@@ -752,13 +745,9 @@ public static class ChainReport
             };
         }
 
-        foreach (ChainAttack attack in rule.Context.Attacks)
+        foreach (string message in rule.Context.Attacks.Select(attack => AttackProfiles.CategoryDisagreement(attack.Profile)).OfType<string>())
         {
-            string? message = AttackProfiles.CategoryDisagreement(attack.Profile);
-            if (message is not null)
-            {
-                yield return new Diagnostic("P-CHAIN-002", "info", message) { Path = rule.Path };
-            }
+            yield return new Diagnostic("P-CHAIN-002", "info", message) { Path = rule.Path };
         }
     }
 

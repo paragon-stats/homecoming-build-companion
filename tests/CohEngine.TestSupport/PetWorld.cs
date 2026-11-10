@@ -75,6 +75,6 @@ public static class PetWorld
 
     private static ModifierTable Table(string name, double value)
     {
-        return new ModifierTable { Id = name, BaseIndex = 0, Table = [.. Enumerable.Repeat((IReadOnlyList<double>)[value, value], 50)] };
+        return new ModifierTable { Id = name, BaseIndex = 0, Table = [.. Enumerable.Repeat<IReadOnlyList<double>>([value, value], 50)] };
     }
 }

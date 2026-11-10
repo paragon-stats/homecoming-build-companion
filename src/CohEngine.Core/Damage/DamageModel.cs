@@ -34,15 +34,7 @@ public static class DamageModel
         sources ??= DamagePlugins.Sources;
         modifiers ??= DamagePlugins.Modifiers;
 
-        List<SourceResult> first = [];
-        foreach (SourceRegistration registration in sources.Where(item => !item.FillsRemainder))
-        {
-            SourceResult? result = registration.Run(context);
-            if (result is not null)
-            {
-                first.Add(result);
-            }
-        }
+        List<SourceResult> first = [.. sources.Where(item => !item.FillsRemainder).Select(registration => registration.Run(context)).OfType<SourceResult>()];
 
         double share = F32.Round(PyFloat.Sum(first.Select(result => result.TimelineShare)));
         if (share > 1.0)
@@ -55,25 +47,8 @@ public static class DamageModel
 
         double drain = F32.Round(PyFloat.Sum(first.Select(result => result.EndPerSec)));
         DamageContext restContext = context with { TimelineAvailable = F32.Round(context.TimelineAvailable - share), OtherDrainPerSec = drain };
-        List<SourceResult> results = [.. first];
-        foreach (SourceRegistration registration in sources.Where(item => item.FillsRemainder))
-        {
-            SourceResult? result = registration.Run(restContext);
-            if (result is not null)
-            {
-                results.Add(result);
-            }
-        }
-
-        List<ModifierResult> mods = [];
-        foreach (Func<DamageContext, ModifierResult?> modifier in modifiers)
-        {
-            ModifierResult? result = modifier(restContext);
-            if (result is not null)
-            {
-                mods.Add(result);
-            }
-        }
+        List<SourceResult> results = [.. first, .. sources.Where(item => item.FillsRemainder).Select(registration => registration.Run(restContext)).OfType<SourceResult>()];
+        List<ModifierResult> mods = [.. modifiers.Select(modifier => modifier(restContext)).OfType<ModifierResult>()];
 
         List<KeyValuePair<string, double>> scaled = [];
         foreach (SourceResult result in results)

@@ -25,7 +25,8 @@ public static class Near
 
     private static void Within(double expected, double actual, double tolerance)
     {
-        if (!(Math.Abs(expected - actual) <= tolerance))
+        double difference = Math.Abs(expected - actual);
+        if (double.IsNaN(difference) || difference > tolerance)
         {
             throw new InvalidOperationException(string.Create(CultureInfo.InvariantCulture, $"expected {expected:R} within {tolerance:R}, got {actual:R}"));
         }

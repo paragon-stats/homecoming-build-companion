@@ -19,12 +19,10 @@ public static class DamageReference
     /// <exception cref="EngineException">E40 to E43 as the Python port raises them.</exception>
     public static IReadOnlyDictionary<string, PowerDamageRef> LoadDamageRefs(string buildDir)
     {
-        foreach (string file in Files)
+        string? missing = Files.FirstOrDefault(file => !File.Exists(Path.Join(buildDir, file)));
+        if (missing is not null)
         {
-            if (!File.Exists(Path.Join(buildDir, file)))
-            {
-                throw new EngineException($"{ErrorCodes.E40}: {Path.Join(buildDir, file)} not found; point build_dir at a Mids dump build directory");
-            }
+            throw new EngineException($"{ErrorCodes.E40}: {Path.Join(buildDir, missing)} not found; point build_dir at a Mids dump build directory");
         }
 
         Dictionary<int, JsonElement> enhanced = ByBuildIndex(Path.Join(buildDir, Files[0]));
@@ -129,12 +127,9 @@ public static class DamageReference
         if (debuff.Count == CoreTypes.Length)
         {
             (double Mag, double Duration) best = debuff.Values.First();
-            foreach ((double Mag, double Duration) candidate in debuff.Values)
+            foreach ((double Mag, double Duration) candidate in debuff.Values.Where(candidate => candidate.Mag > best.Mag))
             {
-                if (candidate.Mag > best.Mag)
-                {
-                    best = candidate;
-                }
+                best = candidate;
             }
 
             debuffMag = Math.Max(0.0, -best.Mag);
