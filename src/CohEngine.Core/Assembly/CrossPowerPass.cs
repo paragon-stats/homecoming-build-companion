@@ -183,18 +183,15 @@ internal static class CrossPowerPass
             }
         }
 
-        foreach (string flag in flags)
+        foreach (string flag in flags.Where(flag => !mods.ContainsKey(flag)))
         {
-            if (!mods.ContainsKey(flag))
+            double sum = 0.0;
+            foreach (Effect effect in sourceFx.Where(effect => string.Equals(effect.Reward, flag, StringComparison.Ordinal)))
             {
-                double sum = 0.0;
-                foreach (Effect effect in sourceFx.Where(effect => string.Equals(effect.Reward, flag, StringComparison.Ordinal)))
-                {
-                    sum += effect.Scale;
-                }
-
-                mods[flag] = F32.Round(sum);
+                sum += effect.Scale;
             }
+
+            mods[flag] = F32.Round(sum);
         }
 
         for (int k = start; k < targetFx.Count; k++)
