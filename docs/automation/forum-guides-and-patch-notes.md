@@ -66,6 +66,11 @@ section a thread was found in; a row written before it did keeps the archetype o
 capture root with its own ledger, is not touched; a move onto an existing file is named (`E70`)
 and skipped.
 
+The guide index and the manifest leave out any row whose text names a person listed in `COH_BANNED_NAMES`
+(comma-separated, whole word, case-insensitive: the list the CI operator-name check reads), since a title, file
+name or URL cannot be sanitised and stay exact. The capture stays in the private source repository; the run prints
+how many rows it withheld and nothing about them, and says the filter is off when the variable is unset.
+
 After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1 -SourceRoot <path>` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
 

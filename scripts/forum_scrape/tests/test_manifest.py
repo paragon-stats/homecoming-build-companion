@@ -36,7 +36,10 @@ def test_rows_cover_every_capture_sorted_by_path() -> None:
     assert old["era"] == "pre-sunset" and old["url"] == "https://archive.example/topic/3-old/"
 
 
-def test_main_writes_identical_bytes_and_no_post_text(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+def test_main_writes_identical_bytes_and_no_post_text(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.delenv("COH_BANNED_NAMES", raising=False)
     out = tmp_path / "nested" / "manifest.json"
     argv = ["--source-root", str(SOURCE), "--out", str(out)]
     assert main(argv) == 0
@@ -54,3 +57,13 @@ def test_main_reports_an_empty_root(tmp_path: Path, capsys: pytest.CaptureFixtur
     assert f"E05: no captures under {tmp_path / 'community'}" in err
     assert "pass --source-root" in err
     assert not (tmp_path / "m.json").exists()
+
+
+def test_main_leaves_out_rows_naming_a_banned_word_and_counts_them(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    out = tmp_path / "manifest.json"
+    monkeypatch.setenv("COH_BANNED_NAMES", "claws")
+    assert main(["--source-root", str(SOURCE), "--out", str(out)]) == 0
+    assert [r["path"] for r in json.loads(out.read_text(encoding="utf-8"))] == ["community/archetypes/scrapper/bio.md"]
+    assert "2 row(s) withheld" in capsys.readouterr().out

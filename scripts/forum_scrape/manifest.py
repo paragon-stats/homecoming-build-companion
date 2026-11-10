@@ -20,6 +20,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from scripts.forum_scrape.banned_names import banned_pattern, report, withhold
 from scripts.forum_scrape.guide_index import archetype_of, ledger_urls, load_captures, unquote
 from scripts.forum_scrape.guides import _capture_url, content_hash, stored_hash
 from scripts.forum_scrape.source_root import add_source_root_argument, source_root
@@ -62,7 +63,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     community = source_root(args.source_root) / "community"
-    rows = build_manifest(community)
+    pattern = banned_pattern()
+    rows, withheld = withhold(build_manifest(community), pattern)
     if not rows:
         print(
             f"E05: no captures under {community}; expected community/**/*.md with front matter;"
@@ -72,6 +74,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(render(rows), encoding="utf-8", newline="\n")
+    print(report(pattern, withheld))
     print(f"{len(rows)} capture(s) listed in {args.out}")
     return 0
 
