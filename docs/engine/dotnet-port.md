@@ -155,7 +155,7 @@ The C# port prints byte-identical text and JSON to the Python on every sample bu
 
 | Python | C# | Holds |
 | --- | --- | --- |
-| `damage_model.py` | `DamageLayers/DamageModel` | The model records, the `Stance`, `Role`, `Shape` and `Delivery` enums, and `Evaluate`. |
+| `damage_model.py` | `DamageLayers/DamageModel` and one file per record and enum | `DamageModel` holds the source names and `Evaluate`; the model records and the `Stance`, `Role`, `Shape` and `Delivery` enums each have their own file. |
 | `damage_sources.py` | `DamageLayers/DamageSources` | The chain, aura, patch and buff-cast sources. |
 | `damage_modifiers.py`, `at_modifiers.py` | `DamageLayers/DamageModifiers`, `AtModifiers` | Click buffs, target debuffs and the archetype inherents. |
 | `damage_plugins.py` | `DamageLayers/DamagePlugins` | The default source and modifier lists, in the Python registration order. |
@@ -169,7 +169,7 @@ The C# port prints byte-identical text and JSON to the Python on every sample bu
 
 The namespace of the damage folder is `DamageLayers`, because a `Damage` namespace shadows identifiers the numeric core's tests already use.
 The command's logic lives in Core as `ChainCommand`, like `CliRunner`, so the test projects can reach it and the coverage gate measures it.
-`Program.cs` routes `chain` to it with one line.
+`CliRunner` routes `chain` to it, as a case beside `rules` and `validate`.
 
 ### Printing floats
 

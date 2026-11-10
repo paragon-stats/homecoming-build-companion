@@ -125,7 +125,9 @@ public sealed class ChainCommandTests
         using TempTree tree = new();
         string build = tree.CopyFiles(Path.Combine(Store.MidsDirectory, "builds", "Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"), "b");
 
-        Assert.Equal(2, Run(build, "--mids-dir", Store.MidsDirectory).Code);
+        (int code, string output, _) = Run(build, "--mids-dir", Store.MidsDirectory);
+
+        Assert.Equal("2 True", $"{code} {output.Contains("P-END-002", StringComparison.Ordinal)}");
     }
 
     [Theory]

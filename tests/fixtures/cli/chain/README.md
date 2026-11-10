@@ -25,7 +25,7 @@ python -m coh_engine chain tests/fixtures/mids/builds/<build> --format <text|jso
 Windows line endings were changed to LF.
 Standard output sits in `.out` files because a run that failed printed nothing, and an empty `.json` file fails the JSON check.
 The diagnostic lines and the JSON `path` fields print the build path the way Python's `str(Path)` does, so a capture made on Windows holds backslashes.
-The test treats `\` and `/` as the same character before it compares.
+The test rewrites only the `testsixturesmidsbuilds` prefix (and its JSON-escaped form) to forward slashes before it compares.
 
 Do not regenerate these files to make a test pass.
 A difference is a divergence between the two ports.
