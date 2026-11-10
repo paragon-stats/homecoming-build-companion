@@ -7,18 +7,18 @@ namespace CohEngine.TestSupport;
 public static class BuildFileFixtures
 {
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
-    private static readonly Lazy<IReadOnlyDictionary<int, string>> PowerIndexValue = new(() => DbIndex.LoadPowerIndex(Path.Join(Store.MidsDirectory, "power_static_index.json")));
-    private static readonly Lazy<IReadOnlyDictionary<int, EnhIndexEntry>> EnhIndexValue = new(() => DbIndex.LoadEnhancementIndex(Path.Join(Store.MidsDirectory, "enhancements.json")));
+    private static readonly Lazy<IReadOnlyDictionary<int, string>> PowerIndexValue = new(() => DbIndex.LoadPowerIndex(Path.Combine(Store.MidsDirectory, "power_static_index.json")));
+    private static readonly Lazy<IReadOnlyDictionary<int, EnhIndexEntry>> EnhIndexValue = new(() => DbIndex.LoadEnhancementIndex(Path.Combine(Store.MidsDirectory, "enhancements.json")));
     private static readonly Lazy<MbdDb> DatabaseValue = new(() => Mbd.LoadMbdDb(Store.MidsDirectory));
 
     /// <summary>Gets the reference tables a <c>.mbd</c> is checked and resolved against.</summary>
     public static MbdDb Database => DatabaseValue.Value;
 
     /// <summary>Gets <c>tests/fixtures/buildfile</c>.</summary>
-    public static string Root { get; } = Path.Join(Store.Root, "buildfile");
+    public static string Root { get; } = Path.Combine(Store.Root, "buildfile");
 
     /// <summary>Gets <c>samples/builds</c>.</summary>
-    public static string Samples { get; } = Path.Join(Store.RepositoryRoot, "samples", "builds");
+    public static string Samples { get; } = Path.Combine(Store.RepositoryRoot, "samples", "builds");
 
     /// <summary>Gets the StaticIndex to power full name map.</summary>
     public static IReadOnlyDictionary<int, string> PowerIndex => PowerIndexValue.Value;
@@ -57,13 +57,13 @@ public static class BuildFileFixtures
     /// <returns>The reference file under <c>roundtrip</c>.</returns>
     public static string RoundTripPath(string path)
     {
-        return Path.Join(Root, "roundtrip", Path.GetFileName(path));
+        return Path.Combine(Root, "roundtrip", Path.GetFileName(path));
     }
 
     /// <summary>Lists the fixture <c>.mbd</c> builds the writer tests keep.</summary>
     /// <returns>The full paths.</returns>
     public static IReadOnlyList<string> FixtureMbd()
     {
-        return Files(Path.Join(Root, "builds"), "*.mbd");
+        return Files(Path.Combine(Root, "builds"), "*.mbd");
     }
 }

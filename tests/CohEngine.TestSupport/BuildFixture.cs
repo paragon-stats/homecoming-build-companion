@@ -70,6 +70,6 @@ public sealed class BuildFixture
 
     private string PathOf(string file)
     {
-        return Path.Join(Directory, file);
+        return Path.Combine(Directory, file);
     }
 }

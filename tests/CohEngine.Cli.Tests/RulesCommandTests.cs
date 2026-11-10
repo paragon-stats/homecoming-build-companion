@@ -11,7 +11,7 @@ public sealed class RulesCommandTests
     [Fact]
     public void Rules_prints_the_python_listing()
     {
-        string golden = File.ReadAllText(Path.Join(FixtureStore.Locate(AppContext.BaseDirectory).Root, "rules-golden.txt"));
+        string golden = File.ReadAllText(Path.Combine(FixtureStore.Locate(AppContext.BaseDirectory).Root, "rules-golden.txt"));
         using StringWriter output = new();
         using StringWriter error = new();
 

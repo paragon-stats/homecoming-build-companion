@@ -31,11 +31,11 @@ public sealed class FixtureStore
     public FixtureStore(string repositoryRoot)
     {
         RepositoryRoot = repositoryRoot;
-        Root = Path.Join(repositoryRoot, "tests", "fixtures");
-        MidsDirectory = Path.Join(Root, "mids");
+        Root = Path.Combine(repositoryRoot, "tests", "fixtures");
+        MidsDirectory = Path.Combine(Root, "mids");
         archetypes = new(() => ArchetypeData.LoadArchetypes(Mids("archetypes.json")));
 
-        attribMods = new(() => ArchetypeData.LoadAttribMod(Path.Join(Root, "attribmod", "AttribMod.json")));
+        attribMods = new(() => ArchetypeData.LoadAttribMod(Path.Combine(Root, "attribmod", "AttribMod.json")));
         enums = new(() => TotalsData.LoadEnumMaps(Mids("enums.json")));
         assemblyPowers = new(() => AssemblyData.LoadAssemblyPowers(Mids("assembly_powers.json")));
         assemblyEntities = new(() => AssemblyData.LoadAssemblyEntities(Mids("assembly_entities.json")));
@@ -44,7 +44,7 @@ public sealed class FixtureStore
         levels = new(() => LevelData.LoadLevelSchedule(Mids("levels.json")));
         serverData = new(() => TotalsData.LoadServerData(Mids("server_data.json")));
         config = new(() => TotalsData.LoadEngineConfig(Mids("config.json")));
-        maths = new(() => MathTables.Load(Path.Join(Root, "Maths.mhd")));
+        maths = new(() => MathTables.Load(Path.Combine(Root, "Maths.mhd")));
     }
 
     /// <summary>Gets the repository root.</summary>
@@ -97,7 +97,7 @@ public sealed class FixtureStore
     {
         for (DirectoryInfo? directory = new(startDirectory); directory is not null; directory = directory.Parent)
         {
-            if (File.Exists(Path.Join(directory.FullName, SolutionFile)))
+            if (File.Exists(Path.Combine(directory.FullName, SolutionFile)))
             {
                 return new FixtureStore(directory.FullName);
             }
@@ -110,7 +110,7 @@ public sealed class FixtureStore
     /// <returns>The directory names under <c>tests/fixtures/mids/builds</c>.</returns>
     public IReadOnlyList<string> BuildNames()
     {
-        return [.. Directory.GetDirectories(Path.Join(MidsDirectory, "builds")).Select(Path.GetFileName).OfType<string>().Order(StringComparer.Ordinal)];
+        return [.. Directory.GetDirectories(Path.Combine(MidsDirectory, "builds")).Select(Path.GetFileName).OfType<string>().Order(StringComparer.Ordinal)];
     }
 
     /// <summary>Gets one build's dump, shared across callers.</summary>
@@ -118,11 +118,11 @@ public sealed class FixtureStore
     /// <returns>The build's lazily loaded files.</returns>
     public BuildFixture Build(string name)
     {
-        return builds.GetOrAdd(name, key => new BuildFixture(Path.Join(MidsDirectory, "builds", key)));
+        return builds.GetOrAdd(name, key => new BuildFixture(Path.Combine(MidsDirectory, "builds", key)));
     }
 
     private string Mids(string file)
     {
-        return Path.Join(MidsDirectory, file);
+        return Path.Combine(MidsDirectory, file);
     }
 }
