@@ -17,6 +17,7 @@ Native AOT status is the `IsAotCompatible` property in the package's own project
 | Microsoft.Extensions.AI | 10.11.0 | MIT | Compatible (net7.0 and later) | <https://github.com/dotnet/extensions> |
 | Microsoft.Extensions.AI.OpenAI | 10.11.0 | MIT | Compatible (net7.0 and later) | <https://github.com/dotnet/extensions> |
 | OpenAI | 2.15.0 | MIT | Compatible (net7.0 and later) | <https://github.com/openai/openai-dotnet> |
+| Microsoft.Extensions.DependencyInjection | 10.0.14 | MIT | Compatible (net10.0) | <https://github.com/dotnet/runtime> |
 | ModelContextProtocol | 2.4.0 | Apache-2.0 AND MIT | Compatible (net10.0) | <https://github.com/modelcontextprotocol/csharp-sdk> |
 | ModelContextProtocol.Core | 2.4.0 | Apache-2.0 AND MIT | Compatible (net10.0) | <https://github.com/modelcontextprotocol/csharp-sdk> |
 

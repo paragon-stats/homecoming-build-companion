@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CohEngine.Core\CohEngine.Core.csproj" />
+    <ProjectReference Include="..\CohEngine.Mcp\CohEngine.Mcp.csproj" />
   </ItemGroup>
 
 </Project>
