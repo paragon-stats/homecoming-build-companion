@@ -125,12 +125,12 @@ public static partial class Mbd
         try
         {
             return new MbdDb(
-                Json.Load(Path.Combine(midsDir, "enhancements.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementDbRecord)
+                Json.Load(Path.Join(midsDir, "enhancements.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementDbRecord)
                     .ToLastWinsDictionary(record => record.UID, record => new EnhInfo(record.Nid, record.TypeName, record.SetNid, record.LevelMin, record.LevelMax)),
-                Json.Load(Path.Combine(midsDir, "enhancement_sets.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementSetRecord)
+                Json.Load(Path.Join(midsDir, "enhancement_sets.json"), BuildFileJsonContext.Default.IReadOnlyListEnhancementSetRecord)
                     .ToLastWinsDictionary(record => record.Nid, record => (record.LevelMin, record.LevelMax)),
-                ArchetypeData.LoadArchetypes(Path.Combine(midsDir, "archetypes.json")),
-                Json.Load(Path.Combine(midsDir, "powers.json"), BuildFileJsonContext.Default.IReadOnlyListPowerDbRecord)
+                ArchetypeData.LoadArchetypes(Path.Join(midsDir, "archetypes.json")),
+                Json.Load(Path.Join(midsDir, "powers.json"), BuildFileJsonContext.Default.IReadOnlyListPowerDbRecord)
                     .ToLastWinsDictionary(record => record.FullName, ToTemplate));
         }
         catch (JsonException exception)
