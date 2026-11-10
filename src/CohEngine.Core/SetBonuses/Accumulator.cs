@@ -128,10 +128,7 @@ internal static class Accumulator
                 continue;
             }
 
-            foreach (int enh in info.EnhIndexes.Where(enh => enh == setDef.Enhancements[i]))
-            {
-                output.AddRange(setDef.SpecialBonus[i].Index);
-            }
+            output.AddRange(info.EnhIndexes.Where(enh => enh == setDef.Enhancements[i]).SelectMany(_ => setDef.SpecialBonus[i].Index));
         }
 
         return output;
