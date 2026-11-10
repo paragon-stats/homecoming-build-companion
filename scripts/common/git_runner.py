@@ -29,7 +29,6 @@ class GitRunner(Protocol):
 
     def run_git(self, args: list[str], *, cwd: Path | None = None) -> GitResult:
         """Run a git command and return the result."""
-        ...
 
 
 def run_git(

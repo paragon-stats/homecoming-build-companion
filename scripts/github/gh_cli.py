@@ -190,7 +190,6 @@ class GhRunner(Protocol):
 
     def run(self, argv: list[str], *, input_text: str | None = None) -> GhResult:
         """Run a gh CLI command and return the result."""
-        ...
 
 
 class SubprocessGhRunner:
