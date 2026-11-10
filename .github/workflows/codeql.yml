@@ -55,6 +55,14 @@ jobs:
         if: matrix.language == 'python'
         with:
           category: /language:${{ matrix.language }}
+          output: ${{ runner.temp }}/codeql-sarif
+      # The upload above is done; this only prints what the Python results contain.
+      - name: List remaining results
+        if: matrix.language == 'python'
+        shell: bash
+        env:
+          SARIF_DIR: ${{ runner.temp }}/codeql-sarif
+        run: python3 -m scripts.ci.filter_sarif --list-only "$SARIF_DIR"
       # paths-ignore is ignored for a language analysed with a build, so the C# results are
       # written to disk, stripped of generated obj/ findings, then uploaded under the same
       # category and tool name.

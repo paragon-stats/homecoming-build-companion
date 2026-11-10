@@ -10,8 +10,9 @@ import pytest
 from scripts.ci.filter_sarif import main
 
 
-def _result(uri: str) -> dict:
-    return {"ruleId": "cs/x", "locations": [{"physicalLocation": {"artifactLocation": {"uri": uri}}}]}
+def _result(uri: str, line: int = 0) -> dict:
+    location = {"artifactLocation": {"uri": uri}, "region": {"startLine": line}}
+    return {"ruleId": "cs/x", "locations": [{"physicalLocation": location}]}
 
 
 def test_generated_results_are_removed_and_the_rest_kept(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
@@ -23,12 +24,13 @@ def test_generated_results_are_removed_and_the_rest_kept(tmp_path: Path, capsys:
         "src/objects/Thing.cs",
         "src/Foo/Bar.cs",
     ]
+    lines = {"src/Foo/Bar.cs": 7, "src/Foo/Objects.cs": 3, "src/objects/Thing.cs": 5}
     sarif = {
         "runs": [
             {
                 "tool": {"driver": {"name": "CodeQL"}},
                 "artifacts": [{"location": {"uri": "a"}}],
-                "results": [_result(u) for u in uris] + [{"ruleId": "no-location"}],
+                "results": [_result(u, lines.get(u, 0)) for u in uris] + [{"ruleId": "no-location"}],
             }
         ]
     }
@@ -44,7 +46,28 @@ def test_generated_results_are_removed_and_the_rest_kept(tmp_path: Path, capsys:
     assert kept == ["src/Foo/Objects.cs", "src/objects/Thing.cs", "src/Foo/Bar.cs", None]
     assert out["runs"][0]["tool"] == {"driver": {"name": "CodeQL"}}
     assert out["runs"][0]["artifacts"] == [{"location": {"uri": "a"}}]
-    assert "csharp.sarif: removed 3 generated-file results, 4 remain" in capsys.readouterr().out
+    printed = capsys.readouterr().out.splitlines()
+    assert printed == [
+        "csharp.sarif: removed 3 generated-file results, 4 remain",
+        "  cs/x src/Foo/Bar.cs:7",
+        "  cs/x src/Foo/Objects.cs:3",
+        "  cs/x src/objects/Thing.cs:5",
+        "  no-location :0",
+    ]
+
+
+def test_list_only_prints_without_rewriting(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    sarif = {"runs": [{"results": [_result("src/A.cs", 2), _result("src/obj/B.cs", 4)]}]}
+    target = tmp_path / "python.sarif"
+    target.write_text(json.dumps(sarif), encoding="utf-8")
+
+    assert main(["--list-only", str(tmp_path)]) == 0
+
+    assert json.loads(target.read_text(encoding="utf-8")) == sarif
+    assert capsys.readouterr().out.splitlines() == [
+        "python.sarif: would remove 1 generated-file results, 1 remain",
+        "  cs/x src/A.cs:2",
+    ]
 
 
 def test_a_directory_without_sarif_fails(tmp_path: Path) -> None:
