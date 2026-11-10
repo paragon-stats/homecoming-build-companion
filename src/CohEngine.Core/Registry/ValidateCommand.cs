@@ -34,7 +34,7 @@ public static class ValidateCommand
     public static IReadOnlyList<Diagnostic> RunMbd(IMbdBuildSource source, string path, string midsDirectory)
     {
         ArgumentNullException.ThrowIfNull(source);
-        MbdBuild build = source.Load(path, midsDirectory);
+        MbdValidationInput build = source.Load(path, midsDirectory);
         return Fold(build.Powers, build.Slots, midsDirectory, build.Format);
     }
 

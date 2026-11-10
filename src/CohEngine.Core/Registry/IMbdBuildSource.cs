@@ -14,5 +14,5 @@ public interface IMbdBuildSource
     /// <param name="path">The <c>.mbd</c> file.</param>
     /// <param name="midsDirectory">The shared-dump directory, which also holds <c>powers.json</c> and <c>archetypes.json</c>.</param>
     /// <returns>The resolved build.</returns>
-    MbdBuild Load(string path, string midsDirectory);
+    MbdValidationInput Load(string path, string midsDirectory);
 }
