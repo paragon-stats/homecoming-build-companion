@@ -12,12 +12,13 @@ import math
 import re
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import Any
 
 from coh_engine.maths import f32
 
-if TYPE_CHECKING:
-    from coh_engine.effect import Effect, Power
+# Effect and Power live in coh_engine.effect, which imports this module; naming them here would close an import cycle.
+type Effect = Any
+type Power = Any
 
 # Mids' default combat setting; the reference dumps are taken at full health and record no other value.
 _PLAYER_HP_PERCENT = 100

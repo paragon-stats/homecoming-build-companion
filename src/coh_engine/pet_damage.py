@@ -83,10 +83,11 @@ def _duration(text: str, power: str) -> float:
         return inf
     number, _, unit = text.partition(" ")
     try:
-        if unit == "seconds":
-            return float(number)
+        seconds = float(number) if unit == "seconds" else None
     except ValueError:
-        pass
+        seconds = None
+    if seconds is not None:
+        return seconds
     raise ValueError(
         f"E62: {power} Create_Entity duration is {text!r}, expected 'N seconds' or 'UntilKilled'; extend pet_damage._duration"
     )
@@ -199,10 +200,11 @@ def _seconds(text: str, power: str) -> float:
         return 0.0
     number, _, unit = text.partition(" ")
     try:
-        if unit == "seconds":
-            return float(number)
+        seconds = float(number) if unit == "seconds" else None
     except ValueError:
-        pass
+        seconds = None
+    if seconds is not None:
+        return seconds
     raise ValueError(
         f"E62: {power} damage template duration is {text!r}, expected 'N seconds'; extend pet_damage._seconds"
     )

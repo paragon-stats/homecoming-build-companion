@@ -28,7 +28,8 @@ class _HasColumn(Protocol):
     """Minimal shape the modifier lookup needs from a class record."""
 
     @property
-    def column(self) -> int: ...
+    def column(self) -> int:
+        """The record's column."""
 
 
 @dataclass(frozen=True, slots=True)

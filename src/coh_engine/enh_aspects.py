@@ -31,15 +31,12 @@ from __future__ import annotations
 
 from collections.abc import Collection
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import Any
 
 from coh_engine.pass3 import fold_divisor
 
-if TYPE_CHECKING:
-    # Type-only import: enh_aspects reads GlobalEnhance's fields via getattr at runtime,
-    # so base_totals (which imports this module for the toggle fold) is not imported back
-    # at runtime — this breaks what would otherwise be an import cycle.
-    from coh_engine.base_totals import GlobalEnhance
+# GlobalEnhance lives in coh_engine.base_totals, which imports this module; its fields are read via getattr.
+GlobalEnhance = Any
 
 # eEnhance aspect names (the scalar aspects the per-power fold divides by).
 ASPECT_RECHARGE = "RechargeTime"
