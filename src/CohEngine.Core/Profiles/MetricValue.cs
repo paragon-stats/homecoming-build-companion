@@ -7,6 +7,9 @@ namespace CohEngine.Core.Profiles;
 /// <param name="IsFlag">Whether the value is a bool.</param>
 public readonly record struct MetricValue(double Number, bool IsFlag)
 {
+    /// <summary>Gets a value indicating whether a flag is set; <see cref="Flag"/> stores 1 for true and 0 for false.</summary>
+    public bool IsTrue => Number > 0.0;
+
     /// <summary>Wraps a number.</summary>
     /// <param name="number">The number.</param>
     /// <returns>The value.</returns>
@@ -27,7 +30,7 @@ public readonly record struct MetricValue(double Number, bool IsFlag)
     /// <returns>The boxed value.</returns>
     public object ToDiagnosticValue()
     {
-        return IsFlag ? Number != 0.0 : Number;
+        return IsFlag ? IsTrue : Number;
     }
 
     /// <summary>Gets Python's <c>str</c> of the value.</summary>

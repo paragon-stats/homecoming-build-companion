@@ -4,12 +4,14 @@
     <Project Path="src/CohEngine.Analyzers/CohEngine.Analyzers.csproj" />
     <Project Path="src/CohEngine.Cli/CohEngine.Cli.csproj" />
     <Project Path="src/CohEngine.Core/CohEngine.Core.csproj" />
+    <Project Path="src/CohEngine.Mcp/CohEngine.Mcp.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/CohEngine.Ai.Tests/CohEngine.Ai.Tests.csproj" />
     <Project Path="tests/CohEngine.Analyzers.Tests/CohEngine.Analyzers.Tests.csproj" />
     <Project Path="tests/CohEngine.Cli.Tests/CohEngine.Cli.Tests.csproj" />
     <Project Path="tests/CohEngine.Core.Tests/CohEngine.Core.Tests.csproj" />
+    <Project Path="tests/CohEngine.Mcp.Tests/CohEngine.Mcp.Tests.csproj" />
     <Project Path="tests/CohEngine.TestSupport/CohEngine.TestSupport.csproj" />
   </Folder>
 </Solution>

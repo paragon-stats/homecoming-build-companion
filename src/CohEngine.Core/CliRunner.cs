@@ -12,7 +12,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | validate <build> [--mids-dir DIR] [--format text|json]]";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | validate <build> [--mids-dir DIR] [--format text|json] [--expect metric=value]...]";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -83,7 +83,7 @@ public static class CliRunner
         return Guarded(
             () =>
             {
-                IReadOnlyList<Diagnostic> diagnostics = Validate(parsed, mbdSource);
+                IReadOnlyList<Diagnostic> diagnostics = [.. Validate(parsed, mbdSource), .. Verify(parsed)];
                 output.WriteLine(parsed.Json ? DiagnosticFormatter.FormatJson(diagnostics) : diagnostics.Count > 0 ? DiagnosticFormatter.FormatText(diagnostics) : "no violations");
                 return DiagnosticFormatter.ExitCode(diagnostics);
             },
@@ -92,16 +92,32 @@ public static class CliRunner
 
     private static IReadOnlyList<Diagnostic> Validate(ValidateArguments parsed, IMbdBuildSource? mbdSource)
     {
-        if (!string.Equals(Path.GetExtension(parsed.BuildPath), ".mbd", StringComparison.Ordinal))
+        if (!IsMbd(parsed))
         {
-            string full = Path.GetFullPath(parsed.BuildPath.TrimEnd('/', '\\'));
-            string defaultMids = Path.GetDirectoryName(Path.GetDirectoryName(full)) ?? string.Empty;
-            return ValidateCommand.RunDump(parsed.BuildPath, parsed.MidsDirectory ?? defaultMids);
+            return ValidateCommand.RunDump(parsed.BuildPath, parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath));
         }
 
         return mbdSource is null
             ? throw new EngineException($"E72: cannot read {parsed.BuildPath}: .mbd validation is not available in this build; validate a Mids dump directory instead")
             : ValidateCommand.RunMbd(mbdSource, parsed.BuildPath, parsed.MidsDirectory ?? mbdSource.DefaultMidsDirectory);
+    }
+
+    /// <summary>The <c>--expect</c> claims checked against the build's computed metrics; nothing is computed when none were given.</summary>
+    private static IReadOnlyList<Diagnostic> Verify(ValidateArguments parsed)
+    {
+        if (parsed.Expectations.Count == 0)
+        {
+            return [];
+        }
+
+        return IsMbd(parsed)
+            ? throw new EngineException($"{ErrorCodes.E163}: cannot compute metrics for {parsed.BuildPath}: --expect needs a Mids dump directory, not a .mbd file; validate a dump directory instead")
+            : Expectations.Verify(parsed.Expectations, DumpScoring.Compute(parsed.BuildPath, parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath)), parsed.BuildPath);
+    }
+
+    private static bool IsMbd(ValidateArguments parsed)
+    {
+        return string.Equals(Path.GetExtension(parsed.BuildPath), ".mbd", StringComparison.Ordinal);
     }
 
     /// <summary>

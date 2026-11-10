@@ -17,13 +17,14 @@ public static class ValidateCommand
     /// </summary>
     /// <param name="buildDirectory">The build's dump directory.</param>
     /// <param name="midsDirectory">The shared-dump directory.</param>
+    /// <param name="checks">Which registries to run; both by default.</param>
     /// <returns>The hard-limit diagnostics followed by the legality diagnostics.</returns>
-    public static IReadOnlyList<Diagnostic> RunDump(string buildDirectory, string midsDirectory)
+    public static IReadOnlyList<Diagnostic> RunDump(string buildDirectory, string midsDirectory, ValidateChecks checks = ValidateChecks.All)
     {
         ArgumentNullException.ThrowIfNull(buildDirectory);
         IReadOnlyList<Power> powers = EffectData.LoadPowersEffects(Path.Join(buildDirectory, "powers_effects.json"));
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Join(buildDirectory, "slots.json"));
-        return Fold(powers, slots, midsDirectory, null);
+        return Fold(powers, slots, midsDirectory, null, checks);
     }
 
     /// <summary>Validates a bare <c>.mbd</c> file through the source that resolves it.</summary>
@@ -35,10 +36,10 @@ public static class ValidateCommand
     {
         ArgumentNullException.ThrowIfNull(source);
         MbdValidationInput build = source.Load(path, midsDirectory);
-        return Fold(build.Powers, build.Slots, midsDirectory, build.Format);
+        return Fold(build.Powers, build.Slots, midsDirectory, build.Format, ValidateChecks.All);
     }
 
-    private static IReadOnlyList<Diagnostic> Fold(IReadOnlyList<Power> powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots, string midsDirectory, MbdFormat? format)
+    private static IReadOnlyList<Diagnostic> Fold(IReadOnlyList<Power> powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots, string midsDirectory, MbdFormat? format, ValidateChecks checks)
     {
         ArgumentNullException.ThrowIfNull(midsDirectory);
         IReadOnlyDictionary<int, EnhancementLegality> enhancements = EnhancementLegality.Load(Path.Join(midsDirectory, "enhancements.json"));
@@ -48,8 +49,8 @@ public static class ValidateCommand
         IReadOnlyDictionary<int, EnhancementRecord> enhEffects = EnhancementData.LoadEnhancementEffects(Path.Join(midsDirectory, "enhancement_effects.json"));
         return
         [
-            .. HardLimitRunner.Check(powers, slots, schedule, server.MaxSlots, format),
-            .. LegalityRunner.Check(powers, slots, enhancements, setDb, enhEffects),
+            .. checks.HasFlag(ValidateChecks.HardLimits) ? HardLimitRunner.Check(powers, slots, schedule, server.MaxSlots, format) : [],
+            .. checks.HasFlag(ValidateChecks.Legality) ? LegalityRunner.Check(powers, slots, enhancements, setDb, enhEffects) : [],
         ];
     }
 }
