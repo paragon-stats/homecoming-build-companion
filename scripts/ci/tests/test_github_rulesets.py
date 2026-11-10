@@ -36,12 +36,27 @@ def test_ruleset_pins_every_rule_type() -> None:
     types = sorted(r["type"] for r in _load("main-ruleset.json")["rules"])
     assert types == [
         "code_quality",
+        "code_scanning",
         "deletion",
         "non_fast_forward",
         "pull_request",
         "required_signatures",
         "required_status_checks",
     ]
+
+
+def test_code_scanning_rule_gates_on_all_codeql_alerts() -> None:
+    rules = _load("main-ruleset.json")["rules"]
+    params = next(r["parameters"] for r in rules if r["type"] == "code_scanning")
+    assert params == {
+        "code_scanning_tools": [{"tool": "CodeQL", "alerts_threshold": "all", "security_alerts_threshold": "all"}]
+    }
+
+
+def test_rollback_is_the_main_ruleset_without_the_code_scanning_rule() -> None:
+    main = _load("main-ruleset.json")
+    main["rules"] = [r for r in main["rules"] if r["type"] != "code_scanning"]
+    assert _load("main-ruleset.rollback.json") == main
 
 
 def test_fallback_body_enables_the_two_remaining_settings() -> None:

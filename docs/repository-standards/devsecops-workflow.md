@@ -71,6 +71,12 @@ Rules:
 The maintainer bypasses it on their own pull requests only.
 See [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md) for the ruleset, the bypass and the admin commands.
 
+## Code scanning gate
+
+Once the trial in [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md) is kept, code scanning gates merges.
+A pull request waits for CodeQL and cannot merge while it carries an alert.
+Fix the alert, or dismiss it on the Security tab with a reason when the construct is deliberate.
+
 ## Roles
 
 - **Agent**: makes local changes, runs validations, creates commits, can create PRs after the user publishes a branch.
