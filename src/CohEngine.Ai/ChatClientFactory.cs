@@ -1,6 +1,8 @@
 using System.ClientModel;
 using System.ClientModel.Primitives;
 
+using CohEngine.Ai.Anthropic;
+
 using Microsoft.Extensions.AI;
 
 using OpenAI;
@@ -17,6 +19,16 @@ public static class ChatClientFactory
     public static IChatClient Create(ChatProviderOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
+        if (options.Provider == ChatProvider.Anthropic)
+        {
+            if (options.BaseUrl is not null && (!Uri.TryCreate(options.BaseUrl, UriKind.Absolute, out Uri? root) || root.Scheme is not ("http" or "https")))
+            {
+                throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{options.BaseUrl}' is not an absolute http(s) URL; pass --base-url https://host");
+            }
+
+            return new AnthropicChatClient(options.Model, options.BaseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
+        }
+
         if (options.Provider != ChatProvider.OpenAiCompatible)
         {
             throw new ArgumentOutOfRangeException(nameof(options), options.Provider, "Unknown provider.");
