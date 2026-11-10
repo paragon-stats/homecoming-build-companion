@@ -16,7 +16,7 @@ public static class ChainCaptures
         ArgumentNullException.ThrowIfNull(store);
         return
         [
-            .. Directory.GetFiles(Path.Combine(store.Root, "cli", "chain"), "*.exit")
+            .. Directory.GetFiles(Path.Join(store.Root, "cli", "chain"), "*.exit")
                 .Select(file => Path.GetFileName(file)[..^".exit".Length])
                 .Order(StringComparer.Ordinal),
         ];
@@ -29,7 +29,7 @@ public static class ChainCaptures
     public static string Expected(FixtureStore store, string name)
     {
         ArgumentNullException.ThrowIfNull(store);
-        string stem = Path.Combine(store.Root, "cli", "chain", name);
+        string stem = Path.Join(store.Root, "cli", "chain", name);
         string error = File.Exists(stem + ".err") ? File.ReadAllText(stem + ".err") : string.Empty;
         return Compose(int.Parse(File.ReadAllText(stem + ".exit").Trim(), System.Globalization.CultureInfo.InvariantCulture), File.ReadAllText(stem + ".out"), error);
     }
@@ -54,7 +54,7 @@ public static class ChainCaptures
         using StringWriter output = new();
         using StringWriter error = new();
         int code = ChainCommand.Run(args, output, error, store.RepositoryRoot);
-        return Compose(code, output.ToString(), File.Exists(Path.Combine(store.Root, "cli", "chain", name + ".err")) ? error.ToString() : string.Empty);
+        return Compose(code, output.ToString(), File.Exists(Path.Join(store.Root, "cli", "chain", name + ".err")) ? error.ToString() : string.Empty);
     }
 
     private static string Compose(int code, string output, string error)

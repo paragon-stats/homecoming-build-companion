@@ -95,7 +95,7 @@ public sealed class CanonicalJsonTests
     [Fact]
     public void The_power_path_lower_cases_segments_and_replaces_colons()
     {
-        string expected = Path.Combine("root", "set", "sub_x", "power.json");
+        string expected = Path.Join("root", "set", "sub_x", "power.json");
 
         Assert.Equal(expected, CanonicalJson.CanonicalPowerPath("root", "Set.Sub:X.Power"));
     }

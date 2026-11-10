@@ -13,19 +13,19 @@ public sealed class DamageReferenceBuildsTests
 {
     private const string Css = "Arachnos_Soldiers.Crab_Spider_Soldier.";
 
-    private static readonly string Builds = Path.Combine(Fixtures.Store.MidsDirectory, "builds");
+    private static readonly string Builds = Path.Join(Fixtures.Store.MidsDirectory, "builds");
 
     public static TheoryData<string> BuildNames => [.. Fixtures.Store.BuildNames()];
 
     private static JsonElement Canonical(string name)
     {
-        return CanonicalJson.LoadCanonicalPowers(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"), [name])[name];
+        return CanonicalJson.LoadCanonicalPowers(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"), [name])[name];
     }
 
     [Fact]
     public void A_target_damage_debuff_is_not_a_self_buff()
     {
-        PowerDamageRef reference = DamageReference.LoadDamageRefs(Path.Combine(Builds, "arsenal_dominator_cardiac"))["Dominator_Control.Arsenal_Control.Tear_Gas"];
+        PowerDamageRef reference = DamageReference.LoadDamageRefs(Path.Join(Builds, "arsenal_dominator_cardiac"))["Dominator_Control.Arsenal_Control.Tear_Gas"];
 
         Assert.Equal((0.0, 0.0), (reference.SelfDamageBuff, reference.TargetResDebuff));
     }
@@ -34,7 +34,7 @@ public sealed class DamageReferenceBuildsTests
     [MemberData(nameof(BuildNames))]
     public void Every_fixture_build_loads(string build)
     {
-        IReadOnlyDictionary<string, PowerDamageRef> refs = DamageReference.LoadDamageRefs(Path.Combine(Builds, build));
+        IReadOnlyDictionary<string, PowerDamageRef> refs = DamageReference.LoadDamageRefs(Path.Join(Builds, build));
 
         Assert.True(refs.Count > 0 && refs.All(pair => string.Equals(pair.Key, pair.Value.FullName, StringComparison.Ordinal)));
     }
@@ -42,7 +42,7 @@ public sealed class DamageReferenceBuildsTests
     [Fact]
     public void A_redirected_power_keeps_the_picked_name_and_the_redirect_damage()
     {
-        PowerDamageRef reference = DamageReference.LoadDamageRefs(Path.Combine(Builds, "arsenal_dominator_cardiac"))["Dominator_Assault.Arsenal_Assault.Sniper_Rifle"];
+        PowerDamageRef reference = DamageReference.LoadDamageRefs(Path.Join(Builds, "arsenal_dominator_cardiac"))["Dominator_Assault.Arsenal_Assault.Sniper_Rifle"];
 
         Assert.Equal(F32.Round(237.73366), reference.DamagePerActivation);
     }
@@ -65,7 +65,7 @@ public sealed class DamageReferenceBuildsTests
     [Fact]
     public void The_loaded_references_are_in_dump_order()
     {
-        Assert.Equal("Arsenal", DamageReference.LoadDamageRefs(Path.Combine(Builds, "arsenal_dominator_cardiac")).Keys.First().Split('.')[1][..7]);
+        Assert.Equal("Arsenal", DamageReference.LoadDamageRefs(Path.Join(Builds, "arsenal_dominator_cardiac")).Keys.First().Split('.')[1][..7]);
     }
 
     [Fact]
@@ -100,7 +100,7 @@ public sealed class DamageReferenceBuildsTests
     [Fact]
     public void The_path_maps_a_colon_and_lower_cases()
     {
-        string expected = Path.Combine("root", "training_gadgets", "training_and_gadgets", "tactical_training__assault.json");
+        string expected = Path.Join("root", "training_gadgets", "training_and_gadgets", "tactical_training__assault.json");
 
         Assert.Equal(expected, CanonicalJson.CanonicalPowerPath("root", "Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault"));
     }

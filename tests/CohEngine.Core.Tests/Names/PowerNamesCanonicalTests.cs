@@ -8,7 +8,7 @@ namespace CohEngine.Core.Tests.Names;
 // Ported from tests/test_power_names.py, on the committed data/canonical tree.
 public sealed class PowerNamesCanonicalTests
 {
-    private static readonly Lazy<PowerNameResolver> Resolver = new(() => PowerNameResolver.FromCanonical(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical")));
+    private static readonly Lazy<PowerNameResolver> Resolver = new(() => PowerNameResolver.FromCanonical(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical")));
 
     public static TheoryData<string, string> Divergent => new()
     {
@@ -64,7 +64,7 @@ public sealed class PowerNamesCanonicalTests
     [MemberData(nameof(Leaves))]
     public void Player_powers_win_over_npc_and_proxy_copies(string leaf)
     {
-        string[] leaves = [.. Resolver.Value.Powersets.SelectMany(set => set.Powers).Select(power => power.Internal).Where(name => string.Equals(name[(name.LastIndexOf('.') + 1)..], leaf, StringComparison.OrdinalIgnoreCase))];
+        string[] leaves = [.. Resolver.Value.Powersets.SelectMany(set => set.Powers).Where(power => string.Equals(power.Internal[(power.Internal.LastIndexOf('.') + 1)..], leaf, StringComparison.OrdinalIgnoreCase)).Select(power => power.Internal)];
 
         Assert.True(leaves.Length > 0);
         Assert.DoesNotContain(leaves, name => name.StartsWith("V_Arachnos_Proxy.", StringComparison.Ordinal) || name.StartsWith("Warriors_New.", StringComparison.Ordinal) || name.StartsWith("Widow_Training_", StringComparison.Ordinal));

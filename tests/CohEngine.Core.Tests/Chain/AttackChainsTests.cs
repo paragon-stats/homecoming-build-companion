@@ -287,7 +287,7 @@ public sealed class AttackChainsTests
         ChainPlan plan = Plan([Atk("M", recharge: 0.1), Atk("R", melee: false, recharge: 0.1)], Stance.Hybrid, move);
         ChainOption mixed = plan.Ranked.First(option => option.Switches == 2);
 
-        Assert.True(mixed.Gap == 0.0 && mixed.GapFree);
+        Assert.True(mixed.Gap.Equals(0.0) && mixed.GapFree);
     }
 
     [Fact]

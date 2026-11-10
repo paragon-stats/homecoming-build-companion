@@ -61,7 +61,7 @@ public static class ChainCommand
         string Resolve(string path)
         {
             string normal = ChainPaths.Norm(path);
-            return workingDirectory is null || Path.IsPathRooted(normal) ? normal : Path.Combine(workingDirectory, normal);
+            return workingDirectory is null || Path.IsPathRooted(normal) ? normal : Path.Join(workingDirectory, normal);
         }
 
         string buildDir = Resolve(display);

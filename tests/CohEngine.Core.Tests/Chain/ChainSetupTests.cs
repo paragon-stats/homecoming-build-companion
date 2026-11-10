@@ -12,8 +12,8 @@ public sealed class ChainSetupTests
     private const string Brawl = "Inherent.Inherent.Brawl";
     private const string AcidMortar = "Mastermind_Buff.Traps.Acid_Mortar";
 
-    private static readonly string Build = Path.Combine(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
-    private static readonly string AttribModDirectory = Path.Combine(Fixtures.Store.Root, "attribmod");
+    private static readonly string Build = Path.Join(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
+    private static readonly string AttribModDirectory = Path.Join(Fixtures.Store.Root, "attribmod");
 
     private static ChainRequest Request(string? build = null, string? clicksOff = null, string? midsDb = null, string move = "run", double? standoff = null, string? mids = null)
     {
@@ -87,7 +87,7 @@ public sealed class ChainSetupTests
     [Fact]
     public void A_missing_explicit_clicks_off_directory_is_e65()
     {
-        Assert.StartsWith("E65: clicks-off directory", Error(Request(clicksOff: Path.Combine(Fixtures.Store.Root, "nope"))), StringComparison.Ordinal);
+        Assert.StartsWith("E65: clicks-off directory", Error(Request(clicksOff: Path.Join(Fixtures.Store.Root, "nope"))), StringComparison.Ordinal);
     }
 
     [Theory]
@@ -133,7 +133,7 @@ public sealed class ChainSetupTests
     {
         using TempTree tree = new();
         string build = tree.CopyFiles(Build, "b");
-        File.WriteAllText(Path.Combine(build, "totals.json"), File.ReadAllText(Path.Combine(Build, "totals.json")).Replace("Class_Scrapper", "Class_Nope", StringComparison.Ordinal));
+        File.WriteAllText(Path.Join(build, "totals.json"), File.ReadAllText(Path.Join(Build, "totals.json")).Replace("Class_Scrapper", "Class_Nope", StringComparison.Ordinal));
 
         Assert.StartsWith("E65: class 'Class_Nope' is not in", Error(Request(build)), StringComparison.Ordinal);
     }
@@ -215,7 +215,7 @@ public sealed class ChainSetupTests
     {
         AttribMods mods = Fixtures.Store.AttribMods;
         ArchetypeDb classes = Fixtures.Store.Archetypes;
-        string powers = Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers");
+        string powers = Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers");
         PowerResolver resolve = CanonicalJson.CanonicalResolver(powers);
 
         (double magnitude, double duration) = ChainReport.LinkedResDebuff(resolve(AcidMortar)!.Value, resolve, mods, classes, classes.NidFromUidClass("Class_Mastermind"));
@@ -253,7 +253,7 @@ public sealed class ChainSetupTests
     [Fact]
     public void A_patch_with_foe_res_in_its_canonical_data_but_none_in_the_dump_is_reported_without_the_tables()
     {
-        AttackProfile profile = AttackProfiles.Classify(CanonicalJson.CanonicalResolver(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"))(AcidMortar)!.Value);
+        AttackProfile profile = AttackProfiles.Classify(CanonicalJson.CanonicalResolver(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"))(AcidMortar)!.Value);
         ChainHooks hooks = new()
         {
             Attacks = (refs, canonical, range) => Mortar(profile),
@@ -265,7 +265,7 @@ public sealed class ChainSetupTests
     [Fact]
     public void With_the_tables_the_patch_debuff_is_filled()
     {
-        AttackProfile profile = AttackProfiles.Classify(CanonicalJson.CanonicalResolver(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"))(AcidMortar)!.Value);
+        AttackProfile profile = AttackProfiles.Classify(CanonicalJson.CanonicalResolver(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"))(AcidMortar)!.Value);
         ChainHooks hooks = new()
         {
             Attacks = (refs, canonical, range) => Mortar(profile),

@@ -26,7 +26,7 @@ public static class EnduranceBudgets
     {
         ArgumentNullException.ThrowIfNull(className);
         string stem = (className.StartsWith("Class_", StringComparison.Ordinal) ? className["Class_".Length..] : className).ToLowerInvariant();
-        string path = Path.Combine(archetypesDir, stem + ".json");
+        string path = Path.Join(archetypesDir, stem + ".json");
         if (!File.Exists(path))
         {
             throw new EngineException(

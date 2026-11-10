@@ -37,7 +37,7 @@ public static class ChainPaths
         {
             for (DirectoryInfo? directory = new(start); directory is not null; directory = directory.Parent)
             {
-                if (File.Exists(Path.Combine(directory.FullName, "strategy", "breakpoints.json")))
+                if (File.Exists(Path.Join(directory.FullName, "strategy", "breakpoints.json")))
                 {
                     return directory.FullName;
                 }

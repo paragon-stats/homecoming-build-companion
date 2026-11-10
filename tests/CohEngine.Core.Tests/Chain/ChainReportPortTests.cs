@@ -14,7 +14,7 @@ public sealed class ChainReportPortTests
 {
     private const string Moonbeam = "Epic.Stalker_Soul_Mastery.Moonbeam";
 
-    private static readonly string Build = Path.Combine(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
+    private static readonly string Build = Path.Join(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
     private static readonly string[] Needles = ["== melee stance ==", "rotation: Scrapper_Melee.Dark_Melee.Shadow_Maul > Scrapper_Melee.Dark_Melee.Siphon_Life > ", "cycle ", "total:", "x1.100", "not sustainable", "health: max", "best sustainable: ", "best overall: ", "P-CHAIN-001", "    Scrapper_Melee.Dark_Melee.Smite: "];
     private static readonly string[] VirtualNames = ["A.B.Summon", "A.B.Plain", "A.B.Hit", "A.B.Virtual"];
     private static readonly string[] ExpectedSkips = ["Inherent.Inherent.Special_Set_Bonuses", "Incarnate.Lore.X"];
@@ -101,9 +101,9 @@ public sealed class ChainReportPortTests
         using TempTree tree = new();
         string build = tree.CopyFiles(Build, "b");
         string off = tree.CopyFiles(Build, "b_clicksoff");
-        JsonArray powers = JsonNode.Parse(File.ReadAllText(Path.Combine(off, "enhanced_powers.json")))!.AsArray();
+        JsonArray powers = JsonNode.Parse(File.ReadAllText(Path.Join(off, "enhanced_powers.json")))!.AsArray();
         powers.First(node => node!["FullName"]!.GetValue<string>().EndsWith(".Smite", StringComparison.Ordinal))!["DamagePerActivation"] = 1234.5;
-        File.WriteAllText(Path.Combine(off, "enhanced_powers.json"), powers.ToJsonString());
+        File.WriteAllText(Path.Join(off, "enhanced_powers.json"), powers.ToJsonString());
 
         ChainSetup setup = Setup(build);
 
@@ -469,7 +469,7 @@ public sealed class ChainReportPortTests
     {
         AttribMods mods = Fixtures.Store.AttribMods;
         ArchetypeDb classes = Fixtures.Store.Archetypes;
-        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"));
+        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"));
         int defender = classes.NidFromUidClass("Class_Defender");
 
         (double magnitude, _) = ChainReport.LinkedResDebuff(resolve("Defender_Buff.Storm_Summoning.Fog")!.Value, resolve, mods, classes, defender);
@@ -485,7 +485,7 @@ public sealed class ChainReportPortTests
     {
         AttribMods mods = Fixtures.Store.AttribMods;
         ArchetypeDb classes = Fixtures.Store.Archetypes;
-        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"));
+        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers"));
         int mastermind = classes.NidFromUidClass("Class_Mastermind");
 
         (double magnitude, double duration) = ChainReport.LinkedResDebuff(resolve("Mastermind_Buff.Traps.Acid_Mortar")!.Value, resolve, mods, classes, mastermind);

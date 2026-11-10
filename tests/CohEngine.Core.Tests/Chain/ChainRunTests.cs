@@ -8,7 +8,7 @@ namespace CohEngine.Core.Tests.Chain;
 
 public sealed class ChainRunTests
 {
-    private static readonly string Build = Path.Combine(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
+    private static readonly string Build = Path.Join(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
     private static readonly Stance[] AllStances = [Stance.Melee, Stance.Ranged, Stance.Hybrid];
 
     private static ChainSetup Setup(ChainHooks? hooks = null)

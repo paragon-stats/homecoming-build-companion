@@ -54,7 +54,7 @@ public static class PetDamage
     {
         ArgumentNullException.ThrowIfNull(summonPowers);
         ArgumentNullException.ThrowIfNull(classes);
-        string powersRoot = Path.Combine(canonicalRoot, "powers");
+        string powersRoot = Path.Join(canonicalRoot, "powers");
         List<PetSummon> result = [];
         foreach (ChainAttack summon in summonPowers)
         {
@@ -69,7 +69,7 @@ public static class PetDamage
             int position = 0;
             foreach (Entity entity in Summoned(power, casterLevel))
             {
-                string path = Path.Combine(canonicalRoot, "entities", entity.Name.ToLowerInvariant() + ".json");
+                string path = Path.Join(canonicalRoot, "entities", entity.Name.ToLowerInvariant() + ".json");
                 if (!File.Exists(path) || new FileInfo(path).Length == 0)
                 {
                     throw new EngineException($"{ErrorCodes.E60}: entity {entity.Name} (summoned by {name}) has no file {path}; restore the canonical entity");

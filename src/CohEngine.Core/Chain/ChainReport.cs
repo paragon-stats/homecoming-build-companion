@@ -377,9 +377,9 @@ public static class ChainReport
         ArgumentNullException.ThrowIfNull(request);
         string repoRoot = request.RepoRoot ?? ChainPaths.RepoRoot();
         string buildDir = request.BuildDir;
-        Breakpoints breakpoints = LoadBreakpoints(Path.Combine(repoRoot, "strategy", "breakpoints.json"));
-        string canonical = request.Canonical ?? Path.Combine(repoRoot, "data", "canonical");
-        string defaultOff = Path.Combine(Path.GetDirectoryName(buildDir) ?? string.Empty, Path.GetFileName(buildDir) + "_clicksoff");
+        Breakpoints breakpoints = LoadBreakpoints(Path.Join(repoRoot, "strategy", "breakpoints.json"));
+        string canonical = request.Canonical ?? Path.Join(repoRoot, "data", "canonical");
+        string defaultOff = Path.Join(Path.GetDirectoryName(buildDir) ?? string.Empty, Path.GetFileName(buildDir) + "_clicksoff");
         if (request.ClicksOffDir is not null && !Directory.Exists(request.ClicksOffDir))
         {
             throw new EngineException($"{ErrorCodes.E65}: clicks-off directory {request.ClicksOffDir} not found; fix --clicksoff-dir or omit it");
@@ -392,8 +392,8 @@ public static class ChainReport
             throw new EngineException($"{ErrorCodes.E70}: standoff is {PyFloat.General(standoff)} ft but must be positive; pass --standoff with feet > 0");
         }
 
-        (TotalStatistics totals, TotalStatistics capped, string className) = EnduranceBudgets.LoadMidsTotals(RequiredFile(Path.Combine(source, "totals.json"), "totals file"));
-        string archetypesFile = RequiredFile(Path.Combine(request.MidsDir, "archetypes.json"), "archetype table");
+        (TotalStatistics totals, TotalStatistics capped, string className) = EnduranceBudgets.LoadMidsTotals(RequiredFile(Path.Join(source, "totals.json"), "totals file"));
+        string archetypesFile = RequiredFile(Path.Join(request.MidsDir, "archetypes.json"), "archetype table");
         ArchetypeDb classes = ArchetypeData.LoadArchetypes(archetypesFile);
         int index = classes.NidFromUidClass(className);
         if (index < 0)
@@ -411,7 +411,7 @@ public static class ChainReport
             throw new EngineException($"{ErrorCodes.E71}: no power in {source} deals damage or buffs damage; point the build at an attacker");
         }
 
-        AttribMods? mods = request.MidsDb is not null ? ArchetypeData.LoadAttribMod(Path.Combine(request.MidsDb, "AttribMod.json")) : null;
+        AttribMods? mods = request.MidsDb is not null ? ArchetypeData.LoadAttribMod(Path.Join(request.MidsDb, "AttribMod.json")) : null;
         (IReadOnlyList<ChainAttack> attacks, IReadOnlyList<(string Name, string Reason)> debuffSkips) = FillLinkedDebuffs(attackList, canonical, mods, classes, index);
         List<(string Name, string Reason)> skipped = [.. skippedList, .. debuffSkips];
         List<ChainAttack> summons = [.. attacks.Where(attack => attack.Profile.Role == Role.PetSummon)];
@@ -429,7 +429,7 @@ public static class ChainReport
             skipped.AddRange(petSkips);
         }
 
-        double maxEndCap = EnduranceBudgets.LoadCanonicalCaps(Path.Combine(canonical, "archetypes"), className).MaxEnd;
+        double maxEndCap = EnduranceBudgets.LoadCanonicalCaps(Path.Join(canonical, "archetypes"), className).MaxEnd;
         Dictionary<string, double> merged = new(StringComparer.Ordinal) { ["chain.min_cycles"] = breakpoints.ChainMinCycles };
         foreach (KeyValuePair<string, double> pair in request.Assumptions ?? new Dictionary<string, double>(StringComparer.Ordinal))
         {
@@ -582,8 +582,8 @@ public static class ChainReport
 
     private static bool HasSignal(PowerDamageRef reference)
     {
-        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && reference.SelfDamageBuff != 0.0;
-        return reference.DamagePerActivation != 0.0 || clickBuff || reference.TargetResDebuff != 0.0;
+        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !reference.SelfDamageBuff.Equals(0.0);
+        return !reference.DamagePerActivation.Equals(0.0) || clickBuff || !reference.TargetResDebuff.Equals(0.0);
     }
 
     private static bool Reportable(string name)
@@ -597,7 +597,7 @@ public static class ChainReport
         double meleeRangeFtMax,
         Func<JsonElement, double, PowerResolver?, AttackProfile>? classify)
     {
-        string powersRoot = Path.Combine(canonicalRoot, "powers");
+        string powersRoot = Path.Join(canonicalRoot, "powers");
         (Dictionary<string, JsonElement> powers, List<(string, string)> skipped) = Candidates(refs, powersRoot);
         PowerResolver resolve = CanonicalJson.CanonicalResolver(powersRoot);
         List<ChainAttack> attacks = [];
@@ -649,7 +649,7 @@ public static class ChainReport
         ArchetypeDb classes,
         int classIndex)
     {
-        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Combine(canonical, "powers"));
+        PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Join(canonical, "powers"));
         List<ChainAttack> filled = [];
         List<(string, string)> skipped = [];
         foreach (ChainAttack attack in attacks)

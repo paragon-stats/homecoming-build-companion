@@ -18,7 +18,7 @@ public sealed class TempTree : IDisposable
     /// <returns>The file's full path.</returns>
     public string Write(string relative, string content)
     {
-        string path = Path.Combine(Root, relative.Replace('/', Path.DirectorySeparatorChar));
+        string path = Path.Join(Root, relative.Replace('/', Path.DirectorySeparatorChar));
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         File.WriteAllText(path, content);
         return path;
@@ -34,7 +34,7 @@ public sealed class TempTree : IDisposable
         Directory.CreateDirectory(target);
         foreach (string file in Directory.GetFiles(source))
         {
-            File.Copy(file, Path.Combine(target, Path.GetFileName(file)));
+            File.Copy(file, Path.Join(target, Path.GetFileName(file)));
         }
 
         return target;
@@ -45,7 +45,7 @@ public sealed class TempTree : IDisposable
     /// <returns>The full path.</returns>
     public string FullPath(string relative)
     {
-        return Path.Combine(Root, relative.Replace('/', Path.DirectorySeparatorChar));
+        return Path.Join(Root, relative.Replace('/', Path.DirectorySeparatorChar));
     }
 
     /// <inheritdoc/>

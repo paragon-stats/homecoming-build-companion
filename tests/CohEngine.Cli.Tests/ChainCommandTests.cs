@@ -114,7 +114,7 @@ public sealed class ChainCommandTests
         using StringWriter output = new();
         using StringWriter error = new();
 
-        int code = CliRunner.Run(["chain", Path.Combine(Store.RepositoryRoot, Build), "--stance", "melee"], output, error);
+        int code = CliRunner.Run(["chain", Path.Join(Store.RepositoryRoot, Build), "--stance", "melee"], output, error);
 
         Assert.Equal("0 True", $"{code} {output.ToString().Contains("== melee stance ==", StringComparison.Ordinal)}");
     }
@@ -123,7 +123,7 @@ public sealed class ChainCommandTests
     public void A_warning_finding_exits_2()
     {
         using TempTree tree = new();
-        string build = tree.CopyFiles(Path.Combine(Store.MidsDirectory, "builds", "Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"), "b");
+        string build = tree.CopyFiles(Path.Join(Store.MidsDirectory, "builds", "Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"), "b");
 
         (int code, string output, _) = Run(build, "--mids-dir", Store.MidsDirectory);
 
@@ -147,8 +147,8 @@ public sealed class ChainCommandTests
     public void A_missing_key_is_reported_as_e72()
     {
         using TempTree tree = new();
-        string build = tree.CopyFiles(Path.Combine(Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses"), "b");
-        File.WriteAllText(Path.Combine(build, "totals.json"), File.ReadAllText(Path.Combine(build, "totals.json")).Replace("\"Class\"", "\"Klass\"", StringComparison.Ordinal));
+        string build = tree.CopyFiles(Path.Join(Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses"), "b");
+        File.WriteAllText(Path.Join(build, "totals.json"), File.ReadAllText(Path.Join(build, "totals.json")).Replace("\"Class\"", "\"Klass\"", StringComparison.Ordinal));
 
         Assert.Equal("1 error: E72: an input is missing the key 'Class'; re-dump the build or check the data matches its schema\n", $"{Run(build, "--mids-dir", Store.MidsDirectory).Code} {Run(build, "--mids-dir", Store.MidsDirectory).Error}");
     }

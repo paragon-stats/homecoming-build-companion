@@ -13,7 +13,7 @@ public sealed class AttackProfilesPortTests
     private const string Css = "Arachnos_Soldiers.Crab_Spider_Soldier.";
     private const string Colon = "Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault";
 
-    private static readonly string Powers = Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers");
+    private static readonly string Powers = Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "powers");
     private static readonly string[] Fire = ["Fire_Dmg"];
 
     public static TheoryData<string, Delivery?, Shape?, Role> Table => new()

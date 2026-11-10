@@ -31,7 +31,7 @@ public static class PyFloat
             total = next;
         }
 
-        return compensation != 0.0 && double.IsFinite(compensation) ? total + compensation : total;
+        return !compensation.Equals(0.0) && double.IsFinite(compensation) ? total + compensation : total;
     }
 
     /// <summary><c>format(value, ".Nf")</c>, or <c>"+.Nf"</c> when <paramref name="plus"/> is set.</summary>
@@ -72,7 +72,7 @@ public static class PyFloat
             return NonFinite(value);
         }
 
-        if (value == 0.0)
+        if (value.Equals(0.0))
         {
             return double.IsNegative(value) ? "-0" : "0";
         }

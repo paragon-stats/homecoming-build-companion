@@ -21,14 +21,14 @@ public static class DamageReference
     {
         foreach (string file in Files)
         {
-            if (!File.Exists(Path.Combine(buildDir, file)))
+            if (!File.Exists(Path.Join(buildDir, file)))
             {
-                throw new EngineException($"{ErrorCodes.E40}: {Path.Combine(buildDir, file)} not found; point build_dir at a Mids dump build directory");
+                throw new EngineException($"{ErrorCodes.E40}: {Path.Join(buildDir, file)} not found; point build_dir at a Mids dump build directory");
             }
         }
 
-        Dictionary<int, JsonElement> enhanced = ByBuildIndex(Path.Combine(buildDir, Files[0]));
-        Dictionary<int, JsonElement> structural = ByBuildIndex(Path.Combine(buildDir, Files[1]));
+        Dictionary<int, JsonElement> enhanced = ByBuildIndex(Path.Join(buildDir, Files[0]));
+        Dictionary<int, JsonElement> structural = ByBuildIndex(Path.Join(buildDir, Files[1]));
         if (!enhanced.Keys.ToHashSet().SetEquals(structural.Keys))
         {
             string onlyEnhanced = IntList(enhanced.Keys.Except(structural.Keys));
@@ -118,7 +118,7 @@ public static class DamageReference
         (double buffMag, double buffDuration) = buff.Count > 0 ? buff.Values.First() : (0.0, 0.0);
         foreach ((double mag, double duration) in buff.Values)
         {
-            if (mag > buffMag || (mag == buffMag && duration > buffDuration))
+            if (mag > buffMag || (mag.Equals(buffMag) && duration > buffDuration))
             {
                 (buffMag, buffDuration) = (mag, duration);
             }

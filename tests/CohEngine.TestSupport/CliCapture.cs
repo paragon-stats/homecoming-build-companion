@@ -16,7 +16,7 @@ public sealed class CliCapture
     {
         ArgumentNullException.ThrowIfNull(store);
         Store = store;
-        directory = Path.Combine(store.Root, "cli");
+        directory = Path.Join(store.Root, "cli");
     }
 
     /// <summary>Gets the fixture store.</summary>
@@ -38,7 +38,7 @@ public sealed class CliCapture
     /// <returns>The build names.</returns>
     public IReadOnlyList<string> Names(string command)
     {
-        return [.. Directory.GetFiles(Path.Combine(directory, command), "*.exit").Select(Path.GetFileNameWithoutExtension).OfType<string>().Order(StringComparer.Ordinal)];
+        return [.. Directory.GetFiles(Path.Join(directory, command), "*.exit").Select(Path.GetFileNameWithoutExtension).OfType<string>().Order(StringComparer.Ordinal)];
     }
 
     /// <summary>Reads a captured output file with LF line endings.</summary>
@@ -48,7 +48,7 @@ public sealed class CliCapture
     /// <returns>The captured stdout.</returns>
     public string Output(string command, string name, string extension)
     {
-        return System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Path.Combine(directory, command, name + "." + extension)));
+        return System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Path.Join(directory, command, name + "." + extension)));
     }
 
     /// <summary>Reads the captured exit code.</summary>
@@ -57,7 +57,7 @@ public sealed class CliCapture
     /// <returns>The exit code.</returns>
     public int ExitCode(string command, string name)
     {
-        return int.Parse(File.ReadAllText(Path.Combine(directory, command, name + ".exit")).Trim(), System.Globalization.CultureInfo.InvariantCulture);
+        return int.Parse(File.ReadAllText(Path.Join(directory, command, name + ".exit")).Trim(), System.Globalization.CultureInfo.InvariantCulture);
     }
 
     /// <summary>Gets a build's dump directory.</summary>
@@ -65,6 +65,6 @@ public sealed class CliCapture
     /// <returns>The directory.</returns>
     public string BuildDirectory(string name)
     {
-        return Path.Combine(Store.MidsDirectory, "builds", name);
+        return Path.Join(Store.MidsDirectory, "builds", name);
     }
 }

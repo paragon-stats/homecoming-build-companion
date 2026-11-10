@@ -13,8 +13,8 @@ namespace CohEngine.Core.Tests.Statistics;
 // Ported from tests/test_endurance_budget.py. test_loader_accepts_str_path has no counterpart: every path here is a string.
 public sealed class EnduranceBudgetsTests
 {
-    private static readonly string Totals = Path.Combine(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses", "totals.json");
-    private static readonly string Archetypes = Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical", "archetypes");
+    private static readonly string Totals = Path.Join(Fixtures.Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses", "totals.json");
+    private static readonly string Archetypes = Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical", "archetypes");
 
     public static TheoryData<string> Corrupt => [string.Empty, "{\"Totals\": {", "not json"];
 

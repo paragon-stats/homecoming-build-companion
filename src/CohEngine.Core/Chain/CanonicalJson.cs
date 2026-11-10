@@ -119,7 +119,7 @@ public static class CanonicalJson
     {
         ArgumentNullException.ThrowIfNull(fullName);
         string[] segments = [.. fullName.Split('.').Select(segment => segment.ToLowerInvariant().Replace(':', '_'))];
-        return Path.Combine([powersRoot, .. segments[..^1], segments[^1] + ".json"]);
+        return Path.Join([powersRoot, .. segments[..^1], segments[^1] + ".json"]);
     }
 
     /// <summary>Loads the canonical power JSON for each full name.</summary>
@@ -203,7 +203,7 @@ public static class CanonicalJson
                 return new FileInfo(path).Length > 0 ? LoadCanonicalPowers(powersRoot, [name])[name] : null;
             }
 
-            string entity = Path.Combine(Path.GetDirectoryName(powersRoot.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)) ?? string.Empty, "entities", name.ToLowerInvariant() + ".json");
+            string entity = Path.Join(Path.GetDirectoryName(powersRoot.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)) ?? string.Empty, "entities", name.ToLowerInvariant() + ".json");
             return new FileInfo(entity).Length > 0 ? ReadJson(entity, ErrorCodes.E38) : null;
         }
 

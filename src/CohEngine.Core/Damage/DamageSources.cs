@@ -152,7 +152,7 @@ public static class DamageSources
         }
 
         double share = MeleeShare(context);
-        if (share == 0.0)
+        if (share.Equals(0.0))
         {
             return null;
         }

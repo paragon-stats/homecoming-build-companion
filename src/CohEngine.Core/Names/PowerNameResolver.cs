@@ -33,13 +33,13 @@ public sealed class PowerNameResolver
     /// <returns>The resolver.</returns>
     public static PowerNameResolver FromCanonical(string canonical)
     {
-        string powers = Path.Combine(canonical, "powers");
+        string powers = Path.Join(canonical, "powers");
         Dictionary<string, SortedSet<string>> sets = new(StringComparer.Ordinal);
         foreach (((string category, string? setDir), SortedSet<string> ats) in PlayerSetDirs(canonical))
         {
             IEnumerable<string> members = setDir is not null
-                ? [Path.Combine(powers, category, setDir)]
-                : Directory.EnumerateDirectories(Path.Combine(powers, category)).Order(StringComparer.Ordinal);
+                ? [Path.Join(powers, category, setDir)]
+                : Directory.EnumerateDirectories(Path.Join(powers, category)).Order(StringComparer.Ordinal);
             foreach (string member in members)
             {
                 sets.TryAdd(member, []);
@@ -50,8 +50,8 @@ public sealed class PowerNameResolver
         List<PowersetName> built = [];
         foreach ((string directory, SortedSet<string> ats) in sets)
         {
-            string categoryName = Read(Path.Combine(Path.GetDirectoryName(directory)!, "index.json")).ReqStr("name");
-            JsonElement index = Read(Path.Combine(directory, "index.json"));
+            string categoryName = Read(Path.Join(Path.GetDirectoryName(directory)!, "index.json")).ReqStr("name");
+            JsonElement index = Read(Path.Join(directory, "index.json"));
             string internalName = $"{categoryName}.{index.ReqStr("name")}";
             string[] names = [.. index.Strings("power_names")];
             string[] displays = [.. index.Strings("power_display_names")];
@@ -134,9 +134,9 @@ public sealed class PowerNameResolver
     private static Dictionary<(string Category, string? SetDir), SortedSet<string>> PlayerSetDirs(string canonical)
     {
         Dictionary<(string, string?), SortedSet<string>> found = [];
-        foreach (JsonProperty entry in Read(Path.Combine(canonical, "powers_by_at.json")).EnumerateObject())
+        foreach (JsonProperty entry in Read(Path.Join(canonical, "powers_by_at.json")).EnumerateObject())
         {
-            JsonElement record = Read(Path.Combine(canonical, "archetypes", entry.Name + ".json"));
+            JsonElement record = Read(Path.Join(canonical, "archetypes", entry.Name + ".json"));
             foreach (string field in ArchetypeCategoryFields)
             {
                 Add(found, (record.ReqStr(field).ToLowerInvariant(), null), entry.Name);

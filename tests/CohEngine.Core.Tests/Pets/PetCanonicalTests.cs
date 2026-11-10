@@ -19,7 +19,7 @@ public sealed class PetCanonicalTests
     private const string PhantomArmy = "Controller_Control.Illusion_Control.Decoy";
     private const string Summon = "Tst.Set.Summon";
 
-    private static readonly string Canonical = Path.Combine(Fixtures.Store.RepositoryRoot, "data", "canonical");
+    private static readonly string Canonical = Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical");
     private static readonly EnduranceBudget Unlimited = new(1.0e9, 0.0, 0.0);
     private static readonly Movement Walk = new(20.0, 40.0);
 
@@ -109,7 +109,7 @@ public sealed class PetCanonicalTests
 
     private static ChainAttack RealSummon(string name)
     {
-        JsonElement power = CanonicalJson.LoadCanonicalPowers(Path.Combine(Canonical, "powers"), [name])[name];
+        JsonElement power = CanonicalJson.LoadCanonicalPowers(Path.Join(Canonical, "powers"), [name])[name];
         return new ChainAttack { FullName = name, Damage = 0.0, CastTime = power.ReqNum("activation_time"), RechargeTime = power.ReqNum("recharge_time"), EndCost = power.ReqNum("endurance_cost"), Profile = AttackProfiles.Classify(power) };
     }
 
@@ -368,7 +368,7 @@ public sealed class PetCanonicalTests
     {
         PetSummon decoy = Assert.Single(Build(PhantomArmy, enhancement: NoEnhancement(PhantomArmy)));
         ChainAttack sword = decoy.PetAttacks.First(attack => string.Equals(attack.FullName, "Pets.Decoy.Fire_Sword", StringComparison.Ordinal));
-        JsonElement entity = CanonicalJson.ReadJson(Path.Combine(Canonical, "entities", "pets_decoy.json"), ErrorCodes.E38);
+        JsonElement entity = CanonicalJson.ReadJson(Path.Join(Canonical, "entities", "pets_decoy.json"), ErrorCodes.E38);
         string className = "Class_" + entity.Req("defaults").ReqStr("character_class_name");
         int petClass = Fixtures.Store.Archetypes.NidFromUidClass(className);
         double melee = Math.Abs(CohEngine.Core.Totals.EffectMagnitude.Modifier(Fixtures.Store.AttribMods, Fixtures.Store.Archetypes.Classes, petClass, Fixtures.Store.AttribMods.NidFromUidAttribMod("Melee_Damage"), 49));
