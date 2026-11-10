@@ -1,0 +1,37 @@
+{
+  "model": "claude-test-model",
+  "max_tokens": 1024,
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What does Fire Blast do?"
+        }
+      ]
+    }
+  ],
+  "system": "You answer City of Heroes build questions.",
+  "temperature": 0.5,
+  "tools": [
+    {
+      "name": "lookup_power",
+      "description": "Looks up one power.",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "powerset": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "powerset"
+        ]
+      }
+    }
+  ],
+  "tool_choice": {
+    "type": "auto"
+  }
+}
