@@ -14,7 +14,7 @@ public sealed class MbdValidateTests : IDisposable
 {
     private static readonly CliCapture Capture = new(FixtureStore.Locate(AppContext.BaseDirectory));
     private static readonly string Bane = CliCapture.MbdPath("Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)");
-    private static readonly string Tanker = Path.Combine(Capture.Store.MidsDirectory, "builds", "wpss_tanker_leadership");
+    private static readonly string Tanker = Path.Join(Capture.Store.MidsDirectory, "builds", "wpss_tanker_leadership");
     private static readonly MbdBuildSource Source = new(Capture.Store.MidsDirectory);
 
     private readonly string scratch = Directory.CreateTempSubdirectory("coh-mbd-validate").FullName;
@@ -80,8 +80,9 @@ public sealed class MbdValidateTests : IDisposable
         {
             JsonObject enhancement = document["PowerEntries"]!.AsArray()
                 .SelectMany(entry => entry!["SlotEntries"]!.AsArray())
-                .Select(slot => slot!["Enhancement"] as JsonObject)
-                .First(candidate => candidate is not null && Mbd.IoLevelBounds(candidate["Uid"]!.GetValue<string>(), database) is { Max: < 49 })!;
+                .Select(slot => slot!["Enhancement"])
+                .OfType<JsonObject>()
+                .First(candidate => Mbd.IoLevelBounds(candidate["Uid"]!.GetValue<string>(), database) is { Max: < 49 });
             enhancement["IoLevel"] = 50;
         });
 
@@ -141,7 +142,7 @@ public sealed class MbdValidateTests : IDisposable
     [Fact]
     public void A_default_directory_without_dumps_names_the_directory_and_the_flag()
     {
-        string missing = Path.Combine(scratch, "no-dumps");
+        string missing = Path.Join(scratch, "no-dumps");
         MbdBuildSource source = new(missing);
 
         using StringWriter output = new();
@@ -172,7 +173,7 @@ public sealed class MbdValidateTests : IDisposable
     [Fact]
     public void An_unreadable_mbd_is_e118()
     {
-        string path = Path.Combine(scratch, "broken.mbd");
+        string path = Path.Join(scratch, "broken.mbd");
         File.WriteAllText(path, "{ not json");
 
         (int code, string error) = RunError(path);
@@ -183,7 +184,7 @@ public sealed class MbdValidateTests : IDisposable
     [Fact]
     public void The_default_mids_directory_is_the_repositorys_dump()
     {
-        string nowhere = Directory.CreateDirectory(Path.Combine(scratch, "empty")).FullName;
+        string nowhere = Directory.CreateDirectory(Path.Join(scratch, "empty")).FullName;
 
         Assert.Equal(
             (Capture.Store.MidsDirectory, Path.Join(nowhere, "tests", "fixtures", "mids")),
@@ -202,7 +203,7 @@ public sealed class MbdValidateTests : IDisposable
     [Fact]
     public void The_mids_directory_flag_overrides_the_default()
     {
-        MbdBuildSource source = new(Path.Combine(scratch, "not-there"));
+        MbdBuildSource source = new(Path.Join(scratch, "not-there"));
 
         Assert.Equal(CliCapture.Run(Source, "validate", Bane), CliCapture.Run(source, "validate", Bane, "--mids-dir", Capture.Store.MidsDirectory));
     }
@@ -259,7 +260,7 @@ public sealed class MbdValidateTests : IDisposable
     {
         JsonNode document = JsonNode.Parse(File.ReadAllText(Bane))!;
         mutate(document);
-        string path = Path.Combine(scratch, "mutated.mbd");
+        string path = Path.Join(scratch, "mutated.mbd");
         File.WriteAllText(path, document.ToJsonString());
         return path;
     }
