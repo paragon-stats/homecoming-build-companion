@@ -1,0 +1,69 @@
+== melee stance ==
+rotation: Brute_Defense.Fiery_Aura.Burn > Brute_Melee.Radiation_Melee.Devastating_Blow > Brute_Melee.Radiation_Melee.Radiation_Siphon > Brute_Melee.Radiation_Melee.Radioactive_Smash
+  cycle 9.24 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Brute_Defense.Fiery_Aura.Burn > Inherent.Inherent.Brawl (chain 136.0 DPS)
+  best overall: Brute_Defense.Fiery_Aura.Burn > Brute_Melee.Radiation_Melee.Devastating_Blow > Brute_Melee.Radiation_Melee.Radiation_Siphon > Brute_Melee.Radiation_Melee.Radioactive_Smash (chain 386.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  aura: 91.9  [damage auras at melee share 1.00; per-tick damage assumed]
+    Brute_Defense.Fiery_Aura.Blazing_Aura: 64.1
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 553.2  [chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31]
+    Brute_Defense.Fiery_Aura.Burn: 104.7
+    Brute_Melee.Radiation_Melee.Devastating_Blow: 132.1
+    Brute_Melee.Radiation_Melee.Radiation_Siphon: 85.1
+    Brute_Melee.Radiation_Melee.Radioactive_Smash: 64.2
+  total: 645.0
+modifiers:
+  brute_fury: x1.296 (Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed)
+  click_buff: x1.136 (click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime)
+endurance: max 110.0, recovery 3.81/s, toggles 2.68/s, chain 2.37/s, other 0.36/s, net -1.60/s, time to empty 68.9 s
+health: max 2259.9, regen 31.64/s
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-001: melee stance: melee defense is 44.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+
+== ranged stance ==
+rotation: none (no chain attack is usable in this stance)
+  best sustainable: none
+  best overall: none
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  total: 0.0
+modifiers:
+  brute_fury: x1.296 (Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed)
+  click_buff: x1.136 (click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime)
+endurance: max 110.0, recovery 3.81/s, toggles 2.68/s, chain 0.00/s, other 0.36/s, net +0.77/s, time to empty sustainable
+health: max 2259.9, regen 31.64/s
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-001: ranged stance: ranged defense is 24.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))
+
+== hybrid stance ==
+rotation: Brute_Defense.Fiery_Aura.Burn > Brute_Melee.Radiation_Melee.Devastating_Blow > Brute_Melee.Radiation_Melee.Radiation_Siphon > Brute_Melee.Radiation_Melee.Radioactive_Smash
+  cycle 9.24 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Brute_Defense.Fiery_Aura.Burn > Inherent.Inherent.Brawl (chain 136.0 DPS)
+  best overall: Brute_Defense.Fiery_Aura.Burn > Brute_Melee.Radiation_Melee.Devastating_Blow > Brute_Melee.Radiation_Melee.Radiation_Siphon > Brute_Melee.Radiation_Melee.Radioactive_Smash (chain 386.1 DPS)
+dps (scaled; items below each layer are before modifiers):
+  aura: 91.9  [damage auras at melee share 1.00; per-tick damage assumed]
+    Brute_Defense.Fiery_Aura.Blazing_Aura: 64.1
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 553.2  [chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31]
+    Brute_Defense.Fiery_Aura.Burn: 104.7
+    Brute_Melee.Radiation_Melee.Devastating_Blow: 132.1
+    Brute_Melee.Radiation_Melee.Radiation_Siphon: 85.1
+    Brute_Melee.Radiation_Melee.Radioactive_Smash: 64.2
+  total: 645.0
+modifiers:
+  brute_fury: x1.296 (Class_Brute.fury_level=75.0 of 0..100 (default 75: approximate; verify in MidsReborn); +2% per point from data/canonical/powers/inherent/inherent/rage_buff.json, meter range 0..100 assumed)
+  click_buff: x1.136 (click buffs fired on cooldown: Brute_Melee.Radiation_Melee.Fusion +50% at 45% uptime; Brute_Defense.Fiery_Aura.Fiery_Embrace +100% at 47% uptime)
+endurance: max 110.0, recovery 3.81/s, toggles 2.68/s, chain 2.37/s, other 0.36/s, net -1.60/s, time to empty 68.9 s
+health: max 2259.9, regen 31.64/s
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 44.6%, under the 45% soft cap
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
+tests\fixtures\mids\builds\Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura):1:1: info: P-CHAIN-002: power Brute_Melee.Radiation_Melee.Irradiated_Ground is not modelled: not classifiable as an attack (E37: Brute_Melee.Radiation_Melee.Irradiated_Ground (type Toggle) has no entity creation, foe damage, foe -Res or click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles))

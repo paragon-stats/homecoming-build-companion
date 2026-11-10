@@ -1,0 +1,373 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize",
+        "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade"
+      ],
+      "cycle_time_s": 8.315999984741211,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade"
+        ],
+        "chain_dps": 29.760595321655273,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize",
+          "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade"
+        ],
+        "chain_dps": 241.96444702148438,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 365.5964660644531,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 365.5964660644531
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 241.96444702148438
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+            "dps": 56.38581466674805
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+            "dps": 95.77325439453125
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize",
+            "dps": 68.88439178466797
+          },
+          {
+            "name": "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade",
+            "dps": 20.920995712280273
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 52.2 s, 6 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_soldier_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3019458055496216,
+        "uptime": 1.0,
+        "factor": 1.0792508125305176,
+        "assumption": "click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.399999976158142,
+        "uptime": 1.0,
+        "factor": 1.399999976158142,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": 3.2504711151123047,
+      "toggle_drain_per_s": 1.4315226078033447,
+      "chain_drain_per_s": 2.871903419494629,
+      "other_drain_per_s": 0.9655897617340088,
+      "net_per_s": -2.0185446739196777,
+      "time_to_empty_s": 52.21583938598633
+    },
+    "health": {
+      "max_hp": 1518.0994873046875,
+      "regen_per_sec": 17.30633544921875
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam"
+      ],
+      "cycle_time_s": 7.42825984954834,
+      "gap_s": 1.8842597007751465,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade"
+        ],
+        "chain_dps": 23.421232223510742,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam"
+        ],
+        "chain_dps": 73.39649200439453,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 110.89851379394531,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 110.89851379394531
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 73.39649200439453
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade",
+            "dps": 23.421232223510742
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast",
+            "dps": 18.492551803588867
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam",
+            "dps": 31.48271369934082
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 129.2 s, 17 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_soldier_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3019458055496216,
+        "uptime": 1.0,
+        "factor": 1.0792508125305176,
+        "assumption": "click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.399999976158142,
+        "uptime": 1.0,
+        "factor": 1.399999976158142,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": 3.2504711151123047,
+      "toggle_drain_per_s": 1.4315226078033447,
+      "chain_drain_per_s": 1.6692813634872437,
+      "other_drain_per_s": 0.9655896425247192,
+      "net_per_s": -0.8159224987030029,
+      "time_to_empty_s": 129.17893981933594
+    },
+    "health": {
+      "max_hp": 1518.0994873046875,
+      "regen_per_sec": 17.30633544921875
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+        "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize"
+      ],
+      "cycle_time_s": 6.4679999351501465,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam"
+        ],
+        "chain_dps": 59.2559700012207,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+          "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize"
+        ],
+        "chain_dps": 284.19873046875,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 368.0660705566406,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 368.0660705566406
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 284.19873046875
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control",
+            "dps": 72.49604797363281
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Shatter",
+            "dps": 123.13703918457031
+          },
+          {
+            "name": "Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize",
+            "dps": 88.5656509399414
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, affordable: empties in 52.2 s, 8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "arachnos_soldier_conditioning",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Arachnos_Soldier: neutral, Conditioning adds regeneration and endurance, no damage effect (data/canonical/powers/inherent/inherent/spider_conditioning.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3019458055496216,
+        "uptime": 1.0,
+        "factor": 1.0792508125305176,
+        "assumption": "click buffs fired on cooldown: Arachnos_Soldiers.Bane_Spider_Soldier.Build_Up +80% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.2000000476837158,
+        "uptime": 1.0,
+        "factor": 1.2000000476837158,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": 3.2504711151123047,
+      "toggle_drain_per_s": 1.4315226078033447,
+      "chain_drain_per_s": 2.87325382232666,
+      "other_drain_per_s": 0.9655897617340088,
+      "net_per_s": -2.019895076751709,
+      "time_to_empty_s": 52.18092727661133
+    },
+    "health": {
+      "max_hp": 1518.0994873046875,
+      "regen_per_sec": 17.30633544921875
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  }
+]

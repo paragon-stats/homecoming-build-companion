@@ -1,0 +1,400 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Dominator_Assault.Psionic_Assault.Psychic_Shockwave",
+        "Dominator_Assault.Psionic_Assault.Mind_Probe",
+        "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+        "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+        "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+        "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+      ],
+      "cycle_time_s": 10.304347038269043,
+      "gap_s": 0.14034748077392578,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Dominator_Assault.Psionic_Assault.Mind_Probe",
+          "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+          "Inherent.Inherent.Brawl",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 131.92984008789062,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Dominator_Assault.Psionic_Assault.Psychic_Shockwave",
+          "Dominator_Assault.Psionic_Assault.Mind_Probe",
+          "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+          "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+          "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 137.07040405273438,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 203.03475952148438,
+      "layers": {
+        "pet": 65.96434783935547,
+        "chain": 137.07040405273438
+      },
+      "unscaled": {
+        "pet": 65.96434783935547,
+        "chain": 137.07040405273438
+      },
+      "detail": {
+        "pet": [
+          {
+            "name": "Shade",
+            "dps": 0.0
+          },
+          {
+            "name": "Umbra Beast",
+            "dps": 65.96434783935547
+          }
+        ],
+        "chain": [
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psychic_Shockwave",
+            "dps": 8.489925384521484
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Mind_Probe",
+            "dps": 25.6445369720459
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+            "dps": 19.29665756225586
+          },
+          {
+            "name": "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+            "dps": 14.278204917907715
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+            "dps": 57.94113540649414
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Dart",
+            "dps": 11.419944763183594
+          }
+        ]
+      },
+      "labels": {
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)",
+        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "dominator_domination",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 102.25,
+      "recovery_per_s": 4.4308342933654785,
+      "toggle_drain_per_s": 1.106623649597168,
+      "chain_drain_per_s": 4.703424453735352,
+      "other_drain_per_s": 0.10451269149780273,
+      "net_per_s": -1.4837265014648438,
+      "time_to_empty_s": 68.91431427001953
+    },
+    "health": {
+      "max_hp": 1093.3013916015625,
+      "regen_per_sec": 15.078446388244629
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 24.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "24.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+        "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+        "Dominator_Control.Darkness_Control.Living_Shadows",
+        "Dominator_Control.Darkness_Control.Dark_Grasp",
+        "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+      ],
+      "cycle_time_s": 10.304347038269043,
+      "gap_s": 1.064347267150879,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+          "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 83.6392822265625,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+          "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Control.Darkness_Control.Living_Shadows",
+          "Dominator_Control.Darkness_Control.Dark_Grasp",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 93.3864974975586,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 159.35084533691406,
+      "layers": {
+        "pet": 65.96434783935547,
+        "chain": 93.3864974975586
+      },
+      "unscaled": {
+        "pet": 65.96434783935547,
+        "chain": 93.3864974975586
+      },
+      "detail": {
+        "pet": [
+          {
+            "name": "Shade",
+            "dps": 0.0
+          },
+          {
+            "name": "Umbra Beast",
+            "dps": 65.96434783935547
+          }
+        ],
+        "chain": [
+          {
+            "name": "Epic.Dominator_Mu_Mastery.Ball_Lightning",
+            "dps": 14.278204917907715
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+            "dps": 57.94113540649414
+          },
+          {
+            "name": "Dominator_Control.Darkness_Control.Living_Shadows",
+            "dps": 2.7348289489746094
+          },
+          {
+            "name": "Dominator_Control.Darkness_Control.Dark_Grasp",
+            "dps": 7.0123820304870605
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Dart",
+            "dps": 11.419944763183594
+          }
+        ]
+      },
+      "labels": {
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)",
+        "chain": "chain, affordable: empties in 78.3 s, 8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "dominator_domination",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 102.25,
+      "recovery_per_s": 4.4308342933654785,
+      "toggle_drain_per_s": 1.106623649597168,
+      "chain_drain_per_s": 4.525697708129883,
+      "other_drain_per_s": 0.10451269149780273,
+      "net_per_s": -1.305999755859375,
+      "time_to_empty_s": 78.29251098632812
+    },
+    "health": {
+      "max_hp": 1093.3013916015625,
+      "regen_per_sec": 15.078446388244629
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 34.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "34.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Dominator_Assault.Psionic_Assault.Mind_Probe",
+        "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+        "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+        "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+      ],
+      "cycle_time_s": 9.647830963134766,
+      "gap_s": 0.09396171569824219,
+      "move_time_s": 2.821869373321533,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Dominator_Assault.Psionic_Assault.Mind_Probe",
+          "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+          "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 122.08031463623047,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Dominator_Assault.Psionic_Assault.Mind_Probe",
+          "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+          "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Assault.Psionic_Assault.Psionic_Dart"
+        ],
+        "chain_dps": 122.08031463623047,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 188.04466247558594,
+      "layers": {
+        "pet": 65.96434783935547,
+        "chain": 122.08031463623047
+      },
+      "unscaled": {
+        "pet": 65.96434783935547,
+        "chain": 122.08031463623047
+      },
+      "detail": {
+        "pet": [
+          {
+            "name": "Shade",
+            "dps": 0.0
+          },
+          {
+            "name": "Umbra Beast",
+            "dps": 65.96434783935547
+          }
+        ],
+        "chain": [
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Mind_Probe",
+            "dps": 27.389596939086914
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
+            "dps": 20.609756469726562
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+            "dps": 61.883914947509766
+          },
+          {
+            "name": "Dominator_Assault.Psionic_Assault.Psionic_Dart",
+            "dps": 12.197050094604492
+          }
+        ]
+      },
+      "labels": {
+        "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "dominator_domination",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Dominator: neutral, Domination grants +25% to-hit, endurance refill and control magnitude, no damage effect (data/canonical/powers/inherent/inherent/domination.json); to-hit and control are not modelled",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 102.25,
+      "recovery_per_s": 4.4308342933654785,
+      "toggle_drain_per_s": 1.106623649597168,
+      "chain_drain_per_s": 2.6649513244628906,
+      "other_drain_per_s": 0.10451292991638184,
+      "net_per_s": 0.5547463893890381,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1093.3013916015625,
+      "regen_per_sec": 15.078446388244629
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 24.6%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "24.6%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Hollowmind - Dominator (Darkness Control - Psionic Assault)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  }
+]

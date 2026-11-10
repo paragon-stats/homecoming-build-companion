@@ -1,0 +1,406 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+        "Blaster_Ranged.Energy_Blast.Power_Burst",
+        "Blaster_Ranged.Energy_Blast.Power_Blast"
+      ],
+      "cycle_time_s": 8.029946327209473,
+      "gap_s": 0.3739466667175293,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 254.869140625,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 254.869140625
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 204.42507934570312
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+            "dps": 108.96019744873047
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Burst",
+            "dps": 53.82595443725586
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Blast",
+            "dps": 41.63894271850586
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "blaster_defiance",
+        "multiplier": 1.2999999523162842,
+        "uptime": 1.0,
+        "factor": 1.0955413579940796,
+        "assumption": "Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.4748284816741943,
+        "uptime": 1.0,
+        "factor": 1.1512192487716675,
+        "assumption": "click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 2.814467191696167,
+      "toggle_drain_per_s": 0.8789036273956299,
+      "chain_drain_per_s": 1.4290661811828613,
+      "other_drain_per_s": 0.1260455846786499,
+      "net_per_s": 0.3804517984390259,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1477.57666015625,
+      "regen_per_sec": 31.58098602294922
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 42.7%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "42.7%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+        "Blaster_Ranged.Energy_Blast.Power_Burst",
+        "Blaster_Ranged.Energy_Blast.Power_Blast"
+      ],
+      "cycle_time_s": 8.029946327209473,
+      "gap_s": 0.3739466667175293,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 254.869140625,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 254.869140625
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 204.42507934570312
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+            "dps": 108.96019744873047
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Burst",
+            "dps": 53.82595443725586
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Blast",
+            "dps": 41.63894271850586
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "blaster_defiance",
+        "multiplier": 1.2999999523162842,
+        "uptime": 1.0,
+        "factor": 1.0955413579940796,
+        "assumption": "Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.4748284816741943,
+        "uptime": 1.0,
+        "factor": 1.1512192487716675,
+        "assumption": "click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 2.814467191696167,
+      "toggle_drain_per_s": 0.8789036273956299,
+      "chain_drain_per_s": 1.4290661811828613,
+      "other_drain_per_s": 0.1260455846786499,
+      "net_per_s": 0.3804517984390259,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1477.57666015625,
+      "regen_per_sec": 31.58098602294922
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+        "Blaster_Ranged.Energy_Blast.Power_Burst",
+        "Blaster_Ranged.Energy_Blast.Power_Blast"
+      ],
+      "cycle_time_s": 8.029946327209473,
+      "gap_s": 0.3739466667175293,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+          "Blaster_Ranged.Energy_Blast.Power_Burst",
+          "Blaster_Ranged.Energy_Blast.Power_Blast"
+        ],
+        "chain_dps": 204.42507934570312,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 254.869140625,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 254.869140625
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 204.42507934570312
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+            "dps": 108.96019744873047
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Burst",
+            "dps": 53.82595443725586
+          },
+          {
+            "name": "Blaster_Ranged.Energy_Blast.Power_Blast",
+            "dps": 41.63894271850586
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "blaster_defiance",
+        "multiplier": 1.2999999523162842,
+        "uptime": 1.0,
+        "factor": 1.0955413579940796,
+        "assumption": "Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.4748284816741943,
+        "uptime": 1.0,
+        "factor": 1.1512192487716675,
+        "assumption": "click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 2.814467191696167,
+      "toggle_drain_per_s": 0.8789036273956299,
+      "chain_drain_per_s": 1.4290661811828613,
+      "other_drain_per_s": 0.1260455846786499,
+      "net_per_s": 0.3804517984390259,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1477.57666015625,
+      "regen_per_sec": 31.58098602294922
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 42.7%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "42.7%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

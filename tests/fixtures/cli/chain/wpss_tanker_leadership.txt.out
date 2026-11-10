@@ -1,0 +1,66 @@
+== melee stance ==
+rotation: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Epic.Fire_Mastery.Fire_Blast
+  cycle 11.07 s, gap 0.11 s, move 0.00 s, sustainable
+  best sustainable: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Epic.Fire_Mastery.Fire_Blast (chain 127.4 DPS)
+  best overall: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Epic.Fire_Mastery.Fire_Blast (chain 127.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 140.8  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Tanker_Melee.Super_Strength.Knockout_Blow: 48.1
+    Tanker_Melee.Super_Strength.Foot_Stomp: 20.1
+    Tanker_Melee.Super_Strength.Haymaker: 23.9
+    Tanker_Melee.Super_Strength.Punch: 13.5
+    Pool.Fighting.Boxing: 6.7
+    Epic.Fire_Mastery.Fire_Blast: 15.2
+  total: 140.8
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+  click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
+endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 2.91/s, other 0.04/s, net +0.26/s, time to empty sustainable
+health: max 2614.3, regen 58.14/s
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: melee stance: melee defense is 23.3%, under the 45% soft cap
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== ranged stance ==
+rotation: Epic.Fire_Mastery.Fire_Blast
+  cycle 4.42 s, gap 2.57 s, move 0.00 s, sustainable
+  best sustainable: Epic.Fire_Mastery.Fire_Blast (chain 38.0 DPS)
+  best overall: Epic.Fire_Mastery.Fire_Blast (chain 38.0 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 42.0  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Epic.Fire_Mastery.Fire_Blast: 38.0
+  total: 42.0
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+  click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
+endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 0.74/s, other 0.04/s, net +2.43/s, time to empty sustainable
+health: max 2614.3, regen 58.14/s
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: ranged stance: ranged defense is 26.2%, under the 45% soft cap
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+
+== hybrid stance ==
+rotation: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Inherent.Inherent.Brawl
+  cycle 11.07 s, gap 0.91 s, move 0.00 s, sustainable
+  best sustainable: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Inherent.Inherent.Brawl (chain 115.4 DPS)
+  best overall: Tanker_Melee.Super_Strength.Knockout_Blow > Tanker_Melee.Super_Strength.Foot_Stomp > Tanker_Melee.Super_Strength.Haymaker > Tanker_Melee.Super_Strength.Punch > Pool.Fighting.Boxing > Inherent.Inherent.Brawl (chain 115.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  buff_cast: 0.0  [buff clicks cast on cooldown]
+  pet: 0.0  [no pets summoned]
+  chain: 127.5  [chain, sustainable; damage is the Mids reference figure standing in for #31]
+    Tanker_Melee.Super_Strength.Knockout_Blow: 48.1
+    Tanker_Melee.Super_Strength.Foot_Stomp: 20.1
+    Tanker_Melee.Super_Strength.Haymaker: 23.9
+    Tanker_Melee.Super_Strength.Punch: 13.5
+    Pool.Fighting.Boxing: 6.7
+    Inherent.Inherent.Brawl: 3.2
+  total: 127.5
+modifiers:
+  tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
+  click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
+endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 2.61/s, other 0.04/s, net +0.55/s, time to empty sustainable
+health: max 2614.3, regen 58.14/s
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: hybrid stance: melee defense is 23.3%, under the 45% soft cap
+tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

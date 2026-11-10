@@ -1,0 +1,4 @@
+# A function in the chain port keeps the length its Python original has: the operation order and the float32
+# narrowing points are the fidelity guarantee, so the method-length rule is off here. Everything else stays on.
+[*.cs]
+dotnet_diagnostic.MA0051.severity = none

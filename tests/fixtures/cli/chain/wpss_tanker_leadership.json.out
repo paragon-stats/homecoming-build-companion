@@ -1,0 +1,405 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Tanker_Melee.Super_Strength.Knockout_Blow",
+        "Tanker_Melee.Super_Strength.Foot_Stomp",
+        "Tanker_Melee.Super_Strength.Haymaker",
+        "Tanker_Melee.Super_Strength.Punch",
+        "Pool.Fighting.Boxing",
+        "Epic.Fire_Mastery.Fire_Blast"
+      ],
+      "cycle_time_s": 11.069005966186523,
+      "gap_s": 0.113006591796875,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Tanker_Melee.Super_Strength.Knockout_Blow",
+          "Tanker_Melee.Super_Strength.Foot_Stomp",
+          "Tanker_Melee.Super_Strength.Haymaker",
+          "Tanker_Melee.Super_Strength.Punch",
+          "Pool.Fighting.Boxing",
+          "Epic.Fire_Mastery.Fire_Blast"
+        ],
+        "chain_dps": 127.43794250488281,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Tanker_Melee.Super_Strength.Knockout_Blow",
+          "Tanker_Melee.Super_Strength.Foot_Stomp",
+          "Tanker_Melee.Super_Strength.Haymaker",
+          "Tanker_Melee.Super_Strength.Punch",
+          "Pool.Fighting.Boxing",
+          "Epic.Fire_Mastery.Fire_Blast"
+        ],
+        "chain_dps": 127.43794250488281,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 140.8179931640625,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 140.8179931640625
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 127.43794250488281
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Tanker_Melee.Super_Strength.Knockout_Blow",
+            "dps": 48.07732391357422
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Foot_Stomp",
+            "dps": 20.095430374145508
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Haymaker",
+            "dps": 23.88413429260254
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Punch",
+            "dps": 13.504866600036621
+          },
+          {
+            "name": "Pool.Fighting.Boxing",
+            "dps": 6.68067741394043
+          },
+          {
+            "name": "Epic.Fire_Mastery.Fire_Blast",
+            "dps": 15.195518493652344
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.2981791496276855,
+        "uptime": 1.0,
+        "factor": 1.1049926280975342,
+        "assumption": "click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 4.421924591064453,
+      "toggle_drain_per_s": 1.2140190601348877,
+      "chain_drain_per_s": 2.90847110748291,
+      "other_drain_per_s": 0.044085025787353516,
+      "net_per_s": 0.25534939765930176,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 2614.25732421875,
+      "regen_per_sec": 58.13862609863281
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 23.3%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "23.3%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Epic.Fire_Mastery.Fire_Blast"
+      ],
+      "cycle_time_s": 4.4211745262146,
+      "gap_s": 2.573174476623535,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Epic.Fire_Mastery.Fire_Blast"
+        ],
+        "chain_dps": 38.044029235839844,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Epic.Fire_Mastery.Fire_Blast"
+        ],
+        "chain_dps": 38.044029235839844,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 42.03837203979492,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 42.03837203979492
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 38.044029235839844
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Epic.Fire_Mastery.Fire_Blast",
+            "dps": 38.04402542114258
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.2981791496276855,
+        "uptime": 1.0,
+        "factor": 1.1049926280975342,
+        "assumption": "click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 4.421924591064453,
+      "toggle_drain_per_s": 1.2140190601348877,
+      "chain_drain_per_s": 0.7387363314628601,
+      "other_drain_per_s": 0.04408496618270874,
+      "net_per_s": 2.425084114074707,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 2614.25732421875,
+      "regen_per_sec": 58.13862609863281
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 26.2%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "26.2%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Tanker_Melee.Super_Strength.Knockout_Blow",
+        "Tanker_Melee.Super_Strength.Foot_Stomp",
+        "Tanker_Melee.Super_Strength.Haymaker",
+        "Tanker_Melee.Super_Strength.Punch",
+        "Pool.Fighting.Boxing",
+        "Inherent.Inherent.Brawl"
+      ],
+      "cycle_time_s": 11.069005966186523,
+      "gap_s": 0.9050064086914062,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Tanker_Melee.Super_Strength.Knockout_Blow",
+          "Tanker_Melee.Super_Strength.Foot_Stomp",
+          "Tanker_Melee.Super_Strength.Haymaker",
+          "Tanker_Melee.Super_Strength.Punch",
+          "Pool.Fighting.Boxing",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 115.40697479248047,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Tanker_Melee.Super_Strength.Knockout_Blow",
+          "Tanker_Melee.Super_Strength.Foot_Stomp",
+          "Tanker_Melee.Super_Strength.Haymaker",
+          "Tanker_Melee.Super_Strength.Punch",
+          "Pool.Fighting.Boxing",
+          "Inherent.Inherent.Brawl"
+        ],
+        "chain_dps": 115.40697479248047,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 127.52385711669922,
+      "layers": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 127.52385711669922
+      },
+      "unscaled": {
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 115.40697479248047
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Tanker_Melee.Super_Strength.Knockout_Blow",
+            "dps": 48.07732391357422
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Foot_Stomp",
+            "dps": 20.095430374145508
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Haymaker",
+            "dps": 23.88413429260254
+          },
+          {
+            "name": "Tanker_Melee.Super_Strength.Punch",
+            "dps": 13.504866600036621
+          },
+          {
+            "name": "Pool.Fighting.Boxing",
+            "dps": 6.68067741394043
+          },
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 3.1645312309265137
+          }
+        ]
+      },
+      "labels": {
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "tanker_gauntlet",
+        "multiplier": 1.0,
+        "uptime": 1.0,
+        "factor": 1.0,
+        "assumption": "Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json)",
+        "applies_to": null
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.2981791496276855,
+        "uptime": 1.0,
+        "factor": 1.1049926280975342,
+        "assumption": "click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      }
+    ],
+    "endurance": {
+      "max": 103.5999984741211,
+      "recovery_per_s": 4.421924591064453,
+      "toggle_drain_per_s": 1.2140190601348877,
+      "chain_drain_per_s": 2.613405466079712,
+      "other_drain_per_s": 0.044085025787353516,
+      "net_per_s": 0.5504150390625,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 2614.25732421875,
+      "regen_per_sec": 58.13862609863281
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 23.3%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "23.3%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\wpss_tanker_leadership",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  }
+]

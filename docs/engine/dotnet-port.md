@@ -147,6 +147,45 @@ The CLI prints such a message as `error: <message>` on stderr and exits 1; a mis
 | E110-E119 | P3c |
 | E120 and up | CP work |
 
+## Chain planner
+
+The `chain` command plans a build's attack rotation and layers the damage of auras, patches, pets, click buffs and debuffs over it.
+The C# port prints byte-identical text and JSON to the Python on every sample build.
+`tests/fixtures/cli/chain/README.md` says how the Python captures were made.
+
+| Python | C# | Holds |
+| --- | --- | --- |
+| `damage_model.py` | `DamageLayers/DamageModel` and one file per record and enum | `DamageModel` holds the source names and `Evaluate`; the model records and the `Stance`, `Role`, `Shape` and `Delivery` enums each have their own file. |
+| `damage_sources.py` | `DamageLayers/DamageSources` | The chain, aura, patch and buff-cast sources. |
+| `damage_modifiers.py`, `at_modifiers.py` | `DamageLayers/DamageModifiers`, `AtModifiers` | Click buffs, target debuffs and the archetype inherents. |
+| `damage_plugins.py` | `DamageLayers/DamagePlugins` | The default source and modifier lists, in the Python registration order. |
+| `damage_reference.py` | `DamageLayers/DamageReference` | The Mids-computed damage figures that stand in for the unported damage port. |
+| `attack_profile.py` | `Chain/AttackProfiles`, `CanonicalJson` | The classifier and the canonical power reader. |
+| `attack_chain.py` | `Chain/AttackChain` | The sequencer and the subset planner. |
+| `pet_damage.py` | `Pets/PetDamage` | Summons, pets and the pet source. |
+| `endurance_budget.py` | `Statistics/EnduranceBudgets` | The endurance and health budgets and the `totals.json` reader. |
+| `power_names.py` | `Names/PowerNames` | The internal and display name resolver. |
+| `chain_report.py`, `__main__.py` chain | `Chain/ChainReport`, `ChainCommand`, `PyJson` | Setup, rules, the text and JSON renderers and the command. |
+
+The namespace of the damage folder is `DamageLayers`, because a `Damage` namespace shadows identifiers the numeric core's tests already use.
+The command's logic lives in Core as `ChainCommand`, like `CliRunner`, so the test projects can reach it and the coverage gate measures it.
+`CliRunner` routes `chain` to it, as a case beside `rules` and `validate`.
+
+### Printing floats
+
+The report prints Python text, so `PyFloat` reproduces it instead of approximating it.
+`Fixed` rounds the exact binary value half to even, which is what `format(x, ".1f")` does, and .NET's own formatter does not.
+`Repr` gives the shortest text that reads back to the same double, in Python's layout: `1e-05`, `1e+16`, `1.0`.
+`General` is `format(x, "g")`.
+`Sum` is the `sum()` of Python 3.12 and later, which adds floats with Neumaier compensation, so a left-to-right loop would differ in the last digit.
+JSON goes through `PyJson` rather than a source-generated context, because the output must keep `0` apart from `0.0`, escape every non-ASCII character, and keep the Python key order.
+
+### Left as stubs
+
+`PowerDps.Compute` still fails with `E15`, as `compute_power_dps` does.
+Damage per activation is the Mids reference figure until the `FXGetDamageValue` port lands (#31).
+Pet AI, form-locked auras and incarnate summons stay unmodelled, as in the Python (#70 to #73).
+
 ## Build files
 
 `src/CohEngine.Core/BuildFile/` reads the two build formats and writes the modern one.

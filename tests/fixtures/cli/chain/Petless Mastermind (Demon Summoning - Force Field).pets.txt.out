@@ -1,0 +1,63 @@
+== melee stance ==
+rotation: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption
+  cycle 5.28 s, gap 0.00 s, move 0.00 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl > Mastermind_Summon.Demon_Summoning.Crack_Whip (chain 19.6 DPS)
+  best overall: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption (chain 76.7 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 90.6  [chain, affordable: empties in 54.4 s, 10 cycles; damage is the Mids reference figure standing in for #31]
+    Pool.Fighting.Cross_Punch: 28.3
+    Mastermind_Summon.Demon_Summoning.Lash: 28.6
+    Mastermind_Summon.Demon_Summoning.Corruption: 19.9
+  total: 90.6
+modifiers:
+  mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
+  target_debuff: x1.183 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -18.3%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res)
+endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 2.91/s, other 0.00/s, net -1.84/s, time to empty 54.4 s
+health: max 893.4, regen 7.30/s
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-001: melee stance: melee defense is 39.1%, under the 45% soft cap
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)
+
+== ranged stance ==
+rotation: Mastermind_Summon.Demon_Summoning.Corruption
+  cycle 2.42 s, gap 0.97 s, move 0.00 s, not sustainable
+  best sustainable: Mastermind_Summon.Demon_Summoning.Crack_Whip (chain 17.6 DPS)
+  best overall: Mastermind_Summon.Demon_Summoning.Corruption (chain 43.3 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 47.4  [chain, affordable: empties in 409.0 s, 169 cycles; damage is the Mids reference figure standing in for #31]
+    Mastermind_Summon.Demon_Summoning.Corruption: 43.3
+  total: 47.4
+modifiers:
+  mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
+  target_debuff: x1.094 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -9.4%: Mastermind_Summon.Demon_Summoning.Corruption -9% res)
+endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 1.32/s, other 0.00/s, net -0.24/s, time to empty 409.0 s
+health: max 893.4, regen 7.30/s
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-001: ranged stance: ranged defense is 35.9%, under the 45% soft cap
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)
+
+== hybrid stance ==
+rotation: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption
+  cycle 6.19 s, gap 0.00 s, move 0.91 s, not sustainable
+  best sustainable: Inherent.Inherent.Brawl > Mastermind_Summon.Demon_Summoning.Corruption (chain 34.3 DPS)
+  best overall: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption (chain 65.4 DPS)
+dps (scaled; items below each layer are before modifiers):
+  pet: 0.0  [no pets summoned]
+  chain: 76.2  [chain, affordable: empties in 70.9 s, 11 cycles; damage is the Mids reference figure standing in for #31]
+    Pool.Fighting.Cross_Punch: 24.1
+    Mastermind_Summon.Demon_Summoning.Lash: 24.3
+    Mastermind_Summon.Demon_Summoning.Corruption: 16.9
+  total: 76.2
+modifiers:
+  mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
+  target_debuff: x1.167 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -16.7%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res)
+endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 2.48/s, other 0.00/s, net -1.41/s, time to empty 70.9 s
+health: max 893.4, regen 7.30/s
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-001: hybrid stance: melee defense is 39.1%, under the 45% soft cap
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range
+tests\fixtures\mids\builds\Petless Mastermind (Demon Summoning - Force Field):1:1: info: P-CHAIN-002: power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)

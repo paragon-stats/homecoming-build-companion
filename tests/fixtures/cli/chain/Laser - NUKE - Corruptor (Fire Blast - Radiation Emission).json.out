@@ -1,0 +1,484 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+        "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+        "Corruptor_Ranged.Fire_Blast.Blaze",
+        "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 5.676000118255615,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": {
+        "attacks": [
+          "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+          "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+          "Corruptor_Ranged.Fire_Blast.Blaze",
+          "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 165.12123107910156,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 260.2091064453125,
+      "layers": {
+        "patch": 4.450751781463623,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 255.7583465576172
+      },
+      "unscaled": {
+        "patch": 2.8734688758850098,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 165.12123107910156
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Corruptor_Buff.Radiation_Emission.Fallout",
+            "dps": 2.8734688758850098
+          }
+        ],
+        "chain": [
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+            "dps": 19.130237579345703
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+            "dps": 79.18893432617188
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blaze",
+            "dps": 44.61939239501953
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 22.18263816833496
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "corruptor_scourge",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3602254390716553,
+        "uptime": 1.0,
+        "factor": 1.1494711637496948,
+        "assumption": "click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.225000023841858,
+        "uptime": 1.0,
+        "factor": 1.225000023841858,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": -13.354665756225586,
+      "toggle_drain_per_s": 3.3658761978149414,
+      "chain_drain_per_s": 4.85771369934082,
+      "other_drain_per_s": 0.5126252174377441,
+      "net_per_s": -22.09088134765625,
+      "time_to_empty_s": 4.771199703216553
+    },
+    "health": {
+      "max_hp": 1219.5869140625,
+      "regen_per_sec": 8.740372657775879
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-END-002",
+        "severity": "warning",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)",
+        "fix": "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
+        "expected": ">= 4 cycles (22.7 s)",
+        "actual": "4.8 s"
+      },
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 34.4%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "34.4%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+        "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+        "Corruptor_Ranged.Fire_Blast.Blaze",
+        "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 5.676000118255615,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": {
+        "attacks": [
+          "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+          "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+          "Corruptor_Ranged.Fire_Blast.Blaze",
+          "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 165.12123107910156,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 260.2091064453125,
+      "layers": {
+        "patch": 4.450751781463623,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 255.7583465576172
+      },
+      "unscaled": {
+        "patch": 2.8734688758850098,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 165.12123107910156
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Corruptor_Buff.Radiation_Emission.Fallout",
+            "dps": 2.8734688758850098
+          }
+        ],
+        "chain": [
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+            "dps": 19.130237579345703
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+            "dps": 79.18893432617188
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blaze",
+            "dps": 44.61939239501953
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 22.18263816833496
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "corruptor_scourge",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3602254390716553,
+        "uptime": 1.0,
+        "factor": 1.1494711637496948,
+        "assumption": "click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.225000023841858,
+        "uptime": 1.0,
+        "factor": 1.225000023841858,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": -13.354665756225586,
+      "toggle_drain_per_s": 3.3658761978149414,
+      "chain_drain_per_s": 4.85771369934082,
+      "other_drain_per_s": 0.5126252174377441,
+      "net_per_s": -22.09088134765625,
+      "time_to_empty_s": 4.771199703216553
+    },
+    "health": {
+      "max_hp": 1219.5869140625,
+      "regen_per_sec": 8.740372657775879
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-END-002",
+        "severity": "warning",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)",
+        "fix": "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
+        "expected": ">= 4 cycles (22.7 s)",
+        "actual": "4.8 s"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+        "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+        "Corruptor_Ranged.Fire_Blast.Blaze",
+        "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 5.676000118255615,
+      "gap_s": 0.0,
+      "move_time_s": 0.0,
+      "sustainable": false
+    },
+    "alternatives": {
+      "best_sustainable": null,
+      "best_overall": {
+        "attacks": [
+          "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+          "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+          "Corruptor_Ranged.Fire_Blast.Blaze",
+          "Corruptor_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 165.12123107910156,
+        "sustainable": false
+      }
+    },
+    "dps": {
+      "total": 260.2091064453125,
+      "layers": {
+        "patch": 4.450751781463623,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 255.7583465576172
+      },
+      "unscaled": {
+        "patch": 2.8734688758850098,
+        "buff_cast": 0.0,
+        "pet": 0.0,
+        "chain": 165.12123107910156
+      },
+      "detail": {
+        "patch": [
+          {
+            "name": "Corruptor_Buff.Radiation_Emission.Fallout",
+            "dps": 2.8734688758850098
+          }
+        ],
+        "chain": [
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Ball",
+            "dps": 19.130237579345703
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+            "dps": 79.18893432617188
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Blaze",
+            "dps": 44.61939239501953
+          },
+          {
+            "name": "Corruptor_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 22.18263816833496
+          }
+        ]
+      },
+      "labels": {
+        "patch": "location patches cast on cooldown",
+        "buff_cast": "buff clicks cast on cooldown",
+        "pet": "no pets summoned",
+        "chain": "chain, not affordable (best overall): empties in 4.8 s, 0.8 cycles; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "corruptor_scourge",
+        "multiplier": 1.100000023841858,
+        "uptime": 1.0,
+        "factor": 1.100000023841858,
+        "assumption": "Class_Corruptor.scourge_chance=0.1 averaged over the fight (default 0.10, approximate; verify in MidsReborn); scourge hits deal up to double damage per data/canonical/powers/inherent/inherent/scourge.json help text",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "click_buff",
+        "multiplier": 1.3602254390716553,
+        "uptime": 1.0,
+        "factor": 1.1494711637496948,
+        "assumption": "click buffs fired on cooldown: Corruptor_Buff.Radiation_Emission.Accelerate_Metabolism +20% at 100% uptime; Corruptor_Ranged.Fire_Blast.Aim +43% at 38% uptime",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.225000023841858,
+        "uptime": 1.0,
+        "factor": 1.225000023841858,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -22.5%: Corruptor_Buff.Radiation_Emission.Enervating_Field -23% res (persistent_debuff) at 100% uptime",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 105.4000015258789,
+      "recovery_per_s": -13.354665756225586,
+      "toggle_drain_per_s": 3.3658761978149414,
+      "chain_drain_per_s": 4.85771369934082,
+      "other_drain_per_s": 0.5126252174377441,
+      "net_per_s": -22.09088134765625,
+      "time_to_empty_s": 4.771199703216553
+    },
+    "health": {
+      "max_hp": 1219.5869140625,
+      "regen_per_sec": 8.740372657775879
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-END-002",
+        "severity": "warning",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: no affordable chain; the best chain empties endurance in 4.8 s, under 4 cycles of 5.68 s (22.7 s)",
+        "fix": "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
+        "expected": ">= 4 cycles (22.7 s)",
+        "actual": "4.8 s"
+      },
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 34.4%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "34.4%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)",
+        "line": 1,
+        "column": 1,
+        "message": "power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)",
+        "fix": "check Pool.Flight.Evasive_Maneuvers against canonical data; its damage is missing from every layer until it is classified"
+      }
+    ]
+  }
+]

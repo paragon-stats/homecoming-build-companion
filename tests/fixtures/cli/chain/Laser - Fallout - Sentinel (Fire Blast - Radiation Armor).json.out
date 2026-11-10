@@ -1,0 +1,340 @@
+[
+  {
+    "stance": "melee",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Inherent.Inherent.Brawl",
+        "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 6.452000141143799,
+      "gap_s": 3.944000244140625,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 17.769607543945312,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 17.769607543945312,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 21.870285034179688,
+      "layers": {
+        "pet": 0.0,
+        "chain": 21.870285034179688
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 17.769607543945312
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 3.4131481647491455
+          },
+          {
+            "name": "Sentinel_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 14.35645866394043
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "sentinel_opportunity",
+        "multiplier": 1.0499999523162842,
+        "uptime": 1.0,
+        "factor": 1.0256409645080566,
+        "assumption": "Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.2000000476837158,
+        "uptime": 1.0,
+        "factor": 1.2000000476837158,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 0.25999999046325684,
+      "chain_drain_per_s": 0.934593915939331,
+      "other_drain_per_s": 0.0,
+      "net_per_s": 0.888739824295044,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1205.0,
+      "regen_per_sec": 7.029166221618652
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "melee stance: melee defense is 0.0%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "0.0%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "ranged",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 6.452000141143799,
+      "gap_s": 5.0,
+      "move_time_s": 0.0,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 14.35645866394043,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 14.35645866394043,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 17.66948699951172,
+      "layers": {
+        "pet": 0.0,
+        "chain": 17.66948699951172
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 14.35645866394043
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Sentinel_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 14.35645866394043
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "sentinel_opportunity",
+        "multiplier": 1.0499999523162842,
+        "uptime": 1.0,
+        "factor": 1.0256409645080566,
+        "assumption": "Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.2000000476837158,
+        "uptime": 1.0,
+        "factor": 1.2000000476837158,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 0.25999999046325684,
+      "chain_drain_per_s": 0.934593915939331,
+      "other_drain_per_s": 0.0,
+      "net_per_s": 0.888739824295044,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1205.0,
+      "regen_per_sec": 7.029166221618652
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "ranged stance: ranged defense is 0.0%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "0.0%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  },
+  {
+    "stance": "hybrid",
+    "form": "",
+    "rotation": {
+      "attacks": [
+        "Inherent.Inherent.Brawl",
+        "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+      ],
+      "cycle_time_s": 6.452000141143799,
+      "gap_s": 1.1221308708190918,
+      "move_time_s": 2.821869373321533,
+      "sustainable": true
+    },
+    "alternatives": {
+      "best_sustainable": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 17.769607543945312,
+        "sustainable": true
+      },
+      "best_overall": {
+        "attacks": [
+          "Inherent.Inherent.Brawl",
+          "Sentinel_Ranged.Fire_Blast.Fire_Blast"
+        ],
+        "chain_dps": 17.769607543945312,
+        "sustainable": true
+      }
+    },
+    "dps": {
+      "total": 21.870285034179688,
+      "layers": {
+        "pet": 0.0,
+        "chain": 21.870285034179688
+      },
+      "unscaled": {
+        "pet": 0.0,
+        "chain": 17.769607543945312
+      },
+      "detail": {
+        "chain": [
+          {
+            "name": "Inherent.Inherent.Brawl",
+            "dps": 3.4131481647491455
+          },
+          {
+            "name": "Sentinel_Ranged.Fire_Blast.Fire_Blast",
+            "dps": 14.35645866394043
+          }
+        ]
+      },
+      "labels": {
+        "pet": "no pets summoned",
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
+      }
+    },
+    "modifiers": [
+      {
+        "name": "sentinel_opportunity",
+        "multiplier": 1.0499999523162842,
+        "uptime": 1.0,
+        "factor": 1.0256409645080566,
+        "assumption": "Class_Sentinel.sentinels=1.0 focusing the target (default 1); +5% each from data/canonical/powers/inherent/inherent/scrutiny.json help text, full uptime assumed",
+        "applies_to": [
+          "aura",
+          "chain",
+          "patch"
+        ]
+      },
+      {
+        "name": "target_debuff",
+        "multiplier": 1.2000000476837158,
+        "uptime": 1.0,
+        "factor": 1.2000000476837158,
+        "assumption": "debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Sentinel_Ranged.Fire_Blast.Fire_Blast -20% res",
+        "applies_to": null
+      }
+    ],
+    "endurance": {
+      "max": 100.0,
+      "recovery_per_s": 2.083333730697632,
+      "toggle_drain_per_s": 0.25999999046325684,
+      "chain_drain_per_s": 0.934593915939331,
+      "other_drain_per_s": 0.0,
+      "net_per_s": 0.888739824295044,
+      "time_to_empty_s": null
+    },
+    "health": {
+      "max_hp": 1205.0,
+      "regen_per_sec": 7.029166221618652
+    },
+    "diagnostics": [
+      {
+        "rule_id": "P-CHAIN-001",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "hybrid stance: melee defense is 0.0%, under the 45% soft cap",
+        "expected": ">= 45%",
+        "actual": "0.0%"
+      },
+      {
+        "rule_id": "P-CHAIN-002",
+        "severity": "info",
+        "path": "tests\\fixtures\\mids\\builds\\Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)",
+        "line": 1,
+        "column": 1,
+        "message": "no clicks-off dump found; click buffs are counted always-on",
+        "fix": "dump the build with its click buffs off and pass it as --clicksoff-dir"
+      }
+    ]
+  }
+]
