@@ -113,7 +113,7 @@ public sealed class SetBonusesTests
     {
         // Six powers each slot member 10: six copies of special 102 fold as five.
         Power[] powers = [.. Enumerable.Range(0, 6).Select(i => Power(i))];
-        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = Enumerable.Range(0, 6).ToDictionary(i => i, _ => (IReadOnlyList<SlotRef>)[Slot(10)]);
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = Enumerable.Range(0, 6).ToDictionary<int, int, IReadOnlyList<SlotRef>>(i => i, _ => [Slot(10)]);
         Assert.Equal(5, Build(powers, slots, Enh((10, 1)), Db([Bonus(102)])).Effects.Count);
     }
 
@@ -191,7 +191,7 @@ public sealed class SetBonusesTests
 
     private static Dictionary<int, IReadOnlyList<SlotRef>> Slots(params (int Power, int[] Enhs)[] entries)
     {
-        return entries.ToDictionary(entry => entry.Power, entry => (IReadOnlyList<SlotRef>)[.. entry.Enhs.Select(Slot)]);
+        return entries.ToDictionary<(int Power, int[] Enhs), int, IReadOnlyList<SlotRef>>(entry => entry.Power, entry => [.. entry.Enhs.Select(Slot)]);
     }
 
     private static Dictionary<int, EnhancementRecord> Enh(params (int Nid, int NidSet)[] pieces)
