@@ -124,10 +124,10 @@ This repository's `.mbd` artifacts remain valid inputs. The engine resolves them
 In order, each its own issue and pull request, after the chain-planner branch (#67, #68, #69) lands:
 
 1. Read modifier tables from `data/canonical/tables/<class>.json` instead of Mids `AttribMod.json`, and caps from `archetypes/*.json`.
-   This retires `--mids-db`, the pet-class data gaps, and any `Class_Minion_Pets` fallback.
+    This retires `--mids-db`, the pet-class data gaps, and any `Class_Minion_Pets` fallback.
 2. Read the level schedule, ED and exemplar scaling from the export when the current generation is in hand; until then the harness values stand, labelled as such.
 3. Refresh `data/canonical/` to the client's build, from a current City of Data export or by decoding the client's `bin.pigg` and `bin_powers.pigg` directly.
-   The `.pigg` container is simple; the `Parse7` payload is schema-driven and is the real cost of the direct route.
+    The `.pigg` container is simple; the `Parse7` payload is schema-driven and is the real cost of the direct route.
 4. Resolve `.mbd` builds against game data by name, so `validate` and `chain` run without the dump harness. The harness stays as the parity golden.
 5. Carry the hard-coded game rules above as named constants with their 4.0 citations.
 
