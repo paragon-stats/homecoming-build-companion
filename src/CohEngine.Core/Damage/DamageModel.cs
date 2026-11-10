@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.DamageLayers;
@@ -23,7 +24,7 @@ public static class DamageModel
     /// <param name="sources">The sources; the default registry when null.</param>
     /// <param name="modifiers">The modifiers; the default registry when null.</param>
     /// <returns>The report.</returns>
-    /// <exception cref="ChainException">E30 when the non-chain sources claim more than the timeline.</exception>
+    /// <exception cref="EngineException">E30 when the non-chain sources claim more than the timeline.</exception>
     public static DamageReport Evaluate(
         DamageContext context,
         IReadOnlyList<SourceRegistration>? sources = null,
@@ -47,8 +48,8 @@ public static class DamageModel
         if (share > 1.0)
         {
             string claims = string.Join(", ", first.Select(result => $"('{result.Source}', {PyFloat.Repr(result.TimelineShare)})"));
-            throw new ChainException(
-                $"E30: non-chain damage sources claim {PyFloat.Fixed(share, 3)} of the timeline (> 1.0): [{claims}]; "
+            throw new EngineException(
+                $"{ErrorCodes.E30}: non-chain damage sources claim {PyFloat.Fixed(share, 3)} of the timeline (> 1.0): [{claims}]; "
                 + "a summon, patch or click buff reports a cast share above its recharge cadence");
         }
 

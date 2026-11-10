@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Tests.Chain;
 
@@ -34,22 +35,24 @@ public sealed class PyJsonTests
     [Fact]
     public void A_diagnostic_renders_its_required_keys_only_when_nothing_else_is_set()
     {
-        ChainDiagnostic diagnostic = new("P-X-001", "info", "message", "build");
+        Diagnostic diagnostic = new("P-X-001", "info", "message") { Path = "build" };
 
-        Assert.Equal("{\"rule_id\":\"P-X-001\",\"severity\":\"info\",\"path\":\"build\",\"line\":1,\"column\":1,\"message\":\"message\"}", PyJson.Dumps(diagnostic.ToJson()).Replace("\n", string.Empty, StringComparison.Ordinal).Replace("  ", string.Empty, StringComparison.Ordinal).Replace(": ", ":", StringComparison.Ordinal));
+        Assert.Equal("rule_id,severity,path,line,column,message", string.Join(",", ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
     }
 
     [Fact]
     public void A_diagnostic_adds_fix_expected_and_actual_when_set()
     {
-        ChainDiagnostic diagnostic = new("P-X-001", "warning", "message", "build", "do this", ">= 1", "0");
+        Diagnostic diagnostic = new("P-X-001", "warning", "message") { Path = "build", Fix = "do this", Expected = ">= 1", Actual = "0" };
 
-        Assert.Equal("rule_id,severity,path,line,column,message,fix,expected,actual", string.Join(",", diagnostic.ToJson().Select(pair => pair.Key)));
+        Assert.Equal("rule_id,severity,path,line,column,message,fix,expected,actual", string.Join(",", ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
     }
 
     [Fact]
-    public void A_diagnostic_text_line_is_path_line_column_severity_rule_message()
+    public void A_diagnostic_serializes_with_integer_line_and_column()
     {
-        Assert.Equal("build:1:1: warning: P-X-001: message", new ChainDiagnostic("P-X-001", "warning", "message", "build").FormatText());
+        Diagnostic diagnostic = new("P-X-001", "info", "m") { Path = "b" };
+
+        Assert.Equal("{\n  \"rule_id\": \"P-X-001\",\n  \"severity\": \"info\",\n  \"path\": \"b\",\n  \"line\": 1,\n  \"column\": 1,\n  \"message\": \"m\"\n}", PyJson.Dumps(ChainReport.DiagnosticJson(diagnostic)));
     }
 }

@@ -4,6 +4,7 @@ using System.Text.Json.Nodes;
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Chain;
@@ -167,7 +168,7 @@ public sealed class ChainReportPortTests
         Assert.True(seen.Count > 0 && seen.All(resolve => resolve is not null));
     }
 
-    private static ChainDiagnostic[] DiagnosticsOf(ChainSetup setup, Stance stance)
+    private static Diagnostic[] DiagnosticsOf(ChainSetup setup, Stance stance)
     {
         return [.. ChainReport.RunChain(setup, [stance])[0].Diagnostics];
     }
@@ -240,26 +241,26 @@ public sealed class ChainReportPortTests
         using TempTree tree = new();
         tree.Write("powers/a/b/c.json", "{oops");
 
-        Assert.StartsWith("E38", Assert.Throws<ChainException>(() => ChainReport.Candidates(new Dictionary<string, PowerDamageRef>(StringComparer.Ordinal) { ["A.B.C"] = Ref("A.B.C") }, tree.FullPath("powers"))).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E38, Assert.Throws<EngineException>(() => ChainReport.Candidates(new Dictionary<string, PowerDamageRef>(StringComparer.Ordinal) { ["A.B.C"] = Ref("A.B.C") }, tree.FullPath("powers"))).Message, StringComparison.Ordinal);
     }
 
     [Theory]
     [MemberData(nameof(BadAssumptions))]
     public void A_bad_assumption_is_e67(string item)
     {
-        Assert.StartsWith("E67", Assert.Throws<ChainException>(() => ChainReport.ParseAssumptions([item])).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E67, Assert.Throws<EngineException>(() => ChainReport.ParseAssumptions([item])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void A_good_assumption_followed_by_a_bad_one_is_e67()
     {
-        Assert.StartsWith("E67", Assert.Throws<ChainException>(() => ChainReport.ParseAssumptions(["a=1", "b"])).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E67, Assert.Throws<EngineException>(() => ChainReport.ParseAssumptions(["a=1", "b"])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void The_e67_hint_names_a_real_assumption_key()
     {
-        Assert.Contains("--assume Class_Brute.fury_level=50", Assert.Throws<ChainException>(() => ChainReport.ParseAssumptions(["oops"])).Message, StringComparison.Ordinal);
+        Assert.Contains("--assume Class_Brute.fury_level=50", Assert.Throws<EngineException>(() => ChainReport.ParseAssumptions(["oops"])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -274,7 +275,7 @@ public sealed class ChainReportPortTests
     [MemberData(nameof(BadTargets))]
     public void A_bad_target_is_e68(string text)
     {
-        Assert.StartsWith("E68", Assert.Throws<ChainException>(() => ChainReport.ParseTarget(text)).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E68, Assert.Throws<EngineException>(() => ChainReport.ParseTarget(text)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -286,9 +287,9 @@ public sealed class ChainReportPortTests
     [Fact]
     public void P_end_002_warns_when_nothing_is_affordable_stating_the_floor_and_the_empty_time()
     {
-        ChainDiagnostic warning = ChainReport.RunChain(Drained(Setup()), [Stance.Melee])[0].Diagnostics.Single(diagnostic => string.Equals(diagnostic.RuleId, "P-END-002", StringComparison.Ordinal));
+        Diagnostic warning = ChainReport.RunChain(Drained(Setup()), [Stance.Melee])[0].Diagnostics.Single(diagnostic => string.Equals(diagnostic.RuleId, "P-END-002", StringComparison.Ordinal));
 
-        Assert.True(string.Equals(warning.Severity, "warning", StringComparison.Ordinal) && warning.Expected!.StartsWith(">= 4 cycles (", StringComparison.Ordinal) && warning.Actual!.EndsWith(" s", StringComparison.Ordinal));
+        Assert.True(string.Equals(warning.Severity, "warning", StringComparison.Ordinal) && ((string)warning.Expected!).StartsWith(">= 4 cycles (", StringComparison.Ordinal) && ((string)warning.Actual!).EndsWith(" s", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -446,7 +447,7 @@ public sealed class ChainReportPortTests
     [Fact]
     public void An_unknown_form_names_the_available_forms()
     {
-        string message = Assert.Throws<ChainException>(() => ChainReport.RunChain(TwoForms(), [Stance.Melee], forms: ["Dwarf"])).Message;
+        string message = Assert.Throws<EngineException>(() => ChainReport.RunChain(TwoForms(), [Stance.Melee], forms: ["Dwarf"])).Message;
 
         Assert.Equal("E65: form 'Dwarf' is not a form of this build; choose one of 'base', 'Nova' ('' is base)", message);
     }
@@ -498,7 +499,7 @@ public sealed class ChainReportPortTests
     {
         ChainSetup setup = Setup() with { Skipped = [("A.B.Gone", "no canonical file (E35)"), ("A.B.Odd", "not damaging (E37)")] };
 
-        ChainDiagnostic[] found = [.. DiagnosticsOf(setup, Stance.Melee).Where(diagnostic => diagnostic.Message.Contains("A.B.", StringComparison.Ordinal))];
+        Diagnostic[] found = [.. DiagnosticsOf(setup, Stance.Melee).Where(diagnostic => diagnostic.Message.Contains("A.B.", StringComparison.Ordinal))];
 
         Assert.True(found.Select(diagnostic => diagnostic.RuleId).SequenceEqual(["P-CHAIN-002", "P-CHAIN-002"], StringComparer.Ordinal) && found.All(diagnostic => string.Equals(diagnostic.Severity, "info", StringComparison.Ordinal) && diagnostic.Fix.Length > 0));
         Assert.Contains("A.B.Gone", found[0].Message, StringComparison.Ordinal);

@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.DamageLayers;
@@ -91,7 +92,7 @@ public static class DamageSources
     /// <summary>The fraction of time the character stands where a damage aura reaches foes.</summary>
     /// <param name="context">The context.</param>
     /// <returns>The share.</returns>
-    /// <exception cref="ChainException">E56 when <c>hybrid.melee_share</c> lies outside [0, 1].</exception>
+    /// <exception cref="EngineException">E56 when <c>hybrid.melee_share</c> lies outside [0, 1].</exception>
     public static double MeleeShare(DamageContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -109,7 +110,7 @@ public static class DamageSources
         {
             if (share is not (>= 0.0 and <= 1.0))
             {
-                throw new ChainException($"E56: assumption hybrid.melee_share={PyFloat.Repr(share)} is outside [0, 1]; set it within that range");
+                throw new EngineException($"{ErrorCodes.E56}: assumption hybrid.melee_share={PyFloat.Repr(share)} is outside [0, 1]; set it within that range");
             }
 
             return share;
@@ -140,7 +141,7 @@ public static class DamageSources
     /// <summary>Damage auras: damage per tick over the tick period, on every foe in reach, while in melee.</summary>
     /// <param name="context">The context.</param>
     /// <returns>The result, or null.</returns>
-    /// <exception cref="ChainException">E55 when an aura has an activate period of 0.</exception>
+    /// <exception cref="EngineException">E55 when an aura has an activate period of 0.</exception>
     public static SourceResult? AuraSource(DamageContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -161,8 +162,8 @@ public static class DamageSources
         {
             if (aura.ActivatePeriod <= 0.0)
             {
-                throw new ChainException(
-                    $"E55: aura {aura.FullName} has activate_period {PyFloat.Repr(aura.ActivatePeriod)} but must be > 0; supply the toggle's tick period");
+                throw new EngineException(
+                    $"{ErrorCodes.E55}: aura {aura.FullName} has activate_period {PyFloat.Repr(aura.ActivatePeriod)} but must be > 0; supply the toggle's tick period");
             }
 
             detail.Add((aura.FullName, F32.Round(F32.Round(aura.Damage * context.Scenario.TargetsHit(aura.Profile)) / aura.ActivatePeriod * share)));

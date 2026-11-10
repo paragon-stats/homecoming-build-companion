@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.DamageLayers;
@@ -15,14 +16,14 @@ public static class DamageReference
     /// <summary>Loads a Mids dump build directory into per-power damage references.</summary>
     /// <param name="buildDir">The directory holding <c>enhanced_powers.json</c> and <c>powers_effects.json</c>.</param>
     /// <returns>The references by power full name, in dump order.</returns>
-    /// <exception cref="ChainException">E40 to E43 as the Python port raises them.</exception>
+    /// <exception cref="EngineException">E40 to E43 as the Python port raises them.</exception>
     public static IReadOnlyDictionary<string, PowerDamageRef> LoadDamageRefs(string buildDir)
     {
         foreach (string file in Files)
         {
             if (!File.Exists(Path.Combine(buildDir, file)))
             {
-                throw new ChainException($"E40: {Path.Combine(buildDir, file)} not found; point build_dir at a Mids dump build directory");
+                throw new EngineException($"{ErrorCodes.E40}: {Path.Combine(buildDir, file)} not found; point build_dir at a Mids dump build directory");
             }
         }
 
@@ -32,8 +33,8 @@ public static class DamageReference
         {
             string onlyEnhanced = IntList(enhanced.Keys.Except(structural.Keys));
             string onlyStructural = IntList(structural.Keys.Except(enhanced.Keys));
-            throw new ChainException(
-                $"E41: BuildIndex differs between dump files (only in enhanced_powers.json: {onlyEnhanced}; "
+            throw new EngineException(
+                $"{ErrorCodes.E41}: BuildIndex differs between dump files (only in enhanced_powers.json: {onlyEnhanced}; "
                 + $"only in powers_effects.json: {onlyStructural}); re-dump both files from the same build");
         }
 
@@ -69,7 +70,7 @@ public static class DamageReference
     private static Dictionary<int, JsonElement> ByBuildIndex(string path)
     {
         Dictionary<int, JsonElement> result = [];
-        foreach (JsonElement power in CanonicalJson.ReadJson(path, "E43").EnumerateArray())
+        foreach (JsonElement power in CanonicalJson.ReadJson(path, ErrorCodes.E43).EnumerateArray())
         {
             result[power.Req("BuildIndex").GetInt32()] = power;
         }
@@ -102,8 +103,8 @@ public static class DamageReference
             int index = effect.Req("Index").GetInt32();
             if (!byIndex.TryGetValue(index, out JsonElement match))
             {
-                throw new ChainException(
-                    $"E42: {fullName} effect Index {index.ToString(CultureInfo.InvariantCulture)} ({kind} {damageType}) is in powers_effects.json "
+                throw new EngineException(
+                    $"{ErrorCodes.E42}: {fullName} effect Index {index.ToString(CultureInfo.InvariantCulture)} ({kind} {damageType}) is in powers_effects.json "
                     + "but not enhanced_powers.json; re-dump both files from the same build");
             }
 

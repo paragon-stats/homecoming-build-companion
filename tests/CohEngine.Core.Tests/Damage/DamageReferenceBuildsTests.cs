@@ -2,6 +2,7 @@ using System.Text.Json;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
@@ -84,7 +85,7 @@ public sealed class DamageReferenceBuildsTests
         using TempTree tree = new();
         tree.Write("a/b/empty.json", string.Empty);
 
-        Assert.StartsWith("E35", Assert.Throws<ChainException>(() => CanonicalJson.LoadCanonicalPowers(tree.Root, ["A.B.Empty"])).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E35, Assert.Throws<EngineException>(() => CanonicalJson.LoadCanonicalPowers(tree.Root, ["A.B.Empty"])).Message, StringComparison.Ordinal);
     }
 
     [Fact]

@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Names;
 using CohEngine.TestSupport;
 
@@ -61,7 +62,7 @@ public sealed class PowerNameResolverTests
     {
         using TempTree tree = Canonical();
 
-        Assert.StartsWith("E22: internal power name 'Nope' is not a player power among the 5 indexed", Assert.Throws<ChainException>(() => Resolver(tree).DisplayName("Nope")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E22: internal power name 'Nope' is not a player power among the 5 indexed", Assert.Throws<EngineException>(() => Resolver(tree).DisplayName("Nope")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -85,7 +86,7 @@ public sealed class PowerNameResolverTests
     {
         using TempTree tree = Canonical("\"Scrapper_Melee.Set_A.Hit\",\"Scrapper_Melee.Set_A.Hit_2\"", "\"Hit\",\"Hit\"");
 
-        Assert.StartsWith("E22: display name 'Hit' matches 2 powers in powerset 'Scrapper_Melee.Set_A' ['Scrapper_Melee.Set_A.Hit', 'Scrapper_Melee.Set_A.Hit_2'], expected 1", Assert.Throws<ChainException>(() => Resolver(tree).Resolve("Hit", "Scrapper_Melee.Set_A")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E22: display name 'Hit' matches 2 powers in powerset 'Scrapper_Melee.Set_A' ['Scrapper_Melee.Set_A.Hit', 'Scrapper_Melee.Set_A.Hit_2'], expected 1", Assert.Throws<EngineException>(() => Resolver(tree).Resolve("Hit", "Scrapper_Melee.Set_A")).Message, StringComparison.Ordinal);
     }
 
     [Theory]
@@ -112,7 +113,7 @@ public sealed class PowerNameResolverTests
     {
         using TempTree tree = Canonical(displays: "\"Hit\"");
 
-        Assert.StartsWith("E22: powerset Scrapper_Melee.Set_A lists 2 power names but 1 display names", Assert.Throws<ChainException>(() => Resolver(tree)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E22: powerset Scrapper_Melee.Set_A lists 2 power names but 1 display names", Assert.Throws<EngineException>(() => Resolver(tree)).Message, StringComparison.Ordinal);
     }
 
     [Fact]

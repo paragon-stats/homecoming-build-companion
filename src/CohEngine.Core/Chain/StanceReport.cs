@@ -3,6 +3,7 @@ using System.Text.Json;
 
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;
 using CohEngine.Core.Statistics;
@@ -17,4 +18,4 @@ namespace CohEngine.Core.Chain;
 /// <param name="Diagnostics">The diagnostics.</param>
 /// <param name="Form">The form.</param>
 /// <param name="Plan">The plan.</param>
-public sealed record StanceReport(Stance Stance, DamageReport Report, ChainOption? Chain, IReadOnlyList<ChainDiagnostic> Diagnostics, string Form = "", ChainPlan? Plan = null);
+public sealed record StanceReport(Stance Stance, DamageReport Report, ChainOption? Chain, IReadOnlyList<Diagnostic> Diagnostics, string Form = "", ChainPlan? Plan = null);

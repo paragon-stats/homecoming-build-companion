@@ -3,6 +3,7 @@ using System.Text.Json;
 
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;
 using CohEngine.Core.Statistics;
@@ -25,7 +26,7 @@ public static class ChainReport
     private static readonly string[] PetDataGaps = ["E60", "E61", "E62"];
     private static readonly string[] CoreTypes = ["Smashing_Dmg", "Lethal_Dmg", "Fire_Dmg", "Cold_Dmg", "Energy_Dmg", "Negative_Energy_Dmg", "Psionic_Dmg", "Toxic_Dmg"];
 
-    private static readonly IReadOnlyList<(string Name, Func<RuleContext, IEnumerable<ChainDiagnostic>> Run)> Rules =
+    private static readonly IReadOnlyList<(string Name, Func<RuleContext, IEnumerable<Diagnostic>> Run)> Rules =
     [
         ("_rule_end_002", RuleEnd002),
         ("_rule_chain_001", RuleChain001),
@@ -43,7 +44,7 @@ public static class ChainReport
     /// <summary>Parses <c>KEY=VALUE</c> strings into an assumptions mapping.</summary>
     /// <param name="items">The items.</param>
     /// <returns>The assumptions.</returns>
-    /// <exception cref="ChainException">E67 for an item without a key or a finite number.</exception>
+    /// <exception cref="EngineException">E67 for an item without a key or a finite number.</exception>
     public static IReadOnlyDictionary<string, double> ParseAssumptions(IEnumerable<string> items)
     {
         ArgumentNullException.ThrowIfNull(items);
@@ -55,8 +56,8 @@ public static class ChainReport
             string raw = split < 0 ? string.Empty : item[(split + 1)..];
             if (!double.TryParse(raw.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out double value) || !double.IsFinite(value) || key.Trim().Length == 0)
             {
-                throw new ChainException(
-                    $"E67: assumption {PyText.Repr(item)} is not KEY=VALUE with a finite numeric value; "
+                throw new EngineException(
+                    $"{ErrorCodes.E67}: assumption {PyText.Repr(item)} is not KEY=VALUE with a finite numeric value; "
                     + "write e.g. --assume Class_Brute.fury_level=50");
             }
 
@@ -69,7 +70,7 @@ public static class ChainReport
     /// <summary>Parses <c>single</c> or <c>spawn:N</c> into a scenario.</summary>
     /// <param name="text">The text.</param>
     /// <returns>The scenario.</returns>
-    /// <exception cref="ChainException">E68 for any other text or N below 1.</exception>
+    /// <exception cref="EngineException">E68 for any other text or N below 1.</exception>
     public static Scenario ParseTarget(string text)
     {
         ArgumentNullException.ThrowIfNull(text);
@@ -86,7 +87,7 @@ public static class ChainReport
             return new Scenario(targets);
         }
 
-        throw new ChainException($"E68: target {PyText.Repr(text)} is neither 'single' nor 'spawn:N' (N >= 1); write e.g. --target spawn:5");
+        throw new EngineException($"{ErrorCodes.E68}: target {PyText.Repr(text)} is neither 'single' nor 'spawn:N' (N >= 1); write e.g. --target spawn:5");
     }
 
     /// <summary>Loads the universal breakpoints.</summary>
@@ -94,7 +95,7 @@ public static class ChainReport
     /// <returns>The breakpoints.</returns>
     public static Breakpoints LoadBreakpoints(string path)
     {
-        JsonElement universal = CanonicalJson.ReadJson(path, "E33").Req("universal");
+        JsonElement universal = CanonicalJson.ReadJson(path, ErrorCodes.E33).Req("universal");
         return new Breakpoints(universal.ReqNum("soft_cap_defense_pve"), universal.ReqNum("ranged_standoff_ft"), universal.ReqNum("melee_range_ft_max"), universal.ReqNum("chain_min_cycles"));
     }
 
@@ -142,7 +143,7 @@ public static class ChainReport
     /// <summary>Loads a dumped build into a melee-stance context plus the budgets reports need.</summary>
     /// <param name="request">The inputs.</param>
     /// <returns>The setup.</returns>
-    /// <exception cref="ChainException">E65 to E71 as the Python port raises them; loaders raise their own codes.</exception>
+    /// <exception cref="EngineException">E65 to E71 as the Python port raises them; loaders raise their own codes.</exception>
     public static ChainSetup BuildChainSetup(ChainRequest request)
     {
         return BuildChainSetup(request, null);
@@ -154,7 +155,7 @@ public static class ChainReport
     /// <param name="path">The anchor path for diagnostics.</param>
     /// <param name="forms">The forms; every form of the build when null.</param>
     /// <returns>The reports.</returns>
-    /// <exception cref="ChainException">E65 when a requested form is not one of the build's forms.</exception>
+    /// <exception cref="EngineException">E65 when a requested form is not one of the build's forms.</exception>
     public static IReadOnlyList<StanceReport> RunChain(ChainSetup setup, IEnumerable<Stance> stances, string path = "build", IReadOnlyList<string>? forms = null)
     {
         ArgumentNullException.ThrowIfNull(setup);
@@ -165,7 +166,7 @@ public static class ChainReport
         if (unknown is not null)
         {
             string names = string.Join(", ", known.Select(form => PyText.Repr(form.Length == 0 ? "base" : form)));
-            throw new ChainException($"E65: form {PyText.Repr(unknown)} is not a form of this build; choose one of {names} ('' is base)");
+            throw new EngineException($"{ErrorCodes.E65}: form {PyText.Repr(unknown)} is not a form of this build; choose one of {names} ('' is base)");
         }
 
         List<StanceReport> results = [];
@@ -294,7 +295,7 @@ public static class ChainReport
                 }
             },
             { "health", new PyObject { { "max_hp", setup.Health.MaxHp }, { "regen_per_sec", setup.Health.RegenPerSec } } },
-            { "diagnostics", result.Diagnostics.Select(item => (object?)item.ToJson()).ToList() },
+            { "diagnostics", result.Diagnostics.Select(item => (object?)DiagnosticJson(item)).ToList() },
         };
     }
 
@@ -381,14 +382,14 @@ public static class ChainReport
         string defaultOff = Path.Combine(Path.GetDirectoryName(buildDir) ?? string.Empty, Path.GetFileName(buildDir) + "_clicksoff");
         if (request.ClicksOffDir is not null && !Directory.Exists(request.ClicksOffDir))
         {
-            throw new ChainException($"E65: clicks-off directory {request.ClicksOffDir} not found; fix --clicksoff-dir or omit it");
+            throw new EngineException($"{ErrorCodes.E65}: clicks-off directory {request.ClicksOffDir} not found; fix --clicksoff-dir or omit it");
         }
 
         string source = request.ClicksOffDir ?? (Directory.Exists(defaultOff) ? defaultOff : buildDir);
         double standoff = request.StandoffFt ?? breakpoints.RangedStandoffFt;
         if (standoff <= 0.0)
         {
-            throw new ChainException($"E70: standoff is {PyFloat.General(standoff)} ft but must be positive; pass --standoff with feet > 0");
+            throw new EngineException($"{ErrorCodes.E70}: standoff is {PyFloat.General(standoff)} ft but must be positive; pass --standoff with feet > 0");
         }
 
         (TotalStatistics totals, TotalStatistics capped, string className) = EnduranceBudgets.LoadMidsTotals(RequiredFile(Path.Combine(source, "totals.json"), "totals file"));
@@ -397,7 +398,7 @@ public static class ChainReport
         int index = classes.NidFromUidClass(className);
         if (index < 0)
         {
-            throw new ChainException($"E65: class {PyText.Repr(className)} is not in {archetypesFile}; re-dump the build");
+            throw new EngineException($"{ErrorCodes.E65}: class {PyText.Repr(className)} is not in {archetypesFile}; re-dump the build");
         }
 
         Archetype archetype = classes.Classes[index];
@@ -407,7 +408,7 @@ public static class ChainReport
             : Attacks(refs, canonical, breakpoints.MeleeRangeFtMax, hooks?.Classify);
         if (!attackList.Any(attack => attack.Profile.Role != Role.PetSummon))
         {
-            throw new ChainException($"E71: no power in {source} deals damage or buffs damage; point the build at an attacker");
+            throw new EngineException($"{ErrorCodes.E71}: no power in {source} deals damage or buffs damage; point the build at an attacker");
         }
 
         AttribMods? mods = request.MidsDb is not null ? ArchetypeData.LoadAttribMod(Path.Combine(request.MidsDb, "AttribMod.json")) : null;
@@ -419,8 +420,8 @@ public static class ChainReport
         {
             if (mods is null)
             {
-                throw new ChainException(
-                    $"E66: {PyText.Repr(summons.Select(summon => summon.FullName))} summon pets but --mids-db is not set; "
+                throw new EngineException(
+                    $"{ErrorCodes.E66}: {PyText.List(summons.Select(summon => summon.FullName))} summon pets but --mids-db is not set; "
                     + "pass --mids-db with the directory holding AttribMod.json");
             }
 
@@ -473,7 +474,7 @@ public static class ChainReport
             {
                 power = CanonicalJson.LoadCanonicalPowers(powersRoot, [name])[name];
             }
-            catch (ChainException error) when (error.Message.StartsWith("E35", StringComparison.Ordinal))
+            catch (EngineException error) when (error.Message.StartsWith(ErrorCodes.E35, StringComparison.Ordinal))
             {
                 if (Reportable(name))
                 {
@@ -490,6 +491,39 @@ public static class ChainReport
         }
 
         return (found, skipped);
+    }
+
+    /// <summary>One diagnostic as the ordered JSON object: required keys always, optional context when set.</summary>
+    /// <param name="diagnostic">The diagnostic.</param>
+    /// <returns>The object.</returns>
+    internal static PyObject DiagnosticJson(Diagnostic diagnostic)
+    {
+        ArgumentNullException.ThrowIfNull(diagnostic);
+        PyObject result = new()
+        {
+            { "rule_id", diagnostic.RuleId },
+            { "severity", diagnostic.Severity },
+            { "path", diagnostic.Path },
+            { "line", (long)diagnostic.Line },
+            { "column", (long)diagnostic.Column },
+            { "message", diagnostic.Message },
+        };
+        if (diagnostic.Fix.Length > 0)
+        {
+            result.Add("fix", diagnostic.Fix);
+        }
+
+        if (diagnostic.Expected is not null)
+        {
+            result.Add("expected", diagnostic.Expected);
+        }
+
+        if (diagnostic.Actual is not null)
+        {
+            result.Add("actual", diagnostic.Actual);
+        }
+
+        return result;
     }
 
     private static object? Get(PyObject source, string key)
@@ -524,7 +558,7 @@ public static class ChainReport
 
     private static string RequiredFile(string path, string what)
     {
-        return File.Exists(path) ? path : throw new ChainException($"E65: {what} {path} not found; point the argument at a Mids dump directory");
+        return File.Exists(path) ? path : throw new EngineException($"{ErrorCodes.E65}: {what} {path} not found; point the argument at a Mids dump directory");
     }
 
     private static double Speed(TotalStatistics capped, string move)
@@ -536,7 +570,7 @@ public static class ChainReport
             _ => capped.FlySpd,
         };
         return speed <= 0.0
-            ? throw new ChainException($"E69: movement mode {PyText.Repr(move)} has speed {PyFloat.General(speed)} ft/s in this build; choose another --move (a build without a flight power has no fly speed)")
+            ? throw new EngineException($"{ErrorCodes.E69}: movement mode {PyText.Repr(move)} has speed {PyFloat.General(speed)} ft/s in this build; choose another --move (a build without a flight power has no fly speed)")
             : speed;
     }
 
@@ -579,7 +613,7 @@ public static class ChainReport
             {
                 profile = classify is not null ? classify(power, meleeRangeFtMax, resolve) : AttackProfiles.Classify(power, meleeRangeFtMax, resolve);
             }
-            catch (ChainException error) when (error.Message.StartsWith("E37", StringComparison.Ordinal))
+            catch (EngineException error) when (error.Message.StartsWith(ErrorCodes.E37, StringComparison.Ordinal))
             {
                 if (Reportable(name))
                 {
@@ -655,7 +689,7 @@ public static class ChainReport
             {
                 pets.AddRange(hook is not null ? hook([summon], canonical, attribmod, classes) : PetDamage.BuildPetSummons([summon], canonical, attribmod, classes));
             }
-            catch (ChainException error) when (PetDataGaps.Any(code => error.Message.StartsWith(code, StringComparison.Ordinal)))
+            catch (EngineException error) when (PetDataGaps.Any(code => error.Message.StartsWith(code, StringComparison.Ordinal)))
             {
                 skipped.Add((summon.FullName, $"pet not modelled, data gap ({error.Message})"));
             }
@@ -664,7 +698,7 @@ public static class ChainReport
         return (pets, skipped);
     }
 
-    private static IEnumerable<ChainDiagnostic> RuleEnd002(RuleContext rule)
+    private static IEnumerable<Diagnostic> RuleEnd002(RuleContext rule)
     {
         double cycles = rule.Context.Assumptions.TryGetValue("chain.min_cycles", out double value) ? value : throw new MissingKeyException("chain.min_cycles");
         ChainOption? chain = rule.Chain;
@@ -678,18 +712,17 @@ public static class ChainReport
         {
             string message = $"{rule.Context.Stance.Value()} stance: no affordable chain; the best chain empties endurance in "
                 + $"{PyFloat.Fixed(chain.TimeToEmpty, 1)} s, under {PyFloat.General(cycles)} cycles of {PyFloat.Fixed(chain.CycleTime, 2)} s ({PyFloat.Fixed(minimum, 1)} s)";
-            yield return new ChainDiagnostic(
-                "P-END-002",
-                "warning",
-                message,
-                rule.Path,
-                "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
-                $">= {PyFloat.General(cycles)} cycles ({PyFloat.Fixed(minimum, 1)} s)",
-                $"{PyFloat.Fixed(chain.TimeToEmpty, 1)} s");
+            yield return new Diagnostic("P-END-002", "warning", message)
+            {
+                Path = rule.Path,
+                Fix = "add recovery or endurance reduction, drop toggles, or drop the costliest attacks from the chain",
+                Expected = $">= {PyFloat.General(cycles)} cycles ({PyFloat.Fixed(minimum, 1)} s)",
+                Actual = $"{PyFloat.Fixed(chain.TimeToEmpty, 1)} s",
+            };
         }
     }
 
-    private static IEnumerable<ChainDiagnostic> RuleChain001(RuleContext rule)
+    private static IEnumerable<Diagnostic> RuleChain001(RuleContext rule)
     {
         Stance stance = rule.Context.Stance;
         int position = stance == Stance.Ranged ? DefenseRanged : DefenseMelee;
@@ -698,26 +731,25 @@ public static class ChainReport
         if (actual < softCap)
         {
             string kind = stance == Stance.Ranged ? "ranged" : "melee";
-            yield return new ChainDiagnostic(
-                "P-CHAIN-001",
-                "info",
-                $"{stance.Value()} stance: {kind} defense is {PyFloat.Fixed(actual, 1)}%, under the {PyFloat.General(softCap)}% soft cap",
-                rule.Path,
-                Expected: $">= {PyFloat.General(softCap)}%",
-                Actual: $"{PyFloat.Fixed(actual, 1)}%");
+            string message = $"{stance.Value()} stance: {kind} defense is {PyFloat.Fixed(actual, 1)}%, under the {PyFloat.General(softCap)}% soft cap";
+            yield return new Diagnostic("P-CHAIN-001", "info", message)
+            {
+                Path = rule.Path,
+                Expected = $">= {PyFloat.General(softCap)}%",
+                Actual = $"{PyFloat.Fixed(actual, 1)}%",
+            };
         }
     }
 
-    private static IEnumerable<ChainDiagnostic> RuleChain002(RuleContext rule)
+    private static IEnumerable<Diagnostic> RuleChain002(RuleContext rule)
     {
         if (rule.Setup.ClicksAlwaysOn)
         {
-            yield return new ChainDiagnostic(
-                "P-CHAIN-002",
-                "info",
-                "no clicks-off dump found; click buffs are counted always-on",
-                rule.Path,
-                "dump the build with its click buffs off and pass it as --clicksoff-dir");
+            yield return new Diagnostic("P-CHAIN-002", "info", "no clicks-off dump found; click buffs are counted always-on")
+            {
+                Path = rule.Path,
+                Fix = "dump the build with its click buffs off and pass it as --clicksoff-dir",
+            };
         }
 
         foreach (ChainAttack attack in rule.Context.Attacks)
@@ -725,21 +757,20 @@ public static class ChainReport
             string? message = AttackProfiles.CategoryDisagreement(attack.Profile);
             if (message is not null)
             {
-                yield return new ChainDiagnostic("P-CHAIN-002", "info", message, rule.Path);
+                yield return new Diagnostic("P-CHAIN-002", "info", message) { Path = rule.Path };
             }
         }
     }
 
-    private static IEnumerable<ChainDiagnostic> RuleChain002Skipped(RuleContext rule)
+    private static IEnumerable<Diagnostic> RuleChain002Skipped(RuleContext rule)
     {
         foreach ((string name, string reason) in rule.Setup.Skipped)
         {
-            yield return new ChainDiagnostic(
-                "P-CHAIN-002",
-                "info",
-                $"power {name} is not modelled: {reason}",
-                rule.Path,
-                $"check {name} against canonical data; its damage is missing from every layer until it is classified");
+            yield return new Diagnostic("P-CHAIN-002", "info", $"power {name} is not modelled: {reason}")
+            {
+                Path = rule.Path,
+                Fix = $"check {name} against canonical data; its damage is missing from every layer until it is classified",
+            };
         }
     }
 }

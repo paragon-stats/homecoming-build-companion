@@ -1,6 +1,7 @@
 using System.Globalization;
 
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Statistics;
 
@@ -17,7 +18,7 @@ public static class PowerDps
         ArgumentNullException.ThrowIfNull(power);
         ArgumentNullException.ThrowIfNull(slots);
         throw new NotSupportedException(
-            $"E15: DPS for {power.FullName} requires the FXGetDamageValue critical/conditional port "
+            $"{ErrorCodes.E15}: DPS for {power.FullName} requires the FXGetDamageValue critical/conditional port "
             + "(deferred; a plain buffed-damage sum overcounts). Slots supplied: "
             + slots.Count(slot => slot.Enh >= 0).ToString(CultureInfo.InvariantCulture));
     }

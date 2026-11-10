@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.DamageLayers;
@@ -43,7 +44,7 @@ public static class AtModifiers
         double value = context.Assume(key, fallback);
         if (!(low <= value && value <= high))
         {
-            throw new ChainException($"E50: assumption {key}={PyFloat.Repr(value)} is outside [{PyFloat.Repr(low)}, {PyFloat.Repr(high)}]; set it within that range");
+            throw new EngineException($"{ErrorCodes.E50}: assumption {key}={PyFloat.Repr(value)} is outside [{PyFloat.Repr(low)}, {PyFloat.Repr(high)}]; set it within that range");
         }
 
         return value;

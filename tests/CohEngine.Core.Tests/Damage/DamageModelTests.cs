@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
@@ -164,13 +165,13 @@ public sealed class DamageModelTests
     [Fact]
     public void Shares_summing_past_one_fail_loud_as_e30()
     {
-        Assert.StartsWith("E30", Assert.Throws<ChainException>(() => DamageModel.Evaluate(Context(), [Source("greedy", 1.0, 1.5)], [])).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E30, Assert.Throws<EngineException>(() => DamageModel.Evaluate(Context(), [Source("greedy", 1.0, 1.5)], [])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void The_e30_message_lists_each_claim()
     {
-        ChainException error = Assert.Throws<ChainException>(() => DamageModel.Evaluate(Context(), [Source("b", 1.0, 0.75), Source("c", 1.0, 0.75)], []));
+        EngineException error = Assert.Throws<EngineException>(() => DamageModel.Evaluate(Context(), [Source("b", 1.0, 0.75), Source("c", 1.0, 0.75)], []));
 
         Assert.Equal(
             "E30: non-chain damage sources claim 1.500 of the timeline (> 1.0): [('b', 0.75), ('c', 0.75)]; a summon, patch or click buff reports a cast share above its recharge cadence",

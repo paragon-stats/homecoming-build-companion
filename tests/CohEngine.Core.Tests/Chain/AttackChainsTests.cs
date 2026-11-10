@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 using PowerStats = CohEngine.Core.Totals.PowerStatistics.PowerStats;
@@ -226,7 +227,7 @@ public sealed class AttackChainsTests
     [MemberData(nameof(BadTimelines))]
     public void A_timeline_out_of_range_is_e45(double timeline)
     {
-        Assert.StartsWith("E45", Assert.Throws<ChainException>(() => Plan([Atk("A")], timeline: timeline)).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E45, Assert.Throws<EngineException>(() => Plan([Atk("A")], timeline: timeline)).Message, StringComparison.Ordinal);
     }
 
     [Fact]

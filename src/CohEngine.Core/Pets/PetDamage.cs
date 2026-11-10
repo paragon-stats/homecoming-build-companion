@@ -4,6 +4,7 @@ using System.Text.Json;
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Totals;
 
@@ -24,13 +25,13 @@ public static class PetDamage
     /// <param name="name">The table name.</param>
     /// <param name="power">The power using it.</param>
     /// <returns>The index.</returns>
-    /// <exception cref="ChainException">E61 when the table is missing.</exception>
+    /// <exception cref="EngineException">E61 when the table is missing.</exception>
     public static int ModifierTable(AttribMods mods, string name, string power)
     {
         ArgumentNullException.ThrowIfNull(mods);
         int index = mods.NidFromUidAttribMod(name);
         return index < 0
-            ? throw new ChainException($"E61: {power} uses modifier table {PyText.Repr(name)}, which the AttribMod table lacks; reload AttribMod.json")
+            ? throw new EngineException($"{ErrorCodes.E61}: {power} uses modifier table {PyText.Repr(name)}, which the AttribMod table lacks; reload AttribMod.json")
             : index;
     }
 
@@ -42,7 +43,7 @@ public static class PetDamage
     /// <param name="casterLevel">The caster level.</param>
     /// <param name="damageEnhancement">Per-summon pet damage enhancement overrides.</param>
     /// <returns>The summons.</returns>
-    /// <exception cref="ChainException">E60 to E64 as the Python port raises them.</exception>
+    /// <exception cref="EngineException">E60 to E64 as the Python port raises them.</exception>
     public static IReadOnlyList<PetSummon> BuildPetSummons(
         IEnumerable<ChainAttack> summonPowers,
         string canonicalRoot,
@@ -60,7 +61,7 @@ public static class PetDamage
             string name = summon.FullName;
             if (summon.Profile.Role != Role.PetSummon)
             {
-                throw new ChainException($"E64: {name} has role {summon.Profile.Role.Value()}, expected pet_summon; pass summon powers only");
+                throw new EngineException($"{ErrorCodes.E64}: {name} has role {summon.Profile.Role.Value()}, expected pet_summon; pass summon powers only");
             }
 
             double enhancement = damageEnhancement is not null && damageEnhancement.TryGetValue(name, out double over) ? over : DefaultPetDamageEnhancement;
@@ -71,10 +72,10 @@ public static class PetDamage
                 string path = Path.Combine(canonicalRoot, "entities", entity.Name.ToLowerInvariant() + ".json");
                 if (!File.Exists(path) || new FileInfo(path).Length == 0)
                 {
-                    throw new ChainException($"E60: entity {entity.Name} (summoned by {name}) has no file {path}; restore the canonical entity");
+                    throw new EngineException($"{ErrorCodes.E60}: entity {entity.Name} (summoned by {name}) has no file {path}; restore the canonical entity");
                 }
 
-                JsonElement data = CanonicalJson.ReadJson(path, "E63");
+                JsonElement data = CanonicalJson.ReadJson(path, ErrorCodes.E63);
                 int petClass = ClassIndex(data, classes);
                 int level = PetLevel(entity.Table, casterLevel, attribmod, classes, petClass, name);
                 string[] names = [.. data.Req("defaults").Req("power_full_names").EnumerateArray().Select(item => item.GetString() ?? string.Empty)];
@@ -83,9 +84,9 @@ public static class PetDamage
                 {
                     powers = CanonicalJson.LoadCanonicalPowers(powersRoot, names);
                 }
-                catch (ChainException error)
+                catch (EngineException error)
                 {
-                    throw new ChainException($"E60: pet powers of {entity.Name} missing ({error.Message}); restore the canonical files", error);
+                    throw new EngineException($"{ErrorCodes.E60}: pet powers of {entity.Name} missing ({error.Message}); restore the canonical files", error);
                 }
 
                 List<ChainAttack> attacks = [];
@@ -221,7 +222,7 @@ public static class PetDamage
         (string number, string unit) = Split(text);
         return TryNumber(number, unit, out double value)
             ? value
-            : throw new ChainException($"E62: {power} Create_Entity duration is {PyText.Repr(text)}, expected 'N seconds' or 'UntilKilled'; extend pet_damage._duration");
+            : throw new EngineException($"{ErrorCodes.E62}: {power} Create_Entity duration is {PyText.Repr(text)}, expected 'N seconds' or 'UntilKilled'; extend pet_damage._duration");
     }
 
     private static double Seconds(string text, string power)
@@ -234,7 +235,7 @@ public static class PetDamage
         (string number, string unit) = Split(text);
         return TryNumber(number, unit, out double value)
             ? value
-            : throw new ChainException($"E62: {power} damage template duration is {PyText.Repr(text)}, expected 'N seconds'; extend pet_damage._seconds");
+            : throw new EngineException($"{ErrorCodes.E62}: {power} damage template duration is {PyText.Repr(text)}, expected 'N seconds'; extend pet_damage._seconds");
     }
 
     /// <summary>How a Create_Entity condition spawns: "" always, null never, else the alternate group's condition.</summary>
@@ -278,7 +279,7 @@ public static class PetDamage
             string name = (template.Opt("params") ?? default).Str("entity_def");
             if (name.Length == 0)
             {
-                throw new ChainException($"E62: {fullName} has a Create_Entity template with no params.entity_def; check the canonical power file");
+                throw new EngineException($"{ErrorCodes.E62}: {fullName} has a Create_Entity template with no params.entity_def; check the canonical power file");
             }
 
             double duration = Duration(template.ReqStr("duration"), fullName);
@@ -298,7 +299,7 @@ public static class PetDamage
 
         if (order.Count == 0)
         {
-            throw new ChainException($"E62: {fullName} has no Create_Entity template; pass only pet summon powers");
+            throw new EngineException($"{ErrorCodes.E62}: {fullName} has no Create_Entity template; pass only pet summon powers");
         }
 
         List<Entity> entities = [];
@@ -327,8 +328,8 @@ public static class PetDamage
             }
         }
 
-        throw new ChainException(
-            $"E61: entity {entity.ReqStr("name")} has class {PyText.Repr(raw)} with no Class_{raw} or reversed-token class in the "
+        throw new EngineException(
+            $"{ErrorCodes.E61}: entity {entity.ReqStr("name")} has class {PyText.Repr(raw)} with no Class_{raw} or reversed-token class in the "
             + "archetype table; add the class to the archetypes dump");
     }
 
@@ -341,7 +342,7 @@ public static class PetDamage
 
         int level = (int)EffectMagnitude.Modifier(mods, classes.Classes, petClass, ModifierTable(mods, table, power), casterLevel - 1);
         return level < 1
-            ? throw new ChainException($"E61: table {table} gives pet level {level.ToString(CultureInfo.InvariantCulture)} at caster level {casterLevel.ToString(CultureInfo.InvariantCulture)}; pass a caster_level in 1-50")
+            ? throw new EngineException($"{ErrorCodes.E61}: table {table} gives pet level {level.ToString(CultureInfo.InvariantCulture)} at caster level {casterLevel.ToString(CultureInfo.InvariantCulture)}; pass a caster_level in 1-50")
             : level;
     }
 
@@ -381,7 +382,7 @@ public static class PetDamage
             AttackProfile profile = AttackProfiles.Classify(power);
             return profile.Role == Role.Chain ? profile : null;
         }
-        catch (ChainException error) when (error.Message.StartsWith("E37", StringComparison.Ordinal))
+        catch (EngineException error) when (error.Message.StartsWith(ErrorCodes.E37, StringComparison.Ordinal))
         {
             return null;
         }

@@ -1,6 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;
 using CohEngine.TestSupport;
@@ -18,7 +19,7 @@ public sealed class PetDamageTests
 
     private static string Message(TempTree tree, double level = 49.0, ChainAttack? summon = null)
     {
-        return Assert.Throws<ChainException>(() => Build(tree, level, null, summon)).Message;
+        return Assert.Throws<EngineException>(() => Build(tree, level, null, summon)).Message;
     }
 
     private static TempTree World(string table = "Pet_Levelminus1", string duration = "60 seconds", string effectExtra = "")
@@ -170,7 +171,7 @@ public sealed class PetDamageTests
     {
         using TempTree tree = World(duration: duration);
 
-        Assert.StartsWith($"E62: Mm.Summon.Spawn Create_Entity duration is '{duration}', expected 'N seconds' or 'UntilKilled'", Message(tree), StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E62}: Mm.Summon.Spawn Create_Entity duration is '{duration}', expected 'N seconds' or 'UntilKilled'", Message(tree), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -288,7 +289,7 @@ public sealed class PetDamageTests
     [Fact]
     public void The_modifier_table_lookup_names_the_missing_table()
     {
-        Assert.StartsWith("E61: Power uses modifier table 'Nope'", Assert.Throws<ChainException>(() => PetDamage.ModifierTable(PetWorld.Mods(), "Nope", "Power")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E61: Power uses modifier table 'Nope'", Assert.Throws<EngineException>(() => PetDamage.ModifierTable(PetWorld.Mods(), "Nope", "Power")).Message, StringComparison.Ordinal);
     }
 
     [Fact]

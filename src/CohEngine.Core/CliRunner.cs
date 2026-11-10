@@ -1,5 +1,6 @@
 using System.Text.Json;
 
+using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
 
@@ -40,6 +41,8 @@ public static class CliRunner
             case ["rules"]:
                 PrintRules(output);
                 return 0;
+            case ["chain", ..]:
+                return ChainCommand.Run(args[1..], output, error);
             case ["validate", ..]:
                 return RunValidate(args, output, error, mbdSource);
             default:

@@ -2,6 +2,8 @@ using System.Globalization;
 using System.Text;
 using System.Text.Json;
 
+using CohEngine.Core.Diagnostics;
+
 namespace CohEngine.Core.Chain;
 
 /// <summary>Reads and navigates the canonical data records (parsed JSON), with the Python mapping semantics the planner relies on.</summary>
@@ -105,7 +107,7 @@ public static class CanonicalJson
         }
         catch (JsonException error)
         {
-            throw new ChainException($"{code}: {path} is not valid JSON ({error.Message}); re-run tools/mids-dump or restore the file", error);
+            throw new EngineException($"{code}: {path} is not valid JSON ({error.Message}); re-run tools/mids-dump or restore the file", error);
         }
     }
 
@@ -124,7 +126,7 @@ public static class CanonicalJson
     /// <param name="powersRoot">The powers directory.</param>
     /// <param name="fullNames">The names.</param>
     /// <returns>The records by name, in input order.</returns>
-    /// <exception cref="ChainException">E35 naming every name with no non-empty file; E38 for a corrupt file when no other candidate matches.</exception>
+    /// <exception cref="EngineException">E35 naming every name with no non-empty file; E38 for a corrupt file when no other candidate matches.</exception>
     public static IReadOnlyDictionary<string, JsonElement> LoadCanonicalPowers(string powersRoot, IEnumerable<string> fullNames)
     {
         ArgumentNullException.ThrowIfNull(fullNames);
@@ -140,15 +142,15 @@ public static class CanonicalJson
             }
 
             JsonElement? data = null;
-            ChainException? corrupt = null;
+            EngineException? corrupt = null;
             foreach (string candidate in candidates)
             {
                 JsonElement parsed;
                 try
                 {
-                    parsed = ReadJson(candidate, "E38");
+                    parsed = ReadJson(candidate, ErrorCodes.E38);
                 }
-                catch (ChainException error)
+                catch (EngineException error)
                 {
                     corrupt = error;
                     continue;
@@ -178,8 +180,8 @@ public static class CanonicalJson
 
         if (missing.Count > 0)
         {
-            throw new ChainException(
-                $"E35: no canonical power file under {powersRoot} for {PyText.Repr(missing)}; "
+            throw new EngineException(
+                $"{ErrorCodes.E35}: no canonical power file under {powersRoot} for {PyText.List(missing)}; "
                 + "check the full_name spelling or restore the file (0-byte files are skipped)");
         }
 
@@ -202,7 +204,7 @@ public static class CanonicalJson
             }
 
             string entity = Path.Combine(Path.GetDirectoryName(powersRoot.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)) ?? string.Empty, "entities", name.ToLowerInvariant() + ".json");
-            return new FileInfo(entity).Length > 0 ? ReadJson(entity, "E38") : null;
+            return new FileInfo(entity).Length > 0 ? ReadJson(entity, ErrorCodes.E38) : null;
         }
 
         return name =>
@@ -213,7 +215,7 @@ public static class CanonicalJson
                 {
                     value = Load(name);
                 }
-                catch (Exception error) when (error is ChainException or IOException or UnauthorizedAccessException)
+                catch (Exception error) when (error is EngineException or IOException or UnauthorizedAccessException)
                 {
                     value = null;
                 }

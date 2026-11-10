@@ -1,6 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Chain;
 
@@ -95,7 +96,7 @@ public static class AttackProfiles
     /// <param name="meleeRangeFtMax">The melee range threshold.</param>
     /// <param name="resolve">Follows <c>Execute_Power</c> and <c>Create_Entity</c> links one level.</param>
     /// <returns>The profile.</returns>
-    /// <exception cref="ChainException">E36 for an unmapped area; E37 for a power that is not damaging, a damage buff or a -Res debuff.</exception>
+    /// <exception cref="EngineException">E36 for an unmapped area; E37 for a power that is not damaging, a damage buff or a -Res debuff.</exception>
     public static AttackProfile Classify(JsonElement power, double meleeRangeFtMax = 20.0, PowerResolver? resolve = null)
     {
         Shape shape = ShapeOf(power);
@@ -125,13 +126,13 @@ public static class AttackProfiles
         if (profile.Delivery == Delivery.Melee && ranged.Length > 0 && melee.Length == 0)
         {
             return $"{profile.FullName} is classified MELEE (range {PyFloat.General(profile.RangeFt)} ft) but its set categories "
-                + $"{PyText.Repr(ranged)} are ranged; check the melee range threshold or the power's range";
+                + $"{PyText.List(ranged)} are ranged; check the melee range threshold or the power's range";
         }
 
         if (profile.Delivery == Delivery.Ranged && melee.Length > 0 && ranged.Length == 0)
         {
             return $"{profile.FullName} is classified RANGED (range {PyFloat.General(profile.RangeFt)} ft) but its set categories "
-                + $"{PyText.Repr(melee)} are melee; check the melee range threshold or the power's range";
+                + $"{PyText.List(melee)} are melee; check the melee range threshold or the power's range";
         }
 
         return null;
@@ -184,9 +185,9 @@ public static class AttackProfiles
             "Cone" => Shape.Cone,
             "Location" => Shape.Location,
             "Chain" => Shape.TargetedAoe,
-            _ => throw new ChainException(
-                $"E36: {power.ReqStr("full_name")} has effect_area {PyText.Repr(area)}, expected one of "
-                + $"{PyText.Repr(["AoE", .. ShapeNames])}; add the value to attack_profile._SHAPES or filter the power"),
+            _ => throw new EngineException(
+                $"{ErrorCodes.E36}: {power.ReqStr("full_name")} has effect_area {PyText.Repr(area)}, expected one of "
+                + $"{PyText.List(["AoE", .. ShapeNames])}; add the value to attack_profile._SHAPES or filter the power"),
         };
     }
 
@@ -323,8 +324,8 @@ public static class AttackProfiles
             return Role.PersistentDebuff;
         }
 
-        throw new ChainException(
-            $"E37: {power.ReqStr("full_name")} (type {type}) has no entity creation, foe damage, foe -Res or "
+        throw new EngineException(
+            $"{ErrorCodes.E37}: {power.ReqStr("full_name")} (type {type}) has no entity creation, foe damage, foe -Res or "
             + "click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles)");
     }
 

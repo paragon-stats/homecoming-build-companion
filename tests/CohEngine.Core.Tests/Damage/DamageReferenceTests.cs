@@ -2,6 +2,7 @@ using System.Globalization;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.DamageLayers;
@@ -43,7 +44,7 @@ public sealed class DamageReferenceTests
     {
         using TempTree tree = new();
 
-        Assert.StartsWith("E40:", Assert.Throws<ChainException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E40:", Assert.Throws<EngineException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -51,7 +52,7 @@ public sealed class DamageReferenceTests
     {
         using TempTree tree = Dump(Enhanced(1) + "," + Enhanced(3), Structural("A.B.C", 1) + "," + Structural("A.B.D", 2));
 
-        Assert.StartsWith("E41: BuildIndex differs between dump files (only in enhanced_powers.json: [3]; only in powers_effects.json: [2])", Assert.Throws<ChainException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E41: BuildIndex differs between dump files (only in enhanced_powers.json: [3]; only in powers_effects.json: [2])", Assert.Throws<EngineException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -59,7 +60,7 @@ public sealed class DamageReferenceTests
     {
         using TempTree tree = Dump(Enhanced(1), Structural("A.B.C", 1, Structure(0, "DamageBuff", "Self", "Fire")));
 
-        Assert.StartsWith("E42: A.B.C effect Index 0 (DamageBuff Fire) is in powers_effects.json but not enhanced_powers.json", Assert.Throws<ChainException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E42: A.B.C effect Index 0 (DamageBuff Fire) is in powers_effects.json but not enhanced_powers.json", Assert.Throws<EngineException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -68,7 +69,7 @@ public sealed class DamageReferenceTests
         using TempTree tree = Dump(Enhanced(1), Structural("A.B.C", 1));
         tree.Write("enhanced_powers.json", "[oops");
 
-        Assert.StartsWith("E43:", Assert.Throws<ChainException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E43:", Assert.Throws<EngineException>(() => DamageReference.LoadDamageRefs(tree.Root)).Message, StringComparison.Ordinal);
     }
 
     [Fact]

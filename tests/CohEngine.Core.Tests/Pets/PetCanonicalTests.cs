@@ -4,6 +4,7 @@ using System.Text.Json.Nodes;
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Pets;
 using CohEngine.TestSupport;
 
@@ -183,7 +184,7 @@ public sealed class PetCanonicalTests
 
     private static string Message(Action action)
     {
-        return Assert.Throws<ChainException>(action).Message;
+        return Assert.Throws<EngineException>(action).Message;
     }
 
     [Fact]
@@ -367,7 +368,7 @@ public sealed class PetCanonicalTests
     {
         PetSummon decoy = Assert.Single(Build(PhantomArmy, enhancement: NoEnhancement(PhantomArmy)));
         ChainAttack sword = decoy.PetAttacks.First(attack => string.Equals(attack.FullName, "Pets.Decoy.Fire_Sword", StringComparison.Ordinal));
-        JsonElement entity = CanonicalJson.ReadJson(Path.Combine(Canonical, "entities", "pets_decoy.json"), "E38");
+        JsonElement entity = CanonicalJson.ReadJson(Path.Combine(Canonical, "entities", "pets_decoy.json"), ErrorCodes.E38);
         string className = "Class_" + entity.Req("defaults").ReqStr("character_class_name");
         int petClass = Fixtures.Store.Archetypes.NidFromUidClass(className);
         double melee = Math.Abs(CohEngine.Core.Totals.EffectMagnitude.Modifier(Fixtures.Store.AttribMods, Fixtures.Store.Archetypes.Classes, petClass, Fixtures.Store.AttribMods.NidFromUidAttribMod("Melee_Damage"), 49));
@@ -411,7 +412,7 @@ public sealed class PetCanonicalTests
         ChainAttack summon = SyntheticSummon(tree, [Effect(CreateEntity())]);
         WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", [Effect(Damage())], area: "Map"));
 
-        Assert.StartsWith("E36", Message(() => BuildSynthetic(tree, summon)), StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E36, Message(() => BuildSynthetic(tree, summon)), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -497,7 +498,7 @@ public sealed class PetCanonicalTests
         ChainAttack summon = SyntheticSummon(tree, [Effect(CreateEntity())]);
         WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", [Effect(Damage(text))]));
 
-        Assert.StartsWith($"E62: Tst.Set.Zap damage template duration is '{text}'", Message(() => BuildSynthetic(tree, summon)), StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E62}: Tst.Set.Zap damage template duration is '{text}'", Message(() => BuildSynthetic(tree, summon)), StringComparison.Ordinal);
     }
 
     [Fact]

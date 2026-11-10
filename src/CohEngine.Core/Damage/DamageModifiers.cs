@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.DamageLayers;
@@ -35,7 +36,7 @@ public static class DamageModifiers
     /// <summary>Resistance debuffs on the target: damage factor (1 - r + d) / (1 - r); pets benefit too.</summary>
     /// <param name="context">The context.</param>
     /// <returns>The result, or null.</returns>
-    /// <exception cref="ChainException">E57 when <c>target.resistance</c> lies outside [-1, 0.95].</exception>
+    /// <exception cref="EngineException">E57 when <c>target.resistance</c> lies outside [-1, 0.95].</exception>
     public static ModifierResult? TargetDebuffModifier(DamageContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -72,7 +73,7 @@ public static class DamageModifiers
         double resistance = context.Assume("target.resistance", 0.0);
         if (resistance is not (>= -1.0 and <= 0.95))
         {
-            throw new ChainException($"E57: assumption target.resistance={PyFloat.Repr(resistance)} is outside [-1, 0.95]; set it within that range");
+            throw new EngineException($"{ErrorCodes.E57}: assumption target.resistance={PyFloat.Repr(resistance)} is outside [-1, 0.95]; set it within that range");
         }
 
         double chainPart = chain?.ResDebuff ?? 0.0;

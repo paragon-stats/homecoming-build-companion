@@ -1,6 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Pets;
 using CohEngine.TestSupport;
 
@@ -34,7 +35,7 @@ public sealed class ChainSetupTests
 
     private static string Error(ChainRequest request, ChainHooks? hooks = null)
     {
-        return Assert.Throws<ChainException>(() => ChainReport.BuildChainSetup(request, hooks)).Message;
+        return Assert.Throws<EngineException>(() => ChainReport.BuildChainSetup(request, hooks)).Message;
     }
 
     private static (IReadOnlyList<ChainAttack> Attacks, IReadOnlyList<(string Name, string Reason)> Skipped) Mortar(AttackProfile profile)
@@ -72,7 +73,7 @@ public sealed class ChainSetupTests
     [MemberData(nameof(BadAssumptions))]
     public void A_malformed_assumption_is_e67(string item)
     {
-        Assert.StartsWith($"E67: assumption '{item}' is not KEY=VALUE with a finite numeric value", Assert.Throws<ChainException>(() => ChainReport.ParseAssumptions([item])).Message, StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E67}: assumption '{item}' is not KEY=VALUE with a finite numeric value", Assert.Throws<EngineException>(() => ChainReport.ParseAssumptions([item])).Message, StringComparison.Ordinal);
     }
 
     [Theory]
@@ -87,7 +88,7 @@ public sealed class ChainSetupTests
     [MemberData(nameof(BadTargets))]
     public void Any_other_target_is_e68(string text)
     {
-        Assert.StartsWith($"E68: target '{text}' is neither 'single' nor 'spawn:N' (N >= 1)", Assert.Throws<ChainException>(() => ChainReport.ParseTarget(text)).Message, StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E68}: target '{text}' is neither 'single' nor 'spawn:N' (N >= 1)", Assert.Throws<EngineException>(() => ChainReport.ParseTarget(text)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -184,7 +185,7 @@ public sealed class ChainSetupTests
     [Fact]
     public void Only_e37_drops_a_power_while_classifying()
     {
-        ChainHooks nothing = new() { Classify = (_, _, _) => throw new ChainException("E37: not damaging") };
+        ChainHooks nothing = new() { Classify = (_, _, _) => throw new EngineException("E37: not damaging") };
 
         Assert.StartsWith("E71: no power in", Error(Request(), nothing), StringComparison.Ordinal);
     }
@@ -192,9 +193,9 @@ public sealed class ChainSetupTests
     [Fact]
     public void Any_other_classifier_error_propagates()
     {
-        ChainHooks broken = new() { Classify = (_, _, _) => throw new ChainException("E36: bad area") };
+        ChainHooks broken = new() { Classify = (_, _, _) => throw new EngineException("E36: bad area") };
 
-        Assert.StartsWith("E36", Error(Request(), broken), StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E36, Error(Request(), broken), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -203,7 +204,7 @@ public sealed class ChainSetupTests
         ChainHooks hooks = new()
         {
             Classify = (power, range, resolve) => string.Equals(power.ReqStr("full_name"), "Scrapper_Melee.Dark_Melee.Smite", StringComparison.Ordinal)
-                ? throw new ChainException("E37: no foe damage")
+                ? throw new EngineException("E37: no foe damage")
                 : AttackProfiles.Classify(power, range, resolve),
         };
 
@@ -230,7 +231,7 @@ public sealed class ChainSetupTests
     [Fact]
     public void A_pet_data_gap_skips_that_summon_and_reports_it()
     {
-        ChainHooks hooks = Forced(Brawl, Role.PetSummon, (_, _, _, _) => throw new ChainException("E61: entity X has class 'q' with no class"));
+        ChainHooks hooks = Forced(Brawl, Role.PetSummon, (_, _, _, _) => throw new EngineException("E61: entity X has class 'q' with no class"));
 
         ChainSetup setup = ChainReport.BuildChainSetup(Request(midsDb: AttribModDirectory), hooks);
 
@@ -240,9 +241,9 @@ public sealed class ChainSetupTests
     [Fact]
     public void A_pet_error_that_is_not_a_data_gap_propagates()
     {
-        ChainHooks hooks = Forced(Brawl, Role.PetSummon, (_, _, _, _) => throw new ChainException("E36: unknown effect_area"));
+        ChainHooks hooks = Forced(Brawl, Role.PetSummon, (_, _, _, _) => throw new EngineException("E36: unknown effect_area"));
 
-        Assert.StartsWith("E36", Error(Request(midsDb: AttribModDirectory), hooks), StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E36, Error(Request(midsDb: AttribModDirectory), hooks), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -272,7 +273,7 @@ public sealed class ChainSetupTests
         string template = CanonicalPowers.Template(["Fire_Dmg"], "Resistance", "Foe", "No_Such_Debuff_Res_Dmg", -1.0, ",\"duration\":\"10 seconds\"");
         System.Text.Json.JsonElement power = CanonicalPowers.Parse(CanonicalPowers.Text("Tst.Set.Melt", effects: [CanonicalPowers.Effect([template])]));
 
-        Assert.StartsWith("E61: Tst.Set.Melt uses modifier table 'No_Such_Debuff_Res_Dmg'", Assert.Throws<ChainException>(() => ChainReport.LinkedResDebuff(power, _ => null, Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, 0)).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E61: Tst.Set.Melt uses modifier table 'No_Such_Debuff_Res_Dmg'", Assert.Throws<EngineException>(() => ChainReport.LinkedResDebuff(power, _ => null, Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, 0)).Message, StringComparison.Ordinal);
     }
 
     [Fact]

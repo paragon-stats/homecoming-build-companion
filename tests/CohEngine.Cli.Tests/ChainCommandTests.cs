@@ -1,3 +1,4 @@
+using CohEngine.Core;
 using CohEngine.Core.Chain;
 using CohEngine.TestSupport;
 
@@ -105,6 +106,17 @@ public sealed class ChainCommandTests
     public void The_form_flag_restricts_the_run_and_a_json_report_carries_the_form()
     {
         Assert.Equal(string.Empty, Melee("--form", string.Empty).ReqStr("form"));
+    }
+
+    [Fact]
+    public void The_cli_runner_routes_chain_to_the_command()
+    {
+        using StringWriter output = new();
+        using StringWriter error = new();
+
+        int code = CliRunner.Run(["chain", Path.Combine(Store.RepositoryRoot, Build), "--stance", "melee"], output, error);
+
+        Assert.Equal("0 True", $"{code} {output.ToString().Contains("== melee stance ==", StringComparison.Ordinal)}");
     }
 
     [Fact]

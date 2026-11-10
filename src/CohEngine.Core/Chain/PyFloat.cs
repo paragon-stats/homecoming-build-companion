@@ -1,6 +1,8 @@
 using System.Globalization;
 using System.Numerics;
 
+using CohEngine.Core.Diagnostics;
+
 namespace CohEngine.Core.Chain;
 
 /// <summary>Python's float rendering and <c>sum</c>, so printed numbers match the Python port byte for byte.</summary>
@@ -92,39 +94,12 @@ public static class PyFloat
         return sign + whole;
     }
 
-    /// <summary>Python <c>repr(float)</c>: the shortest text that reads back to the same value.</summary>
+    /// <summary>Python <c>repr(float)</c>: the shortest text that reads back to the same double.</summary>
     /// <param name="value">The value.</param>
     /// <returns>The text.</returns>
     public static string Repr(double value)
     {
-        if (!double.IsFinite(value))
-        {
-            return NonFinite(value);
-        }
-
-        if (value == 0.0)
-        {
-            return double.IsNegative(value) ? "-0.0" : "0.0";
-        }
-
-        (string digits, int exponent) = ShortestDigits(Math.Abs(value).ToString("R", CultureInfo.InvariantCulture));
-        string sign = value < 0.0 ? "-" : string.Empty;
-        if (exponent < -4 || exponent >= 16)
-        {
-            return sign + Scientific(digits, exponent);
-        }
-
-        if (exponent < 0)
-        {
-            return sign + "0." + new string('0', -exponent - 1) + digits;
-        }
-
-        if (digits.Length <= exponent + 1)
-        {
-            return sign + digits.PadRight(exponent + 1, '0') + ".0";
-        }
-
-        return sign + digits[..(exponent + 1)] + "." + digits[(exponent + 1)..];
+        return PyText.NumberRepr(value);
     }
 
     private static string Scientific(string digits, int exponent)
@@ -136,25 +111,6 @@ public static class PyFloat
     private static string NonFinite(double value)
     {
         return double.IsNaN(value) ? "nan" : value > 0 ? "inf" : "-inf";
-    }
-
-    /// <summary>The significant digits and decimal exponent of a "R" rendering such as 1.5E-05, 0.001 or 123456.</summary>
-    private static (string Digits, int Exponent) ShortestDigits(string shortest)
-    {
-        int exponent = 0;
-        string mantissa = shortest;
-        int marker = shortest.IndexOf('E', StringComparison.Ordinal);
-        if (marker >= 0)
-        {
-            mantissa = shortest[..marker];
-            exponent = int.Parse(shortest[(marker + 1)..], CultureInfo.InvariantCulture);
-        }
-
-        int point = mantissa.IndexOf('.', StringComparison.Ordinal);
-        string whole = point < 0 ? mantissa : mantissa[..point];
-        string all = whole + (point < 0 ? string.Empty : mantissa[(point + 1)..]);
-        int lead = all.Length - all.TrimStart('0').Length;
-        return (all.TrimStart('0').TrimEnd('0'), exponent + whole.Length - 1 - lead);
     }
 
     private static BigInteger Exact(double value, out BigInteger denominator)

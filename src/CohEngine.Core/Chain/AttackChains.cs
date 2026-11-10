@@ -1,4 +1,5 @@
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 using PowerStats = CohEngine.Core.Totals.PowerStatistics.PowerStats;
@@ -29,7 +30,7 @@ public static class AttackChains
     /// <param name="minCycles">The cycles an option must last to be affordable.</param>
     /// <param name="maxAttacks">The attack cap.</param>
     /// <returns>The plan.</returns>
-    /// <exception cref="ChainException">E45 when the timeline share is outside (0, 1].</exception>
+    /// <exception cref="EngineException">E45 when the timeline share is outside (0, 1].</exception>
     public static ChainPlan Plan(
         IEnumerable<ChainAttack> attacks,
         Stance stance,
@@ -47,8 +48,8 @@ public static class AttackChains
         ArgumentNullException.ThrowIfNull(budget);
         if (timelineAvailable is not (> 0.0 and <= 1.0))
         {
-            throw new ChainException(
-                $"E45: timeline_available is {PyFloat.Repr(timelineAvailable)} but must lie in (0, 1]; pass the timeline share left after non-chain sources");
+            throw new EngineException(
+                $"{ErrorCodes.E45}: timeline_available is {PyFloat.Repr(timelineAvailable)} but must lie in (0, 1]; pass the timeline share left after non-chain sources");
         }
 
         List<(ChainAttack Attack, double Cast)> rows =

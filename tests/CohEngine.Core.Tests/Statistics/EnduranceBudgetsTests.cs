@@ -1,6 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Statistics;
 using CohEngine.TestSupport;
@@ -71,7 +72,7 @@ public sealed class EnduranceBudgetsTests
         using TempTree tree = new();
         string path = tree.Write("totals.json", "{\"Class\":\"X\"}");
 
-        Assert.StartsWith($"E31: {path}: '<file>' has no key 'Totals'; re-run tools/mids-dump to regenerate totals.json", Assert.Throws<ChainException>(() => EnduranceBudgets.LoadMidsTotals(path)).Message, StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E31}: {path}: '<file>' has no key 'Totals'; re-run tools/mids-dump to regenerate totals.json", Assert.Throws<EngineException>(() => EnduranceBudgets.LoadMidsTotals(path)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -80,7 +81,7 @@ public sealed class EnduranceBudgetsTests
         using TempTree tree = new();
         string path = tree.Write("totals.json", "{\"Totals\":{},\"TotalsCapped\":{}}");
 
-        Assert.Contains("'Totals' has no key 'Def'", Assert.Throws<ChainException>(() => EnduranceBudgets.LoadMidsTotals(path)).Message, StringComparison.Ordinal);
+        Assert.Contains("'Totals' has no key 'Def'", Assert.Throws<EngineException>(() => EnduranceBudgets.LoadMidsTotals(path)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -88,7 +89,7 @@ public sealed class EnduranceBudgetsTests
     {
         using TempTree tree = new();
 
-        Assert.StartsWith("E33:", Assert.Throws<ChainException>(() => EnduranceBudgets.LoadMidsTotals(tree.Write("totals.json", "{oops"))).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E33:", Assert.Throws<EngineException>(() => EnduranceBudgets.LoadMidsTotals(tree.Write("totals.json", "{oops"))).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -102,7 +103,7 @@ public sealed class EnduranceBudgetsTests
     [Fact]
     public void A_class_with_no_canonical_file_is_e32()
     {
-        Assert.StartsWith("E32: no canonical archetype file", Assert.Throws<ChainException>(() => EnduranceBudgets.LoadCanonicalCaps(Archetypes, "Class_Nobody")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E32: no canonical archetype file", Assert.Throws<EngineException>(() => EnduranceBudgets.LoadCanonicalCaps(Archetypes, "Class_Nobody")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -111,7 +112,7 @@ public sealed class EnduranceBudgetsTests
         using TempTree tree = new();
         tree.Write("nobody.json", "{oops");
 
-        Assert.StartsWith("E33:", Assert.Throws<ChainException>(() => EnduranceBudgets.LoadCanonicalCaps(tree.Root, "Class_Nobody")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E33:", Assert.Throws<EngineException>(() => EnduranceBudgets.LoadCanonicalCaps(tree.Root, "Class_Nobody")).Message, StringComparison.Ordinal);
     }
 
     [Fact]

@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
@@ -64,7 +65,7 @@ public sealed class AtModifiersTests
     {
         IReadOnlyDictionary<string, double> assumptions = new Dictionary<string, double>(StringComparer.Ordinal) { ["Class_Brute.fury_level"] = 101.0 };
 
-        Assert.Equal("E50: assumption Class_Brute.fury_level=101.0 is outside [0.0, 100.0]; set it within that range", Assert.Throws<ChainException>(() => Run("Class_Brute", assumptions)).Message);
+        Assert.Equal("E50: assumption Class_Brute.fury_level=101.0 is outside [0.0, 100.0]; set it within that range", Assert.Throws<EngineException>(() => Run("Class_Brute", assumptions)).Message);
     }
 
     [Fact]

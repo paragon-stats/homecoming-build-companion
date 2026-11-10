@@ -2,6 +2,7 @@ using System.Text.Json;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Chain;
@@ -70,7 +71,7 @@ public sealed class AttackProfilesTests
     [MemberData(nameof(Unclassifiable))]
     public void Classify_rejects_a_power_with_nothing_to_model_as_e37(string json)
     {
-        Assert.StartsWith("E37", Assert.Throws<ChainException>(() => AttackProfiles.Classify(CanonicalPowers.Parse(json))).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E37, Assert.Throws<EngineException>(() => AttackProfiles.Classify(CanonicalPowers.Parse(json))).Message, StringComparison.Ordinal);
     }
 
     [Theory]
@@ -83,7 +84,7 @@ public sealed class AttackProfilesTests
     [Fact]
     public void Classify_names_an_unmapped_area_in_e36()
     {
-        ChainException error = Assert.Throws<ChainException>(() => AttackProfiles.Classify(CanonicalPowers.Parse(CanonicalPowers.Text(area: "Self", effects: [CanonicalPowers.Effect([FoeDamage])]))));
+        EngineException error = Assert.Throws<EngineException>(() => AttackProfiles.Classify(CanonicalPowers.Parse(CanonicalPowers.Text(area: "Self", effects: [CanonicalPowers.Effect([FoeDamage])]))));
 
         Assert.Equal("E36: Test.Set.Power has effect_area 'Self', expected one of ['AoE', 'SingleTarget', 'Cone', 'Location', 'Chain']; add the value to attack_profile._SHAPES or filter the power", error.Message);
     }
@@ -136,7 +137,7 @@ public sealed class AttackProfilesTests
     {
         JsonElement power = CanonicalPowers.Parse(CanonicalPowers.Text(extra: ",\"redirect\":[{\"name\":\"Test.Set.Nova\",\"condition_expression\":\"Source.Mode?(Nova)\"}]"));
 
-        Assert.Throws<ChainException>(() => AttackProfiles.Classify(power, resolve: _ => null));
+        Assert.Throws<EngineException>(() => AttackProfiles.Classify(power, resolve: _ => null));
     }
 
     [Fact]

@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Names;
 
@@ -56,7 +57,7 @@ public sealed class PowerNameResolver
             string[] displays = [.. index.Strings("power_display_names")];
             if (names.Length != displays.Length)
             {
-                throw new ChainException($"E22: powerset {internalName} lists {names.Length.ToString(CultureInfo.InvariantCulture)} power names but {displays.Length.ToString(CultureInfo.InvariantCulture)} display names; re-harvest the canonical data");
+                throw new EngineException($"{ErrorCodes.E22}: powerset {internalName} lists {names.Length.ToString(CultureInfo.InvariantCulture)} power names but {displays.Length.ToString(CultureInfo.InvariantCulture)} display names; re-harvest the canonical data");
             }
 
             built.Add(new PowersetName(internalName, index.ReqStr("display_name"), categoryName, [.. ats], [.. names.Select((name, position) => new PowerName(name, displays[position], internalName))]));
@@ -68,14 +69,14 @@ public sealed class PowerNameResolver
     /// <summary>The name the game shows for a power's full internal name.</summary>
     /// <param name="internalName">The internal name.</param>
     /// <returns>The display name.</returns>
-    /// <exception cref="ChainException">E22 when the name is not a player power.</exception>
+    /// <exception cref="EngineException">E22 when the name is not a player power.</exception>
     public string DisplayName(string internalName)
     {
         ArgumentNullException.ThrowIfNull(internalName);
         return byInternal.TryGetValue(internalName, out PowerName? power)
             ? power.Display
-            : throw new ChainException(
-                $"E22: internal power name {PyText.Repr(internalName)} is not a player power among the {byInternal.Count.ToString(CultureInfo.InvariantCulture)} indexed; "
+            : throw new EngineException(
+                $"{ErrorCodes.E22}: internal power name {PyText.Repr(internalName)} is not a player power among the {byInternal.Count.ToString(CultureInfo.InvariantCulture)} indexed; "
                 + "pass a full name such as 'Pool.Teleportation.Long_Range_Teleport'");
     }
 
@@ -98,14 +99,14 @@ public sealed class PowerNameResolver
     /// <param name="display">The display name.</param>
     /// <param name="powerset">The powerset's internal name.</param>
     /// <returns>The internal name.</returns>
-    /// <exception cref="ChainException">E22 unless exactly one power matches.</exception>
+    /// <exception cref="EngineException">E22 unless exactly one power matches.</exception>
     public string Resolve(string display, string powerset)
     {
         IReadOnlyList<string> matches = InternalNames(display, powerset);
         return matches.Count == 1
             ? matches[0]
-            : throw new ChainException(
-                $"E22: display name {PyText.Repr(display)} matches {matches.Count.ToString(CultureInfo.InvariantCulture)} powers in powerset {PyText.Repr(powerset)} {PyText.Repr(matches)}, expected 1; "
+            : throw new EngineException(
+                $"{ErrorCodes.E22}: display name {PyText.Repr(display)} matches {matches.Count.ToString(CultureInfo.InvariantCulture)} powers in powerset {PyText.Repr(powerset)} {PyText.List(matches)}, expected 1; "
                 + "pass the display name and the powerset's internal name, e.g. 'Fold Space' in 'Pool.Teleportation'");
     }
 

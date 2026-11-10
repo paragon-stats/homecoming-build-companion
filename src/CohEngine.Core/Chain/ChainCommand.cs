@@ -1,6 +1,7 @@
 using System.Globalization;
 
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Chain;
 
@@ -32,19 +33,19 @@ public static class ChainCommand
         {
             return Execute(options, output, workingDirectory);
         }
-        catch (ChainException failure)
+        catch (EngineException failure)
         {
             return Fail(error, failure.Message);
         }
         catch (MissingKeyException failure)
         {
-            return Fail(error, $"E72: an input is missing the key {failure.Message}; re-dump the build or check the data matches its schema");
+            return Fail(error, $"{ErrorCodes.E72}: an input is missing the key {failure.Message}; re-dump the build or check the data matches its schema");
         }
         catch (Exception failure) when (failure is IOException or UnauthorizedAccessException)
         {
             string where = failure is FileNotFoundException { FileName: { } file } ? file : "an input file";
             string reason = failure is FileNotFoundException or DirectoryNotFoundException ? "No such file or directory" : failure.Message;
-            return Fail(error, $"E72: cannot read {where}: {reason}; check that the path exists and is readable");
+            return Fail(error, $"{ErrorCodes.E72}: cannot read {where}: {reason}; check that the path exists and is readable");
         }
     }
 

@@ -1,6 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Chain;
@@ -37,7 +38,7 @@ public sealed class ChainRunTests
     {
         Assert.Equal(
             "E65: form 'Nova' is not a form of this build; choose one of 'base' ('' is base)",
-            Assert.Throws<ChainException>(() => ChainReport.RunChain(Setup(), AllStances, "p", ["Nova"])).Message);
+            Assert.Throws<EngineException>(() => ChainReport.RunChain(Setup(), AllStances, "p", ["Nova"])).Message);
     }
 
     [Fact]
@@ -113,7 +114,7 @@ public sealed class ChainRunTests
     {
         ChainSetup setup = Synthetic([ChainFactory.Attack("Hit")]) with { Skipped = [("A.B.Gone", "no canonical file (E35)")] };
 
-        ChainDiagnostic found = ChainReport.RunChain(setup, [Stance.Melee], "p").Single().Diagnostics.Single(diagnostic => diagnostic.Message.StartsWith("power A.B.Gone", StringComparison.Ordinal));
+        Diagnostic found = ChainReport.RunChain(setup, [Stance.Melee], "p").Single().Diagnostics.Single(diagnostic => diagnostic.Message.StartsWith("power A.B.Gone", StringComparison.Ordinal));
 
         Assert.Equal("power A.B.Gone is not modelled: no canonical file (E35)|check A.B.Gone against canonical data; its damage is missing from every layer until it is classified", found.Message + "|" + found.Fix);
     }

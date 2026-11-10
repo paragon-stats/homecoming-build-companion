@@ -1,6 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Chain;
@@ -27,7 +28,7 @@ public sealed class CanonicalJsonTests
     [Fact]
     public void Repr_of_a_list_and_an_int()
     {
-        Assert.Equal("['a', 'b'] 7", PyText.Repr(["a", "b"]) + " " + PyText.Repr(7));
+        Assert.Equal("['a', 'b'] 7", PyText.List(["a", "b"]) + " " + PyText.Repr(7));
     }
 
     [Fact]
@@ -36,10 +37,10 @@ public sealed class CanonicalJsonTests
         Assert.Equal(
             ["x", "inner", "'k'", "y"],
             [
-                new ChainException("x").Message,
-                new ChainException("inner", new MissingKeyException()).Message,
+                new EngineException("x").Message,
+                new EngineException("inner", new MissingKeyException()).Message,
                 new MissingKeyException("k").Message,
-                new MissingKeyException("y", new ChainException()).Message,
+                new MissingKeyException("y", new EngineException()).Message,
             ]);
     }
 
@@ -79,7 +80,7 @@ public sealed class CanonicalJsonTests
         using TempTree tree = new();
         string path = tree.Write("a.json", "﻿{\"k\":1}");
 
-        Assert.Equal(1, CanonicalJson.ReadJson(path, "E38").ReqNum("k"));
+        Assert.Equal(1, CanonicalJson.ReadJson(path, ErrorCodes.E38).ReqNum("k"));
     }
 
     [Fact]
@@ -88,7 +89,7 @@ public sealed class CanonicalJsonTests
         using TempTree tree = new();
         string path = tree.Write("bad.json", "{oops");
 
-        Assert.StartsWith($"E38: {path} is not valid JSON (", Assert.Throws<ChainException>(() => CanonicalJson.ReadJson(path, "E38")).Message, StringComparison.Ordinal);
+        Assert.StartsWith($"{ErrorCodes.E38}: {path} is not valid JSON (", Assert.Throws<EngineException>(() => CanonicalJson.ReadJson(path, ErrorCodes.E38)).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -134,7 +135,7 @@ public sealed class CanonicalJsonTests
         using TempTree tree = new();
         tree.Write("powers/set/sub/smite.json", "{oops");
 
-        Assert.StartsWith("E38", Assert.Throws<ChainException>(() => CanonicalJson.LoadCanonicalPowers(tree.FullPath("powers"), ["Set.Sub.Smite"])).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E38, Assert.Throws<EngineException>(() => CanonicalJson.LoadCanonicalPowers(tree.FullPath("powers"), ["Set.Sub.Smite"])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -144,7 +145,7 @@ public sealed class CanonicalJsonTests
         tree.Write("powers/set/sub/smite.json", "{\"full_name\":\"Else.Where.Smite\"}");
         tree.Write("powers/keep.txt", "x");
 
-        ChainException error = Assert.Throws<ChainException>(() => CanonicalJson.LoadCanonicalPowers(tree.FullPath("powers"), ["Set.Sub.Smite", "Set.Sub.Punch"]));
+        EngineException error = Assert.Throws<EngineException>(() => CanonicalJson.LoadCanonicalPowers(tree.FullPath("powers"), ["Set.Sub.Smite", "Set.Sub.Punch"]));
 
         Assert.EndsWith("for ['Set.Sub.Smite', 'Set.Sub.Punch']; check the full_name spelling or restore the file (0-byte files are skipped)", error.Message, StringComparison.Ordinal);
     }

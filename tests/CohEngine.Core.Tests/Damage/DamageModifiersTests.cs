@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.DamageLayers;
@@ -114,7 +115,7 @@ public sealed class DamageModifiersTests
     {
         DamageContext context = Context(assumptions: Assume("target.resistance", bad), attacks: [Attack("Chain", Role.Chain, debuff: 0.2, debuffDuration: 10.0)]);
 
-        Assert.StartsWith("E57", Assert.Throws<ChainException>(() => DamageModifiers.TargetDebuffModifier(context)).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E57, Assert.Throws<EngineException>(() => DamageModifiers.TargetDebuffModifier(context)).Message, StringComparison.Ordinal);
     }
 
     [Fact]

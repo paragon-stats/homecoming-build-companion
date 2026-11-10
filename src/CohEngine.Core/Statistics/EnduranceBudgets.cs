@@ -3,6 +3,7 @@ using System.Text.Json;
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
 using CohEngine.Core.Data;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.Statistics;
@@ -20,7 +21,7 @@ public static class EnduranceBudgets
     /// <param name="archetypesDir">The canonical archetypes directory.</param>
     /// <param name="className">The class name.</param>
     /// <returns>The caps.</returns>
-    /// <exception cref="ChainException">E32 when no canonical archetype file exists; E33 when it is not valid JSON.</exception>
+    /// <exception cref="EngineException">E32 when no canonical archetype file exists; E33 when it is not valid JSON.</exception>
     public static (double MaxEnd, double MaxHp) LoadCanonicalCaps(string archetypesDir, string className)
     {
         ArgumentNullException.ThrowIfNull(className);
@@ -28,12 +29,12 @@ public static class EnduranceBudgets
         string path = Path.Combine(archetypesDir, stem + ".json");
         if (!File.Exists(path))
         {
-            throw new ChainException(
-                $"E32: no canonical archetype file {path} for {className}; pass the AT class name "
+            throw new EngineException(
+                $"{ErrorCodes.E32}: no canonical archetype file {path} for {className}; pass the AT class name "
                 + "(e.g. Class_Arachnos_Soldier) or restore data/canonical/archetypes");
         }
 
-        JsonElement caps = CanonicalJson.ReadJson(path, "E33").Req("attrib_max_max");
+        JsonElement caps = CanonicalJson.ReadJson(path, ErrorCodes.E33).Req("attrib_max_max");
         return (F32.Round(caps.Req("endurance")[Level50].GetDouble()), F32.Round(caps.Req("hit_points")[Level50].GetDouble()));
     }
 
@@ -73,10 +74,10 @@ public static class EnduranceBudgets
     /// <summary>Reads a Mids dump <c>totals.json</c> into the uncapped and capped totals.</summary>
     /// <param name="path">The file.</param>
     /// <returns>The totals and the class name.</returns>
-    /// <exception cref="ChainException">E31 when a section or field is missing; E33 when the file is not valid JSON.</exception>
+    /// <exception cref="EngineException">E31 when a section or field is missing; E33 when the file is not valid JSON.</exception>
     public static (TotalStatistics Totals, TotalStatistics Capped, string ClassName) LoadMidsTotals(string path)
     {
-        JsonElement data = CanonicalJson.ReadJson(path, "E33");
+        JsonElement data = CanonicalJson.ReadJson(path, ErrorCodes.E33);
         TotalStatistics totals = TotalsFrom(Required(data, "Totals", "<file>", path), "Totals", path);
         TotalStatistics capped = TotalsFrom(Required(data, "TotalsCapped", "<file>", path), "TotalsCapped", path);
         return (totals, capped, data.ReqStr("Class"));
@@ -92,7 +93,7 @@ public static class EnduranceBudgets
     {
         return section.ValueKind == JsonValueKind.Object && section.TryGetProperty(key, out JsonElement value)
             ? value
-            : throw new ChainException($"E31: {path}: '{name}' has no key '{key}'; re-run tools/mids-dump to regenerate totals.json");
+            : throw new EngineException($"{ErrorCodes.E31}: {path}: '{name}' has no key '{key}'; re-run tools/mids-dump to regenerate totals.json");
     }
 
     private static TotalStatistics TotalsFrom(JsonElement section, string name, string path)

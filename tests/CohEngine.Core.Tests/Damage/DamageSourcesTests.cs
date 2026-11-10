@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.DamageLayers;
@@ -88,7 +89,7 @@ public sealed class DamageSourcesTests
     {
         DamageContext context = ChainFactory.Context([], Stance.Hybrid, assumptions: new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 1.5 });
 
-        Assert.Equal("E56: assumption hybrid.melee_share=1.5 is outside [0, 1]; set it within that range", Assert.Throws<ChainException>(() => DamageSources.MeleeShare(context)).Message);
+        Assert.Equal("E56: assumption hybrid.melee_share=1.5 is outside [0, 1]; set it within that range", Assert.Throws<EngineException>(() => DamageSources.MeleeShare(context)).Message);
     }
 
     [Fact]
@@ -132,7 +133,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void An_aura_without_a_tick_period_is_e55()
     {
-        Assert.StartsWith("E55: aura Aura has activate_period 0.0 but must be > 0", Assert.Throws<ChainException>(() => DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura)]))).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E55: aura Aura has activate_period 0.0 but must be > 0", Assert.Throws<EngineException>(() => DamageSources.AuraSource(ChainFactory.Context([ChainFactory.Attack("Aura", Role.Aura)]))).Message, StringComparison.Ordinal);
     }
 
     [Fact]

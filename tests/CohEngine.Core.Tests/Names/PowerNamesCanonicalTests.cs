@@ -1,4 +1,5 @@
 using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Names;
 using CohEngine.TestSupport;
 
@@ -76,7 +77,7 @@ public sealed class PowerNamesCanonicalTests
 
         Assert.DoesNotContain(names, name => name.StartsWith("V_Arachnos_Proxy.", StringComparison.Ordinal) || name.StartsWith("Warriors_New.", StringComparison.Ordinal) || name.StartsWith("Warriors.", StringComparison.Ordinal));
         Assert.True(names.Contains("Pool.Teleportation", StringComparer.Ordinal) && names.Contains("Scrapper_Melee.Claws", StringComparer.Ordinal) && names.Contains("Epic.VEAT_Mace_Mastery", StringComparer.Ordinal));
-        Assert.StartsWith("E22", Assert.Throws<ChainException>(() => Resolver.Value.DisplayName("Warriors_New.Warrior_Mace_Lt.Mace_Beam")).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E22, Assert.Throws<EngineException>(() => Resolver.Value.DisplayName("Warriors_New.Warrior_Mace_Lt.Mace_Beam")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -96,7 +97,7 @@ public sealed class PowerNamesCanonicalTests
     [Fact]
     public void Resolve_needs_exactly_one_match()
     {
-        Assert.Contains("matches 0", Assert.Throws<ChainException>(() => Resolver.Value.Resolve("Fold Space", "Pool.Leaping")).Message, StringComparison.Ordinal);
+        Assert.Contains("matches 0", Assert.Throws<EngineException>(() => Resolver.Value.Resolve("Fold Space", "Pool.Leaping")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -111,13 +112,13 @@ public sealed class PowerNamesCanonicalTests
         PowerNameResolver twins = PowerNameResolver.FromCanonical(tree.Root);
 
         Assert.Equal("Pool.Twins.A,Pool.Twins.B", string.Join(',', twins.InternalNames("Same")));
-        Assert.Contains("matches 2", Assert.Throws<ChainException>(() => twins.Resolve("Same", "Pool.Twins")).Message, StringComparison.Ordinal);
+        Assert.Contains("matches 2", Assert.Throws<EngineException>(() => twins.Resolve("Same", "Pool.Twins")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void The_display_name_of_an_unknown_internal_name_fails_loud()
     {
-        Assert.StartsWith("E22: internal power name 'Pool.Teleportation.Nope'", Assert.Throws<ChainException>(() => Resolver.Value.DisplayName("Pool.Teleportation.Nope")).Message, StringComparison.Ordinal);
+        Assert.StartsWith("E22: internal power name 'Pool.Teleportation.Nope'", Assert.Throws<EngineException>(() => Resolver.Value.DisplayName("Pool.Teleportation.Nope")).Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -132,6 +133,6 @@ public sealed class PowerNamesCanonicalTests
     [Fact]
     public void Render_of_an_unknown_internal_name_fails_loud()
     {
-        Assert.StartsWith("E22", Assert.Throws<ChainException>(() => Resolver.Value.Render("Pool.Nope.Nope", "both")).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E22, Assert.Throws<EngineException>(() => Resolver.Value.Render("Pool.Nope.Nope", "both")).Message, StringComparison.Ordinal);
     }
 }
