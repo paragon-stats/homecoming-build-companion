@@ -293,6 +293,7 @@ def _install_fake_resolver(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_write_outputs_and_main_are_byte_identical_across_runs(tmp_path: Path, monkeypatch, capsys) -> None:
     _install_fake_resolver(monkeypatch)
+    monkeypatch.delenv("COH_BANNED_NAMES", raising=False)
     root, patches, out = tmp_path / "root", tmp_path / "patches", tmp_path / "out"
     community = root / "community"
     capture(community, "mechanics/b.md", "Claws guide", "x", digest="h2", url="u2")
@@ -331,6 +332,51 @@ def test_main_reports_empty_roots_and_a_missing_patch_index(tmp_path: Path, monk
     err = capsys.readouterr().err
     assert "E25:" in err and f"E23: no captures under {tmp_path / 'community'}" in err
     assert not (tmp_path / "out").exists()
+
+
+def _name_filter_run(tmp_path: Path, monkeypatch, names: str | None) -> Path:
+    _install_fake_resolver(monkeypatch)
+    if names is None:
+        monkeypatch.delenv("COH_BANNED_NAMES", raising=False)
+    else:
+        monkeypatch.setenv("COH_BANNED_NAMES", names)
+    community = tmp_path / "root" / "community"
+    capture(community, "mechanics/claws.md", "Claws guide", "x", digest="h1", url="u1")
+    capture(community, "mechanics/zorblax-claws.md", "Claws by Zorblax", "x", digest="h2", url="u2")
+    capture(community, "mechanics/zorblaxian.md", "Zorblaxian Claws", "x", digest="h3", url="u3")
+    capture(community, "mechanics/dup.md", "Claws by Zorblax", "x", digest="h2", url="u2")
+    patches, out = tmp_path / "patches", tmp_path / "out"
+    patches.mkdir()
+    (patches / "index.jsonl").write_text("", encoding="utf-8")
+    argv = ["--source-root", str(tmp_path / "root"), "--out", str(out), "--canonical", str(tmp_path)]
+    assert main([*argv, "--patches", str(patches)]) == 0
+    return out
+
+
+def test_a_row_naming_a_banned_person_is_withheld_and_counted_not_named(tmp_path: Path, monkeypatch, capsys) -> None:
+    out = _name_filter_run(tmp_path, monkeypatch, "Zorblax, Other Name")
+    printed = capsys.readouterr().out
+    assert "2 row(s) withheld by the name filter" in printed and "Zorblax" not in printed
+    rows = [json.loads(line) for line in (out / "guides.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [r["file"] for r in rows] == ["mechanics/claws.md", "mechanics/zorblaxian.md"]
+    assert (out / "folded.jsonl").read_text(encoding="utf-8") == ""
+    coverage = json.loads((out / "coverage.json").read_text(encoding="utf-8"))
+    assert coverage["powersets"]["Claws"]["guides"] == ["mechanics/claws.md", "mechanics/zorblaxian.md"]
+    assert "zorblax-claws" not in "".join(p.read_text(encoding="utf-8") for p in out.iterdir())
+
+
+def test_a_name_inside_a_longer_word_is_not_withheld(tmp_path: Path, monkeypatch, capsys) -> None:
+    out = _name_filter_run(tmp_path, monkeypatch, "Zorb")
+    assert "0 row(s) withheld" in capsys.readouterr().out
+    assert len((out / "guides.jsonl").read_text(encoding="utf-8").splitlines()) == 3
+
+
+def test_with_no_names_set_nothing_is_withheld_and_the_filter_says_it_is_off(
+    tmp_path: Path, monkeypatch, capsys
+) -> None:
+    out = _name_filter_run(tmp_path, monkeypatch, None)
+    assert "name filter off" in capsys.readouterr().out
+    assert len((out / "guides.jsonl").read_text(encoding="utf-8").splitlines()) == 3
 
 
 def test_write_outputs_creates_the_folder(tmp_path: Path) -> None:

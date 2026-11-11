@@ -3,12 +3,27 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pytest
 
 from scripts.forum_scrape.guides import content_hash
-from scripts.forum_scrape.manifest import build_manifest, main
+from scripts.forum_scrape.manifest import build_manifest, main, render
+
+IRREGULAR_WHITESPACE = re.compile(
+    "["
+    + "".join(map(chr, [0xA0, 0x1680, 0x2028, 0x2029, 0x202F, 0x205F, 0x3000, 0xFEFF, *range(0x2000, 0x200C)]))
+    + "]"
+)
+
+
+def test_render_escapes_irregular_whitespace_and_round_trips() -> None:
+    title = "".join(map(chr, [0x46, 0xA0, 0x42, 0x2003, 0x67, 0x20, 0x3000, 0x20, 0xE9]))
+    text = render([{"title": title}])
+    assert not IRREGULAR_WHITESPACE.search(text) and text.isascii()
+    assert json.loads(text) == [{"title": title}]
+
 
 SOURCE = Path(__file__).parent / "fixtures" / "source"
 BIO_BODY = "# Bio Armor notes\n\nNo stored hash and no URL here; both come from the body and the ledger.\n"
@@ -36,7 +51,10 @@ def test_rows_cover_every_capture_sorted_by_path() -> None:
     assert old["era"] == "pre-sunset" and old["url"] == "https://archive.example/topic/3-old/"
 
 
-def test_main_writes_identical_bytes_and_no_post_text(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+def test_main_writes_identical_bytes_and_no_post_text(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.delenv("COH_BANNED_NAMES", raising=False)
     out = tmp_path / "nested" / "manifest.json"
     argv = ["--source-root", str(SOURCE), "--out", str(out)]
     assert main(argv) == 0
@@ -54,3 +72,13 @@ def test_main_reports_an_empty_root(tmp_path: Path, capsys: pytest.CaptureFixtur
     assert f"E05: no captures under {tmp_path / 'community'}" in err
     assert "pass --source-root" in err
     assert not (tmp_path / "m.json").exists()
+
+
+def test_main_leaves_out_rows_naming_a_banned_word_and_counts_them(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    out = tmp_path / "manifest.json"
+    monkeypatch.setenv("COH_BANNED_NAMES", "claws")
+    assert main(["--source-root", str(SOURCE), "--out", str(out)]) == 0
+    assert [r["path"] for r in json.loads(out.read_text(encoding="utf-8"))] == ["community/archetypes/scrapper/bio.md"]
+    assert "2 row(s) withheld" in capsys.readouterr().out

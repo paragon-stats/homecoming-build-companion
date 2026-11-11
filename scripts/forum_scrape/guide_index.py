@@ -18,6 +18,7 @@ Usage::
     python -m scripts.forum_scrape.guide_index [--source-root PATH]
 
 Writes ``guides.jsonl``, ``folded.jsonl`` and ``coverage.json`` under ``knowledge/coh/_work``.
+A row naming a person listed in ``COH_BANNED_NAMES`` is left out of all three (see ``banned_names``).
 Output is sorted, so a re-run on the same captures writes the same bytes.
 
 Errors: E04 source root missing, E23 no captures under the root, E24 a capture skipped for unreadable front matter,
@@ -38,6 +39,7 @@ from pathlib import Path
 from typing import Any
 
 from coh_engine.power_names import PowerNameResolver, PowersetName
+from scripts.forum_scrape.banned_names import banned_pattern, report, withhold
 from scripts.forum_scrape.guides import (
     _capture_url,
     _ledger,
@@ -392,10 +394,15 @@ def main(argv: list[str] | None = None) -> int:
         )
     resolver = PowerNameResolver.from_canonical(args.canonical)
     rows, folded = build_index(community, resolver, timeline)
+    pattern = banned_pattern()
+    rows, withheld_rows = withhold(rows, pattern)
+    folded, withheld_folded = withhold(folded, pattern)
     if not rows:
         print(f"E23: no captures under {community}; expected **/*.md with front matter", file=sys.stderr)
         return 1
+    # Coverage is built from the rows that remain, so it never lists a withheld capture.
     write_outputs(args.out, rows, folded, build_coverage(rows, resolver))
+    print(report(pattern, withheld_rows + withheld_folded))
     print(f"{len(rows)} capture(s) indexed, {len(folded)} folded, written to {args.out}")
     return 0
 
