@@ -377,8 +377,8 @@ class TestBuildPlan:
         assert "upgrade_pip" in plan
         assert "install_dev_extras" in plan
 
-    def test_missing_hook_installs_hooks(self) -> None:
-        """Test missing hook installs hooks."""
+    def test_missing_husky_hooks_do_not_rerun_install_hooks(self) -> None:
+        """Re-running install-hooks cannot install Husky, so it is not planned for that."""
         state: dict[str, Any] = {
             "pyproject_present": True,
             "venv_python": "/path/to/python",
@@ -386,9 +386,7 @@ class TestBuildPlan:
             "pre_commit_hook_exists": False,
             "pre_commit_matches": True,
         }
-        plan = build_plan(state)
-        assert "install_pre_commit_hooks" in plan
-        assert "create_venv" not in plan
+        assert build_plan(state) == []
 
     def test_pre_commit_config_changed_installs_hooks(self) -> None:
         """Test pre commit config changed installs hooks."""
@@ -451,6 +449,30 @@ class TestDescribePlan:
         }
         lines = describe_plan(state)
         assert any("create_venv: no-op" in line for line in lines)
+
+
+class TestDescribePlanHusky:
+    """The Husky step is reported, not run."""
+
+    @staticmethod
+    def _state(*, hooks: bool) -> dict[str, Any]:
+        return {
+            "pyproject_present": True,
+            "venv_python": "/python",
+            "venv_exists": True,
+            "pyproject_matches": True,
+            "pre_commit_hook_exists": hooks,
+            "pre_commit_matches": True,
+        }
+
+    def test_reports_husky_install_when_missing(self) -> None:
+        """A checkout without working hooks gets the install command."""
+        lines = describe_plan(self._state(hooks=False))
+        assert any("install_husky_hooks" in line and "dotnet husky install" in line for line in lines)
+
+    def test_silent_when_installed(self) -> None:
+        """A working install adds no Husky line."""
+        assert not any("husky" in line.lower() for line in describe_plan(self._state(hooks=True)))
 
 
 class TestFormatGitSigningStatus:
@@ -739,7 +761,7 @@ class TestVerifyBootstrap:
             patch("scripts.dev.bootstrap_venv._query_installed_versions", return_value={"testpkg": "9.9.9"}),
             patch("scripts.dev.bootstrap_venv._query_python_version", return_value="3.13.0"),
             patch("scripts.dev.bootstrap_venv.check_git_signing", return_value=(True, "ok")),
-            patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True),
+            patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("installed", "")),
             patch("scripts.dev.bootstrap_venv._check_bootstrap_state", return_value=(True, "matches", "matches", "")),
         ):
             assert _verify_bootstrap(repo_root=tmp_path, platform="win32") == EXIT_OK
@@ -798,7 +820,7 @@ class TestRunBootstrap:
         write_bootstrap_state(state_path, desired)
         with (
             patch("scripts.dev.bootstrap_venv.check_git_signing", return_value=(True, "ok")),
-            patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True),
+            patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("installed", "")),
         ):
             result = run_bootstrap(repo_root=tmp_path, platform="win32")
             assert result == EXIT_OK
@@ -1442,57 +1464,101 @@ class TestCheckPreCommitHooks:
     """Test _check_pre_commit_hooks direct branches."""
 
     def test_passes_when_husky_hooks_installed(self, tmp_path: Path) -> None:
-        """Return pass when core.hooksPath is the Husky directory."""
+        """Return pass when git will run the Husky hooks here."""
         from scripts.dev.bootstrap_venv import _check_pre_commit_hooks
 
-        with patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True):
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("installed", "")):
             passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
-        assert passed is True
-        assert expected == "installed"
-        assert found == "installed"
-        assert action == ""
+        assert (passed, expected, found, action) == (True, "installed", "installed", "")
 
-    def test_fails_when_hooks_not_installed(self, tmp_path: Path) -> None:
-        """Return fail with the Husky install command when hooks are not installed."""
+    def test_fails_with_the_status_action(self, tmp_path: Path) -> None:
+        """Return fail with the action the status names."""
         from scripts.dev.bootstrap_venv import _check_pre_commit_hooks
 
-        with patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=False):
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("missing", "Run: x")):
             passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
-        assert passed is False
-        assert expected == "installed"
+        assert (passed, expected, found, action) == (False, "installed", "missing", "Run: x")
+
+
+class TestHuskyHooksStatus:
+    """Test husky_hooks_status against a real repository."""
+
+    @staticmethod
+    def _init(tmp_path: Path, *, hooks_path: str | None = None, files: bool = True) -> None:
+        subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+        if hooks_path is not None:
+            subprocess.run(["git", "-C", str(tmp_path), "config", "core.hooksPath", hooks_path], check=True)
+        if files:
+            husky = tmp_path / ".husky"
+            husky.mkdir()
+            for name in ("pre-commit", "commit-msg", "pre-push"):
+                (husky / name).write_text("#!/bin/sh\n")
+                (husky / name).chmod(0o755)
+
+    def test_missing_without_hooks_path(self, tmp_path: Path) -> None:
+        """An unset core.hooksPath means the hooks do not run: the install command is the fix."""
+        from scripts.dev.bootstrap_venv import husky_hooks_status
+
+        self._init(tmp_path)
+        found, action = husky_hooks_status(tmp_path)
         assert found == "missing"
         assert "dotnet husky install" in action
 
-
-class TestHuskyHooksInstalled:
-    """Test husky_hooks_installed against a real repository."""
-
-    @staticmethod
-    def _init(tmp_path: Path) -> None:
-        subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
-
-    def test_false_without_hooks_path(self, tmp_path: Path) -> None:
-        """An unset core.hooksPath means the hooks do not run."""
-        from scripts.dev.bootstrap_venv import husky_hooks_installed
-
-        self._init(tmp_path)
-        assert husky_hooks_installed(tmp_path) is False
-
-    def test_false_for_another_path(self, tmp_path: Path) -> None:
+    def test_missing_for_another_path(self, tmp_path: Path) -> None:
         """Any other hooks directory is not the Husky one."""
-        from scripts.dev.bootstrap_venv import husky_hooks_installed
+        from scripts.dev.bootstrap_venv import husky_hooks_status
 
-        self._init(tmp_path)
-        subprocess.run(["git", "-C", str(tmp_path), "config", "core.hooksPath", "elsewhere"], check=True)
+        self._init(tmp_path, hooks_path="elsewhere")
+        assert husky_hooks_status(tmp_path)[0] == "missing"
+
+    @pytest.mark.parametrize("spelling", [".husky", "./.husky", ".husky/"])
+    def test_installed_for_equivalent_relative_spellings(self, tmp_path: Path, spelling: str) -> None:
+        """Equivalent spellings of the Husky directory count as installed."""
+        from scripts.dev.bootstrap_venv import husky_hooks_status
+
+        self._init(tmp_path, hooks_path=spelling)
+        assert husky_hooks_status(tmp_path) == ("installed", "")
+
+    def test_installed_for_absolute_path(self, tmp_path: Path) -> None:
+        """An absolute path to this checkout's .husky counts as installed."""
+        from scripts.dev.bootstrap_venv import husky_hooks_status
+
+        self._init(tmp_path, hooks_path=str(tmp_path / ".husky"))
+        assert husky_hooks_status(tmp_path) == ("installed", "")
+
+    def test_stale_checkout_without_hook_files(self, tmp_path: Path) -> None:
+        """The config is right but this checkout has no hook files: git would run none."""
+        from scripts.dev.bootstrap_venv import husky_hooks_installed, husky_hooks_status
+
+        self._init(tmp_path, hooks_path=".husky", files=False)
+        found, action = husky_hooks_status(tmp_path)
+        assert found == "hook files missing"
+        assert "merge or rebase onto main" in action
         assert husky_hooks_installed(tmp_path) is False
 
-    def test_true_for_husky_path(self, tmp_path: Path) -> None:
-        """core.hooksPath=.husky is the installed state."""
-        from scripts.dev.bootstrap_venv import husky_hooks_installed
+    def test_stale_checkout_with_a_non_executable_hook(self, tmp_path: Path) -> None:
+        """A hook file git cannot execute counts as missing."""
+        from scripts.dev.bootstrap_venv import husky_hooks_status
 
-        self._init(tmp_path)
-        subprocess.run(["git", "-C", str(tmp_path), "config", "core.hooksPath", ".husky"], check=True)
-        assert husky_hooks_installed(tmp_path) is True
+        self._init(tmp_path, hooks_path=".husky")
+        with patch("scripts.dev.bootstrap_venv.os.access", return_value=False):
+            assert husky_hooks_status(tmp_path)[0] == "hook files missing"
+
+
+class TestCheckHooksFlag:
+    """Test main --check-hooks."""
+
+    def test_installed_exits_ok(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Print the OK line and exit 0 when git will run the hooks."""
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("installed", "")):
+            assert main(["--check-hooks"]) == EXIT_OK
+        assert "installed" in capsys.readouterr().out
+
+    def test_not_installed_prints_the_fix(self, capsys: pytest.CaptureFixture[str]) -> None:
+        """Print the finding and the fix on stderr and exit non-zero."""
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_status", return_value=("missing", "Run: fix it")):
+            assert main(["--check-hooks"]) == EXIT_FAILED
+        assert "Run: fix it" in capsys.readouterr().err
 
 
 class TestCheckBootstrapStateDrift:

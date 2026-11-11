@@ -4,7 +4,7 @@
 # checkout's .venv (a git worktree has none of its own), then python on PATH.
 # Fails with the bootstrap command when none is found; it never skips.
 common="$(git rev-parse --path-format=absolute --git-common-dir)"
-for py in .venv/Scripts/python.exe .venv/bin/python "${common%/.git}/.venv/Scripts/python.exe" "${common%/.git}/.venv/bin/python" python; do
+for py in .venv/Scripts/python.exe .venv/bin/python "${common%/.git}/.venv/Scripts/python.exe" "${common%/.git}/.venv/bin/python" python python3; do
   if "$py" -m pre_commit --version >/dev/null 2>&1; then
     exec "$py" "$@"
   fi

@@ -45,6 +45,27 @@ jobs:
         env:
           COH_BANNED_NAMES: ${{ secrets.COH_BANNED_NAMES }}
         run: dotnet run scripts/dev/check-banned-words.cs
+      - name: Check coverage exclusions
+        run: dotnet run scripts/dev/check-coverage-exclusions.cs
+      # The rule must still fail where it should and pass where it should: expected exit codes in order.
+      - name: Check the coverage-exclusion rule itself
+        run: |
+          $cases = @(
+            @{ Expect = 1; Args = @('--seed', 'tests/fixtures/coverage-exclusion-seed.txt') },
+            @{ Expect = 0; Args = @('--seed', 'tests/fixtures/coverage-exclusion-ignored.txt') },
+            @{ Expect = 0; Args = @('--seed', 'tests/fixtures/coverage-exclusion-context.txt', '--as', 'src/Sample/SampleJsonContext.cs') },
+            @{ Expect = 1; Args = @('--seed', 'tests/fixtures/coverage-exclusion-seed.txt', '--as', 'src/Sample/SampleJsonContext.cs') }
+          )
+          $failed = $false
+          foreach ($case in $cases) {
+            dotnet run scripts/dev/check-coverage-exclusions.cs -- @($case.Args)
+            if ($LASTEXITCODE -ne $case.Expect) {
+              Write-Error "check-coverage-exclusions $($case.Args -join ' '): exit $LASTEXITCODE, expected $($case.Expect)"
+              $failed = $true
+            }
+          }
+          if ($failed) { exit 1 }
+          exit 0
       - run: dotnet format --verify-no-changes --severity error --no-restore
       - run: dotnet build --no-restore
       # Visual Studio XML coverage: dotnet-coverage supports the Microsoft.Testing.Platform

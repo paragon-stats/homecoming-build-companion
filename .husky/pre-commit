@@ -1,5 +1,6 @@
 #!/bin/sh
 # Plain script: does not source .husky/_/husky.sh, so a fresh worktree needs no generated files.
 # core.hooksPath=.husky is set once per repository: dotnet tool restore && dotnet husky install
-dotnet tool restore --verbosity quiet || exit 1
+# The restore output is shown only when the restore fails.
+restored="$(dotnet tool restore 2>&1)" || { echo "$restored" >&2; exit 1; }
 dotnet husky run --group pre-commit

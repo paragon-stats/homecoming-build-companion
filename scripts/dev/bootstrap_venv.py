@@ -38,10 +38,30 @@ HUSKY_HOOKS_PATH = ".husky"
 HUSKY_INSTALL_COMMAND = "dotnet tool restore && dotnet husky install"
 
 
-def husky_hooks_installed(repo_root: Path) -> bool:
-    """Return True when git runs the committed Husky hooks (core.hooksPath is .husky)."""
+HUSKY_HOOK_FILES = ("pre-commit", "commit-msg", "pre-push")
+HUSKY_STALE_CHECKOUT = "this checkout predates the Husky hooks: merge or rebase onto main"
+
+
+def husky_hooks_status(repo_root: Path) -> tuple[str, str]:
+    """Return (found, action) for the Husky hooks; ("installed", "") when git will run them here.
+
+    core.hooksPath must resolve to this checkout's .husky (git resolves a relative path against the
+    checkout root), and the three hook files must exist and be executable: git runs no hook, and does
+    not fall back to .git/hooks, when the file is missing.
+    """
     result = git_runner.run_git(["config", "core.hooksPath"], cwd=repo_root)
-    return result.returncode == 0 and result.stdout.strip() == HUSKY_HOOKS_PATH
+    configured = result.stdout.strip() if result.returncode == 0 else ""
+    husky_dir = repo_root / HUSKY_HOOKS_PATH
+    if not configured or (repo_root / configured).resolve() != husky_dir.resolve():
+        return ("missing", f"Run: {HUSKY_INSTALL_COMMAND}")
+    if not all(os.access(husky_dir / name, os.X_OK) for name in HUSKY_HOOK_FILES):
+        return ("hook files missing", HUSKY_STALE_CHECKOUT)
+    return ("installed", "")
+
+
+def husky_hooks_installed(repo_root: Path) -> bool:
+    """Return True when git runs the committed Husky hooks in this checkout."""
+    return husky_hooks_status(repo_root)[0] == "installed"
 
 
 def repo_root_from_script(script_path: Path) -> Path:
@@ -400,7 +420,7 @@ def build_plan(state: State) -> list[str]:
     if venv_missing or not state.get("pyproject_matches"):
         actions.append("upgrade_pip")
         actions.append("install_dev_extras")
-    if venv_missing or (not state.get("pre_commit_hook_exists")) or (not state.get("pre_commit_matches")):
+    if venv_missing or not state.get("pre_commit_matches"):
         actions.append("install_pre_commit_hooks")
     return actions
 
@@ -424,10 +444,12 @@ def describe_plan(state: State) -> list[str]:
         lines.append("upgrade_pip: no-op (bootstrap state unchanged)")
         lines.append("install_dev_extras: no-op (bootstrap state unchanged)")
 
-    if not venv_missing and state.get("pre_commit_matches") and state.get("pre_commit_hook_exists"):
-        lines.append("install_pre_commit_hooks: no-op (Husky hooks installed, state unchanged)")
+    if not venv_missing and state.get("pre_commit_matches"):
+        lines.append("install_pre_commit_hooks: no-op (state unchanged)")
     else:
         lines.append("install_pre_commit_hooks: would run .venv python -m pre_commit install-hooks")
+    if not state.get("pre_commit_hook_exists"):
+        lines.append(f"install_husky_hooks: not run by the bootstrap; run {HUSKY_INSTALL_COMMAND}")
     return lines
 
 
@@ -680,9 +702,8 @@ def _check_bootstrap_state(repo_root: Path) -> tuple[bool, str, str, str]:
 
 def _check_pre_commit_hooks(repo_root: Path) -> tuple[bool, str, str, str]:
     """Return (passed, expected, found, action) for the Husky hook install."""
-    if husky_hooks_installed(repo_root):
-        return (True, "installed", "installed", "")
-    return (False, "installed", "missing", f"Run: {HUSKY_INSTALL_COMMAND}")
+    found, action = husky_hooks_status(repo_root)
+    return (found == "installed", "installed", found, action)
 
 
 def _check_git_signing_health() -> tuple[bool, str, str, str]:
@@ -779,12 +800,24 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help="Verify dev dependencies are installed in the repo venv.",
     )
+    parser.add_argument(
+        "--check-hooks",
+        action="store_true",
+        help="Exit non-zero, with the fix, unless git will run the Husky hooks in this checkout.",
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: list[str]) -> int:
     """Main."""
     args = _parse_args(argv)
+    if args.check_hooks:
+        found, action = husky_hooks_status(repo_root_from_script(Path(__file__)))
+        if found == "installed":
+            print("Husky hooks are installed.")
+            return EXIT_OK
+        print(f"[FAIL] Husky hooks: {found}. {action}", file=sys.stderr)
+        return EXIT_FAILED
     if args.dry_run and args.verify:
         print("[FAIL] --dry-run and --verify cannot be used together.", file=sys.stderr)
         return EXIT_FAILED

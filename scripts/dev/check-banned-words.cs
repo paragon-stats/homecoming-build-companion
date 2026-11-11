@@ -31,9 +31,11 @@ string[] binaryExtensions =
 
 string[] names = (Environment.GetEnvironmentVariable("COH_BANNED_NAMES") ?? string.Empty)
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+string nameSource = "COH_BANNED_NAMES";
 if (names.Length == 0 && Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is null)
 {
     names = OperatorNames();
+    nameSource = "names taken from git config user.name";
 }
 
 if (names.Length == 0)
@@ -44,13 +46,13 @@ if (names.Length == 0)
         return 1;
     }
 
-    Console.WriteLine("[SKIP] COH_BANNED_NAMES is unset: the operator-name check was not run.");
+    Console.WriteLine("[SKIP] COH_BANNED_NAMES is unset and git config user.name is empty: the operator-name check was not run.");
 }
 
 (Regex Pattern, string Label)[] rules =
 [
     .. bannedWords.Select(w => (new Regex($@"\b{Regex.Escape(w)}", RegexOptions.IgnoreCase), $"banned word '{w}'")),
-    .. names.Select(n => (new Regex($@"\b{Regex.Escape(n)}\b", RegexOptions.IgnoreCase), "operator name (COH_BANNED_NAMES)")),
+    .. names.Select(n => (new Regex($@"\b{Regex.Escape(n)}\b", RegexOptions.IgnoreCase), $"operator name ({nameSource})")),
 ];
 
 IEnumerable<string> files;
@@ -134,7 +136,7 @@ static string[] OperatorNames()
         return [];
     }
 
-    return [full, full.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0]];
+    return [.. new[] { full, full.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0] }.Distinct(StringComparer.OrdinalIgnoreCase)];
 }
 
 static string[] TrackedFiles()
