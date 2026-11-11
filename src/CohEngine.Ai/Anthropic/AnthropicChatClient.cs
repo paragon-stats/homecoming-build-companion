@@ -48,7 +48,7 @@ public sealed class AnthropicChatClient : IChatClient
         apiKey = Environment.GetEnvironmentVariable(keyVariable) is { Length: > 0 } value
             ? value
             : throw new InvalidOperationException(
-                $"{AnthropicErrorCodes.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
+                $"{AiErrorCodes.Anthropic.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
 
         Uri root = new(baseUrl ?? DefaultBaseUrl);
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
@@ -113,7 +113,7 @@ public sealed class AnthropicChatClient : IChatClient
                 throw new AnthropicApiException(
                     (int)response.StatusCode,
                     "incomplete_stream",
-                    $"{AnthropicErrorCodes.IncompleteStream}: the response stream ended before message_stop; retry the request",
+                    $"{AiErrorCodes.Anthropic.IncompleteStream}: the response stream ended before message_stop; retry the request",
                     Redact(RequestIdOf(response)));
             }
         }
@@ -210,7 +210,7 @@ public sealed class AnthropicChatClient : IChatClient
             string text => text,
             JsonElement element => element.GetRawText(),
             _ => throw new ArgumentException(
-                $"{AnthropicErrorCodes.UnsupportedToolResult}: tool result must be a string or JsonElement under AOT; serialize it before returning it",
+                $"{AiErrorCodes.Anthropic.UnsupportedToolResult}: tool result must be a string or JsonElement under AOT; serialize it before returning it",
                 messagesParameter),
         };
     }
