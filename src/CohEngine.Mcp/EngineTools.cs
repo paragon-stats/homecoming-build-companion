@@ -148,24 +148,37 @@ public sealed class EngineTools
             () =>
             {
                 RequireDump(buildDir);
-                Power? power = EffectData.LoadPowersEffects(Path.Join(buildDir, "powers_effects.json"))
+                string file = Path.Join(buildDir, "powers_effects.json");
+                Power? power = EffectData.LoadPowersEffects(file)
                     .FirstOrDefault(candidate => string.Equals(candidate.FullName, fullName, StringComparison.OrdinalIgnoreCase));
-                return power is null
-                    ? new PowerResult(DataVersion.Of(buildDir), null, $"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json")
-                    : new PowerResult(
-                        DataVersion.Of(buildDir),
-                        new PowerView(
-                            power.FullName,
-                            power.PowerType,
-                            power.Level,
-                            power.PickLevel + 1,
-                            power.RechargeTime,
-                            power.CastTime,
-                            power.EndCost,
-                            power.ActivatePeriod,
-                            power.StatInclude,
-                            [.. power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal)]),
-                        null);
+                if (power is null)
+                {
+                    return new PowerResult(DataVersion.Of(buildDir), null, $"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json");
+                }
+
+                // Older dumps lack these two keys and the loader fills them in; the record in the file says which are real.
+                using JsonDocument raw = JsonDocument.Parse(File.ReadAllBytes(file));
+                JsonElement entry = raw.RootElement.EnumerateArray().First(candidate => string.Equals(candidate.GetProperty("FullName").GetString(), power.FullName, StringComparison.Ordinal));
+                bool hasRequires = entry.TryGetProperty("RequiresPowers", out _);
+                bool hasChosen = entry.TryGetProperty("Chosen", out _);
+                List<string> unknown = [.. new[] { (hasRequires, "requires_powers"), (hasChosen, "chosen") }.Where(field => !field.Item1).Select(field => field.Item2)];
+                return new PowerResult(
+                    DataVersion.Of(buildDir),
+                    new PowerView(
+                        power.FullName,
+                        power.PowerType,
+                        power.Level,
+                        power.PickLevel + 1,
+                        power.RechargeTime,
+                        power.CastTime,
+                        power.EndCost,
+                        power.ActivatePeriod,
+                        power.StatInclude,
+                        [.. power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal)],
+                        hasRequires ? power.RequiresPowers : null,
+                        hasChosen ? power.Chosen : null),
+                    null,
+                    unknown.Count == 0 ? null : unknown);
             },
             Given(buildDir, null));
     }

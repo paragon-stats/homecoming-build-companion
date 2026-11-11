@@ -11,6 +11,8 @@ namespace CohEngine.Mcp;
 /// <param name="ActivatePeriod">The toggle tick period, in seconds.</param>
 /// <param name="StatInclude">Whether the power counts toward totals.</param>
 /// <param name="EffectTypes">The distinct effect types the power carries.</param>
+/// <param name="RequiresPowers">The prerequisite groups (an OR of AND groups); absent when the dump predates the field, which is not the same as none.</param>
+/// <param name="Chosen">Whether a pick was spent on the power; absent when the dump predates the field.</param>
 public sealed record PowerView(
     string FullName,
     string PowerType,
@@ -21,4 +23,6 @@ public sealed record PowerView(
     double EndCost,
     double ActivatePeriod,
     bool StatInclude,
-    IReadOnlyList<string> EffectTypes);
+    IReadOnlyList<string> EffectTypes,
+    IReadOnlyList<IReadOnlyList<string>>? RequiresPowers,
+    bool? Chosen);

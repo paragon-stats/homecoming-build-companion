@@ -231,6 +231,33 @@ public sealed class ToolTests
     }
 
     [Fact]
+    public async Task A_field_an_older_dump_leaves_out_is_unknown_while_a_genuine_zero_stays_a_number()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Scrapper_Melee.Dark_Melee.Smite"), ("buildDir", McpHarness.BuildDir("shield_scrapper_slotted"))).ConfigureAwait(true);
+
+        JsonObject power = result["power"]!.AsObject();
+        Assert.False(power.ContainsKey("requires_powers"));
+        Assert.False(power.ContainsKey("chosen"));
+        Assert.Equal(["requires_powers", "chosen"], result["unknown_fields"]!.AsArray().Select(name => name!.GetValue<string>()), StringComparer.Ordinal);
+        Assert.True(power.ContainsKey("activate_period"));
+        Assert.Equal(0.0, power["activate_period"]!.GetValue<double>());
+    }
+
+    [Fact]
+    public async Task A_field_the_dump_holds_as_empty_is_a_value_not_unknown()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Blaster_Ranged.Electrical_Blast.Lightning_Bolt"), ("buildDir", McpHarness.BuildDir(Keywords))).ConfigureAwait(true);
+
+        Assert.Empty(result["power"]!["requires_powers"]!.AsArray());
+        Assert.True(result["power"]!["chosen"]!.GetValue<bool>());
+        Assert.False(result.AsObject().ContainsKey("unknown_fields"));
+    }
+
+    [Fact]
     public async Task Power_lookup_returns_game_levels()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);

@@ -88,7 +88,7 @@ A dump file of the wrong shape is also `E72`, without the file's path.
 | `score` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `class_name` and `metrics`: each registered metric with a `number` or a `flag`. |
 | `totals` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `totals` and `totals_capped`. Defense and resistance are percentages per damage type; mez, mez resistance, debuff resistance and elusivity are named by type; `scalars` holds the single-value totals. |
 | `set_bonus_lookup` | `setName`, `buildDir`, optional `midsDir`, `attribModPath` | The set's `tiers` by piece count and its `special` per-piece bonuses. Each effect has its resolved `magnitude` and, where the game shows a percentage, `percent`. |
-| `power_lookup` | `fullName`, `buildDir` | The power's record: `available_level` and `pick_level` as game levels (1-based), base recharge, cast time, endurance cost, `stat_include` and the effect types it carries. |
+| `power_lookup` | `fullName`, `buildDir` | The power's record: `available_level` and `pick_level` as game levels (1-based), base recharge, cast time, endurance cost, `stat_include`, the effect types it carries, and `requires_powers` and `chosen`. |
 | `chain` | `buildDir`, optional `midsDir`, `stance`, `form`, `target`, `move`, `standoff`, `midsDb` | `exit_code` and `stances`: the plans `coh-engine chain <buildDir> --format json` prints, one per stance. |
 
 `check_legality` plus `check_hard_limits` give exactly the diagnostics `validate <build> --format json` prints, hard limits first.
@@ -118,6 +118,13 @@ The result has an `unknown` field holding the `E<NN>` message and omits the valu
 
 `set_bonus_lookup` with a set the data does not hold gives `unknown` with `E166`, and `power_lookup` with a power the dump does not hold gives `unknown` with `E167`; `set` and `power` are absent.
 A found result has no `unknown` field.
+
+A known power can still leave a field unknown.
+Older dumps lack the `RequiresPowers` and `Chosen` keys, and the loader fills them in as no prerequisites and chosen, which a real value of the same kind cannot be told from.
+`power_lookup` reads the record itself, and when a key is absent it leaves that field out of `power` and names it in `unknown_fields`, for example `["requires_powers","chosen"]`.
+A field the dump holds as empty (`"requires_powers": []`) is returned as that value, and a number that is genuinely 0 (an `activate_period` of a click power) is returned as 0.
+Every other field of a power is required by the loader, so a dump without it is an `E72` error, never a silent 0.
+No field of a set can be unknown: the set records have no optional field, and a `percent` that is absent means the game shows no percentage, not that the value is missing.
 A caller must not fill the gap: no value was available.
 
 A tool failure comes back as an MCP tool error.
