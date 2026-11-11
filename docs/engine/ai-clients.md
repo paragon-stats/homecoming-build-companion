@@ -63,8 +63,8 @@ Use the `local` preset and set `BaseUrl` to the server's OpenAI-compatible root.
 
 ```text
 coh-engine ask --build <dump-dir|file.mbd> --model NAME
-               [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME]
-               [--] "<question>"
+  [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME]
+  [--] "<question>"
 ```
 
 Put `--` before a question that starts with a dash. Option values may not be empty, and
