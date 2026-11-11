@@ -1,5 +1,4 @@
 using CohEngine.Core.Data;
-using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Totals;
 
 namespace CohEngine.Core.Registry;
@@ -14,16 +13,19 @@ public static class SetBonusLookup
     /// <param name="buildDirectory">A build dump directory; its class picks the modifier column.</param>
     /// <param name="midsDirectory">The shared-dump directory.</param>
     /// <param name="attribModPath"><c>AttribMod.json</c>; by default <c>attribmod/AttribMod.json</c> in the shared directory's parent.</param>
-    /// <returns>The set's bonuses.</returns>
-    /// <exception cref="EngineException">E166: the loaded data holds no such set.</exception>
-    public static SetBonusView Find(string setName, string buildDirectory, string midsDirectory, string? attribModPath = null)
+    /// <returns>The set's bonuses, or null when the loaded data holds no such set (E166).</returns>
+    public static SetBonusView? Find(string setName, string buildDirectory, string midsDirectory, string? attribModPath = null)
     {
         ArgumentNullException.ThrowIfNull(setName);
         ArgumentNullException.ThrowIfNull(buildDirectory);
         ArgumentNullException.ThrowIfNull(midsDirectory);
         SetBonusDb setDb = SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json"));
-        EnhancementSetDef def = setDb.Sets.Values.FirstOrDefault(candidate => string.Equals(candidate.Uid, setName, StringComparison.OrdinalIgnoreCase))
-            ?? throw new EngineException($"{ErrorCodes.E166}: no set named '{setName}' in the loaded set-bonus data; check the set's UID spelling");
+        EnhancementSetDef? def = setDb.Sets.Values.FirstOrDefault(candidate => string.Equals(candidate.Uid, setName, StringComparison.OrdinalIgnoreCase));
+        if (def is null)
+        {
+            return null;
+        }
+
         Pipeline.Database data = DumpScoring.LoadDatabase(midsDirectory, attribModPath);
         int archetypeIndex = data.Classes.NidFromUidClass(TotalsData.LoadTotals(Path.Join(buildDirectory, "totals.json")).Class);
         return new SetBonusView(

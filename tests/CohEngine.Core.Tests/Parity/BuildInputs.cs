@@ -17,6 +17,7 @@ internal sealed class BuildInputs
         Expression = new ExpressionContext
         {
             PrevHpMax = 0.0,
+            ArchetypeDisplayName = Fixtures.Store.Archetypes.Classes[ArchetypeIndex].DisplayName,
             BuildPowerNames = Powers.Select(power => power.FullName).ToHashSet(StringComparer.Ordinal),
             ActivePowerNames = Powers.Where(power => power.StatInclude).Select(power => power.FullName).ToHashSet(StringComparer.Ordinal),
             VariableValues = Powers.ToLastWinsDictionary(power => power.FullName, power => power.VariableValue),

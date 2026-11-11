@@ -221,13 +221,13 @@ public static class ErrorCodes
 
     // E160-E169: the MCP surface and validate --expect.
 
-    /// <summary>A <c>validate --expect</c> claim does not match the computed metric.</summary>
+    /// <summary>A <c>validate --expect</c> claim does not match the computed number.</summary>
     public const string E160 = "E160";
 
-    /// <summary>A <c>validate --expect</c> names a metric the registry does not hold.</summary>
+    /// <summary>A <c>validate --expect</c> names neither a registered metric nor a <c>defense.&lt;type&gt;</c> or <c>resistance.&lt;type&gt;</c> total.</summary>
     public const string E161 = "E161";
 
-    /// <summary>A <c>validate --expect</c> value is not valid for its metric.</summary>
+    /// <summary>A <c>validate --expect</c> value is not valid for the number it names.</summary>
     public const string E162 = "E162";
 
     /// <summary>A <c>validate --expect</c> was given a <c>.mbd</c> file, which this build cannot compute.</summary>
@@ -236,15 +236,17 @@ public static class ErrorCodes
     /// <summary>A path an MCP tool was given does not exist.</summary>
     public const string E164 = "E164";
 
-    /// <summary>The MCP <c>chain</c> tool is not available in this build.</summary>
-    public const string E165 = "E165";
-
-    /// <summary>An MCP set lookup names a set the loaded data does not hold.</summary>
+    /// <summary>An MCP set lookup names a set the loaded data does not hold; the tool answers with an unknown result.</summary>
     public const string E166 = "E166";
 
-    /// <summary>An MCP power lookup names a power the dump does not hold.</summary>
+    /// <summary>An MCP power lookup names a power the dump does not hold; the tool answers with an unknown result.</summary>
     public const string E167 = "E167";
 
     /// <summary>The shared enum maps do not cover an index in the build's totals.</summary>
     public const string E168 = "E168";
+
+    // E180-E189: the MCP surface second pass.
+
+    /// <summary>An MCP tool that computes from a Mids dump was given a <c>.mbd</c> file, which carries no effect data.</summary>
+    public const string E180 = "E180";
 }

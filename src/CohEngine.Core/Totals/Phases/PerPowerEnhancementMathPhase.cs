@@ -160,6 +160,39 @@ internal static class PerPowerEnhancementMathPhase
         return output;
     }
 
+    /// <summary>
+    /// The buffed endurance cost <c>GBPA_Pass5_MultiplyPreBuff</c> leaves on the buffed power, <c>EndCost / fold</c>, for
+    /// each power with an effect that reads <c>power.base&gt;endcost</c>: Mids evaluates that keyword on the buffed power
+    /// after its cost was divided, so the final magnitude reads the reduced cost.
+    /// </summary>
+    /// <param name="included">The included powers.</param>
+    /// <param name="slots">The build's slots.</param>
+    /// <param name="enhDb">The enhancement records.</param>
+    /// <param name="tables">The Maths.mhd tables.</param>
+    /// <param name="forceLevel">The exemplar cutoff.</param>
+    /// <param name="incarnateScalar">The incarnate scalar addends.</param>
+    /// <param name="fold">The build's global EnduranceDiscount and the AT recharge cap the fold takes.</param>
+    /// <returns>The buffed cost by build index, for the powers that need it.</returns>
+    public static Dictionary<int, double> ComputeBuffedEndCosts(
+        IReadOnlyList<Power> included,
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots,
+        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
+        MathTables tables,
+        int forceLevel,
+        IReadOnlyDictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)> incarnateScalar,
+        EndFold fold)
+    {
+        Dictionary<int, double> output = [];
+        foreach (Power power in included.Where(candidate => candidate.Effects.Any(effect => effect.ExprMagnitude.Contains("power.base>endcost", StringComparison.Ordinal))))
+        {
+            (double preEd, double postEd) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
+            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), AspectRouting.End.Aspect, enhDb, forceLevel, tables, preEdAddend: preEd);
+            output[power.BuildIndex] = F32.Round(power.EndCost / AspectRouting.FoldScalar(AspectRouting.End, aggregate, fold.GlobalEndRdx, power.IgnoreEnh, fold.RechargeCap, postEd));
+        }
+
+        return output;
+    }
+
     /// <summary>The one effect enhanced only through an enhancement's allowed-effects list, which ED never reaches.</summary>
     private static bool IsAllowedListOnly(Effect effect)
     {
@@ -251,6 +284,11 @@ internal static class PerPowerEnhancementMathPhase
 
         return !Exact.Same(accumulator, 0.0) ? F32.Round(1.0 + accumulator) : null;
     }
+
+    /// <summary>The terms the endurance fold takes beyond the slots.</summary>
+    /// <param name="GlobalEndRdx">The build's global EnduranceDiscount.</param>
+    /// <param name="RechargeCap">The AT recharge cap.</param>
+    internal sealed record EndFold(double GlobalEndRdx, double RechargeCap);
 
     /// <summary>The memo key: two effects of one power with the same key share one aggregate.</summary>
     private sealed record MultiplierKey(string Aspect, int SubEnh, bool SkipEd, bool NonPositive, bool NonNegative, double PreEd, double Global, double PostEd);

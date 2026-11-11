@@ -81,6 +81,10 @@ internal static class Pipeline
                 EnhMult = PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, baseContext, addends?.Effect, selfEnhance),
             };
             toggleEndAgg = PerPowerEnhancementMathPhase.ComputeToggleEndAgg(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar);
+            buffContext = buffContext with
+            {
+                BuffedEndCost = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar, new PerPowerEnhancementMathPhase.EndFold(selfEnhance.Effect[data.Enums.Maps["eStatType"]["BuffEndRdx"]], archetype.RechargeCap)),
+            };
         }
 
         foreach (Power power in included)

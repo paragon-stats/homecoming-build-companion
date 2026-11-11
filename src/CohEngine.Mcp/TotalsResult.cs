@@ -1,7 +1,7 @@
 namespace CohEngine.Mcp;
 
 /// <summary>The <c>totals</c> tool's result.</summary>
-/// <param name="DataVersion">The engine build the answer came from.</param>
+/// <param name="DataVersion">The hash of the data files the answer was computed from, or <c>unknown</c> when it read none.</param>
 /// <param name="ClassName">The build's class.</param>
 /// <param name="Totals">The uncapped totals.</param>
 /// <param name="TotalsCapped">The AT- and server-capped totals.</param>

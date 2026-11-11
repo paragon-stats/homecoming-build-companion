@@ -1,10 +1,10 @@
 {
-  "id": "msg_ask_bad_power",
+  "id": "msg_ask_bad_chain",
   "type": "message",
   "role": "assistant",
   "model": "claude-test-model",
   "content": [
-    {"type": "tool_use", "id": "toolu_ask_05", "name": "power_lookup", "input": {"fullName": "No.Such.Power"}}
+    {"type": "tool_use", "id": "toolu_ask_05", "name": "chain", "input": {"stance": "side"}}
   ],
   "stop_reason": "tool_use",
   "stop_sequence": null,

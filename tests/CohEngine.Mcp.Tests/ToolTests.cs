@@ -1,7 +1,8 @@
 using System.Globalization;
 using System.Text.Json.Nodes;
 
-using CohEngine.Core;
+using CohEngine.Core.BuildFile;
+using CohEngine.Core.Chain;
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Registry;
@@ -13,6 +14,9 @@ public sealed class ToolTests
 {
     private const string Slotted = "shield_scrapper_set_bonuses";
     private const string Assembled = "Stalker (Fiery Melee - Invulnerability)";
+    private const string Keywords = "keywords_endcost_owner_arch";
+    private const string Mastermind = "Petless Mastermind (Demon Summoning - Force Field)";
+    private const string Bane = "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)";
 
     private static readonly string[] Sections = ["legality", "hard_limits", "enhancement_aspects", "metrics"];
 
@@ -29,7 +33,80 @@ public sealed class ToolTests
             .ToArray();
         string[] printed = cli.Output.Split('\n').Where(line => line.StartsWith("  ", StringComparison.Ordinal)).Select(line => line.Trim()).ToArray();
         Assert.Equal(printed, listed, StringComparer.Ordinal);
-        Assert.Equal(EngineInfo.Version, result["data_version"]!.GetValue<string>());
+    }
+
+    [Fact]
+    public async Task Every_tool_result_carries_a_data_version_and_rules_says_unknown()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+        (string Name, (string, object)[] Arguments)[] calls =
+        [
+            ("check_legality", [("buildDir", buildDir)]),
+            ("check_hard_limits", [("buildDir", buildDir)]),
+            ("score", [("buildDir", buildDir)]),
+            ("totals", [("buildDir", buildDir)]),
+            ("set_bonus_lookup", [("setName", "Thunderstrike"), ("buildDir", buildDir)]),
+            ("set_bonus_lookup", [("setName", "No Such Set"), ("buildDir", buildDir)]),
+            ("power_lookup", [("fullName", "No.Such.Power"), ("buildDir", buildDir)]),
+            ("chain", [("buildDir", buildDir), ("stance", "melee")]),
+        ];
+
+        JsonNode rules = await harness.CallJsonAsync("rules").ConfigureAwait(true);
+        Assert.Equal("unknown", rules["data_version"]!.GetValue<string>());
+        foreach ((string name, (string, object)[] arguments) in calls)
+        {
+            JsonNode result = await harness.CallJsonAsync(name, arguments).ConfigureAwait(true);
+
+            Assert.Matches("^sha256:[0-9a-f]{64}$", result["data_version"]!.GetValue<string>());
+        }
+    }
+
+    [Fact]
+    public async Task Tools_that_read_different_files_give_different_data_versions_and_the_same_files_the_same_across_servers()
+    {
+        string buildDir = McpHarness.BuildDir(Slotted);
+
+        string totals = await VersionAsync("totals", ("buildDir", buildDir)).ConfigureAwait(true);
+        string totalsAgain = await VersionAsync("totals", ("buildDir", buildDir)).ConfigureAwait(true);
+        string power = await VersionAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", buildDir)).ConfigureAwait(true);
+        string legality = await VersionAsync("check_legality", ("buildDir", buildDir)).ConfigureAwait(true);
+
+        Assert.Equal(totals, totalsAgain, StringComparer.Ordinal);
+        Assert.Equal(3, new[] { totals, power, legality }.Distinct(StringComparer.Ordinal).Count());
+    }
+
+    [Fact]
+    public async Task One_changed_byte_in_a_build_dump_file_changes_the_data_version()
+    {
+        using ScratchDirectory scratch = new();
+        string copy = scratch.CopyOf(McpHarness.BuildDir(Slotted), "build");
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        string before = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", copy)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+        string same = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", scratch.CopyOf(McpHarness.BuildDir(Slotted), "build-again"))).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+        ScratchDirectory.ChangeOneByte(Path.Join(copy, "slots.json"));
+        string after = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", copy)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+
+        Assert.Equal(before, same, StringComparer.Ordinal);
+        Assert.NotEqual(before, after, StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public async Task One_changed_byte_in_a_shared_dump_file_changes_the_data_version()
+    {
+        using ScratchDirectory scratch = new();
+        string mids = scratch.CopyOf(McpHarness.Store.MidsDirectory, "mids");
+        string build = scratch.CopyOf(McpHarness.BuildDir(Slotted), Path.Join("mids", "builds", "b"));
+        string changedMids = scratch.CopyOf(mids, "mids-changed");
+        ScratchDirectory.ChangeOneByte(Path.Join(changedMids, "levels.json"));
+        string changedBuild = scratch.CopyOf(McpHarness.BuildDir(Slotted), Path.Join("mids-changed", "builds", "b"));
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        string before = (await harness.CallJsonAsync("check_hard_limits", ("buildDir", build)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+        string after = (await harness.CallJsonAsync("check_hard_limits", ("buildDir", changedBuild)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+
+        Assert.NotEqual(before, after, StringComparer.Ordinal);
     }
 
     [Theory]
@@ -138,6 +215,48 @@ public sealed class ToolTests
         Assert.Equal(2.0, result["set"]!["tiers"]![0]!["effects"]![0]!["percent"]!.GetValue<double>(), 6);
     }
 
+    [Theory]
+    [InlineData(Keywords, "Blaster_Ranged.Electrical_Blast.Lightning_Bolt", 1, 1)]
+    [InlineData(Keywords, "Pool.Sorcery.Arcane_Bolt", 4, 4)]
+    [InlineData(Keywords, "Pool.Speed.Hasten", 4, 8)]
+    [InlineData(Mastermind, "Epic.Mastermind_Mace_Mastery.Web_Envelope", 35, 38)]
+    public async Task Power_lookup_gives_the_game_levels_as_literals(string build, string fullName, int available, int picked)
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", fullName), ("buildDir", McpHarness.BuildDir(build))).ConfigureAwait(true);
+
+        Assert.Equal(available, result["power"]!["available_level"]!.GetValue<int>());
+        Assert.Equal(picked, result["power"]!["pick_level"]!.GetValue<int>());
+    }
+
+    [Fact]
+    public async Task A_field_an_older_dump_leaves_out_is_unknown_while_a_genuine_zero_stays_a_number()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Scrapper_Melee.Dark_Melee.Smite"), ("buildDir", McpHarness.BuildDir("shield_scrapper_slotted"))).ConfigureAwait(true);
+
+        JsonObject power = result["power"]!.AsObject();
+        Assert.False(power.ContainsKey("requires_powers"));
+        Assert.False(power.ContainsKey("chosen"));
+        Assert.Equal(["requires_powers", "chosen"], result["unknown_fields"]!.AsArray().Select(name => name!.GetValue<string>()), StringComparer.Ordinal);
+        Assert.True(power.TryGetPropertyValue("activate_period", out JsonNode? period));
+        Assert.Equal(0.0, period!.GetValue<double>());
+    }
+
+    [Fact]
+    public async Task A_field_the_dump_holds_as_empty_is_a_value_not_unknown()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Blaster_Ranged.Electrical_Blast.Lightning_Bolt"), ("buildDir", McpHarness.BuildDir(Keywords))).ConfigureAwait(true);
+
+        Assert.Empty(result["power"]!["requires_powers"]!.AsArray());
+        Assert.True(result["power"]!["chosen"]!.GetValue<bool>());
+        Assert.False(result.AsObject().ContainsKey("unknown_fields"));
+    }
+
     [Fact]
     public async Task Power_lookup_returns_game_levels()
     {
@@ -149,20 +268,119 @@ public sealed class ToolTests
 
         JsonNode found = result["power"]!;
         Assert.Equal(power.FullName, found["full_name"]!.GetValue<string>());
-        Assert.Equal(power.Level + 1, found["available_level"]!.GetValue<int>());
+        Assert.Equal(power.Level, found["available_level"]!.GetValue<int>());
         Assert.Equal(power.PickLevel + 1, found["pick_level"]!.GetValue<int>());
         Assert.Equal(power.StatInclude, found["stat_include"]!.GetValue<bool>());
         Assert.Equal(power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal), found["effect_types"]!.AsArray().Select(item => item!.GetValue<string>()), StringComparer.Ordinal);
     }
 
     [Fact]
-    public async Task Chain_reports_it_is_not_available_in_this_build()
+    public async Task Totals_give_the_ranged_defense_of_the_reference_dump_as_a_percentage()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
 
-        string error = await harness.CallErrorAsync("chain").ConfigureAwait(true);
+        JsonNode result = await harness.CallJsonAsync("totals", ("buildDir", McpHarness.BuildDir(Slotted))).ConfigureAwait(true);
 
-        Assert.Equal("E165: the chain tool is not available in this build; use score or totals for the build's numbers instead", error);
+        Assert.Equal(34.959, result["totals"]!["defense_percent"]!["Ranged"]!.GetValue<double>(), 3);
+    }
+
+    [Fact]
+    public async Task Chain_gives_the_plan_the_cli_prints()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("stance", "ranged"), ("target", "spawn:3"), ("move", "jump"), ("standoff", 30.5)).ConfigureAwait(true);
+
+        using StringWriter output = new();
+        using StringWriter error = new();
+        int code = ChainCommand.Run([buildDir, "--stance", "ranged", "--target", "spawn:3", "--move", "jump", "--standoff", "30.5", "--format", "json"], output, error);
+        Assert.Equal(string.Empty, error.ToString());
+        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output.ToString()), result["stances"]));
+        Assert.Equal(code, result["exit_code"]!.GetValue<int>());
+    }
+
+    [Fact]
+    public async Task Chain_takes_the_optional_form_shared_directory_and_pet_data()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        JsonNode result = await harness.CallJsonAsync(
+            "chain",
+            ("buildDir", McpHarness.BuildDir(Slotted)),
+            ("midsDir", McpHarness.Store.MidsDirectory),
+            ("stance", "melee"),
+            ("form", string.Empty),
+            ("midsDb", Path.Join(McpHarness.Store.Root, "attribmod"))).ConfigureAwait(true);
+
+        Assert.Equal("melee", result["stances"]![0]!["stance"]!.GetValue<string>());
+    }
+
+    [Fact]
+    public async Task Chain_reports_a_bad_option_as_the_cli_does()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        string error = await harness.CallErrorAsync("chain", ("buildDir", McpHarness.BuildDir(Slotted)), ("stance", "side")).ConfigureAwait(true);
+
+        Assert.Equal("argument --stance: invalid choice: 'side'", error);
+    }
+
+    [Fact]
+    public async Task Chain_reports_an_unreadable_input_as_an_engine_error()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        string error = await harness.CallErrorAsync("chain", ("buildDir", McpHarness.BuildDir(Slotted)), ("midsDir", McpHarness.Store.Root)).ConfigureAwait(true);
+
+        Assert.StartsWith("E65: archetype table ", error, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task A_mbd_file_is_checked_for_legality_and_hard_limits_like_validate_does()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string mbd = CliCapture.MbdPath(Bane);
+        string mids = McpHarness.Store.MidsDirectory;
+
+        JsonNode hardLimits = await harness.CallJsonAsync("check_hard_limits", ("buildDir", mbd), ("midsDir", mids)).ConfigureAwait(true);
+        JsonNode legality = await harness.CallJsonAsync("check_legality", ("buildDir", mbd), ("midsDir", mids)).ConfigureAwait(true);
+
+        (string output, _) = CliCapture.Run(new MbdBuildSource(mids), "validate", mbd, "--format", "json");
+        JsonArray together = [.. hardLimits["diagnostics"]!.AsArray().Concat(legality["diagnostics"]!.AsArray()).Select(item => item!.DeepClone())];
+        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output), together));
+    }
+
+    [Fact]
+    public async Task A_mbd_file_needs_the_shared_directory_named_and_existing()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string mbd = CliCapture.MbdPath(Bane);
+
+        string unnamed = await harness.CallErrorAsync("check_legality", ("buildDir", mbd)).ConfigureAwait(true);
+        string missingShared = await harness.CallErrorAsync("check_legality", ("buildDir", mbd), ("midsDir", Path.Join(McpHarness.Store.Root, "no-such-directory"))).ConfigureAwait(true);
+        string missingFile = await harness.CallErrorAsync("check_hard_limits", ("buildDir", Path.Join(McpHarness.Store.Root, "no-such.mbd")), ("midsDir", McpHarness.Store.MidsDirectory)).ConfigureAwait(true);
+
+        Assert.Equal("E164: midsDir is required with a .mbd file; give the shared dump directory", unnamed);
+        Assert.StartsWith("E164: midsDir '", missingShared, StringComparison.Ordinal);
+        Assert.StartsWith("E164: buildDir '", missingFile, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("score", "")]
+    [InlineData("totals", "")]
+    [InlineData("chain", "")]
+    [InlineData("set_bonus_lookup", "setName")]
+    [InlineData("power_lookup", "fullName")]
+    public async Task A_tool_that_computes_from_a_dump_refuses_a_mbd_file_with_e180(string tool, string extra)
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        (string, object)[] arguments = extra.Length == 0 ? [("buildDir", CliCapture.MbdPath(Bane))] : [(extra, "x"), ("buildDir", CliCapture.MbdPath(Bane))];
+
+        string error = await harness.CallErrorAsync(tool, arguments).ConfigureAwait(true);
+
+        Assert.StartsWith("E180: buildDir '", error, StringComparison.Ordinal);
+        Assert.EndsWith("is a .mbd file, which holds no power effects; give the build's Mids dump directory for this tool", error, StringComparison.Ordinal);
     }
 
     [Theory]
@@ -197,16 +415,31 @@ public sealed class ToolTests
     }
 
     [Fact]
-    public async Task An_unknown_set_or_power_is_a_named_error()
+    public async Task An_unknown_set_or_power_is_a_structured_unknown_result_not_an_error_or_an_empty_one()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
         string buildDir = McpHarness.BuildDir(Slotted);
 
-        string set = await harness.CallErrorAsync("set_bonus_lookup", ("setName", "No Such Set"), ("buildDir", buildDir)).ConfigureAwait(true);
-        string power = await harness.CallErrorAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", buildDir)).ConfigureAwait(true);
+        JsonNode set = await harness.CallJsonAsync("set_bonus_lookup", ("setName", "No Such Set"), ("buildDir", buildDir)).ConfigureAwait(true);
+        JsonNode power = await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", buildDir)).ConfigureAwait(true);
 
-        Assert.StartsWith("E166: no set named 'No Such Set'", set, StringComparison.Ordinal);
-        Assert.StartsWith("E167: no power named 'No.Such.Power'", power, StringComparison.Ordinal);
+        Assert.StartsWith("E166: no set named 'No Such Set'", set["unknown"]!.GetValue<string>(), StringComparison.Ordinal);
+        Assert.False(set.AsObject().ContainsKey("set"));
+        Assert.StartsWith("E167: no power named 'No.Such.Power'", power["unknown"]!.GetValue<string>(), StringComparison.Ordinal);
+        Assert.False(power.AsObject().ContainsKey("power"));
+    }
+
+    [Fact]
+    public async Task A_known_set_or_power_has_no_unknown_field()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        BuildFixture fixture = McpHarness.Store.Build(Slotted);
+
+        JsonNode set = await harness.CallJsonAsync("set_bonus_lookup", ("setName", "Thunderstrike"), ("buildDir", fixture.Directory)).ConfigureAwait(true);
+        JsonNode power = await harness.CallJsonAsync("power_lookup", ("fullName", fixture.Powers[0].FullName), ("buildDir", fixture.Directory)).ConfigureAwait(true);
+
+        Assert.False(set.AsObject().ContainsKey("unknown"));
+        Assert.False(power.AsObject().ContainsKey("unknown"));
     }
 
     [Fact]
@@ -224,6 +457,19 @@ public sealed class ToolTests
         finally
         {
             Directory.Delete(empty);
+        }
+    }
+
+    private static async Task<string> VersionAsync(string tool, params (string Name, object Value)[] arguments)
+    {
+        McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(false);
+        try
+        {
+            return (await harness.CallJsonAsync(tool, arguments).ConfigureAwait(false))["data_version"]!.GetValue<string>();
+        }
+        finally
+        {
+            await harness.DisposeAsync().ConfigureAwait(false);
         }
     }
 }

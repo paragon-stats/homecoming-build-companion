@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Expressions;
 using CohEngine.Core.Maths;
@@ -5,7 +7,7 @@ using CohEngine.Core.Maths;
 namespace CohEngine.Core.Tests.Expressions;
 
 /// <summary>Port of <c>test_expressions.py</c>: magnitude keywords and conditional-effect evaluation.</summary>
-public sealed class ExpressionsTests
+public sealed partial class ExpressionsTests
 {
     private const string PowerName = "Pool.Fighting.Cross_Punch";
     private const string Boxing = "Active:Pool.Fighting.Boxing";
@@ -26,6 +28,7 @@ public sealed class ExpressionsTests
         { "power.base>areafactor + 1", power => power with { AoeModifier = F32.Round(0.75) }, 1.75 },
         { "power.base>activateperiod * 10", power => power with { ActivatePeriod = F32.Round(0.1) }, 1.0 },
         { "0.7 * power.base>activatetime + 0.4", power => power with { CastTime = F32.Round(2.0), ActivatePeriod = F32.Round(3.0) }, 1.8 },
+        { "power.base>endcost / 2 * 3", power => power with { EndCost = F32.Round(5.2) }, F32.Round(7.8) },
         { "power.base>areafactor", power => power, 1.0 },
         { "power.base>rechargetime", power => power, 0.0 },
     };
@@ -103,6 +106,9 @@ public sealed class ExpressionsTests
         { [Boxing, "True", Kick, "False"], true, true },
     };
 
+    [GeneratedRegex(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex OwnerArchetypeKeyword { get; }
+
     [Theory]
     [MemberData(nameof(FloatTexts))]
     public void Float_text_is_the_shortest_round_trip(double value, string text)
@@ -151,6 +157,59 @@ public sealed class ExpressionsTests
         const string expr = "minmax(60 - cfg>player>hp, 0, 100)";
         Assert.Equal(35.0, Evaluate(expr, Context() with { PlayerHpPercent = 25 }));
         Assert.Equal(0.0, Evaluate(expr));
+    }
+
+    [Theory]
+    [InlineData("Blaster", 5.0)]
+    [InlineData("blaster", 5.0)]
+    [InlineData("Scrapper", 0.0)]
+    [InlineData(null, 0.0)]
+    public void The_owner_archetype_test_reads_the_build_archetype(string? archetype, double want)
+    {
+        Assert.Equal(want, Evaluate("source.owner>arch(Blaster) * 5", Context() with { ArchetypeDisplayName = archetype }));
+    }
+
+    [Theory]
+    [InlineData("source.owner>arch(Blaster)")]
+    [InlineData("1 + source.owner>arch(blaster) * 2 + source.owner>arch(Scrapper)")]
+    [InlineData("source.owner>arch(Arachnos Soldier)")]
+    [InlineData("source.owner>arch( Blaster )")]
+    [InlineData("source.owner>arch(Blaster")]
+    [InlineData("source.owner>arch()")]
+    [InlineData("source.owner>arch(Blaster2)")]
+    [InlineData("source.owner>arch(Blaster) source.owner>arch(")]
+    [InlineData("source.owner>arch(source.owner>arch(Blaster)")]
+    [InlineData("source.owner>arch(")]
+    [InlineData("no keyword here")]
+    [InlineData("")]
+    [InlineData("source.owner>arch(Arachnos\tSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\nSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u000BSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u000CSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u0085Soldier)")]
+    [InlineData("source.owner>arch(Arachnos\u00A0Soldier)")]
+    [InlineData("source.owner>arch(Arachnos\u2028Soldier)")]
+    [InlineData("source.owner>arch(Blast\u00E9r)")]
+    [InlineData("source.owner>arch(Blaster1)")]
+    [InlineData("source.owner>arch(\t)")]
+    [InlineData("SOURCE.OWNER>ARCH(Blaster)")]
+    [InlineData("source.owner>arch(Blaster) + source.owner>arch(Scrapper)")]
+    public void The_owner_archetype_replacement_matches_the_pattern_it_replaced(string expression)
+    {
+        Regex pattern = OwnerArchetypeKeyword;
+
+        foreach (string? archetype in new[] { "Blaster", "Arachnos Soldier", " Blaster ", null })
+        {
+            string expected = pattern.Replace(expression, match => string.Equals(archetype, match.Groups["name"].Value, StringComparison.OrdinalIgnoreCase) ? "1" : "0");
+
+            Assert.Equal(expected, Evaluator.ReplaceOwnerArchetype(expression, archetype), StringComparer.Ordinal);
+        }
+    }
+
+    [Fact]
+    public void The_owner_archetype_test_is_zero_without_a_context_as_in_mids_for_a_build_with_no_archetype()
+    {
+        Assert.Equal(0.0, Evaluate("source.owner>arch(Blaster) * 5"));
     }
 
     [Fact]
