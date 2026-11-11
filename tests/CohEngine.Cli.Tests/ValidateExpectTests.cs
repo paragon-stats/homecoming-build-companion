@@ -11,6 +11,8 @@ public sealed class ValidateExpectTests
 
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
 
+    private static string RangedBuildDirectory => Path.Join(Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
+
     private static string BuildDirectory => Path.Join(Store.MidsDirectory, "builds", Clean);
 
     private static (int Code, string Output, string Error) Run(params string[] args)
@@ -36,6 +38,36 @@ public sealed class ValidateExpectTests
         (int code, string output, string error) = Run("validate", BuildDirectory, "--expect", "resist_min=" + claim);
 
         Assert.Equal((0, "no violations\n", string.Empty), (code, output, error));
+    }
+
+    [Fact]
+    public void A_ranged_defense_claim_that_matches_the_reference_dump_passes()
+    {
+        (_, string output, string error) = Run("validate", RangedBuildDirectory, "--expect", "defense.ranged=34.96");
+
+        Assert.Equal(string.Empty, error);
+        Assert.DoesNotContain("P-EXPECT-001", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_ranged_defense_claim_that_is_wrong_fails_with_expected_and_actual()
+    {
+        (int code, string output, _) = Run("validate", RangedBuildDirectory, "--expect", "defense.ranged=40.1");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E160: defense.ranged is 34.959", output, StringComparison.Ordinal);
+        Assert.Contains(", expected 40.1; ", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_total_path_is_read_without_regard_to_case_and_holds_for_resistance_too()
+    {
+        double smashing = Store.Build(Clean).Totals.Totals.Res[Store.Enums.Maps["eDamage"]["Smashing"]] * 100.0;
+        string claim = Math.Round(smashing, 1, MidpointRounding.AwayFromZero).ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+
+        (int code, string output, _) = Run("validate", BuildDirectory, "--expect", "Resistance.SMASHING=" + claim);
+
+        Assert.Equal((0, "no violations\n"), (code, output));
     }
 
     [Fact]
@@ -85,13 +117,25 @@ public sealed class ValidateExpectTests
         Assert.Contains("\"actual\": " + Metric("resist_min"), output, StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("defense.bogus")]
+    [InlineData("defense.ranged.extra")]
+    [InlineData("recharge.ranged")]
+    public void A_total_path_that_names_no_total_is_an_input_error(string name)
+    {
+        (int code, _, string error) = Run("validate", BuildDirectory, "--expect", name + "=1");
+
+        Assert.Equal(1, code);
+        Assert.StartsWith($"error: E161: unknown name '{name}' in --expect; ", error, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void An_unknown_metric_is_an_input_error()
     {
         (int code, string output, string error) = Run("validate", BuildDirectory, "--expect", "bogus=1");
 
         Assert.Equal((1, string.Empty), (code, output));
-        Assert.StartsWith("error: E161: unknown scoring metric 'bogus' in --expect; use one of: defense_positional_min, perma_dom, perma_hasten, resist_min", error, StringComparison.Ordinal);
+        Assert.StartsWith("error: E161: unknown name 'bogus' in --expect; use a metric (defense_positional_min, perma_dom, perma_hasten, resist_min) or defense.<type> or resistance.<type>", error, StringComparison.Ordinal);
     }
 
     [Theory]
@@ -136,7 +180,7 @@ public sealed class ValidateExpectTests
         int code = CliRunner.Run(["validate", "x.mbd", "--expect", "resist_min=1"], output, error, source);
 
         Assert.Equal(1, code);
-        Assert.Equal("error: E163: cannot compute metrics for x.mbd: --expect needs a Mids dump directory, not a .mbd file; validate a dump directory instead" + Environment.NewLine, error.ToString());
+        Assert.Equal("error: E163: cannot compute metrics for x.mbd: --expect needs a Mids dump directory, not a .mbd file, because a .mbd holds no power effects; validate a dump directory instead" + Environment.NewLine, error.ToString());
     }
 
     [Fact]
@@ -146,7 +190,7 @@ public sealed class ValidateExpectTests
 
         Assert.Equal(0, code);
         Assert.Contains("mcp", output, StringComparison.Ordinal);
-        Assert.Contains("--expect metric=value", output, StringComparison.Ordinal);
+        Assert.Contains("--expect NAME=VALUE", output, StringComparison.Ordinal);
     }
 
     private sealed class FixedSource(string defaultMids, MbdValidationInput build) : IMbdBuildSource

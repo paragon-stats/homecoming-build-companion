@@ -1,6 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
+using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
 
@@ -12,7 +13,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--expect metric=value]...]";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -110,9 +111,13 @@ public static class CliRunner
             return [];
         }
 
-        return IsMbd(parsed)
-            ? throw new EngineException($"{ErrorCodes.E163}: cannot compute metrics for {parsed.BuildPath}: --expect needs a Mids dump directory, not a .mbd file; validate a dump directory instead")
-            : Expectations.Verify(parsed.Expectations, DumpScoring.Compute(parsed.BuildPath, parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath)), parsed.BuildPath);
+        if (IsMbd(parsed))
+        {
+            throw new EngineException($"{ErrorCodes.E163}: cannot compute metrics for {parsed.BuildPath}: --expect needs a Mids dump directory, not a .mbd file, because a .mbd holds no power effects; validate a dump directory instead");
+        }
+
+        string mids = parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath);
+        return Expectations.Verify(parsed.Expectations, DumpScoring.Compute(parsed.BuildPath, mids), TotalsData.LoadEnumMaps(Path.Join(mids, "enums.json")), parsed.BuildPath);
     }
 
     private static bool IsMbd(ValidateArguments parsed)
