@@ -1,0 +1,71 @@
+name: sonar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sonar-${{ github.ref }}
+  cancel-in-progress: false  # required check: a cancelled run must still report
+
+jobs:
+  sonar:
+    # Fork PRs run with a read-only token and can't read SONAR_TOKEN. Skip the
+    # scan on those (a job-level skip reports the `sonar` check as "Skipped",
+    # which branch protection treats as satisfied — unlike a workflow/path skip,
+    # which never reports and freezes the PR). Dependabot PRs are not skipped:
+    # the organisation's Dependabot secrets carry SONAR_TOKEN. Pushes to main
+    # always run, so merged changes are still analysed.
+    if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.head.repo.fork }}
+    runs-on: windows-latest
+    timeout-minutes: 15
+    env:
+      # The .NET scanner reads SONAR_TOKEN from the environment (begin + end),
+      # so the token never appears on a command line.
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # MinVer + Sonar need full history
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68  # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad  # v6.0.1 (SonarScanner needs a JRE 17+)
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: dotnet restore
+      - run: dotnet tool restore
+      # begin -> build -> tests+coverage -> end: the MSBuild scanner analyses the
+      # build between begin/end and ingests coverage via vscoveragexml, the same
+      # coverage.xml the build workflow's coverage gate reads.
+      # The coverage exclusions mirror what that gate leaves out: the
+      # [ExcludeFromCodeCoverage] source-generated JSON contexts, plus the Python
+      # (scripts, src/coh_engine), which has no coverage report in this job.
+      - name: SonarScanner begin
+        run: >
+          dotnet tool run dotnet-sonarscanner begin
+          /k:"paragon-stats_homecoming-build-companion"
+          /o:"paragon-stats"
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+          /d:sonar.python.version=3.14
+          /d:sonar.exclusions="data/**,tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
+          /d:sonar.cpd.exclusions="data/**,tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
+          /d:sonar.coverage.exclusions="scripts/**,src/coh_engine/**,**/*JsonContext.cs"
+          /d:sonar.qualitygate.wait=true
+      - run: dotnet build --no-incremental --no-restore
+      - name: Test with coverage
+        run: dotnet tool run dotnet-coverage collect "dotnet test --no-build" -f xml -o coverage.xml
+      - name: SonarScanner end
+        if: always()  # post a definite Sonar status even if a prior step failed
+        run: dotnet tool run dotnet-sonarscanner end
