@@ -69,3 +69,15 @@ jobs:
       - name: SonarScanner end
         if: always()  # post a definite Sonar status even if a prior step failed
         run: dotnet tool run dotnet-sonarscanner end
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+        with:
+          python-version: '3.14'
+      # Reads the finished analysis, so no `if: always()`. The PR number reaches the
+      # script through env, never `${{ }}` inside `run`.
+      - name: Sonar rule gate
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          $gate = @('--rules-dir', 'scripts/ci/sonar_gate_rules', '--sarif-root', '.sonarqube/out')
+          if ($env:PR_NUMBER) { $gate += @('--pull-request', $env:PR_NUMBER) }
+          python -m scripts.ci.sonar_gate @gate
