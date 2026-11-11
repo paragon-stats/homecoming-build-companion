@@ -2,7 +2,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>Damage modifiers: click buffs and target resistance debuffs.</summary>
 public static class DamageModifiers

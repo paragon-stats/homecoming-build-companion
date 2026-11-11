@@ -186,7 +186,7 @@ public sealed class SelfBuffBucketPhaseTests
     [Fact]
     public void Typed_elusivity_routes()
     {
-        Assert.Equal(F32.Round(0.2), BuffPass(Make.Power(Base with { EffectType = "Elusivity", DamageType = "Melee", Scale = 0.2 })).Elusivity[Damage("Melee")]);
+        Assert.Equal(F32.Round(0.2), BuffPass(Make.Power(Base with { EffectType = "Elusivity", DamageType = "Melee", Scale = 0.2 })).Elusivity[TotalsMake.Damage("Melee")]);
     }
 
     [Fact]
@@ -198,8 +198,8 @@ public sealed class SelfBuffBucketPhaseTests
             Base with { Index = 2, EffectType = "Resistance", DamageType = "None", Scale = 0.3 },
             Base with { Index = 3, EffectType = "Recovery", DamageType = "Fire", Scale = 0.4 });
         BuffsX buffs = BuffPass(power);
-        Assert.Equal(F32.Round(0.1), buffs.Defense[Damage("Fire")]);
-        Assert.Equal(F32.Round(0.2), buffs.Resistance[Damage("Cold")]);
+        Assert.Equal(F32.Round(0.1), buffs.Defense[TotalsMake.Damage("Fire")]);
+        Assert.Equal(F32.Round(0.2), buffs.Resistance[TotalsMake.Damage("Cold")]);
         Assert.Equal(F32.Round(0.3), buffs.Effect[Type("Resistance")]);
         Assert.Equal(F32.Round(0.4), buffs.Effect[Type("Recovery")]);
     }

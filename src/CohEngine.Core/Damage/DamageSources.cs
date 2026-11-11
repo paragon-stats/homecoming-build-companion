@@ -2,7 +2,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>Damage sources: attack chain, damage auras, location patches and buff casts.</summary>
 public static class DamageSources

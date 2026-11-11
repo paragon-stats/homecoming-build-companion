@@ -1,4 +1,4 @@
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Maths;
 
 using PowerStats = CohEngine.Core.Totals.PowerStatistics.PowerStats;
