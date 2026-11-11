@@ -264,9 +264,12 @@ def test_a_bane_build_resolves_to_24_picks_and_resolved_slots() -> None:
         for slot, ref in zip(build.power_entries[idx].slot_entries, refs, strict=True)
         if slot.enhancement and ref.enh < 0
     ]
-    assert unresolved == [] and sum(len(refs) for refs in slots.values()) > 50
+    assert unresolved == []
+    assert sum(len(refs) for refs in slots.values()) > 50
     first = powers[0]
-    assert first.pick_level == build.power_entries[0].level and first.level >= 1 and first.chosen
+    assert first.pick_level == build.power_entries[0].level
+    assert first.level >= 1
+    assert first.chosen
 
 
 def test_a_slot_keeps_its_grade_relative_level_and_io_level() -> None:

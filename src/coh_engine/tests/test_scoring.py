@@ -166,7 +166,8 @@ def test_endurance_drain_exceeding_recovery_warns(computed: tuple[BaseTotals, li
     heavy = _replace_end_use(base.totals, 99.0)  # absurd drain
     diag = endurance_diagnostic(heavy, base.totals_capped, _scrapper(base))
     assert diag is not None
-    assert diag.rule_id == "P-END-001" and diag.severity == "warning"
+    assert diag.rule_id == "P-END-001"
+    assert diag.severity == "warning"
     assert "toggles" in diag.message  # no chain drain -> toggle-only detail
 
 
@@ -212,7 +213,8 @@ def test_over_cap_total_warns_not_errors(computed: tuple[BaseTotals, list[PowerS
     over = _bump_first_res(base.totals, 0.99)  # 99% S/L resist, above the 75% cap
     result = score_build(profile, over, base.totals_capped, stats, _scrapper(base))
     caps = [d for d in result.diagnostics if d.rule_id == "P-CAP-001"]
-    assert caps and all(d.severity == "warning" for d in caps)
+    assert caps
+    assert all(d.severity == "warning" for d in caps)
     assert not any(d.severity == "error" for d in result.diagnostics)
 
 
@@ -260,7 +262,8 @@ def test_scalar_over_cap_warns(computed: tuple[BaseTotals, list[PowerStats]]) ->
 
     over = replace(base.totals, buff_haste=99.0)  # far above recharge_cap - 1
     diags = [d for d in _cap_only(over, base) if d.rule_id == "P-CAP-001"]
-    assert diags and any("BuffHaste" in d.message for d in diags)
+    assert diags
+    assert any("BuffHaste" in d.message for d in diags)
 
 
 def test_score_perma_hasten_profile_reports_unmet(computed: tuple[BaseTotals, list[PowerStats]]) -> None:

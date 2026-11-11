@@ -43,7 +43,9 @@ def test_all_nine_canonical_profiles_present(raw_profiles: dict[str, Any]) -> No
 def test_no_hard_mode_profile(raw_profiles: dict[str, Any]) -> None:
     """Hard-mode / 4-star is a documented GAP and must not appear."""
     names = " ".join(profile_names(raw_profiles)).lower()
-    assert "hard" not in names and "star" not in names and "advanced" not in names
+    assert "hard" not in names
+    assert "star" not in names
+    assert "advanced" not in names
 
 
 def test_soft_cap_target_resolves_the_universal_breakpoint(
