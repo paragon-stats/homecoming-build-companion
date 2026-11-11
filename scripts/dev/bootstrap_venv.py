@@ -22,6 +22,7 @@ import tomllib
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
+from scripts.common import git_runner
 from scripts.testing.hooks.check_git_signing import check_git_signing
 
 EXIT_OK = 0
@@ -31,6 +32,16 @@ PYPROJECT_FILE = "pyproject.toml"
 STATE_FILENAME = ".bootstrap_state.json"
 State = Mapping[str, object]
 _REQ_NAME_RE = re.compile(r"^[A-Za-z0-9_.-]+")
+
+
+HUSKY_HOOKS_PATH = ".husky"
+HUSKY_INSTALL_COMMAND = "dotnet tool restore && dotnet husky install"
+
+
+def husky_hooks_installed(repo_root: Path) -> bool:
+    """Return True when git runs the committed Husky hooks (core.hooksPath is .husky)."""
+    result = git_runner.run_git(["config", "core.hooksPath"], cwd=repo_root)
+    return result.returncode == 0 and result.stdout.strip() == HUSKY_HOOKS_PATH
 
 
 def repo_root_from_script(script_path: Path) -> Path:
@@ -368,7 +379,7 @@ def collect_state(
         "venv_python": str(venv_python) if venv_python else None,
         "venv_exists": (repo_root / VENV_DIR).exists(),
         "pyproject_present": pyproject_present,
-        "pre_commit_hook_exists": (repo_root / ".git" / "hooks" / "pre-commit").exists(),
+        "pre_commit_hook_exists": husky_hooks_installed(repo_root),
         "state_matches": state_matches,
         "pyproject_matches": pyproject_matches,
         "pre_commit_matches": pre_commit_matches,
@@ -414,9 +425,9 @@ def describe_plan(state: State) -> list[str]:
         lines.append("install_dev_extras: no-op (bootstrap state unchanged)")
 
     if not venv_missing and state.get("pre_commit_matches") and state.get("pre_commit_hook_exists"):
-        lines.append("install_pre_commit_hooks: no-op (hook already installed, state unchanged)")
+        lines.append("install_pre_commit_hooks: no-op (Husky hooks installed, state unchanged)")
     else:
-        lines.append("install_pre_commit_hooks: would run .venv python -m pre_commit install --install-hooks")
+        lines.append("install_pre_commit_hooks: would run .venv python -m pre_commit install-hooks")
     return lines
 
 
@@ -535,9 +546,11 @@ def _run_bootstrap_actions(*, repo_root: Path, venv_python: Path, plan: list[str
             return dev_rc
 
     if "install_pre_commit_hooks" in plan:
-        print("[INFO] Installing pre-commit hooks.")
+        # install-hooks only prepares the framework's environments: `pre_commit install` refuses
+        # to run while core.hooksPath is set, and Husky owns that path.
+        print("[INFO] Preparing pre-commit hook environments.")
         hook_rc = _run_step(
-            [str(venv_python), "-m", "pre_commit", "install", "--install-hooks"],
+            [str(venv_python), "-m", "pre_commit", "install-hooks"],
             cwd=repo_root,
         )
         if hook_rc != 0:
@@ -666,11 +679,10 @@ def _check_bootstrap_state(repo_root: Path) -> tuple[bool, str, str, str]:
 
 
 def _check_pre_commit_hooks(repo_root: Path) -> tuple[bool, str, str, str]:
-    """Return (passed, expected, found, action) for pre-commit hook install."""
-    hook_path = repo_root / ".git" / "hooks" / "pre-commit"
-    if hook_path.exists():
+    """Return (passed, expected, found, action) for the Husky hook install."""
+    if husky_hooks_installed(repo_root):
         return (True, "installed", "installed", "")
-    return (False, "installed", "missing", "Run: python -m scripts.dev.bootstrap_venv")
+    return (False, "installed", "missing", f"Run: {HUSKY_INSTALL_COMMAND}")
 
 
 def _check_git_signing_health() -> tuple[bool, str, str, str]:

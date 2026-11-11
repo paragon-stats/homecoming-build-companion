@@ -8,7 +8,8 @@ The binding rules for builds, naming and the engine are the guides in [docs/styl
 
 ## Getting started — bootstrap the venv
 
-Python 3.14+ is required. The bootstrap creates `.venv/`, installs dev dependencies from `pyproject.toml`, and wires up pre-commit hooks.
+Python 3.14+ is required. The bootstrap creates `.venv/`, installs dev dependencies from `pyproject.toml`, and prepares the environments of the Python pre-commit checks.
+Git hooks are a separate one-time step, below.
 
 ```bash
 make bootstrap
@@ -22,6 +23,16 @@ python -m scripts.dev.bootstrap_venv --verify   # verify installed packages matc
 ```
 
 The bootstrap is idempotent — hashes `pyproject.toml` and `.pre-commit-config.yaml` and skips when unchanged. Re-run when dependencies change.
+
+Install the Git hooks once per clone, from the main checkout:
+
+```bash
+dotnet tool restore && dotnet husky install
+```
+
+This sets `core.hooksPath=.husky` for the repository, so every `git worktree` runs the committed hooks with no step of its own.
+`make hooks-check` fails with this command when the hooks are not installed.
+See [CONTRIBUTING.md](CONTRIBUTING.md#git-hooks).
 
 After the bootstrap, activate the venv:
 

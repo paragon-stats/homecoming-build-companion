@@ -1,0 +1,4 @@
+#!/bin/sh
+# Same validator the commitlint workflow runs on every commit of a pull request.
+dotnet tool restore --verbosity quiet || exit 1
+dotnet husky run --group commit-msg --args "$1"

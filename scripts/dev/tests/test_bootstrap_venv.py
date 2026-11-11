@@ -733,14 +733,13 @@ class TestVerifyBootstrap:
         venv_dir = tmp_path / ".venv" / "Scripts"
         venv_dir.mkdir(parents=True)
         (venv_dir / "python.exe").touch()
-        (tmp_path / ".git" / "hooks").mkdir(parents=True)
-        (tmp_path / ".git" / "hooks" / "pre-commit").touch()
         pyproject = tmp_path / "pyproject.toml"
         pyproject.write_text('[project.optional-dependencies]\ndev = ["testpkg>=1.0.0"]\n')
         with (
             patch("scripts.dev.bootstrap_venv._query_installed_versions", return_value={"testpkg": "9.9.9"}),
             patch("scripts.dev.bootstrap_venv._query_python_version", return_value="3.13.0"),
             patch("scripts.dev.bootstrap_venv.check_git_signing", return_value=(True, "ok")),
+            patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True),
             patch("scripts.dev.bootstrap_venv._check_bootstrap_state", return_value=(True, "matches", "matches", "")),
         ):
             assert _verify_bootstrap(repo_root=tmp_path, platform="win32") == EXIT_OK
@@ -797,11 +796,10 @@ class TestRunBootstrap:
         desired = build_desired_state(tmp_path)
         state_path = _state_file_path(tmp_path)
         write_bootstrap_state(state_path, desired)
-        # Create pre-commit hook
-        hooks_dir = tmp_path / ".git" / "hooks"
-        hooks_dir.mkdir(parents=True)
-        (hooks_dir / "pre-commit").touch()
-        with patch("scripts.dev.bootstrap_venv.check_git_signing", return_value=(True, "ok")):
+        with (
+            patch("scripts.dev.bootstrap_venv.check_git_signing", return_value=(True, "ok")),
+            patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True),
+        ):
             result = run_bootstrap(repo_root=tmp_path, platform="win32")
             assert result == EXIT_OK
 
@@ -1443,28 +1441,58 @@ class TestCheckBootstrapStatePass:
 class TestCheckPreCommitHooks:
     """Test _check_pre_commit_hooks direct branches."""
 
-    def test_passes_when_hook_exists(self, tmp_path: Path) -> None:
-        """Return pass when .git/hooks/pre-commit exists."""
+    def test_passes_when_husky_hooks_installed(self, tmp_path: Path) -> None:
+        """Return pass when core.hooksPath is the Husky directory."""
         from scripts.dev.bootstrap_venv import _check_pre_commit_hooks
 
-        hooks_dir = tmp_path / ".git" / "hooks"
-        hooks_dir.mkdir(parents=True)
-        (hooks_dir / "pre-commit").touch()
-        passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=True):
+            passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
         assert passed is True
         assert expected == "installed"
         assert found == "installed"
         assert action == ""
 
-    def test_fails_when_hook_missing(self, tmp_path: Path) -> None:
-        """Return fail with remediation when hook is absent."""
+    def test_fails_when_hooks_not_installed(self, tmp_path: Path) -> None:
+        """Return fail with the Husky install command when hooks are not installed."""
         from scripts.dev.bootstrap_venv import _check_pre_commit_hooks
 
-        passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
+        with patch("scripts.dev.bootstrap_venv.husky_hooks_installed", return_value=False):
+            passed, expected, found, action = _check_pre_commit_hooks(tmp_path)
         assert passed is False
         assert expected == "installed"
         assert found == "missing"
-        assert "bootstrap_venv" in action
+        assert "dotnet husky install" in action
+
+
+class TestHuskyHooksInstalled:
+    """Test husky_hooks_installed against a real repository."""
+
+    @staticmethod
+    def _init(tmp_path: Path) -> None:
+        subprocess.run(["git", "init", "-q", str(tmp_path)], check=True)
+
+    def test_false_without_hooks_path(self, tmp_path: Path) -> None:
+        """An unset core.hooksPath means the hooks do not run."""
+        from scripts.dev.bootstrap_venv import husky_hooks_installed
+
+        self._init(tmp_path)
+        assert husky_hooks_installed(tmp_path) is False
+
+    def test_false_for_another_path(self, tmp_path: Path) -> None:
+        """Any other hooks directory is not the Husky one."""
+        from scripts.dev.bootstrap_venv import husky_hooks_installed
+
+        self._init(tmp_path)
+        subprocess.run(["git", "-C", str(tmp_path), "config", "core.hooksPath", "elsewhere"], check=True)
+        assert husky_hooks_installed(tmp_path) is False
+
+    def test_true_for_husky_path(self, tmp_path: Path) -> None:
+        """core.hooksPath=.husky is the installed state."""
+        from scripts.dev.bootstrap_venv import husky_hooks_installed
+
+        self._init(tmp_path)
+        subprocess.run(["git", "-C", str(tmp_path), "config", "core.hooksPath", ".husky"], check=True)
+        assert husky_hooks_installed(tmp_path) is True
 
 
 class TestCheckBootstrapStateDrift:

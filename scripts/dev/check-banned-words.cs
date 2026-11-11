@@ -5,7 +5,8 @@
 //
 // The rules are in docs/style-guides/naming-and-words.md. Names come only from the
 // COH_BANNED_NAMES environment variable (comma-separated) so a name never appears in the
-// repository. Unset locally, the name check is skipped and the script says so; unset in CI
+// repository. Unset locally, the script uses the full name and the first name from the git user
+// name and skips the name check, saying so, only when git has none; unset in CI
 // (GITHUB_ACTIONS set), the script fails, so the gate cannot pass without the secret.
 // A banned word matches at the start of a word, so "oracles" is caught too.
 // CI tooling, not shipped product code: exempt from the solution-wide analyzers.
@@ -30,6 +31,11 @@ string[] binaryExtensions =
 
 string[] names = (Environment.GetEnvironmentVariable("COH_BANNED_NAMES") ?? string.Empty)
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+if (names.Length == 0 && Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is null)
+{
+    names = OperatorNames();
+}
+
 if (names.Length == 0)
 {
     if (Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is not null)
@@ -113,6 +119,23 @@ if (hits > 0)
 
 Console.WriteLine("[OK] no banned words found.");
 return 0;
+
+static string[] OperatorNames()
+{
+    using Process git = Process.Start(new ProcessStartInfo("git", "config user.name")
+    {
+        RedirectStandardOutput = true,
+        UseShellExecute = false,
+    }) ?? throw new InvalidOperationException("could not start git.");
+    string full = git.StandardOutput.ReadToEnd().Trim();
+    git.WaitForExit();
+    if (git.ExitCode != 0 || full.Length == 0)
+    {
+        return [];
+    }
+
+    return [full, full.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0]];
+}
 
 static string[] TrackedFiles()
 {

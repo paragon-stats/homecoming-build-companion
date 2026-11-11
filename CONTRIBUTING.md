@@ -13,8 +13,30 @@ dotnet build
 dotnet test
 ```
 
-Husky.Net hooks run `dotnet format`, the encoding check and the banned-words check on commit, and the build and tests on push.
 CI runs the same checks plus the coverage gate.
+
+## Git hooks
+
+Install the hooks once per clone, from the main checkout:
+
+```text
+dotnet tool restore && dotnet husky install
+```
+
+This sets `core.hooksPath=.husky` in the repository's shared Git configuration.
+Every `git worktree` of the clone then runs the hooks committed in its own `.husky/` folder, with no setup of its own.
+`make hooks-check` fails with the command above when the hooks are not installed.
+`dotnet husky install` also creates an ignored `.husky/_/` folder; the committed hooks do not use it.
+
+| Hook | Checks |
+| --- | --- |
+| `pre-commit` | `dotnet format`, the encoding check, the banned-words check, the coverage-exclusion check (`[ExcludeFromCodeCoverage]` only in `*JsonContext.cs`), and the Python `pre-commit` checks in `.pre-commit-config.yaml` (commit signing, ruff, mypy, markdownlint, editorconfig, file hygiene) |
+| `commit-msg` | the Conventional Commit check that the commitlint workflow runs |
+| `pre-push` | `dotnet build`, `dotnet test --no-build` and the banned-words check |
+
+The Python checks need the venv from `make bootstrap`.
+A worktree uses the main checkout's `.venv`, or the one on `PATH`; with neither, the hook fails and prints the bootstrap command.
+Super-Linter stays manual: `make super-linter`.
 
 ## Commits and pull requests
 

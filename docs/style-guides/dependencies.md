@@ -34,9 +34,13 @@ Tools pinned in [`.config/dotnet-tools.json`](../../.config/dotnet-tools.json) n
 | Tool | Version | Licence | Source |
 | --- | --- | --- | --- |
 | dotnet-sonarscanner | 12.0.0 | LGPL-3.0 | <https://github.com/SonarSource/sonar-scanner-msbuild> |
+| husky (Husky.Net) | 0.9.1 | MIT | <https://github.com/alirezanet/Husky.Net> |
 
 dotnet-sonarscanner runs only in the `sonar` workflow.
 Nothing links to it and nothing it produces ships, so its LGPL-3.0 terms do not reach the Apache-2.0 product.
+
+husky runs the Git hooks in `.husky/` on a developer machine and never in CI.
+Nothing links to it and nothing it produces ships.
 
 ## Notes
 
