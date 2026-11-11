@@ -241,8 +241,8 @@ public sealed class ToolTests
         Assert.False(power.ContainsKey("requires_powers"));
         Assert.False(power.ContainsKey("chosen"));
         Assert.Equal(["requires_powers", "chosen"], result["unknown_fields"]!.AsArray().Select(name => name!.GetValue<string>()), StringComparer.Ordinal);
-        Assert.True(power.ContainsKey("activate_period"));
-        Assert.Equal(0.0, power["activate_period"]!.GetValue<double>());
+        Assert.True(power.TryGetPropertyValue("activate_period", out JsonNode? period));
+        Assert.Equal(0.0, period!.GetValue<double>());
     }
 
     [Fact]
