@@ -53,6 +53,12 @@ def test_code_scanning_rule_gates_on_all_codeql_alerts() -> None:
     }
 
 
+def test_sonar_is_a_required_status_check() -> None:
+    rules = _load("main-ruleset.json")["rules"]
+    checks = next(r["parameters"] for r in rules if r["type"] == "required_status_checks")["required_status_checks"]
+    assert {"context": "sonar", "integration_id": 15368} in checks
+
+
 def test_rollback_is_the_main_ruleset_without_the_code_scanning_rule() -> None:
     main = _load("main-ruleset.json")
     main["rules"] = [r for r in main["rules"] if r["type"] != "code_scanning"]

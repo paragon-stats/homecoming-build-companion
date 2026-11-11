@@ -24,6 +24,17 @@ Native AOT status is the `IsAotCompatible` property in the package's own project
 The last five packages are pinned ahead of the stages that will reference them, so those stages do not edit the pin file.
 Nothing references them yet.
 
+## Dotnet tools
+
+Tools pinned in [`.config/dotnet-tools.json`](../../.config/dotnet-tools.json) never reach the published binary.
+
+| Tool | Version | Licence | Source |
+| --- | --- | --- | --- |
+| dotnet-sonarscanner | 12.0.0 | LGPL-3.0 | <https://github.com/SonarSource/sonar-scanner-msbuild> |
+
+dotnet-sonarscanner runs only in the `sonar` workflow.
+Nothing links to it and nothing it produces ships, so its LGPL-3.0 terms do not reach the Apache-2.0 product.
+
 ## Notes
 
 - The Microsoft.Extensions.AI packages set `IsAotCompatible` in `src/Libraries/Directory.Build.props`, and OpenAI sets it in its root `Directory.Build.props`.

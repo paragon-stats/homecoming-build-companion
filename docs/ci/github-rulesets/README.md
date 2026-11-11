@@ -33,6 +33,9 @@ gh api repos/paragon-stats/homecoming-build-companion/rulesets/15875338 --jq '.b
 
 Expect `required_approving_review_count` 1, `require_code_owner_review` true, and exactly one bypass actor in `pull_request` mode.
 
+The required status check list includes `sonar`.
+Apply the ruleset only after the first green `sonar` run (see [`../sonar.md`](../sonar.md)): requiring a check that has never reported freezes every pull request.
+
 The required status check list still names `All Tests Passed`.
 Swap it for the dotnet checks when issue #108 lands.
 
