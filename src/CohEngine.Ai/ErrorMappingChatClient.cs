@@ -18,6 +18,11 @@ internal sealed class ErrorMappingChatClient(IChatClient inner, string? keyVaria
         {
             throw Map(error);
         }
+        catch (AggregateException error) when (error.InnerExceptions.OfType<ClientResultException>().FirstOrDefault() is not null)
+        {
+            // The SDK's retry policy wraps the failures of its last tries in one AggregateException.
+            throw Map(error.InnerExceptions.OfType<ClientResultException>().First());
+        }
     }
 
     public override async IAsyncEnumerable<ChatResponseUpdate> GetStreamingResponseAsync(
@@ -38,6 +43,10 @@ internal sealed class ErrorMappingChatClient(IChatClient inner, string? keyVaria
             {
                 throw Map(error);
             }
+            catch (AggregateException error) when (error.InnerExceptions.OfType<ClientResultException>().FirstOrDefault() is not null)
+            {
+                throw Map(error.InnerExceptions.OfType<ClientResultException>().First());
+            }
 
             if (!more)
             {
@@ -50,5 +59,7 @@ internal sealed class ErrorMappingChatClient(IChatClient inner, string? keyVaria
 
     // The inner exception is dropped: its message holds the response body, which a server may fill with the key.
     private ChatProviderException Map(ClientResultException error) =>
-        new(error.Status, $"{AiErrorCodes.ProviderRejected}: the provider returned HTTP {error.Status}; check the key in {keyVariable ?? "(no key variable)"} and the base URL");
+        error.Status == 0
+            ? new(0, $"{AiErrorCodes.ProviderUnreachable}: the provider could not be reached; check the base URL and that the server is running")
+            : new(error.Status, $"{AiErrorCodes.ProviderRejected}: the provider returned HTTP {error.Status}; check the key in {keyVariable ?? "(no key variable)"} and the base URL");
 }

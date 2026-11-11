@@ -11,4 +11,7 @@ public static class AiErrorCodes
 
     /// <summary>The base URL is not an absolute http or https URL.</summary>
     public const string BadBaseUrl = "E132";
+
+    /// <summary>No HTTP response came back: the connection failed or the server is down.</summary>
+    public const string ProviderUnreachable = "E133";
 }
