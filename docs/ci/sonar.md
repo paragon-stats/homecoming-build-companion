@@ -15,7 +15,7 @@ It follows the workflow in paragon-stats/paragon-stats.
 
 | Property | Pattern | Why |
 | --- | --- | --- |
-| `sonar.exclusions` and `sonar.cpd.exclusions` | `data/**`, `tests/fixtures/**`, `samples/**`, `knowledge/**` | Generated or third-party data, not code under review. |
+| `sonar.exclusions` and `sonar.cpd.exclusions` | `data/**`, `**/tests/fixtures/**`, `samples/**`, `knowledge/**` | Generated or third-party data, not code under review. The fixture pattern matches `tests/fixtures` at any depth: captured pages and build files used as test input. |
 | same | `**/obj/**`, `**/bin/**` | Build output. |
 | same | `tools/mids-dump*/**` | The Mids dump harness is outside the solution, so this job does not build it. |
 | `sonar.coverage.exclusions` | `**/*JsonContext.cs` | Source-generated JSON contexts, marked `[ExcludeFromCodeCoverage]`, which the 100% gate leaves out too. |
