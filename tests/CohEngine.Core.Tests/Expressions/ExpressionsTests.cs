@@ -7,7 +7,7 @@ using CohEngine.Core.Maths;
 namespace CohEngine.Core.Tests.Expressions;
 
 /// <summary>Port of <c>test_expressions.py</c>: magnitude keywords and conditional-effect evaluation.</summary>
-public sealed class ExpressionsTests
+public sealed partial class ExpressionsTests
 {
     private const string PowerName = "Pool.Fighting.Cross_Punch";
     private const string Boxing = "Active:Pool.Fighting.Boxing";
@@ -179,9 +179,21 @@ public sealed class ExpressionsTests
     [InlineData("source.owner>arch(")]
     [InlineData("no keyword here")]
     [InlineData("")]
+    [InlineData("source.owner>arch(Arachnos\tSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\nSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u000BSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u000CSoldier)")]
+    [InlineData("source.owner>arch(Arachnos\u0085Soldier)")]
+    [InlineData("source.owner>arch(Arachnos\u00A0Soldier)")]
+    [InlineData("source.owner>arch(Arachnos\u2028Soldier)")]
+    [InlineData("source.owner>arch(Blast\u00E9r)")]
+    [InlineData("source.owner>arch(Blaster1)")]
+    [InlineData("source.owner>arch(\t)")]
+    [InlineData("SOURCE.OWNER>ARCH(Blaster)")]
+    [InlineData("source.owner>arch(Blaster) + source.owner>arch(Scrapper)")]
     public void The_owner_archetype_replacement_matches_the_pattern_it_replaced(string expression)
     {
-        Regex pattern = new(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+        Regex pattern = OwnerArchetypeKeyword();
 
         foreach (string? archetype in new[] { "Blaster", "Arachnos Soldier", " Blaster ", null })
         {
@@ -190,6 +202,9 @@ public sealed class ExpressionsTests
             Assert.Equal(expected, Evaluator.ReplaceOwnerArchetype(expression, archetype), StringComparer.Ordinal);
         }
     }
+
+    [GeneratedRegex(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex OwnerArchetypeKeyword();
 
     [Fact]
     public void The_owner_archetype_test_is_zero_without_a_context_as_in_mids_for_a_build_with_no_archetype()
