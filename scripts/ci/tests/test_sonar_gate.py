@@ -62,6 +62,9 @@ def _issues(directory: Path, name: str, results: list[dict[str, Any]], *, runs: 
     target = directory / name
     target.mkdir(parents=True)
     document = {"runs": [{"results": results}]} if runs else {"runs": []}
+    (target / "ProjectInfo.xml").write_text(
+        "<ProjectInfo><IsExcluded>false</IsExcluded></ProjectInfo>", encoding="utf-8"
+    )
     (target / "Issues.json").write_text(json.dumps(document), encoding="utf-8-sig")
 
 
@@ -132,10 +135,10 @@ def test_sarif_1_and_2_results_map_to_repo_relative_sonar_rules(tmp_path: Path) 
     )
     _issues(tmp_path, "2", [_v2("S1192", "src/B%20x.cs", 3), _v2("S1192", "file:///E:/elsewhere/C.cs")])
 
-    count, findings = read_sarif(tmp_path, ROOT)
+    scan = read_sarif(tmp_path, ROOT)
 
-    assert count == 2
-    assert findings == {
+    assert (scan.files, scan.projects, scan.total) == (2, 2, 6)
+    assert scan.findings == {
         Finding(RULE, "src/A.cs", 7),
         Finding("csharpsquid:S107", "", 0),
         Finding("csharpsquid:S1192", "src/B x.cs", 3),
@@ -148,24 +151,52 @@ def test_sarif_root_without_issues_json_fails(tmp_path: Path) -> None:
         read_sarif(tmp_path, ROOT)
 
 
-@pytest.mark.parametrize("content", ["", "{", '{"runs": []}'])
-def test_unreadable_or_run_less_issues_json_fails(tmp_path: Path, content: str) -> None:
-    (tmp_path / "1").mkdir()
+@pytest.mark.parametrize("content", ["", "{", "[]", '{"runs": []}'])
+def test_a_malformed_issues_json_fails(tmp_path: Path, content: str) -> None:
+    _issues(tmp_path, "1", [])
     (tmp_path / "1" / "Issues.json").write_text(content, encoding="utf-8")
 
     with pytest.raises(ScannerOutputError):
         read_sarif(tmp_path, ROOT)
 
 
-def test_issues_json_with_no_results_fails(tmp_path: Path) -> None:
+def test_every_expected_file_present_with_no_results_passes(tmp_path: Path) -> None:
     _issues(tmp_path, "1", [])
+    _issues(tmp_path, "2", [])
 
-    with pytest.raises(ScannerOutputError, match="empty"):
+    scan = read_sarif(tmp_path, ROOT)
+
+    assert (scan.files, scan.projects, scan.total, scan.findings) == (2, 2, 0, set())
+
+
+def test_a_project_without_its_issues_json_fails(tmp_path: Path) -> None:
+    _issues(tmp_path, "1", [_v1("S1", "src/A.cs")])
+    (tmp_path / "2").mkdir()
+    (tmp_path / "2" / "ProjectInfo.xml").write_text("<ProjectInfo/>", encoding="utf-8")
+
+    with pytest.raises(ScannerOutputError, match=r"missing for 1 of 2 projects: \['2'\]"):
         read_sarif(tmp_path, ROOT)
 
 
-def test_a_directory_named_issues_json_is_unreadable(tmp_path: Path) -> None:
-    (tmp_path / "Issues.json").mkdir()
+def test_an_excluded_project_needs_no_issues_json(tmp_path: Path) -> None:
+    _issues(tmp_path, "1", [])
+    (tmp_path / "2").mkdir()
+    (tmp_path / "2" / "ProjectInfo.xml").write_text("<IsExcluded>true</IsExcluded>", encoding="utf-8")
+
+    assert read_sarif(tmp_path, ROOT).projects == 1
+
+
+def test_issues_json_without_any_project_info_fails(tmp_path: Path) -> None:
+    (tmp_path / "1").mkdir()
+    (tmp_path / "1" / "Issues.json").write_text("{}", encoding="utf-8")
+
+    with pytest.raises(ScannerOutputError, match="ProjectInfo"):
+        read_sarif(tmp_path, ROOT)
+
+
+def test_an_issues_json_that_cannot_be_read_fails(tmp_path: Path) -> None:
+    _issues(tmp_path, "1", [])
+    (tmp_path / "1" / "sub" / "Issues.json").mkdir(parents=True)
 
     with pytest.raises(ScannerOutputError, match="unreadable"):
         read_sarif(tmp_path, ROOT)
@@ -213,7 +244,7 @@ def test_no_entries_passes_after_reading_the_scanner_output(tmp_path: Path, caps
     _issues(tmp_path / "out", "1", [_v1("S1", "src/A.cs")])
 
     assert main(_args(tmp_path, "# nothing\n"), fetch=_api([]), git_diff=_no_diff) == 0
-    assert "read 1 Issues.json files with 1 csharpsquid results" in capsys.readouterr().out
+    assert "read 1 Issues.json files for 1 expected projects: 1 results, 1 csharpsquid" in capsys.readouterr().out
 
 
 def test_a_malformed_rules_file_exits_2(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:

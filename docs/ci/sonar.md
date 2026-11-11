@@ -50,8 +50,12 @@ Three checks, printed as one count per entry:
   The scanner runs Sonar's C# analyzer inside `dotnet build` and writes each project's results to `.sonarqube/out/<n>/Issues.json`.
   The workflow's build is a full build, so the files hold every result for every analysed file, old or new, in source and test projects, suppressed ones included.
   A result of a gated rule under the entry's prefix fails the gate.
-  The gate also fails, closed, when no `Issues.json` exists, one is unreadable or has no runs, or all hold no result.
-  The log line `read N Issues.json files with M csharpsquid results` shows what it read.
+  The expected set is every project folder under `.sonarqube/out` that holds a `ProjectInfo.xml` the scanner wrote, except one marked excluded.
+  The gate fails when no `Issues.json` exists, when an expected project has none, or when a file is not SARIF with at least one run.
+  It passes when every expected file is present and parses, whatever the number of results, so a repository with no findings passes.
+  The log line `read N Issues.json files for P expected projects: R results, C csharpsquid` shows what it read.
+  Whether the compiler writes a file for a project with no diagnostics is not established from the scanner's documentation.
+  The step therefore lists the folders it found before the gate runs, and a missing file fails closed until that listing shows otherwise.
 - **Baseline (`baseline`, pull requests).**
   Every finding open on `main` under an entry's prefix must be in code the pull request changes.
   For `csharpsquid` rules and any `:S3776` rule the finding's file must be changed.

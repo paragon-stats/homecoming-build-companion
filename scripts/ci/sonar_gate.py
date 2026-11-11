@@ -61,6 +61,13 @@ class Finding(NamedTuple):
     line: int
 
 
+class Scan(NamedTuple):
+    files: int
+    projects: int
+    total: int
+    findings: set[Finding]
+
+
 class Diff(NamedTuple):
     files: set[str]
     old_lines: dict[str, set[int]]
@@ -103,18 +110,30 @@ def _results(file: Path) -> Iterator[dict[str, Any]]:
         document = json.loads(file.read_text(encoding="utf-8-sig"))
     except (OSError, ValueError) as error:
         raise ScannerOutputError(f"{file}: unreadable ({error})") from error
-    runs = document.get("runs") or []
-    if not runs:
-        raise ScannerOutputError(f"{file}: no runs")
+    runs = document.get("runs") if isinstance(document, dict) else None
+    if not isinstance(runs, list) or not runs:
+        raise ScannerOutputError(f"{file}: not SARIF (no runs)")
     for run in runs:
         yield from run.get("results") or []
 
 
-def read_sarif(sarif_root: Path, repo_root: str) -> tuple[int, set[Finding]]:
-    """Return the ``Issues.json`` count and the distinct Sonar C# findings in them."""
+def _expected_projects(sarif_root: Path) -> list[Path]:
+    """Folders of the projects the scanner analysed: each writes a ``ProjectInfo.xml`` unless excluded."""
+    infos = sarif_root.rglob("ProjectInfo.xml")
+    return sorted(i.parent for i in infos if "<IsExcluded>true</IsExcluded>" not in i.read_text(encoding="utf-8-sig"))
+
+
+def read_sarif(sarif_root: Path, repo_root: str) -> Scan:
+    """Read every project's ``Issues.json``; fail when a file is absent or malformed, not when it is clean."""
     files = sorted(sarif_root.rglob("Issues.json"))
     if not files:
         raise ScannerOutputError(f"scanner output missing: no Issues.json under {sarif_root}")
+    projects = _expected_projects(sarif_root)
+    if not projects:
+        raise ScannerOutputError(f"no ProjectInfo.xml under {sarif_root}: cannot tell which projects were analysed")
+    absent = [p.name for p in projects if not (p / "Issues.json").is_file()]
+    if absent:
+        raise ScannerOutputError(f"Issues.json missing for {len(absent)} of {len(projects)} projects: {absent}")
     total = 0
     findings: set[Finding] = set()
     for file in files:
@@ -124,9 +143,7 @@ def read_sarif(sarif_root: Path, repo_root: str) -> tuple[int, set[Finding]]:
             if _SONAR_CSHARP_ID.fullmatch(rule):
                 uri, line = _location(result)
                 findings.add(Finding(CSHARP + rule, _repo_path(uri, repo_root), line))
-    if total == 0:
-        raise ScannerOutputError(f"scanner output empty: {len(files)} Issues.json hold no results")
-    return len(files), findings
+    return Scan(len(files), len(projects), total, findings)
 
 
 def fetch_issues(fetch: Fetch, rules: list[str], scope: dict[str, str]) -> list[Finding]:
@@ -235,12 +252,15 @@ def run(args: argparse.Namespace, fetch: Fetch, git_diff: GitDiff) -> int:
         print(error, file=sys.stderr)
         return 2
     try:
-        file_count, csharp = read_sarif(args.sarif_root, args.repo_root)
+        scan = read_sarif(args.sarif_root, args.repo_root)
     except ScannerOutputError as error:
         print(f"FAIL {error}")
         return 1
-    print(f"read {file_count} Issues.json files with {len(csharp)} csharpsquid results")
-    summary, failures = _evaluate(args, entries, csharp, fetch, git_diff)
+    print(
+        f"read {scan.files} Issues.json files for {scan.projects} expected projects: "
+        f"{scan.total} results, {len(scan.findings)} csharpsquid"
+    )
+    summary, failures = _evaluate(args, entries, scan.findings, fetch, git_diff)
     for entry, counts in summary.items():
         print(f"{entry.rule} {entry.prefix} {' '.join(counts)}")
     for failure in failures:

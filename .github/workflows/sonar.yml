@@ -78,6 +78,7 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
+          Get-ChildItem .sonarqube/out -Recurse -Include ProjectInfo.xml, Issues.json | ForEach-Object { $_.FullName }
           $gate = @('--rules-dir', 'scripts/ci/sonar_gate_rules', '--sarif-root', '.sonarqube/out')
           if ($env:PR_NUMBER) { $gate += @('--pull-request', $env:PR_NUMBER) }
           python -m scripts.ci.sonar_gate @gate
