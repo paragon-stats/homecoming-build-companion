@@ -8,7 +8,7 @@ public sealed class PyObject : List<KeyValuePair<string, object?>>
 {
     /// <summary>Appends a key and value.</summary>
     /// <param name="key">The key.</param>
-    /// <param name="value">The value: null, bool, long, double, string, <see cref="PyObject"/> or a list of those.</param>
+    /// <param name="value">The value: null, bool, int, long, <see cref="System.Numerics.BigInteger"/>, double, string, <see cref="PyObject"/>, or a sequence of object, int or string.</param>
     public void Add(string key, object? value)
     {
         Add(new KeyValuePair<string, object?>(key, value));

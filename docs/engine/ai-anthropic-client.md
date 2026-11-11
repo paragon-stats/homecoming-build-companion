@@ -51,7 +51,7 @@ or put in an exception; an API error type, message or request id that echoes it 
 variable is empty or unset, the constructor throws `InvalidOperationException` with the message
 `E140: <variable> is not set; export the API key in that variable or pass --api-key-env`.
 
-Error codes E140 to E149 are reserved for this client (`AnthropicErrorCodes`).
+Error codes E140 to E149 are reserved for this client (`AiErrorCodes.Anthropic`).
 
 ## What is supported
 

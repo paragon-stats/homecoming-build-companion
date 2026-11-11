@@ -3,6 +3,9 @@
 Every package pinned in [`Directory.Packages.props`](../../Directory.Packages.props), with its licence and Native AOT status.
 A package enters that file only after it has a row here.
 
+The project is GPL-3.0-only.
+A package's licence must allow distribution under GPL-3.0: permissive licences such as MIT, BSD, ISC, Apache-2.0 and CC0 qualify, and a licence that forbids GPL distribution does not.
+
 Licences were read from each project's `LICENSE` file on its default branch on 2026-11-07 and are given as SPDX identifiers.
 Native AOT status is the `IsAotCompatible` property in the package's own project files.
 "Not shipped" means the package is a build-time analyzer, build tool or test framework and never reaches the published binary, so AOT does not apply.
@@ -40,7 +43,7 @@ Nothing links to it and nothing it produces ships, so its LGPL-3.0 terms do not 
 - The Microsoft.Extensions.AI packages set `IsAotCompatible` in `src/Libraries/Directory.Build.props`, and OpenAI sets it in its root `Directory.Build.props`.
 - ModelContextProtocol is moving from MIT to Apache-2.0.
   New contributions are Apache-2.0, and contributions whose authors have not consented to relicensing stay MIT.
-  Both are compatible with an Apache-2.0 product.
+  Both are permissive licences.
 
 ## Excluded
 
