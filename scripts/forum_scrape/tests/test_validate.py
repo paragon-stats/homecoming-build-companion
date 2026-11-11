@@ -79,7 +79,8 @@ def test_catalog_reads_real_tier_prerequisites(catalog: PowerCatalog) -> None:
 
 def test_catalog_survives_an_empty_tree(tmp_path: Path) -> None:
     empty = load_power_catalog(tmp_path)
-    assert empty.levels == {} and empty.requires == {}
+    assert empty.levels == {}
+    assert empty.requires == {}
 
 
 def test_catalog_skips_a_non_numeric_level(tmp_path: Path) -> None:
@@ -150,7 +151,8 @@ def test_a_slot_with_no_enhancement_resolves_to_empty(catalog: PowerCatalog) -> 
     document["PowerEntries"][0]["SlotEntries"][0]["Enhancement"] = None
     _, slots = build_dtos(parse_mbd(document), catalog)
     assert slots[0][0].enh == -1
-    assert slots[0][0].grade == 0 and slots[0][0].relative_level == 0
+    assert slots[0][0].grade == 0
+    assert slots[0][0].relative_level == 0
 
 
 # --- verdicts ----------------------------------------------------------------------
