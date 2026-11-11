@@ -5,13 +5,14 @@ internal sealed class ScratchDirectory : IDisposable
 {
     private readonly string root = Directory.CreateTempSubdirectory("coh-mcp-scratch").FullName;
 
-    /// <summary>Changes the first line break to a space: one byte, and the JSON still reads the same.</summary>
+    /// <summary>Changes the first line break to a space, one byte that leaves the JSON reading the same, and moves the timestamp on.</summary>
     /// <param name="file">The file.</param>
     public static void ChangeOneByte(string file)
     {
         byte[] bytes = File.ReadAllBytes(file);
         bytes[Array.IndexOf(bytes, (byte)'\n')] = (byte)' ';
         File.WriteAllBytes(file, bytes);
+        File.SetLastWriteTimeUtc(file, File.GetLastWriteTimeUtc(file).AddSeconds(5));
     }
 
     public string CopyOf(string source, string relative)

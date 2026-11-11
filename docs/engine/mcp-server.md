@@ -36,17 +36,21 @@ It identifies the data files the answer was computed from, so two answers with t
 
 The hash covers these files, in this order, and nothing else:
 
-- A directory counts as its own files (not its subdirectories), in ordinal name order, each as its name and its bytes.
+- A directory counts as its own files (not its subdirectories), in ordinal name order, each as its name and the SHA-256 of its bytes.
 - The shared dump directory (`midsDir`, or the build directory's grandparent), then the build directory.
   For a `.mbd` the file stands where the build directory would.
 - For `score`, `totals` and `set_bonus_lookup`: also `AttribMod.json` (and for `score` and `totals`, `Maths.mhd`), at the path given or the default.
-- For `chain`: also `strategy/breakpoints.json` and `data/canonical/manifest.json` of the repository, and `AttribMod.json` in `midsDb` when given.
-  `chain` is the only tool that reads `data/canonical`; the manifest's own SHA-256 per file stands for that tree.
+- For `chain`: also `strategy/breakpoints.json`, `data/canonical/manifest.json` and the root `manifest.json` of the repository, and `AttribMod.json` in `midsDb` when given.
+  `chain` is the only tool that reads `data/canonical`, and it reads many files there, so it is identified through the manifests, not by hashing the tree.
+  `data/canonical/manifest.json` records the SHA-256 of the source archive and the file count and size of each directory.
+  The root `manifest.json` records a SHA-256 for each file, including those under `data/canonical`.
+  Neither is checked against the files; they say what the snapshot was when they were written.
   The repository is found from the binary's directory and then the working directory.
 - `power_lookup` reads only the build directory.
 - `rules` reads no data file, so its `data_version` is `unknown`.
 
-Each directory or file is hashed once per process and cached, so a file changed while a server runs is not noticed until the next server starts.
+A file's hash is cached by its full path, length and last-write time, and is computed again when either changes, so the value always describes the files as they are at that call.
+An unchanged file is not read again; a change that keeps both the length and the last-write time is not seen.
 `validate --format json` and `chain --format json` print the same bytes as the Python engine and carry no `data_version`; the MCP results carry it.
 
 ## Paths

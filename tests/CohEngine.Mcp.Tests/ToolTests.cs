@@ -86,8 +86,7 @@ public sealed class ToolTests
         string before = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", copy)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
         string same = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", scratch.CopyOf(McpHarness.BuildDir(Slotted), "build-again"))).ConfigureAwait(true))["data_version"]!.GetValue<string>();
         ScratchDirectory.ChangeOneByte(Path.Join(copy, "slots.json"));
-        string changedCopy = scratch.CopyOf(copy, "build-changed");
-        string after = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", changedCopy)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
+        string after = (await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", copy)).ConfigureAwait(true))["data_version"]!.GetValue<string>();
 
         Assert.Equal(before, same, StringComparer.Ordinal);
         Assert.NotEqual(before, after, StringComparer.Ordinal);

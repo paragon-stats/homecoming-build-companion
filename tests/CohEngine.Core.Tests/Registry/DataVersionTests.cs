@@ -64,14 +64,44 @@ public sealed class DataVersionTests : IDisposable
     }
 
     [Fact]
-    public void A_path_is_hashed_once_per_process()
+    public void A_file_changed_in_place_changes_the_value_on_the_next_call()
     {
         string directory = Make("a", ("x.json", "1"));
         string before = DataVersion.Of(directory);
 
         File.WriteAllText(Path.Join(directory, "x.json"), "2");
+        File.SetLastWriteTimeUtc(Path.Join(directory, "x.json"), DateTime.UtcNow.AddMinutes(5));
 
-        Assert.Equal(before, DataVersion.Of(directory));
+        Assert.NotEqual(before, DataVersion.Of(directory), StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public void A_file_whose_length_changed_is_read_again_even_with_the_same_timestamp()
+    {
+        string directory = Make("a", ("x.json", "1"));
+        string file = Path.Join(directory, "x.json");
+        DateTime stamp = File.GetLastWriteTimeUtc(file);
+        string before = DataVersion.Of(directory);
+
+        File.WriteAllText(file, "22");
+        File.SetLastWriteTimeUtc(file, stamp);
+
+        Assert.NotEqual(before, DataVersion.Of(directory), StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public void An_unchanged_directory_gives_the_same_value_without_reading_its_files_again()
+    {
+        string directory = Make("a", ("x.json", "1"), ("y.json", "2"));
+        string[] files = [Path.GetFullPath(Path.Join(directory, "x.json")), Path.GetFullPath(Path.Join(directory, "y.json"))];
+        string first = DataVersion.Of(directory);
+        int[] reads = [.. files.Select(file => DataVersion.Reads[file])];
+
+        string second = DataVersion.Of(directory);
+
+        Assert.Equal(first, second, StringComparer.Ordinal);
+        Assert.Equal([1, 1], reads);
+        Assert.Equal(reads, files.Select(file => DataVersion.Reads[file]));
     }
 
     private string Make(string name, params (string File, string Text)[] files)

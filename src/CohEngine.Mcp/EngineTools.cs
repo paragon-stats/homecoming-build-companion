@@ -213,7 +213,7 @@ public sealed class EngineTools
                 }
 
                 string root = ChainPaths.RepoRoot();
-                List<string> read = [midsDir ?? DumpScoring.DefaultMidsDirectory(buildDir), buildDir, Path.Join(root, "strategy", "breakpoints.json"), Path.Join(root, "data", "canonical", "manifest.json")];
+                List<string> read = [midsDir ?? DumpScoring.DefaultMidsDirectory(buildDir), buildDir, Path.Join(root, "strategy", "breakpoints.json"), Path.Join(root, "data", "canonical", "manifest.json"), Path.Join(root, "manifest.json")];
                 if (midsDb is not null)
                 {
                     read.Add(Path.Join(midsDb, "AttribMod.json"));
