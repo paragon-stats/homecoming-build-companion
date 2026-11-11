@@ -126,7 +126,8 @@ class TestHeadShaResolution:
         monkeypatch.setenv("GITHUB_REPOSITORY", "owner/repo")
 
         def _fake_run_gh(args: list[str], env: dict[str, str]) -> str:
-            assert isinstance(args, list) and isinstance(env, dict)
+            assert isinstance(args, list)
+            assert isinstance(env, dict)
             return "null"
 
         monkeypatch.setattr("scripts.ci.report_status_context._run_gh", _fake_run_gh)
@@ -138,7 +139,8 @@ class TestHeadShaResolution:
         monkeypatch.setenv("GITHUB_REPOSITORY", "owner/repo")
 
         def _fake_run_gh(args: list[str], env: dict[str, str]) -> str:
-            assert isinstance(args, list) and isinstance(env, dict)
+            assert isinstance(args, list)
+            assert isinstance(env, dict)
             return ""
 
         monkeypatch.setattr("scripts.ci.report_status_context._run_gh", _fake_run_gh)
