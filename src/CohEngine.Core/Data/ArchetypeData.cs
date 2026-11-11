@@ -22,7 +22,7 @@ public static class ArchetypeData
         [
             .. Json.Load(path, ArchetypeJsonContext.Default.AttribModFile).Modifier.Select(table => table with
             {
-                Table = [.. table.Table.Select(row => (IReadOnlyList<double>)[.. row.Select(F32.Round)])],
+                Table = [.. table.Table.Select<IReadOnlyList<double>, IReadOnlyList<double>>(row => [.. row.Select(F32.Round)])],
             }),
         ]);
     }

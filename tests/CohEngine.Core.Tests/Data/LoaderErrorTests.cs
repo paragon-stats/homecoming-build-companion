@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 using CohEngine.Core.Data;
+using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Data;
@@ -48,7 +49,7 @@ public sealed class LoaderErrorTests : IDisposable
         string slots = Write("slots.json", "[]");
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
-            () => AssemblyData.LoadBuildPowerAssembly(Path.Combine(build.Directory, "power_assembly.json"), slots, build.Powers));
+            () => AssemblyData.LoadBuildPowerAssembly(Path.Join(build.Directory, "power_assembly.json"), slots, build.Powers));
 
         Assert.StartsWith("E86: slots.json", exception.Message, StringComparison.Ordinal);
     }
@@ -60,7 +61,7 @@ public sealed class LoaderErrorTests : IDisposable
         string assembly = Write("power_assembly.json", "[]");
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
-            () => AssemblyData.LoadBuildPowerAssembly(assembly, Path.Combine(build.Directory, "slots.json"), build.Powers));
+            () => AssemblyData.LoadBuildPowerAssembly(assembly, Path.Join(build.Directory, "slots.json"), build.Powers));
 
         Assert.StartsWith("E85: slots.json", exception.Message, StringComparison.Ordinal);
     }
@@ -78,7 +79,7 @@ public sealed class LoaderErrorTests : IDisposable
         string assembly = Write("power_assembly.json", record);
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
-            () => AssemblyData.LoadBuildPowerAssembly(assembly, Path.Combine(build.Directory, "slots.json"), [power]));
+            () => AssemblyData.LoadBuildPowerAssembly(assembly, Path.Join(build.Directory, "slots.json"), [power]));
 
         Assert.StartsWith("E85: power_assembly.json build power", exception.Message, StringComparison.Ordinal);
     }
@@ -88,7 +89,7 @@ public sealed class LoaderErrorTests : IDisposable
     [InlineData("EffectType")]
     public void An_assembly_power_effect_missing_a_key_is_E85(string key)
     {
-        string path = Write("assembly_powers.json", DropEffectKey(Path.Combine(Fixtures.Store.MidsDirectory, "assembly_powers.json"), key));
+        string path = Write("assembly_powers.json", DropEffectKey(Path.Join(Fixtures.Store.MidsDirectory, "assembly_powers.json"), key));
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => AssemblyData.LoadAssemblyPowers(path));
 
@@ -99,7 +100,7 @@ public sealed class LoaderErrorTests : IDisposable
     public void An_assembled_power_effect_missing_a_key_is_E85()
     {
         BuildFixture build = Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)");
-        string path = Write("assembled_powers.json", DropEffectKey(Path.Combine(build.Directory, "assembled_powers.json"), "Absorbed_Power_nID"));
+        string path = Write("assembled_powers.json", DropEffectKey(Path.Join(build.Directory, "assembled_powers.json"), "Absorbed_Power_nID"));
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => AssemblyData.LoadAssembledPowers(path));
 
@@ -144,7 +145,7 @@ public sealed class LoaderErrorTests : IDisposable
     {
         AssemblyPower power = Fixtures.Store.AssemblyPowers.Values.First(candidate => candidate.EntitiesAffected.Count > 0);
         AssemblyEntity entity = Fixtures.Store.AssemblyEntities.Entities.Values.First(candidate => candidate.FirstPowersetEffectTypes.Count > 0);
-        PowerAssemblyRecord record = AssemblyData.LoadPowerAssemblyRecords(Path.Combine(Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)").Directory, "power_assembly.json"))[0];
+        PowerAssemblyRecord record = AssemblyData.LoadPowerAssemblyRecords(Path.Join(Fixtures.Store.Build("Stalker (Fiery Melee - Invulnerability)").Directory, "power_assembly.json"))[0];
         IncarnateSubPower sub = Fixtures.Store.Build("arsenal_dominator_incarnate").Incarnates[0].SubPowers[0];
 
         AssemblyPower powerAgain = Assert.Single(JsonSerializer.Deserialize(
@@ -173,7 +174,7 @@ public sealed class LoaderErrorTests : IDisposable
         IEnumerable<Effect> effects = Fixtures.Store.AssemblyPowers.Values.SelectMany(power => power.Effects);
 
         Assert.All(effects, effect => Assert.Equal((double)(float)effect.Duration, effect.Duration));
-        Assert.Contains(effects, effect => effect.Duration != 0.0);
+        Assert.Contains(effects, effect => !Exact.Same(effect.Duration, 0.0));
     }
 
     [Fact]
@@ -196,7 +197,7 @@ public sealed class LoaderErrorTests : IDisposable
     {
         BuildFixture build = Fixtures.Store.Build("shield_scrapper_slotted");
 
-        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Combine(build.Directory, "slots.json"));
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Join(build.Directory, "slots.json"));
 
         Assert.Equal(build.Slots.Count, slots.Count);
         Assert.Equal(build.Slots[0].Slots, slots[build.Slots[0].BuildIndex]);
@@ -226,7 +227,7 @@ public sealed class LoaderErrorTests : IDisposable
 
     private string Write(string name, string text)
     {
-        string path = Path.Combine(directory, name);
+        string path = Path.Join(directory, name);
         File.WriteAllText(path, text);
         return path;
     }

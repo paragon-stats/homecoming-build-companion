@@ -83,7 +83,7 @@ internal static class Evaluator
         for (int digits = 1; ; digits++)
         {
             string text = value.ToString("G" + digits.ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-            if (F32.Round(double.Parse(text, CultureInfo.InvariantCulture)) == value)
+            if (Exact.Same(F32.Round(double.Parse(text, CultureInfo.InvariantCulture)), value))
             {
                 return text;
             }
@@ -93,12 +93,12 @@ internal static class Evaluator
     /// <summary>Double division as .NET does it: a zero divisor gives an infinity or NaN.</summary>
     private static double Divide(double dividend, double divisor)
     {
-        if (divisor != 0)
+        if (!Exact.Same(divisor, 0))
         {
             return dividend / divisor;
         }
 
-        return dividend == 0 ? double.NaN : double.CopySign(double.PositiveInfinity, dividend);
+        return Exact.Same(dividend, 0) ? double.NaN : double.CopySign(double.PositiveInfinity, dividend);
     }
 
     private static double PyMin(double first, double second)
@@ -122,8 +122,8 @@ internal static class Evaluator
             ("lt", 2) => args[0] < args[1] ? 1 : 0,
             ("lte", 2) => args[0] <= args[1] ? 1 : 0,
             ("minmax", 3) => PyMin(args[1] > args[2] ? args[1] : args[2], PyMax(args[1] > args[2] ? args[2] : args[1], args[0])),
-            ("and_", 2) => args[0] != 0 && args[1] != 0 ? 1 : 0,
-            ("or_", 2) => args[0] != 0 || args[1] != 0 ? 1 : 0,
+            ("and_", 2) => !Exact.Same(args[0], 0) && !Exact.Same(args[1], 0) ? 1 : 0,
+            ("or_", 2) => !Exact.Same(args[0], 0) || !Exact.Same(args[1], 0) ? 1 : 0,
             _ => null,
         };
     }

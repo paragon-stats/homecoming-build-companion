@@ -151,7 +151,7 @@ internal static class PerPowerEnhancementMathPhase
 
             (double preEd, _) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
             double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), "EnduranceDiscount", enhDb, forceLevel, tables, preEdAddend: preEd);
-            if (aggregate != 0.0)
+            if (!Exact.Same(aggregate, 0.0))
             {
                 output[power.BuildIndex] = aggregate;
             }
@@ -224,7 +224,7 @@ internal static class PerPowerEnhancementMathPhase
         string? aspect = EnhanceAspect(effect, context.EnhanceNames);
         double baseMag = context.Mag(effect, power);
         double glob = GlobalEnhancementTerm(effect, baseMag, inputs.SelfEnhance, context.Enums);
-        if (aspect is null && inc is null && glob == 0.0)
+        if (aspect is null && inc is null && Exact.Same(glob, 0.0))
         {
             return null;
         }
@@ -249,7 +249,7 @@ internal static class PerPowerEnhancementMathPhase
             accumulator = memo[key] = F32.Round(F32.Round(aggregate + glob) + postEd);
         }
 
-        return accumulator != 0.0 ? F32.Round(1.0 + accumulator) : null;
+        return !Exact.Same(accumulator, 0.0) ? F32.Round(1.0 + accumulator) : null;
     }
 
     /// <summary>The memo key: two effects of one power with the same key share one aggregate.</summary>

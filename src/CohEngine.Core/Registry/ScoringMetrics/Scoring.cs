@@ -160,7 +160,7 @@ internal static class Scoring
         ArgumentNullException.ThrowIfNull(target);
         return target.Comparison switch
         {
-            "==" => actual.Number == target.Value.Number,
+            "==" => Exact.Same(actual.Number, target.Value.Number),
             ">=" => actual.Number >= target.Value.Number,
             "<=" => actual.Number <= target.Value.Number,
             _ => throw new EngineException(

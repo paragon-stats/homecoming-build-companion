@@ -101,7 +101,8 @@ def test_fingerprint_drops_a_build_the_engine_reader_rejects(tmp_path: Path) -> 
     """Missing BuiltWith is fatal to the reader; that build leaves clustering, quietly."""
     malformed = make_build({"Set.A.Smite": ["Enh_1"]})
     del malformed["BuiltWith"]
-    assert build_fingerprint(write(tmp_path, "bad.mbd", malformed)) == frozenset()
+    path = write(tmp_path, "bad.mbd", malformed)
+    assert build_fingerprint(path) == frozenset()
 
 
 def test_fingerprint_skips_unnamed_powers_and_empty_slots(tmp_path: Path) -> None:
@@ -112,7 +113,8 @@ def test_fingerprint_skips_unnamed_powers_and_empty_slots(tmp_path: Path) -> Non
         {"Level": 1, "Enhancement": None},
         {"Level": 3, "Enhancement": {"Uid": "Enh_1"}},
     ]
-    assert build_fingerprint(write(tmp_path, "a.mbd", build)) == frozenset({"Set.A.Smite|", "Set.A.Smite|Enh_1"})
+    path = write(tmp_path, "a.mbd", build)
+    assert build_fingerprint(path) == frozenset({"Set.A.Smite|", "Set.A.Smite|Enh_1"})
 
 
 def test_jaccard() -> None:

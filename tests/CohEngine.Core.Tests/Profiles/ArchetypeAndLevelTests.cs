@@ -30,7 +30,7 @@ public sealed class ArchetypeAndLevelTests
     [Fact]
     public void A_missing_archetype_file_raises()
     {
-        Assert.Throws<FileNotFoundException>(() => ArchetypeData.LoadArchetypes(Path.Combine(Path.GetTempPath(), "coh-missing-archetypes.json")));
+        Assert.Throws<FileNotFoundException>(() => ArchetypeData.LoadArchetypes(Path.Join(Path.GetTempPath(), "coh-missing-archetypes.json")));
     }
 
     [Theory]

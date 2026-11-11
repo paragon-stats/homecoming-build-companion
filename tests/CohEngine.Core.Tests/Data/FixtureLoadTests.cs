@@ -194,7 +194,7 @@ public sealed class FixtureLoadTests
 
     private static int ArrayLength(BuildFixture build, string file)
     {
-        using JsonDocument document = JsonDocument.Parse(File.ReadAllBytes(Path.Combine(build.Directory, file)));
+        using JsonDocument document = JsonDocument.Parse(File.ReadAllBytes(Path.Join(build.Directory, file)));
         return document.RootElement.GetArrayLength();
     }
 }

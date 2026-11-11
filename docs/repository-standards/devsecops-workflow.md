@@ -73,7 +73,7 @@ See [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md) for t
 
 ## Code scanning gate
 
-Once the trial in [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md) is kept, code scanning gates merges.
+Code scanning gates merges (see [`docs/ci/github-rulesets/README.md`](../ci/github-rulesets/README.md)); the gate is in force.
 A pull request waits for CodeQL and cannot merge while it carries an alert.
 Fix the alert, or dismiss it on the Security tab with a reason when the construct is deliberate.
 

@@ -30,7 +30,7 @@ public sealed class ScoringTests
         return (totals, PowerStatistics.ComputeBuildStats(inputs.Powers, inputs.Slots, context), scrapper);
     });
 
-    private static readonly string Strategy = Path.Combine(Fixtures.Store.RepositoryRoot, "strategy");
+    private static readonly string Strategy = Path.Join(Fixtures.Store.RepositoryRoot, "strategy");
 
     private static BaseTotals Base => Computed.Value.Base;
 
@@ -40,8 +40,8 @@ public sealed class ScoringTests
 
     private static BuildProfile Profile(string name)
     {
-        JsonElement raw = ProfileResolver.LoadBuildProfiles(Path.Combine(Strategy, "build_profiles.json"));
-        return ProfileResolver.Resolve(name, raw, ProfileResolver.LoadBreakpoints(Path.Combine(Strategy, "breakpoints.json")), "Scrapper");
+        JsonElement raw = ProfileResolver.LoadBuildProfiles(Path.Join(Strategy, "build_profiles.json"));
+        return ProfileResolver.Resolve(name, raw, ProfileResolver.LoadBreakpoints(Path.Join(Strategy, "breakpoints.json")), "Scrapper");
     }
 
     private static BuildProfile Custom(params Target[] targets)

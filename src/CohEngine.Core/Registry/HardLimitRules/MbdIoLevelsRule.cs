@@ -18,19 +18,17 @@ internal static class MbdIoLevelsRule
 
         foreach (Power power in context.Powers)
         {
-            foreach (SlotRef slot in context.Slots.GetValueOrDefault(power.BuildIndex, []))
+            foreach (SlotRef slot in context.Slots.GetValueOrDefault(power.BuildIndex, []).Where(slot => format.IoBoundsByNid.TryGetValue(slot.Enh, out (int Min, int Max) range) && (slot.IoLevel < range.Min || slot.IoLevel > range.Max)))
             {
-                if (format.IoBoundsByNid.TryGetValue(slot.Enh, out (int Min, int Max) bounds) && (slot.IoLevel < bounds.Min || slot.IoLevel > bounds.Max))
+                (int Min, int Max) bounds = format.IoBoundsByNid[slot.Enh];
+                string message = $"a slot in {PyText.Repr(power.FullName)} at level {slot.Level + 1} has IoLevel {slot.IoLevel} for "
+                    + $"enhancement nID {slot.Enh}, outside {bounds.Min} to {bounds.Max}";
+                yield return new Diagnostic("H-FMT-002", "error", message)
                 {
-                    string message = $"a slot in {PyText.Repr(power.FullName)} at level {slot.Level + 1} has IoLevel {slot.IoLevel} for "
-                        + $"enhancement nID {slot.Enh}, outside {bounds.Min} to {bounds.Max}";
-                    yield return new Diagnostic("H-FMT-002", "error", message)
-                    {
-                        Fix = $"write the IoLevel as at most {bounds.Max}",
-                        Expected = bounds.Max,
-                        Actual = slot.IoLevel,
-                    };
-                }
+                    Fix = $"write the IoLevel as at most {bounds.Max}",
+                    Expected = bounds.Max,
+                    Actual = slot.IoLevel,
+                };
             }
         }
     }

@@ -114,12 +114,9 @@ internal static class Absorption
         double duration = 0.0;
         foreach (AssemblyPower power in PetPowers(owner.Nid, source.FullName, inputs))
         {
-            foreach (Effect effect in power.Effects)
+            foreach (Effect effect in power.Effects.Where(effect => string.Equals(effect.EffectType, "SilentKill", StringComparison.Ordinal) && string.Equals(effect.ToWho, "Self", StringComparison.Ordinal) && effect.DelayedTime > 0))
             {
-                if (string.Equals(effect.EffectType, "SilentKill", StringComparison.Ordinal) && string.Equals(effect.ToWho, "Self", StringComparison.Ordinal) && effect.DelayedTime > 0)
-                {
-                    duration = effect.DelayedTime;
-                }
+                duration = effect.DelayedTime;
             }
         }
 
