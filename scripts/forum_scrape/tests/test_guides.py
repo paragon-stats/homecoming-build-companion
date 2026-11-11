@@ -193,7 +193,8 @@ def test_main_captures_theme_guides_without_build_vocabulary(tmp_path: Path, fak
 
 
 def test_content_hash_is_stable_and_short() -> None:
-    assert content_hash("a") == content_hash("a")
+    first = content_hash("a")
+    assert content_hash("a") == first
     assert content_hash("a") != content_hash("b")
     assert len(content_hash("anything")) == 16
 
