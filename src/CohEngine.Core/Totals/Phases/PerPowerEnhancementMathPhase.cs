@@ -160,6 +160,41 @@ internal static class PerPowerEnhancementMathPhase
         return output;
     }
 
+    /// <summary>
+    /// The buffed endurance cost <c>GBPA_Pass5_MultiplyPreBuff</c> leaves on the buffed power, <c>EndCost / fold</c>, for
+    /// each power with an effect that reads <c>power.base&gt;endcost</c>: Mids evaluates that keyword on the buffed power
+    /// after its cost was divided, so the final magnitude reads the reduced cost.
+    /// </summary>
+    /// <param name="included">The included powers.</param>
+    /// <param name="slots">The build's slots.</param>
+    /// <param name="enhDb">The enhancement records.</param>
+    /// <param name="tables">The Maths.mhd tables.</param>
+    /// <param name="forceLevel">The exemplar cutoff.</param>
+    /// <param name="incarnateScalar">The incarnate scalar addends.</param>
+    /// <param name="globalEndRdx">The build's global EnduranceDiscount.</param>
+    /// <param name="rechargeCap">The AT recharge cap the fold takes.</param>
+    /// <returns>The buffed cost by build index, for the powers that need it.</returns>
+    public static Dictionary<int, double> ComputeBuffedEndCosts(
+        IReadOnlyList<Power> included,
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots,
+        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
+        MathTables tables,
+        int forceLevel,
+        IReadOnlyDictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)> incarnateScalar,
+        double globalEndRdx,
+        double rechargeCap)
+    {
+        Dictionary<int, double> output = [];
+        foreach (Power power in included.Where(candidate => candidate.Effects.Any(effect => effect.ExprMagnitude.Contains("power.base>endcost", StringComparison.Ordinal))))
+        {
+            (double preEd, double postEd) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
+            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), AspectRouting.End.Aspect, enhDb, forceLevel, tables, preEdAddend: preEd);
+            output[power.BuildIndex] = F32.Round(power.EndCost / AspectRouting.FoldScalar(AspectRouting.End, aggregate, globalEndRdx, power.IgnoreEnh, rechargeCap, postEd));
+        }
+
+        return output;
+    }
+
     /// <summary>The one effect enhanced only through an enhancement's allowed-effects list, which ED never reaches.</summary>
     private static bool IsAllowedListOnly(Effect effect)
     {

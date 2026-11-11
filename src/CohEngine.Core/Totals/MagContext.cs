@@ -28,6 +28,12 @@ internal sealed record MagContext
     /// <summary>Gets the enhancement multipliers by (build index, effect index).</summary>
     public IReadOnlyDictionary<(int BuildIndex, int EffectIndex), double> EnhMult { get; init; } = new Dictionary<(int BuildIndex, int EffectIndex), double>();
 
+    /// <summary>
+    /// Gets the buffed endurance cost by build index for the powers whose effects read <c>power.base&gt;endcost</c>; the
+    /// final magnitude of such an effect reads it, as Mids does from the buffed power. Empty reads the power's own cost.
+    /// </summary>
+    public IReadOnlyDictionary<int, double> BuffedEndCost { get; init; } = new Dictionary<int, double>();
+
     /// <summary>Gets the eEnhance names, None excluded.</summary>
     public required IReadOnlySet<string> EnhanceNames { get; init; }
 
@@ -65,7 +71,8 @@ internal sealed record MagContext
     /// <returns>The magnitude.</returns>
     public double Mag(Effect effect, Power power)
     {
-        return EffectMagnitude.Mag(effect, power, Mods, Classes, ArchetypeIndex, Expr);
+        Power read = BuffedEndCost.TryGetValue(power.BuildIndex, out double endCost) ? power with { EndCost = endCost } : power;
+        return EffectMagnitude.Mag(effect, read, Mods, Classes, ArchetypeIndex, Expr);
     }
 
     /// <summary><c>Effect.PvXInclude</c> with a non-null archetype.</summary>

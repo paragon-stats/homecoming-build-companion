@@ -17,6 +17,7 @@ internal static class Evaluator
     private static readonly Regex VariableVal = new(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex PowerGroupIn = new(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex PowerGroupNotIn = new(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+    private static readonly Regex OwnerArch = new(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex AndOrCall = new(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
 
     /// <summary>
@@ -42,6 +43,7 @@ internal static class Evaluator
             ("power.base>activateperiod", () => FloatText(power.ActivatePeriod)),
             ("power.base>activatetime", () => FloatText(power.CastTime)),
             ("power.base>areafactor", () => FloatText(power.AoeModifier)),
+            ("power.base>endcost", () => FloatText(power.EndCost)),
             ("power.base>rechargetime", () => FloatText(power.BaseRechargeTime)),
             ("@StdResult", () => FloatText(scale)),
             ("modifier>current", () => FloatText(modifier)),
@@ -69,6 +71,7 @@ internal static class Evaluator
         });
         expr = PowerGroupIn.Replace(expr, match => power.FullName.StartsWith(match.Groups["group"].Value, StringComparison.Ordinal) ? "1" : "0");
         expr = PowerGroupNotIn.Replace(expr, match => power.FullName.StartsWith(match.Groups["group"].Value, StringComparison.Ordinal) ? "0" : "1");
+        expr = OwnerArch.Replace(expr, match => string.Equals(context?.ArchetypeDisplayName, match.Groups["name"].Value, StringComparison.OrdinalIgnoreCase) ? "1" : "0");
         expr = AndOrCall.Replace(expr, "${word}_(");
         Parser.Node tree = Parser.Parse(expr) ?? throw Unported(effect, power, $"text that is not plain arithmetic ('{expr}')");
         return F32.Round(Evaluate(tree, effect, power));

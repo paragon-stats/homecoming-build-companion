@@ -52,6 +52,24 @@ public static class DumpScoring
         return new ComputedBuild(built.ClassName, built.Result.Totals, built.Result.TotalsCapped, metrics);
     }
 
+    /// <summary>Gets the <c>AttribMod.json</c> a computation reads.</summary>
+    /// <param name="midsDirectory">The shared-dump directory.</param>
+    /// <param name="given">The path the caller named, or null for <c>attribmod/AttribMod.json</c> in the shared directory's parent.</param>
+    /// <returns>The path.</returns>
+    public static string AttribModPath(string midsDirectory, string? given)
+    {
+        return given ?? Path.Join(SharedRoot(midsDirectory), "attribmod", "AttribMod.json");
+    }
+
+    /// <summary>Gets the <c>Maths.mhd</c> a computation reads.</summary>
+    /// <param name="midsDirectory">The shared-dump directory.</param>
+    /// <param name="given">The path the caller named, or null for <c>Maths.mhd</c> in the shared directory's parent.</param>
+    /// <returns>The path.</returns>
+    public static string MathsPath(string midsDirectory, string? given)
+    {
+        return given ?? Path.Join(SharedRoot(midsDirectory), "Maths.mhd");
+    }
+
     /// <summary>Gets the directory holding the shared dump directory.</summary>
     /// <param name="midsDirectory">The shared-dump directory.</param>
     /// <returns>Its parent directory.</returns>
@@ -69,7 +87,7 @@ public static class DumpScoring
     internal static Pipeline.Database LoadDatabase(string midsDirectory, string? attribModPath)
     {
         return new(
-            ArchetypeData.LoadAttribMod(attribModPath ?? Path.Join(SharedRoot(midsDirectory), "attribmod", "AttribMod.json")),
+            ArchetypeData.LoadAttribMod(AttribModPath(midsDirectory, attribModPath)),
             ArchetypeData.LoadArchetypes(Path.Join(midsDirectory, "archetypes.json")),
             TotalsData.LoadEnumMaps(Path.Join(midsDirectory, "enums.json")),
             TotalsData.LoadEngineConfig(Path.Join(midsDirectory, "config.json")),
@@ -86,7 +104,7 @@ public static class DumpScoring
         ArgumentNullException.ThrowIfNull(midsDirectory);
         return new SharedDumps(
             LoadDatabase(midsDirectory, attribModPath),
-            MathTables.Load(mathsPath ?? Path.Join(SharedRoot(midsDirectory), "Maths.mhd")),
+            MathTables.Load(MathsPath(midsDirectory, mathsPath)),
             EnhancementData.LoadEnhancementEffects(Path.Join(midsDirectory, "enhancement_effects.json")),
             SetBonusData.LoadSetBonusDb(Path.Join(midsDirectory, "enhancement_sets.json"), Path.Join(midsDirectory, "set_bonus_powers.json")),
             new Lazy<IReadOnlyDictionary<int, AssemblyPower>>(() => AssemblyData.LoadAssemblyPowers(Path.Join(midsDirectory, "assembly_powers.json"))),
@@ -114,6 +132,7 @@ public static class DumpScoring
         ExpressionContext expression = new()
         {
             PrevHpMax = 0.0,
+            ArchetypeDisplayName = data.Classes.Classes[archetypeIndex].DisplayName,
             BuildPowerNames = raw.Select(power => power.FullName).ToHashSet(StringComparer.Ordinal),
             ActivePowerNames = raw.Where(power => power.StatInclude).Select(power => power.FullName).ToHashSet(StringComparer.Ordinal),
             VariableValues = raw.ToLastWinsDictionary(power => power.FullName, power => power.VariableValue),

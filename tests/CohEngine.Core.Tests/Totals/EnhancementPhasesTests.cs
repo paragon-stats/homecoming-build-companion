@@ -258,6 +258,65 @@ public sealed class EnhancementPhasesTests
         Assert.Equal([0], aggregates.Keys);
     }
 
+    [Fact]
+    public void Buffed_end_cost_is_computed_only_for_powers_that_read_the_keyword()
+    {
+        Power reader = Make.Power(Base with { AttribType = "Expression", ExprMagnitude = "power.base>endcost / 2" }) with { BuildIndex = 0, EndCost = F32.Round(8.5) };
+        Power plain = Make.Power() with { BuildIndex = 1, EndCost = F32.Round(8.5) };
+        Dictionary<int, IReadOnlyList<SlotRef>> slots = new() { [0] = [Io50], [1] = [Io50] };
+
+        Dictionary<int, double> costs = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader, plain], slots, EnhDb(Record(("EnduranceDiscount", -1, 0))), Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.0, 5.0);
+
+        double aggregate = Ed.ApplyEd(Schedule.A, Tables.MultIo[49][(int)Schedule.A], Tables);
+        Assert.Equal([0], costs.Keys);
+        Assert.Equal(F32.Round(F32.Round(8.5) / F32.Round(F32.Round(F32.Round(aggregate + 0.0) + 0.0) + 1.0)), costs[0]);
+    }
+
+    [Fact]
+    public void Buffed_end_cost_takes_the_global_discount_and_the_incarnate_addends()
+    {
+        Power reader = Make.Power(Base with { AttribType = "Expression", ExprMagnitude = "power.base>endcost" }) with { BuildIndex = 0, EndCost = F32.Round(8.5) };
+        Dictionary<int, IReadOnlyList<SlotRef>> slots = new() { [0] = [Io50] };
+        Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)> incarnate = new() { [(0, "EnduranceDiscount")] = (0.0, 0.1) };
+        IReadOnlyDictionary<int, EnhancementRecord> enhDb = EnhDb(Record(("EnduranceDiscount", -1, 0)));
+
+        double slotted = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.0, 5.0)[0];
+        double global = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.25, 5.0)[0];
+        double withIncarnate = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, incarnate, 0.0, 5.0)[0];
+
+        Assert.True(global < slotted);
+        Assert.True(withIncarnate < slotted);
+        Assert.True(slotted < F32.Round(8.5));
+    }
+
+    [Fact]
+    public void A_context_with_a_buffed_cost_gives_the_keyword_the_reduced_cost_to_the_powers_that_have_one_only()
+    {
+        Effect reader = Base with { AttribType = "Expression", ExprMagnitude = "power.base>endcost / 2" };
+        Power power = Make.Power(reader) with { BuildIndex = 0, EndCost = F32.Round(8.0) };
+        MagContext context = Context() with { BuffedEndCost = new Dictionary<int, double> { [0] = F32.Round(2.0) } };
+
+        Assert.Equal(1.0, context.Mag(reader, power));
+        Assert.Equal(4.0, context.Mag(reader, power with { BuildIndex = 1 }));
+        Assert.Equal(4.0, Context().Mag(reader, power));
+    }
+
+    [Fact]
+    public void The_pipeline_reads_the_slotted_cost_for_the_keyword_in_the_totals()
+    {
+        Effect reader = Base with { EffectType = "Endurance", Aspect = "Max", ToWho = "Self", AttribType = "Expression", ExprMagnitude = "power.base>endcost", Buffable = false };
+        Power power = Make.Power(reader) with { BuildIndex = 0, PowerType = "Click", EndCost = F32.Round(8.0) };
+        Pipeline.BuildOptions slotted = new() { Slots = Slots(1), EnhDb = EnhDb(Record(("EnduranceDiscount", -1, 0))), Tables = Tables };
+        Pipeline.BuildOptions bare = new() { Slots = new Dictionary<int, IReadOnlyList<SlotRef>>(), EnhDb = EnhDb(), Tables = Tables };
+
+        double unslotted = Compute([power], bare).Totals.EndMax;
+        double reduced = Compute([power], slotted).Totals.EndMax;
+
+        Assert.Equal(F32.Round(8.0), unslotted);
+        Assert.True(reduced < unslotted);
+        Assert.Equal(F32.Round(F32.Round(8.0) / F32.Round(F32.Round(Ed.ApplyEd(Schedule.A, Tables.MultIo[49][(int)Schedule.A], Tables) + 0.0) + 1.0)), reduced);
+    }
+
     private static double[] Bucket(BuffsX buffs, string name)
     {
         return name switch

@@ -18,6 +18,9 @@ internal sealed record ExpressionContext
     /// <summary>Gets each power's VariableValue by full name.</summary>
     public required IReadOnlyDictionary<string, int> VariableValues { get; init; }
 
+    /// <summary>Gets the build's archetype display name (<c>source.owner&gt;arch</c>), or null when the build has none.</summary>
+    public string? ArchetypeDisplayName { get; init; }
+
     /// <summary>Gets the player's hit points as a percentage.</summary>
     public int PlayerHpPercent { get; init; } = DefaultPlayerHpPercent;
 }

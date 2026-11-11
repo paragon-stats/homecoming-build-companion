@@ -26,6 +26,7 @@ public sealed class ExpressionsTests
         { "power.base>areafactor + 1", power => power with { AoeModifier = F32.Round(0.75) }, 1.75 },
         { "power.base>activateperiod * 10", power => power with { ActivatePeriod = F32.Round(0.1) }, 1.0 },
         { "0.7 * power.base>activatetime + 0.4", power => power with { CastTime = F32.Round(2.0), ActivatePeriod = F32.Round(3.0) }, 1.8 },
+        { "power.base>endcost / 2 * 3", power => power with { EndCost = F32.Round(5.2) }, F32.Round(7.8) },
         { "power.base>areafactor", power => power, 1.0 },
         { "power.base>rechargetime", power => power, 0.0 },
     };
@@ -151,6 +152,22 @@ public sealed class ExpressionsTests
         const string expr = "minmax(60 - cfg>player>hp, 0, 100)";
         Assert.Equal(35.0, Evaluate(expr, Context() with { PlayerHpPercent = 25 }));
         Assert.Equal(0.0, Evaluate(expr));
+    }
+
+    [Theory]
+    [InlineData("Blaster", 5.0)]
+    [InlineData("blaster", 5.0)]
+    [InlineData("Scrapper", 0.0)]
+    [InlineData(null, 0.0)]
+    public void The_owner_archetype_test_reads_the_build_archetype(string? archetype, double want)
+    {
+        Assert.Equal(want, Evaluate("source.owner>arch(Blaster) * 5", Context() with { ArchetypeDisplayName = archetype }));
+    }
+
+    [Fact]
+    public void The_owner_archetype_test_is_zero_without_a_context_as_in_mids_for_a_build_with_no_archetype()
+    {
+        Assert.Equal(0.0, Evaluate("source.owner>arch(Blaster) * 5"));
     }
 
     [Fact]
