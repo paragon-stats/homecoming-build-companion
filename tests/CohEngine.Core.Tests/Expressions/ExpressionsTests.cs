@@ -106,6 +106,9 @@ public sealed partial class ExpressionsTests
         { [Boxing, "True", Kick, "False"], true, true },
     };
 
+    [GeneratedRegex(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex OwnerArchetypeKeyword { get; }
+
     [Theory]
     [MemberData(nameof(FloatTexts))]
     public void Float_text_is_the_shortest_round_trip(double value, string text)
@@ -193,7 +196,7 @@ public sealed partial class ExpressionsTests
     [InlineData("source.owner>arch(Blaster) + source.owner>arch(Scrapper)")]
     public void The_owner_archetype_replacement_matches_the_pattern_it_replaced(string expression)
     {
-        Regex pattern = OwnerArchetypeKeyword();
+        Regex pattern = OwnerArchetypeKeyword;
 
         foreach (string? archetype in new[] { "Blaster", "Arachnos Soldier", " Blaster ", null })
         {
@@ -202,9 +205,6 @@ public sealed partial class ExpressionsTests
             Assert.Equal(expected, Evaluator.ReplaceOwnerArchetype(expression, archetype), StringComparer.Ordinal);
         }
     }
-
-    [GeneratedRegex(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
-    private static partial Regex OwnerArchetypeKeyword();
 
     [Fact]
     public void The_owner_archetype_test_is_zero_without_a_context_as_in_mids_for_a_build_with_no_archetype()
