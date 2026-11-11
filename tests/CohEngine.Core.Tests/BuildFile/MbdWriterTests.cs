@@ -410,6 +410,40 @@ public sealed class MbdWriterTests
     }
 
     [Fact]
+    public void Serialize_writes_null_blocks_and_leaves_out_a_null_uid_and_a_null_legacy_key()
+    {
+        MbdDocument document = new()
+        {
+            PowerEntries =
+            [
+                new MbdPowerEntryDoc
+                {
+                    SubPowerEntries = [new MbdSubPowerDoc { PowerName = "S", StatInclude = true }],
+                    SlotEntries = [new MbdSlotDoc { IsInherent = true, FlippedEnhancement = new MbdEnhancementDoc { Enhancement = "Old" } }],
+                },
+            ],
+        };
+
+        string text = Encoding.UTF8.GetString(Mbd.Serialize(document));
+
+        const string Expected = "{\n  \"BuiltWith\": null,\n  \"Level\": null,\n  \"Class\": null,\n  \"Origin\": \"\",\n  \"Alignment\": \"\",\n  \"Name\": \"\",\n  \"Comment\": \"\",\n"
+            + "  \"PowerSets\": [],\n  \"LastPower\": 0,\n  \"PowerEntries\": [\n    {\n      \"PowerName\": null,\n      \"Level\": null,\n      \"StatInclude\": false,\n      \"ProcInclude\": false,\n"
+            + "      \"VariableValue\": 0,\n      \"InherentSlotsUsed\": 0,\n      \"SubPowerEntries\": [\n        {\n          \"PowerName\": \"S\",\n          \"StatInclude\": true\n        }\n      ],\n"
+            + "      \"SlotEntries\": [\n        {\n          \"Level\": null,\n          \"IsInherent\": true,\n          \"Enhancement\": null,\n          \"FlippedEnhancement\": {\n"
+            + "            \"Grade\": \"None\",\n            \"IoLevel\": 1,\n            \"RelativeLevel\": \"Even\",\n            \"Obtained\": false,\n            \"Enhancement\": \"Old\"\n"
+            + "          }\n        }\n      ]\n    }\n  ]\n}\n";
+        Assert.Equal(Expected, text);
+    }
+
+    [Fact]
+    public void The_level_converter_only_reads_so_a_file_is_written_by_serialize()
+    {
+        MbdDocument document = new() { Level = "1" };
+
+        Assert.Throws<NotSupportedException>(() => System.Text.Json.JsonSerializer.Serialize(document, BuildFileJsonContext.Default.MbdDocument));
+    }
+
+    [Fact]
     public void Serialize_escapes_as_python_json_dumps_does()
     {
         MbdDocument document = TankerDocument() with { Name = "é\n\t\b\f\r\"\\\u007f\u0001😀<>&'+\\u00AB" };
