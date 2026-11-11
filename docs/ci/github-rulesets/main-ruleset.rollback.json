@@ -68,6 +68,10 @@
           {
             "context": "Commit Message Lint / release-policy",
             "integration_id": 15368
+          },
+          {
+            "context": "sonar",
+            "integration_id": 15368
           }
         ]
       }
