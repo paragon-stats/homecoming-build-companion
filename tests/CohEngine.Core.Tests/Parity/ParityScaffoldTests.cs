@@ -171,7 +171,7 @@ public sealed class ParityScaffoldTests
                 BinaryPrimitives.WriteInt32LittleEndian(bits, BitConverter.SingleToInt32Bits((float)mag));
                 digest.AppendData(bits);
                 count++;
-                if (!dumped.TryGetValue((effect.EffectType, effect.DamageType, effect.MezType, effect.EtModifies), out Queue<double>? queue) || queue.Count == 0 || F32.Round(queue.Dequeue()) != mag)
+                if (!dumped.TryGetValue((effect.EffectType, effect.DamageType, effect.MezType, effect.EtModifies), out Queue<double>? queue) || queue.Count == 0 || !Exact.Same(F32.Round(queue.Dequeue()), mag))
                 {
                     mismatches++;
                 }
@@ -189,8 +189,8 @@ public sealed class ParityScaffoldTests
         foreach ((string build, string path, double python) in KnownGaps)
         {
             (double mids, double got) = Gap(build, path);
-            Assert.True(got == F32.Round(python), FormattableString.Invariant($"{build}.{path}: the engine gives {got:R}, the Python engine {python:R}"));
-            Assert.True(got != F32.Round(mids), FormattableString.Invariant($"{build}.{path}: now matches Mids ({mids:R}); drop the gap"));
+            Assert.True(Exact.Same(got, F32.Round(python)), FormattableString.Invariant($"{build}.{path}: the engine gives {got:R}, the Python engine {python:R}"));
+            Assert.True(!Exact.Same(got, F32.Round(mids)), FormattableString.Invariant($"{build}.{path}: now matches Mids ({mids:R}); drop the gap"));
         }
     }
 

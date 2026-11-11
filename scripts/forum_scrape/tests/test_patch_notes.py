@@ -4,6 +4,7 @@ import json
 import urllib.error
 from pathlib import Path
 
+from scripts.forum_scrape import patch_notes
 from scripts.forum_scrape.patch_notes import (
     WIKI_BASE,
     Change,
@@ -533,8 +534,6 @@ def test_reparse_rewrites_only_records_that_differ_and_reads_pages_from_the_cach
     assert [r["url"] for r in rows] == [pages[1], pages[0], pages[2]]
 
     # A parser change: the records it alters are rewritten, and match a full regeneration.
-    import scripts.forum_scrape.patch_notes as patch_notes
-
     real = patch_notes.parse_wiki_page
 
     def louder(page: str, url: str) -> PatchEntry:

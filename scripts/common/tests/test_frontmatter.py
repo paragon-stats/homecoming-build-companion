@@ -17,16 +17,20 @@ def write(tmp_path: Path, text: str) -> Path:
 
 class TestNoFrontmatter:
     def test_empty_file_returns_none(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "")) is None
+        path = write(tmp_path, "")
+        assert parse_frontmatter(path) is None
 
     def test_whitespace_only_file_returns_none(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "  \n\n\t\n")) is None
+        path = write(tmp_path, "  \n\n\t\n")
+        assert parse_frontmatter(path) is None
 
     def test_plain_markdown_returns_none(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "# Title\n\nBody text.\n")) is None
+        path = write(tmp_path, "# Title\n\nBody text.\n")
+        assert parse_frontmatter(path) is None
 
     def test_delimiter_not_on_first_line_returns_none(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "\n---\nkey: value\n---\n")) is None
+        path = write(tmp_path, "\n---\nkey: value\n---\n")
+        assert parse_frontmatter(path) is None
 
     def test_missing_file_raises(self, tmp_path: Path) -> None:
         with pytest.raises(FileNotFoundError):
@@ -53,10 +57,12 @@ class TestParsedFrontmatter:
         assert parse_frontmatter(path) == {"title": "Colon: in value"}
 
     def test_empty_frontmatter_block_returns_empty_dict(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "---\n---\nbody\n")) == {}
+        path = write(tmp_path, "---\n---\nbody\n")
+        assert parse_frontmatter(path) == {}
 
     def test_comment_only_frontmatter_returns_empty_dict(self, tmp_path: Path) -> None:
-        assert parse_frontmatter(write(tmp_path, "---\n# just a comment\n---\n")) == {}
+        path = write(tmp_path, "---\n# just a comment\n---\n")
+        assert parse_frontmatter(path) == {}
 
     def test_delimiter_with_surrounding_spaces_recognized(self, tmp_path: Path) -> None:
         path = write(tmp_path, "---\nkey: value\n  ---  \nbody\n")

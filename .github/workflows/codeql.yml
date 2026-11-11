@@ -52,5 +52,34 @@ jobs:
         if: matrix.language == 'csharp'
         run: dotnet build --no-incremental
       - uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370  # v4.39.1
+        if: matrix.language == 'python'
         with:
+          category: /language:${{ matrix.language }}
+          output: ${{ runner.temp }}/codeql-sarif
+      # The upload above is done; this only prints what the Python results contain.
+      - name: List remaining results
+        if: matrix.language == 'python'
+        shell: bash
+        env:
+          SARIF_DIR: ${{ runner.temp }}/codeql-sarif
+        run: python3 -m scripts.ci.filter_sarif --list-only "$SARIF_DIR"
+      # paths-ignore is ignored for a language analysed with a build, so the C# results are
+      # written to disk, stripped of generated obj/ findings, then uploaded under the same
+      # category and tool name.
+      - uses: github/codeql-action/analyze@9b3254085494b55a0f7c4c2b3d2d52cc712ce370  # v4.39.1
+        if: matrix.language == 'csharp'
+        with:
+          category: /language:${{ matrix.language }}
+          upload: never
+          output: ${{ runner.temp }}/codeql-sarif
+      - name: Drop generated-file results
+        if: matrix.language == 'csharp'
+        shell: bash
+        env:
+          SARIF_DIR: ${{ runner.temp }}/codeql-sarif
+        run: python -m scripts.ci.filter_sarif "$SARIF_DIR"
+      - uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370  # v4.39.1
+        if: matrix.language == 'csharp'
+        with:
+          sarif_file: ${{ runner.temp }}/codeql-sarif
           category: /language:${{ matrix.language }}

@@ -24,7 +24,7 @@ public static class EffectData
         return
         [
             .. groups
-                .Select(group => (IReadOnlyList<string>)[.. group.Where(name => !string.IsNullOrEmpty(name))])
+                .Select<IReadOnlyList<string>, IReadOnlyList<string>>(group => [.. group.Where(name => !string.IsNullOrEmpty(name))])
                 .Where(group => group.Count > 0),
         ];
     }

@@ -179,14 +179,14 @@ public sealed class MbdWriterTests
     {
         byte[] written = Mbd.Serialize(Mbd.WriteMbd(TankerSpec.Spec, Schedule, Database));
 
-        Assert.Equal(File.ReadAllBytes(Path.Combine(BuildFileFixtures.Root, "builds", "wpss_tanker_leadership.mbd")), written);
+        Assert.Equal(File.ReadAllBytes(Path.Join(BuildFileFixtures.Root, "builds", "wpss_tanker_leadership.mbd")), written);
     }
 
     [Fact]
     public void Midsreborn_loads_every_pick_and_slot_where_the_writer_put_them()
     {
         BuildFixture dump = Fixtures.Store.Build("wpss_tanker_leadership");
-        MbdBuild build = Mbd.LoadMbd(Path.Combine(BuildFileFixtures.Root, "builds", "wpss_tanker_leadership.mbd"));
+        MbdBuild build = Mbd.LoadMbd(Path.Join(BuildFileFixtures.Root, "builds", "wpss_tanker_leadership.mbd"));
         Dictionary<int, string> uidOf = BuildFileFixtures.Database.Enhancements.ToDictionary(pair => pair.Value.Nid, pair => pair.Key);
         Dictionary<string, Power> loaded = dump.Powers.ToDictionary(power => power.FullName, StringComparer.Ordinal);
         Dictionary<int, IReadOnlyList<SlotRef>> slots = dump.Slots.ToDictionary(entry => entry.BuildIndex, entry => entry.Slots);

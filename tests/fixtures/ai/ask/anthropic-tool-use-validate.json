@@ -1,0 +1,12 @@
+{
+  "id": "msg_ask_validate",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-test-model",
+  "content": [
+    {"type": "tool_use", "id": "toolu_ask_02", "name": "validate", "input": {}}
+  ],
+  "stop_reason": "tool_use",
+  "stop_sequence": null,
+  "usage": {"input_tokens": 50, "output_tokens": 20}
+}

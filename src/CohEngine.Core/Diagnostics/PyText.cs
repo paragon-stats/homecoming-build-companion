@@ -2,6 +2,8 @@ using System.Globalization;
 using System.Numerics;
 using System.Text;
 
+using CohEngine.Core.Maths;
+
 namespace CohEngine.Core.Diagnostics;
 
 /// <summary>Python's text forms (<c>repr</c>, <c>str</c>, float repr), so messages and JSON match the Python engine byte for byte.</summary>
@@ -90,7 +92,7 @@ public static class PyText
             return value > 0 ? "inf" : "-inf";
         }
 
-        if (value == 0.0)
+        if (Exact.Same(value, 0.0))
         {
             return double.IsNegative(value) ? "-0.0" : "0.0";
         }

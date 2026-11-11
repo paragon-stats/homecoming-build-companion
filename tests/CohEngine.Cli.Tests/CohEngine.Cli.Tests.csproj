@@ -17,6 +17,7 @@
 
   <!-- The CLI's behavior lives in Core's CliRunner; Program.cs is a shim the in-process tests do not load. -->
   <ItemGroup>
+    <ProjectReference Include="..\..\src\CohEngine.Cli\CohEngine.Cli.csproj" />
     <ProjectReference Include="..\..\src\CohEngine.Core\CohEngine.Core.csproj" />
     <ProjectReference Include="..\CohEngine.TestSupport\CohEngine.TestSupport.csproj" />
   </ItemGroup>

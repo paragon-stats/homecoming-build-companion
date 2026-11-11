@@ -37,7 +37,7 @@ public sealed class MxdTests
 
     private static (byte[] Raw, int UncompressedSize) FixturePayload()
     {
-        string text = File.ReadAllText(Path.Combine(BuildFileFixtures.Root, "mxd", "Scrapper - Dark-Shield.mxd"));
+        string text = File.ReadAllText(Path.Join(BuildFileFixtures.Root, "mxd", "Scrapper - Dark-Shield.mxd"));
         ShareBlock block = Mxd.DecodeShareBlock(text);
         return (Mxd.HexDecode(block.Payload), block.UncompressedSize);
     }
