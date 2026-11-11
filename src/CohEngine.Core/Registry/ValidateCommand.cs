@@ -31,12 +31,13 @@ public static class ValidateCommand
     /// <param name="source">The resolver.</param>
     /// <param name="path">The <c>.mbd</c> file.</param>
     /// <param name="midsDirectory">The shared-dump directory.</param>
+    /// <param name="checks">Which registries to run; both by default.</param>
     /// <returns>The hard-limit diagnostics followed by the legality diagnostics.</returns>
-    public static IReadOnlyList<Diagnostic> RunMbd(IMbdBuildSource source, string path, string midsDirectory)
+    public static IReadOnlyList<Diagnostic> RunMbd(IMbdBuildSource source, string path, string midsDirectory, ValidateChecks checks = ValidateChecks.All)
     {
         ArgumentNullException.ThrowIfNull(source);
         MbdValidationInput build = source.Load(path, midsDirectory);
-        return Fold(build.Powers, build.Slots, midsDirectory, build.Format, ValidateChecks.All);
+        return Fold(build.Powers, build.Slots, midsDirectory, build.Format, checks);
     }
 
     private static IReadOnlyList<Diagnostic> Fold(IReadOnlyList<Power> powers, IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots, string midsDirectory, MbdFormat? format, ValidateChecks checks)

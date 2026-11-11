@@ -26,9 +26,25 @@ public sealed class EngineToolCatalogTests
     }
 
     [Fact]
-    public void Chain_is_not_offered_because_the_mcp_tool_is_a_placeholder()
+    public void Chain_is_offered_and_takes_its_optional_arguments_as_text()
     {
-        Assert.DoesNotContain(EngineToolCatalog.DumpTools, tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal));
+        EngineToolSpec chain = EngineToolCatalog.DumpTools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal));
+        Dictionary<string, string> arguments = new(StringComparer.Ordinal) { ["stance"] = "melee", ["target"] = "spawn:2", ["move"] = "run", ["form"] = string.Empty, ["standoff"] = "30" };
+
+        using JsonDocument result = JsonDocument.Parse(EngineToolCatalog.Call(chain, McpHarness.BuildDir(Slotted), arguments));
+
+        Assert.Equal("melee", result.RootElement.GetProperty("stances")[0].GetProperty("stance").GetString());
+    }
+
+    [Fact]
+    public void A_standoff_that_is_not_a_number_comes_back_as_error_text()
+    {
+        EngineToolSpec chain = EngineToolCatalog.DumpTools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal));
+        Dictionary<string, string> arguments = new(StringComparer.Ordinal) { ["standoff"] = "far" };
+
+        string result = EngineToolCatalog.Call(chain, McpHarness.BuildDir(Slotted), arguments);
+
+        Assert.StartsWith("error: the argument standoff is not a number: 'far'", result, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -55,11 +71,21 @@ public sealed class EngineToolCatalogTests
     [Fact]
     public void An_engine_failure_comes_back_as_error_text_with_its_code()
     {
+        EngineToolSpec totals = EngineToolCatalog.DumpTools.Single(tool => string.Equals(tool.Name, "totals", StringComparison.Ordinal));
+
+        string result = EngineToolCatalog.Call(totals, Path.Join(McpHarness.Store.Root, "no-such-build"), None);
+
+        Assert.StartsWith("error: E164", result, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void An_unknown_set_comes_back_as_an_unknown_result()
+    {
         EngineToolSpec lookup = EngineToolCatalog.DumpTools.Single(tool => string.Equals(tool.Name, "set_bonus_lookup", StringComparison.Ordinal));
         Dictionary<string, string> arguments = new(StringComparer.Ordinal) { ["setName"] = "No Such Set" };
 
-        string result = EngineToolCatalog.Call(lookup, McpHarness.BuildDir(Slotted), arguments);
+        using JsonDocument result = JsonDocument.Parse(EngineToolCatalog.Call(lookup, McpHarness.BuildDir(Slotted), arguments));
 
-        Assert.StartsWith("error: E166", result, StringComparison.Ordinal);
+        Assert.StartsWith("E166", result.RootElement.GetProperty("unknown").GetString(), StringComparison.Ordinal);
     }
 }

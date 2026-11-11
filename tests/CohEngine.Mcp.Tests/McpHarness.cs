@@ -52,7 +52,8 @@ internal sealed class McpHarness : IAsyncDisposable
 
     public static string BuildDir(string name)
     {
-        return Path.Join(Store.MidsDirectory, "builds", name);
+        string parity = Path.Join(Store.MidsDirectory, "builds", name);
+        return Directory.Exists(parity) ? parity : Path.Join(Store.MidsDirectory, "regressions", name);
     }
 
     public async Task<CallToolResult> CallAsync(string tool, params (string Name, object Value)[] arguments)

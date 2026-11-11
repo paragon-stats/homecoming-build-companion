@@ -13,6 +13,8 @@ namespace CohEngine.Mcp;
 [JsonSerializable(typeof(TotalsResult))]
 [JsonSerializable(typeof(SetBonusResult))]
 [JsonSerializable(typeof(PowerResult))]
+[JsonSerializable(typeof(ChainResult))]
+[JsonSerializable(typeof(double?))]
 [JsonSerializable(typeof(SetBonusView))]
 [ExcludeFromCodeCoverage(Justification = "Source-generated serializer metadata; every tool that uses it is covered.")]
 internal sealed partial class McpJsonContext : JsonSerializerContext;

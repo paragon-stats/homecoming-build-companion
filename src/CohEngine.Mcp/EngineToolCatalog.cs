@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using ModelContextProtocol;
@@ -13,7 +14,9 @@ public static class EngineToolCatalog
 
     private const string FullNameSchema = """{"type":"object","properties":{"fullName":{"type":"string","description":"The power's full name, for example Scrapper_Melee.Dark_Melee.Shadow_Punch."}},"required":["fullName"]}""";
 
-    /// <summary>Gets the tools that work on a Mids dump directory; <c>chain</c> is left out because the MCP tool of that name is a placeholder.</summary>
+    private const string ChainSchema = """{"type":"object","properties":{"stance":{"type":"string","enum":["melee","ranged","hybrid","all"],"description":"The stance to plan; all by default."},"form":{"type":"string","description":"The form to plan for; the build's own by default."},"target":{"type":"string","description":"single, or spawn:N for a spawn of N; single by default."},"move":{"type":"string","enum":["run","jump","fly"],"description":"How the character moves between attacks; run by default."},"standoff":{"type":"string","description":"The ranged standoff in feet, as a number; the default when omitted."}}}""";
+
+    /// <summary>Gets the tools that work on a Mids dump directory.</summary>
     public static IReadOnlyList<EngineToolSpec> DumpTools { get; } =
     [
         new("rules", "List the engine's rule registries: legality rules, hard-limit rules, enhancement aspect handlers and scoring metrics.", NoArguments, (_, _) => JsonSerializer.Serialize(EngineTools.Rules(), McpJsonContext.Default.RulesResult)),
@@ -23,6 +26,7 @@ public static class EngineToolCatalog
         new("totals", "Compute the build's base totals (defense, resistance, recovery, recharge and the rest), uncapped and capped, with defense and resistance as percentages.", NoArguments, (build, _) => JsonSerializer.Serialize(EngineTools.Totals(build), McpJsonContext.Default.TotalsResult)),
         new("set_bonus_lookup", "Look up an enhancement set's bonuses by set name (UID), with every magnitude resolved.", SetNameSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.SetBonusLookup(Required(arguments, "setName"), build), McpJsonContext.Default.SetBonusResult)),
         new("power_lookup", "Look up a power by full name in the build's powers data. Levels are game levels (1-based).", FullNameSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.PowerLookup(Required(arguments, "fullName"), build), McpJsonContext.Default.PowerResult)),
+        new("chain", "Plan the build's attack chains with the chain planner: one plan per stance. Every argument is optional.", ChainSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.Chain(build, null, Optional(arguments, "stance") ?? "all", Optional(arguments, "form"), Optional(arguments, "target") ?? "single", Optional(arguments, "move") ?? "run", Standoff(arguments)), McpJsonContext.Default.ChainResult)),
     ];
 
     /// <summary>Runs a tool; an engine failure comes back as text for the model instead of an exception.</summary>
@@ -41,6 +45,17 @@ public static class EngineToolCatalog
         {
             return "error: " + exception.Message;
         }
+    }
+
+    private static string? Optional(IReadOnlyDictionary<string, string> arguments, string name)
+    {
+        return arguments.GetValueOrDefault(name);
+    }
+
+    private static double? Standoff(IReadOnlyDictionary<string, string> arguments)
+    {
+        string? text = Optional(arguments, "standoff");
+        return text is null ? null : double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double feet) ? feet : throw new ArgumentException($"the argument standoff is not a number: '{text}'", nameof(arguments));
     }
 
     private static string Required(IReadOnlyDictionary<string, string> arguments, string name)

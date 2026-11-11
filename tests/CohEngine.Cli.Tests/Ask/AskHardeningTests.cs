@@ -244,12 +244,12 @@ public sealed class AskHardeningTests : IDisposable
     public async Task An_engine_tool_error_goes_back_to_the_model_as_text()
     {
         WithKey("COH_ASK_HARD_KEY_11");
-        SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-bad-power.json"), Fixture("anthropic-answer.json"));
+        SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-bad-chain.json"), Fixture("anthropic-answer.json"));
 
         (int exit, _, _) = await RunAsync(handler, Args("anthropic", "COH_ASK_HARD_KEY_11"));
 
         Assert.Equal(0, exit);
-        Assert.Contains("error: E167: no power named", handler.Sent[1], StringComparison.Ordinal);
+        Assert.Contains("argument --stance: invalid choice", handler.Sent[1], StringComparison.Ordinal);
     }
 
     [Fact]
