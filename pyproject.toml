@@ -129,6 +129,8 @@ select = [
     "N",      # pep8-naming
     "D",      # pydocstyle
     "RUF",    # ruff-specific rules
+    "PT012",  # pytest.raises block with more than one statement (Sonar S5778)
+    "PT018",  # composite assertion split into separate asserts (Sonar S9073)
 ]
 ignore = [
     "E501",   # line too long (handled by formatter)
