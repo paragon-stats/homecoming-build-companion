@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text;
-using System.Text.Json;
 
+using CohEngine.Core.Chain;
 using CohEngine.Core.Data;
 
 namespace CohEngine.Core.BuildFile;
@@ -16,10 +16,6 @@ public static partial class Mbd
     private const int ExemplarLevel = 15;
     private const int ExemplarSlots = 2;
 
-    private static readonly JsonSerializerOptions WriterOptions = new() { WriteIndented = true, NewLine = "\n", Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
-
-    private static readonly BuildFileJsonContext WriterContext = new(WriterOptions);
-
     /// <summary>Gets the provenance block of the database the Homecoming builds are written against.</summary>
     public static BuildMetaData Homecoming { get; } = new("Mids Reborn", "3.8.6.0", "Homecoming", "2026.1.1242");
 
@@ -31,32 +27,7 @@ public static partial class Mbd
     /// <returns>The file's bytes.</returns>
     public static byte[] Serialize(MbdDocument document)
     {
-        string json = JsonSerializer.Serialize(document, WriterContext.MbdDocument);
-        StringBuilder text = new(json.Length + 1);
-        for (int index = 0; index < json.Length; index++)
-        {
-            char current = json[index];
-            if (current == '\\')
-            {
-                // Copy the escape whole; a \u escape's hex digits go lowercase.
-                text.Append(current).Append(json[++index]);
-                if (json[index] == 'u')
-                {
-                    text.Append(json.AsSpan(index + 1, 4).ToString().ToLowerInvariant());
-                    index += 4;
-                }
-            }
-            else if (current > '~')
-            {
-                text.Append(CultureInfo.InvariantCulture, $"\\u{(int)current:x4}");
-            }
-            else
-            {
-                text.Append(current);
-            }
-        }
-
-        return new UTF8Encoding(encoderShouldEmitUTF8Identifier: false).GetBytes(text.Append('\n').ToString());
+        return new UTF8Encoding(encoderShouldEmitUTF8Identifier: false).GetBytes(PyJson.Dumps(ToTree(document)) + "\n");
     }
 
     /// <summary>The 0-based <c>PowerSets</c> arity check input: how many entries MidsReborn would index.</summary>

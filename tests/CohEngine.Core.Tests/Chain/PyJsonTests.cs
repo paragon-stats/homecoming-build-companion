@@ -33,6 +33,26 @@ public sealed class PyJsonTests
     }
 
     [Fact]
+    public void Dumps_writes_ints_big_integers_and_int_and_string_lists()
+    {
+        PyObject value = new() { { "a", 7 }, { "b", System.Numerics.BigInteger.Pow(10, 20) }, { "c", new List<int> { 1, 2 } }, { "d", new List<string> { "x" } } };
+
+        Assert.Equal("{\n  \"a\": 7,\n  \"b\": 100000000000000000000,\n  \"c\": [\n    1,\n    2\n  ],\n  \"d\": [\n    \"x\"\n  ]\n}", PyJson.Dumps(value));
+    }
+
+    [Fact]
+    public void Dumps_can_write_non_finite_floats_as_python_repr_text()
+    {
+        Assert.Equal("[\n  nan,\n  inf,\n  -inf\n]", PyJson.Dumps(new List<object?> { double.NaN, double.PositiveInfinity, double.NegativeInfinity }, pythonReprNonFinite: true));
+    }
+
+    [Fact]
+    public void Dumps_refuses_a_value_with_no_json_form()
+    {
+        Assert.Equal("no JSON form for DateTime (Parameter 'value')", Assert.Throws<ArgumentException>(() => PyJson.Dumps(DateTime.UnixEpoch)).Message);
+    }
+
+    [Fact]
     public void A_diagnostic_renders_its_required_keys_only_when_nothing_else_is_set()
     {
         Diagnostic diagnostic = new("P-X-001", "info", "message") { Path = "build" };

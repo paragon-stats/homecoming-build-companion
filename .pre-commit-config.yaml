@@ -87,6 +87,7 @@ repos:
             | scripts/lane-[ab]/
             | data/diff/
             | inbox/
+            | LICENSE$
           )
 
   - repo: https://github.com/pre-commit/pre-commit-hooks

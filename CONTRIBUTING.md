@@ -32,7 +32,9 @@ The guides in [docs/style-guides/](docs/style-guides/README.md) are the source o
 
 ## Dependencies
 
-Apache-2.0-compatible licenses only (MIT, BSD, ISC, Apache-2.0, CC0). No GPL, AGPL or MPL. See [dependencies.md](docs/style-guides/dependencies.md).
+The project is [GPL-3.0-only](LICENSE).
+A dependency's license must allow distribution under GPL-3.0: permissive licenses such as MIT, BSD, ISC, Apache-2.0 and CC0 qualify, and a license that forbids GPL distribution does not.
+Record each dependency's license in [dependencies.md](docs/style-guides/dependencies.md).
 
 ## AI assistance
 
