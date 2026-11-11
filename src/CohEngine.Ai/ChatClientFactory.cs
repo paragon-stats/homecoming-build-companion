@@ -1,6 +1,8 @@
 using System.ClientModel;
 using System.ClientModel.Primitives;
 
+using CohEngine.Ai.Anthropic;
+
 using Microsoft.Extensions.AI;
 
 using OpenAI;
@@ -17,6 +19,22 @@ public static class ChatClientFactory
     public static IChatClient Create(ChatProviderOptions options)
     {
         ArgumentNullException.ThrowIfNull(options);
+        if (options.Provider == ChatProvider.Anthropic)
+        {
+            Uri? root = null;
+            if (options.BaseUrl is not null && (!Uri.TryCreate(options.BaseUrl, UriKind.Absolute, out root) || root.Scheme is not ("http" or "https")))
+            {
+                throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{options.BaseUrl}' is not an absolute http(s) URL; pass --base-url https://host");
+            }
+
+            if (root is not null)
+            {
+                RequireSecure(root, local: false);
+            }
+
+            return new AnthropicChatClient(options.Model, options.BaseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
+        }
+
         if (options.Provider != ChatProvider.OpenAiCompatible)
         {
             throw new ArgumentOutOfRangeException(nameof(options), options.Provider, "Unknown provider.");
@@ -47,6 +65,7 @@ public static class ChatClientFactory
             throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{url}' is not an absolute http(s) URL; pass --base-url https://host/v1");
         }
 
+        RequireSecure(endpoint, options.Preset == ChatPreset.Local);
         OpenAIClientOptions clientOptions = new() { Endpoint = endpoint };
         if (options.Handler is not null)
         {
@@ -54,5 +73,14 @@ public static class ChatClientFactory
         }
 
         return new ErrorMappingChatClient(new OpenAIClient(new ApiKeyCredential(key), clientOptions).GetChatClient(options.Model).AsIChatClient(), keyVariable);
+    }
+
+    // A key sent over plain http crosses the network readable; only a loopback host or the local preset may do that.
+    private static void RequireSecure(Uri endpoint, bool local)
+    {
+        if (!local && !endpoint.IsLoopback && !string.Equals(endpoint.Scheme, Uri.UriSchemeHttps, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{endpoint}' is http on a remote host, which would send the key unencrypted; use https, or a loopback address such as http://localhost");
+        }
     }
 }

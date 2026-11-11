@@ -1,0 +1,12 @@
+{
+  "id": "msg_ask_truncated",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-test-model",
+  "content": [
+    {"type": "text", "text": "The build is a Scrapper and the first metrics are"}
+  ],
+  "stop_reason": "max_tokens",
+  "stop_sequence": null,
+  "usage": {"input_tokens": 90, "output_tokens": 4096}
+}

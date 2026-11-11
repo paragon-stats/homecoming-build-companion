@@ -1,0 +1,12 @@
+{
+  "id": "msg_ask_bad_power",
+  "type": "message",
+  "role": "assistant",
+  "model": "claude-test-model",
+  "content": [
+    {"type": "tool_use", "id": "toolu_ask_05", "name": "power_lookup", "input": {"fullName": "No.Such.Power"}}
+  ],
+  "stop_reason": "tool_use",
+  "stop_sequence": null,
+  "usage": {"input_tokens": 50, "output_tokens": 20}
+}
