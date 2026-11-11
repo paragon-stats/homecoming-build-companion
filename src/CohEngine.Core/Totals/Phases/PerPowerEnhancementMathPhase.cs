@@ -171,8 +171,7 @@ internal static class PerPowerEnhancementMathPhase
     /// <param name="tables">The Maths.mhd tables.</param>
     /// <param name="forceLevel">The exemplar cutoff.</param>
     /// <param name="incarnateScalar">The incarnate scalar addends.</param>
-    /// <param name="globalEndRdx">The build's global EnduranceDiscount.</param>
-    /// <param name="rechargeCap">The AT recharge cap the fold takes.</param>
+    /// <param name="fold">The build's global EnduranceDiscount and the AT recharge cap the fold takes.</param>
     /// <returns>The buffed cost by build index, for the powers that need it.</returns>
     public static Dictionary<int, double> ComputeBuffedEndCosts(
         IReadOnlyList<Power> included,
@@ -181,15 +180,14 @@ internal static class PerPowerEnhancementMathPhase
         MathTables tables,
         int forceLevel,
         IReadOnlyDictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)> incarnateScalar,
-        double globalEndRdx,
-        double rechargeCap)
+        EndFold fold)
     {
         Dictionary<int, double> output = [];
         foreach (Power power in included.Where(candidate => candidate.Effects.Any(effect => effect.ExprMagnitude.Contains("power.base>endcost", StringComparison.Ordinal))))
         {
             (double preEd, double postEd) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
             double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), AspectRouting.End.Aspect, enhDb, forceLevel, tables, preEdAddend: preEd);
-            output[power.BuildIndex] = F32.Round(power.EndCost / AspectRouting.FoldScalar(AspectRouting.End, aggregate, globalEndRdx, power.IgnoreEnh, rechargeCap, postEd));
+            output[power.BuildIndex] = F32.Round(power.EndCost / AspectRouting.FoldScalar(AspectRouting.End, aggregate, fold.GlobalEndRdx, power.IgnoreEnh, fold.RechargeCap, postEd));
         }
 
         return output;
@@ -286,6 +284,11 @@ internal static class PerPowerEnhancementMathPhase
 
         return !Exact.Same(accumulator, 0.0) ? F32.Round(1.0 + accumulator) : null;
     }
+
+    /// <summary>The terms the endurance fold takes beyond the slots.</summary>
+    /// <param name="GlobalEndRdx">The build's global EnduranceDiscount.</param>
+    /// <param name="RechargeCap">The AT recharge cap.</param>
+    internal sealed record EndFold(double GlobalEndRdx, double RechargeCap);
 
     /// <summary>The memo key: two effects of one power with the same key share one aggregate.</summary>
     private sealed record MultiplierKey(string Aspect, int SubEnh, bool SkipEd, bool NonPositive, bool NonNegative, double PreEd, double Global, double PostEd);

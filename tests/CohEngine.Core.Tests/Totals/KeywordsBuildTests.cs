@@ -91,8 +91,7 @@ public sealed class KeywordsBuildTests
             built.Tables,
             built.Data.Config.ForceLevel,
             built.Result.IncarnateAddends!.Scalar,
-            built.Result.GlobalEnhance.EndDiscount,
-            Fixtures.Store.Archetypes.Classes[archetypeIndex].RechargeCap);
+            new PerPowerEnhancementMathPhase.EndFold(built.Result.GlobalEnhance.EndDiscount, Fixtures.Store.Archetypes.Classes[archetypeIndex].RechargeCap));
         MagContext baseContext = new()
         {
             Mods = Fixtures.Store.AttribMods,

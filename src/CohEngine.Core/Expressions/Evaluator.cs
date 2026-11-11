@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using CohEngine.Core.Data;
@@ -17,7 +18,6 @@ internal static class Evaluator
     private static readonly Regex VariableVal = new(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex PowerGroupIn = new(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex PowerGroupNotIn = new(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex OwnerArch = new(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
     private static readonly Regex AndOrCall = new(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
 
     /// <summary>
@@ -71,10 +71,45 @@ internal static class Evaluator
         });
         expr = PowerGroupIn.Replace(expr, match => power.FullName.StartsWith(match.Groups["group"].Value, StringComparison.Ordinal) ? "1" : "0");
         expr = PowerGroupNotIn.Replace(expr, match => power.FullName.StartsWith(match.Groups["group"].Value, StringComparison.Ordinal) ? "0" : "1");
-        expr = OwnerArch.Replace(expr, match => string.Equals(context?.ArchetypeDisplayName, match.Groups["name"].Value, StringComparison.OrdinalIgnoreCase) ? "1" : "0");
+        expr = ReplaceOwnerArchetype(expr, context?.ArchetypeDisplayName);
         expr = AndOrCall.Replace(expr, "${word}_(");
         Parser.Node tree = Parser.Parse(expr) ?? throw Unported(effect, power, $"text that is not plain arithmetic ('{expr}')");
         return F32.Round(Evaluate(tree, effect, power));
+    }
+
+    /// <summary>
+    /// Replaces each <c>source.owner&gt;arch(Name)</c>, a name of ASCII letters and white space, with 1 when it equals the
+    /// build's archetype display name, ignoring case, and 0 otherwise, as Mids does; any other text is left as it is.
+    /// </summary>
+    /// <param name="expression">The expression text.</param>
+    /// <param name="archetype">The build's archetype display name, or null when there is none.</param>
+    /// <returns>The expression with the keyword replaced.</returns>
+    internal static string ReplaceOwnerArchetype(string expression, string? archetype)
+    {
+        const string Prefix = "source.owner>arch(";
+        StringBuilder result = new();
+        int position = 0;
+        for (int start = expression.IndexOf(Prefix, StringComparison.Ordinal); start >= 0; start = expression.IndexOf(Prefix, position, StringComparison.Ordinal))
+        {
+            int nameStart = start + Prefix.Length;
+            int end = nameStart;
+            while (end < expression.Length && (char.IsAsciiLetter(expression[end]) || char.IsWhiteSpace(expression[end])))
+            {
+                end++;
+            }
+
+            if (end == nameStart || end == expression.Length || expression[end] != ')')
+            {
+                result.Append(expression, position, start + 1 - position);
+                position = start + 1;
+                continue;
+            }
+
+            result.Append(expression, position, start - position).Append(string.Equals(archetype, expression[nameStart..end], StringComparison.OrdinalIgnoreCase) ? '1' : '0');
+            position = end + 1;
+        }
+
+        return result.Append(expression, position, expression.Length - position).ToString();
     }
 
     /// <summary>A float32 as .NET formats it into a string: the shortest text that reads back to the same value.</summary>

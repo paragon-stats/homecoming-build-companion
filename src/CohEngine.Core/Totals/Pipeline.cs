@@ -83,7 +83,7 @@ internal static class Pipeline
             toggleEndAgg = PerPowerEnhancementMathPhase.ComputeToggleEndAgg(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar);
             buffContext = buffContext with
             {
-                BuffedEndCost = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar, selfEnhance.Effect[data.Enums.Maps["eStatType"]["BuffEndRdx"]], archetype.RechargeCap),
+                BuffedEndCost = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar, new PerPowerEnhancementMathPhase.EndFold(selfEnhance.Effect[data.Enums.Maps["eStatType"]["BuffEndRdx"]], archetype.RechargeCap)),
             };
         }
 

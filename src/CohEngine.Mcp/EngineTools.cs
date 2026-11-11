@@ -153,7 +153,7 @@ public sealed class EngineTools
                     .FirstOrDefault(candidate => string.Equals(candidate.FullName, fullName, StringComparison.OrdinalIgnoreCase));
                 if (power is null)
                 {
-                    return new PowerResult(DataVersion.Of(buildDir), null, $"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json");
+                    return new PowerResult(DataVersion.Of(buildDir), Power: null, $"{ErrorCodes.E167}: no power named '{fullName}' in {buildDir}; check the full name against the dump's powers_effects.json");
                 }
 
                 // Older dumps lack these two keys and the loader fills them in; the record in the file says which are real.
@@ -177,7 +177,7 @@ public sealed class EngineTools
                         [.. power.Effects.Select(effect => effect.EffectType).Distinct(StringComparer.Ordinal)],
                         hasRequires ? power.RequiresPowers : null,
                         hasChosen ? power.Chosen : null),
-                    null,
+                    Unknown: null,
                     unknown.Count == 0 ? null : unknown);
             },
             Given(buildDir, null));

@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Expressions;
 using CohEngine.Core.Maths;
@@ -162,6 +164,31 @@ public sealed class ExpressionsTests
     public void The_owner_archetype_test_reads_the_build_archetype(string? archetype, double want)
     {
         Assert.Equal(want, Evaluate("source.owner>arch(Blaster) * 5", Context() with { ArchetypeDisplayName = archetype }));
+    }
+
+    [Theory]
+    [InlineData("source.owner>arch(Blaster)")]
+    [InlineData("1 + source.owner>arch(blaster) * 2 + source.owner>arch(Scrapper)")]
+    [InlineData("source.owner>arch(Arachnos Soldier)")]
+    [InlineData("source.owner>arch( Blaster )")]
+    [InlineData("source.owner>arch(Blaster")]
+    [InlineData("source.owner>arch()")]
+    [InlineData("source.owner>arch(Blaster2)")]
+    [InlineData("source.owner>arch(Blaster) source.owner>arch(")]
+    [InlineData("source.owner>arch(source.owner>arch(Blaster)")]
+    [InlineData("source.owner>arch(")]
+    [InlineData("no keyword here")]
+    [InlineData("")]
+    public void The_owner_archetype_replacement_matches_the_pattern_it_replaced(string expression)
+    {
+        Regex pattern = new(@"source\.owner\>arch\((?<name>[a-zA-Z\s]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+
+        foreach (string? archetype in new[] { "Blaster", "Arachnos Soldier", " Blaster ", null })
+        {
+            string expected = pattern.Replace(expression, match => string.Equals(archetype, match.Groups["name"].Value, StringComparison.OrdinalIgnoreCase) ? "1" : "0");
+
+            Assert.Equal(expected, Evaluator.ReplaceOwnerArchetype(expression, archetype), StringComparer.Ordinal);
+        }
     }
 
     [Fact]

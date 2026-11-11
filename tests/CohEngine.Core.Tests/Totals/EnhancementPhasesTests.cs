@@ -265,7 +265,7 @@ public sealed class EnhancementPhasesTests
         Power plain = Make.Power() with { BuildIndex = 1, EndCost = F32.Round(8.5) };
         Dictionary<int, IReadOnlyList<SlotRef>> slots = new() { [0] = [Io50], [1] = [Io50] };
 
-        Dictionary<int, double> costs = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader, plain], slots, EnhDb(Record(("EnduranceDiscount", -1, 0))), Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.0, 5.0);
+        Dictionary<int, double> costs = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader, plain], slots, EnhDb(Record(("EnduranceDiscount", -1, 0))), Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), new PerPowerEnhancementMathPhase.EndFold(0.0, 5.0));
 
         double aggregate = Ed.ApplyEd(Schedule.A, Tables.MultIo[49][(int)Schedule.A], Tables);
         Assert.Equal([0], costs.Keys);
@@ -280,9 +280,9 @@ public sealed class EnhancementPhasesTests
         Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)> incarnate = new() { [(0, "EnduranceDiscount")] = (0.0, 0.1) };
         IReadOnlyDictionary<int, EnhancementRecord> enhDb = EnhDb(Record(("EnduranceDiscount", -1, 0)));
 
-        double slotted = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.0, 5.0)[0];
-        double global = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), 0.25, 5.0)[0];
-        double withIncarnate = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, incarnate, 0.0, 5.0)[0];
+        double slotted = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), new PerPowerEnhancementMathPhase.EndFold(0.0, 5.0))[0];
+        double global = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, new Dictionary<(int BuildIndex, string Aspect), (double PreEd, double PostEd)>(), new PerPowerEnhancementMathPhase.EndFold(0.25, 5.0))[0];
+        double withIncarnate = PerPowerEnhancementMathPhase.ComputeBuffedEndCosts([reader], slots, enhDb, Tables, 50, incarnate, new PerPowerEnhancementMathPhase.EndFold(0.0, 5.0))[0];
 
         Assert.True(global < slotted);
         Assert.True(withIncarnate < slotted);

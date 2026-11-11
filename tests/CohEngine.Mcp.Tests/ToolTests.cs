@@ -346,9 +346,9 @@ public sealed class ToolTests
         JsonNode hardLimits = await harness.CallJsonAsync("check_hard_limits", ("buildDir", mbd), ("midsDir", mids)).ConfigureAwait(true);
         JsonNode legality = await harness.CallJsonAsync("check_legality", ("buildDir", mbd), ("midsDir", mids)).ConfigureAwait(true);
 
-        (string Output, int ExitCode) cli = CliCapture.Run(new MbdBuildSource(mids), "validate", mbd, "--format", "json");
+        (string output, _) = CliCapture.Run(new MbdBuildSource(mids), "validate", mbd, "--format", "json");
         JsonArray together = [.. hardLimits["diagnostics"]!.AsArray().Concat(legality["diagnostics"]!.AsArray()).Select(item => item!.DeepClone())];
-        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(cli.Output), together));
+        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output), together));
     }
 
     [Fact]
