@@ -36,7 +36,7 @@ CSHARP = "csharpsquid:"
 _HUNK = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+\d+(?:,\d+)? @@")
 _SONAR_CSHARP_ID = re.compile(r"S\d+")
 _DRIVE = re.compile(r"/[A-Za-z]:")
-_REF = re.compile(r"[A-Za-z0-9_][A-Za-z0-9_./-]*")
+_REF = re.compile(r"(?a)\w[\w./-]*")
 
 Fetch = Callable[[str], dict[str, Any]]
 GitDiff = Callable[[str], str]

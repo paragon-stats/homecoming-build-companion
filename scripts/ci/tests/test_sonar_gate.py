@@ -356,6 +356,9 @@ def test_the_default_fetch_reads_json_from_the_url(monkeypatch: pytest.MonkeyPat
     assert urls == ["https://example.test/x"]
 
 
-def test_a_base_that_could_be_an_option_is_refused(tmp_path: Path) -> None:
+@pytest.mark.parametrize("base", ["--output=x", "é/x", "origin/é"])
+def test_a_base_that_is_an_option_or_not_ascii_is_refused(tmp_path: Path, base: str) -> None:
+    arguments = _args(tmp_path, "# x\n", "--base", base)
+
     with pytest.raises(SystemExit):
-        main(_args(tmp_path, "# x\n", "--base", "--output=x"))
+        main(arguments)

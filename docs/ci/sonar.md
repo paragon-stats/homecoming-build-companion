@@ -54,8 +54,10 @@ Three checks, printed as one count per entry:
   The gate fails when no `Issues.json` exists, when an expected project has none, or when a file is not SARIF with at least one run.
   It passes when every expected file is present and parses, whatever the number of results, so a repository with no findings passes.
   The log line `read N Issues.json files for P expected projects: R results, C csharpsquid` shows what it read.
-  Whether the compiler writes a file for a project with no diagnostics is not established from the scanner's documentation.
-  The step therefore lists the folders it found before the gate runs, and a missing file fails closed until that listing shows otherwise.
+  The first run showed one `Issues.json` and one `ProjectInfo.xml` in each of `.sonarqube/out/0` to `.sonarqube/out/10`.
+  The scanner writes them during the build, they are still present after the end step, and they include Sonar's own `S` rules.
+  Not yet observed: a project with no findings at all.
+  If it gets no `Issues.json`, the gate fails with `Issues.json missing for N of P projects: [folder names]`; look in those folders for a `ProjectInfo.xml` without a results file.
 - **Baseline (`baseline`, pull requests).**
   Every finding open on `main` under an entry's prefix must be in code the pull request changes.
   For `csharpsquid` rules and any `:S3776` rule the finding's file must be changed.
