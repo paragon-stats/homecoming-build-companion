@@ -160,11 +160,11 @@ The C# port prints byte-identical text and JSON to the Python on every sample bu
 
 | Python | C# | Holds |
 | --- | --- | --- |
-| `damage_model.py` | `DamageLayers/DamageModel` and one file per record and enum | `DamageModel` holds the source names and `Evaluate`; the model records and the `Stance`, `Role`, `Shape` and `Delivery` enums each have their own file. |
-| `damage_sources.py` | `DamageLayers/DamageSources` | The chain, aura, patch and buff-cast sources. |
-| `damage_modifiers.py`, `at_modifiers.py` | `DamageLayers/DamageModifiers`, `AtModifiers` | Click buffs, target debuffs and the archetype inherents. |
-| `damage_plugins.py` | `DamageLayers/DamagePlugins` | The default source and modifier lists, in the Python registration order. |
-| `damage_reference.py` | `DamageLayers/DamageReference` | The Mids-computed damage figures that stand in for the unported damage port. |
+| `damage_model.py` | `Damage/DamageModel` and one file per record and enum | `DamageModel` holds the source names and `Evaluate`; the model records and the `Stance`, `Role`, `Shape` and `Delivery` enums each have their own file. |
+| `damage_sources.py` | `Damage/DamageSources` | The chain, aura, patch and buff-cast sources. |
+| `damage_modifiers.py`, `at_modifiers.py` | `Damage/DamageModifiers`, `AtModifiers` | Click buffs, target debuffs and the archetype inherents. |
+| `damage_plugins.py` | `Damage/DamagePlugins` | The default source and modifier lists, in the Python registration order. |
+| `damage_reference.py` | `Damage/DamageReference` | The Mids-computed damage figures that stand in for the unported damage port. |
 | `attack_profile.py` | `Chain/AttackProfiles`, `CanonicalJson` | The classifier and the canonical power reader. |
 | `attack_chain.py` | `Chain/AttackChain` | The sequencer and the subset planner. |
 | `pet_damage.py` | `Pets/PetDamage` | Summons, pets and the pet source. |
@@ -172,7 +172,6 @@ The C# port prints byte-identical text and JSON to the Python on every sample bu
 | `power_names.py` | `Names/PowerNames` | The internal and display name resolver. |
 | `chain_report.py`, `__main__.py` chain | `Chain/ChainReport`, `ChainCommand`, `PyJson` | Setup, rules, the text and JSON renderers and the command. |
 
-The namespace of the damage folder is `DamageLayers`, because a `Damage` namespace shadows identifiers the numeric core's tests already use.
 The command's logic lives in Core as `ChainCommand`, like `CliRunner`, so the test projects can reach it and the coverage gate measures it.
 `CliRunner` routes `chain` to it, as a case beside `rules` and `validate`.
 

@@ -1,9 +1,9 @@
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
 using CohEngine.TestSupport;
 
-namespace CohEngine.Core.Tests.DamageLayers;
+namespace CohEngine.Core.Tests.Damage;
 
 // Ported from tests/test_damage_modifiers.py.
 public sealed class DamageModifiersTests

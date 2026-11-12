@@ -1,5 +1,5 @@
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
