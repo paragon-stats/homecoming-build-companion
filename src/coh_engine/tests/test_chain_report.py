@@ -107,7 +107,8 @@ def test_fixture_reports_every_stance_with_positive_dps() -> None:
     assert melee.report.scaled_dps["chain"] > 0.0
     assert hybrid.report.scaled_dps["chain"] > 0.0
     assert melee.chain is not None
-    assert ranged.chain is not None and ranged.chain.rotation == ("Epic.Stalker_Soul_Mastery.Moonbeam",)
+    assert ranged.chain is not None
+    assert ranged.chain.rotation == ("Epic.Stalker_Soul_Mastery.Moonbeam",)
     assert all(r.report.total_dps > 0.0 for r in results)
 
 
@@ -278,7 +279,8 @@ def test_linked_res_debuff_counts_freezing_rain_once() -> None:
     melt = resolve("Defender_Buff.Thermal_Radiation.Melt_Armor")
     assert melt is not None
     melt_magnitude, melt_duration = chain_report.linked_res_debuff(melt, resolve, mods, classes, index)
-    assert melt_magnitude > 0.0 and melt_duration > 0.0  # its own templates, no summoned entity
+    assert melt_magnitude > 0.0
+    assert melt_duration > 0.0  # its own templates, no summoned entity
 
 
 def test_linked_res_debuff_with_an_unknown_table_is_e61() -> None:
@@ -341,7 +343,8 @@ def test_a_pet_data_gap_skips_that_summon_and_reports_it(monkeypatch: pytest.Mon
     setup = _setup(mids_db=FIXTURES.parents[3] / "tests" / "fixtures" / "attribmod")
     assert setup.context.pets == ()
     (skip,) = [s for s in setup.skipped if s[0] == "Inherent.Inherent.Brawl"]
-    assert "E61" in skip[1] and "pet" in skip[1]
+    assert "E61" in skip[1]
+    assert "pet" in skip[1]
 
 
 def test_a_non_data_gap_pet_error_still_propagates(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -654,7 +657,8 @@ def test_text_view_for_sustainable_and_draining_builds() -> None:
     ):
         assert needle in text
     assert "health: max" in text
-    assert "best sustainable: " in text and "best overall: " in text
+    assert "best sustainable: " in text
+    assert "best overall: " in text
     assert "P-CHAIN-001" in text
     assert "    Scrapper_Melee.Dark_Melee.Smite: " in text  # per-item detail under its layer
     assert f"rotation: {MOONBEAM}" in stance_to_text(setup, ranged)

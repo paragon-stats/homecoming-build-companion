@@ -199,7 +199,8 @@ def test_accolades_do_not_count_toward_picks(schedule: LevelSchedule) -> None:
     ]
     powers += [_power(24, "Temporary_Powers.Accolades.Task_Force_Commander", level=1, pick_level=0)]
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS)
-    assert "H-POWER-001" not in _rule_ids(diags) and "H-POWER-003" not in _rule_ids(diags)
+    assert "H-POWER-001" not in _rule_ids(diags)
+    assert "H-POWER-003" not in _rule_ids(diags)
 
 
 def test_auto_granted_subpower_does_not_count_toward_picks(schedule: LevelSchedule) -> None:
@@ -250,7 +251,8 @@ def test_pick_out_of_schedule_order_errors(schedule: LevelSchedule) -> None:
     powers = [_power(i, f"Tanker_Melee.Super_Strength.P{i}", pick_level=lv) for i, lv in enumerate(levels)]
     diags = [d for d in check_hard_limits(powers, {}, schedule, MAX_SLOTS) if d.rule_id == "H-POWER-003"]
     assert [(d.expected, d.actual) for d in diags] == [(47, 49), (49, 47)]
-    assert "pick 23 of 24" in diags[0].message and "Tanker_Melee.Super_Strength.P22" in diags[0].message
+    assert "pick 23 of 24" in diags[0].message
+    assert "Tanker_Melee.Super_Strength.P22" in diags[0].message
 
 
 def test_picks_in_schedule_order_are_legal(schedule: LevelSchedule) -> None:
@@ -431,7 +433,9 @@ def test_seven_powersets_violate_h_fmt_001(schedule: LevelSchedule) -> None:
     powers = [_power(0, "Scrapper_Melee.Dark_Melee.Smite", pick_level=0)]
     diags = check_hard_limits(powers, {}, schedule, MAX_SLOTS, format=_format(("a",) * 7))
     found = [d for d in diags if d.rule_id == "H-FMT-001"]
-    assert len(found) == 1 and found[0].expected == 8 and found[0].actual == 7
+    assert len(found) == 1
+    assert found[0].expected == 8
+    assert found[0].actual == 7
     assert "pad" in (found[0].fix or "")
 
 

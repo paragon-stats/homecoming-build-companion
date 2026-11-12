@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>How a power shapes the play cycle.</summary>
 public enum Role

@@ -74,7 +74,8 @@ def test_picks_are_written_in_schedule_order_whatever_order_the_spec_lists_them(
     first, fourth = build.power_entries[1], build.power_entries[3]
     assert [s.level + 1 for s in first.slot_entries] == [1, 3, 3]  # (A) at the pick, then the first grants
     assert [s.level + 1 for s in fourth.slot_entries] == [4, 5]
-    assert build.last_power == 24 and build.meta.database_version == "2026.1.1242"
+    assert build.last_power == 24
+    assert build.meta.database_version == "2026.1.1242"
 
 
 def test_a_pick_off_its_schedule_level_is_refused(schedule: LevelSchedule) -> None:
@@ -220,8 +221,10 @@ def test_inherents_and_incarnates_follow_the_picks(schedule: LevelSchedule) -> N
         "Inherent.Fitness.Stamina",
         "Incarnate.Alpha.Cardiac_Radial_Paragon",
     ]
-    assert build.power_entries[24].slot_entries[0].enhancement is None and build.power_entries[25].slot_entries == ()
-    assert len(build.power_entries[26].slot_entries) == 2 and build.power_entries[-1].level + 1 == 50
+    assert build.power_entries[24].slot_entries[0].enhancement is None
+    assert build.power_entries[25].slot_entries == ()
+    assert len(build.power_entries[26].slot_entries) == 2
+    assert build.power_entries[-1].level + 1 == 50
 
 
 def test_inherents_the_spec_omits_are_added_as_mids_adds_them(schedule: LevelSchedule) -> None:
@@ -240,7 +243,8 @@ def test_inherents_the_spec_omits_are_added_as_mids_adds_them(schedule: LevelSch
     assert added["Inherent.Inherent.Rest"].level + 1 == 2  # the power's own database level
     assert len(added["Inherent.Inherent.Brawl"].slot_entries) == 1  # takes enhancements: one empty free slot
     assert added["Inherent.Inherent.Gauntlet"].slot_entries == ()  # takes none
-    assert added["Inherent.Fitness.Swift"].stat_include and not added["Inherent.Inherent.Brawl"].stat_include
+    assert added["Inherent.Fitness.Swift"].stat_include
+    assert not added["Inherent.Inherent.Brawl"].stat_include
 
 
 @pytest.mark.parametrize(
@@ -314,7 +318,8 @@ def test_a_one_based_level_is_refused(schedule: LevelSchedule) -> None:
         doc["Level"] = bad
         with pytest.raises(BuildSpecError, match=r"E75: Level "):
             check_mbd_invariants(doc, DB)
-    assert level_text_problem("0") is None and level_text_problem("49") is None
+    assert level_text_problem("0") is None
+    assert level_text_problem("49") is None
 
 
 def test_a_missing_inherent_is_refused(schedule: LevelSchedule) -> None:

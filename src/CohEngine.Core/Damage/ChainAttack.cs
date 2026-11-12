@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>A damaging or damage-buffing power: cadence, damage per activation, profile, buff and debuff riders.</summary>
 public sealed record ChainAttack

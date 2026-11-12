@@ -258,7 +258,8 @@ def test_diagnostics_are_diagnostic_instances(enh_leg: dict[int, EnhancementLega
     """check_build_legality yields Diagnostic objects (rendered by diagnostics.py)."""
     power = _power(0, "p", enhancements=())
     diags = check_build_legality([power], {0: (_slot(43),)}, enh_leg, set_db)  # Recharge, class not accepted
-    assert diags and all(isinstance(d, Diagnostic) for d in diags)
+    assert diags
+    assert all(isinstance(d, Diagnostic) for d in diags)
 
 
 def test_lone_set_piece_earns_no_bonus(enh_leg: dict[int, EnhancementLegality], set_db: SetBonusDb) -> None:

@@ -142,7 +142,8 @@ def test_load_index_maps_reports_an_absent_dump(tmp_path: Path) -> None:
 
 def test_load_index_maps_reads_a_real_dump() -> None:
     powers, enhancements = load_index_maps(DUMP)
-    assert powers and enhancements
+    assert powers
+    assert enhancements
 
 
 def test_dedupe_credits_the_earliest_poster_and_lists_reposters(tmp_path: Path) -> None:
@@ -302,7 +303,8 @@ def test_cli_dedupe_can_also_group_by_author(tmp_path: Path, capsys) -> None:
 
     assert main(["--out", str(tmp_path), "--dedupe", "--group-by-author", "1"]) == 0
     out = capsys.readouterr().out
-    assert "distinct build(s)" in out and "author folder(s)" in out
+    assert "distinct build(s)" in out
+    assert "author folder(s)" in out
 
 
 def test_dedupe_uses_the_index_maps_when_a_dump_is_given(tmp_path: Path) -> None:

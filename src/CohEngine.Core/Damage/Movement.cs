@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>How fast the character closes or opens range, and the standoff it keeps.</summary>
 /// <param name="SpeedFtPerSec">The speed.</param>

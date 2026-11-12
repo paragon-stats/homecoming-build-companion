@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>One source's contribution: DPS, cast-time share, endurance drain, and a per-item breakdown.</summary>
 public sealed record SourceResult

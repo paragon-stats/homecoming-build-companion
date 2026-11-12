@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>One modifier: its multiplier at full uptime, its uptime, and the assumption behind it.</summary>
 public sealed record ModifierResult

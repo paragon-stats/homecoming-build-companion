@@ -40,7 +40,8 @@ def test_read_index_keeps_one_row_per_path(tmp_path: Path) -> None:
         encoding="utf-8",
     )
     rows = read_index(tmp_path)
-    assert len(rows) == 1 and rows[0]["posted_at"] == "new"
+    assert len(rows) == 1
+    assert rows[0]["posted_at"] == "new"
 
 
 def test_author_counts_ignore_the_readable_export(indexed: Path) -> None:

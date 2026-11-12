@@ -2,7 +2,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>The layered model's source names and evaluator.</summary>
 public static class DamageModel

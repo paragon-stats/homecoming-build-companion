@@ -146,8 +146,10 @@ def test_mastermind_soldiers_resolve_two_entities() -> None:
     assert (soldier.pet_name, soldier.pet_count, soldier.duration) == ("Soldier", 2, inf)
     assert (medic.pet_name, medic.pet_count) == ("Medic", 1)
     # The summon's cast and endurance are charged once, on the first entity.
-    assert soldier.summon_cast_time > 0 and medic.summon_cast_time == 0.0
-    assert soldier.summon_end_cost > 0 and medic.summon_end_cost == 0.0
+    assert soldier.summon_cast_time > 0
+    assert medic.summon_cast_time == 0.0
+    assert soldier.summon_end_cost > 0
+    assert medic.summon_end_cost == 0.0
     assert soldier.summon_recharge == medic.summon_recharge == 5.0
     assert {a.full_name for a in soldier.pet_attacks} == {
         "Mastermind_Pets.Soldier.Brawl",
@@ -244,7 +246,8 @@ def test_mastermind_soldiers_dps_is_positive_and_permanent() -> None:
     soldier, medic = _build(SOLDIERS)
     result = pet_source(_ctx(soldier, medic))
     assert result is not None
-    assert result.dps > 0 and result.timeline_share == 0.0
+    assert result.dps > 0
+    assert result.timeline_share == 0.0
     assert [name for name, _ in result.detail] == ["Soldier", "Medic"]
 
 
@@ -357,7 +360,9 @@ def test_synthetic_pet_counts_ticks_and_skips_non_attacks(tmp_path: Path) -> Non
     The conditional, procs-per-minute, PVP-only (also as a child) and self-targeted groups are skipped.
     """
     (pet,) = _synthetic(tmp_path, _create(), damage_enhancement={"Tst.Set.Summon": 0.0})
-    assert pet.pet_name == "Tst_Pet" and pet.duration == inf and pet.pet_count == 1
+    assert pet.pet_name == "Tst_Pet"
+    assert pet.duration == inf
+    assert pet.pet_count == 1
     (zap,) = pet.pet_attacks  # the toggle aura is not an attack
     assert zap.damage == pytest.approx(44.488 * 5, rel=1e-5)
 

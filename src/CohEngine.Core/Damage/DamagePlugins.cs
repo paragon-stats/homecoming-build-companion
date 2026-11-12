@@ -1,6 +1,6 @@
 using CohEngine.Core.Pets;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>The default source and modifier registries, in the order the Python port registers them.</summary>
 public static class DamagePlugins

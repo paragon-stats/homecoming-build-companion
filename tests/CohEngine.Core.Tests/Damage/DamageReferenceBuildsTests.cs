@@ -1,12 +1,12 @@
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
-namespace CohEngine.Core.Tests.DamageLayers;
+namespace CohEngine.Core.Tests.Damage;
 
 // Ported from tests/test_damage_reference.py, test_attack_profile.py and the loader cases that read real or edited dumps.
 public sealed class DamageReferenceBuildsTests

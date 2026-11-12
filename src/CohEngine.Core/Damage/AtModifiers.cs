@@ -2,7 +2,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>Archetype-inherent damage modifiers: expected-value approximations read from the assumptions.</summary>
 public static class AtModifiers

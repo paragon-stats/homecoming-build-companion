@@ -89,7 +89,8 @@ def test_walk_listing_reports_the_pages_it_could_not_read(fake_net) -> None:
     routes[f"{forum}page/3/"] = b""  # page 2 has no route: it fails
     fetcher = Fetcher("test-agent", delay=0.0)
     rows, failed = walk_listing(fetcher, forum)
-    assert rows == {TOPIC: "2024-01-01T00:00:00Z"} and failed == [f"{forum}page/2/"]
+    assert rows == {TOPIC: "2024-01-01T00:00:00Z"}
+    assert failed == [f"{forum}page/2/"]
     assert walk_listing(fetcher, forum, pages=1) == (rows, [])  # a capped walk never reaches page 2
     assert walk_listing(fetcher, forum + "gone/") == ({}, [forum + "gone/"])
 
@@ -102,7 +103,8 @@ def test_fetcher_gunzips_and_waits_between_requests(fake_net, monkeypatch: pytes
     fetcher = Fetcher("test-agent", delay=5.0)
 
     assert fetcher.get(TOPIC + "#gzip") == "compressed body"
-    assert slept and slept[-1] > 0  # the delay was actually observed
+    assert slept
+    assert slept[-1] > 0  # the delay was actually observed
 
 
 def test_fetcher_reports_and_survives_a_failed_fetch(fake_net, capsys: pytest.CaptureFixture[str]) -> None:
@@ -146,7 +148,8 @@ def test_attached_build_file_is_downloaded_and_written(fake_net, tmp_path: Path)
     saved = tmp_path / "99999-a-bots-build-thread" / "111111-greenbone.mbd"
     assert json.loads(saved.read_text(encoding="utf-8"))["Class"] == "Class_Mastermind"
     meta = json.loads((saved.with_suffix(".mbd.json")).read_text(encoding="utf-8"))
-    assert meta["kind"] == "attachment" and meta["author"] == "Greenbone"
+    assert meta["kind"] == "attachment"
+    assert meta["author"] == "Greenbone"
 
 
 def test_main_crawls_a_forum_listing_and_writes(fake_net, tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
@@ -185,10 +188,12 @@ def test_check_block_rejects_what_is_not_a_share_block() -> None:
     assert check_block("just some prose") == ("unknown", False, "not a recognised share block", None)
     bad_mxd = "|MxDz;10;4;6;HEX;|\n|ZZZZZZ|"
     kind, ok, error, decoded = check_block(bad_mxd)
-    assert (kind, ok, decoded) == ("mxd", False, None) and error
+    assert (kind, ok, decoded) == ("mxd", False, None)
+    assert error
     header_only = "|MBD;10;4;6;BASE64;|"
     kind, ok, error, _ = check_block(header_only)
-    assert (kind, ok) == ("mbd", False) and "payload" in error
+    assert (kind, ok) == ("mbd", False)
+    assert "payload" in error
 
 
 def test_mbd_block_rejects_a_corrupt_payload() -> None:

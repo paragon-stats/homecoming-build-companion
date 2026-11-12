@@ -176,7 +176,8 @@ def test_index_rows_carry_type_archetype_subjects_powers_and_issue(tmp_path: Pat
     assert claws["powerset_names"] == ["Claws", "Super Reflexes"]
     assert (claws["archetype"], claws["era"], claws["document_type"]) == ("scrapper", "pre-sunset", "build post")
     assert claws["powers"] == ["Scrapper_Melee.Claws.Eviscerate", "Scrapper_Melee.Claws.Spin"]
-    assert claws["issue"] == "issue-12" and claws["date_posted"] == "2009-03-03"
+    assert claws["issue"] == "issue-12"
+    assert claws["date_posted"] == "2009-03-03"
 
     notes = by_file["pre-sunset/powersets/notes.md"]
     # Display name, internal name and a second display mention reach three; "Speed" is a pool and never matches.
@@ -191,7 +192,8 @@ def test_index_rows_carry_type_archetype_subjects_powers_and_issue(tmp_path: Pat
     assert by_file["mechanics/odd.md"]["powerset_names"] == ["Claws"]
 
     widow = by_file["archetypes/arachnos/widow.md"]
-    assert widow["powerset_names"] == ["Widow Training"] and widow["powersets"] == ["Arachnos_Widow.Widow_Training"]
+    assert widow["powerset_names"] == ["Widow Training"]
+    assert widow["powersets"] == ["Arachnos_Widow.Widow_Training"]
 
 
 def test_a_set_the_capture_archetype_cannot_take_is_not_a_subject(tmp_path: Path) -> None:
@@ -330,7 +332,8 @@ def test_main_reports_empty_roots_and_a_missing_patch_index(tmp_path: Path, monk
     ]
     assert main(argv) == 1
     err = capsys.readouterr().err
-    assert "E25:" in err and f"E23: no captures under {tmp_path / 'community'}" in err
+    assert "E25:" in err
+    assert f"E23: no captures under {tmp_path / 'community'}" in err
     assert not (tmp_path / "out").exists()
 
 
@@ -356,7 +359,8 @@ def _name_filter_run(tmp_path: Path, monkeypatch, names: str | None) -> Path:
 def test_a_row_naming_a_banned_person_is_withheld_and_counted_not_named(tmp_path: Path, monkeypatch, capsys) -> None:
     out = _name_filter_run(tmp_path, monkeypatch, "Zorblax, Other Name")
     printed = capsys.readouterr().out
-    assert "2 row(s) withheld by the name filter" in printed and "Zorblax" not in printed
+    assert "2 row(s) withheld by the name filter" in printed
+    assert "Zorblax" not in printed
     rows = [json.loads(line) for line in (out / "guides.jsonl").read_text(encoding="utf-8").splitlines()]
     assert [r["file"] for r in rows] == ["mechanics/claws.md", "mechanics/zorblaxian.md"]
     assert (out / "folded.jsonl").read_text(encoding="utf-8") == ""

@@ -45,11 +45,11 @@ public sealed class EnhancementPhasesTests
     public static TheoryData<Effect, string, int> EnhancePassRoutes => new()
     {
         { Base with { EffectType = "Enhancement", EtModifies = "Mez", MezType = "Held", ToWho = "Self" }, "mez", Mez("Held") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "Fire", ToWho = "Self" }, "defense", Damage("Fire") },
+        { Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "Fire", ToWho = "Self" }, "defense", TotalsMake.Damage("Fire") },
         { Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "None", ToWho = "Self" }, "effect", Type("Defense") },
         { Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "None", ToWho = "Self" }, "effect", Type("Resistance") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "Cold", ToWho = "Self" }, "resistance", Damage("Cold") },
-        { Base with { EffectType = "DamageBuff", DamageType = "Fire", ToWho = "Self" }, "damage", Damage("Fire") },
+        { Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "Cold", ToWho = "Self" }, "resistance", TotalsMake.Damage("Cold") },
+        { Base with { EffectType = "DamageBuff", DamageType = "Fire", ToWho = "Self" }, "damage", TotalsMake.Damage("Fire") },
         { Base with { EffectType = "Enhancement", EtModifies = "Heal", ToWho = "Self" }, "effect", Type("Heal") },
         { Base with { EffectType = "Enhancement", EtModifies = "RechargeTime", ToWho = "Self" }, "effect", Type("RechargeTime") },
         { Base with { EffectType = "Enhancement", EtModifies = "SpeedRunning", ToWho = "Self", BuffMode = "Normal" }, "effect", Type("SpeedRunning") },
@@ -198,7 +198,7 @@ public sealed class EnhancementPhasesTests
     public void Defiance_damage_buff_is_excluded()
     {
         Effect effect = Base with { EffectType = "DamageBuff", DamageType = "Fire", ToWho = "Self", EffectClass = "Tertiary", IsEnhancementEffect = true };
-        Assert.Equal(0.0, EnhancePass(Make.Power(effect)).Damage[Damage("Fire")]);
+        Assert.Equal(0.0, EnhancePass(Make.Power(effect)).Damage[TotalsMake.Damage("Fire")]);
     }
 
     [Fact]
