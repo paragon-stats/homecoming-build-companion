@@ -1,10 +1,10 @@
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 using CohEngine.TestSupport;
 
-namespace CohEngine.Core.Tests.DamageLayers;
+namespace CohEngine.Core.Tests.Damage;
 
 // Ported from tests/test_damage_model.py. The decorator registries become explicit lists, so the registry test is the
 // default-list test at the end.

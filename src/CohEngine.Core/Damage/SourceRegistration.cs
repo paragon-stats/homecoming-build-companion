@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>A registered damage source and whether it fills the remainder of the timeline.</summary>
 /// <param name="Run">The source.</param>

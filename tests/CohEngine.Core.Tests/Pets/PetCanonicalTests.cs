@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;

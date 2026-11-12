@@ -446,3 +446,7 @@ dotnet_diagnostic.IDE0290.severity = none
 dotnet_diagnostic.IDE0046.severity = none
 # House convention omits `this.` qualification (IDE0003/naming rules make fields unambiguous).
 dotnet_diagnostic.SA1101.severity = none
+
+# Analyzer findings held at zero: each rule is raised to warning, which the build treats as an error.
+[{src,tests}/**.cs]
+dotnet_diagnostic.IDE0130.severity = warning

@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Text.Json;
 
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 using CohEngine.Core.Pets;

@@ -1,4 +1,4 @@
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 
 namespace CohEngine.TestSupport;
 

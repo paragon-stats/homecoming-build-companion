@@ -1,7 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 

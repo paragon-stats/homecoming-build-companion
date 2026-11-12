@@ -5,7 +5,7 @@ using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>Reads the damage inputs Mids computed, standing in for the unported damage port.</summary>
 public static class DamageReference

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-using CohEngine.Core.DamageLayers;
+using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Chain;

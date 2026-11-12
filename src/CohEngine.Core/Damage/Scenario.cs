@@ -1,7 +1,7 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.Maths;
 
-namespace CohEngine.Core.DamageLayers;
+namespace CohEngine.Core.Damage;
 
 /// <summary>The fight being modelled: how many foes stand in reach of an area attack.</summary>
 /// <param name="Targets">The foe count.</param>
