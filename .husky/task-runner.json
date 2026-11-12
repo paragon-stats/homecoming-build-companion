@@ -20,6 +20,24 @@
       "args": ["run", "scripts/dev/check-banned-words.cs"]
     },
     {
+      "name": "check-coverage-exclusions",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/check-coverage-exclusions.cs", "--", "--staged"]
+    },
+    {
+      "name": "python-pre-commit",
+      "group": "pre-commit",
+      "command": "sh",
+      "args": ["scripts/dev/hook-python.sh", "-m", "pre_commit", "run", "--hook-stage", "pre-commit"]
+    },
+    {
+      "name": "check-commit-message",
+      "group": "commit-msg",
+      "command": "sh",
+      "args": ["scripts/dev/hook-python.sh", "scripts/testing/hooks/check_commit_message.py", "${args}"]
+    },
+    {
       "name": "build",
       "group": "pre-push",
       "command": "dotnet",
@@ -30,6 +48,12 @@
       "group": "pre-push",
       "command": "dotnet",
       "args": ["test", "--no-build"]
+    },
+    {
+      "name": "check-banned-words-push",
+      "group": "pre-push",
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/check-banned-words.cs"]
     }
   ]
 }

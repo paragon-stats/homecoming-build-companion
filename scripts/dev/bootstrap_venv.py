@@ -22,6 +22,7 @@ import tomllib
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
+from scripts.common import git_runner
 from scripts.testing.hooks.check_git_signing import check_git_signing
 
 EXIT_OK = 0
@@ -31,6 +32,36 @@ PYPROJECT_FILE = "pyproject.toml"
 STATE_FILENAME = ".bootstrap_state.json"
 State = Mapping[str, object]
 _REQ_NAME_RE = re.compile(r"^[A-Za-z0-9_.-]+")
+
+
+HUSKY_HOOKS_PATH = ".husky"
+HUSKY_INSTALL_COMMAND = "dotnet tool restore && dotnet husky install"
+
+
+HUSKY_HOOK_FILES = ("pre-commit", "commit-msg", "pre-push")
+HUSKY_STALE_CHECKOUT = "this checkout predates the Husky hooks: merge or rebase onto main"
+
+
+def husky_hooks_status(repo_root: Path) -> tuple[str, str]:
+    """Return (found, action) for the Husky hooks; ("installed", "") when git will run them here.
+
+    core.hooksPath must resolve to this checkout's .husky (git resolves a relative path against the
+    checkout root), and the three hook files must exist and be executable: git runs no hook, and does
+    not fall back to .git/hooks, when the file is missing.
+    """
+    result = git_runner.run_git(["config", "core.hooksPath"], cwd=repo_root)
+    configured = result.stdout.strip() if result.returncode == 0 else ""
+    husky_dir = repo_root / HUSKY_HOOKS_PATH
+    if not configured or (repo_root / configured).resolve() != husky_dir.resolve():
+        return ("missing", f"Run: {HUSKY_INSTALL_COMMAND}")
+    if not all(os.access(husky_dir / name, os.X_OK) for name in HUSKY_HOOK_FILES):
+        return ("hook files missing", HUSKY_STALE_CHECKOUT)
+    return ("installed", "")
+
+
+def husky_hooks_installed(repo_root: Path) -> bool:
+    """Return True when git runs the committed Husky hooks in this checkout."""
+    return husky_hooks_status(repo_root)[0] == "installed"
 
 
 def repo_root_from_script(script_path: Path) -> Path:
@@ -368,7 +399,7 @@ def collect_state(
         "venv_python": str(venv_python) if venv_python else None,
         "venv_exists": (repo_root / VENV_DIR).exists(),
         "pyproject_present": pyproject_present,
-        "pre_commit_hook_exists": (repo_root / ".git" / "hooks" / "pre-commit").exists(),
+        "pre_commit_hook_exists": husky_hooks_installed(repo_root),
         "state_matches": state_matches,
         "pyproject_matches": pyproject_matches,
         "pre_commit_matches": pre_commit_matches,
@@ -389,7 +420,7 @@ def build_plan(state: State) -> list[str]:
     if venv_missing or not state.get("pyproject_matches"):
         actions.append("upgrade_pip")
         actions.append("install_dev_extras")
-    if venv_missing or (not state.get("pre_commit_hook_exists")) or (not state.get("pre_commit_matches")):
+    if venv_missing or not state.get("pre_commit_matches"):
         actions.append("install_pre_commit_hooks")
     return actions
 
@@ -413,10 +444,12 @@ def describe_plan(state: State) -> list[str]:
         lines.append("upgrade_pip: no-op (bootstrap state unchanged)")
         lines.append("install_dev_extras: no-op (bootstrap state unchanged)")
 
-    if not venv_missing and state.get("pre_commit_matches") and state.get("pre_commit_hook_exists"):
-        lines.append("install_pre_commit_hooks: no-op (hook already installed, state unchanged)")
+    if not venv_missing and state.get("pre_commit_matches"):
+        lines.append("install_pre_commit_hooks: no-op (state unchanged)")
     else:
-        lines.append("install_pre_commit_hooks: would run .venv python -m pre_commit install --install-hooks")
+        lines.append("install_pre_commit_hooks: would run .venv python -m pre_commit install-hooks")
+    if not state.get("pre_commit_hook_exists"):
+        lines.append(f"install_husky_hooks: not run by the bootstrap; run {HUSKY_INSTALL_COMMAND}")
     return lines
 
 
@@ -535,9 +568,11 @@ def _run_bootstrap_actions(*, repo_root: Path, venv_python: Path, plan: list[str
             return dev_rc
 
     if "install_pre_commit_hooks" in plan:
-        print("[INFO] Installing pre-commit hooks.")
+        # install-hooks only prepares the framework's environments: `pre_commit install` refuses
+        # to run while core.hooksPath is set, and Husky owns that path.
+        print("[INFO] Preparing pre-commit hook environments.")
         hook_rc = _run_step(
-            [str(venv_python), "-m", "pre_commit", "install", "--install-hooks"],
+            [str(venv_python), "-m", "pre_commit", "install-hooks"],
             cwd=repo_root,
         )
         if hook_rc != 0:
@@ -666,11 +701,9 @@ def _check_bootstrap_state(repo_root: Path) -> tuple[bool, str, str, str]:
 
 
 def _check_pre_commit_hooks(repo_root: Path) -> tuple[bool, str, str, str]:
-    """Return (passed, expected, found, action) for pre-commit hook install."""
-    hook_path = repo_root / ".git" / "hooks" / "pre-commit"
-    if hook_path.exists():
-        return (True, "installed", "installed", "")
-    return (False, "installed", "missing", "Run: python -m scripts.dev.bootstrap_venv")
+    """Return (passed, expected, found, action) for the Husky hook install."""
+    found, action = husky_hooks_status(repo_root)
+    return (found == "installed", "installed", found, action)
 
 
 def _check_git_signing_health() -> tuple[bool, str, str, str]:
@@ -767,12 +800,24 @@ def _parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help="Verify dev dependencies are installed in the repo venv.",
     )
+    parser.add_argument(
+        "--check-hooks",
+        action="store_true",
+        help="Exit non-zero, with the fix, unless git will run the Husky hooks in this checkout.",
+    )
     return parser.parse_args(argv)
 
 
 def main(argv: list[str]) -> int:
     """Main."""
     args = _parse_args(argv)
+    if args.check_hooks:
+        found, action = husky_hooks_status(repo_root_from_script(Path(__file__)))
+        if found == "installed":
+            print("Husky hooks are installed.")
+            return EXIT_OK
+        print(f"[FAIL] Husky hooks: {found}. {action}", file=sys.stderr)
+        return EXIT_FAILED
     if args.dry_run and args.verify:
         print("[FAIL] --dry-run and --verify cannot be used together.", file=sys.stderr)
         return EXIT_FAILED

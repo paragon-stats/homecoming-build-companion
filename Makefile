@@ -53,6 +53,11 @@ fix: ## Auto-fix ruff lint issues and reformat
 super-linter: ## Run full Super-Linter in Docker (same image + config as CI)
 	$(PYTHON) -m scripts.linting.run_super_linter
 
+# Git runs the hooks committed in .husky/ only when core.hooksPath points there and the hook files exist here.
+.PHONY: hooks-check
+hooks-check: ## Fail with the fix unless git will run the Husky hooks in this checkout
+	@$(if $(wildcard $(PYTHON)),$(PYTHON),python) -m scripts.dev.bootstrap_venv --check-hooks
+
 # ---------------------------------------------------------------------------
 # Test / Coverage
 # ---------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Git sends the refs on stdin and nothing when there is nothing to push; skip the
+# build and tests then.
+REFS="$(cat)"
+[ -n "$REFS" ] || exit 0
+restored="$(dotnet tool restore 2>&1)" || {
+  echo "$restored" >&2
+  exit 1
+}
+dotnet husky run --group pre-push

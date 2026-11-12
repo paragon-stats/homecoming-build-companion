@@ -1,0 +1,4 @@
+[ExcludeFromCodeCoverage]
+internal sealed partial class SampleJsonContext : JsonSerializerContext
+{
+}

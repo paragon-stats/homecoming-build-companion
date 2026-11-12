@@ -1,0 +1,7 @@
+// Mentioning [ExcludeFromCodeCoverage] in a comment is not an exclusion.
+/* [ExcludeFromCodeCoverage] in a block comment */
+class Hand
+{
+    string note = "[ExcludeFromCodeCoverage] in a string";
+    char quote = '"';
+}
