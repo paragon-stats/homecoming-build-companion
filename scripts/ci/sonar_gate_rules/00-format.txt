@@ -1,0 +1,5 @@
+# Rules the sonar job's "Sonar rule gate" step holds at zero open findings.
+# One entry per line: <rule-key> <path-prefix>, for example:
+#   csharpsquid:S3776 src/CohEngine.Core/Assembly/
+# '#' starts a comment; blank lines are skipped; any other line makes the gate exit 2.
+# Each backlog issue adds its own file in this directory, so parallel pull requests do not conflict.
