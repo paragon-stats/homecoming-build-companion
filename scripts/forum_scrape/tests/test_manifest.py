@@ -21,7 +21,8 @@ IRREGULAR_WHITESPACE = re.compile(
 def test_render_escapes_irregular_whitespace_and_round_trips() -> None:
     title = "".join(map(chr, [0x46, 0xA0, 0x42, 0x2003, 0x67, 0x20, 0x3000, 0x20, 0xE9]))
     text = render([{"title": title}])
-    assert not IRREGULAR_WHITESPACE.search(text) and text.isascii()
+    assert not IRREGULAR_WHITESPACE.search(text)
+    assert text.isascii()
     assert json.loads(text) == [{"title": title}]
 
 
@@ -46,9 +47,11 @@ def test_rows_cover_every_capture_sorted_by_path() -> None:
         "path": "community/mechanics/claws.md",
         "era": "live",
     }
-    assert bio["url"] == "https://forums.example/topic/2-bio/" and bio["archetype"] == "scrapper"
+    assert bio["url"] == "https://forums.example/topic/2-bio/"
+    assert bio["archetype"] == "scrapper"
     assert bio["content_hash"] == content_hash(BIO_BODY)
-    assert old["era"] == "pre-sunset" and old["url"] == "https://archive.example/topic/3-old/"
+    assert old["era"] == "pre-sunset"
+    assert old["url"] == "https://archive.example/topic/3-old/"
 
 
 def test_main_writes_identical_bytes_and_no_post_text(
@@ -61,7 +64,8 @@ def test_main_writes_identical_bytes_and_no_post_text(
     first = out.read_bytes()
     assert main(argv) == 0
     assert out.read_bytes() == first
-    assert b"\r" not in first and b"never reach" not in first
+    assert b"\r" not in first
+    assert b"never reach" not in first
     assert len(json.loads(first)) == 3
     assert "3 capture(s) listed" in capsys.readouterr().out
 

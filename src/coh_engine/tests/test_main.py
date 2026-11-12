@@ -83,7 +83,9 @@ def test_validate_subcommand_json(capsys: pytest.CaptureFixture[str]) -> None:
     code = main(["validate", str(BUILD_DIR), "--format", "json"])
     payload = json.loads(capsys.readouterr().out)
     assert code == 1
-    assert isinstance(payload, list) and payload and "rule_id" in payload[0]
+    assert isinstance(payload, list)
+    assert payload
+    assert "rule_id" in payload[0]
 
 
 def test_emit_no_violations(capsys: pytest.CaptureFixture[str]) -> None:

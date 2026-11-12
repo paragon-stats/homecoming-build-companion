@@ -260,8 +260,10 @@ class TestHandle:
 
     def test_pr_number_is_required(self) -> None:
         parser = build_parser()
+        args = _args(pr=None)
+        runner = make_runner()
         with pytest.raises(ValueError, match="--pr"):
-            handle(_args(pr=None), parser, make_runner())
+            handle(args, parser, runner)
 
 
 def test_main_wires_the_handler_into_the_shared_runner(monkeypatch: pytest.MonkeyPatch) -> None:

@@ -100,7 +100,8 @@ def test_an_effectless_power_classifies_through_its_default_redirect(name: str) 
     """Kheldian blasts (``!Source.Mode?``) and Feral Might (``Always``) carry their effects on a redirect."""
     resolve = canonical_resolver(POWERS)
     power = resolve(name)
-    assert power is not None and not power["effects"]
+    assert power is not None
+    assert not power["effects"]
     assert classify_attack(power, resolve=resolve).role is Role.CHAIN
     with pytest.raises(ValueError, match="E37"):
         classify_attack(power)
@@ -128,14 +129,17 @@ def test_foe_res_debuff_templates_follow_links_and_skip_pvp() -> None:
     resolve = canonical_resolver(POWERS)
     rain = resolve("Defender_Buff.Storm_Summoning.Fog")
     melt = resolve("Defender_Buff.Thermal_Radiation.Melt_Armor")
-    assert rain is not None and melt is not None
+    assert rain is not None
+    assert melt is not None
     rain_res = foe_res_debuff_templates(rain, resolve)
-    assert rain_res and all(t["table"].endswith("Res_Dmg") for t in rain_res)
+    assert rain_res
+    assert all(t["table"].endswith("Res_Dmg") for t in rain_res)
     assert len({(t["table"], t["scale"], t["duration"]) for t in rain_res}) == len(rain_res)  # no PvP duplicate
     assert foe_res_debuff_templates(melt, resolve)
     assert foe_res_debuff_templates(melt, None)  # own templates need no resolver
     aim = resolve("Arachnos_Soldiers.Crab_Spider_Soldier.Aim")
-    assert aim is not None and foe_res_debuff_templates(aim, resolve) == []
+    assert aim is not None
+    assert foe_res_debuff_templates(aim, resolve) == []
 
 
 def test_damage_in_child_effect_is_found() -> None:

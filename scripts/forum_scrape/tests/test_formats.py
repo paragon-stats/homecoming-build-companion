@@ -56,7 +56,8 @@ def test_text_selects_the_readable_export_alone() -> None:
 
 def test_both_build_formats_excludes_the_readable_export() -> None:
     found = harvest_topic(fetcher_for(), TOPIC, ["mbd", "mxd"])  # type: ignore[arg-type]
-    assert found and all(a.kind != "forum-export" for a in found)
+    assert found
+    assert all(a.kind != "forum-export" for a in found)
 
 
 def test_an_attachment_is_filtered_before_it_is_downloaded() -> None:
@@ -277,7 +278,8 @@ def test_force_walks_a_section_that_would_have_been_skipped(tmp_path: Path) -> N
 def test_a_thread_already_covered_is_not_fetched_again(tmp_path: Path) -> None:
     fetcher = fetcher_for()
     first = crawl_forum(fetcher, FORUM, 1, tmp_path, False, ["mbd"])  # type: ignore[arg-type]
-    assert first.found and not first.skipped_reason
+    assert first.found
+    assert not first.skipped_reason
 
     ledger = load_topic_ledger(tmp_path)
     again = crawl_forum(fetcher_for(), FORUM, 1, tmp_path, False, ["mbd"], ledger)  # type: ignore[arg-type]

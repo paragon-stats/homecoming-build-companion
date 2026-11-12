@@ -72,7 +72,8 @@ def test_pyproject_missing_the_section_or_a_key_is_e81(tmp_path: Path, capsys: p
     )
     assert main([str(f2), str(p2)]) == 2
     err = capsys.readouterr().err
-    assert "E81" in err and "patch_tags" in err
+    assert "E81" in err
+    assert "patch_tags" in err
 
 
 def test_matching_policy_has_no_errors(tmp_path: Path) -> None:
@@ -105,7 +106,8 @@ def test_main_exit_codes_and_output(tmp_path: Path, capsys: pytest.CaptureFixtur
     f2, p2 = _write(tmp_path / "bad", pyproject=PYPROJECT.replace('"build"', '"bld"'))
     assert main([str(f2), str(p2)]) == 1
     err = capsys.readouterr().err
-    assert "H-REL-001" in err and "allowed_tags" in err
+    assert "H-REL-001" in err
+    assert "allowed_tags" in err
 
 
 def test_main_reports_a_bad_fact_set_as_e_code(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:

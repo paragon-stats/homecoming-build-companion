@@ -151,7 +151,9 @@ def test_parse_changes_reads_beta_thread_headings() -> None:
 
 def test_parse_entry_without_a_body_yields_no_changes() -> None:
     entry = parse_entry("<html><head><title>x - Page 4 - Homecoming</title></head><body></body></html>", ENTRY_URL)
-    assert entry.changes == [] and entry.published == "" and entry.title == "x"
+    assert entry.changes == []
+    assert entry.published == ""
+    assert entry.title == "x"
 
 
 def test_write_entry_names_the_file_by_date_and_slug(tmp_path: Path) -> None:
@@ -159,7 +161,8 @@ def test_write_entry_names_the_file_by_date_and_slug(tmp_path: Path) -> None:
     path = write_entry(entry, tmp_path)
     assert path.name == "2026-10-20-october-20-update-r48.json"
     document = json.loads(path.read_text(encoding="utf-8"))
-    assert document["url"] == ENTRY_URL and document["source"] == "release-notes"
+    assert document["url"] == ENTRY_URL
+    assert document["source"] == "release-notes"
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
     assert rows == [
         {
@@ -195,7 +198,8 @@ def test_main_release_notes_walks_categories_and_skips_written_entries(tmp_path:
     args = ["--out", str(tmp_path), "--delay", "0", "--source", "release-notes"]
     assert main(args) == 0
     out_text, err_text = capsys.readouterr()
-    assert "3 entries written" in out_text and f"E67: no change lines parsed from {blank}" in err_text
+    assert "3 entries written" in out_text
+    assert f"E67: no change lines parsed from {blank}" in err_text
     assert sorted(p.name for p in tmp_path.glob("*.json")) == [
         "2026-10-20-issue-28-page-4-r47.json",
         "2026-10-20-october-20-update-r48.json",
@@ -213,7 +217,8 @@ def test_main_reports_an_unreachable_browser(tmp_path: Path, fake_net, capsys) -
     args = ["--out", str(tmp_path), "--delay", "0", "--source", "release-notes", "--canonical", str(tmp_path)]
     assert main(args) == 1
     err = capsys.readouterr().err
-    assert "E60" in err and "E68: no powerset names" in err  # an empty canonical tree is named
+    assert "E60" in err
+    assert "E68: no powerset names" in err  # an empty canonical tree is named
 
 
 # --- the beta forum threads -------------------------------------------------------------
@@ -240,7 +245,8 @@ def _thread(title: str, when: str, body: str) -> bytes:
 
 
 def test_series_of_and_beta_candidates_keep_the_latest_of_a_series_and_every_interim_patch() -> None:
-    assert series_of(RC2) == ("issue-27", "page-3") and series_of(INTERIM_OLD) == ("", "")
+    assert series_of(RC2) == ("issue-27", "page-3")
+    assert series_of(INTERIM_OLD) == ("", "")
     rc0 = f"{BASE}/topic/0-staging-patch-notes-issue-27-page-3-build-0/"
     # Unlabelled numbered candidates: 1, 2, 3 are one run; the next 1, 2 are another; a lone 2 its own.
     run_a = [f"{BASE}/topic/{10 + n}-patch-notes-for-august-2{n}th-2019-release-candidate-{n}/" for n in (1, 2, 3)]
@@ -277,14 +283,16 @@ def test_dedupe_lines_keeps_first_appearance_and_names_the_origin() -> None:
     again = Change("Powers", "", "", "Dark Melee", "Smite", "Buffed.")
     new = Change("Powers", "", "", "Dark Melee", "Siphon Life", "Heals more.")
     entry = PatchEntry("t", "u", "2021-01-01", "", "", 0, "forum-beta", [first, again, new])
-    assert dedupe_lines(entry, {}) == "" and entry.changes == [first, new]  # the in-entry repeat is gone
+    assert dedupe_lines(entry, {}) == ""
+    assert entry.changes == [first, new]  # the in-entry repeat is gone
     smite = ("Powers", "", "", "Dark Melee", "Smite", "Buffed.")
     later = PatchEntry("t", "u2", "2021-02-01", "", "", 0, "forum-beta", [again, new])
     assert dedupe_lines(later, {smite: ("a.json", "2021-01-01")}) == "a.json"
     assert later.changes == [new]
     # A thread found on a later run but posted before the file holding the line keeps it.
     older = PatchEntry("t", "u3", "2020-12-01", "", "", 0, "forum-beta", [again])
-    assert dedupe_lines(older, {smite: ("a.json", "2021-01-01")}) == "" and older.changes == [again]
+    assert dedupe_lines(older, {smite: ("a.json", "2021-01-01")}) == ""
+    assert older.changes == [again]
 
 
 def test_write_dated_records_and_reports_an_entry_that_parsed_to_nothing(tmp_path: Path, capsys) -> None:
@@ -352,7 +360,8 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
     routes[f"{BETA}page/3/"] = b""
     names = sorted(p.name for p in tmp_path.glob("*.json"))
     rc2_file = "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json"
-    assert rc2_file in names and "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
+    assert rc2_file in names
+    assert "2019-08-11-beta-patch-notes-for-august-11th-2019.json" in names
     assert calls.count(RC1) == 0  # the earlier candidate of the series is never fetched
     # The 2019 patch recorded Smite first; the 2021 candidate keeps only its two new lines.
     rc2 = json.loads((tmp_path / rc2_file).read_text(encoding="utf-8"))
@@ -360,7 +369,8 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
     assert {row.get("source", "release-notes") for row in rows} == {"release-notes", "forum-beta"}
     repost = next(row for row in rows if row["url"] == REPOST)
-    assert repost["file"] == "" and repost["repeat_of"] == rc2_file  # the word-for-word repost has no file
+    assert repost["file"] == ""
+    assert repost["repeat_of"] == rc2_file  # the word-for-word repost has no file
 
     # A later run: the staging listing is unreachable, and one new interim thread repeats a recorded line.
     late = f"{BASE}/topic/9-patch-notes-for-january-4th-2020/"
@@ -369,10 +379,12 @@ def test_main_forum_beta_writes_final_candidates_outside_live_coverage(tmp_path:
     routes[late] = _thread("Jan 2020", "2020-01-04T10:00:00Z", body)
     assert main(["--out", str(tmp_path), "--delay", "0", "--source", "forum-beta"]) == 1
     out_text, err_text = capsys.readouterr()
-    assert "0 entries written" in out_text and f"E66: beta listing page unavailable: {STAGING}" in err_text
+    assert "0 entries written" in out_text
+    assert f"E66: beta listing page unavailable: {STAGING}" in err_text
     rows = [json.loads(line) for line in (tmp_path / "index.jsonl").read_text(encoding="utf-8").splitlines()]
     late_row = next(row for row in rows if row["url"] == late)
-    assert late_row["file"] == "" and late_row["repeat_of"] == "2019-08-11-beta-patch-notes-for-august-11th-2019.json"
+    assert late_row["file"] == ""
+    assert late_row["repeat_of"] == "2019-08-11-beta-patch-notes-for-august-11th-2019.json"
 
     routes[STAGING] = b""
     fetched = calls.count(RC2)
@@ -424,7 +436,8 @@ def test_parse_wiki_page_reads_headings_items_and_the_issue() -> None:
     assert rows[0] == ("General", "", "Early note before any section.")
     assert rows[1] == ("PvP Zones", "", "Recluse's Victory opens.")
     assert rows[2] == ("Powers", "Tankers", "Improved Damage DeBuff of Tanker/Ice Armor/Chilling Embrace.")
-    assert rows[3][2] == "Sonic Repulsion and Sonic Dispersion:" and rows[4][2] == "Switched in pick order."
+    assert rows[3][2] == "Sonic Repulsion and Sonic Dispersion:"
+    assert rows[4][2] == "Switched in pick order."
     assert all("footer" not in c.text for c in entry.changes)
     assert all(c.category != "Contents" for c in entry.changes)  # the wiki's table of contents is not a change
     assert (
@@ -574,5 +587,6 @@ def test_reparse_of_one_source_leaves_the_others_and_their_index_rows(tmp_path: 
     assert main(["--out", str(out), "--delay", "0", "--source", "paragonwiki", "--reparse"]) == 0
     assert "paragonwiki: 3 changed, 0 unchanged, 0 removed, 0 kept" in capsys.readouterr().out
     rows = [json.loads(line) for line in (out / "index.jsonl").read_text(encoding="utf-8").splitlines()]
-    assert rows[0]["file"] == "live.json" and (out / "live.json").read_text(encoding="utf-8") == "{}\n"
+    assert rows[0]["file"] == "live.json"
+    assert (out / "live.json").read_text(encoding="utf-8") == "{}\n"
     assert [r["source"] for r in rows] == ["release-notes", "paragonwiki", "paragonwiki", "paragonwiki"]

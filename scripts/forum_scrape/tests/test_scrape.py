@@ -116,7 +116,8 @@ def test_attachments_keep_build_files_and_drop_images(posts) -> None:
     # is reported as such rather than being waved through by a looser local check.
     incomplete = json.dumps({"PowerEntries": []}).encode()
     ok, error = check_attachment(incomplete, "mbd")
-    assert ok is False and "does not parse as a build" in error
+    assert ok is False
+    assert "does not parse as a build" in error
 
 
 def test_forum_export_found_only_where_it_exists(posts) -> None:
