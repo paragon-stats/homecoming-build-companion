@@ -53,7 +53,7 @@ internal static class MutexRule
 
     // The Python strips every "Attuned_" and "Superior_" in one left-to-right pass (re.sub), so a prefix that two
     // removals would join is not removed.
-    private static string StripVersionPrefixes(string uid)
+    internal static string StripVersionPrefixes(string uid)
     {
         StringBuilder stripped = new();
         int index = 0;

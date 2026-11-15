@@ -114,6 +114,7 @@ for modularity the numeric core does not need. Keep them literal.
 | Goal-scoring metrics (`scoring.py`) | metric name (from `build_profiles.json`) | adopted |
 | Cap / endurance adherence (`scoring.py`) | adherence check | adopted (cap check diffs Totals vs TotalsCapped) |
 | Hard-limits validator (`P8` pre-flight: slots, picks, pools, tiers) | limit rule | **adopt at birth** — do not grow an `if/elif` |
+| Slotting preferences (`SlottingRunner`) | slotting rule | opt-in, `validate --slotting` |
 | Per-aspect enhancement handlers (recharge, end, acc, range, interrupt, damage) | `eEnhance` aspect | planned central module; `GlobalEnhance` reserves the slots |
 | Optimizer (`CP9`) scoring inner loop | reuses the metric + adherence registries | must consume, not re-implement |
 

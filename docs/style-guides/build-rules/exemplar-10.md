@@ -77,6 +77,8 @@ Before emitting a build, confirm:
 - Anchor attack has ≥ 2 added slots by character level 14.
 - Every attack's inherent slot **(A)** holds an Acc-bearing IO; every attack's first added slot also holds an Acc-bearing IO. Damage-only or Dmg/Rchg pieces don't appear before slot 3.
 - Travel power picked at level ≤ 12.
+- Each movement-and-recharge auto power (Mental Training, Quickness, Lightning Reflexes, Athletic Regulation, Particle Acceleration) is picked at its opening level.
+  Otherwise `validate --slotting` reports P-POWER-001 and the later pick is recorded as a trade-off.
 - The level-50 build remains the optimization target. When exemplar playability and a level-50 optimization conflict, level 50 wins; explain the trade-off and proceed.
 
 ## Reference

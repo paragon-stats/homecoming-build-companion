@@ -58,6 +58,19 @@ public sealed class EngineTools
         return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.HardLimits), Given(buildDir, midsDir));
     }
 
+    /// <summary>Runs the slotting registry over a build dump.</summary>
+    /// <param name="buildDir">The build's Mids dump directory, or a <c>.mbd</c> file.</param>
+    /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent, and is required for a <c>.mbd</c>.</param>
+    /// <returns>The diagnostics.</returns>
+    [McpServerTool(Name = "check_slotting", ReadOnly = true)]
+    [Description("Check a build's slotting efficiency: enhancements that Enhancement Diversification makes nearly worthless, and slotting preferences (Luck of the Gambler pieces, resistance uniques, survivability uniques, late quality-of-life picks, rarer sets). Returns the diagnostics as validate --slotting --format json prints them, less the legality and hard-limit findings.")]
+    public static DiagnosticsResult CheckSlotting(
+        [Description("Path to the build's Mids dump directory, or to a .mbd file (then midsDir is required).")] string buildDir,
+        [Description("Path to the shared dump directory; defaults to the build directory's grandparent, and is required for a .mbd.")] string? midsDir = null)
+    {
+        return Guard(() => Diagnose(buildDir, midsDir, ValidateChecks.Slotting), Given(buildDir, midsDir));
+    }
+
     /// <summary>Computes the registered scoring metrics for a build dump.</summary>
     /// <param name="buildDir">The build's Mids dump directory.</param>
     /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent.</param>
@@ -334,6 +347,12 @@ public sealed class EngineTools
         return mids;
     }
 
+    /// <summary>The files beside the shared directory that a check reads on top of the dumps: the slotting rules read Maths.mhd.</summary>
+    private static string[] ExtraFiles(string mids, ValidateChecks checks)
+    {
+        return checks.HasFlag(ValidateChecks.Slotting) ? [DumpScoring.MathsPath(mids, given: null)] : [];
+    }
+
     private static DiagnosticsResult Diagnose(string buildDir, string? midsDir, ValidateChecks checks)
     {
         IReadOnlyList<Diagnostic> diagnostics;
@@ -345,14 +364,14 @@ public sealed class EngineTools
             string mids = midsDir ?? throw new EngineException($"{ErrorCodes.E164}: midsDir is required with a .mbd file; give the shared dump directory");
             RequireDirectory(mids, nameof(midsDir));
             diagnostics = ValidateCommand.RunMbd(new MbdBuildSource(mids), buildDir, mids, checks);
-            version = DataVersion.Of(buildDir, mids);
+            version = DataVersion.Of([buildDir, mids, .. ExtraFiles(mids, checks)]);
         }
         else
         {
             RequireDirectory(buildDir, nameof(buildDir));
             string mids = MidsOf(buildDir, midsDir);
             diagnostics = ValidateCommand.RunDump(buildDir, mids, checks);
-            version = DataVersion.Of(mids, buildDir);
+            version = DataVersion.Of([mids, buildDir, .. ExtraFiles(mids, checks)]);
         }
 
         using JsonDocument document = JsonDocument.Parse(DiagnosticFormatter.FormatJson(diagnostics));

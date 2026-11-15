@@ -36,6 +36,37 @@ public sealed class ToolTests
     }
 
     [Fact]
+    public async Task Check_slotting_reports_the_widow_build_with_a_data_version()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+
+        JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", buildDir)).ConfigureAwait(true);
+
+        string[] ruleIds = [.. result["diagnostics"]!.AsArray().Select(item => item!["rule_id"]!.GetValue<string>())];
+        Assert.Contains("P-ED-002", ruleIds, StringComparer.Ordinal);
+        Assert.Contains("P-POWER-001", ruleIds, StringComparer.Ordinal);
+        Assert.DoesNotContain("P-SET-001", ruleIds, StringComparer.Ordinal);
+        Assert.Equal(2, result["exit_code"]!.GetValue<int>());
+        Assert.Matches("^sha256:[0-9a-f]{64}$", result["data_version"]!.GetValue<string>());
+        Assert.NotEqual(
+            await VersionAsync("check_legality", ("buildDir", buildDir)).ConfigureAwait(true),
+            result["data_version"]!.GetValue<string>(),
+            StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public async Task Check_slotting_reads_a_mbd_with_the_shared_directory()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string mbd = CliCapture.MbdPath("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+
+        JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", mbd), ("midsDir", McpHarness.Store.MidsDirectory)).ConfigureAwait(true);
+
+        Assert.Contains(result["diagnostics"]!.AsArray(), item => string.Equals(item!["rule_id"]!.GetValue<string>(), "P-POWER-001", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public async Task Every_tool_result_carries_a_data_version_and_rules_says_unknown()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
@@ -44,6 +75,7 @@ public sealed class ToolTests
         [
             ("check_legality", [("buildDir", buildDir)]),
             ("check_hard_limits", [("buildDir", buildDir)]),
+            ("check_slotting", [("buildDir", buildDir)]),
             ("score", [("buildDir", buildDir)]),
             ("totals", [("buildDir", buildDir)]),
             ("set_bonus_lookup", [("setName", "Thunderstrike"), ("buildDir", buildDir)]),

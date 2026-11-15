@@ -1,6 +1,7 @@
 using System.Text.Json;
 
 using CohEngine.Core;
+using CohEngine.Core.BuildFile;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
@@ -204,6 +205,59 @@ public sealed class ValidateCommandTests
         Assert.Throws<ArgumentNullException>(() => ValidateCommand.RunDump(null!, Store.MidsDirectory));
         Assert.Throws<ArgumentNullException>(() => ValidateCommand.RunDump(BuildDirectory, null!));
         Assert.Throws<ArgumentNullException>(() => ValidateCommand.RunMbd(null!, "x.mbd", Store.MidsDirectory));
+    }
+
+    private static string[] Lines(string output)
+    {
+        return [.. output.Split('\n', StringSplitOptions.RemoveEmptyEntries)];
+    }
+
+    [Fact]
+    public void Validate_slotting_reports_the_widow_build()
+    {
+        string build = Path.Join(Store.MidsDirectory, "builds", "Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+
+        (int code, string output, _) = Run("validate", build, "--slotting");
+
+        string[] lines = Lines(output);
+        Assert.Equal(2, code);
+        Assert.Single(lines, line => line.Contains("warning: P-ED-002:", StringComparison.Ordinal) && line.Contains("'Pool.Speed.Hasten' slot 3", StringComparison.Ordinal));
+        Assert.Single(lines, line => line.Contains("warning: P-POWER-001:", StringComparison.Ordinal) && line.Contains("opens at level 22 but is picked at level 41", StringComparison.Ordinal));
+        Assert.Single(lines, line => line.Contains("warning: P-SET-002:", StringComparison.Ordinal) && line.Contains("Combat_Training:_Defensive", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validate_slotting_reports_p_ed_001_on_the_weave_of_arsenal_dominator_incarnate_slotted()
+    {
+        string build = Path.Join(Store.MidsDirectory, "builds", "arsenal_dominator_incarnate_slotted");
+
+        (_, string output, _) = Run("validate", build, "--slotting");
+
+        Assert.Single(Lines(output), line => line.Contains("warning: P-ED-001:", StringComparison.Ordinal) && line.Contains("Weave' slot 4", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void Validate_slotting_reads_an_mbd()
+    {
+        string mbd = CliCapture.MbdPath("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+
+        (int code, string output, _) = Run(new MbdBuildSource(Store.MidsDirectory), "validate", mbd, "--slotting");
+
+        Assert.Equal(2, code);
+        Assert.Contains("warning: P-POWER-001:", output, StringComparison.Ordinal);
+        Assert.Contains("warning: P-ED-002:", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Validate_slotting_adds_no_warning_to_the_stalker_build()
+    {
+        const string name = "Stalker (Fiery Melee - Invulnerability)";
+        CliCapture capture = new(Store);
+
+        (int code, string output, _) = Run("validate", capture.BuildDirectory(name), "--slotting");
+
+        string kept = string.Concat(Lines(output).Where(line => !line.Contains(": info: ", StringComparison.Ordinal)).Select(line => line + "\n"));
+        Assert.Equal((capture.Output("validate", name, "txt"), capture.ExitCode("validate", name)), (kept, code));
     }
 
     private static ArgumentException NamedArgument(string path)

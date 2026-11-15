@@ -13,6 +13,7 @@ The C# tests in `tests/CohEngine.Cli.Tests/` run `rules` and `validate` in proce
 
 `<build>` is each directory name under `tests/fixtures/mids/builds/`.
 Every capture ended with nothing on stderr.
+The `--slotting` output of `validate` is not captured, because the Python engine has no slotting rules.
 
 ## How they were made
 

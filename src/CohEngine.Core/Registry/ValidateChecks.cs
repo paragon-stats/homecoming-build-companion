@@ -10,6 +10,9 @@ public enum ValidateChecks
     /// <summary>The legality rules.</summary>
     Legality = 2,
 
-    /// <summary>Both registries.</summary>
+    /// <summary>The slotting rules, which only <c>--slotting</c> and the slotting tool ask for.</summary>
+    Slotting = 4,
+
+    /// <summary>The hard-limit and legality registries.</summary>
     All = HardLimits | Legality,
 }

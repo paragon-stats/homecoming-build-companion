@@ -10,6 +10,7 @@ Committed, tool-neutral guides for this repository. Mechanical rules also run as
 - [build-rules/exemplar-10.md](build-rules/exemplar-10.md): the exemplar-10 playability rule.
 - [build-rules/hard-limits.md](build-rules/hard-limits.md): game-engine invariants.
 - [build-rules/attack-slotting.md](build-rules/attack-slotting.md): accuracy in slot (A) and the first added slot.
+- [build-rules/slotting.md](build-rules/slotting.md): slotting efficiency, checked by `validate --slotting`.
 - [build-rules/io-set-naming.md](build-rules/io-set-naming.md): full IO set names in prose.
 - [build-rules/knowledge-navigation.md](build-rules/knowledge-navigation.md): load only the knowledge files a build request needs.
 - [csharp.md](csharp.md): the C# patterns code scanning rejects, and the deliberate exceptions.

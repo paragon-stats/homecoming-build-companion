@@ -38,8 +38,11 @@ Slot placements are ascending across the build. Confirm by walking levels 2–50
 
 - **Enhancement Diversification (ED).** Same-aspect stacking past ~95% diminishes sharply. ED applies per-aspect, per-power.
   Set bonuses, global buffs, procs, inherent power buffs, and across-power buffs sit outside ED.
+  ED is a game mechanic, so an over-slotted power is legal; slotting past it is a P-ED-001 or P-ED-002 warning under `validate --slotting`.
+  See [`slotting.md`](./slotting.md).
 - **Rule of Five.** Up to 5 instances of any *exact* numeric set-bonus value stack across the build. Different values from different sources stack independently.
-- **Unique globals.** Slot once per build.
+  (author guidance, no registered check)
+- **Unique globals.** Slot once per build. (H-ENH-004)
 
 ## AT-specific caps
 
@@ -58,14 +61,14 @@ Build estimates land at or under these caps.
 
 Run all checks before emitting:
 
-1. Total added slots ≤ 67.
-2. Per-power added slots ≤ 5.
-3. Power picks = 24 (excluding inherents).
-4. Each power picked at or after its `Level` field.
-5. Each picked powerset is in the AT's allowed list (Primary[], Secondary[], Ancillary[], or universal pools).
-6. Pool sets ≤ 4.
-7. Tier prerequisites respected within pool sets.
-8. Slot placements ascending and at real grant levels.
-9. Stat estimates land at or under AT caps.
+1. Total added slots ≤ 67. (H-SLOT-001)
+2. Per-power added slots ≤ 5. (H-SLOT-002)
+3. Power picks = 24 (excluding inherents). (H-POWER-001)
+4. Each power picked at or after its `Level` field. (H-POWER-002)
+5. Each picked powerset is in the AT's allowed list (Primary[], Secondary[], Ancillary[], or universal pools). (author guidance, no registered check)
+6. Pool sets ≤ 4. (H-POOL-001)
+7. Tier prerequisites respected within pool sets. (H-POWER-004, H-POWER-005)
+8. Slot placements ascending and at real grant levels. (H-SLOT-003, H-SLOT-004, H-SLOT-005)
+9. Stat estimates land at or under AT caps. (author guidance, no registered check)
 
 A build that passes all 9 is valid. When a draft fails one, surface the failure and propose the closest valid alternative before emitting.
