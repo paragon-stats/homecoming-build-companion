@@ -64,6 +64,13 @@ An exemplared task force then keeps it: a character exemplared to level N keeps 
 The message names that range of levels when it exists; for a power that opens at a low level and is picked a few levels late there is none, and the message says only that the pick is late.
 See [exemplar-10.md](./exemplar-10.md).
 
+## Hasten (P-POWER-002; info)
+
+Most characters take Hasten and give it two Recharge IOs, boosted to +5.
+A character with no need to click powers constantly may skip it or give it one slot: a Mastermind, or one with a recharge self-buff such as Kinetics' Siphon Speed.
+The rule reports a build that is neither, when Hasten is missing or holds fewer than two Recharge enhancements.
+More than two is P-ED-001 or P-ED-002.
+
 ## Rarer sets first (P-SET-003; info)
 
 A set whose every piece is unique is rarer: the Very Rare, Winter and archetype sets and their Superior versions.

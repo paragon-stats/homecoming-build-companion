@@ -61,6 +61,7 @@ public static class RuleRegistry
         new(new("P-IO-002", "A resistance toggle holding generic IOs while the resistance uniques are missing."), ResistanceMule.Run),
         new(new("P-IO-003", "Health with survivability uniques the build leaves out."), HealthUniques.Run),
         new(new("P-POWER-001", "A movement-and-recharge auto power picked after the level it opens at."), LateQualityOfLifePick.Run),
+        new(new("P-POWER-002", "Hasten missing or holding fewer than two Recharge enhancements."), HastenSlotting.Run),
         new(new("P-SET-003", "A lower-tier set beside an unused rarer set of the same category."), RarerSetUnused.Run),
     ];
 

@@ -26,6 +26,11 @@ public sealed class SlottingTests
 
     private static IReadOnlyList<Diagnostic> Check(Power[] powers, params (int BuildIndex, SlotRef[] Slots)[] slots)
     {
+        return [.. Raw(powers, slots).Where(diagnostic => !string.Equals(diagnostic.RuleId, "P-POWER-002", StringComparison.Ordinal))];
+    }
+
+    private static IReadOnlyList<Diagnostic> Raw(Power[] powers, params (int BuildIndex, SlotRef[] Slots)[] slots)
+    {
         return SlottingRunner.Check(powers, RegistryMake.Slots(slots), EnhLeg, SetDb, Fixtures.Store.EnhancementEffects, Fixtures.Store.Maths);
     }
 
@@ -36,7 +41,50 @@ public sealed class SlottingTests
 
     private static Power Hasten()
     {
-        return RegistryMake.Power(0, "Speed.Speed.Hasten");
+        return RegistryMake.Power(0, "Pool.Speed.Hasten");
+    }
+
+    [Fact]
+    public void A_build_without_hasten_is_p_power_002_info()
+    {
+        Diagnostic found = Assert.Single(Raw([RegistryMake.Power(0, "Pool.Fighting.Kick")], (0, [])));
+
+        Assert.Equal(("P-POWER-002", "info", "the build has no Hasten; most characters take it with two Recharge IOs boosted to +5"), (found.RuleId, found.Severity, found.Message));
+        Assert.Equal("take Hasten with two Recharge IOs boosted to +5, or record why this character does not need to click powers constantly", found.Fix);
+    }
+
+    [Fact]
+    public void Hasten_with_one_recharge_io_is_p_power_002_info()
+    {
+        Diagnostic found = Assert.Single(Raw([Hasten()], (0, [RegistryMake.Slot(RechargeIo), RegistryMake.Slot(EndModIo)])));
+
+        Assert.Equal("'Pool.Speed.Hasten' holds 1 Recharge enhancement; two Recharge IOs boosted to +5 are the norm", found.Message);
+    }
+
+    [Fact]
+    public void Hasten_with_no_recharge_is_worded_in_the_plural()
+    {
+        Diagnostic found = Assert.Single(Raw([Hasten()], (0, [])));
+
+        Assert.Equal("'Pool.Speed.Hasten' holds 0 Recharge enhancements; two Recharge IOs boosted to +5 are the norm", found.Message);
+    }
+
+    [Fact]
+    public void Hasten_with_two_recharge_ios_is_clean()
+    {
+        Assert.Empty(Raw([Hasten()], (0, Copies(RechargeIo, 2))));
+    }
+
+    [Fact]
+    public void A_mastermind_without_hasten_is_clean()
+    {
+        Assert.Empty(Raw([RegistryMake.Power(0, "Mastermind_Summon.Demon_Summoning.Summon_Demonlings")], (0, [])));
+    }
+
+    [Fact]
+    public void A_build_with_siphon_speed_and_no_hasten_is_clean()
+    {
+        Assert.Empty(Raw([RegistryMake.Power(0, "Defender_Buff.Kinetics.Siphon_Speed")], (0, [])));
     }
 
     private static SlotRef[] Copies(int enh, int count, int relativeLevel = 4)
@@ -175,7 +223,7 @@ public sealed class SlottingTests
 
         IReadOnlyList<Diagnostic> found = SlottingRunner.Check([power], RegistryMake.Slots((0, slots)), EnhLeg, SetDb, effects, Fixtures.Store.Maths);
 
-        Assert.Empty(found);
+        Assert.Equal(["P-POWER-002"], found.Select(diagnostic => diagnostic.RuleId), StringComparer.Ordinal);
     }
 
     private static int GamblerPiece(bool special)
@@ -383,6 +431,6 @@ public sealed class SlottingTests
         string text = File.ReadAllText(Path.Join(Fixtures.Store.RepositoryRoot, "docs", "style-guides", "build-rules", "slotting.md"));
 
         Assert.All(RuleRegistry.Slotting, rule => Assert.Contains(rule.Id, text, StringComparison.Ordinal));
-        Assert.Equal(["P-ED-001", "P-ED-002", "P-SET-002", "P-IO-002", "P-IO-003", "P-POWER-001", "P-SET-003"], RuleRegistry.Slotting.Select(rule => rule.Id), StringComparer.Ordinal);
+        Assert.Equal(["P-ED-001", "P-ED-002", "P-SET-002", "P-IO-002", "P-IO-003", "P-POWER-001", "P-POWER-002", "P-SET-003"], RuleRegistry.Slotting.Select(rule => rule.Id), StringComparer.Ordinal);
     }
 }
