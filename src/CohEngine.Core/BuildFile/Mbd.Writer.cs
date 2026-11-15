@@ -126,7 +126,7 @@ public static partial class Mbd
     /// <exception cref="InvalidDataException">
     /// E46 for a pick off its schedule level, E47 for a pinned slot before its power, E48 for a pinned slot off a grant level
     /// or a short pin list, E49 for added slots the schedule cannot place, E77 for an inherent power the powers table lacks,
-    /// E78 for an enhancement the table lacks, and E73 to E76 from the invariants.
+    /// E78 for an enhancement the table lacks, E117 for a relative level that is not an <see cref="EnhRelative"/> name, and E73 to E76 from the invariants.
     /// </exception>
     public static MbdDocument WriteMbd(BuildSpec spec, LevelSchedule schedule, MbdDb database)
     {
@@ -307,7 +307,7 @@ public static partial class Mbd
         return counts.Values.All(count => count == 0);
     }
 
-    private static MbdEnhancementDoc? EnhancementDoc(string? uid, MbdDb database)
+    private static MbdEnhancementDoc? EnhancementDoc(string? uid, string? relativeLevel, MbdDb database)
     {
         if (uid is null)
         {
@@ -316,7 +316,9 @@ public static partial class Mbd
 
         (int Min, int Max) bounds = IoLevelBounds(uid, database)
             ?? throw new InvalidDataException($"E78: enhancement {uid} is not in enhancements.json; check the uid or re-dump the Mids data");
-        return new MbdEnhancementDoc { Uid = uid, Grade = "None", IoLevel = bounds.Max, RelativeLevel = "Even", Obtained = false };
+        string relative = relativeLevel ?? "Even";
+        _ = OrdinalOf(EnhRelative, relative, "relative level");
+        return new MbdEnhancementDoc { Uid = uid, Grade = "None", IoLevel = bounds.Max, RelativeLevel = relative, Obtained = false };
     }
 
     private static MbdPowerEntryDoc Entry(PickSpec pick, IReadOnlyList<int> added, MbdDb database)
@@ -327,7 +329,7 @@ public static partial class Mbd
             PowerName = pick.Power,
             Level = pick.Level,
             StatInclude = pick.StatInclude,
-            SlotEntries = [.. pick.Enhancements.Select((uid, index) => new MbdSlotDoc { Level = levels[index], IsInherent = false, Enhancement = EnhancementDoc(uid, database) })],
+            SlotEntries = [.. pick.Enhancements.Select((uid, index) => new MbdSlotDoc { Level = levels[index], IsInherent = false, Enhancement = EnhancementDoc(uid, pick.RelativeLevels?.ElementAtOrDefault(index), database) })],
         };
     }
 

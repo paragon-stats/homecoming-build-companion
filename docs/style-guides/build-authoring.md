@@ -33,6 +33,7 @@ They agree on every power, slot and enhancement.
   Next come the captures in the source root (see the [source material manifest](../../data/source-material/README.md), lands with #91).
   Last is training memory, labelled "approximate; verify in MidsReborn".
   For format details read `MidsReborn/clsOutput.cs` (the emitter) and `build-format/schema.json`.
+- **State a boost per enhancement.** A spec sets each enhancement's `RelativeLevels` name, from `None` through `Even` (the default) to `PlusFive`, as `Mbd.EnhRelative` lists them.
 - **Slot attacks accuracy-first.** See [attack-slotting.md](build-rules/attack-slotting.md).
 - **Use full IO set names in prose.** Abbreviations appear only inside verbatim Mids forum-export blocks. See [io-set-naming.md](build-rules/io-set-naming.md).
 - **Put real design tensions in the Trade-offs section.** Examples are defense vs damage, AoE vs single target, and ATO 6-piece vs procs.

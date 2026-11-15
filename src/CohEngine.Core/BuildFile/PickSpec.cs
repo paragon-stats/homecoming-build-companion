@@ -16,6 +16,9 @@ public sealed record PickSpec
     /// <summary>Gets the enhancement UIDs, a null entry being an empty slot; the default is one empty slot.</summary>
     public IReadOnlyList<string?> Enhancements { get; init; } = [null];
 
+    /// <summary>Gets the relative level of each enhancement by position, an <see cref="Mbd.EnhRelative"/> name; a missing or null entry is <c>Even</c>.</summary>
+    public IReadOnlyList<string?>? RelativeLevels { get; init; }
+
     /// <summary>Gets a value indicating whether the power counts toward totals.</summary>
     public bool StatInclude { get; init; }
 
