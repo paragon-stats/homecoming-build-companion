@@ -28,7 +28,9 @@ internal static class RarerSetUnused
     {
         IReadOnlyList<EnhancementSetDef> rarer = RarerSets(context.SetDb, context.EnhDb);
         HashSet<int> rarerNids = [.. rarer.Select(set => set.Nid)];
-        HashSet<int> slotted = [.. context.Filled.Select(slot => slot.Enhancement?.NidSet ?? -1)];
+        HashSet<string> slottedVersions = [.. context.Filled
+            .Where(slot => slot.Enhancement is not null && context.SetDb.Sets.ContainsKey(slot.Enhancement.NidSet))
+            .Select(slot => BaseVersion(context.SetDb.Sets[slot.Enhancement!.NidSet].Uid))];
         foreach (IGrouping<(int BuildIndex, int NidSet), FilledSlot> group in context.Filled
             .Where(slot => slot.Enhancement is not null && context.SetDb.Sets.ContainsKey(slot.Enhancement.NidSet))
             .GroupBy(slot => (slot.Power.BuildIndex, slot.Enhancement!.NidSet)))
@@ -36,12 +38,12 @@ internal static class RarerSetUnused
             EnhancementSetDef lower = context.SetDb.Sets[group.Key.NidSet];
             string[] unused =
             [
-                .. rarer.Where(set => set.SetType == lower.SetType && !slotted.Contains(set.Nid))
+                .. rarer.Where(set => set.SetType == lower.SetType && !slottedVersions.Contains(BaseVersion(set.Uid)))
                     .OrderBy(set => IsSuperior(context, set) ? 0 : 1)
                     .ThenBy(set => set.Uid, StringComparer.Ordinal)
                     .Select(set => set.Uid),
             ];
-            if (group.Count() >= MinimumPieces && !rarerNids.Contains(lower.Nid) && unused.Length > 0)
+            if (group.Skip(MinimumPieces - 1).Any() && !rarerNids.Contains(lower.Nid) && unused.Length > 0)
             {
                 string verb = unused.Length == 1 ? "is" : "are";
                 yield return new Diagnostic("P-SET-003", "info", $"'{lower.Uid}' fills '{group.First().Power.FullName}' while {string.Join(", ", unused)} of the same category {verb} not slotted anywhere in the build")
@@ -50,6 +52,13 @@ internal static class RarerSetUnused
                 };
             }
         }
+    }
+
+    // The Superior and plain versions of a set exclude each other in a build, so they count as one set; the legality
+    // mutex rule pairs pieces the same way, by the uid with its Superior_ and Attuned_ prefixes removed.
+    private static string BaseVersion(string uid)
+    {
+        return uid.Replace("Superior_", string.Empty, StringComparison.Ordinal).Replace("Attuned_", string.Empty, StringComparison.Ordinal);
     }
 
     // A set is Superior when every piece carries the Superior flag in the legality dump.

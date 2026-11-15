@@ -44,7 +44,9 @@ A cheap toggle is not an exception: its endurance cost is not a condition.
 
 ## Resistance uniques (P-IO-002; warning)
 
-A resistance toggle that holds only generic IOs, while the build lacks Steadfast Protection or Gladiator's Armor, is the home of the missing unique.
+A resistance toggle that holds only generic IOs, while at least one of five uniques is in no slot of the build, is the home of the missing unique.
+The five are Steadfast Protection: Resistance/+Def 3%, Gladiator's Armor: +3% Defense, Unbreakable Guard: +Max HP, Aegis: Psionic/Status Resistance and Impervium Armor: Psionic Resistance.
+The message names the missing ones.
 Tough and the archetype's armor auto power both hold them.
 
 Author guidance, no registered check: place each unique in the power whose level keeps it active where it matters.
@@ -76,6 +78,7 @@ More than two is P-ED-001 or P-ED-002.
 A set whose every piece is unique is rarer: the Very Rare, Winter and archetype sets and their Superior versions.
 When a power holds two or more pieces of a lower-tier set while a rarer set of the same category is slotted nowhere in the build, the rule points at the candidate.
 Two all-unique sets are not top tier and are left out: Overwhelming_Force and Attuned_Cupids_Crush.
+A set counts as slotted when its Superior or plain counterpart is slotted, because the two exclude each other in a build: the rule never suggests Frozen_Blast while Superior_Frozen_Blast is in the build.
 The message lists the Superior sets first, then the rest, each in uid order, so the strongest candidates head the list.
 The comparison itself needs build totals (#21), so the rule only names the set.
 Archetype and Winter set advice beyond that is author guidance, with no registered check (#35).

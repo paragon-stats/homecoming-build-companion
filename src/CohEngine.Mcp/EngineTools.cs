@@ -350,7 +350,7 @@ public sealed class EngineTools
     /// <summary>The files beside the shared directory that a check reads on top of the dumps: the slotting rules read Maths.mhd.</summary>
     private static string[] ExtraFiles(string mids, ValidateChecks checks)
     {
-        return checks.HasFlag(ValidateChecks.Slotting) ? [DumpScoring.MathsPath(mids, null)] : [];
+        return checks.HasFlag(ValidateChecks.Slotting) ? [DumpScoring.MathsPath(mids, given: null)] : [];
     }
 
     private static DiagnosticsResult Diagnose(string buildDir, string? midsDir, ValidateChecks checks)

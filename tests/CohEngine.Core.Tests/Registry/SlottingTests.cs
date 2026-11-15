@@ -278,27 +278,30 @@ public sealed class SlottingTests
         Diagnostic found = Assert.Single(CheckOne(Tough(), RegistryMake.Slot(ResistDamageIo)));
 
         Assert.Equal("P-IO-002", found.RuleId);
-        Assert.Contains("no Steadfast Protection: Resistance/+Def 3% or Gladiator's Armor: TP Protection +3% Def (All);", found.Message, StringComparison.Ordinal);
+        Assert.Contains("no Steadfast Protection: Resistance/+Def 3% or Gladiator's Armor: TP Protection +3% Def (All) or Unbreakable Guard: +Max HP or Aegis: Psionic/Status Resistance or Impervium Armor: Psionic Resistance;", found.Message, StringComparison.Ordinal);
     }
 
-    [Fact]
-    public void Tough_with_one_resist_damage_io_is_clean_when_both_uniques_are_in_the_build()
+    private static IReadOnlyList<Diagnostic> ToughWithUniquesElsewhere(params string[] uids)
     {
         Power mule = RegistryMake.Power(1, "Armor.Other", setTypes: [8]);
 
-        IReadOnlyList<Diagnostic> found = Check([Tough(), mule], (0, [RegistryMake.Slot(ResistDamageIo)]), (1, Pieces(RegistryMake.Nid("Crafted_Steadfast_Protection_B"), RegistryMake.Nid("Crafted_Gladiators_Armor_F"))));
+        return Check([Tough(), mule], (0, [RegistryMake.Slot(ResistDamageIo)]), (1, Pieces([.. uids.Select(RegistryMake.Nid)])));
+    }
+
+    [Fact]
+    public void Tough_with_one_resist_damage_io_is_clean_when_all_five_uniques_are_in_the_build()
+    {
+        IReadOnlyList<Diagnostic> found = ToughWithUniquesElsewhere("Crafted_Steadfast_Protection_B", "Crafted_Gladiators_Armor_F", "Crafted_Unbreakable_Guard_F", "Crafted_Aegis_F", "Crafted_Impervium_Armor_F");
 
         Assert.Empty(Only(found, "P-IO-002"));
     }
 
     [Fact]
-    public void Tough_with_one_missing_unique_names_only_that_one()
+    public void Tough_with_one_resist_damage_io_is_p_io_002_when_only_the_defense_uniques_are_slotted()
     {
-        Power mule = RegistryMake.Power(1, "Armor.Other", setTypes: [8]);
+        Diagnostic found = Assert.Single(ToughWithUniquesElsewhere("Crafted_Steadfast_Protection_B", "Crafted_Gladiators_Armor_F"));
 
-        Diagnostic found = Assert.Single(Check([Tough(), mule], (0, [RegistryMake.Slot(ResistDamageIo)]), (1, Pieces(RegistryMake.Nid("Crafted_Steadfast_Protection_B")))));
-
-        Assert.Contains("has no Gladiator's Armor: TP Protection +3% Def (All);", found.Message, StringComparison.Ordinal);
+        Assert.Contains("no Unbreakable Guard: +Max HP or Aegis: Psionic/Status Resistance or Impervium Armor: Psionic Resistance;", found.Message, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -314,7 +317,7 @@ public sealed class SlottingTests
     {
         Power health = RegistryMake.Power(0, "Inherent.Fitness.Health", setTypes: [RegistryMake.SetType(HealthUniques[0])]);
 
-        Diagnostic found = Assert.Single(CheckOne(health, Pieces(HealthUniques[..(HealthUniqueCount - 2)]).Append(RegistryMake.Slot(HealthUniques[HealthUniqueCount - 1])).ToArray()));
+        Diagnostic found = Assert.Single(CheckOne(health, [.. Pieces(HealthUniques[..(HealthUniqueCount - 2)]), RegistryMake.Slot(HealthUniques[HealthUniqueCount - 1])]));
 
         Assert.Equal(("P-IO-003", "info"), (found.RuleId, found.Severity));
         Assert.Contains("the build has no Preventive Medicine: Chance for +Absorb;", found.Message, StringComparison.Ordinal);
@@ -402,15 +405,15 @@ public sealed class SlottingTests
     }
 
     [Fact]
-    public void One_unused_rarer_set_is_named_with_is()
+    public void Annihilation_with_superior_frozen_blast_slotted_does_not_suggest_frozen_blast()
     {
         Power power = ForSetType(0, "Blast.Ranged.Nuke", SetDb.Sets[AnnihilationSet].SetType);
         Power elsewhere = ForSetType(1, "Blast.Ranged.Other", SetDb.Sets[RagnarokSet].SetType);
 
-        Diagnostic found = Assert.Single(Check([power, elsewhere], (0, Pieces([.. SetNids(AnnihilationSet).Take(2)])), (1, Pieces(SetNids(RagnarokSet)[0], SetNidsByUid("Superior_Frozen_Blast")[0]))));
+        Diagnostic found = Assert.Single(Check([power, elsewhere], (0, Pieces([.. SetNids(AnnihilationSet).Take(2)])), (1, Pieces(SetNidsByUid("Superior_Frozen_Blast")[0]))));
 
         Assert.Equal("P-SET-003", found.RuleId);
-        Assert.Contains("while Frozen_Blast of the same category is not slotted", found.Message, StringComparison.Ordinal);
+        Assert.Contains("while Ragnarok of the same category is not slotted", found.Message, StringComparison.Ordinal);
     }
 
     [Fact]

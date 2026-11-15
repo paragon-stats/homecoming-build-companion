@@ -29,7 +29,7 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
         for (int index = 0; index < args.Count; index++)
         {
             string arg = args[index];
-            if (arg is not ("--mids-dir" or "--format" or "--expect") && !arg.StartsWith("--mids-dir=", StringComparison.Ordinal) && !arg.StartsWith("--format=", StringComparison.Ordinal) && !arg.StartsWith("--expect=", StringComparison.Ordinal))
+            if (!IsValuedOption(arg))
             {
                 if (arg.StartsWith('-') || buildPath is not null)
                 {
@@ -47,25 +47,9 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
                 return false;
             }
 
-            if (string.Equals(name, "--mids-dir", StringComparison.Ordinal))
+            problem = Apply(name, value, ref midsDirectory, ref format, expectations);
+            if (problem.Length != 0)
             {
-                midsDirectory = value;
-            }
-            else if (string.Equals(name, "--expect", StringComparison.Ordinal))
-            {
-                problem = ParseExpectation(value, expectations);
-                if (problem.Length != 0)
-                {
-                    return false;
-                }
-            }
-            else if (value is "text" or "json")
-            {
-                format = value;
-            }
-            else
-            {
-                problem = $"argument --format: invalid choice: '{value}' (choose from 'text', 'json')";
                 return false;
             }
         }
@@ -78,6 +62,37 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
 
         parsed = new ValidateArguments(buildPath, midsDirectory, string.Equals(format, "json", StringComparison.Ordinal), expectations, args.Count != given.Count);
         return true;
+    }
+
+    private static bool IsValuedOption(string arg)
+    {
+        return arg is "--mids-dir" or "--format" or "--expect"
+            || arg.StartsWith("--mids-dir=", StringComparison.Ordinal)
+            || arg.StartsWith("--format=", StringComparison.Ordinal)
+            || arg.StartsWith("--expect=", StringComparison.Ordinal);
+    }
+
+    /// <summary>Stores one option's value; returns the reason it is invalid, or an empty string.</summary>
+    private static string Apply(string name, string value, ref string? midsDirectory, ref string format, List<Expectation> expectations)
+    {
+        if (string.Equals(name, "--mids-dir", StringComparison.Ordinal))
+        {
+            midsDirectory = value;
+            return string.Empty;
+        }
+
+        if (string.Equals(name, "--expect", StringComparison.Ordinal))
+        {
+            return ParseExpectation(value, expectations);
+        }
+
+        if (value is "text" or "json")
+        {
+            format = value;
+            return string.Empty;
+        }
+
+        return $"argument --format: invalid choice: '{value}' (choose from 'text', 'json')";
     }
 
     /// <summary>Reads an option's value, from <c>--opt=value</c> or from the next argument, which it then consumes.</summary>

@@ -20,23 +20,19 @@ internal static class LateQualityOfLifePick
     /// <returns>The findings.</returns>
     public static IEnumerable<Diagnostic> Run(SlottingContext context)
     {
-        foreach (Power power in context.Powers.Where(power => string.Equals(power.PowerType, "Auto_", StringComparison.Ordinal) && power.Level > 1 && power.Enhancements.Any(MovementClasses.Contains)))
+        foreach (Power power in context.Powers.Where(power => string.Equals(power.PowerType, "Auto_", StringComparison.Ordinal) && power.Level > 1 && power.PickLevel >= 0 && power.PickLevel + 1 > power.Level && power.Enhancements.Any(MovementClasses.Contains)))
         {
             int pick = power.PickLevel + 1;
-            if (power.PickLevel >= 0 && pick > power.Level)
+            int first = Math.Max(1, power.Level - ExemplarReach);
+            string clause = pick - ExemplarGap >= first
+                ? string.Create(CultureInfo.InvariantCulture, $"; exemplared to levels {first} to {pick - ExemplarGap} the character lacks it")
+                : string.Empty;
+            yield return new Diagnostic("P-POWER-001", "warning", string.Create(CultureInfo.InvariantCulture, $"'{power.FullName}' opens at level {power.Level} but is picked at level {pick}{clause}"))
             {
-                int first = Math.Max(1, power.Level - ExemplarReach);
-                string clause = pick - ExemplarGap >= first
-                    ? string.Create(CultureInfo.InvariantCulture, $"; exemplared to levels {first} to {pick - ExemplarGap} the character lacks it")
-                    : string.Empty;
-                string message = $"'{power.FullName}' opens at level {power.Level} but is picked at level {pick}{clause}";
-                yield return new Diagnostic("P-POWER-001", "warning", message)
-                {
-                    Fix = $"pick this power at level {power.Level}, or record the later pick as a trade-off",
-                    Expected = power.Level,
-                    Actual = pick,
-                };
-            }
+                Fix = string.Create(CultureInfo.InvariantCulture, $"pick this power at level {power.Level}, or record the later pick as a trade-off"),
+                Expected = power.Level,
+                Actual = pick,
+            };
         }
     }
 }

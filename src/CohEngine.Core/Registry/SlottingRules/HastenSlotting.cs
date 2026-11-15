@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.SlottingRules;
@@ -34,9 +36,13 @@ internal static class HastenSlotting
             yield break;
         }
 
-        string message = picked
-            ? $"'{HastenPower}' holds {held} Recharge enhancement{(held == 1 ? string.Empty : "s")}; two Recharge IOs boosted to +5 are the norm"
-            : "the build has no Hasten; most characters take it with two Recharge IOs boosted to +5";
+        string message = "the build has no Hasten; most characters take it with two Recharge IOs boosted to +5";
+        if (picked)
+        {
+            string plural = held == 1 ? string.Empty : "s";
+            message = string.Create(CultureInfo.InvariantCulture, $"'{HastenPower}' holds {held} Recharge enhancement{plural}; two Recharge IOs boosted to +5 are the norm");
+        }
+
         yield return new Diagnostic("P-POWER-002", "info", message)
         {
             Fix = "take Hasten with two Recharge IOs boosted to +5, or record why this character does not need to click powers constantly",

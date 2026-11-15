@@ -17,7 +17,13 @@ internal static class ResistanceMule
     // eSetType.Resistance in enums.json.
     private const int ResistanceSetType = 8;
 
-    private static readonly string[] Uniques = ["Crafted_Steadfast_Protection_B", "Crafted_Gladiators_Armor_F"];
+    private const string SteadfastProtection = "Crafted_Steadfast_Protection_B";
+    private const string GladiatorsArmor = "Crafted_Gladiators_Armor_F";
+    private const string UnbreakableGuard = "Crafted_Unbreakable_Guard_F";
+    private const string Aegis = "Crafted_Aegis_F";
+    private const string ImperviumArmor = "Crafted_Impervium_Armor_F";
+
+    private static readonly string[] Uniques = [SteadfastProtection, GladiatorsArmor, UnbreakableGuard, Aegis, ImperviumArmor];
 
     /// <summary>Runs the rule.</summary>
     /// <param name="context">The slotting context.</param>

@@ -103,7 +103,7 @@ internal static class EdOverSlotting
     {
         double before = calc.Sum(running, aspect, skipEd: true);
         double adds = calc.Sum([.. running, plain], aspect, skipEd: false) - calc.Sum(running, aspect, skipEd: false);
-        string message = $"'{plain.Legality.LongName}' in '{power.FullName}' slot {plain.Position} adds {Pct(adds)}% {aspect.Name}: the power's {aspect.Name} is {Pct(before)}% "
+        string message = string.Create(CultureInfo.InvariantCulture, $"'{plain.Legality.LongName}' in '{power.FullName}' slot {plain.Position} adds {Pct(adds)}% {aspect.Name}: the power's {aspect.Name} is {Pct(before)}% ")
             + $"before Enhancement Diversification, past the {Pct(calc.Last(aspect))}% last threshold, so this slot counts at 15% of its {Pct(calc.Sum([plain], aspect, skipEd: true))}% value";
         return new Diagnostic(PastThreshold, "warning", message)
         {
@@ -113,9 +113,8 @@ internal static class EdOverSlotting
 
     private static IEnumerable<Diagnostic> OverBoostingFindings(Power power, Item[] items, Calculator calc, HashSet<int> flagged)
     {
-        foreach (IGrouping<int, Item> group in items.Where(item => item.IsPlain).GroupBy(item => item.Slot.Enh))
+        foreach (Item[] copies in items.Where(item => item.IsPlain).GroupBy(item => item.Slot.Enh).Select(group => group.ToArray()))
         {
-            Item[] copies = [.. group];
             Aspect[] aspects = copies[0].Aspects();
             if (copies.Length < 2 || aspects.Length == 0 || copies.Any(copy => flagged.Contains(copy.Position)))
             {
@@ -136,11 +135,11 @@ internal static class EdOverSlotting
 
     private static Diagnostic OverBoostingFinding(Power power, Item removed, Aspect aspect, (double Current, double Alternative, double Without) values, int others)
     {
-        string message = $"'{removed.Legality.LongName}' in '{power.FullName}' slot {removed.Position} adds {Pct(values.Current - values.Without)}% {aspect.Name} over boosting: "
-            + $"the power reaches {Pct(values.Current)}% with it and {Pct(values.Alternative)}% with the other {others} boosted to +5";
+        string message = string.Create(CultureInfo.InvariantCulture, $"'{removed.Legality.LongName}' in '{power.FullName}' slot {removed.Position} adds {Pct(values.Current - values.Without)}% {aspect.Name} over boosting: ")
+            + string.Create(CultureInfo.InvariantCulture, $"the power reaches {Pct(values.Current)}% with it and {Pct(values.Alternative)}% with the other {others} boosted to +5");
         return new Diagnostic(OverBoosting, "warning", message)
         {
-            Fix = $"remove this slot and boost the remaining {others} IOs to +5 with Enhancement Boosters",
+            Fix = string.Create(CultureInfo.InvariantCulture, $"remove this slot and boost the remaining {others} IOs to +5 with Enhancement Boosters"),
         };
     }
 
