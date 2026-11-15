@@ -91,7 +91,7 @@ repos:
           )
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       # Verbatim game-data fixtures, sample builds, and the vendored .patch (whose
       # unified-diff context lines carry significant leading/trailing whitespace) must
