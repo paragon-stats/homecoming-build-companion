@@ -77,7 +77,7 @@ public sealed class MbdWriterTests
     {
         PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge", "Crafted_Recharge"]) with { RelativeLevels = ["PlusFive", null] };
 
-        MbdBuild build = Written(Spec(Full(null, (22, boosted))));
+        MbdBuild build = Written(Spec(Full(added: null, (22, boosted))));
 
         Assert.Equal(["PlusFive", "Even"], build.PowerEntries[22].SlotEntries.Select(slot => slot.Enhancement!.RelativeLevel), StringComparer.Ordinal);
     }
@@ -96,7 +96,7 @@ public sealed class MbdWriterTests
         PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge"]) with { RelativeLevels = ["PlusFive"] };
 
         string path = Path.Join(Path.GetTempPath(), $"{Guid.NewGuid():N}.mbd");
-        File.WriteAllBytes(path, Mbd.Serialize(Mbd.WriteMbd(Spec(Full(null, (22, boosted))), Schedule, Database)));
+        File.WriteAllBytes(path, Mbd.Serialize(Mbd.WriteMbd(Spec(Full(added: null, (22, boosted))), Schedule, Database)));
         MbdBuild build;
         try
         {
@@ -115,7 +115,7 @@ public sealed class MbdWriterTests
     {
         PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge"]) with { RelativeLevels = ["PlusSix"] };
 
-        Assert.Matches("^E117: relative level 'PlusSix' is not one of None, MinusThree", Message(Spec(Full(null, (22, boosted)))));
+        Assert.Matches("^E117: relative level 'PlusSix' is not one of None, MinusThree", Message(Spec(Full(added: null, (22, boosted)))));
     }
 
     [Fact]
