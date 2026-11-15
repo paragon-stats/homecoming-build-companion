@@ -25,8 +25,11 @@ internal static class LateQualityOfLifePick
             int pick = power.PickLevel + 1;
             if (power.PickLevel >= 0 && pick > power.Level)
             {
-                string first = Math.Max(1, power.Level - ExemplarReach).ToString(CultureInfo.InvariantCulture);
-                string message = $"'{power.FullName}' opens at level {power.Level} but is picked at level {pick}; exemplared to levels {first} to {pick - ExemplarGap} the character lacks it";
+                int first = Math.Max(1, power.Level - ExemplarReach);
+                string clause = pick - ExemplarGap >= first
+                    ? string.Create(CultureInfo.InvariantCulture, $"; exemplared to levels {first} to {pick - ExemplarGap} the character lacks it")
+                    : string.Empty;
+                string message = $"'{power.FullName}' opens at level {power.Level} but is picked at level {pick}{clause}";
                 yield return new Diagnostic("P-POWER-001", "warning", message)
                 {
                     Fix = $"pick this power at level {power.Level}, or record the later pick as a trade-off",

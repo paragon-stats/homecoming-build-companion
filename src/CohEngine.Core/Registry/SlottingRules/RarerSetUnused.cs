@@ -6,15 +6,19 @@ namespace CohEngine.Core.Registry.SlottingRules;
 /// <summary>P-SET-003: a lower-tier set in a power while a rarer set of the same category sits unused in the build (info).</summary>
 internal static class RarerSetUnused
 {
+    // All-unique sets that are not top tier: the canonical data tags them with a category and no rarity.
+    private const string OverwhelmingForce = "Overwhelming_Force";
+    private const string AttunedCupidsCrush = "Attuned_Cupids_Crush";
+
     private const int MinimumPieces = 2;
 
-    /// <summary>Gets the rarer sets: those whose every piece is a unique IO.</summary>
+    /// <summary>Gets the rarer sets: those whose every piece is a unique IO, less the two all-unique sets that are not top tier.</summary>
     /// <param name="setDb">The set database.</param>
     /// <param name="enhDb">The enhancement legality records.</param>
     /// <returns>The sets, in database order.</returns>
     public static IReadOnlyList<EnhancementSetDef> RarerSets(SetBonusDb setDb, IReadOnlyDictionary<int, EnhancementLegality> enhDb)
     {
-        return [.. setDb.Sets.Values.Where(set => set.Enhancements.Count > 0 && set.Enhancements.All(nid => enhDb.TryGetValue(nid, out EnhancementLegality? piece) && piece.Unique))];
+        return [.. setDb.Sets.Values.Where(set => set.Uid is not (OverwhelmingForce or AttunedCupidsCrush) && set.Enhancements.Count > 0 && set.Enhancements.All(nid => enhDb.TryGetValue(nid, out EnhancementLegality? piece) && piece.Unique))];
     }
 
     /// <summary>Runs the rule.</summary>
@@ -30,7 +34,13 @@ internal static class RarerSetUnused
             .GroupBy(slot => (slot.Power.BuildIndex, slot.Enhancement!.NidSet)))
         {
             EnhancementSetDef lower = context.SetDb.Sets[group.Key.NidSet];
-            string[] unused = [.. rarer.Where(set => set.SetType == lower.SetType && !slotted.Contains(set.Nid)).Select(set => set.Uid)];
+            string[] unused =
+            [
+                .. rarer.Where(set => set.SetType == lower.SetType && !slotted.Contains(set.Nid))
+                    .OrderBy(set => IsSuperior(context, set) ? 0 : 1)
+                    .ThenBy(set => set.Uid, StringComparer.Ordinal)
+                    .Select(set => set.Uid),
+            ];
             if (group.Count() >= MinimumPieces && !rarerNids.Contains(lower.Nid) && unused.Length > 0)
             {
                 string verb = unused.Length == 1 ? "is" : "are";
@@ -40,5 +50,11 @@ internal static class RarerSetUnused
                 };
             }
         }
+    }
+
+    // A set is Superior when every piece carries the Superior flag in the legality dump.
+    private static bool IsSuperior(SlottingContext context, EnhancementSetDef set)
+    {
+        return set.Enhancements.All(nid => context.EnhDb.TryGetValue(nid, out EnhancementLegality? piece) && piece.Superior);
     }
 }

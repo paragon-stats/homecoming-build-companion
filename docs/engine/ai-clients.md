@@ -78,7 +78,7 @@ provider defaults to `anthropic`. The key comes from the provider's variable
 `--api-key-env`; there is no option that takes a key.
 
 The tools are the same functions the MCP server exposes (`rules`, `check_legality`,
-`check_hard_limits`, `score`, `totals`, `set_bonus_lookup`, `power_lookup`, `chain`), listed in
+`check_hard_limits`, `check_slotting`, `score`, `totals`, `set_bonus_lookup`, `power_lookup`, `chain`), listed in
 `EngineToolCatalog`. The model never passes the build path. A `.mbd` build gets `rules` and
 `validate`, because the other tools need a Mids dump directory. A tool
 failure goes back to the model as text starting `error:`; a lookup that finds nothing goes back as

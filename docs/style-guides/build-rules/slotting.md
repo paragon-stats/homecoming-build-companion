@@ -61,12 +61,15 @@ Take the slots from plain IOs or from a common set's last piece, not from a Very
 
 A movement-and-recharge auto power (Mental Training, Quickness, Lightning Reflexes, Athletic Regulation, Particle Acceleration) is picked at the level it opens.
 An exemplared task force then keeps it: a character exemplared to level N keeps powers picked at or below N + 5, and a later pick leaves the levels in between without it.
+The message names that range of levels when it exists; for a power that opens at a low level and is picked a few levels late there is none, and the message says only that the pick is late.
 See [exemplar-10.md](./exemplar-10.md).
 
 ## Rarer sets first (P-SET-003; info)
 
 A set whose every piece is unique is rarer: the Very Rare, Winter and archetype sets and their Superior versions.
 When a power holds two or more pieces of a lower-tier set while a rarer set of the same category is slotted nowhere in the build, the rule points at the candidate.
+Two all-unique sets are not top tier and are left out: Overwhelming_Force and Attuned_Cupids_Crush.
+The message lists the Superior sets first, then the rest, each in uid order, so the strongest candidates head the list.
 The comparison itself needs build totals (#21), so the rule only names the set.
 Archetype and Winter set advice beyond that is author guidance, with no registered check (#35).
 

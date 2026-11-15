@@ -324,6 +324,24 @@ public sealed class SlottingTests
     }
 
     [Fact]
+    public void The_rarer_sets_leave_out_overwhelming_force_and_attuned_cupids_crush()
+    {
+        string[] uids = [.. RarerSetUnused.RarerSets(SetDb, EnhLeg).Select(set => set.Uid)];
+
+        Assert.DoesNotContain("Overwhelming_Force", uids, StringComparer.Ordinal);
+        Assert.DoesNotContain("Attuned_Cupids_Crush", uids, StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public void A_movement_auto_that_opens_low_and_is_picked_a_few_levels_late_prints_no_inverted_range()
+    {
+        Diagnostic found = Assert.Single(CheckOne(Auto(2, 4, 15)));
+
+        Assert.Equal("'Pool.Auto' opens at level 2 but is picked at level 5", found.Message);
+        Assert.Equal(("P-POWER-001", 2, 5), (found.RuleId, found.Expected, found.Actual));
+    }
+
+    [Fact]
     public void Two_annihilation_pieces_with_ragnarok_unused_is_p_set_003_info()
     {
         Power power = ForSetType(0, "Blast.Ranged.Nuke", SetDb.Sets[AnnihilationSet].SetType);
@@ -331,7 +349,7 @@ public sealed class SlottingTests
         Diagnostic found = Assert.Single(CheckOne(power, Pieces([.. SetNids(AnnihilationSet).Take(2)])));
 
         Assert.Equal(("P-SET-003", "info"), (found.RuleId, found.Severity));
-        Assert.StartsWith("'Annihilation' fills 'Blast.Ranged.Nuke' while Ragnarok, Frozen_Blast, Superior_Frozen_Blast of the same category are not slotted anywhere in the build", found.Message, StringComparison.Ordinal);
+        Assert.StartsWith("'Annihilation' fills 'Blast.Ranged.Nuke' while Ragnarok, Superior_Frozen_Blast, Frozen_Blast of the same category are not slotted anywhere in the build", found.Message, StringComparison.Ordinal);
         Assert.Equal("compare the build's totals with the rarer set in this power before keeping 'Annihilation'", found.Fix);
     }
 
