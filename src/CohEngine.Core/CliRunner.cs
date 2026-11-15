@@ -13,7 +13,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -95,12 +95,17 @@ public static class CliRunner
     {
         if (!IsMbd(parsed))
         {
-            return ValidateCommand.RunDump(parsed.BuildPath, parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath));
+            return ValidateCommand.RunDump(parsed.BuildPath, parsed.MidsDirectory ?? DumpScoring.DefaultMidsDirectory(parsed.BuildPath), ChecksOf(parsed));
         }
 
         return mbdSource is null
             ? throw new EngineException($"E72: cannot read {parsed.BuildPath}: .mbd validation is not available in this build; validate a Mids dump directory instead")
-            : ValidateCommand.RunMbd(mbdSource, parsed.BuildPath, parsed.MidsDirectory ?? mbdSource.DefaultMidsDirectory);
+            : ValidateCommand.RunMbd(mbdSource, parsed.BuildPath, parsed.MidsDirectory ?? mbdSource.DefaultMidsDirectory, ChecksOf(parsed));
+    }
+
+    private static ValidateChecks ChecksOf(ValidateArguments parsed)
+    {
+        return parsed.Slotting ? ValidateChecks.All | ValidateChecks.Slotting : ValidateChecks.All;
     }
 
     /// <summary>The <c>--expect</c> claims checked against the build's computed metrics; nothing is computed when none were given.</summary>

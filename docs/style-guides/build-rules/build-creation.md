@@ -157,6 +157,17 @@ Walk this list before emitting any build. Every item passes; otherwise the build
 - [ ] Anchor attack has ≥ 2 added slots by character level 14.
 - [ ] Every attack's slot (A) and first added slot hold an Acc-bearing IO; damage-only pieces appear no earlier than slot 3 (exceptions: pre-buffed snipes, procmonster vehicles, auto-hit powers).
 
+### Slotting
+
+Run `coh-engine validate <build>.mbd --slotting` and resolve each finding, or record the trade-off. See [`slotting.md`](./slotting.md).
+
+- [ ] No P-ED-001 or P-ED-002 finding: no plain IO sits past Enhancement Diversification, and Hasten holds at most two Recharge IOs, boosted to +5.
+- [ ] No P-SET-002 finding: a lone Luck of the Gambler recharge piece is kept only when slots are tight.
+- [ ] No P-IO-002 finding: the resistance toggle holds the resistance uniques, or the build has them elsewhere.
+- [ ] No P-IO-003 finding: Health holds the survivability uniques before a luxury sixth slot elsewhere.
+- [ ] No P-POWER-001 finding: each movement-and-recharge auto power is picked at its opening level.
+- [ ] Each P-SET-003 note is answered: the rarer set was compared, or the lower-tier set is kept for a stated reason.
+
 ### Verification against data
 
 - [ ] Each power's pick level checked against canonical or in-app MidsReborn.

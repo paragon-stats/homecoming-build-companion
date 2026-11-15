@@ -34,6 +34,8 @@ They agree on every power, slot and enhancement.
   Last is training memory, labelled "approximate; verify in MidsReborn".
   For format details read `MidsReborn/clsOutput.cs` (the emitter) and `build-format/schema.json`.
 - **Slot attacks accuracy-first.** See [attack-slotting.md](build-rules/attack-slotting.md).
+- **Slot for value, not for the last point of an aspect.** Five or six pieces of a Very Rare, Winter or archetype set outrank diversification.
+  Plain IOs past the threshold are the slots to reclaim. See [slotting.md](build-rules/slotting.md).
 - **Use full IO set names in prose.** Abbreviations appear only inside verbatim Mids forum-export blocks. See [io-set-naming.md](build-rules/io-set-naming.md).
 - **Put real design tensions in the Trade-offs section.** Examples are defense vs damage, AoE vs single target, and ATO 6-piece vs procs.
   Errors get fixed before emit; unverified specifics go in "What I would verify".
@@ -51,7 +53,12 @@ They agree on every power, slot and enhancement.
 6. Check `data/diff/current_overrides.json` for patched values affecting the chosen powers.
 7. If a capture exists for the archetype or powerset in the source root, read it.
 8. Draft the build with a running slot count and per-power tally.
-9. Walk the pre-flight checklist; every item passes or the build does not emit.
+9. Walk the pre-flight checklist, and run `coh-engine validate <build>.mbd --slotting`; every item passes or the build does not emit.
 10. Emit JSON and markdown, then surface real trade-offs and verification gaps.
 
-The engine validates the mechanical part of the checklist; its architecture is in [engine-architecture.md](engine-architecture.md).
+The markdown artifact carries a "Slotting rules applied" section.
+It lists each `--slotting` finding with the fix made or the trade-off accepted.
+
+`validate` checks the hard limits and enhancement legality, and with `--slotting` the slotting rules in [slotting.md](build-rules/slotting.md).
+The remaining checklist items are author guidance, with no registered check.
+The architecture is in [engine-architecture.md](engine-architecture.md).

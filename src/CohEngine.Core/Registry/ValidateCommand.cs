@@ -1,5 +1,6 @@
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
+using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.Registry;
 
@@ -52,6 +53,7 @@ public static class ValidateCommand
         [
             .. checks.HasFlag(ValidateChecks.HardLimits) ? HardLimitRunner.Check(powers, slots, schedule, server.MaxSlots, format) : [],
             .. checks.HasFlag(ValidateChecks.Legality) ? LegalityRunner.Check(powers, slots, enhancements, setDb, enhEffects) : [],
+            .. checks.HasFlag(ValidateChecks.Slotting) ? SlottingRunner.Check(powers, slots, enhancements, setDb, enhEffects, MathTables.Load(DumpScoring.MathsPath(midsDirectory, null))) : [],
         ];
     }
 }

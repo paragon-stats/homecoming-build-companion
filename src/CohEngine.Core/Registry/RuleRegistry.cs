@@ -1,6 +1,7 @@
 using CohEngine.Core.Registry.HardLimitRules;
 using CohEngine.Core.Registry.LegalityRules;
 using CohEngine.Core.Registry.ScoringMetrics;
+using CohEngine.Core.Registry.SlottingRules;
 
 namespace CohEngine.Core.Registry;
 
@@ -15,6 +16,9 @@ public static class RuleRegistry
 
     /// <summary>Gets the hard-limit rules, in registration order.</summary>
     public static IReadOnlyList<RuleInfo> HardLimits => [.. HardLimitRules.Select(rule => rule.Info)];
+
+    /// <summary>Gets the slotting rules, in registration order; they run only under <c>validate --slotting</c>, so <c>rules</c> does not list them.</summary>
+    public static IReadOnlyList<RuleInfo> Slotting => [.. SlottingRules.Select(rule => rule.Info)];
 
     /// <summary>Gets the enhancement aspect handlers, sorted by aspect name as the Python lists them.</summary>
     public static IReadOnlyList<RuleInfo> EnhancementAspects { get; } =
@@ -46,6 +50,18 @@ public static class RuleRegistry
         new(new("_rule_mutex", "H-ENH-005: stealth procs, and superior/attuned versions of one set piece, are mutex."), MutexRule.Run),
         new(new("_rule_lone_set_piece", "P-SET-001: a single piece of a set in one power, earning no set bonus."), LoneSetPieceRule.Run),
         new(new("_rule_per_power_set_dup", "H-ENH-006: the same set piece slotted twice in one power."), PerPowerSetDuplicateRule.Run),
+    ];
+
+    /// <summary>Gets the slotting rules with their bodies, in registration order; a new rule is a new line here.</summary>
+    internal static IReadOnlyList<RegisteredRule<SlottingContext>> SlottingRules { get; } =
+    [
+        new(new("P-ED-001", "A plain IO slotted past the last Enhancement Diversification threshold counts at 15% of its value."), EdOverSlotting.RunPastThreshold),
+        new(new("P-ED-002", "Three or more copies of one plain IO that two boosted copies would match within five points."), EdOverSlotting.RunOverBoosting),
+        new(new("P-SET-002", "A lone Luck of the Gambler recharge piece while the build holds slots that add little."), LoneGamblerRecharge.Run),
+        new(new("P-IO-002", "A resistance toggle holding generic IOs while the resistance uniques are missing."), ResistanceMule.Run),
+        new(new("P-IO-003", "Health with survivability uniques the build leaves out."), HealthUniques.Run),
+        new(new("P-POWER-001", "A movement-and-recharge auto power picked after the level it opens at."), LateQualityOfLifePick.Run),
+        new(new("P-SET-003", "A lower-tier set beside an unused rarer set of the same category."), RarerSetUnused.Run),
     ];
 
     /// <summary>Gets the hard-limit rules with their bodies, in registration order; a new rule is a new line here.</summary>
