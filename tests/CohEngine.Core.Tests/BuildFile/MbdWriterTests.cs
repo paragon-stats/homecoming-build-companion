@@ -73,6 +73,52 @@ public sealed class MbdWriterTests
     }
 
     [Fact]
+    public void A_spec_with_a_plus_five_recharge_io_writes_plus_five()
+    {
+        PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge", "Crafted_Recharge"]) with { RelativeLevels = ["PlusFive", null] };
+
+        MbdBuild build = Written(Spec(Full(null, (22, boosted))));
+
+        Assert.Equal(["PlusFive", "Even"], build.PowerEntries[22].SlotEntries.Select(slot => slot.Enhancement!.RelativeLevel), StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public void A_spec_without_a_relative_level_writes_even()
+    {
+        MbdBuild build = Written(Spec(Full()));
+
+        Assert.All(build.PowerEntries.Take(24).SelectMany(entry => entry.SlotEntries), slot => Assert.Equal("Even", slot.Enhancement!.RelativeLevel));
+    }
+
+    [Fact]
+    public void A_plus_five_io_round_trips_through_the_reader()
+    {
+        PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge"]) with { RelativeLevels = ["PlusFive"] };
+
+        string path = Path.Join(Path.GetTempPath(), $"{Guid.NewGuid():N}.mbd");
+        File.WriteAllBytes(path, Mbd.Serialize(Mbd.WriteMbd(Spec(Full(null, (22, boosted))), Schedule, Database)));
+        MbdBuild build;
+        try
+        {
+            build = Mbd.LoadMbd(path);
+        }
+        finally
+        {
+            File.Delete(path);
+        }
+
+        Assert.Equal("PlusFive", build.PowerEntries[22].SlotEntries[0].Enhancement!.RelativeLevel);
+    }
+
+    [Fact]
+    public void An_unknown_relative_level_is_rejected()
+    {
+        PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge"]) with { RelativeLevels = ["PlusSix"] };
+
+        Assert.Matches("^E117: relative level 'PlusSix' is not one of None, MinusThree", Message(Spec(Full(null, (22, boosted)))));
+    }
+
+    [Fact]
     public void A_pick_off_its_schedule_level_is_E46()
     {
         List<PickSpec> picks = Full(null, (22, TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 48, ["Crafted_Accuracy"])));
