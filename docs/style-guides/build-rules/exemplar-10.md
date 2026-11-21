@@ -24,16 +24,24 @@ A build that satisfies these is playable at exemplar 10. That's the bar.
 
 - **Power availability — the +5 rule.** Exemplared to N, you have access to powers picked at level ≤ N + 5. At exemplar 10 → picks at levels 1, 1, 2, 4, 6, 8, 10, 12, 14 are available.
 - **Slot availability — also the +5 rule.** Slots placed at level X are available while effective level ≥ X − 5. Slots placed at level 16 and later don't exist on the character at exemplar 10.
-- **IO set bonuses — the −3 rule (regular sets).** Bonuses persist while effective level ≥ (set min level − 3).
-  Most meta sets (min 30+) lose bonuses at exemplar 10.
+- **IO set bonuses — the −3 rule (regular sets).** The level the rule counts from depends on the piece:
+  - **Crafted piece:** bonuses persist while effective level ≥ (the piece's own level − 3). A level 50 crafted piece stops giving its bonus below 47.
+  - **Attuned piece:** bonuses persist while effective level ≥ (set min level − 3).
+  - **Global pieces** (for example Luck of the Gambler's recharge) follow the same rule as set bonuses. **Procs** are exempt, but the power they sit in must be usable.
+  - A boost from Enhancement Boosters does not change the level the rule uses. Attuned pieces cannot be boosted.
+
+  Most level-50 builds lose most regular set bonuses at exemplar 10.
   *That's expected* — the build's level-50 set bonuses still work at level 50, where the character lives most of the time.
+  - **Source:** the Homecoming wiki, [Exemplar Effects on Enhancements](https://homecoming.wiki/wiki/Exemplar_Effects_on_Enhancements), read 2026-11-15.
+    No combat-log capture has confirmed it yet; that measurement is issue #64.
   - **Engine note (Mids-modeled vs actual):** This −3 rule is *actual in-game* behavior and remains the guidance for human build-authoring.
     MidsReborn does **not** implement it — Mids retains a power's set bonuses whenever the power's pick level ≤ the exemplar (Force) level, with no −3 offset.
     The build-calculation engine (see [`docs/engine/mids-port-spec.md`](../../engine/mids-port-spec.md)) matches Mids as its reference implementation,
     so any exemplar totals it reports are labeled *Mids-modeled* and are optimistic at deep exemplar relative to live CoH.
 - **PvP IO set bonuses — informational exception.** Persist at every exemplar level. Slot PvP sets when their level-50 bonuses are competitive with the alternative; never as an exemplar-driven choice.
-- **ATO sets, Winter-O sets** — min level 10, persist at exemplar 10 by the −3 rule. ATOs slot at level 10; Winter-Os are attuned-only.
-- **Purples** — min 50; lose bonuses below effective 47. Slot freely at level 50; loss on exemplar is acceptable.
+- **ATO sets, Winter-O sets** — set bonuses are not affected by exemplaring and persist at every level. ATOs slot at level 10; Winter-Os are attuned-only.
+- **Purples** — set bonuses persist at every exemplar level. The enhancement values still scale down as for any piece.
+- **Which sets are immune** is in the game data: each piece under `data/canonical/boost_sets/` carries `bonuses_ignore_exemplar`. It is true for purple, PvP, ATO and Winter-O pieces.
 - **Incarnates** — Alpha shift applies only at exemplar 45+. No incarnate buffs at exemplar 10. The build functions on its baseline at low exemplar.
 
 ## What this rule actually constrains
@@ -84,3 +92,5 @@ Before emitting a build, confirm:
 ## Reference
 
 Full mechanics, lookup tables, and IO-type breakdown: [`docs/slotting-and-leveling.md` § Exemplar mechanics](../../slotting-and-leveling.md#exemplar-mechanics-and-the-universal-exemplar-10-rule).
+
+What exemplaring does to a build's defense when planning: [`docs/survivability-planning.md`](../../survivability-planning.md).

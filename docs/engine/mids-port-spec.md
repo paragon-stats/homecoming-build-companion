@@ -2310,7 +2310,7 @@ applies no −3 offset. A repo-wide search for `- 3` / `LevelMin` in the set-bon
 EnhancementSet.cs, Character.cs UI strings, Build.cs:314-332 IO level fitting) — never for gating bonus activation.
 
 Consequence for a faithful port: a set slotted in a power picked at level ≤ exemplar level retains **all** its set bonuses at any exemplar depth (Mids does not fade them by set min level). Do not add
-a −3 rule; doing so would make the port diverge from MidsReborn numbers. (This is a known simplification versus live CoH, which does apply set-min-−3.)
+a −3 rule; doing so would make the port diverge from MidsReborn numbers. (This is a known simplification versus live CoH; the live rule is in [`exemplar-10.md`](../style-guides/build-rules/exemplar-10.md#mechanics-summary).)
 
 ### Ordering pitfalls for reimplementation
 
