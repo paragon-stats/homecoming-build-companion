@@ -38,11 +38,12 @@ public static class BuildFileFixtures
         return [.. Directory.EnumerateFiles(directory, pattern, SearchOption.AllDirectories).Order(StringComparer.Ordinal)];
     }
 
-    /// <summary>Lists every sample <c>.mbd</c>.</summary>
-    /// <returns>The full paths.</returns>
-    public static IReadOnlyList<string> SampleMbd()
+    /// <summary>Lists the sample <c>.mbd</c> builds git tracks, so untracked working builds never reach a test.</summary>
+    /// <param name="folder">A folder below <c>samples/builds</c>, with forward slashes, or empty for all of it.</param>
+    /// <returns>The full paths in ordinal order.</returns>
+    public static IReadOnlyList<string> SampleMbd(string folder = "")
     {
-        return Files(Samples, "*.mbd");
+        return [.. GitFiles.Tracked(Store.RepositoryRoot, "samples/builds/" + folder).Where(path => path.EndsWith(".mbd", StringComparison.Ordinal))];
     }
 
     /// <summary>Lists every sample and fixture <c>.mbd</c> build.</summary>

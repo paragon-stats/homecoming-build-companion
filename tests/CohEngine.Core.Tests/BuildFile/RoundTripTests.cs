@@ -36,7 +36,7 @@ public sealed class RoundTripTests
 
     private static IEnumerable<string> Curated()
     {
-        return CuratedFolders.SelectMany(folder => BuildFileFixtures.Files(Path.Join(BuildFileFixtures.Samples, folder), "*.mbd"));
+        return CuratedFolders.SelectMany(BuildFileFixtures.SampleMbd);
     }
 
     [Theory]
