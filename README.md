@@ -88,6 +88,7 @@ When a build question comes up:
 1. **For game-truth facts** ("what does this power actually do?", "what's the recharge of Foot Stomp?") — cite [data/canonical/](data/canonical/).
 2. **For build math and slotting validity** ("does this enhancement go in this power?", "what's the level rule?", "what's the set bonus piece count?") — cite [data/mids/](data/mids/).
 3. **For mechanics and strategy** ("how do procs scale?", "what's a soft-cap?", "how do attack chains work?") — cite [docs/](docs/).
+    For how well a build survives, and the planning figures for enemies, cite [docs/survivability-planning.md](docs/survivability-planning.md).
 4. **For player-validated wisdom** ("what's the meta?") — cite the captures listed in [data/source-material/](data/source-material/), weighed by their `trust` and `date_posted` fields.
 5. **When sources disagree** — say so explicitly. Prefer canonical for raw numbers, prefer Mids for slotting validity, prefer community for strategy. Never hide a discrepancy.
 6. **When proposing a build** — produce JSON conforming to [build-format/schema.json](build-format/schema.json). Paste into MidsReborn's File → Open or the Modern JSON load path.

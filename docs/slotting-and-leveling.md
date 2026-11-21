@@ -218,21 +218,25 @@ It is *not* about chasing exemplar set bonuses.
   The pick scheduled at 16 and later is not.
 - **Slot availability — also +5.** Slots placed at level X in any power are accessible while your effective level ≥ X − 5.
   Slots placed at level 16 and later don't exist on your character at exemplar 10.
-- **IO set bonuses — the −3 rule (regular IO sets).** A regular set's bonuses persist while your effective level ≥ (set's minimum craftable level) − 3.
-  Most meta IO sets have min level 30 → bonuses lost at effective level < 27.
+- **IO set bonuses — the −3 rule (regular IO sets).** The level the rule counts from depends on the piece.
+  A **crafted** piece's bonuses persist while your effective level ≥ (the piece's own level) − 3, so a level 50 crafted piece stops below 47.
+  An **attuned** piece's bonuses persist while your effective level ≥ (set's minimum level) − 3.
+  Global pieces follow the same rule; procs are exempt but need their power usable.
+  Source: the Homecoming wiki, [Exemplar Effects on Enhancements](https://homecoming.wiki/wiki/Exemplar_Effects_on_Enhancements), read 2026-11-15.
   **Most level-50 builds will lose most of their set bonuses at exemplar 10.
   That is fine.** The build's level-50 set bonuses still work at level 50, which is where it lives most of the time.
 - **PvP IO set bonuses — exemplar-agnostic (informational).**
   PvP IO sets (Shield Wall, Panacea, Gladiator's Armor / Net / Strike / Javelin / Rage, etc.) retain their set bonuses at every exemplar level.
   **This is interesting trivia, not a slotting recommendation.** Use PvP sets when their level-50 bonuses are competitive with the alternative for the slot — not because they survive exemplar.
-- **ATO and Winter-O sets — also retain at exemplar 10.** Both are attuned-only, min level 10, and 10 ≥ 10 − 3 = 7.
+- **ATO and Winter-O sets — also exemplar-agnostic.** Their set bonuses are not affected by exemplaring and persist at every level. Both are attuned-only.
   ATOs slot at level 10 (a useful scaling perk during leveling, not a constraint on level-50 build choice).
   Catalyze to Superior at 50 for the level-50 benefit, not for the exemplar effect.
 - **Attuned IOs (in general).** Per-IO enhancement values scale to your effective level, which prevents the level penalty crafted IOs take below their crafted level.
   **Use attuned IOs when they're as good as the crafted alternative for the level-50 build.**
   Set bonuses for attuned IOs still follow the −3 rule by *set* min level — attuned regular sets still lose bonuses below (set_min − 3).
-- **Purples — bonuses lost at any exemplar < 47.** Min level 50, so −3 puts the floor at 47.
-  **Slot purples freely; they're a level-50 optimization.** They're useless on deep exemplar but that's not a reason to avoid them.
+  Attuned IOs cannot take Enhancement Boosters, so a build that boosts pieces to +5 for level-50 content uses crafted pieces and gives up their bonuses below 47.
+- **Purples — set bonuses persist at every exemplar level.** The game data marks them `bonuses_ignore_exemplar`, as it does PvP, ATO and Winter-O pieces.
+  **Slot purples freely; they're a level-50 optimization.** Their enhancement values still scale down on deep exemplar.
 - **Incarnates.** Alpha shift applies only when exemplared to 45+. At exemplar 10, no incarnate buffs apply. Build for level 50 with full Incarnate kit and accept the reduced power at exemplar 10.
 
 ### What this actually means for build design
