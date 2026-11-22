@@ -246,7 +246,7 @@ def test_validate_value_error_is_reported_on_stderr(
     assert capsys.readouterr().err == "error: E99: rejected input\n"
 
 
-BANE = FIXTURES.parents[3] / "samples/builds/characters/account1/laser-arachnos/bane-mace.mbd"
+BANE = FIXTURES.parents[3] / "samples/builds/reference/arachnos-soldier/bane-mace/bane-leviathan.mbd"
 
 
 def _mutated_bane(tmp_path: Path, mutate: Callable[[dict[str, Any]], None]) -> Path:

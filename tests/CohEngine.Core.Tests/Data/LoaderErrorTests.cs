@@ -33,7 +33,7 @@ public sealed class LoaderErrorTests : IDisposable
     [Fact]
     public void A_build_power_with_no_power_assembly_record_is_E86()
     {
-        IReadOnlyList<Power> powers = Fixtures.Store.Build("community__stalker__fiery-invulnerability").Powers;
+        IReadOnlyList<Power> powers = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability").Powers;
         string assembly = Write("power_assembly.json", "[]");
         string slots = Write("slots.json", "[]");
 
@@ -45,7 +45,7 @@ public sealed class LoaderErrorTests : IDisposable
     [Fact]
     public void A_build_power_with_no_slots_record_is_E86()
     {
-        BuildFixture build = Fixtures.Store.Build("community__stalker__fiery-invulnerability");
+        BuildFixture build = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability");
         string slots = Write("slots.json", "[]");
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
@@ -69,7 +69,7 @@ public sealed class LoaderErrorTests : IDisposable
     [Fact]
     public void An_effect_without_extended_keys_is_E85()
     {
-        BuildFixture build = Fixtures.Store.Build("community__stalker__fiery-invulnerability");
+        BuildFixture build = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability");
         Power power = build.Powers.First(candidate => candidate.Effects.Count > 0);
         string record = $$"""
             [{"BuildIndex": {{power.BuildIndex}}, "PowerSetType": "Primary", "EntitiesAffected": [], "EntitiesAutoHit": [],
@@ -99,7 +99,7 @@ public sealed class LoaderErrorTests : IDisposable
     [Fact]
     public void An_assembled_power_effect_missing_a_key_is_E85()
     {
-        BuildFixture build = Fixtures.Store.Build("community__stalker__fiery-invulnerability");
+        BuildFixture build = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability");
         string path = Write("assembled_powers.json", DropEffectKey(Path.Join(build.Directory, "assembled_powers.json"), "Absorbed_Power_nID"));
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => AssemblyData.LoadAssembledPowers(path));
@@ -145,7 +145,7 @@ public sealed class LoaderErrorTests : IDisposable
     {
         AssemblyPower power = Fixtures.Store.AssemblyPowers.Values.First(candidate => candidate.EntitiesAffected.Count > 0);
         AssemblyEntity entity = Fixtures.Store.AssemblyEntities.Entities.Values.First(candidate => candidate.FirstPowersetEffectTypes.Count > 0);
-        PowerAssemblyRecord record = AssemblyData.LoadPowerAssemblyRecords(Path.Join(Fixtures.Store.Build("community__stalker__fiery-invulnerability").Directory, "power_assembly.json"))[0];
+        PowerAssemblyRecord record = AssemblyData.LoadPowerAssemblyRecords(Path.Join(Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability").Directory, "power_assembly.json"))[0];
         IncarnateSubPower sub = Fixtures.Store.Build("arsenal_dominator_incarnate").Incarnates[0].SubPowers[0];
 
         AssemblyPower powerAgain = Assert.Single(JsonSerializer.Deserialize(
@@ -180,7 +180,7 @@ public sealed class LoaderErrorTests : IDisposable
     [Fact]
     public void Requirement_groups_drop_blank_names_and_empty_groups()
     {
-        Power stalker = Fixtures.Store.Build("community__stalker__fiery-invulnerability").Powers[0];
+        Power stalker = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability").Powers[0];
         string json = JsonSerializer.Serialize<IReadOnlyList<Power>>(
             [stalker with { RequiresPowers = [["Pool.A", string.Empty], [string.Empty, string.Empty]], RequiresPowersNot = [] }],
             EffectJsonContext.Default.IReadOnlyListPower);

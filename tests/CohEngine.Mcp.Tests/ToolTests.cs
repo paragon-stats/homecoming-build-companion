@@ -13,10 +13,10 @@ namespace CohEngine.Mcp.Tests;
 public sealed class ToolTests
 {
     private const string Slotted = "shield_scrapper_set_bonuses";
-    private const string Assembled = "community__stalker__fiery-invulnerability";
+    private const string Assembled = "community__stalker__general__unknown-fiery-invulnerability";
     private const string Keywords = "keywords_endcost_owner_arch";
-    private const string Mastermind = "community__mastermind__demon-force-field-petless";
-    private const string Bane = "characters/account1/laser-arachnos/bane-mace.mbd";
+    private const string Mastermind = "community__mastermind__general__unknown-petless";
+    private const string Bane = "reference/arachnos-soldier/bane-mace/bane-leviathan.mbd";
 
     private static readonly string[] Sections = ["legality", "hard_limits", "enhancement_aspects", "metrics"];
 
@@ -39,7 +39,7 @@ public sealed class ToolTests
     public async Task Check_slotting_reports_the_widow_build_with_a_data_version()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string buildDir = McpHarness.BuildDir("community__arachnos-widow__night-widow-melee");
+        string buildDir = McpHarness.BuildDir("community__arachnos-widow__general__unknown-melee");
 
         JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", buildDir)).ConfigureAwait(true);
 
@@ -59,7 +59,7 @@ public sealed class ToolTests
     public async Task Check_slotting_reads_a_mbd_with_the_shared_directory()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string mbd = BuildFileFixtures.Sample("community/arachnos-widow/night-widow-melee.mbd");
+        string mbd = BuildFileFixtures.Sample("community/arachnos-widow/general/unknown-melee.mbd");
 
         JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", mbd), ("midsDir", McpHarness.Store.MidsDirectory)).ConfigureAwait(true);
 

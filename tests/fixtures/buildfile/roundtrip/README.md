@@ -12,6 +12,6 @@ bytes. Do not regenerate them from the C# writer.
 
 Five sources are byte-identical to their reference: `arsenal_dominator_incarnate`, `arsenal_dominator_incarnate_slotted`,
 `arsenal_dominator_noslots`, `shield_scrapper_noslots` and `wpss_tanker_leadership`. Every other source differs only in
-lacking the final newline the writer appends, except `community__dominator__arsenal-arsenal`, which
+lacking the final newline the writer appends, except `community__dominator__general__unknown-arsenal-arsenal`, which
 stores each enhancement under the legacy `Enhancement` key and is written back under `Uid`. The model round trip is
 asserted for all of them and the bytes are asserted against these references.

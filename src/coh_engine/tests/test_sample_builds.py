@@ -67,9 +67,21 @@ EXPECTED_CLASSES = {
     "Class_Stalker",
     "Class_Tanker",
 }
-# The samples that are one per archetype: the players' characters, and the community builds for the archetypes no
-# character covers. The other community builds are the .mxd parity builds.
-CURATED_FOLDERS = ("characters", "community/arachnos-widow", "community/mastermind", "community/stalker")
+# One sample per archetype that has one, each with its Mids dump; the other sample builds are not curated.
+CURATED = (
+    "characters/account1/laser-accretion/main.mbd",
+    "characters/account1/laser-alt-f4/main.mbd",
+    "characters/account1/laser-fallout/main.mbd",
+    "characters/account1/laser-hazmat/pve.mbd",
+    "characters/account1/laser-nuke/main.mbd",
+    "characters/account1/laser-prime/main.mbd",
+    "characters/account1/laser-quantum/main.mbd",
+    "characters/account2/hollowmind/main.mbd",
+    "community/arachnos-widow/general/unknown-melee.mbd",
+    "community/mastermind/general/unknown-petless.mbd",
+    "community/stalker/general/unknown-fiery-invulnerability.mbd",
+    "reference/arachnos-soldier/bane-mace/bane-leviathan.mbd",
+)
 
 DB = load_mbd_db(MIDS)
 ARCHETYPES: ArchetypeDb = load_archetypes(MIDS / "archetypes.json")
@@ -85,7 +97,7 @@ SCALAR_FIELDS = {k: v for k, v in MIDS_TOTALS_SCALAR_FIELDS.items() if k not in 
 
 
 def _curated() -> list[Path]:
-    return sorted(p for folder in CURATED_FOLDERS for p in (SAMPLES / folder).rglob("*.mbd"))
+    return [SAMPLES / path for path in CURATED]
 
 
 def _dump(path: Path) -> Path:

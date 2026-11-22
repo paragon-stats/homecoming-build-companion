@@ -100,7 +100,7 @@
       {
         "rule_id": "P-CHAIN-001",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "melee stance: melee defense is 39.1%, under the 45% soft cap",
@@ -110,7 +110,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "no clicks-off dump found; click buffs are counted always-on",
@@ -119,7 +119,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
@@ -127,7 +127,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",
@@ -223,7 +223,7 @@
       {
         "rule_id": "P-CHAIN-001",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "ranged stance: ranged defense is 35.9%, under the 45% soft cap",
@@ -233,7 +233,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "no clicks-off dump found; click buffs are counted always-on",
@@ -242,7 +242,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
@@ -250,7 +250,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",
@@ -359,7 +359,7 @@
       {
         "rule_id": "P-CHAIN-001",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "hybrid stance: melee defense is 39.1%, under the 45% soft cap",
@@ -369,7 +369,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "no clicks-off dump found; click buffs are counted always-on",
@@ -378,7 +378,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "Pool.Leaping.Spring_Attack is classified RANGED (range 60 ft) but its set categories ['Melee AoE Damage'] are melee; check the melee range threshold or the power's range"
@@ -386,7 +386,7 @@
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__demon-force-field-petless",
+        "path": "tests\\fixtures\\mids\\builds\\community__mastermind__general__unknown-petless",
         "line": 1,
         "column": 1,
         "message": "power Mastermind_Summon.Demon_Summoning.Hell_on_Earth is not modelled: pet not modelled, data gap (E61: entity Pets_Living_Hellfire has class 'henchman_minion_small' with no Class_henchman_minion_small or reversed-token class in the archetype table; add the class to the archetypes dump)",

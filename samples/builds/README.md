@@ -1,7 +1,7 @@
 # Sample builds
 
 Real builds saved by MidsReborn, kept as fixtures.
-One build per archetype is curated; the other community builds are the captures the `.mxd` reader is checked against.
+One build per archetype is curated; five builds, curated or not, also have Mids-saved `.mxd` copies the `.mxd` reader is checked against.
 
 ## Layout
 
@@ -9,17 +9,23 @@ One build per archetype is curated; the other community builds are the captures 
 | --- | --- |
 | `characters/<account>/<character>/<build>.mbd` | A player's own characters. `<account>` is a neutral label (`account1`, `account2`, ...), never an account name. A character folder holds at most three builds, one per in-game build slot. |
 | `reference/<archetype>/<focus>/<build>.mbd` | Requested and test builds. |
-| `community/<archetype>/<build>.mbd` | Other players' builds. |
+| `community/<archetype>/<use-type>/<author>-<goal>.mbd` | Other players' builds, any number to a folder. |
 
 `<focus>` is the choice that changes which powers a build takes:
 a Kheldian's form mix (`human-form`, `tri-form`, `human-dwarf`, `human-nova`),
 an Arachnos Soldier's branch and range (`bane-ranged`, `bane-melee`, `crab-ranged`, `crab-melee`, `huntsman`),
 a Blaster's `ranged` or `blapper`.
 
+`<use-type>` is what a community build is tuned for: `general` for a sound build not tuned to a goal,
+or a tuned type, `hard-mode`, `exemplar` or `pylon`.
+The list is open; a new type is one entry in `UseTypes` in `SampleLayoutTests`.
+`<author>` is the poster's handle or archive codename, or `unknown` when the source does not say,
+and `<goal>` is the play style or what the build is built to do, in a few words (`<author>-ranged-softcap`).
+
 A build's file name says what the build is for, not who it is:
 in a character folder the content mode or purpose (`pve.mbd`), or `main.mbd` when nothing sets one apart;
-under `reference/` and `community/` the powersets and any content mode or style (`4-star`, `exemplar`, `petless`).
-A build is one `.mbd` or `.mxd`; files beside it that share its name, such as a write-up, do not count towards the three.
+under `reference/` the powersets and any content mode (`4-star`, `exemplar`).
+A build is one `.mbd` or `.mxd`; files beside it that share its name, such as a write-up, do not count towards a character's three.
 
 ## Adding a build
 
@@ -32,20 +38,20 @@ A build is one `.mbd` or `.mxd`; files beside it that share its name, such as a 
 
 | Archetype | File | Origin |
 | --- | --- | --- |
-| Arachnos Soldier | `characters/account1/laser-arachnos/bane-mace.mbd` | own character, local capture |
-| Arachnos Widow | `community/arachnos-widow/night-widow-melee.mbd` | Mids archive |
+| Arachnos Soldier | `reference/arachnos-soldier/bane-mace/bane-leviathan.mbd` | user-supplied, local capture |
+| Arachnos Widow | `community/arachnos-widow/general/unknown-melee.mbd` | Mids archive |
 | Blaster | `characters/account1/laser-prime/main.mbd` | own character, local capture |
 | Brute | `characters/account1/laser-hazmat/pve.mbd` | own character, local capture |
 | Controller | `characters/account1/laser-alt-f4/main.mbd` | own character, local capture |
 | Corruptor | `characters/account1/laser-nuke/main.mbd` | own character, local capture |
 | Dominator | `characters/account2/hollowmind/main.mbd` | own character, local capture |
-| Mastermind | `community/mastermind/demon-force-field-petless.mbd` | Mids archive |
+| Mastermind | `community/mastermind/general/unknown-petless.mbd` | Mids archive |
 | Scrapper | `characters/account1/laser-accretion/main.mbd` | own character, local capture |
 | Sentinel | `characters/account1/laser-fallout/main.mbd` | own character, local capture |
-| Stalker | `community/stalker/fiery-invulnerability.mbd` | Mids archive |
+| Stalker | `community/stalker/general/unknown-fiery-invulnerability.mbd` | Mids archive |
 | Tanker | `characters/account1/laser-quantum/main.mbd` | own character, local capture |
 
-The curated builds are everything under `characters/` and the community builds of the three archetypes no character covers.
+The curated builds are the twelve above, listed by path in `BuildFileFixtures` and `test_sample_builds.py`; each has a Mids dump.
 Defender, Peacebringer and Warshade have no sample: the archive holds only `.mxd` files for them.
 
 ## What was left out, and why

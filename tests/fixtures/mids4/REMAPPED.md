@@ -14,9 +14,9 @@ The remaps are the source of renamed powers in the "only in 3.x" and "only in 4.
 | `characters__account1__laser-hazmat__pve` | 2024.5.759 | 2 | 0 |
 | `characters__account1__laser-nuke__main` | 2024.5.759 | 3 | 0 |
 | `characters__account1__laser-prime__main` | 2024.5.759 | 3 | 6 |
-| `community__arachnos-widow__night-widow-melee` | 2024.5.759 | 1 | 0 |
-| `community__mastermind__demon-force-field-petless` | 2024.5.759 | 1 | 0 |
-| `community__stalker__fiery-invulnerability` | 2024.5.759 | 1 | 0 |
+| `community__arachnos-widow__general__unknown-melee` | 2024.5.759 | 1 | 0 |
+| `community__mastermind__general__unknown-petless` | 2024.5.759 | 1 | 0 |
+| `community__stalker__general__unknown-fiery-invulnerability` | 2024.5.759 | 1 | 0 |
 | `arsenal_dominator_incarnate` | 2026.1.1242 | 3 | 0 |
 | `arsenal_dominator_incarnate_slotted` | 2026.1.1242 | 3 | 0 |
 | `arsenal_dominator_noslots` | 2026.1.1242 | 3 | 0 |
@@ -27,5 +27,5 @@ The remaps are the source of renamed powers in the "only in 3.x" and "only in 4.
 | `shield_scrapper_set_bonuses` | 2026.5.1337 | 2 | 0 |
 | `shield_scrapper_slotted` | 2026.5.1337 | 2 | 0 |
 
-Builds that loaded without a remap: `characters__account1__laser-arachnos__bane-mace`, `characters__account1__laser-fallout__main` and `wpss_tanker_leadership`.
+Builds that loaded without a remap: `reference__arachnos-soldier__bane-mace__bane-leviathan`, `characters__account1__laser-fallout__main` and `wpss_tanker_leadership`.
 The `shield_scrapper_set_bonuses_exemplar25` dump is a reload of `shield_scrapper_set_bonuses` and shares its row.

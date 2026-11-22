@@ -37,7 +37,7 @@ public sealed class MxdTests
 
     private static (byte[] Raw, int UncompressedSize) FixturePayload()
     {
-        string text = File.ReadAllText(Path.Join(BuildFileFixtures.Root, "mxd", "community__scrapper__dark-shield.mxd"));
+        string text = File.ReadAllText(Path.Join(BuildFileFixtures.Root, "mxd", "characters__account1__laser-accretion__incarnate.mxd"));
         ShareBlock block = Mxd.DecodeShareBlock(text);
         return (Mxd.HexDecode(block.Payload), block.UncompressedSize);
     }

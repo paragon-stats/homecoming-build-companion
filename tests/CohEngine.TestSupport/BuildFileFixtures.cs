@@ -10,7 +10,23 @@ public static class BuildFileFixtures
     private static readonly Lazy<IReadOnlyDictionary<int, string>> PowerIndexValue = new(() => DbIndex.LoadPowerIndex(Path.Join(Store.MidsDirectory, "power_static_index.json")));
     private static readonly Lazy<IReadOnlyDictionary<int, EnhIndexEntry>> EnhIndexValue = new(() => DbIndex.LoadEnhancementIndex(Path.Join(Store.MidsDirectory, "enhancements.json")));
     private static readonly Lazy<MbdDb> DatabaseValue = new(() => Mbd.LoadMbdDb(Store.MidsDirectory));
-    private static readonly string[] CuratedFolders = ["characters", "community/arachnos-widow", "community/mastermind", "community/stalker"];
+
+    // One sample per archetype that has one, each with its Mids dump; the other sample builds are not curated.
+    private static readonly string[] CuratedPaths =
+    [
+        "characters/account1/laser-accretion/main.mbd",
+        "characters/account1/laser-alt-f4/main.mbd",
+        "characters/account1/laser-fallout/main.mbd",
+        "characters/account1/laser-hazmat/pve.mbd",
+        "characters/account1/laser-nuke/main.mbd",
+        "characters/account1/laser-prime/main.mbd",
+        "characters/account1/laser-quantum/main.mbd",
+        "characters/account2/hollowmind/main.mbd",
+        "community/arachnos-widow/general/unknown-melee.mbd",
+        "community/mastermind/general/unknown-petless.mbd",
+        "community/stalker/general/unknown-fiery-invulnerability.mbd",
+        "reference/arachnos-soldier/bane-mace/bane-leviathan.mbd",
+    ];
 
     /// <summary>Gets the reference tables a <c>.mbd</c> is checked and resolved against.</summary>
     public static MbdDb Database => DatabaseValue.Value;
@@ -47,14 +63,11 @@ public static class BuildFileFixtures
         return [.. GitFiles.Tracked(Store.RepositoryRoot, "samples/builds/" + folder).Where(path => path.EndsWith(".mbd", StringComparison.Ordinal))];
     }
 
-    /// <summary>
-    /// Lists the curated sample builds, one per archetype that has one: the players' own characters, and the community builds
-    /// for the archetypes no character covers.
-    /// </summary>
-    /// <returns>The full paths in ordinal order.</returns>
+    /// <summary>Lists the curated sample builds, one per archetype that has one.</summary>
+    /// <returns>The full paths, in ordinal order of their paths under <c>samples/builds</c>.</returns>
     public static IReadOnlyList<string> CuratedMbd()
     {
-        return [.. CuratedFolders.SelectMany(SampleMbd)];
+        return [.. CuratedPaths.Select(Sample)];
     }
 
     /// <summary>Lists every file git tracks under <c>samples/builds</c>.</summary>

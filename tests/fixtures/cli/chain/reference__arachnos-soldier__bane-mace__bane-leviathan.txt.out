@@ -18,7 +18,7 @@ modifiers:
   target_debuff: x1.400 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
 endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 2.87/s, other 0.97/s, net -2.02/s, time to empty 52.2 s
 health: max 1518.1, regen 17.31/s
-tests\fixtures\mids\builds\characters__account1__laser-arachnos__bane-mace:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\reference__arachnos-soldier__bane-mace__bane-leviathan:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
 
 == ranged stance ==
 rotation: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam_Blast > Arachnos_Soldiers.Bane_Spider_Soldier.Mace_Beam
@@ -39,7 +39,7 @@ modifiers:
   target_debuff: x1.400 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -40.0%: Arachnos_Soldiers.Arachnos_Soldier.Venom_Grenade -20% res; Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
 endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 1.67/s, other 0.97/s, net -0.82/s, time to empty 129.2 s
 health: max 1518.1, regen 17.31/s
-tests\fixtures\mids\builds\characters__account1__laser-arachnos__bane-mace:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\reference__arachnos-soldier__bane-mace__bane-leviathan:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
 
 == hybrid stance ==
 rotation: Arachnos_Soldiers.Bane_Spider_Soldier.Crowd_Control > Arachnos_Soldiers.Bane_Spider_Soldier.Shatter > Arachnos_Soldiers.Bane_Spider_Soldier.Pulverize
@@ -60,4 +60,4 @@ modifiers:
   target_debuff: x1.200 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -20.0%: Training_Gadgets.Bane_Spider_Training.Surveillance -20% res (support) at 100% uptime)
 endurance: max 105.4, recovery 3.25/s, toggles 1.43/s, chain 2.87/s, other 0.97/s, net -2.02/s, time to empty 52.2 s
 health: max 1518.1, regen 17.31/s
-tests\fixtures\mids\builds\characters__account1__laser-arachnos__bane-mace:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
+tests\fixtures\mids\builds\reference__arachnos-soldier__bane-mace__bane-leviathan:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

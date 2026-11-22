@@ -46,16 +46,16 @@ Compared 44 file pairs and 664 powers present in both trees.
 | --- | --- | --- | --- | --- |
 | `characters__account2__hollowmind__main` | 57 | 509 | 4 | 4 |
 | `characters__account1__laser-alt-f4__main` | 57 | 551 | 4 | 3 |
-| `characters__account1__laser-arachnos__bane-mace` | 81 | 594 | 3 | 2 |
+| `reference__arachnos-soldier__bane-mace__bane-leviathan` | 81 | 594 | 3 | 2 |
 | `characters__account1__laser-accretion__main` | 87 | 592 | 4 | 3 |
 | `characters__account1__laser-fallout__main` | 12 | 206 | 1 | 1 |
 | `characters__account1__laser-hazmat__pve` | 86 | 1204 | 9 | 3 |
 | `characters__account1__laser-nuke__main` | 71 | 621 | 5 | 4 |
 | `characters__account1__laser-prime__main` | 77 | 602 | 6 | 5 |
 | `characters__account1__laser-quantum__main` | no 4.0 dump | no 4.0 dump | | |
-| `community__arachnos-widow__night-widow-melee` | 97 | 671 | 3 | 2 |
-| `community__mastermind__demon-force-field-petless` | 88 | 805 | 3 | 2 |
-| `community__stalker__fiery-invulnerability` | 78 | 576 | 4 | 5 |
+| `community__arachnos-widow__general__unknown-melee` | 97 | 671 | 3 | 2 |
+| `community__mastermind__general__unknown-petless` | 88 | 805 | 3 | 2 |
+| `community__stalker__general__unknown-fiery-invulnerability` | 78 | 576 | 4 | 5 |
 | `arsenal_dominator_cardiac` | no 4.0 dump | no 4.0 dump | | |
 | `arsenal_dominator_incarnate` | 46 | 644 | 6 | 4 |
 | `arsenal_dominator_incarnate_slotted` | 46 | 644 | 6 | 4 |

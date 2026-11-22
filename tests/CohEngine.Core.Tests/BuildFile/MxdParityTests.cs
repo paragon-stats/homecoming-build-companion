@@ -109,7 +109,7 @@ public sealed class MxdParityTests
     [Fact]
     public void The_scrapper_reads_in_the_current_format()
     {
-        MxdBuild mxd = ReadMxd(BuildFileFixtures.Root + "/mxd/community__scrapper__dark-shield.mxd");
+        MxdBuild mxd = ReadMxd(BuildFileFixtures.Root + "/mxd/characters__account1__laser-accretion__incarnate.mxd");
 
         BuildPowerEntry smite = Named(mxd.PowerEntries)[0];
         Assert.Equal(("current", "Class_Scrapper", "Scrapper_Melee.Dark_Melee.Smite", 0), (mxd.Format, mxd.ClassName, smite.PowerName, smite.Level));

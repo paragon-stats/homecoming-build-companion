@@ -37,8 +37,8 @@ Running from `tools/mids-dump-4` makes `./out` the ignored `tools/mids-dump-4/ou
 - from `src/coh_engine/tests/fixtures/builds/`: `arsenal_dominator_cardiac`, `arsenal_dominator_incarnate`, `arsenal_dominator_incarnate_slotted`,
   `arsenal_dominator_noslots`, `hasten_2rech`, `shield_scrapper_global_endrdx`, `shield_scrapper_mixed_sets`, `shield_scrapper_noslots`,
   `shield_scrapper_set_bonuses`, `shield_scrapper_slotted`, `wpss_tanker_leadership` (each `.mbd`)
-- from `samples/builds/`, each kept at its path under that folder: the nine `.mbd` files under `characters/`,
-  `community/arachnos-widow/night-widow-melee.mbd`, `community/mastermind/demon-force-field-petless.mbd` and `community/stalker/fiery-invulnerability.mbd`
+- from `samples/builds/`, each kept at its path under that folder: the twelve curated builds that
+  `samples/builds/README.md` lists under Coverage (not `characters/account1/laser-accretion/incarnate.mbd`, which has no dump)
 
 Each dump is named by the build's path under `<parity-builds>` without `.mbd`, each folder separator written `__`,
 so `characters/account1/laser-nuke/main.mbd` dumps to `builds/characters__account1__laser-nuke__main/`.

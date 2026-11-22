@@ -17,7 +17,7 @@ from coh_engine.buildfile.mbd import (
 
 REPO = Path(__file__).resolve().parents[3]
 SAMPLES = REPO / "samples" / "builds"
-DARK_SHIELD = SAMPLES / "community" / "scrapper" / "dark-shield.mbd"
+DARK_SHIELD = SAMPLES / "characters" / "account1" / "laser-accretion" / "incarnate.mbd"
 
 
 def test_loads_all_sample_builds() -> None:
@@ -245,7 +245,7 @@ def test_missing_file_raises(tmp_path: Path) -> None:
         load_mbd(tmp_path / "nope.mbd")
 
 
-BANE = SAMPLES / "characters" / "account1" / "laser-arachnos" / "bane-mace.mbd"
+BANE = SAMPLES / "reference" / "arachnos-soldier" / "bane-mace" / "bane-leviathan.mbd"
 DB = load_mbd_db(REPO / "tests" / "fixtures" / "mids")
 
 

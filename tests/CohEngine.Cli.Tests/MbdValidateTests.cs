@@ -13,7 +13,7 @@ namespace CohEngine.Cli.Tests;
 public sealed class MbdValidateTests : IDisposable
 {
     private static readonly CliCapture Capture = new(FixtureStore.Locate(AppContext.BaseDirectory));
-    private static readonly string Bane = BuildFileFixtures.Sample("characters/account1/laser-arachnos/bane-mace.mbd");
+    private static readonly string Bane = BuildFileFixtures.Sample("reference/arachnos-soldier/bane-mace/bane-leviathan.mbd");
     private static readonly string Tanker = Path.Join(Capture.Store.MidsDirectory, "builds", "wpss_tanker_leadership");
     private static readonly MbdBuildSource Source = new(Capture.Store.MidsDirectory);
 
@@ -164,7 +164,7 @@ public sealed class MbdValidateTests : IDisposable
     [Fact]
     public void An_enhancement_the_database_lacks_is_e78()
     {
-        (int code, string error) = RunError(BuildFileFixtures.Sample("community/dominator/arsenal-arsenal.mbd"));
+        (int code, string error) = RunError(BuildFileFixtures.Sample("community/dominator/general/unknown-arsenal-arsenal.mbd"));
 
         Assert.Equal((1, true), (code, error.StartsWith("error: E78: Dominator_Control.Arsenal_Control.Cryo_Freeze_Ray slot at level 1 holds Gladiator's Javelin: Chance of Damage(Toxic), which enhancements.json lacks;", StringComparison.Ordinal)));
     }

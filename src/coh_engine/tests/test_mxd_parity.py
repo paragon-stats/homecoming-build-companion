@@ -107,7 +107,7 @@ def test_every_legacy_mxd_reads(indexes: Indexes) -> None:
 def test_scrapper_specifics(indexes: Indexes) -> None:
     power_index, enh_index = indexes
     mx = read_mxd(
-        (MXD_DIR / "community__scrapper__dark-shield.mxd").read_text(encoding="utf-8"),
+        (MXD_DIR / "characters__account1__laser-accretion__incarnate.mxd").read_text(encoding="utf-8"),
         power_index,
         enh_index,
         ARCHETYPES,
