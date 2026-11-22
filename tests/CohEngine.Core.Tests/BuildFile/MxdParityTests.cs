@@ -78,7 +78,7 @@ public sealed class MxdParityTests
     {
         MxdBuild mxd = ReadMxd(path);
         string stem = Path.GetFileNameWithoutExtension(path);
-        string mbdPath = Assert.Single(BuildFileFixtures.Files(BuildFileFixtures.Samples, stem + ".mbd"));
+        string mbdPath = Assert.Single(BuildFileFixtures.SampleMbd(), mbd => string.Equals(Path.GetFileName(mbd), stem + ".mbd", StringComparison.Ordinal));
         MbdBuild mbd = Mbd.LoadMbd(mbdPath);
 
         Same(mbd.ClassName, mxd.ClassName, $"{stem}: class");
