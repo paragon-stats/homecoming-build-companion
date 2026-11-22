@@ -78,7 +78,7 @@ public sealed class MxdParityTests
     {
         MxdBuild mxd = ReadMxd(path);
         string stem = Path.GetFileNameWithoutExtension(path);
-        string mbdPath = Assert.Single(BuildFileFixtures.SampleMbd(), mbd => string.Equals(Path.GetFileName(mbd), stem + ".mbd", StringComparison.Ordinal));
+        string mbdPath = Assert.Single(BuildFileFixtures.SampleMbd(), mbd => string.Equals(BuildFileFixtures.FixtureName(mbd), stem, StringComparison.Ordinal));
         MbdBuild mbd = Mbd.LoadMbd(mbdPath);
 
         Same(mbd.ClassName, mxd.ClassName, $"{stem}: class");
@@ -109,7 +109,7 @@ public sealed class MxdParityTests
     [Fact]
     public void The_scrapper_reads_in_the_current_format()
     {
-        MxdBuild mxd = ReadMxd(BuildFileFixtures.Root + "/mxd/Scrapper - Dark-Shield.mxd");
+        MxdBuild mxd = ReadMxd(BuildFileFixtures.Root + "/mxd/community__scrapper__dark-shield.mxd");
 
         BuildPowerEntry smite = Named(mxd.PowerEntries)[0];
         Assert.Equal(("current", "Class_Scrapper", "Scrapper_Melee.Dark_Melee.Smite", 0), (mxd.Format, mxd.ClassName, smite.PowerName, smite.Level));

@@ -10,6 +10,7 @@ public static class BuildFileFixtures
     private static readonly Lazy<IReadOnlyDictionary<int, string>> PowerIndexValue = new(() => DbIndex.LoadPowerIndex(Path.Join(Store.MidsDirectory, "power_static_index.json")));
     private static readonly Lazy<IReadOnlyDictionary<int, EnhIndexEntry>> EnhIndexValue = new(() => DbIndex.LoadEnhancementIndex(Path.Join(Store.MidsDirectory, "enhancements.json")));
     private static readonly Lazy<MbdDb> DatabaseValue = new(() => Mbd.LoadMbdDb(Store.MidsDirectory));
+    private static readonly string[] CuratedFolders = ["characters", "community/arachnos-widow", "community/mastermind", "community/stalker"];
 
     /// <summary>Gets the reference tables a <c>.mbd</c> is checked and resolved against.</summary>
     public static MbdDb Database => DatabaseValue.Value;
@@ -46,6 +47,23 @@ public static class BuildFileFixtures
         return [.. GitFiles.Tracked(Store.RepositoryRoot, "samples/builds/" + folder).Where(path => path.EndsWith(".mbd", StringComparison.Ordinal))];
     }
 
+    /// <summary>
+    /// Lists the curated sample builds, one per archetype that has one: the players' own characters, and the community builds
+    /// for the archetypes no character covers.
+    /// </summary>
+    /// <returns>The full paths in ordinal order.</returns>
+    public static IReadOnlyList<string> CuratedMbd()
+    {
+        return [.. CuratedFolders.SelectMany(SampleMbd)];
+    }
+
+    /// <summary>Lists every file git tracks under <c>samples/builds</c>.</summary>
+    /// <returns>The paths relative to <c>samples/builds</c>, with forward slashes, in ordinal order.</returns>
+    public static IReadOnlyList<string> SampleFiles()
+    {
+        return [.. GitFiles.Tracked(Store.RepositoryRoot, "samples/builds").Select(SamplePath)];
+    }
+
     /// <summary>Lists every sample and fixture <c>.mbd</c> build.</summary>
     /// <returns>The full paths.</returns>
     public static IReadOnlyList<string> AllMbd()
@@ -53,12 +71,41 @@ public static class BuildFileFixtures
         return [.. SampleMbd(), .. FixtureMbd()];
     }
 
+    /// <summary>Gets a sample build by its path under <c>samples/builds</c>.</summary>
+    /// <param name="relativePath">The path relative to <c>samples/builds</c>, with forward slashes.</param>
+    /// <returns>The full path.</returns>
+    public static string Sample(string relativePath)
+    {
+        return Path.Join(Samples, relativePath);
+    }
+
+    /// <summary>Gets a sample build's path relative to <c>samples/builds</c>.</summary>
+    /// <param name="path">The full path.</param>
+    /// <returns>The relative path with forward slashes.</returns>
+    public static string SamplePath(string path)
+    {
+        return Path.GetRelativePath(Samples, path).Replace(Path.DirectorySeparatorChar, '/');
+    }
+
+    /// <summary>
+    /// Gets the name a build's reference files, captures and Mids dumps are kept under: for a sample build its path under
+    /// <c>samples/builds</c> without the extension, each <c>/</c> written <c>__</c>; for a fixture build its file name without the extension.
+    /// </summary>
+    /// <param name="path">The build file.</param>
+    /// <returns>The fixture name.</returns>
+    public static string FixtureName(string path)
+    {
+        return path.StartsWith(Samples, StringComparison.Ordinal)
+            ? Path.ChangeExtension(SamplePath(path), null).Replace("/", "__", StringComparison.Ordinal)
+            : Path.GetFileNameWithoutExtension(path);
+    }
+
     /// <summary>Gets the path of the Python writer's output for a build file.</summary>
     /// <param name="path">The build file.</param>
-    /// <returns>The reference file under <c>roundtrip</c>.</returns>
+    /// <returns>The reference file under <c>roundtrip</c>, named by <see cref="FixtureName"/>.</returns>
     public static string RoundTripPath(string path)
     {
-        return Path.Join(Root, "roundtrip", Path.GetFileName(path));
+        return Path.Join(Root, "roundtrip", FixtureName(path) + ".mbd");
     }
 
     /// <summary>Lists the fixture <c>.mbd</c> builds the writer tests keep.</summary>

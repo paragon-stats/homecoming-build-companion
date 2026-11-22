@@ -1,7 +1,8 @@
 """End to end: every committed sample ``.mbd`` is read, rewritten, resolved, validated and computed.
 
 One sample build per archetype is committed under ``samples/builds`` (Mids-saved files), and
-its Mids dump sits beside the other fixtures in ``fixtures/mids/builds/<file stem>``. Each is
+its Mids dump sits beside the other fixtures in ``fixtures/mids/builds/<name>``, the name being its path under
+``samples/builds`` without ``.mbd``, each ``/`` written ``__``. Each is
 parsed, round-tripped through the writer's inverse, checked against the format invariants,
 resolved to powers and slots through ``powers.json``, run through both registries, and its
 totals computed from the dump (each power assembled as Mids does, then its slots, set bonuses and
@@ -66,8 +67,9 @@ EXPECTED_CLASSES = {
     "Class_Stalker",
     "Class_Tanker",
 }
-# The samples that are one per archetype; the community captures beside them are the .mxd parity builds.
-CURATED_FOLDERS = ("operator-builds", "community/Mids Archives")
+# The samples that are one per archetype: the players' characters, and the community builds for the archetypes no
+# character covers. The other community builds are the .mxd parity builds.
+CURATED_FOLDERS = ("characters", "community/arachnos-widow", "community/mastermind", "community/stalker")
 
 DB = load_mbd_db(MIDS)
 ARCHETYPES: ArchetypeDb = load_archetypes(MIDS / "archetypes.json")
@@ -84,6 +86,10 @@ SCALAR_FIELDS = {k: v for k, v in MIDS_TOTALS_SCALAR_FIELDS.items() if k not in 
 
 def _curated() -> list[Path]:
     return sorted(p for folder in CURATED_FOLDERS for p in (SAMPLES / folder).rglob("*.mbd"))
+
+
+def _dump(path: Path) -> Path:
+    return MIDS / "builds" / "__".join(path.relative_to(SAMPLES).with_suffix("").parts)
 
 
 def _round_trip_and_invariants(path: Path) -> list[str]:
@@ -119,7 +125,7 @@ def _slotted_totals(path: Path) -> tuple[BaseTotals, str]:
 
     The previous recompute's max hit points read as 0, the state Mids' reference dumps are taken in.
     """
-    dump = MIDS / "builds" / path.stem
+    dump = _dump(path)
     class_name = json.loads((dump / "totals.json").read_text(encoding="utf-8"))["Class"]
     raw = load_powers_effects(dump / "powers_effects.json")
     slots = load_build_slots(dump / "slots.json")
@@ -179,7 +185,7 @@ def _totals_outside_caps(path: Path) -> list[str]:
 def _totals_differing_from_mids(path: Path) -> list[str]:
     """Name every compared field whose computed total differs from Mids' own, at single precision."""
     result, _ = _slotted_totals(path)
-    want = json.loads((MIDS / "builds" / path.stem / "totals.json").read_text(encoding="utf-8"))
+    want = json.loads((_dump(path) / "totals.json").read_text(encoding="utf-8"))
     diffs = []
     for side, got in (("Totals", result.totals), ("TotalsCapped", result.totals_capped)):
         for key, attr in MIDS_TOTALS_VECTOR_FIELDS.items():
@@ -197,7 +203,7 @@ def test_one_sample_per_available_archetype_is_committed() -> None:
     assert len(_curated()) == len(EXPECTED_CLASSES)
 
 
-@pytest.mark.parametrize("path", _curated(), ids=lambda p: p.stem)
+@pytest.mark.parametrize("path", _curated(), ids=lambda p: p.relative_to(SAMPLES).as_posix())
 @pytest.mark.parametrize(
     "check",
     [_round_trip_and_invariants, _errors_from_the_registries, _totals_outside_caps, _totals_differing_from_mids],

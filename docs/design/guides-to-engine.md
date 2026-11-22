@@ -631,7 +631,7 @@ No dispatcher changes: each item is a new registered function or a new metric na
   A waiver is the player relaxing the playstyle, so the report states when a waived check materially lowers the build's fitness for the chosen content mode.
 - **The sidecar.** Every emitted build gets `<build>.playstyle.json`: the playstyle choice, the record hashes it was checked against, the diagnostics, and any waivers.
   The forum-export Markdown (B6) is rendered from the same written build, so it cannot exist without passing the gate.
-- **CI.** A job runs the same `validate` and `score` over every committed build under `samples/builds/generated/` and `samples/builds/operator-builds/` against its sidecar,
+- **CI.** A job runs the same `validate` and `score` over every committed build under `samples/builds/generated/` and `samples/builds/characters/` against its sidecar,
   and fails on a missing sidecar, a stale record hash, or a blocking diagnostic. Captured community builds are source material, not output: CI scores them in report mode only.
 - **Dependency.** `validate` today reads a Mids dump directory. The gate needs the engine to evaluate a spec or `.mbd` directly (#45), or to call the dump harness in the loop.
   Until then the gate can be built and tested against harness dumps, and CI runs it where the harness is available.

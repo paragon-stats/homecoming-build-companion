@@ -17,13 +17,12 @@ from coh_engine.buildfile.mbd import (
 
 REPO = Path(__file__).resolve().parents[3]
 SAMPLES = REPO / "samples" / "builds"
-# samples/builds is split into community/ and operator-builds/ subfolders.
-DARK_SHIELD = SAMPLES / "community" / "Scrapper - Dark-Shield.mbd"
+DARK_SHIELD = SAMPLES / "community" / "scrapper" / "dark-shield.mbd"
 
 
 def test_loads_all_sample_builds() -> None:
-    # Recursively discover every .mbd under samples/builds (community/,
-    # operator-builds/, and any future subfolders); each must parse.
+    # Recursively discover every .mbd under samples/builds (characters/,
+    # reference/ and community/); each must parse.
     files = sorted(SAMPLES.rglob("*.mbd"))
     assert files, "no sample .mbd builds found"
     for f in files:
@@ -246,9 +245,7 @@ def test_missing_file_raises(tmp_path: Path) -> None:
         load_mbd(tmp_path / "nope.mbd")
 
 
-BANE = (
-    SAMPLES / "operator-builds" / "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd"
-)
+BANE = SAMPLES / "characters" / "account1" / "laser-arachnos" / "bane-mace.mbd"
 DB = load_mbd_db(REPO / "tests" / "fixtures" / "mids")
 
 

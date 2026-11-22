@@ -123,7 +123,7 @@ public sealed class ChainCommandTests
     public void A_warning_finding_exits_2()
     {
         using TempTree tree = new();
-        string build = tree.CopyFiles(Path.Join(Store.MidsDirectory, "builds", "Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"), "b");
+        string build = tree.CopyFiles(Path.Join(Store.MidsDirectory, "builds", "characters__account1__laser-nuke__main"), "b");
 
         (int code, string output, _) = Run(build, "--mids-dir", Store.MidsDirectory);
 

@@ -7,9 +7,9 @@ namespace CohEngine.Core.Tests.BuildFile;
 /// <summary>Port of <c>test_mbd.py</c>: the <c>.mbd</c> reader and the resolution of a build against the Mids dump.</summary>
 public sealed class MbdTests : IDisposable
 {
-    private static readonly string DarkShield = Path.Join(BuildFileFixtures.Samples, "community", "Scrapper - Dark-Shield.mbd");
+    private static readonly string DarkShield = BuildFileFixtures.Sample("community/scrapper/dark-shield.mbd");
 
-    private static readonly string Bane = Path.Join(BuildFileFixtures.Samples, "operator-builds", "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training).mbd");
+    private static readonly string Bane = BuildFileFixtures.Sample("characters/account1/laser-arachnos/bane-mace.mbd");
 
     private readonly string directory = Directory.CreateTempSubdirectory("coh-engine-").FullName;
 

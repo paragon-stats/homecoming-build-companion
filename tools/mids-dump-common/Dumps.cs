@@ -954,6 +954,14 @@ private static void DumpPowerIndex(string outDir)
         WriteJson(outDir, "power_static_index.json", powers);
     }
 
+    // A build's path under the input folder without .mbd, each folder separator written
+    // "__", so samples/builds/characters/account1/laser-nuke/main.mbd dumps as
+    // characters__account1__laser-nuke__main and file names that repeat across folders stay apart.
+    private static string DumpName(string root, string mbdPath) =>
+        Path.ChangeExtension(Path.GetRelativePath(root, mbdPath), null)
+            .Replace(Path.DirectorySeparatorChar.ToString(), "__")
+            .Replace(Path.AltDirectorySeparatorChar.ToString(), "__");
+
     // Returns the number of parity builds that failed to load; Main turns a
     // non-zero count into a non-zero exit so a bad re-baseline is never masked.
     private static int DumpParityBuilds(string buildsDir, string outDir)
@@ -977,7 +985,7 @@ private static void DumpPowerIndex(string outDir)
             }
 
             toon.GenerateBuffedPowerArray();
-            var name = Path.GetFileNameWithoutExtension(mbdPath);
+            var name = DumpName(buildsDir, mbdPath);
             byName[name] = mbdPath;
             DumpOneBuild(Path.Combine(outDir, "builds", name), toon);
             failures += DumpForumExport(Path.Combine(outDir, "builds", name), name);
@@ -1305,7 +1313,7 @@ private static void DumpPowerIndex(string outDir)
         var mxdDir = Path.Combine(outDir, "mxd");
         Directory.CreateDirectory(mxdDir);
 
-        // Recurse: samples/builds is split into community/ and operator-builds/ subfolders.
+        // Recurse: samples/builds is split into characters/, reference/ and community/ subfolders.
         foreach (var mbdPath in Directory.EnumerateFiles(samplesDir, "*.mbd", SearchOption.AllDirectories))
         {
             // A fresh character per build so an earlier load never bleeds into the next.
@@ -1323,7 +1331,7 @@ private static void DumpPowerIndex(string outDir)
                 continue;
             }
 
-            var outPath = Path.Combine(mxdDir, Path.GetFileNameWithoutExtension(mbdPath) + ".mxd");
+            var outPath = Path.Combine(mxdDir, DumpName(samplesDir, mbdPath) + ".mxd");
             File.WriteAllText(outPath, mxd);
             Console.WriteLine($"exported {outPath}");
         }

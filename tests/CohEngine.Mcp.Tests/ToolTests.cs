@@ -13,10 +13,10 @@ namespace CohEngine.Mcp.Tests;
 public sealed class ToolTests
 {
     private const string Slotted = "shield_scrapper_set_bonuses";
-    private const string Assembled = "Stalker (Fiery Melee - Invulnerability)";
+    private const string Assembled = "community__stalker__fiery-invulnerability";
     private const string Keywords = "keywords_endcost_owner_arch";
-    private const string Mastermind = "Petless Mastermind (Demon Summoning - Force Field)";
-    private const string Bane = "Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)";
+    private const string Mastermind = "community__mastermind__demon-force-field-petless";
+    private const string Bane = "characters/account1/laser-arachnos/bane-mace.mbd";
 
     private static readonly string[] Sections = ["legality", "hard_limits", "enhancement_aspects", "metrics"];
 
@@ -39,7 +39,7 @@ public sealed class ToolTests
     public async Task Check_slotting_reports_the_widow_build_with_a_data_version()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string buildDir = McpHarness.BuildDir("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+        string buildDir = McpHarness.BuildDir("community__arachnos-widow__night-widow-melee");
 
         JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", buildDir)).ConfigureAwait(true);
 
@@ -59,7 +59,7 @@ public sealed class ToolTests
     public async Task Check_slotting_reads_a_mbd_with_the_shared_directory()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string mbd = CliCapture.MbdPath("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+        string mbd = BuildFileFixtures.Sample("community/arachnos-widow/night-widow-melee.mbd");
 
         JsonNode result = await harness.CallJsonAsync("check_slotting", ("buildDir", mbd), ("midsDir", McpHarness.Store.MidsDirectory)).ConfigureAwait(true);
 
@@ -372,7 +372,7 @@ public sealed class ToolTests
     public async Task A_mbd_file_is_checked_for_legality_and_hard_limits_like_validate_does()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string mbd = CliCapture.MbdPath(Bane);
+        string mbd = BuildFileFixtures.Sample(Bane);
         string mids = McpHarness.Store.MidsDirectory;
 
         JsonNode hardLimits = await harness.CallJsonAsync("check_hard_limits", ("buildDir", mbd), ("midsDir", mids)).ConfigureAwait(true);
@@ -387,7 +387,7 @@ public sealed class ToolTests
     public async Task A_mbd_file_needs_the_shared_directory_named_and_existing()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        string mbd = CliCapture.MbdPath(Bane);
+        string mbd = BuildFileFixtures.Sample(Bane);
 
         string unnamed = await harness.CallErrorAsync("check_legality", ("buildDir", mbd)).ConfigureAwait(true);
         string missingShared = await harness.CallErrorAsync("check_legality", ("buildDir", mbd), ("midsDir", Path.Join(McpHarness.Store.Root, "no-such-directory"))).ConfigureAwait(true);
@@ -407,7 +407,7 @@ public sealed class ToolTests
     public async Task A_tool_that_computes_from_a_dump_refuses_a_mbd_file_with_e180(string tool, string extra)
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
-        (string, object)[] arguments = extra.Length == 0 ? [("buildDir", CliCapture.MbdPath(Bane))] : [(extra, "x"), ("buildDir", CliCapture.MbdPath(Bane))];
+        (string, object)[] arguments = extra.Length == 0 ? [("buildDir", BuildFileFixtures.Sample(Bane))] : [(extra, "x"), ("buildDir", BuildFileFixtures.Sample(Bane))];
 
         string error = await harness.CallErrorAsync(tool, arguments).ConfigureAwait(true);
 

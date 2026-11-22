@@ -8,15 +8,15 @@ The remaps are the source of renamed powers in the "only in 3.x" and "only in 4.
 
 | Build | Legacy tag | Remapped powers | Remapped enhancements |
 | --- | --- | --- | --- |
-| `Hollowmind - Dominator (Darkness Control - Psionic Assault)` | 2026.5.1337 | 1 | 0 |
-| `Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)` | 2024.5.759 | 2 | 0 |
-| `Laser - Accretion - Scrapper (Dark Melee - Shield Defense)` | 2026.5.1337 | 2 | 0 |
-| `Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)` | 2024.5.759 | 2 | 0 |
-| `Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)` | 2024.5.759 | 3 | 0 |
-| `Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)` | 2024.5.759 | 3 | 6 |
-| `Melee Arachnos Widow (Night Widow Training - Widow Teamwork)` | 2024.5.759 | 1 | 0 |
-| `Petless Mastermind (Demon Summoning - Force Field)` | 2024.5.759 | 1 | 0 |
-| `Stalker (Fiery Melee - Invulnerability)` | 2024.5.759 | 1 | 0 |
+| `characters__account2__hollowmind__main` | 2026.5.1337 | 1 | 0 |
+| `characters__account1__laser-alt-f4__main` | 2024.5.759 | 2 | 0 |
+| `characters__account1__laser-accretion__main` | 2026.5.1337 | 2 | 0 |
+| `characters__account1__laser-hazmat__pve` | 2024.5.759 | 2 | 0 |
+| `characters__account1__laser-nuke__main` | 2024.5.759 | 3 | 0 |
+| `characters__account1__laser-prime__main` | 2024.5.759 | 3 | 6 |
+| `community__arachnos-widow__night-widow-melee` | 2024.5.759 | 1 | 0 |
+| `community__mastermind__demon-force-field-petless` | 2024.5.759 | 1 | 0 |
+| `community__stalker__fiery-invulnerability` | 2024.5.759 | 1 | 0 |
 | `arsenal_dominator_incarnate` | 2026.1.1242 | 3 | 0 |
 | `arsenal_dominator_incarnate_slotted` | 2026.1.1242 | 3 | 0 |
 | `arsenal_dominator_noslots` | 2026.1.1242 | 3 | 0 |
@@ -27,5 +27,5 @@ The remaps are the source of renamed powers in the "only in 3.x" and "only in 4.
 | `shield_scrapper_set_bonuses` | 2026.5.1337 | 2 | 0 |
 | `shield_scrapper_slotted` | 2026.5.1337 | 2 | 0 |
 
-Builds that loaded without a remap: `Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)`, `Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)` and `wpss_tanker_leadership`.
+Builds that loaded without a remap: `characters__account1__laser-arachnos__bane-mace`, `characters__account1__laser-fallout__main` and `wpss_tanker_leadership`.
 The `shield_scrapper_set_bonuses_exemplar25` dump is a reload of `shield_scrapper_set_bonuses` and shares its row.

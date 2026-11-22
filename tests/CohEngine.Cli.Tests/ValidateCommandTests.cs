@@ -215,7 +215,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void Validate_slotting_reports_the_widow_build()
     {
-        string build = Path.Join(Store.MidsDirectory, "builds", "Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+        string build = Path.Join(Store.MidsDirectory, "builds", "community__arachnos-widow__night-widow-melee");
 
         (int code, string output, _) = Run("validate", build, "--slotting");
 
@@ -239,7 +239,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void Validate_slotting_reads_an_mbd()
     {
-        string mbd = CliCapture.MbdPath("Melee Arachnos Widow (Night Widow Training - Widow Teamwork)");
+        string mbd = BuildFileFixtures.Sample("community/arachnos-widow/night-widow-melee.mbd");
 
         (int code, string output, _) = Run(new MbdBuildSource(Store.MidsDirectory), "validate", mbd, "--slotting");
 
@@ -251,7 +251,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void Validate_slotting_adds_no_warning_to_the_stalker_build()
     {
-        const string name = "Stalker (Fiery Melee - Invulnerability)";
+        const string name = "community__stalker__fiery-invulnerability";
         CliCapture capture = new(Store);
 
         (int code, string output, _) = Run("validate", capture.BuildDirectory(name), "--slotting");

@@ -6,6 +6,6 @@ Each build below loaded under Mids 3.x and has dumps in `src/coh_engine/tests/fi
 | Build | Error from `BuildManager.LoadFromFile` |
 | --- | --- |
 | `arsenal_dominator_cardiac` | Powerset `Epic.Dark_Mastery_Dominator` could not be mapped to the current Homecoming database (legacy version 2026.5.1337). |
-| `Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)` | Power `Inherent.Inherent.Energy_Focus` could not be mapped; no valid current Homecoming power target exists (legacy version 2024.5.759). |
+| `characters__account1__laser-quantum__main` | Power `Inherent.Inherent.Energy_Focus` could not be mapped; no valid current Homecoming power target exists (legacy version 2024.5.759). |
 
 Dumped at Mids 4.0 commit `24ee176f4` with `tools/mids-dump-4/patches/pipeline-sequential.patch` applied.
