@@ -34,9 +34,10 @@ def indexes() -> Indexes:
 
 
 def _mbd_for(mxd_path: Path) -> Path:
-    matches = list(SAMPLES.rglob(f"{mxd_path.stem}.mbd"))
-    assert len(matches) == 1, f"expected one .mbd for {mxd_path.stem}, found {len(matches)}"
-    return matches[0]
+    # An .mxd fixture is named for its sample's path under samples/builds, each "/" written "__".
+    path = SAMPLES / f"{mxd_path.stem.replace('__', '/')}.mbd"
+    assert path.is_file(), f"no sample .mbd at {path} for {mxd_path.name}"
+    return path
 
 
 # Mids injects this virtual power at load time to carry set bonuses; it is not a
@@ -106,7 +107,10 @@ def test_every_legacy_mxd_reads(indexes: Indexes) -> None:
 def test_scrapper_specifics(indexes: Indexes) -> None:
     power_index, enh_index = indexes
     mx = read_mxd(
-        (MXD_DIR / "Scrapper - Dark-Shield.mxd").read_text(encoding="utf-8"), power_index, enh_index, ARCHETYPES
+        (MXD_DIR / "characters__account1__laser-accretion__incarnate.mxd").read_text(encoding="utf-8"),
+        power_index,
+        enh_index,
+        ARCHETYPES,
     )
     assert mx.format == "current"
     assert mx.class_name == "Class_Scrapper"

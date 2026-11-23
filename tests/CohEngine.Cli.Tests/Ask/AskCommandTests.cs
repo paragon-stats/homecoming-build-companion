@@ -16,7 +16,7 @@ public sealed class AskCommandTests : IDisposable
 
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
     private static readonly string Dump = Path.Join(Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses");
-    private static readonly string Bane = CliCapture.MbdPath("Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)");
+    private static readonly string Bane = BuildFileFixtures.Sample("reference/arachnos-soldier/bane-mace/bane-leviathan.mbd");
 
     private readonly string scratch = Directory.CreateTempSubdirectory("coh-ask").FullName;
 

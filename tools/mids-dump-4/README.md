@@ -37,10 +37,11 @@ Running from `tools/mids-dump-4` makes `./out` the ignored `tools/mids-dump-4/ou
 - from `src/coh_engine/tests/fixtures/builds/`: `arsenal_dominator_cardiac`, `arsenal_dominator_incarnate`, `arsenal_dominator_incarnate_slotted`,
   `arsenal_dominator_noslots`, `hasten_2rech`, `shield_scrapper_global_endrdx`, `shield_scrapper_mixed_sets`, `shield_scrapper_noslots`,
   `shield_scrapper_set_bonuses`, `shield_scrapper_slotted`, `wpss_tanker_leadership` (each `.mbd`)
-- from `samples/builds/operator-builds/`: the nine `.mbd` files there (`Hollowmind - Dominator ...`, `Laser - ALT+F4 ...`, `Laser - ARACHNOS ...`,
-  `Laser - Accretion ...`, `Laser - Fallout ...`, `Laser - HAZMAT ...`, `Laser - NUKE ...`, `Laser - PRIME ...`, `Laser - QUANTUM ...`)
-- from `samples/builds/community/Mids Archives/`: `Mastermind/Petless Mastermind (Demon Summoning - Force Field).mbd`,
-  `Stalker/Stalker (Fiery Melee - Invulnerability).mbd`, `Widow/Melee Arachnos Widow (Night Widow Training - Widow Teamwork).mbd`
+- from `samples/builds/`, each kept at its path under that folder: the twelve curated builds that
+  `samples/builds/README.md` lists under Coverage (not `characters/account1/laser-accretion/incarnate.mbd`, which has no dump)
+
+Each dump is named by the build's path under `<parity-builds>` without `.mbd`, each folder separator written `__`,
+so `characters/account1/laser-nuke/main.mbd` dumps to `builds/characters__account1__laser-nuke__main/`.
 
 Then copy `out/` into `tests/fixtures/mids4/`, leaving out `SKIPPED.txt`, `REMAPPED.txt` and `assembly_powers.json` (see below).
 `SKIPPED.txt` is [`SKIPPED.md`](../../tests/fixtures/mids4/SKIPPED.md) and `REMAPPED.txt` is [`REMAPPED.md`](../../tests/fixtures/mids4/REMAPPED.md).

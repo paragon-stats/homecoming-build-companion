@@ -244,7 +244,7 @@ def test_enhancement_record_reads_its_own_power(tmp_path: Path) -> None:
 
 
 MIDS = Path(__file__).parents[3] / "tests" / "fixtures" / "mids"
-SAMPLE_DUMPS = sorted(d for d in (MIDS / "builds").iterdir() if " " in d.name)
+SAMPLE_DUMPS = sorted(d for d in (MIDS / "builds").iterdir() if "__" in d.name)
 
 
 def test_export_holds_every_power_an_enhancement_or_a_grant_points_at() -> None:

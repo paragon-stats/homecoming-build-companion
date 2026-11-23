@@ -27,16 +27,9 @@ public sealed class RoundTripTests
         "Class_Tanker",
     ];
 
-    private static readonly string[] CuratedFolders = ["operator-builds", "community/Mids Archives"];
-
     public static TheoryData<string> Builds()
     {
         return [.. BuildFileFixtures.AllMbd()];
-    }
-
-    private static IEnumerable<string> Curated()
-    {
-        return CuratedFolders.SelectMany(BuildFileFixtures.SampleMbd);
     }
 
     [Theory]
@@ -71,18 +64,18 @@ public sealed class RoundTripTests
     [Fact]
     public void There_is_one_curated_sample_per_available_archetype()
     {
-        string[] curated = [.. Curated()];
+        IReadOnlyList<string> curated = BuildFileFixtures.CuratedMbd();
         IEnumerable<string> classes = curated.Select(path => Mbd.LoadMbd(path).ClassName).Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal);
 
         Assert.Equal(ExpectedClasses, classes, StringComparer.Ordinal);
-        Assert.Equal(ExpectedClasses.Length, curated.Length);
+        Assert.Equal(ExpectedClasses.Length, curated.Count);
     }
 
     [Fact]
     public void Every_build_has_a_python_reference_file()
     {
         Assert.Equal(
-            BuildFileFixtures.AllMbd().Select(Path.GetFileName).Order(StringComparer.Ordinal),
+            BuildFileFixtures.AllMbd().Select(BuildFileFixtures.RoundTripPath).Select(Path.GetFileName).Order(StringComparer.Ordinal),
             BuildFileFixtures.Files(Path.Join(BuildFileFixtures.Root, "roundtrip"), "*.mbd").Select(Path.GetFileName).Order(StringComparer.Ordinal),
             StringComparer.Ordinal);
     }

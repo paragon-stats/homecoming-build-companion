@@ -27,9 +27,9 @@ public sealed class ParityScaffoldTests
     private const string Agility = "arsenal_dominator_incarnate";
     private const string AgilitySlotted = "arsenal_dominator_incarnate_slotted";
     private const string NoSlots = "arsenal_dominator_noslots";
-    private const string Stalker = "Stalker (Fiery Melee - Invulnerability)";
+    private const string Stalker = "community__stalker__general__unknown-fiery-invulnerability";
     private const string Tanker = "wpss_tanker_leadership";
-    private const string Blaster = "Laser - PRIME - Blaster (Energy Blast - Energy Manipulation)";
+    private const string Blaster = "characters__account1__laser-prime__main";
 
     // Each entry is a build, a field path, and the Python reference engine's value for it, measured on the same dumps:
     // Cardiac's global Range incarnate, the Stalker's Hidden stealth (a SpecialCase CanInclude drops), the Tanker's
@@ -81,17 +81,17 @@ public sealed class ParityScaffoldTests
         [AgilitySlotted] = (41, 365, "fe4e4974111861f97e0ee9fc0c1bd7221fcc6c1a593a701b1ef4d0174104c859"),
         [NoSlots] = (10, 357, "ddcfa43f9be75905938666c6ac575e65d90a8a539cda15a0b1a3c502d7377fd7"),
         ["hasten_2rech"] = (7, 413, "cb9a6033ebdd9b6fb8daea5274d716859620b1a5274b3a5ea3048869692326f8"),
-        ["Hollowmind - Dominator (Darkness Control - Psionic Assault)"] = (38, 305, "5921ba6c74a7e2e578d67f0fa82a187b06510b63617e60789c0f09ebc17786f8"),
-        ["Laser - Accretion - Scrapper (Dark Melee - Shield Defense)"] = (2, 452, "89a3a460c977a53b0b30c431d91689b6aee0c344d90fbe71239c67a985fd3d51"),
-        ["Laser - ALT+F4 - Controller (Illusion Control - Time Manipulation)"] = (8, 366, "e5972a12ed7ce61473de8f10f35767e8b428e9ea3621d6ca94b91fa6a83d5c93"),
-        ["Laser - ARACHNOS - Arachnos Soldier (Bane Spider Soldier - Bane Spider Training)"] = (32, 403, "bffd93920a1246ecb1ecd595323947bd47188c3c099c410c69c94a007df7bf5a"),
-        ["Laser - Fallout - Sentinel (Fire Blast - Radiation Armor)"] = (0, 77, "2f98f0c1bc7b0b85091ac5085b7098b1114426f21c6ce5489e67456bf5022a7a"),
-        ["Laser - HAZMAT - PvE - Brute (Radiation Melee - Fiery Aura)"] = (34, 578, "b12e26882298e9dc2c413da58c2bd92339cffc416d599d8688cd0d4f15d04762"),
-        ["Laser - NUKE - Corruptor (Fire Blast - Radiation Emission)"] = (2, 391, "a186fcc4302a34c4bb8e024400ee932eb945e2dcea82a82285fa907de41bc246"),
+        ["characters__account2__hollowmind__main"] = (38, 305, "5921ba6c74a7e2e578d67f0fa82a187b06510b63617e60789c0f09ebc17786f8"),
+        ["characters__account1__laser-accretion__main"] = (2, 452, "89a3a460c977a53b0b30c431d91689b6aee0c344d90fbe71239c67a985fd3d51"),
+        ["characters__account1__laser-alt-f4__main"] = (8, 366, "e5972a12ed7ce61473de8f10f35767e8b428e9ea3621d6ca94b91fa6a83d5c93"),
+        ["reference__arachnos-soldier__bane-mace__bane-leviathan"] = (32, 403, "bffd93920a1246ecb1ecd595323947bd47188c3c099c410c69c94a007df7bf5a"),
+        ["characters__account1__laser-fallout__main"] = (0, 77, "2f98f0c1bc7b0b85091ac5085b7098b1114426f21c6ce5489e67456bf5022a7a"),
+        ["characters__account1__laser-hazmat__pve"] = (34, 578, "b12e26882298e9dc2c413da58c2bd92339cffc416d599d8688cd0d4f15d04762"),
+        ["characters__account1__laser-nuke__main"] = (2, 391, "a186fcc4302a34c4bb8e024400ee932eb945e2dcea82a82285fa907de41bc246"),
         [Blaster] = (17, 451, "5a9a829e9b49fca4ff8f23a015caf2b4cf37bfc56de59154e6ca6acc5e437361"),
-        ["Laser - QUANTUM - Tanker (Super Reflexes - Energy Melee)"] = (6, 463, "c9827c8d80034ac3bb224a447f3576a7e052b63b43d2919f91d87710f41168d1"),
-        ["Melee Arachnos Widow (Night Widow Training - Widow Teamwork)"] = (62, 483, "837a928e6ab6e6d9d8f263cf0903da3490b09075cdca69af47bac20df40e707d"),
-        ["Petless Mastermind (Demon Summoning - Force Field)"] = (90, 547, "c6016481822102046d9b6d24eb45d1812b2d5aefda430f392892f309a3726d4f"),
+        ["characters__account1__laser-quantum__main"] = (6, 463, "c9827c8d80034ac3bb224a447f3576a7e052b63b43d2919f91d87710f41168d1"),
+        ["community__arachnos-widow__general__unknown-melee"] = (62, 483, "837a928e6ab6e6d9d8f263cf0903da3490b09075cdca69af47bac20df40e707d"),
+        ["community__mastermind__general__unknown-petless"] = (90, 547, "c6016481822102046d9b6d24eb45d1812b2d5aefda430f392892f309a3726d4f"),
         ["shield_scrapper_global_endrdx"] = (7, 413, "f32f4a4698cff98e08a2a7077d0eb7cdbff69f5f2f3c6e1eeacc97b985198c5c"),
         ["shield_scrapper_mixed_sets"] = (7, 413, "f35c3bb6d3f81b344422b8741760ca8d056d1af7008d040cfefa86ed73b43181"),
         ["shield_scrapper_noslots"] = (7, 413, "5402d89e7861f553e4e1fc6e55b9a274029cc2d2256b3d12b18e7f83a68edfc6"),

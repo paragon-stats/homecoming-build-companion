@@ -44,11 +44,11 @@ public sealed class CliCapture
     }
 
     /// <summary>Finds the <c>.mbd</c> build a capture was made from.</summary>
-    /// <param name="name">The build's file name without <c>.mbd</c>.</param>
+    /// <param name="name">The capture's build name, the <see cref="BuildFileFixtures.FixtureName"/> of the build.</param>
     /// <returns>The full path under <c>samples/builds</c> or <c>tests/fixtures/buildfile/builds</c>.</returns>
     public static string MbdPath(string name)
     {
-        return BuildFileFixtures.AllMbd().Single(path => string.Equals(Path.GetFileNameWithoutExtension(path), name, StringComparison.Ordinal));
+        return BuildFileFixtures.AllMbd().Single(path => string.Equals(BuildFileFixtures.FixtureName(path), name, StringComparison.Ordinal));
     }
 
     /// <summary>Lists the builds a command has a capture for, in ordinal order.</summary>

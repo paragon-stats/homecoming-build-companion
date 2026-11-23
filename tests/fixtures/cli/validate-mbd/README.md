@@ -10,9 +10,11 @@ The C# tests in `tests/CohEngine.Cli.Tests/` run `validate` on each build in pro
 | `<build>.txt`, `<build>.json` | `validate <build>.mbd --format text` and `--format json`: stdout. |
 | `<build>.exit` | The exit code, which is the same for both formats. |
 
-`<build>` is the file name without `.mbd` of each build under `tests/fixtures/buildfile/builds/` and `samples/builds/`.
+`<build>` names each build under `tests/fixtures/buildfile/builds/` and `samples/builds/`.
+A fixture build is named by its file name without `.mbd`.
+A sample build is named by its path under `samples/builds/` without `.mbd`, each `/` written `__`: `characters/account1/laser-nuke/main.mbd` is `characters__account1__laser-nuke__main`.
 The tests list `samples/builds/` with `git ls-files`, so they ignore untracked builds there; a new sample build must be tracked before they see it.
-One sample, `arsen-arsen_-_Dominator_Arsenal_Control_-_Arsenal_Assault.mbd`, has no capture.
+One sample, `community/dominator/general/unknown-arsenal-arsenal.mbd`, has no capture.
 The Python reports E78 on stderr for it and exits 1 before any finding, and the C# test checks that message instead.
 Every captured build ended with nothing on stderr.
 
