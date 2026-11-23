@@ -109,7 +109,7 @@ public static class BuildFileFixtures
     public static string FixtureName(string path)
     {
         return path.StartsWith(Samples, StringComparison.Ordinal)
-            ? Path.ChangeExtension(SamplePath(path), null).Replace("/", "__", StringComparison.Ordinal)
+            ? Path.ChangeExtension(SamplePath(path), extension: null).Replace("/", "__", StringComparison.Ordinal)
             : Path.GetFileNameWithoutExtension(path);
     }
 

@@ -63,11 +63,11 @@ public sealed partial class SampleLayoutTests
         problems.AddRange(paths
             .Where(path => path.StartsWith("characters/", StringComparison.Ordinal) && (path.EndsWith(".mbd", StringComparison.Ordinal) || path.EndsWith(".mxd", StringComparison.Ordinal)))
             .GroupBy(path => path[..path.LastIndexOf('/')], StringComparer.Ordinal)
-            .Where(folder => folder.Count() > BuildsPerCharacter)
+            .Where(folder => folder.Skip(BuildsPerCharacter).Any())
             .Select(folder => $"{folder.Key}: {folder.Count()} builds, more than {BuildsPerCharacter}"));
         problems.AddRange(paths
             .GroupBy(path => path, StringComparer.OrdinalIgnoreCase)
-            .Where(same => same.Count() > 1)
+            .Where(same => same.Skip(1).Any())
             .Select(same => $"{string.Join(", ", same)}: differ only in letter case"));
         return problems;
     }
