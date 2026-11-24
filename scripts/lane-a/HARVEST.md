@@ -2,7 +2,8 @@
 
 Procedure for harvesting MidsReborn-derived data from the running app. Walk it once to refresh the snapshot. Step 2 (JSON Exporter) is the biggest action — produces 12 JSON files in one click.
 
-> **Lane B is separate and faster.** Canonical game data comes from the City of Data zip (`raw_data_homecoming-*.zip`, ~92 MB → 411 MB / 44k JSON files). Extract via `coh-engine extract-canonical [--zip ZIP] [--out-dir DIR] [--force]`.
+> **Lane B is separate and faster.** Canonical game data comes from the City of Data zip (`raw_data_homecoming-*.zip`, ~92 MB → 411 MB / 44k JSON files).
+> Extract via `coh-engine extract-canonical [--zip ZIP] [--out-dir DIR] [--force]`.
 >
 > Lane A and Lane B run independently; both give Claude cross-checkable sources.
 
@@ -77,9 +78,9 @@ The AttribMod editor has its own export button that produces three additional or
 1. Still in the **DB Editor** (from step 2), click **AttribMod Editor**.
 2. The AttribMod editor form opens. Find the **Export JSON** button (toward the bottom of the form) and click it.
 3. Three files are written to `%APPDATA%\LoadedCamel\MidsReborn\Data\Export\`:
-   - `attribMod.json`
-   - `attribModTables.json`
-   - `attribModOrdered.json`
+    - `attribMod.json`
+    - `attribModTables.json`
+    - `attribModOrdered.json`
 
 **Copy:**
 
@@ -135,11 +136,11 @@ For each `.mxd` build sample (sourced from forums, see [community/CAPTURE.md](..
 3. **Export Forum text**: File → Export → Forum Build (BBCode) → save as `<name>.forum.txt`.
 4. **Export DataLink**: Menu bar → tsShareLegacy ("Export Datalink") → save as `<name>.datalink.txt`.
 5. **Drop everything** into `homecoming-build-companion/build-format/samples/<name>/`:
-   - `<name>.mxd`
-   - `<name>.json`
-   - `<name>.forum.txt`
-   - `<name>.datalink.txt`
-   - `<name>.source.md` (frontmatter: source URL, author handle, date posted, date captured, AT, primary, secondary, build-type tags)
+    - `<name>.mxd`
+    - `<name>.json`
+    - `<name>.forum.txt`
+    - `<name>.datalink.txt`
+    - `<name>.source.md` (frontmatter: source URL, author handle, date posted, date captured, AT, primary, secondary, build-type tags)
 
 **Coverage target** — pick samples that span the space:
 

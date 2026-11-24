@@ -15,8 +15,9 @@ repos:
         stages:
           - pre-commit
       # Full Super-Linter parity (Docker). Slow, so manual-stage only: run with
-      # `pre-commit run --hook-stage manual super-linter`. Uses the SAME image
-      # tag and .github/super-linter.env as CI, so local == remote.
+      # `pre-commit run --hook-stage manual super-linter`. The runner reads the
+      # image version and FILTER_REGEX_EXCLUDE from the CI workflow and works
+      # from a linked worktree; tests hold the hook excludes below to CI's filter.
       - id: super-linter
         name: Super-Linter (Docker, manual)
         entry: python -m scripts.linting.run_super_linter
@@ -59,7 +60,6 @@ repos:
             (.*/)?(samples|fixtures|canonical)/
             | src/coh_engine/tests/fixtures/
             | data/canonical/
-            | scripts/lane-[ab]/
             | data/diff/
             | inbox/
           )
@@ -69,8 +69,7 @@ repos:
     hooks:
       - id: editorconfig-checker
         name: EditorConfig Compliance
-        # Verbatim/harvested game data, generated extraction docs and the legacy
-        # PowerShell lanes are exempt. This MUST stay in parity with
+        # Verbatim/harvested game data and generated extraction docs are exempt. This MUST stay in parity with
         # FILTER_REGEX_EXCLUDE in .github/workflows/super-linter.yml, which is the
         # same exemption set expressed in that action's syntax.
         #
@@ -83,8 +82,6 @@ repos:
             (.*/)?(samples|fixtures|canonical)/
             | src/coh_engine/tests/fixtures/
             | data/canonical/
-            | scripts/[^/]+\.ps1$
-            | scripts/lane-[ab]/
             | data/diff/
             | inbox/
             | LICENSE$

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -275,7 +276,7 @@ def test_maybe_append_default_filter_excludes_non_default_image() -> None:
     import scripts.linting.run_super_linter as runner
 
     env_pairs: list[tuple[str, str]] = []
-    runner._maybe_append_default_filter_excludes(env_pairs, image="custom:v1")
+    runner._maybe_append_default_filter_excludes(env_pairs, image="custom:v1", repo_root=repo_root())
     assert not any(key == "FILTER_REGEX_EXCLUDE" for key, _ in env_pairs)
 
 
@@ -285,7 +286,9 @@ def test_maybe_append_default_filter_excludes_already_set(monkeypatch: pytest.Mo
 
     monkeypatch.setenv("FILTER_REGEX_EXCLUDE", "custom_pattern")
     env_pairs: list[tuple[str, str]] = []
-    runner._maybe_append_default_filter_excludes(env_pairs, image=runner.SUPER_LINTER_IMAGE_DEFAULT)
+    runner._maybe_append_default_filter_excludes(
+        env_pairs, image=runner.SUPER_LINTER_IMAGE_DEFAULT, repo_root=repo_root()
+    )
     assert not any(key == "FILTER_REGEX_EXCLUDE" for key, _ in env_pairs)
 
 
@@ -295,13 +298,89 @@ def test_maybe_append_default_filter_excludes_default_image(monkeypatch: pytest.
 
     monkeypatch.delenv("FILTER_REGEX_EXCLUDE", raising=False)
     env_pairs: list[tuple[str, str]] = []
-    runner._maybe_append_default_filter_excludes(env_pairs, image=runner.SUPER_LINTER_IMAGE_DEFAULT)
+    runner._maybe_append_default_filter_excludes(
+        env_pairs, image=runner.SUPER_LINTER_IMAGE_DEFAULT, repo_root=repo_root()
+    )
     values = dict(env_pairs)
     assert "FILTER_REGEX_EXCLUDE" in values
     pattern = values["FILTER_REGEX_EXCLUDE"]
     assert ".venv" in pattern
-    assert "samples/" in pattern
-    assert "data/canonical/" in pattern
+    workflow = (repo_root() / ".github" / "workflows" / "super-linter.yml").read_text(encoding="utf-8")
+    ci = re.search(r"^\s+FILTER_REGEX_EXCLUDE: '([^']*)'$", workflow, re.MULTILINE)
+    assert ci is not None
+    assert pattern.endswith("|" + ci.group(1))
+
+
+def test_default_image_is_the_one_the_ci_action_pins() -> None:
+    """The local image is the version the workflow's pinned super-linter action names."""
+    import scripts.linting.run_super_linter as runner
+
+    workflow = (repo_root() / ".github" / "workflows" / "super-linter.yml").read_text(encoding="utf-8")
+    pinned = re.search(r"uses: super-linter/super-linter@[0-9a-f]{40}\s+#\s*(v[0-9.]+)", workflow)
+    assert pinned is not None
+    expected = f"ghcr.io/super-linter/super-linter:{pinned.group(1)}"
+    assert expected == runner.SUPER_LINTER_IMAGE_DEFAULT
+
+
+@pytest.mark.parametrize("reader", ["ci_super_linter_image", "ci_filter_regex_exclude"])
+def test_ci_readers_fail_when_the_workflow_line_is_missing(tmp_path: Path, reader: str) -> None:
+    """Each reader names the workflow when the line it needs is absent."""
+    import scripts.linting.run_super_linter as runner
+
+    (tmp_path / ".github" / "workflows").mkdir(parents=True)
+    (tmp_path / ".github" / "workflows" / "super-linter.yml").write_text("jobs: {}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match=r"super-linter\.yml"):
+        getattr(runner, reader)(tmp_path)
+
+
+def test_worktree_git_args_empty_for_a_normal_checkout(tmp_path: Path) -> None:
+    """A checkout whose .git is a directory needs no extra mounts."""
+    import scripts.linting.run_super_linter as runner
+
+    (tmp_path / ".git").mkdir()
+    assert runner._worktree_git_args(tmp_path) == []
+    assert runner._git_common_dir(tmp_path) == tmp_path / ".git"
+
+
+def test_worktree_git_args_mount_the_shared_git_dir(tmp_path: Path) -> None:
+    """A linked worktree gets the shared git dir mounted and a .git file naming its container path."""
+    import scripts.linting.run_super_linter as runner
+
+    common = tmp_path / "repo" / ".git"
+    git_dir = common / "worktrees" / "wt"
+    git_dir.mkdir(parents=True)
+    (git_dir / "commondir").write_text("../..\n", encoding="utf-8")
+    work = tmp_path / "wt"
+    work.mkdir()
+    (work / ".git").write_text(f"gitdir: {git_dir}\n", encoding="utf-8")
+
+    args = runner._worktree_git_args(work)
+
+    gitfile = git_dir / "super-linter.gitfile"
+    assert gitfile.read_text(encoding="utf-8") == "gitdir: /git-common/worktrees/wt"
+    assert f"{common.resolve()}:/git-common" in args
+    assert f"{gitfile}:/workspace/.git:ro" in args
+    assert "GIT_CONFIG_VALUE_0=*" in args
+
+
+@pytest.mark.parametrize(("hook_id", "suffixes"), [("markdownlint", (".md",)), ("editorconfig-checker", None)])
+def test_pre_commit_excludes_agree_with_ci_on_every_tracked_file(
+    hook_id: str, suffixes: tuple[str, ...] | None
+) -> None:
+    """A tracked file is skipped by the pre-commit hook exactly when CI's Super-Linter skips it."""
+    import yaml
+
+    import scripts.linting.run_super_linter as runner
+
+    root = repo_root()
+    config = yaml.safe_load((root / ".pre-commit-config.yaml").read_text(encoding="utf-8"))
+    hook = next(h for repo in config["repos"] for h in repo["hooks"] if h["id"] == hook_id)
+    local = re.compile(hook["exclude"])
+    ci = re.compile(runner.ci_filter_regex_exclude(root))
+    tracked = subprocess.run(["git", "ls-files"], cwd=root, capture_output=True, text=True, check=True).stdout.split()
+    files = [f for f in tracked if suffixes is None or f.endswith(suffixes)]
+    disagree = [f for f in files if bool(local.search(f)) != bool(ci.search(f"/github/workspace/{f}"))]
+    assert disagree == []
 
 
 def test_maybe_set_default_jscpd_non_default_image() -> None:
