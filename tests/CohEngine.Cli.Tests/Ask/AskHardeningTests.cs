@@ -120,8 +120,7 @@ public sealed class AskHardeningTests : IDisposable
         (int exit, string output, string error) = await RunAsync(handler, TestContext.Current.CancellationToken, Args(provider, "COH_ASK_HARD_KEY_2", url));
 
         Assert.Equal((1, string.Empty), (exit, output));
-        Assert.StartsWith($"error: E132: base URL '{url}", error, StringComparison.Ordinal);
-        Assert.Contains("use https, or a loopback address", error, StringComparison.Ordinal);
+        Assert.Equal($"error: E132: base URL '{new Uri(url)}' is http on a remote host, which would send the key unencrypted; use https, or a loopback address such as http://localhost" + Environment.NewLine, error);
         Assert.Empty(handler.Sent);
     }
 

@@ -77,6 +77,16 @@ provider defaults to `anthropic`. The key comes from the provider's variable
 (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY`) or from the variable named by
 `--api-key-env`; there is no option that takes a key. For `anthropic`, the base address is
 `--base-url`, else the `ANTHROPIC_BASE_URL` environment variable, else `https://api.anthropic.com`.
+`ChatProviderOptions.BaseUrlEnvironmentVariable` names a different variable to read in place of
+`ANTHROPIC_BASE_URL`; tests name one nothing sets, and the program leaves it null.
+
+A bad address names where it came from:
+
+- from `--base-url`: `E132: base URL '<value>' is not an absolute http(s) URL; pass --base-url https://host`,
+  or `E132: base URL '<value>' is http on a remote host, which would send the key unencrypted; use https, or a loopback address such as http://localhost`;
+- from the variable, where `<VAR>` is `ANTHROPIC_BASE_URL` or the variable `BaseUrlEnvironmentVariable` names:
+  `E132: <VAR> '<value>' is not an absolute http(s) URL; set <VAR> to https://host or unset it`,
+  or `E132: <VAR> '<value>' is http on a remote host, which would send the key unencrypted; set <VAR> to an https URL or a loopback address such as http://localhost, or unset it`.
 
 The tools are the same functions the MCP server exposes (`rules`, `check_legality`,
 `check_hard_limits`, `check_slotting`, `score`, `totals`, `set_bonus_lookup`, `power_lookup`, `chain`), listed in

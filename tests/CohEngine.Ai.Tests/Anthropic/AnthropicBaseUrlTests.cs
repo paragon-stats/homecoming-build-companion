@@ -6,7 +6,7 @@ using Microsoft.Extensions.AI;
 
 namespace CohEngine.Ai.Tests.Anthropic;
 
-// Each test names its own base URL variable, so none reads or writes ANTHROPIC_BASE_URL and they run in parallel.
+// Each test but one names its own base URL variable, so they run in parallel without touching ANTHROPIC_BASE_URL.
 public sealed class AnthropicBaseUrlTests
 {
     private const string KeyVariable = "COH_TEST_ANTHROPIC_BASE_URL_KEY";
@@ -15,6 +15,25 @@ public sealed class AnthropicBaseUrlTests
     public void The_default_variable_is_ANTHROPIC_BASE_URL()
     {
         Assert.Equal("ANTHROPIC_BASE_URL", AnthropicChatClient.BaseUrlEnvironmentVariable);
+    }
+
+    // The only test that reads ANTHROPIC_BASE_URL itself: every other one names its own variable, so setting it here is parallel-safe.
+    [Fact]
+    public void Without_a_named_variable_the_factory_reads_ANTHROPIC_BASE_URL()
+    {
+        string? previous = Environment.GetEnvironmentVariable(AnthropicChatClient.BaseUrlEnvironmentVariable);
+        Environment.SetEnvironmentVariable(KeyVariable, AnthropicChatClientTests.FakeKey);
+        Environment.SetEnvironmentVariable(AnthropicChatClient.BaseUrlEnvironmentVariable, "https://default-variable.example");
+        try
+        {
+            using IChatClient client = ChatClientFactory.Create(new ChatProviderOptions(ChatProvider.Anthropic, ChatPreset.OpenAi, "claude-test-model", ApiKeyEnvironmentVariable: KeyVariable));
+
+            Assert.Equal(new Uri("https://default-variable.example/"), Assert.IsType<ChatClientMetadata>(client.GetService(typeof(ChatClientMetadata))).ProviderUri);
+        }
+        finally
+        {
+            Environment.SetEnvironmentVariable(AnthropicChatClient.BaseUrlEnvironmentVariable, previous);
+        }
     }
 
     [Fact]

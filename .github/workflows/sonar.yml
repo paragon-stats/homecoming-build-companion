@@ -61,6 +61,9 @@ jobs:
           /d:sonar.exclusions="data/**,**/tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
           /d:sonar.cpd.exclusions="data/**,**/tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
           /d:sonar.coverage.exclusions="scripts/**,src/coh_engine/**,**/*JsonContext.cs"
+          /d:sonar.issue.ignore.multicriteria=e1
+          /d:sonar.issue.ignore.multicriteria.e1.ruleKey=csharpsquid:S1244
+          /d:sonar.issue.ignore.multicriteria.e1.resourceKey=src/CohEngine.Core/Maths/Exact.cs
           /d:sonar.qualitygate.wait=true
       - run: dotnet build --no-incremental --no-restore
       - name: Test with coverage
