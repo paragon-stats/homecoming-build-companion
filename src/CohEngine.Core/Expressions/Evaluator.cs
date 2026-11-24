@@ -11,14 +11,21 @@ namespace CohEngine.Core.Expressions;
 /// <c>Expressions.Parse</c> for a magnitude: the keywords are substituted as text, in order, and the arithmetic
 /// left is evaluated. Floats are rendered as .NET renders them, and constants are replaced before the functions.
 /// </summary>
-internal static class Evaluator
+internal static partial class Evaluator
 {
     private const double DoubleEpsilon = 5e-324;
 
-    private static readonly Regex VariableVal = new(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex PowerGroupIn = new(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex PowerGroupNotIn = new(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex AndOrCall = new(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+    [GeneratedRegex(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex VariableVal { get; }
+
+    [GeneratedRegex(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex PowerGroupIn { get; }
+
+    [GeneratedRegex(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex PowerGroupNotIn { get; }
+
+    [GeneratedRegex(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex AndOrCall { get; }
 
     /// <summary>
     /// Evaluates an effect's magnitude expression. Only the keywords and functions the committed builds use are
