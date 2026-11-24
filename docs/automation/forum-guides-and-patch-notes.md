@@ -71,7 +71,7 @@ The guide index and the manifest leave out any row whose text names a person lis
 name or URL cannot be sanitised and stay exact. The capture stays in the private source repository; the run prints
 how many rows it withheld and nothing about them, and says the filter is off when the variable is unset.
 
-After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1 -SourceRoot <path>` and review the
+After a run, regenerate `<source root>/community/INDEX.md` with `scripts/regen-index.ps1` in `paragon-stats/homecoming-source-material` and review the
 summaries. Replies are not captured; a guide whose value is in its thread still needs the browser route.
 
 ### The pre-sunset forum archive

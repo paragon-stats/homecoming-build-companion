@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import hashlib
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -41,8 +42,22 @@ except ImportError:  # pragma: no cover
     fcntl = None  # type: ignore[assignment]
 
 
-SUPER_LINTER_IMAGE_DEFAULT = "ghcr.io/super-linter/super-linter:v8"
+SUPER_LINTER_WORKFLOW = ".github/workflows/super-linter.yml"
+_CI_FILTER_LINE = re.compile(r"^\s+FILTER_REGEX_EXCLUDE: '([^']*)'\s*$", re.MULTILINE)
+_CI_ACTION_LINE = re.compile(r"uses: super-linter/super-linter@[0-9a-f]{40}\s+#\s*(v[0-9][0-9.]*)")
+
+
+def ci_super_linter_image(repo_root: Path) -> str:
+    """Return the Super-Linter image the CI job runs, from the version its pinned action names."""
+    match = _CI_ACTION_LINE.search((repo_root / SUPER_LINTER_WORKFLOW).read_text(encoding="utf-8"))
+    if match is None:
+        raise ValueError(f"pinned super-linter action not found in {SUPER_LINTER_WORKFLOW}")
+    return f"ghcr.io/super-linter/super-linter:{match.group(1)}"
+
+
+SUPER_LINTER_IMAGE_DEFAULT = ci_super_linter_image(Path(__file__).resolve().parents[2])
 _CONTAINER_WORKSPACE = "/workspace"
+_CONTAINER_GIT_COMMON = "/git-common"
 
 
 def _resolve_super_linter_image() -> str:
@@ -93,7 +108,16 @@ def _git_ref_exists(repo_root: Path, default_branch: str) -> bool:
     return False
 
 
-def _maybe_append_default_filter_excludes(env_pairs: list[tuple[str, str]], *, image: str) -> None:
+def ci_filter_regex_exclude(repo_root: Path) -> str:
+    """Return the FILTER_REGEX_EXCLUDE value the CI Super-Linter job uses."""
+    workflow = (repo_root / SUPER_LINTER_WORKFLOW).read_text(encoding="utf-8")
+    match = _CI_FILTER_LINE.search(workflow)
+    if match is None:
+        raise ValueError(f"FILTER_REGEX_EXCLUDE not found in {SUPER_LINTER_WORKFLOW}")
+    return match.group(1)
+
+
+def _maybe_append_default_filter_excludes(env_pairs: list[tuple[str, str]], *, image: str, repo_root: Path) -> None:
     # Keep local == remote: mirror the CI FILTER_REGEX_EXCLUDE from
     # .github/workflows/super-linter.yml, plus dev-only artifacts that only
     # exist locally (virtualenv, tool caches).  Super-Linter's JSCPD/other
@@ -119,15 +143,7 @@ def _maybe_append_default_filter_excludes(env_pairs: list[tuple[str, str]], *, i
     )
     dev_pattern = r"(^|/)({})/".format("|".join(dev_excluded_dirs))
 
-    # CI-parity exclusions: verbatim/harvested game data, generated extraction
-    # docs, and the legacy PowerShell capture lane.  Mirrors the pattern in
-    # .github/workflows/super-linter.yml (keep the two in sync).
-    ci_pattern = (
-        r"((.*/)?(samples/|src/coh_engine/tests/fixtures/|tests/fixtures/|data/canonical/|data/diff/|inbox/|docs/engine/).*"
-        r"|scripts/[^/]+\.ps1|scripts/lane-[ab]/.*)"
-    )
-
-    env_pairs.append(("FILTER_REGEX_EXCLUDE", f"{dev_pattern}|{ci_pattern}"))
+    env_pairs.append(("FILTER_REGEX_EXCLUDE", f"{dev_pattern}|{ci_filter_regex_exclude(repo_root)}"))
 
 
 def _maybe_set_default_jscpd_config_file(env_pairs: list[tuple[str, str]], *, image: str, repo_root: Path) -> None:
@@ -302,7 +318,7 @@ def _build_env_pairs(repo_root: Path, *, image: str, default_branch: str) -> lis
         ),
     ]
 
-    _maybe_append_default_filter_excludes(env_pairs, image=image)
+    _maybe_append_default_filter_excludes(env_pairs, image=image, repo_root=repo_root)
     _maybe_set_default_jscpd_config_file(env_pairs, image=image, repo_root=repo_root)
     return env_pairs
 
@@ -436,9 +452,49 @@ def _build_docker_args(
 
     # Mount the repository into a stable, non-/tmp path inside the container.
     args += ["-v", f"{repo_root}:{_CONTAINER_WORKSPACE}"]
+    args += _worktree_git_args(repo_root)
     args += ["-w", _CONTAINER_WORKSPACE]
     args.append(image)
     return args
+
+
+def _git_common_dir(repo_root: Path) -> Path:
+    """The repository's shared git directory, for a normal checkout or a linked worktree."""
+    dot_git = repo_root / ".git"
+    if dot_git.is_dir():
+        return dot_git
+    git_dir = (repo_root / dot_git.read_text(encoding="utf-8").split("gitdir:", 1)[1].strip()).resolve()
+    return (git_dir / (git_dir / "commondir").read_text(encoding="utf-8").strip()).resolve()
+
+
+def _worktree_git_args(repo_root: Path) -> list[str]:
+    """Docker args that let git in the container read a linked worktree.
+
+    A linked worktree's ``.git`` is a file naming a host path the container cannot see, so the
+    repository's shared git directory is mounted, and a ``.git`` file naming its container path
+    is written beside the worktree's git directory and mounted over ``/workspace/.git``.
+    """
+    dot_git = repo_root / ".git"
+    if not dot_git.is_file():
+        return []
+    git_dir = (repo_root / dot_git.read_text(encoding="utf-8").split("gitdir:", 1)[1].strip()).resolve()
+    common_dir = _git_common_dir(repo_root)
+    container_git_dir = f"{_CONTAINER_GIT_COMMON}/{git_dir.relative_to(common_dir).as_posix()}"
+    container_dot_git = git_dir / "super-linter.gitfile"
+    # No trailing newline: Super-Linter keeps it as part of the path it reads.
+    container_dot_git.write_text(f"gitdir: {container_git_dir}", encoding="utf-8")
+    return [
+        "-v",
+        f"{common_dir}:{_CONTAINER_GIT_COMMON}",
+        "-v",
+        f"{container_dot_git}:{_CONTAINER_WORKSPACE}/.git:ro",
+        "-e",
+        "GIT_CONFIG_COUNT=1",
+        "-e",
+        "GIT_CONFIG_KEY_0=safe.directory",
+        "-e",
+        "GIT_CONFIG_VALUE_0=*",
+    ]
 
 
 def _run_docker(repo_root: Path) -> int:
@@ -450,9 +506,9 @@ def _run_docker(repo_root: Path) -> int:
         return _run(docker_cmd + args, cwd=repo_root)
 
     # Avoid concurrent runs to keep output deterministic and reduce resource spikes.
-    lock_path = repo_root / ".git" / "super-linter.lock"
+    lock_path = _git_common_dir(repo_root) / "super-linter.lock"
     lock_file = None
-    if fcntl is not None and (repo_root / ".git").is_dir():
+    if fcntl is not None:
         lock_file = lock_path.open("a")
         fcntl_mod = cast(Any, fcntl)
         fcntl_mod.flock(lock_file.fileno(), fcntl_mod.LOCK_EX)

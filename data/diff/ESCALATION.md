@@ -2,7 +2,7 @@
 
 You asked Claude to walk Homecoming patch notes chronologically (latest-wins) and escalate when reconciling can't be done programmatically. Here's where we landed.
 
-Tooling: [parse-patches.ps1](../../scripts/parse-patches.ps1), [check-overrides.ps1](../../scripts/check-overrides.ps1).
+Tooling: `parse-patches.ps1`, `check-overrides.ps1` (since removed).
 
 ---
 

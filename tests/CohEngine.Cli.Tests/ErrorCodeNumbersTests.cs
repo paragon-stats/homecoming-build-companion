@@ -16,9 +16,10 @@ public sealed class ErrorCodeNumbersTests
 
         List<(string Name, string Number)> codes = [.. codeFiles.SelectMany(Constants)];
 
-        Assert.Equal(94, codes.Count);
+        Assert.Equal(96, codes.Count);
+        Assert.Contains(("ErrorCodes.E191", "E191"), codes);
         Assert.Contains(("AiErrorCodes+Anthropic.IncompleteStream", "E141"), codes);
-        Assert.Empty(codes.GroupBy(code => code.Number, StringComparer.Ordinal).Where(group => group.Count() > 1).Select(group => $"{group.Key}: {string.Join(", ", group.Select(code => code.Name))}"));
+        Assert.Empty(codes.GroupBy(code => code.Number, StringComparer.Ordinal).Where(group => group.Skip(1).Any()).Select(group => $"{group.Key}: {string.Join(", ", group.Select(code => code.Name))}"));
     }
 
     private static IEnumerable<(string Name, string Number)> Constants(Type type)
