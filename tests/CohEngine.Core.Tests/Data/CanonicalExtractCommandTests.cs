@@ -9,6 +9,13 @@ namespace CohEngine.Core.Tests.Data;
 
 public sealed class CanonicalExtractCommandTests : IDisposable
 {
+    private const string Supplements = """
+        [
+            {"powerset": "Sonic_Aura", "source": {"commit": "fd4a2ee0"}, "directories": ["powers/pets/sonic_aura"], "file_count": 1},
+            {"powerset": "Light_Affinity", "directories": ["powers/redirects/light_affinity/"], "file_count": 1}
+        ]
+        """;
+
     private readonly string scratch = Directory.CreateTempSubdirectory("coh-extract-").FullName;
 
     private string OutDir => Path.Join(scratch, "canonical");
@@ -35,26 +42,26 @@ public sealed class CanonicalExtractCommandTests : IDisposable
     [Theory]
     [InlineData("powers/a:b.json", "powers/a_b.json", "powers/a_b.json")]
     [InlineData("Powers/A.json", "powers/a.json", "powers/a.json")]
-    public void Two_entries_that_map_to_one_path_are_refused_with_E41(string first, string second, string mapped)
+    public void Two_entries_that_map_to_one_path_are_refused_with_E190(string first, string second, string mapped)
     {
         string zip = MakeZip("raw.zip", (first, "1"), (second, "2"));
 
         (int code, string output, string error) = Run("--zip", zip, "--out-dir", OutDir);
 
         Assert.Equal((1, string.Empty), (code, output));
-        Assert.Equal($"error: E41: zip entries '{first}' and '{second}' both map to '{mapped}'; rename one in the extractor\n", error);
+        Assert.Equal($"error: E190: zip entries '{first}' and '{second}' both map to '{mapped}'; rename one in the extractor\n", error);
         Assert.False(File.Exists(Path.Join(OutDir, "manifest.json")));
     }
 
     [Fact]
-    public void An_entry_outside_the_target_folder_is_refused_with_E42()
+    public void An_entry_outside_the_target_folder_is_refused_with_E191()
     {
         string zip = MakeZip("raw.zip", ("../canonical2/evil.json", "1"));
 
         (int code, _, string error) = Run("--zip", zip, "--out-dir", OutDir);
 
         Assert.Equal(1, code);
-        Assert.Equal($"error: E42: zip entry '../canonical2/evil.json' resolves outside {OutDir}; refusing to extract\n", error);
+        Assert.Equal($"error: E191: zip entry '../canonical2/evil.json' resolves outside {OutDir}; refusing to extract\n", error);
         Assert.False(File.Exists(Path.Join(scratch, "canonical2", "evil.json")));
     }
 
@@ -115,6 +122,47 @@ public sealed class CanonicalExtractCommandTests : IDisposable
         Assert.Contains("extracted", output, StringComparison.Ordinal);
         Assert.True(File.Exists(Path.Join(OutDir, "powers", "a.json")));
         Assert.False(Directory.Exists(Path.Join(OutDir, "stale")));
+    }
+
+    [Fact]
+    public void A_re_extract_carries_the_supplements_block_unchanged()
+    {
+        string zip = MakeZip("raw.zip", ("powers/a.json", "1"));
+        Directory.CreateDirectory(OutDir);
+        File.WriteAllText(Path.Join(OutDir, "manifest.json"), $$"""{"source_zip": {"sha256": "OLD"}, "supplements": {{Supplements}}}""");
+
+        Assert.Equal(0, Run("--zip", zip, "--out-dir", OutDir).Code);
+
+        using JsonDocument manifest = JsonDocument.Parse(File.ReadAllText(Path.Join(OutDir, "manifest.json")));
+        using JsonDocument expected = JsonDocument.Parse(Supplements);
+        Assert.True(JsonElement.DeepEquals(expected.RootElement, manifest.RootElement.GetProperty("supplements")));
+        Assert.Equal(Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(zip))), manifest.RootElement.GetProperty("source_zip").GetProperty("sha256").GetString());
+    }
+
+    [Fact]
+    public void Force_keeps_the_folders_the_supplements_list_and_removes_other_leftovers()
+    {
+        string zip = MakeZip("raw.zip", ("powers/a.json", "1"));
+        Assert.Equal(0, Run("--zip", zip, "--out-dir", OutDir).Code);
+        using (JsonDocument first = JsonDocument.Parse(File.ReadAllText(Path.Join(OutDir, "manifest.json"))))
+        {
+            File.WriteAllText(Path.Join(OutDir, "manifest.json"), first.RootElement.GetRawText()[..^1] + $$""", "supplements": {{Supplements}}}""");
+        }
+
+        string[] kept = [Path.Join(OutDir, "powers", "pets", "sonic_aura", "x.json"), Path.Join(OutDir, "powers", "redirects", "light_affinity", "y.json")];
+        string[] removed = [Path.Join(OutDir, "powers", "stale.json"), Path.Join(OutDir, "powers", "pets", "other", "z.json"), Path.Join(OutDir, "stale", "w.json")];
+        foreach (string file in kept.Concat(removed))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+            File.WriteAllText(file, "0");
+        }
+
+        Assert.Equal(0, Run("--zip", zip, "--out-dir", OutDir, "--force").Code);
+
+        Assert.All(kept, file => Assert.True(File.Exists(file), file));
+        Assert.All(removed, file => Assert.False(File.Exists(file), file));
+        Assert.False(Directory.Exists(Path.Join(OutDir, "stale")));
+        Assert.True(File.Exists(Path.Join(OutDir, "powers", "a.json")));
     }
 
     [Theory]

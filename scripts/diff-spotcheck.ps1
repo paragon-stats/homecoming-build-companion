@@ -43,7 +43,7 @@ foreach ($d in @($DiffDir, $DiffPowers)) {
 $canonical = Join-Path $ProjectRoot 'data\canonical\powers.json'
 if (-not (Test-Path $canonical)) {
     Write-Warning "Canonical Lane B output not found: $canonical"
-    Write-Warning "Run coh-engine extract-canonical first."
+    Write-Warning "Run tools\lane-b\run.ps1 first."
     return
 }
 

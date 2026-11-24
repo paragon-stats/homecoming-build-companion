@@ -21,13 +21,14 @@ public static class CanonicalZip
     /// <summary>
     /// Extracts <paramref name="zipPath"/> into <paramref name="outDir"/>, mapping <c>:</c> to <c>_</c> in each path segment,
     /// and writes <c>manifest.json</c>. Nothing is extracted when the manifest already records the zip's SHA256, unless forced;
-    /// forcing first deletes every directory under the target.
+    /// forcing first deletes every directory under the target except those the previous manifest's hand-added
+    /// <c>supplements</c> block lists. That block is carried into the new manifest unchanged.
     /// </summary>
     /// <param name="zipPath">The raw-data zip.</param>
     /// <param name="outDir">The target folder.</param>
     /// <param name="force">Extract even when the manifest records the zip's hash.</param>
     /// <returns>The zip's SHA256 as uppercase hex, and whether it was extracted.</returns>
-    /// <exception cref="EngineException">E41 when two entries map to one path; E42 when an entry resolves outside the target.</exception>
+    /// <exception cref="EngineException">E190 when two entries map to one path; E191 when an entry resolves outside the target.</exception>
     public static (string Sha256, bool Extracted) Extract(string zipPath, string outDir, bool force)
     {
         ArgumentNullException.ThrowIfNull(zipPath);
@@ -41,41 +42,83 @@ public static class CanonicalZip
         }
 
         string manifestPath = Path.Join(destination, "manifest.json");
-        if (!force && string.Equals(RecordedSha256(manifestPath), sha256, StringComparison.OrdinalIgnoreCase))
+        JsonElement previous = ReadManifest(manifestPath);
+        string? recorded = Property(Property(previous, "source_zip"), "sha256") is { ValueKind: JsonValueKind.String } hash ? hash.GetString() : null;
+        if (!force && string.Equals(recorded, sha256, StringComparison.OrdinalIgnoreCase))
         {
             return (sha256, false);
         }
 
+        JsonElement supplements = Property(previous, "supplements");
         Directory.CreateDirectory(destination);
         if (force)
         {
-            foreach (string directory in Directory.GetDirectories(destination))
-            {
-                Directory.Delete(directory, recursive: true);
-            }
+            Clear(destination, SupplementDirectories(supplements, destination), top: true);
         }
 
         Expand(zip, destination);
-        WriteManifest(zip, destination, sha256, manifestPath);
+        WriteManifest(zip, destination, sha256, manifestPath, supplements);
         return (sha256, true);
     }
 
-    private static string? RecordedSha256(string manifestPath)
+    /// <summary>The previous manifest's root, or an undefined element when there is none or it is not JSON, so the zip is extracted again.</summary>
+    private static JsonElement ReadManifest(string manifestPath)
     {
         if (!File.Exists(manifestPath))
         {
-            return null;
+            return default;
         }
 
-        // An unreadable manifest records no hash, so the zip is extracted again.
         try
         {
             using JsonDocument manifest = JsonDocument.Parse(File.ReadAllText(manifestPath));
-            return manifest.RootElement.GetProperty("source_zip").GetProperty("sha256").GetString();
+            return manifest.RootElement.Clone();
         }
-        catch (Exception exception) when (exception is JsonException or InvalidOperationException or KeyNotFoundException)
+        catch (JsonException)
         {
-            return null;
+            return default;
+        }
+    }
+
+    private static JsonElement Property(JsonElement element, string name)
+    {
+        return element.ValueKind == JsonValueKind.Object && element.TryGetProperty(name, out JsonElement value) ? value : default;
+    }
+
+    /// <summary>The full paths of the folders the hand-added <c>supplements</c> block lists; <c>--force</c> keeps them.</summary>
+    private static List<string> SupplementDirectories(JsonElement supplements, string destination)
+    {
+        return supplements.ValueKind != JsonValueKind.Array
+            ? []
+            : [.. supplements.EnumerateArray()
+                .Select(supplement => Property(supplement, "directories"))
+                .Where(directories => directories.ValueKind == JsonValueKind.Array)
+                .SelectMany(directories => directories.EnumerateArray())
+                .Where(directory => directory.ValueKind == JsonValueKind.String)
+                .Select(directory => Path.TrimEndingDirectorySeparator(Path.GetFullPath(Path.Join(destination, directory.GetString()))))];
+    }
+
+    /// <summary>Deletes every folder under <paramref name="directory"/> except the kept ones and the folders above them; below the top, loose files go too.</summary>
+    private static void Clear(string directory, List<string> keep, bool top)
+    {
+        if (!top)
+        {
+            foreach (string file in Directory.GetFiles(directory))
+            {
+                File.Delete(file);
+            }
+        }
+
+        foreach (string child in Directory.GetDirectories(directory).Where(child => !keep.Contains(child, StringComparer.OrdinalIgnoreCase)))
+        {
+            if (keep.Exists(path => path.StartsWith(child + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)))
+            {
+                Clear(child, keep, top: false);
+            }
+            else
+            {
+                Directory.Delete(child, recursive: true);
+            }
         }
     }
 
@@ -91,14 +134,14 @@ public static class CanonicalZip
             string relative = string.Join('/', entry.FullName.Split('/').Select(segment => segment.Replace(':', '_')));
             if (seen.TryGetValue(relative, out string? first))
             {
-                throw new EngineException($"E41: zip entries '{first}' and '{entry.FullName}' both map to '{relative}'; rename one in the extractor");
+                throw new EngineException($"{ErrorCodes.E190}: zip entries '{first}' and '{entry.FullName}' both map to '{relative}'; rename one in the extractor");
             }
 
             seen[relative] = entry.FullName;
             string target = Path.GetFullPath(Path.Join(destination, relative));
             if (!target.StartsWith(root, StringComparison.OrdinalIgnoreCase))
             {
-                throw new EngineException($"E42: zip entry '{entry.FullName}' resolves outside {destination}; refusing to extract");
+                throw new EngineException($"{ErrorCodes.E191}: zip entry '{entry.FullName}' resolves outside {destination}; refusing to extract");
             }
 
             Directory.CreateDirectory(Path.GetDirectoryName(target)!);
@@ -106,7 +149,7 @@ public static class CanonicalZip
         }
     }
 
-    private static void WriteManifest(string zip, string destination, string sha256, string manifestPath)
+    private static void WriteManifest(string zip, string destination, string sha256, string manifestPath, JsonElement supplements)
     {
         FileInfo zipInfo = new(zip);
         List<(string Name, int FileCount, long TotalBytes)> inventory =
@@ -155,6 +198,12 @@ public static class CanonicalZip
             }
 
             json.WriteEndArray();
+            if (supplements.ValueKind != JsonValueKind.Undefined)
+            {
+                json.WritePropertyName("supplements");
+                supplements.WriteTo(json);
+            }
+
             json.WriteEndObject();
         }
 
