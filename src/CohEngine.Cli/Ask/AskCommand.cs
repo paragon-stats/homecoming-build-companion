@@ -37,8 +37,8 @@ public static class AskCommand
         ArgumentNullException.ThrowIfNull(error);
         if (!AskArguments.TryParse(args, out AskArguments? parsed, out string problem))
         {
-            error.WriteLine(Usage);
-            error.WriteLine("coh-engine ask: error: " + problem);
+            await error.WriteLineAsync(Usage).ConfigureAwait(false);
+            await error.WriteLineAsync("coh-engine ask: error: " + problem).ConfigureAwait(false);
             return 2;
         }
 
@@ -48,7 +48,7 @@ public static class AskCommand
             IReadOnlyList<AIFunction> tools = LoadTools(parsed.BuildPath, mbdSource);
             using IChatClient client = ChatClientFactory.Create(new ChatProviderOptions(parsed.Provider, parsed.Preset, parsed.Model, parsed.BaseUrl, parsed.ApiKeyEnvironmentVariable, handler));
             AskReply reply = await AskLoop.RunAsync(client, tools, parsed.Question, MaxRounds, cancellationToken).ConfigureAwait(false);
-            output.WriteLine(reply.Text);
+            await output.WriteLineAsync(reply.Text).ConfigureAwait(false);
             if (!reply.Truncated)
             {
                 return 0;
@@ -74,7 +74,7 @@ public static class AskCommand
             message = $"{AskErrorCodes.ProviderReply}: the provider did not give a usable reply ({exception.GetType().Name}); check the base URL and the model name";
         }
 
-        error.WriteLine("error: " + message);
+        await error.WriteLineAsync("error: " + message).ConfigureAwait(false);
         return 1;
     }
 

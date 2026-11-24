@@ -19,7 +19,7 @@ public static class AiErrorCodes
     public static class Anthropic
     {
         /// <summary>The environment variable that should hold the Anthropic API key is empty or unset.</summary>
-        public const string MissingApiKey = "E140";
+        public const string MissingKey = "E140";
 
         /// <summary>The response stream ended before <c>message_stop</c>, or with a tool call still open.</summary>
         public const string IncompleteStream = "E141";

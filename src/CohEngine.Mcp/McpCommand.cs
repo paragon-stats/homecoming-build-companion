@@ -16,8 +16,8 @@ public static class McpCommand
         ArgumentNullException.ThrowIfNull(error);
         if (args.Count != 0)
         {
-            error.WriteLine("usage: coh-engine mcp");
-            error.WriteLine("coh-engine mcp: error: unrecognized arguments: " + string.Join(' ', args));
+            await error.WriteLineAsync("usage: coh-engine mcp").ConfigureAwait(false);
+            await error.WriteLineAsync("coh-engine mcp: error: unrecognized arguments: " + string.Join(' ', args)).ConfigureAwait(false);
             return 2;
         }
 

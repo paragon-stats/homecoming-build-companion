@@ -21,18 +21,7 @@ public static class ChatClientFactory
         ArgumentNullException.ThrowIfNull(options);
         if (options.Provider == ChatProvider.Anthropic)
         {
-            Uri? root = null;
-            if (options.BaseUrl is not null && (!Uri.TryCreate(options.BaseUrl, UriKind.Absolute, out root) || root.Scheme is not ("http" or "https")))
-            {
-                throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{options.BaseUrl}' is not an absolute http(s) URL; pass --base-url https://host");
-            }
-
-            if (root is not null)
-            {
-                RequireSecure(root, local: false);
-            }
-
-            return new AnthropicChatClient(options.Model, options.BaseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
+            return CreateAnthropic(options);
         }
 
         if (options.Provider != ChatProvider.OpenAiCompatible)
@@ -49,16 +38,7 @@ public static class ChatClientFactory
         };
         keyVariable = options.ApiKeyEnvironmentVariable ?? keyVariable;
 
-        // Local servers ignore the key, but the SDK refuses an empty one.
-        string key = "none";
-        if (keyVariable is not null)
-        {
-            key = Environment.GetEnvironmentVariable(keyVariable) is { Length: > 0 } value
-                ? value
-                : throw new InvalidOperationException(
-                    $"{AiErrorCodes.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
-        }
-
+        string key = ReadKey(keyVariable);
         string url = options.BaseUrl ?? baseUrl;
         if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? endpoint) || endpoint.Scheme is not ("http" or "https"))
         {
@@ -73,6 +53,36 @@ public static class ChatClientFactory
         }
 
         return new ErrorMappingChatClient(new OpenAIClient(new ApiKeyCredential(key), clientOptions).GetChatClient(options.Model).AsIChatClient(), keyVariable);
+    }
+
+    private static AnthropicChatClient CreateAnthropic(ChatProviderOptions options)
+    {
+        Uri? root = null;
+        if (options.BaseUrl is not null && (!Uri.TryCreate(options.BaseUrl, UriKind.Absolute, out root) || root.Scheme is not ("http" or "https")))
+        {
+            throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{options.BaseUrl}' is not an absolute http(s) URL; pass --base-url https://host");
+        }
+
+        if (root is not null)
+        {
+            RequireSecure(root, local: false);
+        }
+
+        return new AnthropicChatClient(options.Model, options.BaseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
+    }
+
+    // Local servers ignore the key, but the SDK refuses an empty one.
+    private static string ReadKey(string? keyVariable)
+    {
+        if (keyVariable is null)
+        {
+            return "none";
+        }
+
+        return Environment.GetEnvironmentVariable(keyVariable) is { Length: > 0 } value
+            ? value
+            : throw new InvalidOperationException(
+                $"{AiErrorCodes.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
     }
 
     // A key sent over plain http crosses the network readable; only a loopback host or the local preset may do that.

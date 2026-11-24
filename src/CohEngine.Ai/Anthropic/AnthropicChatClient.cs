@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,8 +20,10 @@ public sealed class AnthropicChatClient : IChatClient
     /// <summary>The <c>max_tokens</c> sent when <see cref="ChatOptions.MaxOutputTokens"/> is unset; the API requires one.</summary>
     public const int DefaultMaxTokens = 1024;
 
-    private const string DefaultBaseUrl = "https://api.anthropic.com";
     private const string ApiVersion = "2023-06-01";
+    private const string ToolUse = "tool_use";
+
+    private static readonly Uri DefaultBaseUri = new UriBuilder(Uri.UriSchemeHttps, "api.anthropic.com").Uri;
 
     // One connection pool for every client that brings no handler. The pool recycles connections so DNS
     // changes are seen, and the timeout allows a long generation that the 100 s default would cut off.
@@ -48,9 +51,9 @@ public sealed class AnthropicChatClient : IChatClient
         apiKey = Environment.GetEnvironmentVariable(keyVariable) is { Length: > 0 } value
             ? value
             : throw new InvalidOperationException(
-                $"{AiErrorCodes.Anthropic.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
+                $"{AiErrorCodes.Anthropic.MissingKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
 
-        Uri root = new(baseUrl ?? DefaultBaseUrl);
+        Uri root = baseUrl is null ? DefaultBaseUri : new(baseUrl);
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
         metadata = new ChatClientMetadata("anthropic", root, model);
 
@@ -128,7 +131,12 @@ public sealed class AnthropicChatClient : IChatClient
             return null;
         }
 
-        return serviceType == typeof(ChatClientMetadata) ? metadata : serviceType.IsInstanceOfType(this) ? this : null;
+        if (serviceType == typeof(ChatClientMetadata))
+        {
+            return metadata;
+        }
+
+        return serviceType.IsInstanceOfType(this) ? this : null;
     }
 
     /// <inheritdoc/>
@@ -186,7 +194,7 @@ public sealed class AnthropicChatClient : IChatClient
         {
             TextContent text => new AnthropicContentBlock("text", Text: text.Text),
             FunctionCallContent call => new AnthropicContentBlock(
-                "tool_use",
+                ToolUse,
                 CallId: call.CallId,
                 Name: call.Name,
                 Input: JsonSerializer.SerializeToElement(
@@ -217,9 +225,13 @@ public sealed class AnthropicChatClient : IChatClient
 
     private static AnthropicTool ToTool(AITool tool)
     {
-        return tool is AIFunctionDeclaration function
-            ? new AnthropicTool(function.Name, function.Description is { Length: > 0 } description ? description : null, function.JsonSchema)
-            : throw new NotSupportedException($"The Anthropic client does not send the {tool.GetType().Name} tool.");
+        if (tool is not AIFunctionDeclaration function)
+        {
+            throw new NotSupportedException($"The Anthropic client does not send the {tool.GetType().Name} tool.");
+        }
+
+        string? description = function.Description is { Length: > 0 } text ? text : null;
+        return new AnthropicTool(function.Name, description, function.JsonSchema);
     }
 
     private static AnthropicToolChoice? ToToolChoice(ChatToolMode? mode)
@@ -239,7 +251,7 @@ public sealed class AnthropicChatClient : IChatClient
         return block.Type switch
         {
             "text" => new TextContent(block.Text),
-            "tool_use" => ToCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, block.Input),
+            ToolUse => ToCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, block.Input),
             _ => null,
         };
     }
@@ -265,7 +277,7 @@ public sealed class AnthropicChatClient : IChatClient
             null => null,
             "end_turn" or "stop_sequence" => ChatFinishReason.Stop,
             "max_tokens" => ChatFinishReason.Length,
-            "tool_use" => ChatFinishReason.ToolCalls,
+            ToolUse => ChatFinishReason.ToolCalls,
             "refusal" => ChatFinishReason.ContentFilter,
             _ => new ChatFinishReason(stopReason),
         };
@@ -340,7 +352,7 @@ public sealed class AnthropicChatClient : IChatClient
                 state.ModelId = data.Message?.Model;
                 state.InputTokens = data.Message?.Usage?.InputTokens;
                 break;
-            case "content_block_start" when data.ContentBlock is { Type: "tool_use" } block:
+            case "content_block_start" when data.ContentBlock is { Type: ToolUse } block:
                 state.Pending[data.Index] = new PendingCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, new StringBuilder());
                 break;
             case "content_block_delta" when data.Delta is { Type: "text_delta", Text: { } text }:
@@ -349,7 +361,7 @@ public sealed class AnthropicChatClient : IChatClient
             case "content_block_delta" when data.Delta is { Type: "input_json_delta" } delta:
                 PendingCall open = state.Pending.TryGetValue(data.Index, out PendingCall? found)
                     ? found
-                    : throw new JsonException($"The Messages API sent input_json_delta for content block {data.Index}, which no tool_use block started.");
+                    : throw new JsonException($"The Messages API sent input_json_delta for content block {data.Index.ToString(CultureInfo.InvariantCulture)}, which no tool_use block started.");
                 open.Json.Append(delta.PartialJson);
                 break;
             case "content_block_stop" when state.Pending.Remove(data.Index, out PendingCall? call):
@@ -366,7 +378,7 @@ public sealed class AnthropicChatClient : IChatClient
                 throw ApiError(response, data.Error, fallbackMessage: null);
         }
 
-        return contents.Count > 0 || finishReason is not null
+        return contents.Count > 0
             ? new ChatResponseUpdate(ChatRole.Assistant, contents) { ResponseId = state.ResponseId, ModelId = state.ModelId, FinishReason = finishReason }
             : null;
     }
