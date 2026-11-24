@@ -88,7 +88,7 @@ def canonical_power_path(powers_root: Path, full_name: str) -> Path:
 
     Each dot segment is lower-cased and becomes a directory (the last a ``.json`` file). ':' in a
     segment becomes '_' because NTFS reads 'name:stream' as an alternate data stream, which left
-    empty placeholder files. ``coh-engine extract-canonical`` and ``scripts/check-overrides.ps1`` apply
+    empty placeholder files. ``coh-engine extract-canonical`` applies
     the same mapping.
     """
     segments = [s.lower().replace(":", "_") for s in full_name.split(".")]

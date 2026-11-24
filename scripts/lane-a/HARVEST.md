@@ -151,18 +151,6 @@ Aim for level-50, fully-slotted, IO-heavy. Tag at least one as "procmonster" and
 
 ---
 
-## Step 7. Run the manifest regenerator
-
-After every harvest, regenerate the snapshot manifest:
-
-```powershell
-& "$env:USERPROFILE\repos\homecoming-build-companion\scripts\manifest.ps1"
-```
-
-That writes `homecoming-build-companion/manifest.json` with: source paths, file SHA256s, lane provenance per file, MidsReborn app version, generated timestamp.
-
----
-
 ## When to re-harvest
 
 - **MidsReborn updated** (the launcher pulls a new version): re-run the hash diff, then steps 2–4.

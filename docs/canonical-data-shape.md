@@ -10,7 +10,7 @@ Every `:` in a segment becomes `_`.
 For example, `Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault` is stored at `powers/training_gadgets/training_and_gadgets/tactical_training__assault.json`.
 
 `coh_engine.attack_profile.canonical_power_path` is the single source of this rule.
-`coh-engine extract-canonical` and `scripts/check-overrides.ps1` apply the same mapping.
+`coh-engine extract-canonical` applies the same mapping.
 
 The zip distribution names these files with a literal `:`.
 On NTFS, `name:stream` is an alternate data stream, so extracting them left empty files and the real JSON never reached the repository.
