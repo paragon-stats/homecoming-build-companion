@@ -137,8 +137,9 @@ public static class DamageSources
             return null;
         }
 
+        // MeleeShare lies in [0, 1], so no share is the bottom of that range.
         double share = MeleeShare(context);
-        if (Exact.Same(share, 0.0))
+        if (share <= 0.0)
         {
             return null;
         }

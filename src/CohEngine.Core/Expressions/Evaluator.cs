@@ -132,7 +132,7 @@ internal static partial class Evaluator
             digits++;
             text = value.ToString("G" + digits.ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
         }
-        while (!Exact.Same(F32.Round(double.Parse(text, CultureInfo.InvariantCulture)), value));
+        while (BitConverter.DoubleToInt64Bits(F32.Round(double.Parse(text, CultureInfo.InvariantCulture))) != BitConverter.DoubleToInt64Bits(value));
 
         return text;
     }

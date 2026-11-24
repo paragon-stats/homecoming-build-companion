@@ -90,7 +90,8 @@ public static class DamageReference
         (double buffMag, double buffDuration) = buff.Values.FirstOrDefault();
         foreach ((double mag, double duration) in buff.Values)
         {
-            if (mag > buffMag || (Exact.Same(mag, buffMag) && duration > buffDuration))
+            // The largest magnitude, and on a tie the longest duration.
+            if ((mag, duration).CompareTo((buffMag, buffDuration)) > 0)
             {
                 (buffMag, buffDuration) = (mag, duration);
             }

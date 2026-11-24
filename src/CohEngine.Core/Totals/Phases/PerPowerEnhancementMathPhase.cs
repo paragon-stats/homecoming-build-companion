@@ -148,7 +148,7 @@ internal static class PerPowerEnhancementMathPhase
 
             (double preEd, _) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
             double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), "EnduranceDiscount", new EnhancementTables(enhDb, forceLevel, tables), preEdAddend: preEd);
-            if (!Exact.Same(aggregate, 0.0))
+            if (!F32.IsZero(aggregate))
             {
                 output[power.BuildIndex] = aggregate;
             }
@@ -254,7 +254,7 @@ internal static class PerPowerEnhancementMathPhase
         string? aspect = EnhanceAspect(effect, context.EnhanceNames);
         double baseMag = context.Mag(effect, power);
         double glob = GlobalEnhancementTerm(effect, baseMag, inputs.SelfEnhance, context.Enums);
-        if (aspect is null && inc is null && Exact.Same(glob, 0.0))
+        if (aspect is null && inc is null && F32.IsZero(glob))
         {
             return null;
         }
@@ -277,7 +277,7 @@ internal static class PerPowerEnhancementMathPhase
             accumulator = memo[key] = F32.Round(F32.Round(aggregate + glob) + postEd);
         }
 
-        return !Exact.Same(accumulator, 0.0) ? F32.Round(1.0 + accumulator) : null;
+        return !F32.IsZero(accumulator) ? F32.Round(1.0 + accumulator) : null;
     }
 
     /// <summary>The terms the endurance fold takes beyond the slots.</summary>

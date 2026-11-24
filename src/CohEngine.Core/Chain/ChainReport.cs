@@ -559,8 +559,9 @@ public static class ChainReport
 
     private static bool HasSignal(PowerDamageRef reference)
     {
-        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !Exact.Same(reference.SelfDamageBuff, 0.0);
-        return !Exact.Same(reference.DamagePerActivation, 0.0) || clickBuff || !Exact.Same(reference.TargetResDebuff, 0.0);
+        // DamagePerActivation is a single and SelfDamageBuff a sum of singles; TargetResDebuff is never negative.
+        bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !F32.IsZero(reference.SelfDamageBuff);
+        return !F32.IsZero(reference.DamagePerActivation) || clickBuff || reference.TargetResDebuff > 0.0;
     }
 
     /// <summary>The text block's rotation lines, then its two alternatives.</summary>
