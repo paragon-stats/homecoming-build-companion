@@ -34,6 +34,18 @@ public sealed class CliRunnerTests
     }
 
     [Fact]
+    public void Extract_canonical_dispatches_to_its_command()
+    {
+        using StringWriter output = new();
+        using StringWriter error = new();
+
+        int code = CliRunner.Run(["extract-canonical", "--bogus"], output, error);
+
+        Assert.Equal(2, code);
+        Assert.StartsWith("usage: coh-engine extract-canonical", error.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void Unknown_arguments_print_usage_to_error_and_fail()
     {
         using StringWriter output = new();

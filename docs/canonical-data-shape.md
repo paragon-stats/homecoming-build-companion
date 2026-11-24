@@ -10,7 +10,7 @@ Every `:` in a segment becomes `_`.
 For example, `Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault` is stored at `powers/training_gadgets/training_and_gadgets/tactical_training__assault.json`.
 
 `coh_engine.attack_profile.canonical_power_path` is the single source of this rule.
-`scripts/lane-b/run.ps1` and `scripts/check-overrides.ps1` apply the same mapping.
+`coh-engine extract-canonical` and `scripts/check-overrides.ps1` apply the same mapping.
 
 The zip distribution names these files with a literal `:`.
 On NTFS, `name:stream` is an alternate data stream, so extracting them left empty files and the real JSON never reached the repository.
@@ -68,4 +68,4 @@ Sonic Aura, the same for every archetype:
 - Sonic Boom's range is 200 ft; the notes say 60 ft.
 - Disruption Aura has no taunt of its own. Brutes and Tankers get Mag 4 Taunt from the Fury and Gauntlet proc auras it links to; the notes say Mag 3. Scrappers get none, though the notes list them.
 
-A later City of Data dump that includes these sets replaces their files when `scripts/lane-b/run.ps1` re-extracts.
+A later City of Data dump that includes these sets replaces their files when `coh-engine extract-canonical --force` re-extracts.

@@ -13,7 +13,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | extract-canonical [--zip ZIP] [--out-dir DIR] [--force] | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -31,7 +31,7 @@ public static class CliRunner
         {
             case []:
                 output.WriteLine("coh_engine: MidsReborn build-math port.");
-                output.WriteLine("Spec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain (score lands with the build-eval pipeline).");
+                output.WriteLine("Spec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, extract-canonical (score lands with the build-eval pipeline).");
                 return 0;
             case ["--version"]:
                 output.WriteLine("coh-engine " + EngineInfo.Version);
@@ -44,6 +44,8 @@ public static class CliRunner
                 return 0;
             case ["chain", ..]:
                 return ChainCommand.Run(args[1..], output, error);
+            case ["extract-canonical", ..]:
+                return CanonicalExtractCommand.Run(args[1..], output, error);
             case ["validate", ..]:
                 return RunValidate(args, output, error, mbdSource);
             default:
