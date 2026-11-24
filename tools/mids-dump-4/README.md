@@ -49,6 +49,12 @@ Finish with `dotnet run scripts/dev/diff-goldens.cs -- --summary`.
 
 Exit codes this harness adds to the 3.x set: `E15` fork not patched, `E16` `BuildManager` has no private `_notifier` field, `E17` class modifier tables empty after `LoadMainDatabase`.
 
+## App version
+
+`version.json` carries `AppName` and `AppVersion`, the product name and file version of a Mids executable; the `.mbd` writer takes its `BuiltWith` block from them.
+The harness reads `%APPDATA%\LoadedCamel\MidsReborn\MidsReborn.exe` unless `MIDS_APP_EXE` names another, and stops with `E24` when the file is missing or `E25` when it has no product name or file version.
+That default is the installed 3.8 release, so a 4.0 dump must set `MIDS_APP_EXE` to the 4.0 `MidsReborn.exe`, for example the one the 4.0 fork's build writes.
+
 ## Pipeline
 
 `Toon.GenerateBuffedPowerArray` runs `PlannerPowerPipeline`: assembly, enhancement buckets, per-power enhancement math, self-buff buckets, post-buff multiply and finalization.

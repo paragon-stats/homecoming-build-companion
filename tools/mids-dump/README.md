@@ -61,7 +61,7 @@ only race-carrying builds change.
 
 | File | Contents |
 | --- | --- |
-| `version.json` | Homecoming DB version + dump timestamp — every baseline is version-stamped — plus `AppName` and `AppVersion`, the product name and file version of the installed `MidsReborn.exe` (`%APPDATA%\LoadedCamel\MidsReborn\`, or the path in `MIDS_APP_EXE`; `E24` when it is missing). The `.mbd` writer takes its `BuiltWith` block from this file. |
+| `version.json` | Homecoming DB version + dump timestamp — every baseline is version-stamped — plus `AppName` and `AppVersion`, the product name and file version of the installed `MidsReborn.exe` (`%APPDATA%\LoadedCamel\MidsReborn\`, or the path in `MIDS_APP_EXE`; `E24` when it is missing, `E25` when it has no product name or file version). The `.mbd` writer takes its `BuiltWith` block from this file. |
 | `server_data.json` | `BaseToHit`, `MaxSlots`, `EnableInherentSlotting` |
 | `archetypes.json` | Per-AT `Column` (class→column indirection), all caps (HP/Res/Damage/Recharge/Recovery/Regen/Perception), `Ancillary` (the patron/ancillary powerset full names the class may take) and `InherentPowers` (`FullName` + DB `Level` of each inherent power Mids adds without a pick, filtered as `Build.AddAutomaticGrantedPowers` does) |
 | `maths.json` | `MultED` / `MultTO` / `MultDO` / `MultSO` / `MultHO` / `MultIO` — the ED and grade-effectiveness tables |

@@ -119,7 +119,7 @@ public static partial class Mbd
     /// <param name="midsDir">The Mids dump directory.</param>
     /// <returns>The bundle.</returns>
     /// <exception cref="FileNotFoundException">One of the five files is missing.</exception>
-    /// <exception cref="InvalidDataException">E118: a file lacks a field; re-dump with the current harness.</exception>
+    /// <exception cref="InvalidDataException">E118: a file lacks a field, or a <c>version.json</c> field is missing or blank; re-dump with the current harness.</exception>
     public static MbdDb LoadMbdDb(string midsDir)
     {
         try
@@ -387,6 +387,17 @@ public static partial class Mbd
 
     private static BuildMetaData BuiltWith(VersionRecord version)
     {
-        return new BuildMetaData(version.AppName, version.AppVersion, version.DatabaseName, version.DatabaseVersion);
+        return new BuildMetaData(
+            VersionField(version.AppName, nameof(VersionRecord.AppName)),
+            VersionField(version.AppVersion, nameof(VersionRecord.AppVersion)),
+            VersionField(version.DatabaseName, nameof(VersionRecord.DatabaseName)),
+            VersionField(version.DatabaseVersion, nameof(VersionRecord.DatabaseVersion)));
+    }
+
+    private static string VersionField(string? value, string field)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: version.json field {field} is missing or blank, so a written build has no BuiltWith {field}; re-dump with the current harness")
+            : value;
     }
 }

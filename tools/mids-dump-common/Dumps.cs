@@ -900,6 +900,12 @@ private static void WriteJson(string outDir, string name, object payload)
         }
 
         FileVersionInfo app = FileVersionInfo.GetVersionInfo(exe);
+        if (string.IsNullOrWhiteSpace(app.ProductName) || string.IsNullOrWhiteSpace(app.FileVersion))
+        {
+            Console.Error.WriteLine($"E25: {exe} has no product name or file version (ProductName '{app.ProductName}', FileVersion '{app.FileVersion}'); point MIDS_APP_EXE at a released MidsReborn.exe");
+            return false;
+        }
+
         WriteJson(outDir, "version.json", new
         {
             AppName = app.ProductName,

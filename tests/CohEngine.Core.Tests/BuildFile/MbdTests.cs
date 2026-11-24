@@ -181,17 +181,24 @@ public sealed class MbdTests : IDisposable
         Assert.StartsWith("E118:", Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message, StringComparison.Ordinal);
     }
 
-    [Fact]
-    public void A_dump_whose_version_lacks_the_app_is_E118()
+    [Theory]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppVersion": "3.8.6.0"}""", "AppName")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppName": null, "AppVersion": "3.8.6.0"}""", "AppName")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppName": "Mids Reborn", "AppVersion": ""}""", "AppVersion")]
+    [InlineData("""{"DatabaseVersion": "  ", "DatabaseName": "Homecoming", "AppName": "Mids Reborn", "AppVersion": "3.8.6.0"}""", "DatabaseVersion")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "AppName": "Mids Reborn", "AppVersion": "3.8.6.0"}""", "DatabaseName")]
+    public void A_version_field_that_is_missing_null_or_blank_is_E118_naming_the_field(string version, string field)
     {
         foreach (string file in new[] { "enhancements.json", "enhancement_sets.json", "powers.json", "archetypes.json" })
         {
             File.Copy(Path.Join(Fixtures.Store.MidsDirectory, file), Path.Join(directory, file));
         }
 
-        File.WriteAllText(Path.Join(directory, "version.json"), """{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming"}""");
+        File.WriteAllText(Path.Join(directory, "version.json"), version);
 
-        Assert.StartsWith("E118: a Mids dump file lacks a field; re-dump with the current harness", Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message, StringComparison.Ordinal);
+        Assert.Equal(
+            $"E118: version.json field {field} is missing or blank, so a written build has no BuiltWith {field}; re-dump with the current harness",
+            Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message);
     }
 
     [Fact]
