@@ -31,9 +31,7 @@ internal static class Pipeline
     /// </summary>
     /// <param name="slots">The power's slots.</param>
     /// <param name="aspect">The eEnhance name.</param>
-    /// <param name="enhDb">The enhancement records.</param>
-    /// <param name="forceLevel">The exemplar cutoff.</param>
-    /// <param name="tables">The Maths.mhd tables.</param>
+    /// <param name="tables">The enhancement records, the exemplar cutoff and the Maths.mhd tables.</param>
     /// <param name="subEnh">The sub-aspect, or -1.</param>
     /// <param name="mag">The sign the per-slot gate reads: 1 for a scalar aspect, the effect's magnitude otherwise.</param>
     /// <param name="preEdAddend">An extra term co-ED'd with the slots.</param>
@@ -42,9 +40,7 @@ internal static class Pipeline
     public static double AggregateAndEd(
         IEnumerable<SlotRef> slots,
         string aspect,
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
-        int forceLevel,
-        MathTables tables,
+        EnhancementTables tables,
         int subEnh = -1,
         double mag = 1.0,
         double preEdAddend = 0.0,
@@ -53,15 +49,15 @@ internal static class Pipeline
         double preEd = 0.0;
         foreach (SlotRef slot in slots)
         {
-            if (slot.Enh < 0 || slot.Level >= forceLevel)
+            if (slot.Enh < 0 || slot.Level >= tables.ForceLevel)
             {
                 continue;
             }
 
-            preEd = F32.Round(preEd + SlotValue.EnhancementEffect(enhDb[slot.Enh], slot, aspect, subEnh, mag, tables));
+            preEd = F32.Round(preEd + SlotValue.EnhancementEffect(tables.EnhDb[slot.Enh], slot, aspect, subEnh, mag, tables.Tables));
         }
 
         preEd = F32.Round(preEd + preEdAddend);
-        return skipEd ? preEd : Ed.ApplyEd(ScheduleForEnhance(aspect, subEnh), preEd, tables);
+        return skipEd ? preEd : Ed.ApplyEd(ScheduleForEnhance(aspect, subEnh), preEd, tables.Tables);
     }
 }

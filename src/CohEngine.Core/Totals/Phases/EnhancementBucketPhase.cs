@@ -77,28 +77,13 @@ internal static class EnhancementBucketPhase
 
         if (etm is "Defense" or "Resistance")
         {
-            double[] bucket = string.Equals(etm, "Defense", StringComparison.Ordinal) ? buffs.Defense : buffs.Resistance;
-            if (!string.Equals(effect.DamageType, "None", StringComparison.Ordinal))
-            {
-                BuffsX.Add(bucket, maps.EDamage[effect.DamageType], value);
-            }
-            else
-            {
-                BuffsX.Add(buffs.Effect, effIndex, value);
-            }
-
+            AddDefenseOrResistance(effect, value, buffs, effIndex, maps);
             return;
         }
 
         if (string.Equals(effectType, "DamageBuff", StringComparison.Ordinal))
         {
-            // Only the Tertiary enhancement-effect arm of the Defiance exclusion reaches here: CanInclude already drops
-            // every conditional or SpecialCase effect.
-            if (!(effect.IsEnhancementEffect && string.Equals(effect.EffectClass, "Tertiary", StringComparison.Ordinal)))
-            {
-                BuffsX.Add(buffs.Damage, maps.EDamage[effect.DamageType], value);
-            }
-
+            AddDamageBuff(effect, value, buffs, maps);
             return;
         }
 
@@ -114,5 +99,29 @@ internal static class EnhancementBucketPhase
         }
 
         BuffsX.Add(buffs.Effect, effIndex, value);
+    }
+
+    /// <summary>A typed Defense or Resistance enhancement goes to its damage type; an untyped one to the effect index.</summary>
+    private static void AddDefenseOrResistance(Effect effect, double value, BuffsX buffs, int effIndex, BuffMaps maps)
+    {
+        double[] bucket = string.Equals(effect.EtModifies, "Defense", StringComparison.Ordinal) ? buffs.Defense : buffs.Resistance;
+        if (!string.Equals(effect.DamageType, "None", StringComparison.Ordinal))
+        {
+            BuffsX.Add(bucket, maps.EDamage[effect.DamageType], value);
+        }
+        else
+        {
+            BuffsX.Add(buffs.Effect, effIndex, value);
+        }
+    }
+
+    // Only the Tertiary enhancement-effect arm of the Defiance exclusion reaches here: CanInclude already drops
+    // every conditional or SpecialCase effect.
+    private static void AddDamageBuff(Effect effect, double value, BuffsX buffs, BuffMaps maps)
+    {
+        if (!(effect.IsEnhancementEffect && string.Equals(effect.EffectClass, "Tertiary", StringComparison.Ordinal)))
+        {
+            BuffsX.Add(buffs.Damage, maps.EDamage[effect.DamageType], value);
+        }
     }
 }

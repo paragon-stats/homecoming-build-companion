@@ -164,7 +164,7 @@ internal static class EdOverSlotting
     {
         public double Sum(IEnumerable<Item> items, Aspect aspect, bool skipEd)
         {
-            return Pipeline.AggregateAndEd(items.Select(item => item.Slot), aspect.Name, EnhEffects, int.MaxValue, Tables, aspect.Sub, mag: 1.0, skipEd: skipEd);
+            return Pipeline.AggregateAndEd(items.Select(item => item.Slot), aspect.Name, new EnhancementTables(EnhEffects, int.MaxValue, Tables), aspect.Sub, mag: 1.0, skipEd: skipEd);
         }
 
         public double Last(Aspect aspect)

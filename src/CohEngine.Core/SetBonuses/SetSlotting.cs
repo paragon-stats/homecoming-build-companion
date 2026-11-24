@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 
 namespace CohEngine.Core.SetBonuses;
@@ -27,9 +29,9 @@ internal static class SetSlotting
     {
         foreach (Power power in powers)
         {
-            foreach (SlotRef slot in slots.GetValueOrDefault(power.BuildIndex, []))
+            foreach (int enh in slots.GetValueOrDefault(power.BuildIndex, []).Select(slot => slot.Enh))
             {
-                if (slot.Enh < 0 || !enhDb.TryGetValue(slot.Enh, out EnhancementRecord? record) || !string.Equals(record.TypeName, "SetO", StringComparison.Ordinal))
+                if (enh < 0 || !enhDb.TryGetValue(enh, out EnhancementRecord? record) || !string.Equals(record.TypeName, "SetO", StringComparison.Ordinal))
                 {
                     continue;
                 }
@@ -37,15 +39,15 @@ internal static class SetSlotting
                 if (!setDb.Sets.TryGetValue(record.NidSet, out EnhancementSetDef? setDef))
                 {
                     throw new InvalidDataException(
-                        $"H-ENH-002: enhancement nID {slot.Enh} in '{power.FullName}' is a set IO whose set "
-                        + $"(nIDSet {record.NidSet}) is not in the set database; remove the piece or re-dump the "
+                        string.Create(CultureInfo.InvariantCulture, $"H-ENH-002: enhancement nID {enh} in '{power.FullName}' is a set IO whose set ")
+                        + string.Create(CultureInfo.InvariantCulture, $"(nIDSet {record.NidSet}) is not in the set database; remove the piece or re-dump the ")
                         + "set database so it includes this set");
                 }
 
                 if (!PowerAcceptsSet(power, setDef))
                 {
                     throw new InvalidDataException(
-                        $"H-ENH-001: set '{setDef.Uid}' (set type {setDef.SetType}) is not slottable in "
+                        string.Create(CultureInfo.InvariantCulture, $"H-ENH-001: set '{setDef.Uid}' (set type {setDef.SetType}) is not slottable in ")
                         + $"'{power.FullName}' (accepts set types [{string.Join(", ", power.SetTypes.Order())}]); remove the piece or "
                         + "move it to a power that accepts this set");
                 }

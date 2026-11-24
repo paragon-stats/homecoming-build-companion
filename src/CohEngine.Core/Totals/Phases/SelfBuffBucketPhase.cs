@@ -9,6 +9,8 @@ namespace CohEngine.Core.Totals.Phases;
 /// </summary>
 internal static class SelfBuffBucketPhase
 {
+    private const string ResEffect = "ResEffect";
+
     // The eStatType MaxXSpeed bucket and the eEffectType speed it sums from.
     private static readonly Dictionary<string, string> MaxSpeedSources = new(StringComparer.Ordinal)
     {
@@ -97,7 +99,7 @@ internal static class SelfBuffBucketPhase
             case "MezResist":
                 BuffsX.Add(buffs.StatusResistance, maps.EMez[effect.MezType], value);
                 break;
-            case "ResEffect":
+            case ResEffect:
                 BuffsX.Add(buffs.DebuffResistance, maps.EType[effect.EtModifies], value);
                 break;
             default:
@@ -125,7 +127,7 @@ internal static class SelfBuffBucketPhase
     /// <summary>Mez and MezResist expressed as ETModifies; true when consumed.</summary>
     private static bool RouteMezEtmod(Effect effect, double value, BuffsX buffs, BuffMaps maps)
     {
-        if (string.Equals(effect.EffectType, "ResEffect", StringComparison.Ordinal))
+        if (string.Equals(effect.EffectType, ResEffect, StringComparison.Ordinal))
         {
             return false;
         }
@@ -173,7 +175,7 @@ internal static class SelfBuffBucketPhase
     private static bool RouteScalarAndSpeed(Routed routed, BuffsX buffs, BuffMaps maps, bool globalAccSource)
     {
         Effect effect = routed.Effect;
-        if (!string.Equals(effect.EffectType, "ResEffect", StringComparison.Ordinal) && string.Equals(effect.EtModifies, "Accuracy", StringComparison.Ordinal))
+        if (!string.Equals(effect.EffectType, ResEffect, StringComparison.Ordinal) && string.Equals(effect.EtModifies, "Accuracy", StringComparison.Ordinal))
         {
             // A set-bonus or GlobalBoost accuracy buff is BuffAcc; every ordinary power's acts as ToHit.
             BuffsX.Add(buffs.Effect, maps.Stat[globalAccSource ? "BuffAcc" : "ToHit"], routed.Value);
@@ -222,7 +224,7 @@ internal static class SelfBuffBucketPhase
 
     private static bool IsMaxSpeedCap(Effect effect, string modifies)
     {
-        return !string.Equals(effect.EffectType, "ResEffect", StringComparison.Ordinal) && string.Equals(effect.EtModifies, modifies, StringComparison.Ordinal) && string.Equals(effect.Aspect, "Max", StringComparison.Ordinal);
+        return !string.Equals(effect.EffectType, ResEffect, StringComparison.Ordinal) && string.Equals(effect.EtModifies, modifies, StringComparison.Ordinal) && string.Equals(effect.Aspect, "Max", StringComparison.Ordinal);
     }
 
     private static double SumMags(List<(Effect Effect, double Mag)> pairs)
