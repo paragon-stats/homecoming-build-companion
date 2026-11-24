@@ -94,7 +94,7 @@ public sealed class AnthropicChatClientTests
             new(ChatRole.System, "Be brief."),
             new(ChatRole.User, "Look up Fire Blast."),
             new(ChatRole.Assistant, [new FunctionCallContent("toolu_fixture_01", "lookup_power", arguments)]),
-            new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", "Ranged damage."), new FunctionResultContent("toolu_fixture_02", JsonElement.Parse("42")), new FunctionResultContent("toolu_fixture_04", null)]),
+            new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", "Ranged damage."), new FunctionResultContent("toolu_fixture_02", JsonElement.Parse("42")), new FunctionResultContent("toolu_fixture_04", result: null)]),
             new(ChatRole.Assistant, [new FunctionCallContent("toolu_fixture_03", "list_sets")]),
         ];
         ChatOptions options = new() { Instructions = "You answer build questions.", ModelId = "claude-other-model", MaxOutputTokens = 64 };
@@ -121,7 +121,7 @@ public sealed class AnthropicChatClientTests
     {
         ChatMessage message = new(ChatRole.Tool, [new FunctionResultContent("toolu_fixture_01", 42)]);
 
-        ArgumentException exception = Assert.Throws<ArgumentException>(() => AnthropicChatClient.BuildRequest([message], null, stream: false, Model));
+        ArgumentException exception = Assert.Throws<ArgumentException>(() => AnthropicChatClient.BuildRequest([message], options: null, stream: false, Model));
 
         Assert.Equal("E142: tool result must be a string or JsonElement under AOT; serialize it before returning it (Parameter 'messages')", exception.Message);
         Assert.Equal("messages", exception.ParamName);
@@ -170,9 +170,9 @@ public sealed class AnthropicChatClientTests
         ChatMessage image = new(ChatRole.User, [new DataContent(new byte[] { 1 }, "image/png")]);
         ChatOptions withHostedTool = new() { Tools = [new HostedWebSearchTool()] };
 
-        Assert.Throws<NotSupportedException>(() => AnthropicChatClient.BuildRequest([image], null, stream: false, Model));
+        Assert.Throws<NotSupportedException>(() => AnthropicChatClient.BuildRequest([image], options: null, stream: false, Model));
         Assert.Throws<NotSupportedException>(() => AnthropicChatClient.BuildRequest([new ChatMessage(ChatRole.User, "Hi")], withHostedTool, stream: false, Model));
-        Assert.Throws<ArgumentNullException>(() => AnthropicChatClient.BuildRequest(null!, null, stream: false, Model));
+        Assert.Throws<ArgumentNullException>(() => AnthropicChatClient.BuildRequest(null!, options: null, stream: false, Model));
     }
 
     [Theory]

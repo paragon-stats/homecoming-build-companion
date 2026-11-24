@@ -23,7 +23,7 @@ public sealed class HandshakeTests
     {
         using StringWriter error = new();
 
-        int code = await McpCommand.RunAsync(["--port", "1"], null, null, error, TestContext.Current.CancellationToken).ConfigureAwait(true);
+        int code = await McpCommand.RunAsync(["--port", "1"], input: null, output: null, error, TestContext.Current.CancellationToken).ConfigureAwait(true);
 
         Assert.Equal(2, code);
         Assert.Equal("usage: coh-engine mcp" + Environment.NewLine + "coh-engine mcp: error: unrecognized arguments: --port 1" + Environment.NewLine, error.ToString());
