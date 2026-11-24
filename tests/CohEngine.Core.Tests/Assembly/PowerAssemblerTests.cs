@@ -506,7 +506,7 @@ public sealed class PowerAssemblerTests
     public void Stat_include_sub_powers_are_appended()
     {
         AssemblyPower sub = Power([Base with { EffectType = "Heal" }], nid: 900, powerType: "Toggle");
-        BuildPowerAssembly build = Build(Power([Base]), subPowers: [new SubPower(900, true), new SubPower(900, false), new SubPower(-1, true)]);
+        BuildPowerAssembly build = Build(Power([Base]), subPowers: [new SubPower(900, StatInclude: true), new SubPower(900, StatInclude: false), new SubPower(-1, StatInclude: true)]);
         IReadOnlyList<Effect> output = Assemble(build, [sub]);
         Assert.Equal(["Defense", "Heal"], Types(output));
         Assert.Equal((true, 900, "Toggle"), (output[1].AbsorbedEffect, output[1].AbsorbedPowerNid, output[1].AbsorbedPowerType));
@@ -515,7 +515,7 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Missing_sub_power_refuses()
     {
-        BuildPowerAssembly build = Build(Power([]), subPowers: [new SubPower(900, true)]);
+        BuildPowerAssembly build = Build(Power([]), subPowers: [new SubPower(900, StatInclude: true)]);
         Assert.Contains("E90", Assert.Throws<InvalidDataException>(() => Assemble(build)).Message, StringComparison.Ordinal);
     }
 

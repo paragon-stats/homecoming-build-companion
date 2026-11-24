@@ -51,30 +51,30 @@ internal static class TankerSpec
     {
         return
         [
-            Pick("Tanker_Defense.Willpower.High_Pain_Tolerance", 1, [.. Set(Crafted + "Unbreakable_Guard_", "ABDEF"), Crafted + "Steadfast_Protection_B"], true),
+            Pick("Tanker_Defense.Willpower.High_Pain_Tolerance", 1, [.. Set(Crafted + "Unbreakable_Guard_", "ABDEF"), Crafted + "Steadfast_Protection_B"], statInclude: true),
             Pick("Tanker_Melee.Super_Strength.Punch", 1, Set(Might, "ACBDEF"), essential: true),
-            Pick("Tanker_Defense.Willpower.Mind_Over_Body", 2, Set(Crafted + "Unbreakable_Guard_", "ABDE"), true, true),
+            Pick("Tanker_Defense.Willpower.Mind_Over_Body", 2, Set(Crafted + "Unbreakable_Guard_", "ABDE"), statInclude: true, essential: true),
             Pick("Tanker_Melee.Super_Strength.Haymaker", 4, Set(Crafted + "Makos_Bite_", "AEBCDF"), essential: true),
-            Pick("Tanker_Defense.Willpower.Indomitable_Will", 6, Set(Crafted + "Red_Fortune_", "ABDECF"), true, true),
-            Pick("Tanker_Defense.Willpower.Rise_to_the_Challenge", 8, Set(Crafted + "Preventive_Medicine_", "ABCDE"), true, true),
-            Pick("Pool.Leaping.Combat_Jumping", 10, [Crafted + "Luck_of_the_Gambler_F", Crafted + "Shield_Wall_F", Crafted + "Luck_of_the_Gambler_A"], true, true),
+            Pick("Tanker_Defense.Willpower.Indomitable_Will", 6, Set(Crafted + "Red_Fortune_", "ABDECF"), statInclude: true, essential: true),
+            Pick("Tanker_Defense.Willpower.Rise_to_the_Challenge", 8, Set(Crafted + "Preventive_Medicine_", "ABCDE"), statInclude: true, essential: true),
+            Pick("Pool.Leaping.Combat_Jumping", 10, [Crafted + "Luck_of_the_Gambler_F", Crafted + "Shield_Wall_F", Crafted + "Luck_of_the_Gambler_A"], statInclude: true, essential: true),
             Pick("Pool.Leaping.Long_Jump", 12, [Crafted + "Blessing_of_the_Zephyr_C"]),
             Pick("Pool.Fighting.Boxing", 14, [Crafted + "Accuracy"]),
-            Pick("Pool.Fighting.Tough", 16, Set(Crafted + "Gladiators_Armor_", "ABDECF"), true),
-            Pick("Tanker_Defense.Willpower.Heightened_Senses", 18, Set(Crafted + "Luck_of_the_Gambler_", "BDEF"), true),
+            Pick("Pool.Fighting.Tough", 16, Set(Crafted + "Gladiators_Armor_", "ABDECF"), statInclude: true),
+            Pick("Tanker_Defense.Willpower.Heightened_Senses", 18, Set(Crafted + "Luck_of_the_Gambler_", "BDEF"), statInclude: true),
             Pick("Tanker_Melee.Super_Strength.Knockout_Blow", 20, Set(Cold, "ACBDEF")),
-            Pick("Tanker_Defense.Willpower.Fast_Healing", 22, [Crafted + "Numinas_Convalesence_A"], true),
-            Pick("Tanker_Melee.Super_Strength.Rage", 24, [Crafted + "Recharge", Crafted + "Recharge"], true),
-            Pick("Pool.Leadership.Defense", 26, [Crafted + "Luck_of_the_Gambler_F", Crafted + "Red_Fortune_A", Crafted + "Red_Fortune_E"], true),
-            Pick("Tanker_Defense.Willpower.Quick_Recovery", 28, [Crafted + "Recovery", Crafted + "Recovery"], true),
+            Pick("Tanker_Defense.Willpower.Fast_Healing", 22, [Crafted + "Numinas_Convalesence_A"], statInclude: true),
+            Pick("Tanker_Melee.Super_Strength.Rage", 24, [Crafted + "Recharge", Crafted + "Recharge"], statInclude: true),
+            Pick("Pool.Leadership.Defense", 26, [Crafted + "Luck_of_the_Gambler_F", Crafted + "Red_Fortune_A", Crafted + "Red_Fortune_E"], statInclude: true),
+            Pick("Tanker_Defense.Willpower.Quick_Recovery", 28, [Crafted + "Recovery", Crafted + "Recovery"], statInclude: true),
             Pick("Tanker_Melee.Super_Strength.Foot_Stomp", 30, Set(Crafted + "Eradication_", "DEACBF")),
-            Pick("Tanker_Defense.Willpower.Strength_of_Will", 32, [Crafted + "Unbreakable_Guard_A", Crafted + "Unbreakable_Guard_E"], true),
-            Pick("Pool.Leadership.Tactics", 35, [Crafted + "Endurance_Discount"], true),
+            Pick("Tanker_Defense.Willpower.Strength_of_Will", 32, [Crafted + "Unbreakable_Guard_A", Crafted + "Unbreakable_Guard_E"], statInclude: true),
+            Pick("Pool.Leadership.Tactics", 35, [Crafted + "Endurance_Discount"], statInclude: true),
             Pick("Epic.Fire_Mastery.Fire_Blast", 38, Set(Bite, "ACBDEF")),
-            Pick("Epic.Fire_Mastery.Fire_Shield", 41, Set(Crafted + "Aegis_", "ABED"), true),
+            Pick("Epic.Fire_Mastery.Fire_Shield", 41, Set(Crafted + "Aegis_", "ABED"), statInclude: true),
             Pick("Pool.Leadership.Vengeance", 44, [Crafted + "Luck_of_the_Gambler_F"]),
             Pick("Tanker_Melee.Super_Strength.Taunt", 47, Set(Crafted + "Mocking_Beratement_", "ABCD")),
-            Pick("Pool.Speed.Hasten", 49, [Crafted + "Recharge", Crafted + "Recharge"], true),
+            Pick("Pool.Speed.Hasten", 49, [Crafted + "Recharge", Crafted + "Recharge"], statInclude: true),
         ];
     }
 
@@ -83,10 +83,10 @@ internal static class TankerSpec
         return
         [
             Pick("Inherent.Inherent.Sprint", 1, [Crafted + "Celerity_C"]),
-            Pick("Inherent.Fitness.Swift", 1, [Crafted + "Run"], true),
-            Pick("Inherent.Fitness.Health", 1, [Crafted + "Numinas_Convalesence_F", Crafted + "Miracle_F", Crafted + "Panacea_F"], true),
-            Pick("Inherent.Fitness.Hurdle", 1, [Crafted + "Jump"], true),
-            Pick("Inherent.Fitness.Stamina", 1, [Crafted + "Performance_Shifter_F", Crafted + "Performance_Shifter_A"], true),
+            Pick("Inherent.Fitness.Swift", 1, [Crafted + "Run"], statInclude: true),
+            Pick("Inherent.Fitness.Health", 1, [Crafted + "Numinas_Convalesence_F", Crafted + "Miracle_F", Crafted + "Panacea_F"], statInclude: true),
+            Pick("Inherent.Fitness.Hurdle", 1, [Crafted + "Jump"], statInclude: true),
+            Pick("Inherent.Fitness.Stamina", 1, [Crafted + "Performance_Shifter_F", Crafted + "Performance_Shifter_A"], statInclude: true),
         ];
     }
 }

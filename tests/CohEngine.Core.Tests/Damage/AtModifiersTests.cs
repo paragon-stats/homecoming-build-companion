@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
@@ -39,7 +41,7 @@ public sealed class AtModifiersTests
     {
         ModifierResult result = Run(className)!;
 
-        Assert.Equal($"{multiplier} {additive}", $"{result.Multiplier} {result.Additive}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{multiplier} {additive}"), string.Create(CultureInfo.InvariantCulture, $"{result.Multiplier} {result.Additive}"));
     }
 
     [Fact]

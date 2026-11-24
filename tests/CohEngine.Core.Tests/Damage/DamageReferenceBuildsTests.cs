@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
@@ -52,8 +53,8 @@ public sealed class DamageReferenceBuildsTests
     {
         using TempTree tree = new();
         string[] types = ["Smashing", "Lethal", "Fire", "Cold", "Energy", "Negative", "Toxic", "Psionic"];
-        string enhanced = $$"""[{"BuildIndex":1,"DamagePerActivation":0,"CastTime":1,"RechargeTime":2,"EndCost":3,"Effects":[{{string.Join(",", types.Select((_, index) => $$"""{"Index":{{index}},"Math_Mag":-0.3,"Math_Duration":20}"""))}}]}]""";
-        string structural = $$"""[{"BuildIndex":1,"FullName":"P.Field","ActivatePeriod":2.0,"PowerType":"Toggle","StatInclude":true,"Effects":[{{string.Join(",", types.Select((type, index) => $$"""{"Index":{{index}},"EffectType":"Resistance","ToWho":"Target","DamageType":"{{type}}"}"""))}}]}]""";
+        string enhanced = $$"""[{"BuildIndex":1,"DamagePerActivation":0,"CastTime":1,"RechargeTime":2,"EndCost":3,"Effects":[{{string.Join(',', types.Select((_, index) => string.Create(CultureInfo.InvariantCulture, $$"""{"Index":{{index}},"Math_Mag":-0.3,"Math_Duration":20}""")))}}]}]""";
+        string structural = $$"""[{"BuildIndex":1,"FullName":"P.Field","ActivatePeriod":2.0,"PowerType":"Toggle","StatInclude":true,"Effects":[{{string.Join(',', types.Select((type, index) => string.Create(CultureInfo.InvariantCulture, $$"""{"Index":{{index}},"EffectType":"Resistance","ToWho":"Target","DamageType":"{{type}}"}""")))}}]}]""";
         tree.Write("enhanced_powers.json", enhanced);
         tree.Write("powers_effects.json", structural);
 

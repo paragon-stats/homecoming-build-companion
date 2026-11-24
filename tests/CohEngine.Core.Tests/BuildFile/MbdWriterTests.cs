@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 
 using CohEngine.Core.BuildFile;
@@ -36,7 +37,7 @@ public sealed class MbdWriterTests
         List<PickSpec> picks =
         [
             .. PickLevels.Select((level, index) => TankerSpec.Pick(
-                $"Tanker_Melee.Super_Strength.P{index}",
+                string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"),
                 level,
                 [.. Enumerable.Repeat("Crafted_Accuracy", 1 + (added?.GetValueOrDefault(index) ?? 0))])),
         ];
@@ -121,7 +122,7 @@ public sealed class MbdWriterTests
     [Fact]
     public void A_pick_off_its_schedule_level_is_E46()
     {
-        List<PickSpec> picks = Full(null, (22, TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 48, ["Crafted_Accuracy"])));
+        List<PickSpec> picks = Full(added: null, (22, TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 48, ["Crafted_Accuracy"])));
 
         Assert.Matches("E46: pick 23 of 24 .*Taunt.* is at level 48; the schedule grants it at level 47", Message(Spec(picks)));
         Assert.Equal("E46: 25 picks; the schedule grants 24", Message(Spec([.. Full(), TankerSpec.Pick("Pool.Speed.Hasten", 50, [null])])));
@@ -132,7 +133,7 @@ public sealed class MbdWriterTests
     {
         PickSpec early = TankerSpec.Pick("Tanker_Melee.Super_Strength.Haymaker", 4, ["Crafted_Accuracy", "Crafted_Accuracy"]) with { SlotLevels = [3] };
 
-        Assert.Matches("E47: .*Haymaker.* places a slot at level 3, before it is picked at level 4", Message(Spec(Full(null, (3, early)))));
+        Assert.Matches("E47: .*Haymaker.* places a slot at level 3, before it is picked at level 4", Message(Spec(Full(added: null, (3, early)))));
     }
 
     [Fact]
@@ -140,7 +141,7 @@ public sealed class MbdWriterTests
     {
         PickSpec off = TankerSpec.Pick("Tanker_Melee.Super_Strength.Haymaker", 4, ["Crafted_Accuracy", "Crafted_Accuracy"]) with { SlotLevels = [6] };
 
-        Assert.Matches("E48: .*Haymaker.* places a slot at level 6, which grants no slot", Message(Spec(Full(null, (3, off)))));
+        Assert.Matches("E48: .*Haymaker.* places a slot at level 6, which grants no slot", Message(Spec(Full(added: null, (3, off)))));
     }
 
     [Theory]
@@ -150,7 +151,7 @@ public sealed class MbdWriterTests
     {
         PickSpec pinned = TankerSpec.Pick("Tanker_Melee.Super_Strength.Haymaker", 4, [.. Enumerable.Repeat("Crafted_Accuracy", enhancements)]) with { SlotLevels = [.. Enumerable.Repeat(5, pins)] };
 
-        Assert.Contains(expected, Message(Spec(Full(null, (3, pinned)))), StringComparison.Ordinal);
+        Assert.Contains(expected, Message(Spec(Full(added: null, (3, pinned)))), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -169,7 +170,7 @@ public sealed class MbdWriterTests
     {
         PickSpec single = TankerSpec.Pick("Tanker_Melee.Super_Strength.Haymaker", 4, ["Crafted_Accuracy"]) with { SlotLevels = [5] };
 
-        Assert.Single(Written(Spec(Full(null, (3, single)))).PowerEntries[3].SlotEntries);
+        Assert.Single(Written(Spec(Full(added: null, (3, single)))).PowerEntries[3].SlotEntries);
     }
 
     [Fact]
@@ -177,7 +178,7 @@ public sealed class MbdWriterTests
     {
         PickSpec late = TankerSpec.Pick("Pool.Speed.Hasten", 49, [.. Enumerable.Repeat("Crafted_Recharge", 5)]);
 
-        Assert.Matches("E49: .*Hasten.* picked at level 49 needs 4 added slots; 3 can be placed from level 49", Message(Spec(Full(null, (23, late)))));
+        Assert.Matches("E49: .*Hasten.* picked at level 49 needs 4 added slots; 3 can be placed from level 49", Message(Spec(Full(added: null, (23, late)))));
     }
 
     [Fact]
@@ -194,7 +195,7 @@ public sealed class MbdWriterTests
         PickSpec taunt = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, [.. Enumerable.Repeat("Crafted_Accuracy", 5)]);
         PickSpec hasten = TankerSpec.Pick("Pool.Speed.Hasten", 49, [.. Enumerable.Repeat("Crafted_Recharge", 4)]);
 
-        Assert.Contains("E49: the powers picked late need more added slots", Message(Spec(Full(null, (22, taunt), (23, hasten)))), StringComparison.Ordinal);
+        Assert.Contains("E49: the powers picked late need more added slots", Message(Spec(Full(added: null, (22, taunt), (23, hasten)))), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -212,12 +213,12 @@ public sealed class MbdWriterTests
     public void Essential_powers_get_two_added_slots_by_level_15()
     {
         Dictionary<int, int> hungry = Enumerable.Range(1, 5).ToDictionary(index => index, _ => 5);
-        PickSpec toggle = TankerSpec.Pick("Tanker_Defense.Willpower.Indomitable_Will", 6, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], true, true);
-        PickSpec anchor = TankerSpec.Pick("Tanker_Melee.Super_Strength.Punch", 1, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], true, true);
+        PickSpec toggle = TankerSpec.Pick("Tanker_Defense.Willpower.Indomitable_Will", 6, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], statInclude: true, essential: true);
+        PickSpec anchor = TankerSpec.Pick("Tanker_Melee.Super_Strength.Punch", 1, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], statInclude: true, essential: true);
 
         MbdBuild build = Written(Spec(Full(hungry, (0, anchor), (4, toggle))));
 
-        Assert.All(new[] { build.PowerEntries[0], build.PowerEntries[4] }, entry => Assert.True(entry.SlotEntries.Skip(1).Count(slot => slot.Level + 1 <= 15) >= 2, entry.PowerName));
+        Assert.All([build.PowerEntries[0], build.PowerEntries[4]], entry => Assert.True(entry.SlotEntries.Skip(1).Where(slot => slot.Level + 1 <= 15).Skip(1).Any(), entry.PowerName));
     }
 
     [Fact]
@@ -265,16 +266,16 @@ public sealed class MbdWriterTests
     [Fact]
     public void Two_early_attacks_hold_two_added_slots_by_level_14()
     {
-        Assert.True(EarlySlots("Click", ["Damage"], 14).Values.Count(count => count >= 2) >= 2);
+        Assert.True(EarlySlots("Click", ["Damage"], 14).Values.Where(count => count >= 2).Skip(1).Any());
     }
 
     [Fact]
     public void Inherents_and_incarnates_follow_the_picks()
     {
-        PickSpec health = TankerSpec.Pick("Inherent.Fitness.Health", 1, ["Crafted_Numinas_Convalesence_F", "Crafted_Miracle_F"], true);
+        PickSpec health = TankerSpec.Pick("Inherent.Fitness.Health", 1, ["Crafted_Numinas_Convalesence_F", "Crafted_Miracle_F"], statInclude: true);
         BuildSpec spec = Spec(Full(), [TankerSpec.Pick("Inherent.Inherent.Brawl", 1, [null]), TankerSpec.Pick("Inherent.Inherent.Gauntlet", 1, []), health])
             with
-        { Incarnates = ["Incarnate.Alpha.Cardiac_Radial_Paragon"] };
+        { Incarnates = ["Incarnate.Alpha.Cardiac_Radial_Paragon"], };
 
         MbdBuild build = Written(spec);
 
@@ -323,7 +324,7 @@ public sealed class MbdWriterTests
     [InlineData("Crafted_Accuracy", 49)]
     public void Io_level_follows_the_set_ceiling(string uid, int ceiling)
     {
-        MbdDocument written = Mbd.WriteMbd(Spec(Full(null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.P0", 1, [uid])))), Schedule, Database);
+        MbdDocument written = Mbd.WriteMbd(Spec(Full(added: null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.P0", 1, [uid])))), Schedule, Database);
 
         Assert.Equal(
             [ceiling],
@@ -349,7 +350,7 @@ public sealed class MbdWriterTests
     [Fact]
     public void An_unknown_enhancement_is_E78_and_an_unknown_inherent_is_E77()
     {
-        BuildSpec spec = Spec(Full(null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.P0", 1, ["Crafted_No_Such_Thing"]))));
+        BuildSpec spec = Spec(Full(added: null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.P0", 1, ["Crafted_No_Such_Thing"]))));
         MbdDb odd = Database with { Powers = Database.Powers.Where(pair => !string.Equals(pair.Key, "Inherent.Inherent.Rest", StringComparison.Ordinal)).ToDictionary(pair => pair.Key, pair => pair.Value, StringComparer.Ordinal) };
 
         Assert.Matches("E78: .*Crafted_No_Such_Thing.*enhancements.json", Message(spec));
@@ -391,7 +392,7 @@ public sealed class MbdWriterTests
         Assert.Null(Mbd.LevelTextProblem("0"));
         Assert.Null(Mbd.LevelTextProblem("49"));
         Assert.Equal("'-' is not a string of an integer from 0 to 49", Mbd.LevelTextProblem("-"));
-        Assert.Equal("null is not a string of an integer from 0 to 49", Mbd.LevelTextProblem(null));
+        Assert.Equal("null is not a string of an integer from 0 to 49", Mbd.LevelTextProblem(value: null));
     }
 
     [Fact]
@@ -418,7 +419,7 @@ public sealed class MbdWriterTests
 
         Mbd.CheckMbdInvariants(document, Database);
 
-        Assert.Equal(8, Mbd.PowersetsArity(document.PowerSets.ToArray()));
+        Assert.Equal(8, Mbd.PowersetsArity([.. document.PowerSets]));
     }
 
     private static MbdDocument TankerDocument()

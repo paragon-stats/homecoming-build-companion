@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
@@ -28,8 +30,8 @@ public sealed class HardLimitTests
             PowerType = "Click",
             Level = level,
             PickLevel = pickLevel,
-            RequiresPowers = requires?.Select(group => (IReadOnlyList<string>)group).ToArray() ?? [],
-            RequiresPowersNot = requiresNot?.Select(group => (IReadOnlyList<string>)group).ToArray() ?? [],
+            RequiresPowers = requires?.Cast<IReadOnlyList<string>>().ToArray() ?? [],
+            RequiresPowersNot = requiresNot?.Cast<IReadOnlyList<string>>().ToArray() ?? [],
             Chosen = chosen,
         };
     }
@@ -46,7 +48,7 @@ public sealed class HardLimitTests
 
     private static Power[] Numbered(int count, string prefix, int pickLevel = 0)
     {
-        return [.. Enumerable.Range(0, count).Select(index => Pick(index, $"{prefix}.P{index}", pickLevel: pickLevel))];
+        return [.. Enumerable.Range(0, count).Select(index => Pick(index, string.Create(CultureInfo.InvariantCulture, $"{prefix}.P{index}"), pickLevel: pickLevel))];
     }
 
     private static SlotRef[] AddedAt(int count)
@@ -118,7 +120,7 @@ public sealed class HardLimitTests
     public void Slots_placed_before_they_are_earned_are_h_slot_005()
     {
         Power[] powers = Numbered(3, "Scrapper_Melee.Dark_Melee");
-        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = powers.ToDictionary(power => power.BuildIndex, power => (IReadOnlyList<SlotRef>)new[] { RegistryMake.Slot(1, 0), RegistryMake.Slot(1, 2) });
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = powers.ToDictionary(power => power.BuildIndex, power => (IReadOnlyList<SlotRef>)[RegistryMake.Slot(1, 0), RegistryMake.Slot(1, 2)]);
 
         Diagnostic found = Check(powers, slots).Single(diagnostic => string.Equals(diagnostic.RuleId, "H-SLOT-005", StringComparison.Ordinal));
 
@@ -152,7 +154,7 @@ public sealed class HardLimitTests
     [InlineData("Temporary_Powers.Accolades.Task_Force_Commander", 1, 0)]
     public void Incarnates_and_accolades_are_not_picks(string fullName, int level, int pickLevel)
     {
-        Power[] powers = [.. Schedule.PowerPickLevels.Select((pick, index) => Pick(index, $"Dominator_Control.Arsenal_Control.P{index}", pickLevel: pick)), Pick(24, fullName, level: level, pickLevel: pickLevel)];
+        Power[] powers = [.. Schedule.PowerPickLevels.Select((pick, index) => Pick(index, string.Create(CultureInfo.InvariantCulture, $"Dominator_Control.Arsenal_Control.P{index}"), pickLevel: pick)), Pick(24, fullName, level: level, pickLevel: pickLevel)];
 
         Assert.DoesNotContain(Ids(Check(powers)), ruleId => ruleId.StartsWith("H-POWER-00", StringComparison.Ordinal));
     }
@@ -188,7 +190,7 @@ public sealed class HardLimitTests
     {
         int[] levels = [.. Schedule.PowerPickLevels];
         (levels[22], levels[23]) = (levels[23], levels[22]);
-        Power[] powers = [.. levels.Select((level, index) => Pick(index, $"Tanker_Melee.Super_Strength.P{index}", pickLevel: level))];
+        Power[] powers = [.. levels.Select((level, index) => Pick(index, string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"), pickLevel: level))];
 
         Diagnostic[] found = [.. Check(powers).Where(diagnostic => string.Equals(diagnostic.RuleId, "H-POWER-003", StringComparison.Ordinal))];
 
@@ -200,7 +202,7 @@ public sealed class HardLimitTests
     [Fact]
     public void Picks_in_schedule_order_are_legal()
     {
-        Power[] powers = [.. Schedule.PowerPickLevels.Select((level, index) => Pick(index, $"Tanker_Melee.Super_Strength.P{index}", pickLevel: level))];
+        Power[] powers = [.. Schedule.PowerPickLevels.Select((level, index) => Pick(index, string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"), pickLevel: level))];
 
         Assert.DoesNotContain("H-POWER-003", Ids(Check(powers)));
     }
@@ -272,7 +274,7 @@ public sealed class HardLimitTests
     {
         Power[] powers = [Pick(-1, string.Empty), Pick(0, "Scrapper_Melee.Dark_Melee.Smite")];
 
-        Assert.Equal("Scrapper_Melee.Dark_Melee.Smite", Assert.Single(HardLimitRunner.BuildContext(powers, RegistryMake.Slots(), Schedule, MaxSlots, null).Picks).FullName);
+        Assert.Equal("Scrapper_Melee.Dark_Melee.Smite", Assert.Single(HardLimitRunner.BuildContext(powers, RegistryMake.Slots(), Schedule, MaxSlots, format: null).Picks).FullName);
     }
 
     private static MbdFormat Format(int powerSets = 8)
@@ -282,7 +284,7 @@ public sealed class HardLimitTests
 
     private static MbdFormat FormatWith(int powerSets, object? levelText)
     {
-        return new MbdFormat(new string[powerSets].Select(_ => "a").ToArray(), levelText, new Dictionary<int, (int Min, int Max)> { [1] = (9, 29) });
+        return new MbdFormat([.. new string[powerSets].Select(_ => "a")], levelText, new Dictionary<int, (int Min, int Max)> { [1] = (9, 29) });
     }
 
     private static HashSet<string> FormatIds(MbdFormat? format, int ioLevel = 29)
@@ -294,7 +296,7 @@ public sealed class HardLimitTests
     [Fact]
     public void The_format_rules_are_silent_without_a_format()
     {
-        Assert.DoesNotContain(FormatIds(null, ioLevel: 99), ruleId => ruleId.StartsWith("H-FMT", StringComparison.Ordinal));
+        Assert.DoesNotContain(FormatIds(format: null, ioLevel: 99), ruleId => ruleId.StartsWith("H-FMT", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -306,7 +308,7 @@ public sealed class HardLimitTests
     [Fact]
     public void Seven_powersets_is_h_fmt_001()
     {
-        Diagnostic found = Check([Pick(0, "Scrapper_Melee.Dark_Melee.Smite")], null, Format(7)).Single(diagnostic => string.Equals(diagnostic.RuleId, "H-FMT-001", StringComparison.Ordinal));
+        Diagnostic found = Check([Pick(0, "Scrapper_Melee.Dark_Melee.Smite")], slots: null, Format(7)).Single(diagnostic => string.Equals(diagnostic.RuleId, "H-FMT-001", StringComparison.Ordinal));
 
         Assert.Equal(((object)8, (object)7, true), (found.Expected, found.Actual, found.Fix.Contains("pad", StringComparison.Ordinal)));
     }

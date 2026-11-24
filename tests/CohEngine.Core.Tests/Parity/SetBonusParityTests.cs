@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.SetBonuses;
 using CohEngine.Core.Totals;
@@ -42,7 +44,7 @@ public sealed class SetBonusParityTests
         for (int i = 0; i < golden.Count; i++)
         {
             double mag = EffectMagnitude.Mag(virtualPower.Effects[i], virtualPower, Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, archetype);
-            ParityAssert.Equal(golden[i].Mag, mag, $"{name}.Effects[{i}].Mag");
+            ParityAssert.Equal(golden[i].Mag, mag, string.Create(CultureInfo.InvariantCulture, $"{name}.Effects[{i}].Mag"));
         }
     }
 
@@ -138,7 +140,7 @@ public sealed class SetBonusParityTests
     private static Power VirtualPower(string name)
     {
         BuildInputs inputs = new(name);
-        return Accumulator.BuildSetBonusPower(inputs.Powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, false);
+        return Accumulator.BuildSetBonusPower(inputs.Powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, disablePve: false);
     }
 
     private static Power SinglePower(string name, string suffix)
@@ -146,6 +148,6 @@ public sealed class SetBonusParityTests
         BuildInputs inputs = new(name);
         Power power = inputs.Powers.First(candidate => candidate.FullName.EndsWith(suffix, StringComparison.Ordinal));
         Dictionary<int, IReadOnlyList<SlotRef>> slots = new() { [power.BuildIndex] = inputs.Slots[power.BuildIndex] };
-        return Accumulator.BuildSetBonusPower([power], slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, false);
+        return Accumulator.BuildSetBonusPower([power], slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, disablePve: false);
     }
 }

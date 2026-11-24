@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.BuildFile;
 using CohEngine.Core.Tests.Parity;
 using CohEngine.TestSupport;
@@ -67,8 +69,8 @@ public sealed class MxdParityTests
         ParityAssert.Count(expected.SlotEntries.Count, actual.SlotEntries.Count, $"{power}: slot count");
         for (int slot = 0; slot < expected.SlotEntries.Count; slot++)
         {
-            ParityAssert.Equal(expected.SlotEntries[slot].Level, actual.SlotEntries[slot].Level, $"{power} slot {slot}: level");
-            SameEnhancement(expected.SlotEntries[slot].Enhancement, actual.SlotEntries[slot].Enhancement, $"{power} slot {slot}");
+            ParityAssert.Equal(expected.SlotEntries[slot].Level, actual.SlotEntries[slot].Level, string.Create(CultureInfo.InvariantCulture, $"{power} slot {slot}: level"));
+            SameEnhancement(expected.SlotEntries[slot].Enhancement, actual.SlotEntries[slot].Enhancement, string.Create(CultureInfo.InvariantCulture, $"{power} slot {slot}"));
         }
     }
 

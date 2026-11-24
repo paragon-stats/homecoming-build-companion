@@ -9,7 +9,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "HIT Big Mob Minion! Your Ball Lightning power had a 93.55% chance to hit, you rolled a 20.04.",
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Ball Lightning", true, 93.55m, 20.04m, false, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Ball Lightning", Hit: true, 93.55m, 20.04m, Autohit: false, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -17,7 +17,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "MISSED Big Mob Minion!! Your Blazing Aura power had a 95.00% chance to hit, you rolled a 97.64.",
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Blazing Aura", false, 95.00m, 97.64m, false, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Blazing Aura", Hit: false, 95.00m, 97.64m, Autohit: false, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Big Mob Minion HITS you! Fire Blast power had a 25.80% chance to hit and rolled a 25.50.",
-            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Blast", true, 25.80m, 25.50m, false, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Blast", Hit: true, 25.80m, 25.50m, Autohit: false, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Big Mob Minion MISSES! Fire Sword power had a 89.99% chance to hit, but rolled a 91.15.",
-            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Sword", false, 89.99m, 91.15m, false, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Sword", Hit: false, 89.99m, 91.15m, Autohit: false, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -41,10 +41,10 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "HIT Big Mob Boss! Your Consume power is autohit.",
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Boss", "Consume", true, null, null, true, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Boss", "Consume", Hit: true, ChanceToHit: null, Roll: null, Autohit: true, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
         Expect(
             "Big Mob Boss HITS you! Fire Blast power was autohit.",
-            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Boss", "Fire Blast", true, null, null, true, false, false, null));
+            line => new AttackRoll(line, CombatDirection.Incoming, "Big Mob Boss", "Fire Blast", Hit: true, ChanceToHit: null, Roll: null, Autohit: true, ForcedByStreakbreaker: false, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "HIT Big Mob Boss! Your Atom Smasher power was forced to hit by streakbreaker.",
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Boss", "Atom Smasher", true, null, null, false, true, false, null));
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Boss", "Atom Smasher", Hit: true, ChanceToHit: null, Roll: null, Autohit: false, ForcedByStreakbreaker: true, IsSelf: false, Origin: null));
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Irradiated Ground:  MISSED Big Mob Minion!! Your Irradiated Ground power had a 86.07% chance to hit, you rolled a 91.16.",
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Irradiated Ground", false, 86.07m, 91.16m, false, false, false, "Irradiated Ground"));
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Big Mob Minion", "Irradiated Ground", Hit: false, 86.07m, 91.16m, Autohit: false, ForcedByStreakbreaker: false, IsSelf: false, "Irradiated Ground"));
     }
 
     [Fact]
@@ -71,11 +71,11 @@ public sealed class CombatLogClassifierTests
 
         Expect(
             Outgoing,
-            line => new AttackRoll(line, CombatDirection.Outgoing, "Player", "Hasten", true, null, null, true, false, true, null),
+            line => new AttackRoll(line, CombatDirection.Outgoing, "Player", "Hasten", Hit: true, ChanceToHit: null, Roll: null, Autohit: true, ForcedByStreakbreaker: false, IsSelf: true, Origin: null),
             "Player");
         Expect(
             Incoming,
-            line => new AttackRoll(line, CombatDirection.Incoming, "Player", "Hasten", true, null, null, true, false, true, null),
+            line => new AttackRoll(line, CombatDirection.Incoming, "Player", "Hasten", Hit: true, ChanceToHit: null, Roll: null, Autohit: true, ForcedByStreakbreaker: false, IsSelf: true, Origin: null),
             "Player");
         Assert.False(Assert.IsType<AttackRoll>(Classify(Outgoing)).IsSelf);
         Assert.False(Assert.IsType<AttackRoll>(Classify(Outgoing, "Someone Else")).IsSelf);
@@ -86,7 +86,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You hit Big Mob Minion with your Blazing Aura for 322.87 points of Fire damage.",
-            line => new DamageHit(line, CombatDirection.Outgoing, "Big Mob Minion", "Blazing Aura", 322.87m, "Fire", false, false, null, null));
+            line => new DamageHit(line, CombatDirection.Outgoing, "Big Mob Minion", "Blazing Aura", 322.87m, "Fire", IsDot: false, IsProc: false, Modifier: null, Origin: null));
     }
 
     [Fact]
@@ -94,7 +94,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You hit Big Mob Minion with your Degenerative Interface for 5.13 points of Toxic damage over time.",
-            line => new DamageHit(line, CombatDirection.Outgoing, "Big Mob Minion", "Degenerative Interface", 5.13m, "Toxic", true, false, null, null));
+            line => new DamageHit(line, CombatDirection.Outgoing, "Big Mob Minion", "Degenerative Interface", 5.13m, "Toxic", IsDot: true, IsProc: false, Modifier: null, Origin: null));
     }
 
     [Fact]
@@ -103,7 +103,7 @@ public sealed class CombatLogClassifierTests
         Expect(
             "You hit Big Mob Minion with your Scirocco's Dervish: Chance for Lethal Damage for 322.87 points of Lethal damage.",
             line => new DamageHit(
-                line, CombatDirection.Outgoing, "Big Mob Minion", "Scirocco's Dervish: Chance for Lethal Damage", 322.87m, "Lethal", false, true, null, null));
+                line, CombatDirection.Outgoing, "Big Mob Minion", "Scirocco's Dervish: Chance for Lethal Damage", 322.87m, "Lethal", IsDot: false, IsProc: true, Modifier: null, Origin: null));
     }
 
     [Fact]
@@ -112,7 +112,7 @@ public sealed class CombatLogClassifierTests
         Expect(
             "Ion Core Final Judgement:  You hit Big Mob Boss with your Ion Core Final Judgement for 111.79 points of Energy damage (JUDGEMENT CRITICAL).",
             line => new DamageHit(
-                line, CombatDirection.Outgoing, "Big Mob Boss", "Ion Core Final Judgement", 111.79m, "Energy", false, false, "JUDGEMENT CRITICAL", "Ion Core Final Judgement"));
+                line, CombatDirection.Outgoing, "Big Mob Boss", "Ion Core Final Judgement", 111.79m, "Energy", IsDot: false, IsProc: false, "JUDGEMENT CRITICAL", "Ion Core Final Judgement"));
     }
 
     [Fact]
@@ -120,7 +120,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Big Mob Minion hits you with their Fire Blast for 12.48 points of Negative Energy damage over time.",
-            line => new DamageHit(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Blast", 12.48m, "Negative Energy", true, false, null, null));
+            line => new DamageHit(line, CombatDirection.Incoming, "Big Mob Minion", "Fire Blast", 12.48m, "Negative Energy", IsDot: true, IsProc: false, Modifier: null, Origin: null));
     }
 
     [Fact]
@@ -128,7 +128,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Your Consume grants you 15 points of endurance.",
-            line => new EnduranceChange(line, EnduranceKind.Gained, null, "Consume", 15m, false));
+            line => new EnduranceChange(line, EnduranceKind.Gained, Counterpart: null, "Consume", 15m, IsOverTime: false));
     }
 
     [Fact]
@@ -136,10 +136,10 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Ally hits you with their Performance Shifter: Chance for +Endurance granting you 10.14 points of endurance.",
-            line => new EnduranceChange(line, EnduranceKind.Gained, "Ally", "Performance Shifter: Chance for +Endurance", 10.14m, false));
+            line => new EnduranceChange(line, EnduranceKind.Gained, "Ally", "Performance Shifter: Chance for +Endurance", 10.14m, IsOverTime: false));
         Expect(
             "Ally hits you with their Empowering Burst granting you 2.5 points of endurance over time.",
-            line => new EnduranceChange(line, EnduranceKind.Gained, "Ally", "Empowering Burst", 2.5m, true));
+            line => new EnduranceChange(line, EnduranceKind.Gained, "Ally", "Empowering Burst", 2.5m, IsOverTime: true));
     }
 
     [Fact]
@@ -147,7 +147,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Your Hasten drains 14.99 points of your endurance.",
-            line => new EnduranceChange(line, EnduranceKind.Spent, null, "Hasten", 14.99m, false));
+            line => new EnduranceChange(line, EnduranceKind.Spent, Counterpart: null, "Hasten", 14.99m, IsOverTime: false));
     }
 
     [Fact]
@@ -155,10 +155,10 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You hit Big Mob Boss with your Ball Lightning for 20.14 points of their endurance.",
-            line => new EnduranceChange(line, EnduranceKind.DrainedFromTarget, "Big Mob Boss", "Ball Lightning", 20.14m, false));
+            line => new EnduranceChange(line, EnduranceKind.DrainedFromTarget, "Big Mob Boss", "Ball Lightning", 20.14m, IsOverTime: false));
         Expect(
             "You hit Big Mob Boss with your Electrifying Fences for 3.83 points of their endurance over time.",
-            line => new EnduranceChange(line, EnduranceKind.DrainedFromTarget, "Big Mob Boss", "Electrifying Fences", 3.83m, true));
+            line => new EnduranceChange(line, EnduranceKind.DrainedFromTarget, "Big Mob Boss", "Electrifying Fences", 3.83m, IsOverTime: true));
     }
 
     [Fact]
@@ -166,7 +166,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You hit Ally with your Panacea: Chance for +Hit Points/Endurance granting them 5.4 points of endurance.",
-            line => new EnduranceChange(line, EnduranceKind.GrantedToTarget, "Ally", "Panacea: Chance for +Hit Points/Endurance", 5.4m, false));
+            line => new EnduranceChange(line, EnduranceKind.GrantedToTarget, "Ally", "Panacea: Chance for +Hit Points/Endurance", 5.4m, IsOverTime: false));
     }
 
     [Fact]
@@ -174,7 +174,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You are healed by your Power Transfer: Chance to Heal Self for 80.32 health points.",
-            line => new Heal(line, null, null, "Power Transfer: Chance to Heal Self", 80.32m, false));
+            line => new Heal(line, Healer: null, Recipient: null, "Power Transfer: Chance to Heal Self", 80.32m, IsOverTime: false));
     }
 
     [Fact]
@@ -182,7 +182,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "You heal Ally with Panacea: Chance for +Hit Points/Endurance for 64.58 health points.",
-            line => new Heal(line, null, "Ally", "Panacea: Chance for +Hit Points/Endurance", 64.58m, false));
+            line => new Heal(line, Healer: null, "Ally", "Panacea: Chance for +Hit Points/Endurance", 64.58m, IsOverTime: false));
     }
 
     [Fact]
@@ -190,7 +190,7 @@ public sealed class CombatLogClassifierTests
     {
         Expect(
             "Ally heals you with their Regrowth for 25.19 health points over time.",
-            line => new Heal(line, "Ally", null, "Regrowth", 25.19m, true));
+            line => new Heal(line, "Ally", Recipient: null, "Regrowth", 25.19m, IsOverTime: true));
     }
 
     [Fact]
@@ -232,14 +232,14 @@ public sealed class CombatLogClassifierTests
     [Fact]
     public void A_defeat_names_the_defeater_or_is_the_log_owners_own()
     {
-        Expect("You have defeated Big Mob Minion", line => new Defeat(line, null, "Big Mob Minion"));
+        Expect("You have defeated Big Mob Minion", line => new Defeat(line, Defeater: null, "Big Mob Minion"));
         Expect("Ally Two has defeated Big Mob Boss", line => new Defeat(line, "Ally Two", "Big Mob Boss"));
     }
 
     [Fact]
     public void Experience_alone_has_no_debt_and_no_currency()
     {
-        Expect("You gain 1,905 experience.", line => new ExperienceGained(line, 1905, 0, 0, null));
+        Expect("You gain 1,905 experience.", line => new ExperienceGained(line, 1905, 0, 0, CurrencyName: null));
     }
 
     [Fact]
@@ -255,7 +255,7 @@ public sealed class CombatLogClassifierTests
         Expect(
             "You gain 1,074 experience, work off 1,075 debt, and gain 5,157 influence.",
             line => new ExperienceGained(line, 1074, 1075, 5157, "influence"));
-        Expect("You gain 304 experience, work off 304 debt.", line => new ExperienceGained(line, 304, 304, 0, null));
+        Expect("You gain 304 experience, work off 304 debt.", line => new ExperienceGained(line, 304, 304, 0, CurrencyName: null));
     }
 
     [Fact]

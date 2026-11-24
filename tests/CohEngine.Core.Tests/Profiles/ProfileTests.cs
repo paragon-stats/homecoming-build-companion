@@ -71,7 +71,7 @@ public sealed class ProfileTests
     [Fact]
     public void A_boolean_target_keeps_its_literal()
     {
-        Assert.Equal(new Target("perma_hasten", "==", MetricValue.Flag(true)), Assert.Single(Resolve("perma-hasten", "Dominator").Targets));
+        Assert.Equal(new Target("perma_hasten", "==", MetricValue.Flag(flag: true)), Assert.Single(Resolve("perma-hasten", "Dominator").Targets));
     }
 
     [Fact]

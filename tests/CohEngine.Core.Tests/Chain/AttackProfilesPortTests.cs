@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
@@ -154,8 +155,8 @@ public sealed class AttackProfilesPortTests
         IReadOnlyList<JsonElement> rainRes = AttackProfiles.FoeResDebuffTemplates(rain, resolve);
 
         Assert.True(rainRes.Count > 0 && rainRes.All(template => template.ReqStr("table").EndsWith("Res_Dmg", StringComparison.Ordinal)));
-        Assert.Equal(rainRes.Count, rainRes.Select(template => $"{template.ReqStr("table")}|{template.ReqNum("scale")}|{template.ReqStr("duration")}").Distinct(StringComparer.Ordinal).Count());
-        Assert.True(AttackProfiles.FoeResDebuffTemplates(melt, resolve).Count > 0 && AttackProfiles.FoeResDebuffTemplates(melt, null).Count > 0);
+        Assert.Equal(rainRes.Count, rainRes.Select(template => string.Create(CultureInfo.InvariantCulture, $"{template.ReqStr("table")}|{template.ReqNum("scale")}|{template.ReqStr("duration")}")).Distinct(StringComparer.Ordinal).Count());
+        Assert.True(AttackProfiles.FoeResDebuffTemplates(melt, resolve).Count > 0 && AttackProfiles.FoeResDebuffTemplates(melt, resolve: null).Count > 0);
         Assert.Empty(AttackProfiles.FoeResDebuffTemplates(aim, resolve));
     }
 

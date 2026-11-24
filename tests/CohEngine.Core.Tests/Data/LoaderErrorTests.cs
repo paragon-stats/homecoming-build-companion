@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -71,11 +72,11 @@ public sealed class LoaderErrorTests : IDisposable
     {
         BuildFixture build = Fixtures.Store.Build("community__stalker__general__unknown-fiery-invulnerability");
         Power power = build.Powers.First(candidate => candidate.Effects.Count > 0);
-        string record = $$"""
+        string record = string.Create(CultureInfo.InvariantCulture, $$"""
             [{"BuildIndex": {{power.BuildIndex}}, "PowerSetType": "Primary", "EntitiesAffected": [], "EntitiesAutoHit": [],
                 "BaseRechargeTime": 0, "AoEModifier": 1, "HasGrantPowerEffect": false, "HasPowerOverrideEffect": false,
                 "AbsorbSummonEffects": false, "AbsorbSummonAttributes": false, "IgnoreEnh": [], "SubPowers": [], "Effects": []}]
-            """;
+            """);
         string assembly = Write("power_assembly.json", record);
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(

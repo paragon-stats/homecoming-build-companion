@@ -45,7 +45,7 @@ public sealed class MxdTests
     private static string Reshare(byte[] raw, int uncompressedSize)
     {
         string encoded = Convert.ToHexString(raw);
-        return $"|MxDz;{uncompressedSize};{raw.Length};{encoded.Length};HEX;|\r\n" + BreakString(encoded);
+        return string.Create(CultureInfo.InvariantCulture, $"|MxDz;{uncompressedSize};{raw.Length};{encoded.Length};HEX;|\r\n") + BreakString(encoded);
     }
 
     private static string[] HeaderItems(string share)
@@ -163,7 +163,7 @@ public sealed class MxdTests
     {
         string share = MakeShare(Encoding.ASCII.GetBytes("hello world hello world"));
         string[] items = HeaderItems(share);
-        string bad = share.Replace($";{items[2]};", $";{int.Parse(items[2], CultureInfo.InvariantCulture) + 1};", StringComparison.Ordinal);
+        string bad = share.Replace($";{items[2]};", string.Create(CultureInfo.InvariantCulture, $";{int.Parse(items[2], CultureInfo.InvariantCulture) + 1};"), StringComparison.Ordinal);
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(() => Mxd.DecodeMxd(bad));
 
@@ -185,7 +185,7 @@ public sealed class MxdTests
     {
         string share = MakeShare(Kilobyte());
         string[] items = HeaderItems(share);
-        string resized = share.Replace($"|MxDz;{items[1]};", $"|MxDz;{declared};", StringComparison.Ordinal);
+        string resized = share.Replace($"|MxDz;{items[1]};", string.Create(CultureInfo.InvariantCulture, $"|MxDz;{declared};"), StringComparison.Ordinal);
 
         Assert.Equal(expected, Mxd.DecodeMxd(resized).Length);
     }

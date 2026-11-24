@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Maths;
@@ -23,7 +24,7 @@ public sealed class MidsParityTests
         {
             for (int threshold = 0; threshold < 3; threshold++)
             {
-                ParityAssert.Equal(maths.RootElement.GetProperty("MultED")[schedule][threshold].GetDouble(), Tables.MultEd[schedule][threshold], $"MultED[{schedule}][{threshold}]");
+                ParityAssert.Equal(maths.RootElement.GetProperty("MultED")[schedule][threshold].GetDouble(), Tables.MultEd[schedule][threshold], string.Create(CultureInfo.InvariantCulture, $"MultED[{schedule}][{threshold}]"));
             }
         }
     }
@@ -42,7 +43,7 @@ public sealed class MidsParityTests
         using JsonDocument maths = Load("maths.json");
         for (int schedule = 0; schedule < 4; schedule++)
         {
-            ParityAssert.Equal(maths.RootElement.GetProperty(name)[0][schedule].GetDouble(), row[schedule], $"{name}[0][{schedule}]");
+            ParityAssert.Equal(maths.RootElement.GetProperty(name)[0][schedule].GetDouble(), row[schedule], string.Create(CultureInfo.InvariantCulture, $"{name}[0][{schedule}]"));
         }
     }
 
@@ -57,7 +58,7 @@ public sealed class MidsParityTests
         {
             for (int schedule = 0; schedule < 4; schedule++)
             {
-                ParityAssert.Equal(rows[row][schedule].GetDouble(), Tables.MultIo[row][schedule], $"MultIO[{row}][{schedule}]");
+                ParityAssert.Equal(rows[row][schedule].GetDouble(), Tables.MultIo[row][schedule], string.Create(CultureInfo.InvariantCulture, $"MultIO[{row}][{schedule}]"));
             }
         }
     }
