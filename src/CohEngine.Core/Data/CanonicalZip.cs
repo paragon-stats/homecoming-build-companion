@@ -88,14 +88,20 @@ public static class CanonicalZip
     /// <summary>The full paths of the folders the hand-added <c>supplements</c> block lists; <c>--force</c> keeps them.</summary>
     private static List<string> SupplementDirectories(JsonElement supplements, string destination)
     {
-        return supplements.ValueKind != JsonValueKind.Array
-            ? []
-            : [.. supplements.EnumerateArray()
+        if (supplements.ValueKind != JsonValueKind.Array)
+        {
+            return [];
+        }
+
+        return
+        [
+            .. supplements.EnumerateArray()
                 .Select(supplement => Property(supplement, "directories"))
                 .Where(directories => directories.ValueKind == JsonValueKind.Array)
                 .SelectMany(directories => directories.EnumerateArray())
                 .Where(directory => directory.ValueKind == JsonValueKind.String)
-                .Select(directory => Path.TrimEndingDirectorySeparator(Path.GetFullPath(Path.Join(destination, directory.GetString()))))];
+                .Select(directory => Path.TrimEndingDirectorySeparator(Path.GetFullPath(Path.Join(destination, directory.GetString())))),
+        ];
     }
 
     /// <summary>Deletes every folder under <paramref name="directory"/> except the kept ones and the folders above them; below the top, loose files go too.</summary>
