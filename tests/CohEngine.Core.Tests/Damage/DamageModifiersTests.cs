@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
@@ -69,7 +71,7 @@ public sealed class DamageModifiersTests
     {
         ModifierResult result = DamageModifiers.ClickBuffModifier(Of(Attack("Full", Role.BuffClick, 0.25, 100.0), Attack("Part", Role.BuffClick, 0.5, Cycle / 2)))!;
 
-        Assert.Equal("True 1 aura,chain,patch", $"{result.Additive} {result.Uptime} {string.Join(',', result.AppliesTo!.Order(StringComparer.Ordinal))}");
+        Assert.Equal("True 1 aura,chain,patch", string.Create(CultureInfo.InvariantCulture, $"{result.Additive} {result.Uptime} {string.Join(',', result.AppliesTo!.Order(StringComparer.Ordinal))}"));
         Near.Rel(1.0 + 0.25 + 0.25, result.Multiplier, 1e-5);
         Assert.Contains("Full +25% at 100% uptime", result.Assumption, StringComparison.Ordinal);
         Assert.Contains("Part +50% at 50% uptime", result.Assumption, StringComparison.Ordinal);
@@ -106,7 +108,9 @@ public sealed class DamageModifiersTests
     {
         ModifierResult result = DamageModifiers.TargetDebuffModifier(Of(Attack("Chain", Role.Chain, debuff: 0.2, debuffDuration: 4.0)))!;
 
-        Near.Rel(1.0 + (0.2 * 4.0 / Cycle), result.Multiplier, 1e-5);
+        double expected = 1.0 + (0.2 * 4.0 / Cycle);
+
+        Assert.Equal(expected, result.Multiplier, expected * 1e-5);
     }
 
     [Theory]
@@ -181,7 +185,7 @@ public sealed class DamageModifiersTests
     {
         DamageContext context = Context(Stance.Hybrid, attacks: [Pbaoe("Gas", Role.PersistentDebuff, 0.2), Attack("Far", Role.Chain)]);
 
-        Assert.Equal("0 True", $"{DamageSources.MeleeShare(context)} {DamageModifiers.TargetDebuffModifier(context) is null}");
+        Assert.Equal("0 True", string.Create(CultureInfo.InvariantCulture, $"{DamageSources.MeleeShare(context)} {DamageModifiers.TargetDebuffModifier(context) is null}"));
     }
 
     [Fact]
@@ -196,8 +200,11 @@ public sealed class DamageModifiersTests
         double chainDps = report.Sources.First(source => string.Equals(source.Source, "chain", StringComparison.Ordinal)).Dps;
         double factor = 1.0 + (0.3 * 40.0 / (cast + 100.0)) + 0.15;
 
-        Near.Rel(1.0 - share, report.RemainderContext.TimelineAvailable, 1e-5);
-        Near.Rel(100.0 / Cycle * (1.0 - share), chainDps, 1e-4);
-        Near.Rel(chainDps * factor, report.ScaledDps.First(pair => string.Equals(pair.Key, "chain", StringComparison.Ordinal)).Value, 1e-4);
+        double expectedChainDps = 100.0 / Cycle * (1.0 - share);
+        double expectedScaled = chainDps * factor;
+
+        Assert.Equal(1.0 - share, report.RemainderContext.TimelineAvailable, (1.0 - share) * 1e-5);
+        Assert.Equal(expectedChainDps, chainDps, expectedChainDps * 1e-4);
+        Assert.Equal(expectedScaled, report.ScaledDps.First(pair => string.Equals(pair.Key, "chain", StringComparison.Ordinal)).Value, expectedScaled * 1e-4);
     }
 }

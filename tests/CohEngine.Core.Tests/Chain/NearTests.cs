@@ -7,8 +7,8 @@ public sealed class NearTests
     [Fact]
     public void A_value_inside_the_tolerance_passes()
     {
-        Near.Rel(100.0, 100.00005, 1e-6);
-        Near.Abs(1.0, 1.0004, 1e-3);
+        Assert.Null(Record.Exception(() => Near.Rel(100.0, 100.00005, 1e-6)));
+        Assert.Null(Record.Exception(() => Near.Abs(1.0, 1.0004, 1e-3)));
     }
 
     [Fact]

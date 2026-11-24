@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -99,7 +100,7 @@ public sealed class PetCanonicalTests
             ["recharge_time"] = 2.0,
             ["activate_period"] = 0.0,
             ["endurance_cost"] = 5.0,
-            ["effects"] = new JsonArray([.. effects.Select(effect => (JsonNode?)effect)]),
+            ["effects"] = new JsonArray([.. effects.Cast<JsonNode?>()]),
         };
     }
 
@@ -193,7 +194,7 @@ public sealed class PetCanonicalTests
     {
         PetSummon pet = Assert.Single(Build(Spiderlings));
 
-        Assert.Equal("Spiderling 3 240 600 26", $"{pet.PetName} {pet.PetCount} {pet.Duration} {pet.SummonRecharge} {pet.SummonEndCost}");
+        Assert.Equal("Spiderling 3 240 600 26", string.Create(CultureInfo.InvariantCulture, $"{pet.PetName} {pet.PetCount} {pet.Duration} {pet.SummonRecharge} {pet.SummonEndCost}"));
         Near.Rel(2.03, pet.SummonCastTime);
         Near.Rel(1.0 + PetDamage.DefaultPetDamageEnhancement, pet.DamageBuffBaseline);
         Assert.Contains("level 48", pet.Label, StringComparison.Ordinal);
@@ -234,9 +235,9 @@ public sealed class PetCanonicalTests
         PetSummon soldier = pets[0];
         PetSummon medic = pets[1];
 
-        Assert.Equal("Soldier 2 True Medic 1", $"{soldier.PetName} {soldier.PetCount} {double.IsPositiveInfinity(soldier.Duration)} {medic.PetName} {medic.PetCount}");
+        Assert.Equal("Soldier 2 True Medic 1", string.Create(CultureInfo.InvariantCulture, $"{soldier.PetName} {soldier.PetCount} {double.IsPositiveInfinity(soldier.Duration)} {medic.PetName} {medic.PetCount}"));
         Assert.True(soldier.SummonCastTime > 0 && Exact.Same(medic.SummonCastTime, 0.0) && soldier.SummonEndCost > 0 && Exact.Same(medic.SummonEndCost, 0.0));
-        Assert.Equal("5 5", $"{soldier.SummonRecharge} {medic.SummonRecharge}");
+        Assert.Equal("5 5", string.Create(CultureInfo.InvariantCulture, $"{soldier.SummonRecharge} {medic.SummonRecharge}"));
         Assert.Equal("Mastermind_Pets.Soldier.ASMG_Burst,Mastermind_Pets.Soldier.Brawl", string.Join(',', soldier.PetAttacks.Select(attack => attack.FullName).Order(StringComparer.Ordinal)));
         Assert.All(pets.SelectMany(pet => pet.PetAttacks), attack => Assert.True(attack.Damage > 0));
         Assert.DoesNotContain(medic.PetAttacks, attack => attack.FullName.EndsWith("Med_Kit", StringComparison.Ordinal));
@@ -308,7 +309,9 @@ public sealed class PetCanonicalTests
         double weakDps = result.Detail[0].Dps;
         double strongDps = result.Detail[1].Dps;
 
-        Near.Rel(((weakDps * 1.95) + (strongDps * 1.0)) / (weakDps + strongDps), result.DamageBuffBaseline!.Value);
+        double expected = ((weakDps * 1.95) + (strongDps * 1.0)) / (weakDps + strongDps);
+
+        Assert.Equal(expected, result.DamageBuffBaseline!.Value, expected * 1e-6);
     }
 
     [Fact]
@@ -326,7 +329,7 @@ public sealed class PetCanonicalTests
     {
         SourceResult result = PetDamage.PetSource(Context())!;
 
-        Assert.Equal("0 0 0 0 no pets summoned", $"{result.Dps} {result.TimelineShare} {result.EndPerSec} {result.Detail.Count} {result.Label}");
+        Assert.Equal("0 0 0 0 no pets summoned", string.Create(CultureInfo.InvariantCulture, $"{result.Dps} {result.TimelineShare} {result.EndPerSec} {result.Detail.Count} {result.Label}"));
     }
 
     [Fact]
@@ -360,7 +363,7 @@ public sealed class PetCanonicalTests
 
         PetSummon pet = Assert.Single(BuildSynthetic(tree, summon, enhancement: NoEnhancement(Summon)));
 
-        Assert.Equal("Tst_Pet True 1", $"{pet.PetName} {double.IsPositiveInfinity(pet.Duration)} {pet.PetCount}");
+        Assert.Equal("Tst_Pet True 1", string.Create(CultureInfo.InvariantCulture, $"{pet.PetName} {double.IsPositiveInfinity(pet.Duration)} {pet.PetCount}"));
         Near.Rel(44.488 * 5, Assert.Single(pet.PetAttacks).Damage, 1e-5);
     }
 
@@ -384,7 +387,7 @@ public sealed class PetCanonicalTests
         PetSummon low = Assert.Single(Build(Soldiers, 5));
         IReadOnlyList<PetSummon> high = Build(Soldiers, 18);
 
-        Assert.Equal("Soldier 1 2 1", $"{low.PetName} {low.PetCount} {high[0].PetCount} {high[1].PetCount}");
+        Assert.Equal("Soldier 1 2 1", string.Create(CultureInfo.InvariantCulture, $"{low.PetName} {low.PetCount} {high[0].PetCount} {high[1].PetCount}"));
     }
 
     [Fact]
@@ -509,7 +512,7 @@ public sealed class PetCanonicalTests
         ChainAttack summon = SyntheticSummon(tree, [Effect(CreateEntity())]);
         WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", [Effect(Damage(string.Empty))]));
 
-        Near.Rel(44.488, BuildSynthetic(tree, summon, enhancement: NoEnhancement(Summon))[0].PetAttacks[0].Damage, 1e-5);
+        Assert.Equal(44.488, BuildSynthetic(tree, summon, enhancement: NoEnhancement(Summon))[0].PetAttacks[0].Damage, 44.488 * 1e-5);
     }
 
     [Fact]
@@ -519,7 +522,7 @@ public sealed class PetCanonicalTests
         ChainAttack summon = SyntheticSummon(tree, [Effect(CreateEntity())]);
         WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", [Effect(Damage(magnitude: 2.0), chance: 0.5)]));
 
-        Near.Rel(44.488 * 2.0 * 0.5, BuildSynthetic(tree, summon, enhancement: NoEnhancement(Summon))[0].PetAttacks[0].Damage, 1e-5);
+        Assert.Equal(44.488 * 2.0 * 0.5, BuildSynthetic(tree, summon, enhancement: NoEnhancement(Summon))[0].PetAttacks[0].Damage, 44.488 * 2.0 * 0.5 * 1e-5);
     }
 
     [Fact]
@@ -563,8 +566,11 @@ public sealed class PetCanonicalTests
         SourceResult result = PetDamage.PetSource(Context(pets: Pet(double.PositiveInfinity, 3)))!;
         SourceResult timed = PetDamage.PetSource(Context(pets: Pet(240.0, 3, recharge: 600.0)))!;
 
-        Near.Rel(3 * 100.0 / 2.188, result.Dps, 1e-5);
-        Near.Rel(3 * 100.0 / 2.188 * 240.0 / (AttackChains.ArcanaCastTime(2.03) + 600.0), timed.Dps, 1e-5);
+        double expected = 3 * 100.0 / 2.188;
+        double expectedTimed = expected * 240.0 / (AttackChains.ArcanaCastTime(2.03) + 600.0);
+
+        Assert.Equal(expected, result.Dps, expected * 1e-5);
+        Assert.Equal(expectedTimed, timed.Dps, expectedTimed * 1e-5);
     }
 
     [Fact]
@@ -575,7 +581,7 @@ public sealed class PetCanonicalTests
         double five = PetDamage.PetSource(Context(new Scenario(5), area))!.Dps;
         double one = PetDamage.PetSource(Context(new Scenario(1), area))!.Dps;
 
-        Near.Rel(5 * one, five, 1e-5);
-        Near.Rel(100.0 / 2.188, one, 1e-5);
+        Assert.Equal(5 * one, five, 5 * one * 1e-5);
+        Assert.Equal(100.0 / 2.188, one, 100.0 / 2.188 * 1e-5);
     }
 }
