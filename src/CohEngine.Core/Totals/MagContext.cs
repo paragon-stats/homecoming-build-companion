@@ -46,6 +46,14 @@ internal sealed record MagContext
     /// <summary>Gets a value indicating whether every conditional and SpecialCase effect counts; it exists for the hazard-gate test.</summary>
     public bool IncludeAllConditionals { get; init; }
 
+    /// <summary>Whether a power is IsGlobalAccuracySource: the set-bonus virtual power or a GlobalBoost.</summary>
+    /// <param name="power">The power.</param>
+    /// <returns>True when its accuracy is global.</returns>
+    public static bool IsGlobalAccSource(Power power)
+    {
+        return power.BuildIndex == Accumulator.SetBonusBuildIndex || string.Equals(power.PowerType, "GlobalBoost", StringComparison.Ordinal);
+    }
+
     /// <summary>
     /// <c>Effect.CanInclude</c>. A SpecialCase effect stays excluded, as the character-state switch is not ported;
     /// this diverges from Mids, which keeps many default-true special cases.
@@ -55,14 +63,6 @@ internal sealed record MagContext
     public bool CanInclude(Effect effect)
     {
         return IncludeAllConditionals || Conditionals.EffectIncluded(effect, Expr);
-    }
-
-    /// <summary>Whether a power is IsGlobalAccuracySource: the set-bonus virtual power or a GlobalBoost.</summary>
-    /// <param name="power">The power.</param>
-    /// <returns>True when its accuracy is global.</returns>
-    public static bool IsGlobalAccSource(Power power)
-    {
-        return power.BuildIndex == Accumulator.SetBonusBuildIndex || string.Equals(power.PowerType, "GlobalBoost", StringComparison.Ordinal);
     }
 
     /// <summary>The effect's raw magnitude.</summary>

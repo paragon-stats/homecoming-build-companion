@@ -15,3 +15,12 @@ def test_nested_test_fixtures_are_excluded(prop: str) -> None:
     match = re.search(rf'/d:{re.escape(prop)}="([^"]*)"', _WORKFLOW.read_text(encoding="utf-8"))
     assert match is not None
     assert "**/tests/fixtures/**" in match.group(1).split(",")
+
+
+def test_scan_skips_fork_and_dependabot_pull_requests_but_runs_on_push() -> None:
+    match = re.search(r"^  sonar:\n(?:    #.*\n)*    if: (.+)$", _WORKFLOW.read_text(encoding="utf-8"), re.MULTILINE)
+    assert match is not None
+    assert match.group(1) == (
+        "${{ github.event_name != 'pull_request' || "
+        "(!github.event.pull_request.head.repo.fork && github.actor != 'dependabot[bot]') }}"
+    )

@@ -20,7 +20,7 @@ internal static class ParityAssert
         }
         catch (OverflowException exception)
         {
-            throw new XunitException($"{path}: the dumped value does not fit single precision ({exception.Message})");
+            throw new XunitException($"{path}: the dumped value does not fit single precision ({exception.Message})", exception);
         }
 
         // Plain ==, as the Python parity tests compare: 0.0 equals -0.0 and NaN equals nothing.
