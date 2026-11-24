@@ -97,7 +97,7 @@ public sealed class AttackChainsTests
         ChainOption best = plan.BestOverall!;
 
         Assert.Equal("A,B False 7 0 True", $"{Names(best)} {best.GapFree} {plan.Ranked.Count} {plan.Dropped.Count} {ReferenceEquals(plan.Ranked[0], best)}");
-        Assert.Equal(new[] { 3.188, 0.812, 160.0 / 3.188, 10.0 / 3.188 }, new[] { best.CycleTime, best.Gap, best.Dps, best.EndPerSec }, new TolerantComparer());
+        Assert.Equal(new[] { 3.188, 0.812, 160.0 / 3.188, 10.0 / 3.188 }, new[] { best.CycleTime, best.Gap, best.Dps, best.EndPerSec }, Tolerant);
     }
 
     [Fact]
@@ -220,7 +220,7 @@ public sealed class AttackChainsTests
         ChainOption full = Plan([Atk("A")]).BestOverall!;
         ChainOption half = Plan([Atk("A")], timeline: 0.5).BestOverall!;
 
-        Assert.Equal(new[] { full.Dps / 2.0, full.EndPerSec / 2.0, full.CycleTime }, new[] { half.Dps, half.EndPerSec, half.CycleTime }, new TolerantComparer());
+        Assert.Equal(new[] { full.Dps / 2.0, full.EndPerSec / 2.0, full.CycleTime }, new[] { half.Dps, half.EndPerSec, half.CycleTime }, Tolerant);
     }
 
     [Theory]
@@ -298,16 +298,8 @@ public sealed class AttackChainsTests
         Assert.Equal("0 1", $"{plan.BestOverall!.Switches} {plan.BestOverall.Rotation.Count}");
     }
 
-    private sealed class TolerantComparer : IEqualityComparer<double>
+    private static bool Tolerant(double left, double right)
     {
-        public bool Equals(double left, double right)
-        {
-            return Math.Abs(left - right) <= 1e-5 * Math.Max(1.0, Math.Abs(right));
-        }
-
-        public int GetHashCode(double obj)
-        {
-            return 0;
-        }
+        return Math.Abs(left - right) <= 1e-5 * Math.Max(1.0, Math.Abs(right));
     }
 }

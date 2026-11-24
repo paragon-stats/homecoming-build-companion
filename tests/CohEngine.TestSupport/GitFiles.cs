@@ -66,9 +66,12 @@ public static class GitFiles
             throw new InvalidOperationException(string.Create(CultureInfo.InvariantCulture, $"'{command}' in {repositoryRoot} exited {process.ExitCode}; the sample-build tests need a git work tree: {error.GetAwaiter().GetResult().Trim()}"));
         }
 
-        return [.. output
-            .Split('\0', StringSplitOptions.RemoveEmptyEntries)
-            .Select(path => Path.Join(repositoryRoot, path.Replace('/', Path.DirectorySeparatorChar)))
-            .Order(StringComparer.Ordinal)];
+        return
+        [
+            .. output
+                .Split('\0', StringSplitOptions.RemoveEmptyEntries)
+                .Select(path => Path.Join(repositoryRoot, path.Replace('/', Path.DirectorySeparatorChar)))
+                .Order(StringComparer.Ordinal),
+        ];
     }
 }

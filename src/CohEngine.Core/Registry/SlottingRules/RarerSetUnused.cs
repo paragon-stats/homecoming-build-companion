@@ -28,9 +28,12 @@ internal static class RarerSetUnused
     {
         IReadOnlyList<EnhancementSetDef> rarer = RarerSets(context.SetDb, context.EnhDb);
         HashSet<int> rarerNids = [.. rarer.Select(set => set.Nid)];
-        HashSet<string> slottedVersions = [.. context.Filled
-            .Where(slot => slot.Enhancement is not null && context.SetDb.Sets.ContainsKey(slot.Enhancement.NidSet))
-            .Select(slot => LegalityRules.MutexRule.StripVersionPrefixes(context.SetDb.Sets[slot.Enhancement!.NidSet].Uid))];
+        HashSet<string> slottedVersions =
+        [
+            .. context.Filled
+                .Where(slot => slot.Enhancement is not null && context.SetDb.Sets.ContainsKey(slot.Enhancement.NidSet))
+                .Select(slot => LegalityRules.MutexRule.StripVersionPrefixes(context.SetDb.Sets[slot.Enhancement!.NidSet].Uid)),
+        ];
         foreach (IGrouping<(int BuildIndex, int NidSet), FilledSlot> group in context.Filled
             .Where(slot => slot.Enhancement is not null && context.SetDb.Sets.ContainsKey(slot.Enhancement.NidSet))
             .GroupBy(slot => (slot.Power.BuildIndex, slot.Enhancement!.NidSet)))
