@@ -249,4 +249,12 @@ public static class ErrorCodes
 
     /// <summary>An MCP tool that computes from a Mids dump was given a <c>.mbd</c> file, which carries no effect data.</summary>
     public const string E180 = "E180";
+
+    // E190-E199: extract-canonical.
+
+    /// <summary>Two entries of the City of Data raw-data zip map to one canonical path.</summary>
+    public const string E190 = "E190";
+
+    /// <summary>An entry of the City of Data raw-data zip resolves outside the target folder.</summary>
+    public const string E191 = "E191";
 }

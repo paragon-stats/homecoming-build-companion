@@ -140,7 +140,8 @@ Each file's lane is recorded in [manifest.json](manifest.json). Lanes mean:
 - `community-capture` — manually captured forum/wiki content with attribution.
 - `samples` — sample builds.
 
-Snapshot date: see `manifest.json::generated_at`. If it's been a while since a Homecoming patch, re-harvest (see `scripts/lane-a/HARVEST.md` and `scripts/lane-b/run.ps1`).
+Snapshot date: see `manifest.json::generated_at`.
+If it's been a while since a Homecoming patch, re-harvest (see `scripts/lane-a/HARVEST.md` and `coh-engine extract-canonical [--zip ZIP] [--out-dir DIR] [--force]`).
 
 ---
 

@@ -27,7 +27,7 @@ public sealed class ValidateCommandTests
 
     private static (int Code, string Output, string Error) Run(params string[] args)
     {
-        return Run(null, args);
+        return Run(source: null, args);
     }
 
     private static (int Code, string Output, string Error) RunThrowing(Exception exception)
@@ -196,7 +196,7 @@ public sealed class ValidateCommandTests
     {
         (int code, string output, _) = Run();
 
-        Assert.Equal((0, "coh_engine: MidsReborn build-math port.\nSpec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain (score lands with the build-eval pipeline).\n"), (code, output));
+        Assert.Equal((0, "coh_engine: MidsReborn build-math port.\nSpec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, extract-canonical (score lands with the build-eval pipeline).\n"), (code, output));
     }
 
     [Fact]

@@ -2,7 +2,7 @@
 
 Procedure for harvesting MidsReborn-derived data from the running app. Walk it once to refresh the snapshot. Step 2 (JSON Exporter) is the biggest action — produces 12 JSON files in one click.
 
-> **Lane B is separate and faster.** Canonical game data comes from the City of Data zip (`raw_data_homecoming-*.zip`, ~92 MB → 411 MB / 44k JSON files). Extract via `scripts/lane-b/run.ps1`.
+> **Lane B is separate and faster.** Canonical game data comes from the City of Data zip (`raw_data_homecoming-*.zip`, ~92 MB → 411 MB / 44k JSON files). Extract via `coh-engine extract-canonical [--zip ZIP] [--out-dir DIR] [--force]`.
 >
 > Lane A and Lane B run independently; both give Claude cross-checkable sources.
 
