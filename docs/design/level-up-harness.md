@@ -195,6 +195,25 @@ What the player is shown:
 
 For an Arachnos Soldier or Widow the respec view is the natural one for the build after the respec, since that is how the game presents it.
 
+#### 4.3.2 Levelling efficiency
+
+A build made for levelling is played at every level it passes through, not only at 50.
+Each pick and slot changes how the character plays while it earns the experience that brings the next pick or slot.
+The leveling view in section 3.1 is that experience for a person: one screen per level-up, with totals at that level a click away.
+What a person learns only by playing those levels, the harness states at each one.
+
+For a session whose goal is levelling efficiency, the loop adds these to its per-level figures:
+
+- **What the character can do at N:** the attacks it holds, the chain they make and the gap in it, damage per second against an even-level enemy, and how long a typical fight lasts.
+- **Whether it can keep going:** endurance over that fight with the slots it holds, and the rest needed between fights.
+- **What the move changed:** the same figures before and after the pick or slot, so its effect shows when it is made.
+  Hasten at 6 instead of an attack leaves a gap in the chain until recharge is slotted; three Stamina slots at 13 instead of Fire Ball slots trade damage for fewer rests.
+- **When it pays off:** a power whose worth needs slots it does not yet have, or a pick that opens a later one, is shown with the level at which it starts to pay.
+
+The figures for every level go into the record.
+A run reads back as the character's progress, and one request made with different choices can be compared level by level.
+Enhancements for this goal are chosen per level, from what can be slotted at that level, rather than once after the loop.
+
 ### 4.4 Enhance
 
 Enhancements are not chosen while levelling in practice: a level 50 build is slotted in one go. So this is its own phase, over the finished slot layout.
@@ -315,6 +334,7 @@ Each request has a reference build that passes the gate. A run plays every reque
 
 **The level-up exercise** is one eval run the way a player levels: one screen at a time from level 1 to 50, with a stated reason for every power, pool, epic and slot choice, read against the build's goal.
 A run that picks the first legal option on each screen passes the rule checks and still fails this eval, because its reasons are missing or do not match its choices.
+For a levelling-efficiency goal the exercise is scored on the per-level figures of section 4.3.2 as well as the finished build.
 A scripted first-in-list walk through Hate's planner on 2026-11-24 showed the failure: every slot went to the first power that could take one, and the walk stalled once that power was full.
 
 **View equivalence** is a second check: one request made in the leveling view and in the respec view with the same choices.
@@ -358,5 +378,6 @@ Each phase is one or more issues with tests, and each leaves the binary usable.
 - **Session state.** An MCP server is asked one call at a time. Where a session lives between calls (a file the client names, or state the server keeps) is undecided.
 - **How much a client sees.** A long offer list at every level costs tokens. The offer may need filtering by the goal's profile, without hiding legal choices.
 - **Kheldians.** Whether they have a first-time path like the Arachnos archetypes' is not yet read from the data.
-- **Enhancements while levelling.** A levelling build wants enhancements at low levels. The enhance phase could be opened per level for a "levelling" goal; that is not designed here.
+- **Enhancements while levelling.** Section 4.3.2 opens the enhance phase per level for a levelling goal, but which pieces can be slotted at each level, and at what cost, is not yet in the data.
+- **Figures for low levels.** The per-level figures of section 4.3.2 need enemy data and fight lengths below 50; the planning figures today are measured at 50.
 - **Incarnate rules by content.** Which incarnate choices a content mode forbids is known for four-star Lore pets and not catalogued otherwise.
