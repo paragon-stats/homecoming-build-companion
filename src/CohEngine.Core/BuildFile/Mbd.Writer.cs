@@ -16,9 +16,6 @@ public static partial class Mbd
     private const int ExemplarLevel = 15;
     private const int ExemplarSlots = 2;
 
-    /// <summary>Gets the provenance block of the database the Homecoming builds are written against.</summary>
-    public static BuildMetaData Homecoming { get; } = new("Mids Reborn", "3.8.6.0", "Homecoming", "2026.1.1242");
-
     /// <summary>
     /// The bytes of a <c>.mbd</c> file: indented two spaces, LF line endings, every character past 0x7E as a lowercase
     /// <c>\uXXXX</c> escape, and a final newline, with UTF-8 and no BOM (the Python <c>json.dumps(indent=2)</c> form).
@@ -146,7 +143,7 @@ public static partial class Mbd
         entries.AddRange(spec.Incarnates.Select(name => Entry(new PickSpec { Power = name, Level = 50, Enhancements = [], StatInclude = true }, [], database)));
         MbdDocument document = new()
         {
-            BuiltWith = new MbdBuiltWithDoc { App = spec.Meta.App, Version = spec.Meta.Version, Database = spec.Meta.Database, DatabaseVersion = spec.Meta.DatabaseVersion },
+            BuiltWith = new MbdBuiltWithDoc { App = database.BuiltWith.App, Version = database.BuiltWith.Version, Database = database.BuiltWith.Database, DatabaseVersion = database.BuiltWith.DatabaseVersion },
             Level = (spec.Level - 1).ToString(CultureInfo.InvariantCulture),
             Class = spec.ClassName,
             Origin = spec.Origin,
