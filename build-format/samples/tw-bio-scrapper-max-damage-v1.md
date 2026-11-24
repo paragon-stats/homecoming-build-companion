@@ -331,7 +331,7 @@
 ## What I would verify before committing this build
 
 1. Open in MidsReborn — does the totals tab show defense / recharge / damage close to the estimates above? Verify 67-slot cap respected after the slot-level adjustment.
-2. Spot-check Follow Through and Shatter Armor recharge with `scripts/diff-spotcheck.ps1` against canonical (file: `data/canonical/powers/scrapper_melee/titan_weapons/follow_through.json`).
+2. Spot-check Follow Through and Shatter Armor recharge against canonical (file: `data/canonical/powers/scrapper_melee/titan_weapons/follow_through.json`).
 3. Run a Pylon test in-game to anchor DPS empirically.
 4. Re-examine after the captured TW/Bio guide to compare specific slotting against the meta.
 

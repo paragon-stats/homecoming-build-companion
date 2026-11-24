@@ -83,7 +83,7 @@ From its repository:
 | It reads and writes `.mbd` files, Mids share codes and the game's `/build_save` file | `/build_save` import is a way to start a session from a live character; not designed here |
 
 Two facts matter for reuse. Its game data comes from the live game client files, with MidsReborn's database "a reference only, never a source of truth".
-Its licence is GPL-3.0, and this repository has no licence yet, so its code is not reused here; its rule document covers pick rules, automatic grants, slot caps and piece eligibility.
+Its licence is GPL-3.0, the same as this repository's, and its rule document covers pick rules, automatic grants, slot caps and piece eligibility.
 Not checked on the live page: incarnate powers, Kheldian forms, the enhancement picker and an exemplar view.
 
 ## 4. The model

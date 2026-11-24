@@ -80,5 +80,3 @@ nothing posted since it was crawled.
 
 - [`scripts/forum_scrape/scrape.py`](../../scripts/forum_scrape/scrape.py) — `crawl_forum`,
     `is_covered`, `record_section`.
-- [`scripts/forum_scrape/crawl-status.ps1`](../../scripts/forum_scrape/crawl-status.ps1) — reads
-    the same section rows to report progress.

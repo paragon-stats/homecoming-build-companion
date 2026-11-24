@@ -29,7 +29,7 @@ COV_PACKAGE ?=
 .PHONY: bootstrap
 bootstrap: ## Bootstrap repo venv and dev tooling (cross-platform)
 ifeq ($(OS),Windows_NT)
-	pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/dev/Bootstrap-Venv.ps1
+	python -m scripts.dev.bootstrap_venv
 else
 	./scripts/dev/bootstrap_venv.sh
 endif
