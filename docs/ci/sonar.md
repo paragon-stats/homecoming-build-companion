@@ -29,7 +29,7 @@ The begin step sets `sonar.qualitygate.wait=true`, so the end step waits for Son
 A failed job is a failed `sonar` check.
 
 Pull requests from forks cannot read `SONAR_TOKEN`, so the job is skipped for them and reports as skipped.
-Dependabot pull requests run the scan, using the organisation's Dependabot secret of the same name.
+Dependabot pull requests are skipped the same way; the push to `main` analyses a merged bump.
 
 ## The rule gate
 
@@ -77,7 +77,7 @@ For cognitive complexity (`S3776`) outside C# the pull-request check is per file
 
 1. In SonarQube Cloud, organisation `paragon-stats`, create the project `paragon-stats_homecoming-build-companion` and bind it to this repository.
 2. Choose its quality gate.
-3. The organisation secret `SONAR_TOKEN` must be visible to this repository and, for Dependabot pull requests, present in the organisation's Dependabot secrets.
+3. The organisation Actions secret `SONAR_TOKEN`, which the workflow reads, must be visible to this repository.
 4. Open the pull request and wait for the first green `sonar` run.
 
 ## Make the check required
