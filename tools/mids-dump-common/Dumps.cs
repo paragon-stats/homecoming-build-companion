@@ -2,6 +2,7 @@
 // not as a library, because each harness is built against a different MidsReborn fork. The ToonX
 // using alias in each csproj names that fork's character class; MIDS4 marks the 4.0 build.
 
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -884,14 +885,30 @@ private static void WriteJson(string outDir, string name, object payload)
         Console.WriteLine($"wrote {path}");
     }
 
-private static void DumpVersion(string outDir)
+// The app name and version come from the installed Mids executable, the release that saves the
+    // .mbd files builds are checked against, not from the fork this harness is compiled with.
+    // MIDS_APP_EXE replaces the default install path.
+    private static bool DumpVersion(string outDir)
     {
+        string exe = Environment.GetEnvironmentVariable("MIDS_APP_EXE") is { Length: > 0 } named
+            ? named
+            : Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LoadedCamel", "MidsReborn", "MidsReborn.exe");
+        if (!File.Exists(exe))
+        {
+            Console.Error.WriteLine($"E24: installed Mids executable not found: {exe}; install Mids Reborn or set MIDS_APP_EXE to its MidsReborn.exe");
+            return false;
+        }
+
+        FileVersionInfo app = FileVersionInfo.GetVersionInfo(exe);
         WriteJson(outDir, "version.json", new
         {
+            AppName = app.ProductName,
+            AppVersion = app.FileVersion,
             DatabaseVersion = DatabaseAPI.Database.Version.ToString(),
             DatabaseAPI.DatabaseName,
             DumpedAtUtc = DateTime.UtcNow.ToString("o"),
         });
+        return true;
     }
 
 private static void DumpServerData(string outDir)
@@ -1567,7 +1584,11 @@ private static void DumpPowerIndex(string outDir)
         // null MidsContext.Character during the DB-level set_bonus_powers dump.
         MainModule.MidsController.Toon = new ToonX();
 
-        DumpVersion(outDir);
+        if (!DumpVersion(outDir))
+        {
+            return 2;
+        }
+
         DumpServerData(outDir);
         DumpArchetypes(outDir);
         DumpMaths(outDir);
