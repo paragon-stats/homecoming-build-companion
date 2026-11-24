@@ -75,7 +75,8 @@ The command sends the question to the model with the engine's tools attached, ru
 model calls in the local engine, sends the result back, and prints the model's final text. The
 provider defaults to `anthropic`. The key comes from the provider's variable
 (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `MISTRAL_API_KEY`) or from the variable named by
-`--api-key-env`; there is no option that takes a key.
+`--api-key-env`; there is no option that takes a key. For `anthropic`, the base address is
+`--base-url`, else the `ANTHROPIC_BASE_URL` environment variable, else `https://api.anthropic.com`.
 
 The tools are the same functions the MCP server exposes (`rules`, `check_legality`,
 `check_hard_limits`, `check_slotting`, `score`, `totals`, `set_bonus_lookup`, `power_lookup`, `chain`), listed in
@@ -92,4 +93,4 @@ command line. A caller's cancellation exits 1 without a message.
 Error codes E170 to E179 are reserved for `ask` (`AskErrorCodes`): E170 the build cannot be read,
 E171 the model was still calling tools at the round limit, E172 the provider did not answer in time,
 sent an unreadable reply or returned no text, E173 the reply stopped at the output limit (the
-partial text is still printed). Provider failures keep their own codes (E130 to E133, E140 to E142).
+partial text is still printed). Provider failures keep their own codes (E130 to E133, E140 to E143).

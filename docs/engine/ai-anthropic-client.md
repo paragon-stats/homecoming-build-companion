@@ -31,8 +31,12 @@ new AnthropicChatClient(model, baseUrl: null, apiKeyEnvironmentVariable: null, h
 ```
 
 - `model` is sent when `ChatOptions.ModelId` is unset.
-- `baseUrl` replaces `https://api.anthropic.com`, for a proxy or gateway. Requests go to
-  `<baseUrl>/v1/messages`.
+- `baseUrl` replaces the default base address, for a proxy or gateway. Requests go to
+  `<baseUrl>/v1/messages`. The default, `https://api.anthropic.com`, is the `AnthropicBaseUrl`
+  assembly metadata that `src/CohEngine.Ai/CohEngine.Ai.csproj` sets; a build without it fails with
+  `E143: the CohEngine.Ai assembly has no AnthropicBaseUrl metadata, ...` when no base URL is passed.
+  Through the factory and `ask`, `--base-url` wins, then the `ANTHROPIC_BASE_URL` environment
+  variable, then that default.
 - `apiKeyEnvironmentVariable` replaces `ANTHROPIC_API_KEY`.
 - `handler` replaces the network layer. Tests pass a fake `HttpMessageHandler`; production leaves it
   null and shares one `HttpClient` across clients. That client recycles pooled connections every

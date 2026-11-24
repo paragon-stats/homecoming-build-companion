@@ -26,5 +26,8 @@ public static class AiErrorCodes
 
         /// <summary>A tool result is neither a string nor a <c>JsonElement</c>, so a Native AOT build cannot serialize it.</summary>
         public const string UnsupportedToolResult = "E142";
+
+        /// <summary>The assembly carries no <c>AnthropicBaseUrl</c> metadata, or a blank one, so there is no default base address.</summary>
+        public const string MissingBaseUrl = "E143";
     }
 }

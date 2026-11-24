@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
@@ -20,7 +21,10 @@ public sealed class AnthropicChatClient : IChatClient
     /// <summary>The <c>max_tokens</c> sent when <see cref="ChatOptions.MaxOutputTokens"/> is unset; the API requires one.</summary>
     public const int DefaultMaxTokens = 1024;
 
-    private const string DefaultBaseUrl = "https://api.anthropic.com";
+    /// <summary>The environment variable that replaces the default base address when no base URL is passed.</summary>
+    public const string BaseUrlEnvironmentVariable = "ANTHROPIC_BASE_URL";
+
+    private const string BaseUrlMetadataKey = "AnthropicBaseUrl";
     private const string ApiVersion = "2023-06-01";
     private const string ToolUse = "tool_use";
 
@@ -39,10 +43,10 @@ public sealed class AnthropicChatClient : IChatClient
 
     /// <summary>Initializes a new instance of the <see cref="AnthropicChatClient"/> class.</summary>
     /// <param name="model">The model sent when <see cref="ChatOptions.ModelId"/> is unset.</param>
-    /// <param name="baseUrl">Replaces <c>https://api.anthropic.com</c> (for a proxy or gateway).</param>
+    /// <param name="baseUrl">Replaces the default base address from the assembly's <c>AnthropicBaseUrl</c> metadata (for a proxy or gateway).</param>
     /// <param name="apiKeyEnvironmentVariable">Replaces <c>ANTHROPIC_API_KEY</c>; the key is read from here and nowhere else.</param>
     /// <param name="handler">Replaces the network layer; tests pass a fake, production leaves it null.</param>
-    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E140).</exception>
+    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E140), or no base URL is passed and the default is missing (E143).</exception>
     public AnthropicChatClient(string model, string? baseUrl = null, string? apiKeyEnvironmentVariable = null, HttpMessageHandler? handler = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(model);
@@ -52,7 +56,7 @@ public sealed class AnthropicChatClient : IChatClient
             : throw new InvalidOperationException(
                 $"{AiErrorCodes.Anthropic.MissingKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
 
-        Uri root = new(baseUrl ?? DefaultBaseUrl);
+        Uri root = new(baseUrl ?? DefaultBaseUrl(typeof(AnthropicChatClient).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>()));
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
         metadata = new ChatClientMetadata("anthropic", root, model);
 
@@ -145,6 +149,19 @@ public sealed class AnthropicChatClient : IChatClient
         {
             http.Dispose();
         }
+    }
+
+    /// <summary>The default base address, from the <c>AnthropicBaseUrl</c> assembly metadata the project file sets.</summary>
+    /// <param name="metadata">The assembly's metadata attributes.</param>
+    /// <returns>The address.</returns>
+    /// <exception cref="InvalidOperationException">E143 when the metadata is missing or blank.</exception>
+    internal static string DefaultBaseUrl(IEnumerable<AssemblyMetadataAttribute> metadata)
+    {
+        string? value = metadata.FirstOrDefault(attribute => string.Equals(attribute.Key, BaseUrlMetadataKey, StringComparison.Ordinal))?.Value;
+        return string.IsNullOrWhiteSpace(value)
+            ? throw new InvalidOperationException(
+                $"{AiErrorCodes.Anthropic.MissingBaseUrl}: the CohEngine.Ai assembly has no {BaseUrlMetadataKey} metadata, so there is no default base address; rebuild it from its project file or pass --base-url")
+            : value;
     }
 
     /// <summary>Maps the conversation and options to the request body.</summary>
