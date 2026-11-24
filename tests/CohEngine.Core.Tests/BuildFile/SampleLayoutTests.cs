@@ -27,8 +27,8 @@ public sealed partial class SampleLayoutTests
         { ["community/scrapper/general/someone-dark-shield.mbd", "community/Scrapper/general/someone-dark-shield.mbd"], "differ only in letter case" },
     };
 
-    // Lower-case words joined by hyphens; a file name adds its extensions after dots.
-    [GeneratedRegex(@"^[a-z0-9]+(-[a-z0-9]+)*(\.[a-z0-9]+)*$", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    // Lower-case words joined by hyphens; a file name adds its extensions after dots, and an extension such as mids-totals.json may hold hyphens.
+    [GeneratedRegex(@"^[a-z0-9]+(-[a-z0-9]+)*(\.[a-z0-9]+(-[a-z0-9]+)*)*$", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
     private static partial Regex LowerCaseName { get; }
 
     // A revision replaces the file and git keeps the history, so v2, r4, rev3 or i25 does not belong in a name.
@@ -110,6 +110,7 @@ public sealed partial class SampleLayoutTests
             "README.md",
             "characters/account1/hero/main.mbd",
             "characters/account1/hero/main.playstyle.json",
+            "characters/account1/hero/main.mids-totals.json",
             "characters/account1/hero/pve.mbd",
             "characters/account1/hero/pvp.mxd",
             "reference/blaster/blapper/energy-energy-4-star.mbd",
