@@ -3,6 +3,12 @@
 # Install: pre-commit install
 # Run all on demand: pre-commit run --all-files
 
+# On Windows pre-commit always downloads Node through nodeenv, which asks for
+# the latest release; a pre-release such as 27.0.0-alpha breaks nodeenv's
+# version parsing. A pinned release skips that lookup.
+default_language_version:
+  node: 26.13.1
+
 repos:
   - repo: local
     hooks:
