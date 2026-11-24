@@ -20,7 +20,7 @@ def test_nested_test_fixtures_are_excluded(prop: str) -> None:
 def test_scan_skips_fork_and_dependabot_pull_requests_but_runs_on_push() -> None:
     match = re.search(r"^  sonar:\n(?:    #.*\n)*    if: (.+)$", _WORKFLOW.read_text(encoding="utf-8"), re.MULTILINE)
     assert match is not None
-    condition = match.group(1)
-    assert "github.event_name != 'pull_request' ||" in condition
-    assert "!github.event.pull_request.head.repo.fork" in condition
-    assert "github.actor != 'dependabot[bot]'" in condition
+    assert match.group(1) == (
+        "${{ github.event_name != 'pull_request' || "
+        "(!github.event.pull_request.head.repo.fork && github.actor != 'dependabot[bot]') }}"
+    )
