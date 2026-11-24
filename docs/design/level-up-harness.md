@@ -210,6 +210,7 @@ For a session whose goal is levelling efficiency, the loop adds these to its per
   Hasten at 6 instead of an attack leaves a gap in the chain until recharge is slotted; three Stamina slots at 13 instead of Fire Ball slots trade damage for fewer rests.
 - **When it pays off:** a power whose worth needs slots it does not yet have, or a pick that opens a later one, is shown with the level at which it starts to pay.
 
+Values at each level come from the game data's level tables, the same source as at 50.
 The figures for every level go into the record.
 A run reads back as the character's progress, and one request made with different choices can be compared level by level.
 Enhancements for this goal are chosen per level, from what can be slotted at that level, rather than once after the loop.
@@ -378,6 +379,4 @@ Each phase is one or more issues with tests, and each leaves the binary usable.
 - **Session state.** An MCP server is asked one call at a time. Where a session lives between calls (a file the client names, or state the server keeps) is undecided.
 - **How much a client sees.** A long offer list at every level costs tokens. The offer may need filtering by the goal's profile, without hiding legal choices.
 - **Kheldians.** Whether they have a first-time path like the Arachnos archetypes' is not yet read from the data.
-- **Enhancements while levelling.** Section 4.3.2 opens the enhance phase per level for a levelling goal, but which pieces can be slotted at each level, and at what cost, is not yet in the data.
-- **Figures for low levels.** The per-level figures of section 4.3.2 need enemy data and fight lengths below 50; the planning figures today are measured at 50.
 - **Incarnate rules by content.** Which incarnate choices a content mode forbids is known for four-star Lore pets and not catalogued otherwise.
