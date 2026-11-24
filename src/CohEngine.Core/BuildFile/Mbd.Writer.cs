@@ -17,7 +17,7 @@ public static partial class Mbd
     private const int ExemplarSlots = 2;
 
     /// <summary>Gets the provenance block of the database the Homecoming builds are written against.</summary>
-    public static BuildMetaData Homecoming { get; } = new("Mids Reborn", "3.8.6.0", "Homecoming", "2026.1.1242");
+    public static BuildMetaData Homecoming { get; } = new("Mids Reborn", new Version(3, 8, 6, 0).ToString(), "Homecoming", "2026.1.1242");
 
     /// <summary>
     /// The bytes of a <c>.mbd</c> file: indented two spaces, LF line endings, every character past 0x7E as a lowercase
@@ -49,7 +49,13 @@ public static partial class Mbd
             && digits.All(char.IsAsciiDigit)
             && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out int level)
             && level is >= 0 and <= MaxLevelText;
-        return loads ? null : $"{(value is null ? "null" : $"'{value}'")} is not a string of an integer from 0 to {MaxLevelText}";
+        if (loads)
+        {
+            return null;
+        }
+
+        string shown = value is null ? "null" : $"'{value}'";
+        return $"{shown} is not a string of an integer from 0 to {MaxLevelText}";
     }
 
     /// <summary>The inherent powers Mids adds to a character of <paramref name="level"/> that <paramref name="entryNames"/> lacks.</summary>
@@ -92,7 +98,7 @@ public static partial class Mbd
         int arity = PowersetsArity(document.PowerSets);
         if (arity != PowerSetsExpected)
         {
-            throw new InvalidDataException($"E73: PowerSets has {arity} entries; MidsReborn needs {PowerSetsExpected}; pad with empty strings");
+            throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E73: PowerSets has {arity} entries; MidsReborn needs {PowerSetsExpected}; pad with empty strings"));
         }
 
         string? problem = LevelTextProblem(document.Level);
@@ -190,7 +196,7 @@ public static partial class Mbd
         if (enhancement is not null && bounds is { } range && (enhancement.IoLevel < range.Min || enhancement.IoLevel > range.Max))
         {
             throw new InvalidDataException(
-                $"E74: {entry.PowerName} slot at level {slot.Level}: {uid} has IoLevel {enhancement.IoLevel}, outside {range.Min} to {range.Max}; write at most {range.Max}");
+                string.Create(CultureInfo.InvariantCulture, $"E74: {entry.PowerName} slot at level {slot.Level}: {uid} has IoLevel {enhancement.IoLevel}, outside {range.Min} to {range.Max}; write at most {range.Max}"));
         }
     }
 
@@ -209,7 +215,7 @@ public static partial class Mbd
             if (ordered[position].Level != granted)
             {
                 throw new InvalidDataException(
-                    $"E46: pick {position + 1} of {order.Count} ({ordered[position].Power}) is at level {ordered[position].Level}; the schedule grants it at level {granted}");
+                    string.Create(CultureInfo.InvariantCulture, $"E46: pick {position + 1} of {order.Count} ({ordered[position].Power}) is at level {ordered[position].Level}; the schedule grants it at level {granted}"));
             }
         }
 
@@ -224,7 +230,7 @@ public static partial class Mbd
         int total = need.Values.Sum();
         if (total > schedule.TotalSlotsGranted)
         {
-            throw new InvalidDataException($"E49: {total} added slots; the schedule grants {schedule.TotalSlotsGranted}");
+            throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E49: {total} added slots; the schedule grants {schedule.TotalSlotsGranted}"));
         }
 
         Dictionary<int, List<int>> placed = PinSlots(powers, need, capacity);
@@ -236,7 +242,7 @@ public static partial class Mbd
             if (count > reachable)
             {
                 throw new InvalidDataException(
-                    $"E49: {powers[index].Power} picked at level {powers[index].Level} needs {count} added slots; {reachable} can be placed from level {powers[index].Level}");
+                    string.Create(CultureInfo.InvariantCulture, $"E49: {powers[index].Power} picked at level {powers[index].Level} needs {count} added slots; {reachable} can be placed from level {powers[index].Level}"));
             }
         }
 
@@ -263,27 +269,36 @@ public static partial class Mbd
             if (pick.SlotLevels.Count != needed)
             {
                 string plural = pick.SlotLevels.Count != 1 ? "s" : string.Empty;
-                throw new InvalidDataException($"E48: {pick.Power} names {pick.SlotLevels.Count} slot level{plural} for {needed} added slots");
+                throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E48: {pick.Power} names {pick.SlotLevels.Count} slot level{plural} for {needed} added slots"));
             }
 
-            foreach (int level in pick.SlotLevels)
-            {
-                if (level < pick.Level)
-                {
-                    throw new InvalidDataException($"E47: {pick.Power} places a slot at level {level}, before it is picked at level {pick.Level}");
-                }
-
-                if (capacity.GetValueOrDefault(level, 0) < 1)
-                {
-                    throw new InvalidDataException($"E48: {pick.Power} places a slot at level {level}, which grants no slot");
-                }
-
-                capacity[level]--;
-                placed[index].Add(level);
-            }
+            placed[index].AddRange(Pinned(pick, pick.SlotLevels, capacity));
         }
 
         return placed;
+    }
+
+    /// <summary>A pick's named slot levels, each taken from the grants' capacity in order.</summary>
+    private static List<int> Pinned(PickSpec pick, IEnumerable<int> slotLevels, Dictionary<int, int> capacity)
+    {
+        List<int> levels = [];
+        foreach (int level in slotLevels)
+        {
+            if (level < pick.Level)
+            {
+                throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E47: {pick.Power} places a slot at level {level}, before it is picked at level {pick.Level}"));
+            }
+
+            if (capacity.GetValueOrDefault(level, 0) < 1)
+            {
+                throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E48: {pick.Power} places a slot at level {level}, which grants no slot"));
+            }
+
+            capacity[level]--;
+            levels.Add(level);
+        }
+
+        return levels;
     }
 
     // Whether the grants can still cover every remaining need: the latest grant goes to the latest pick.
@@ -314,11 +329,11 @@ public static partial class Mbd
             return null;
         }
 
-        (int Min, int Max) bounds = IoLevelBounds(uid, database)
+        (_, int max) = IoLevelBounds(uid, database)
             ?? throw new InvalidDataException($"E78: enhancement {uid} is not in enhancements.json; check the uid or re-dump the Mids data");
         string relative = relativeLevel ?? "Even";
         _ = OrdinalOf(EnhRelative, relative, "relative level");
-        return new MbdEnhancementDoc { Uid = uid, Grade = "None", IoLevel = bounds.Max, RelativeLevel = relative, Obtained = false };
+        return new MbdEnhancementDoc { Uid = uid, Grade = "None", IoLevel = max, RelativeLevel = relative, Obtained = false };
     }
 
     private static MbdPowerEntryDoc Entry(PickSpec pick, IReadOnlyList<int> added, MbdDb database)

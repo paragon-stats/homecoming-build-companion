@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace CohEngine.Core.Maths;
 
 /// <summary>
@@ -16,7 +18,7 @@ public static class F32
         float single = (float)value;
         if (float.IsInfinity(single) && !double.IsInfinity(value))
         {
-            throw new OverflowException(FormattableString.Invariant($"{value:R} is too large for single precision"));
+            throw new OverflowException(string.Create(CultureInfo.InvariantCulture, $"{value:R} is too large for single precision"));
         }
 
         return single;

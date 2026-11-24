@@ -138,11 +138,9 @@ public sealed class CombatLogClassifier
 
     private static AttackRoll? MatchRoll(CombatLogLine line, string? origin, ReadOnlySpan<char> body, string? characterName)
     {
-        ReadOnlySpan<char> counterpart;
-        ReadOnlySpan<char> tail;
         CombatDirection direction;
         bool hit;
-        if (Scan.After(body, "HIT ", out ReadOnlySpan<char> afterHit) && Scan.Split(afterHit, "! Your ", out counterpart, out tail))
+        if (Scan.After(body, "HIT ", out ReadOnlySpan<char> afterHit) && Scan.Split(afterHit, "! Your ", out ReadOnlySpan<char> counterpart, out ReadOnlySpan<char> tail))
         {
             direction = CombatDirection.Outgoing;
             hit = true;
@@ -204,21 +202,23 @@ public sealed class CombatLogClassifier
         return true;
     }
 
-    /// <summary>Handles "You hit T with your P for ..." and "S hits you with their P ...": damage and endurance in both directions.</summary>
-    private static RecognisedEvent? MatchHit(CombatLogLine line, string? origin, ReadOnlySpan<char> body)
+    /// <summary>Splits a hit line into the other party and the text after the power, outgoing first.</summary>
+    private static bool TrySplitHit(ReadOnlySpan<char> body, out ReadOnlySpan<char> counterpart, out ReadOnlySpan<char> rest, out CombatDirection direction)
     {
-        ReadOnlySpan<char> counterpart;
-        ReadOnlySpan<char> rest;
-        CombatDirection direction;
         if (Scan.After(body, "You hit ", out ReadOnlySpan<char> afterHit) && Scan.Split(afterHit, " with your ", out counterpart, out rest))
         {
             direction = CombatDirection.Outgoing;
+            return true;
         }
-        else if (Scan.Split(body, " hits you with their ", out counterpart, out rest))
-        {
-            direction = CombatDirection.Incoming;
-        }
-        else
+
+        direction = CombatDirection.Incoming;
+        return Scan.Split(body, " hits you with their ", out counterpart, out rest);
+    }
+
+    /// <summary>Handles "You hit T with your P for ..." and "S hits you with their P ...": damage and endurance in both directions.</summary>
+    private static RecognisedEvent? MatchHit(CombatLogLine line, string? origin, ReadOnlySpan<char> body)
+    {
+        if (!TrySplitHit(body, out ReadOnlySpan<char> counterpart, out ReadOnlySpan<char> rest, out CombatDirection direction))
         {
             return null;
         }
@@ -290,14 +290,14 @@ public sealed class CombatLogClassifier
             && Scan.TrimEnd(ref gain, " points of endurance.")
             && Scan.Number(gain, out decimal gained))
         {
-            return new EnduranceChange(line, EnduranceKind.Gained, null, gainPower.ToString(), gained, false);
+            return new EnduranceChange(line, EnduranceKind.Gained, Counterpart: null, gainPower.ToString(), gained, IsOverTime: false);
         }
 
         if (Scan.Split(body, " drains ", out ReadOnlySpan<char> costPower, out ReadOnlySpan<char> cost)
             && Scan.TrimEnd(ref cost, " points of your endurance.")
             && Scan.Number(cost, out decimal spent))
         {
-            return new EnduranceChange(line, EnduranceKind.Spent, null, costPower.ToString(), spent, false);
+            return new EnduranceChange(line, EnduranceKind.Spent, Counterpart: null, costPower.ToString(), spent, IsOverTime: false);
         }
 
         return null;
@@ -305,10 +305,9 @@ public sealed class CombatLogClassifier
 
     private static Heal? MatchHeal(CombatLogLine line, ReadOnlySpan<char> body)
     {
-        ReadOnlySpan<char> rest;
         string? healer;
         string? recipient;
-        if (Scan.After(body, "You are healed by your ", out rest))
+        if (Scan.After(body, "You are healed by your ", out ReadOnlySpan<char> rest))
         {
             healer = null;
             recipient = null;
@@ -383,7 +382,7 @@ public sealed class CombatLogClassifier
     {
         if (Scan.TrimStart(ref body, "You have defeated "))
         {
-            return new Defeat(line, null, body.ToString());
+            return new Defeat(line, Defeater: null, body.ToString());
         }
 
         if (Scan.Split(body, " has defeated ", out ReadOnlySpan<char> defeater, out ReadOnlySpan<char> victim))
@@ -413,7 +412,7 @@ public sealed class CombatLogClassifier
 
         if (rest.IsEmpty)
         {
-            return new ExperienceGained(line, experience, debt, 0, null);
+            return new ExperienceGained(line, experience, debt, Currency: 0, CurrencyName: null);
         }
 
         if (!(Scan.TrimStart(ref rest, ", and gain ") || Scan.TrimStart(ref rest, " and "))
