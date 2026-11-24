@@ -17,7 +17,7 @@ public static partial class Mbd
     private const int ExemplarSlots = 2;
 
     /// <summary>Gets the provenance block of the database the Homecoming builds are written against.</summary>
-    public static BuildMetaData Homecoming { get; } = new("Mids Reborn", new Version(3, 8, 6, 0).ToString(), "Homecoming", "2026.1.1242");
+    public static BuildMetaData Homecoming { get; } = new("Mids Reborn", "3.8.6.0", "Homecoming", "2026.1.1242");
 
     /// <summary>
     /// The bytes of a <c>.mbd</c> file: indented two spaces, LF line endings, every character past 0x7E as a lowercase

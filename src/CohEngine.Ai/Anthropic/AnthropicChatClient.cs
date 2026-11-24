@@ -20,10 +20,9 @@ public sealed class AnthropicChatClient : IChatClient
     /// <summary>The <c>max_tokens</c> sent when <see cref="ChatOptions.MaxOutputTokens"/> is unset; the API requires one.</summary>
     public const int DefaultMaxTokens = 1024;
 
+    private const string DefaultBaseUrl = "https://api.anthropic.com";
     private const string ApiVersion = "2023-06-01";
     private const string ToolUse = "tool_use";
-
-    private static readonly Uri DefaultBaseUri = new UriBuilder(Uri.UriSchemeHttps, "api.anthropic.com").Uri;
 
     // One connection pool for every client that brings no handler. The pool recycles connections so DNS
     // changes are seen, and the timeout allows a long generation that the 100 s default would cut off.
@@ -53,7 +52,7 @@ public sealed class AnthropicChatClient : IChatClient
             : throw new InvalidOperationException(
                 $"{AiErrorCodes.Anthropic.MissingKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
 
-        Uri root = baseUrl is null ? DefaultBaseUri : new(baseUrl);
+        Uri root = new(baseUrl ?? DefaultBaseUrl);
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
         metadata = new ChatClientMetadata("anthropic", root, model);
 

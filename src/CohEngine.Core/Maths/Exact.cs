@@ -13,7 +13,6 @@ public static class Exact
     /// <returns>True when the values compare equal under IEEE-754 equality.</returns>
     public static bool Same(double left, double right)
     {
-        // Neither ordering holds for NaN, and both hold for 0.0 against -0.0: exactly IEEE-754 equality.
-        return left <= right && left >= right;
+        return left == right;
     }
 }
