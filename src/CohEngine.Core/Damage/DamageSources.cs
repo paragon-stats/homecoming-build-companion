@@ -33,9 +33,7 @@ public static class DamageSources
             context.Movement,
             context.Scenario,
             context.Budget,
-            context.TimelineAvailable,
-            context.OtherDrainPerSec,
-            context.Assume("chain.min_cycles", 4.0));
+            new PlanLimits(context.TimelineAvailable, context.OtherDrainPerSec, context.Assume("chain.min_cycles", 4.0)));
     }
 
     /// <summary>The planner's pick: best affordable rotation, else the best overall, else null.</summary>
@@ -65,19 +63,7 @@ public static class DamageSources
             .. option.Rotation.Select(name => (name, F32.Round(F32.Round(byName[name].Damage * context.Scenario.TargetsHit(byName[name].Profile)) / option.CycleTime * context.TimelineAvailable))),
         ];
         double cycles = F32.Round(option.TimeToEmpty / option.CycleTime);
-        string kind;
-        if (option.Sustainable)
-        {
-            kind = "sustainable";
-        }
-        else if (cycles >= context.Assume("chain.min_cycles", 4.0))
-        {
-            kind = $"affordable: empties in {PyFloat.Fixed(option.TimeToEmpty, 1)} s, {PyFloat.Fixed(cycles, 0)} cycles";
-        }
-        else
-        {
-            kind = $"not affordable (best overall): empties in {PyFloat.Fixed(option.TimeToEmpty, 1)} s, {PyFloat.Fixed(cycles, 1)} cycles";
-        }
+        string kind = Affordability(option, cycles, context);
 
         return new SourceResult
         {
@@ -258,5 +244,20 @@ public static class DamageSources
     {
         double cast = AttackChains.ArcanaCastTime(attack.CastTime);
         return (cast, F32.Round(cast + attack.RechargeTime));
+    }
+
+    private static string Affordability(ChainOption option, double cycles, DamageContext context)
+    {
+        if (option.Sustainable)
+        {
+            return "sustainable";
+        }
+
+        if (cycles >= context.Assume("chain.min_cycles", 4.0))
+        {
+            return $"affordable: empties in {PyFloat.Fixed(option.TimeToEmpty, 1)} s, {PyFloat.Fixed(cycles, 0)} cycles";
+        }
+
+        return $"not affordable (best overall): empties in {PyFloat.Fixed(option.TimeToEmpty, 1)} s, {PyFloat.Fixed(cycles, 1)} cycles";
     }
 }

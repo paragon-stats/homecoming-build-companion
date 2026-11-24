@@ -99,7 +99,7 @@ public static class CanonicalJson
     /// <returns>The root element.</returns>
     public static JsonElement ReadJson(string path, string code)
     {
-        string text = File.ReadAllText(path, new UTF8Encoding(false));
+        string text = File.ReadAllText(path, new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
         try
         {
             using JsonDocument document = JsonDocument.Parse(text);
@@ -134,40 +134,7 @@ public static class CanonicalJson
         List<string> missing = [];
         foreach (string name in fullNames)
         {
-            string derived = CanonicalPowerPath(powersRoot, name);
-            IEnumerable<string> candidates = [derived];
-            if (!File.Exists(derived) || new FileInfo(derived).Length == 0)
-            {
-                candidates = Directory.Exists(powersRoot) ? [.. Directory.EnumerateFiles(powersRoot, Path.GetFileName(derived), SearchOption.AllDirectories).Where(file => new FileInfo(file).Length > 0)] : [];
-            }
-
-            JsonElement? data = null;
-            EngineException? corrupt = null;
-            foreach (string candidate in candidates)
-            {
-                JsonElement parsed;
-                try
-                {
-                    parsed = ReadJson(candidate, ErrorCodes.E38);
-                }
-                catch (EngineException error)
-                {
-                    corrupt = error;
-                    continue;
-                }
-
-                if (string.Equals(parsed.Opt("full_name")?.GetString(), name, StringComparison.Ordinal))
-                {
-                    data = parsed;
-                    break;
-                }
-            }
-
-            if (data is null && corrupt is not null)
-            {
-                throw corrupt;
-            }
-
+            JsonElement? data = FindPower(Candidates(powersRoot, name), name);
             if (data is null)
             {
                 missing.Add(name);
@@ -225,5 +192,48 @@ public static class CanonicalJson
 
             return value;
         };
+    }
+
+    /// <summary>The derived file when it holds data, else every non-empty file of the same name under the powers directory.</summary>
+    private static IEnumerable<string> Candidates(string powersRoot, string name)
+    {
+        string derived = CanonicalPowerPath(powersRoot, name);
+        if (File.Exists(derived) && new FileInfo(derived).Length != 0)
+        {
+            return [derived];
+        }
+
+        return Directory.Exists(powersRoot) ? [.. Directory.EnumerateFiles(powersRoot, Path.GetFileName(derived), SearchOption.AllDirectories).Where(file => new FileInfo(file).Length > 0)] : [];
+    }
+
+    /// <summary>The first candidate whose full_name matches, null for none, or the last corrupt file's error when none matches.</summary>
+    private static JsonElement? FindPower(IEnumerable<string> candidates, string name)
+    {
+        EngineException? corrupt = null;
+        foreach (string candidate in candidates)
+        {
+            JsonElement parsed;
+            try
+            {
+                parsed = ReadJson(candidate, ErrorCodes.E38);
+            }
+            catch (EngineException error)
+            {
+                corrupt = error;
+                continue;
+            }
+
+            if (string.Equals(parsed.Opt("full_name")?.GetString(), name, StringComparison.Ordinal))
+            {
+                return parsed;
+            }
+        }
+
+        if (corrupt is not null)
+        {
+            throw corrupt;
+        }
+
+        return null;
     }
 }

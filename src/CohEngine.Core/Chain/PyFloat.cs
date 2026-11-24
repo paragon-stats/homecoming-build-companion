@@ -51,7 +51,7 @@ public static class PyFloat
         BigInteger scaled = RoundHalfEven(numerator * BigInteger.Pow(10, digits), denominator);
         string text = scaled.ToString(CultureInfo.InvariantCulture).PadLeft(digits + 1, '0');
         string body = digits == 0 ? text : text[..^digits] + "." + text[^digits..];
-        return (double.IsNegative(value) ? "-" : plus ? "+" : string.Empty) + body;
+        return Sign(value, plus) + body;
     }
 
     /// <summary>The value times 100 as a double, fixed to <paramref name="digits"/>, then a percent sign.</summary>
@@ -109,9 +109,24 @@ public static class PyFloat
         return mantissa + "e" + (exponent < 0 ? "-" : "+") + Math.Abs(exponent).ToString("00", CultureInfo.InvariantCulture);
     }
 
+    private static string Sign(double value, bool plus)
+    {
+        if (double.IsNegative(value))
+        {
+            return "-";
+        }
+
+        return plus ? "+" : string.Empty;
+    }
+
     private static string NonFinite(double value)
     {
-        return double.IsNaN(value) ? "nan" : value > 0 ? "inf" : "-inf";
+        if (double.IsNaN(value))
+        {
+            return "nan";
+        }
+
+        return value > 0 ? "inf" : "-inf";
     }
 
     private static BigInteger ExactFraction(double value, out BigInteger denominator)

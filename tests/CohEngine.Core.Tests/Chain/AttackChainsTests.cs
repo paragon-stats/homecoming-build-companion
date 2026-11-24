@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
@@ -30,7 +32,7 @@ public sealed class AttackChainsTests
 
     private static ChainPlan Plan(IEnumerable<ChainAttack> attacks, Stance stance = Stance.Melee, Movement? movement = null, EnduranceBudget? budget = null, Scenario? scenario = null, double timeline = 1.0, double otherDrain = 0.0, double minCycles = 4.0, int maxAttacks = 12)
     {
-        return AttackChains.Plan(attacks, stance, movement ?? Move, scenario ?? new Scenario(1), budget ?? Rich, timeline, otherDrain, minCycles, maxAttacks);
+        return AttackChains.Plan(attacks, stance, movement ?? Move, scenario ?? new Scenario(1), budget ?? Rich, new PlanLimits(timeline, otherDrain, minCycles, maxAttacks));
     }
 
     private static string Names(ChainOption option)
@@ -43,15 +45,15 @@ public sealed class AttackChainsTests
     {
         AttackChain chain = AttackChains.Build([Stat("Toggle", 0.0, 0.0, 0.0, attack: false)]);
 
-        Assert.Equal("0 True 0 0", $"{chain.Rotation.Count} {chain.GapFree} {chain.EndPerSec} {chain.CycleTime}");
+        Assert.Equal("0 True 0 0", string.Create(CultureInfo.InvariantCulture, $"{chain.Rotation.Count} {chain.GapFree} {chain.EndPerSec} {chain.CycleTime}"));
     }
 
     [Fact]
     public void A_gap_free_chain_cycles_on_cast_time()
     {
-        AttackChain chain = AttackChains.Build([.. Enumerable.Range(0, 3).Select(index => Stat($"A{index}", 1.0, 1.0, 6.0))]);
+        AttackChain chain = AttackChains.Build([.. Enumerable.Range(0, 3).Select(index => Stat(string.Create(CultureInfo.InvariantCulture, $"A{index}"), 1.0, 1.0, 6.0))]);
 
-        Assert.Equal($"True {F32.Round(3.0)} {F32.Round(3.0)} 0 {F32.Round(18.0 / 3.0)}", $"{chain.GapFree} {chain.CastSum} {chain.CycleTime} {chain.Gap} {chain.EndPerSec}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"True {F32.Round(3.0)} {F32.Round(3.0)} 0 {F32.Round(18.0 / 3.0)}"), string.Create(CultureInfo.InvariantCulture, $"{chain.GapFree} {chain.CastSum} {chain.CycleTime} {chain.Gap} {chain.EndPerSec}"));
     }
 
     [Fact]
@@ -59,7 +61,7 @@ public sealed class AttackChainsTests
     {
         AttackChain chain = AttackChains.Build([Stat("A", 5.0, 1.0, 5.0), Stat("B", 1.0, 1.0, 5.0)]);
 
-        Assert.Equal($"False 2 6 4 {F32.Round(10.0 / 6.0)}", $"{chain.GapFree} {chain.CastSum} {chain.CycleTime} {chain.Gap} {chain.EndPerSec}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"False 2 6 4 {F32.Round(10.0 / 6.0)}"), string.Create(CultureInfo.InvariantCulture, $"{chain.GapFree} {chain.CastSum} {chain.CycleTime} {chain.Gap} {chain.EndPerSec}"));
     }
 
     [Fact]
@@ -75,7 +77,7 @@ public sealed class AttackChainsTests
     {
         AttackChain chain = AttackChains.Build([Stat("Attack", 1.0, 1.0, 5.0), Stat("Heal", 10.0, 2.0, 20.0, attack: false)]);
 
-        Assert.Equal($"Attack {F32.Round(2.0)} {F32.Round(5.0 / 2.0)}", $"{string.Join(',', chain.Rotation)} {chain.CycleTime} {chain.EndPerSec}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"Attack {F32.Round(2.0)} {F32.Round(5.0 / 2.0)}"), string.Create(CultureInfo.InvariantCulture, $"{string.Join(',', chain.Rotation)} {chain.CycleTime} {chain.EndPerSec}"));
     }
 
     [Fact]
@@ -87,7 +89,7 @@ public sealed class AttackChainsTests
     [Fact]
     public void Arcana_cast_time_matches_mids()
     {
-        Assert.Equal($"1.188 1.848 {F32.Round(AttackChains.ArcanaCastTime(1.0))}", $"{Math.Round(AttackChains.ArcanaCastTime(1.0), 6)} {Math.Round(AttackChains.ArcanaCastTime(1.67), 6)} {AttackChains.ArcanaCastTime(1.0)}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"1.188 1.848 {F32.Round(AttackChains.ArcanaCastTime(1.0))}"), string.Create(CultureInfo.InvariantCulture, $"{Math.Round(AttackChains.ArcanaCastTime(1.0), 6, MidpointRounding.ToEven)} {Math.Round(AttackChains.ArcanaCastTime(1.67), 6, MidpointRounding.ToEven)} {AttackChains.ArcanaCastTime(1.0)}"));
     }
 
     [Fact]
@@ -97,7 +99,7 @@ public sealed class AttackChainsTests
         ChainOption best = plan.BestOverall!;
 
         Assert.Equal("A,B False 7 0 True", $"{Names(best)} {best.GapFree} {plan.Ranked.Count} {plan.Dropped.Count} {ReferenceEquals(plan.Ranked[0], best)}");
-        Assert.Equal(new[] { 3.188, 0.812, 160.0 / 3.188, 10.0 / 3.188 }, new[] { best.CycleTime, best.Gap, best.Dps, best.EndPerSec }, Tolerant);
+        Assert.Equal([3.188, 0.812, 160.0 / 3.188, 10.0 / 3.188], [best.CycleTime, best.Gap, best.Dps, best.EndPerSec], Tolerant);
     }
 
     [Fact]
@@ -105,7 +107,7 @@ public sealed class AttackChainsTests
     {
         ChainOption full = Plan([Atk("A"), Atk("B"), Atk("C")]).Ranked.First(option => option.Rotation.Count == 3);
 
-        Assert.Equal("True 3.564", $"{full.GapFree && full.Gap <= 0.0} {Math.Round(full.CycleTime, 5)}");
+        Assert.Equal("True 3.564", string.Create(CultureInfo.InvariantCulture, $"{full.GapFree && full.Gap <= 0.0} {Math.Round(full.CycleTime, 5, MidpointRounding.ToEven)}"));
     }
 
     [Fact]
@@ -137,7 +139,7 @@ public sealed class AttackChainsTests
         ChainOption withDebuff = plan.Ranked.First(option => option.Rotation.Count == 2 && Names(option).Contains("Debuff", StringComparison.Ordinal) && Names(option).Contains("Main", StringComparison.Ordinal));
         ChainOption withPlain = plan.Ranked.First(option => option.Rotation.Count == 2 && Names(option).Contains("Plain", StringComparison.Ordinal) && Names(option).Contains("Main", StringComparison.Ordinal));
 
-        Assert.Equal("0.5 0 True True True", $"{withDebuff.ResDebuff} {withPlain.ResDebuff} {withDebuff.Dps < withPlain.Dps} {withDebuff.Dps * (1 + withDebuff.ResDebuff) > withPlain.Dps} {plan.Ranked.ToList().IndexOf(withDebuff) < plan.Ranked.ToList().IndexOf(withPlain)}");
+        Assert.Equal("0.5 0 True True True", string.Create(CultureInfo.InvariantCulture, $"{withDebuff.ResDebuff} {withPlain.ResDebuff} {withDebuff.Dps < withPlain.Dps} {withDebuff.Dps * (1 + withDebuff.ResDebuff) > withPlain.Dps} {plan.Ranked.ToList().IndexOf(withDebuff) < plan.Ranked.ToList().IndexOf(withPlain)}"));
     }
 
     [Fact]
@@ -188,7 +190,7 @@ public sealed class AttackChainsTests
         Dictionary<string, ChainOption> byRotation = plan.Ranked.ToDictionary(Names, StringComparer.Ordinal);
         ChainOption mixed = byRotation["M,R"];
 
-        Assert.Equal($"2 4 {Math.Round(Math.Max(2.376 + 4.0, 1.188 + 9.0), 5)} Hybrid 0 0 0", $"{mixed.Switches} {mixed.MoveTime} {Math.Round(mixed.CycleTime, 5)} {mixed.Stance} {byRotation["R"].Switches} {byRotation["R"].MoveTime} {byRotation["M"].Switches}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"2 4 {Math.Round(Math.Max(2.376 + 4.0, 1.188 + 9.0), 5, MidpointRounding.ToEven)} Hybrid 0 0 0"), string.Create(CultureInfo.InvariantCulture, $"{mixed.Switches} {mixed.MoveTime} {Math.Round(mixed.CycleTime, 5, MidpointRounding.ToEven)} {mixed.Stance} {byRotation["R"].Switches} {byRotation["R"].MoveTime} {byRotation["M"].Switches}"));
     }
 
     [Fact]
@@ -203,7 +205,7 @@ public sealed class AttackChainsTests
         Movement stuck = new(0.0, 20.0);
         ChainAttack[] attacks = [Atk("M"), Atk("R", melee: false)];
 
-        Assert.Equal("M|R 3", string.Join('|', Plan(attacks, Stance.Hybrid, stuck).Ranked.Select(Names).Order(StringComparer.Ordinal)) + " " + Plan(attacks, Stance.Melee, stuck).Ranked.Count);
+        Assert.Equal("M|R 3", string.Join('|', Plan(attacks, Stance.Hybrid, stuck).Ranked.Select(Names).Order(StringComparer.Ordinal)) + " " + Plan(attacks, Stance.Melee, stuck).Ranked.Count.ToString(CultureInfo.InvariantCulture));
     }
 
     [Fact]
@@ -211,7 +213,7 @@ public sealed class AttackChainsTests
     {
         ChainAttack aoe = Atk("Nova", 100.0, shape: Shape.TargetedAoe, maxTargets: 10);
 
-        Assert.Equal("100 500", $"{Plan([aoe], scenario: new Scenario(1)).BestOverall!.DamagePerCycle} {Plan([aoe], scenario: new Scenario(5)).BestOverall!.DamagePerCycle}");
+        Assert.Equal("100 500", string.Create(CultureInfo.InvariantCulture, $"{Plan([aoe], scenario: new Scenario(1)).BestOverall!.DamagePerCycle} {Plan([aoe], scenario: new Scenario(5)).BestOverall!.DamagePerCycle}"));
     }
 
     [Fact]
@@ -220,7 +222,7 @@ public sealed class AttackChainsTests
         ChainOption full = Plan([Atk("A")]).BestOverall!;
         ChainOption half = Plan([Atk("A")], timeline: 0.5).BestOverall!;
 
-        Assert.Equal(new[] { full.Dps / 2.0, full.EndPerSec / 2.0, full.CycleTime }, new[] { half.Dps, half.EndPerSec, half.CycleTime }, Tolerant);
+        Assert.Equal([full.Dps / 2.0, full.EndPerSec / 2.0, full.CycleTime], [half.Dps, half.EndPerSec, half.CycleTime], Tolerant);
     }
 
     [Theory]
@@ -257,7 +259,7 @@ public sealed class AttackChainsTests
     [Fact]
     public void Twelve_attacks_search_all_4095_subsets()
     {
-        Assert.Equal(4095, Plan([.. Enumerable.Range(0, 12).Select(index => Atk($"P{index:00}", 10.0 + index, recharge: 2.0 + index))]).Ranked.Count);
+        Assert.Equal(4095, Plan([.. Enumerable.Range(0, 12).Select(index => Atk(string.Create(CultureInfo.InvariantCulture, $"P{index:00}"), 10.0 + index, recharge: 2.0 + index))]).Ranked.Count);
     }
 
     [Fact]
@@ -295,7 +297,7 @@ public sealed class AttackChainsTests
     {
         ChainPlan plan = Plan([Atk("M"), Atk("R", melee: false)], Stance.Hybrid, new Movement(1.0, 60.0));
 
-        Assert.Equal("0 1", $"{plan.BestOverall!.Switches} {plan.BestOverall.Rotation.Count}");
+        Assert.Equal("0 1", string.Create(CultureInfo.InvariantCulture, $"{plan.BestOverall!.Switches} {plan.BestOverall.Rotation.Count}"));
     }
 
     private static bool Tolerant(double left, double right)

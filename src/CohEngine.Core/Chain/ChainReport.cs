@@ -22,6 +22,8 @@ public static class ChainReport
 
     private const int DefenseMelee = 10;
     private const int DefenseRanged = 11;
+    private const string AttacksKey = "attacks";
+    private const string SustainableKey = "sustainable";
 
     private static readonly string[] PetDataGaps = ["E60", "E61", "E62"];
     private static readonly string[] CoreTypes = ["Smashing_Dmg", "Lethal_Dmg", "Fire_Dmg", "Cold_Dmg", "Energy_Dmg", "Negative_Energy_Dmg", "Psionic_Dmg", "Toxic_Dmg"];
@@ -139,7 +141,7 @@ public static class ChainReport
     /// <exception cref="EngineException">E65 to E71 as the Python port raises them; loaders raise their own codes.</exception>
     public static ChainSetup BuildChainSetup(ChainRequest request)
     {
-        return BuildChainSetup(request, null);
+        return BuildChainSetup(request, hooks: null);
     }
 
     /// <summary>Evaluates the damage model for each stance and form and folds the chain rules over it.</summary>
@@ -236,11 +238,11 @@ public static class ChainReport
                     ? null
                     : new PyObject
                     {
-                        { "attacks", chain.Rotation.Select(name => (object?)name).ToList() },
+                        { AttacksKey, chain.Rotation.Cast<object?>().ToList() },
                         { "cycle_time_s", chain.CycleTime },
                         { "gap_s", chain.Gap },
                         { "move_time_s", chain.MoveTime },
-                        { "sustainable", chain.Sustainable },
+                        { SustainableKey, chain.Sustainable },
                     }
             },
             {
@@ -271,7 +273,7 @@ public static class ChainReport
                     { "uptime", modifier.Uptime },
                     { "factor", modifier.Scale(setup.Context.DamageBuffBaseline) },
                     { "assumption", modifier.Assumption },
-                    { "applies_to", modifier.AppliesTo?.Order(StringComparer.Ordinal).Select(name => (object?)name).ToList() },
+                    { "applies_to", modifier.AppliesTo?.Order(StringComparer.Ordinal).Cast<object?>().ToList() },
                 }).ToList()
             },
             {
@@ -307,25 +309,7 @@ public static class ChainReport
         PyObject health = (PyObject)Get(data, "health")!;
         string form = (string)Get(data, "form")!;
         List<string> lines = [$"== {(string)Get(data, "stance")!} stance{(form.Length > 0 ? $", {form} form" : string.Empty)} =="];
-        if (rotation is null)
-        {
-            lines.Add("rotation: none (no chain attack is usable in this stance)");
-        }
-        else
-        {
-            lines.Add($"rotation: {string.Join(" > ", (List<object?>)Get(rotation, "attacks")!)}");
-            lines.Add(
-                $"  cycle {PyFloat.Fixed((double)Get(rotation, "cycle_time_s")!, 2)} s, gap {PyFloat.Fixed((double)Get(rotation, "gap_s")!, 2)} s, "
-                + $"move {PyFloat.Fixed((double)Get(rotation, "move_time_s")!, 2)} s, {((bool)Get(rotation, "sustainable")! ? "sustainable" : "not sustainable")}");
-        }
-
-        PyObject alternatives = (PyObject)Get(data, "alternatives")!;
-        foreach ((string key, string title) in new[] { ("best_sustainable", "best sustainable"), ("best_overall", "best overall") })
-        {
-            PyObject? alt = (PyObject?)Get(alternatives, key);
-            string shown = alt is null ? "none" : $"{string.Join(" > ", (List<object?>)Get(alt, "attacks")!)} (chain {PyFloat.Fixed((double)Get(alt, "chain_dps")!, 1)} DPS)";
-            lines.Add($"  {title}: {shown}");
-        }
+        lines.AddRange(RotationLines(rotation, (PyObject)Get(data, "alternatives")!));
 
         lines.Add("dps (scaled; items below each layer are before modifiers):");
         PyObject labels = (PyObject)Get(dps, "labels")!;
@@ -359,10 +343,10 @@ public static class ChainReport
             $"endurance: max {PyFloat.Fixed((double)Get(endurance, "max")!, 1)}, recovery {PyFloat.Fixed((double)Get(endurance, "recovery_per_s")!, 2)}/s, "
             + $"toggles {PyFloat.Fixed((double)Get(endurance, "toggle_drain_per_s")!, 2)}/s, chain {PyFloat.Fixed(AsDouble(Get(endurance, "chain_drain_per_s")), 2)}/s, "
             + $"other {PyFloat.Fixed((double)Get(endurance, "other_drain_per_s")!, 2)}/s, net {PyFloat.Fixed((double)Get(endurance, "net_per_s")!, 2, plus: true)}/s, "
-            + $"time to empty {(tte is null ? "sustainable" : PyFloat.Fixed((double)tte, 1) + " s")}");
+            + $"time to empty {(tte is null ? SustainableKey : PyFloat.Fixed((double)tte, 1) + " s")}");
         lines.Add($"health: max {PyFloat.Fixed((double)Get(health, "max_hp")!, 1)}, regen {PyFloat.Fixed((double)Get(health, "regen_per_sec")!, 2)}/s");
         lines.AddRange(result.Diagnostics.Select(item => item.FormatText()));
-        return string.Join("\n", lines);
+        return string.Join('\n', lines);
     }
 
     internal static ChainSetup BuildChainSetup(ChainRequest request, ChainHooks? hooks)
@@ -535,9 +519,9 @@ public static class ChainReport
             ? null
             : new PyObject
             {
-                { "attacks", option.Rotation.Select(name => (object?)name).ToList() },
+                { AttacksKey, option.Rotation.Cast<object?>().ToList() },
                 { "chain_dps", option.Dps },
-                { "sustainable", option.Sustainable },
+                { SustainableKey, option.Sustainable },
             };
     }
 
@@ -577,6 +561,32 @@ public static class ChainReport
     {
         bool clickBuff = string.Equals(reference.PowerType, "Click", StringComparison.Ordinal) && !Exact.Same(reference.SelfDamageBuff, 0.0);
         return !Exact.Same(reference.DamagePerActivation, 0.0) || clickBuff || !Exact.Same(reference.TargetResDebuff, 0.0);
+    }
+
+    /// <summary>The text block's rotation lines, then its two alternatives.</summary>
+    private static List<string> RotationLines(PyObject? rotation, PyObject alternatives)
+    {
+        List<string> lines = [];
+        if (rotation is null)
+        {
+            lines.Add("rotation: none (no chain attack is usable in this stance)");
+        }
+        else
+        {
+            lines.Add($"rotation: {string.Join(" > ", (List<object?>)Get(rotation, AttacksKey)!)}");
+            lines.Add(
+                $"  cycle {PyFloat.Fixed((double)Get(rotation, "cycle_time_s")!, 2)} s, gap {PyFloat.Fixed((double)Get(rotation, "gap_s")!, 2)} s, "
+                + $"move {PyFloat.Fixed((double)Get(rotation, "move_time_s")!, 2)} s, {((bool)Get(rotation, SustainableKey)! ? SustainableKey : "not sustainable")}");
+        }
+
+        foreach ((string key, string title) in new[] { ("best_sustainable", "best sustainable"), ("best_overall", "best overall") })
+        {
+            PyObject? alt = (PyObject?)Get(alternatives, key);
+            string shown = alt is null ? "none" : $"{string.Join(" > ", (List<object?>)Get(alt, AttacksKey)!)} (chain {PyFloat.Fixed((double)Get(alt, "chain_dps")!, 1)} DPS)";
+            lines.Add($"  {title}: {shown}");
+        }
+
+        return lines;
     }
 
     private static bool Reportable(string name)

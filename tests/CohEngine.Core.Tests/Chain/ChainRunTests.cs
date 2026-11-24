@@ -103,7 +103,7 @@ public sealed class ChainRunTests
     [Fact]
     public void A_missing_clicks_off_dump_and_a_category_disagreement_are_info_findings()
     {
-        ChainAttack disagreeing = ChainFactory.Attack("Far", delivery: Delivery.Melee) with { Profile = ChainFactory.Profile(delivery: Delivery.Melee) with { SetCategories = ["Ranged Damage"] } };
+        ChainAttack disagreeing = ChainFactory.Attack("Far") with { Profile = ChainFactory.Profile(delivery: Delivery.Melee) with { SetCategories = ["Ranged Damage"] } };
         ChainSetup setup = Synthetic([disagreeing]) with { ClicksAlwaysOn = true };
 
         Assert.Equal(2, Rules(setup).Count(rule => string.Equals(rule, "P-CHAIN-002 info", StringComparison.Ordinal)));

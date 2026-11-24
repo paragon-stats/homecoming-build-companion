@@ -81,7 +81,7 @@ public static class ChainCommand
         IReadOnlyList<StanceReport> results = ChainReport.RunChain(setup, stances, display, options.Form is null ? null : [options.Form]);
         output.Write((string.Equals(options.Format, "json", StringComparison.Ordinal) ? PyJson.Dumps(results.Select(result => (object?)ChainReport.StanceToJson(setup, result)).ToList()) : string.Join("\n\n", results.Select(result => ChainReport.StanceToText(setup, result)))) + "\n");
         IEnumerable<string> severities = results.SelectMany(result => result.Diagnostics).Select(diagnostic => diagnostic.Severity);
-        return severities.Contains("error", StringComparer.Ordinal) ? 1 : severities.Contains("warning", StringComparer.Ordinal) ? 2 : 0;
+        return severities.Contains("error", StringComparer.Ordinal) ? 1 : WarningExitCode(severities);
     }
 
     private static Options? Parse(IReadOnlyList<string> args, TextWriter error)
@@ -89,16 +89,10 @@ public static class ChainCommand
         Options options = new();
         List<string> assume = [];
         string? build = null;
-        for (int i = 0; i < args.Count; i++)
+        int i = 0;
+        while (i < args.Count)
         {
-            string token = args[i];
-            string? inline = null;
-            if (token.StartsWith("--", StringComparison.Ordinal) && token.Contains('=', StringComparison.Ordinal))
-            {
-                inline = token[(token.IndexOf('=', StringComparison.Ordinal) + 1)..];
-                token = token[..token.IndexOf('=', StringComparison.Ordinal)];
-            }
-
+            (string token, string? inline) = SplitInline(args[i++]);
             if (!token.StartsWith("--", StringComparison.Ordinal))
             {
                 if (build is not null)
@@ -110,7 +104,7 @@ public static class ChainCommand
                 continue;
             }
 
-            string? value = inline ?? (i + 1 < args.Count ? args[i + 1] : null);
+            string? value = inline ?? NextArgument(args, i);
             if (value is null)
             {
                 return UsageError(error, $"argument {token}: expected one argument");
@@ -134,6 +128,28 @@ public static class ChainCommand
         }
 
         return options with { BuildDir = build, Assume = assume };
+    }
+
+    private static int WarningExitCode(IEnumerable<string> severities)
+    {
+        return severities.Contains("warning", StringComparer.Ordinal) ? 2 : 0;
+    }
+
+    /// <summary>An option written as <c>--name=value</c> split into name and value; any other token has no inline value.</summary>
+    private static (string Token, string? Inline) SplitInline(string token)
+    {
+        if (token.StartsWith("--", StringComparison.Ordinal) && token.Contains('=', StringComparison.Ordinal))
+        {
+            int equals = token.IndexOf('=', StringComparison.Ordinal);
+            return (token[..equals], token[(equals + 1)..]);
+        }
+
+        return (token, null);
+    }
+
+    private static string? NextArgument(IReadOnlyList<string> args, int index)
+    {
+        return index < args.Count ? args[index] : null;
     }
 
     private static string? Apply(Options options, List<string> assume, string name, string value)
