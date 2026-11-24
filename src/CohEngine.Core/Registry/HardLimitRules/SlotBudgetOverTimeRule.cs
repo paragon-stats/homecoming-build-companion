@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.HardLimitRules;
@@ -22,8 +24,8 @@ internal static class SlotBudgetOverTimeRule
             placed += context.AddedByLevel.GetValueOrDefault(level);
             if (placed > granted)
             {
-                string message = $"by level {level + 1}, {placed} added slots are placed but only "
-                    + $"{granted} have been granted (a slot cannot be placed before it is earned)";
+                string message = string.Create(CultureInfo.InvariantCulture, $"by level {level + 1}, {placed} added slots are placed but only ")
+                    + string.Create(CultureInfo.InvariantCulture, $"{granted} have been granted (a slot cannot be placed before it is earned)");
                 yield return new Diagnostic("H-SLOT-005", "error", message)
                 {
                     Fix = "move the excess slot(s) to a later grant level, or remove them",

@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.HardLimitRules;
@@ -12,8 +14,8 @@ internal static class SlotAfterPowerRule
     {
         foreach ((Data.Power power, Data.SlotRef slot) in context.AddedPairs.Where(pair => pair.Slot.Level < pair.Power.PickLevel))
         {
-            string message = $"a slot in {PyText.Repr(power.FullName)} is placed at level {slot.Level + 1}, before the "
-                + $"power was picked (level {power.PickLevel + 1})";
+            string message = string.Create(CultureInfo.InvariantCulture, $"a slot in {PyText.Repr(power.FullName)} is placed at level {slot.Level + 1}, before the ")
+                + string.Create(CultureInfo.InvariantCulture, $"power was picked (level {power.PickLevel + 1})");
             yield return new Diagnostic("H-SLOT-003", "error", message)
             {
                 Fix = "place the slot at or after the power's pick level",

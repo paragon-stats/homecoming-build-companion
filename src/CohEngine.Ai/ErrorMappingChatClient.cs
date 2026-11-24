@@ -1,4 +1,5 @@
 using System.ClientModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 using Microsoft.Extensions.AI;
@@ -61,5 +62,5 @@ internal sealed class ErrorMappingChatClient(IChatClient inner, string? keyVaria
     private ChatProviderException Map(ClientResultException error) =>
         error.Status == 0
             ? new(0, $"{AiErrorCodes.ProviderUnreachable}: the provider could not be reached; check the base URL and that the server is running")
-            : new(error.Status, $"{AiErrorCodes.ProviderRejected}: the provider returned HTTP {error.Status}; check the key in {keyVariable ?? "(no key variable)"} and the base URL");
+            : new(error.Status, string.Create(CultureInfo.InvariantCulture, $"{AiErrorCodes.ProviderRejected}: the provider returned HTTP {error.Status}; check the key in {keyVariable ?? "(no key variable)"} and the base URL"));
 }

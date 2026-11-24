@@ -104,7 +104,7 @@ internal static class Scoring
         {
             if (totals.Res[index] > totalsCapped.Res[index])
             {
-                overshoots.Add(($"Res[{index}]", totals.Res[index], totalsCapped.Res[index]));
+                overshoots.Add((string.Create(CultureInfo.InvariantCulture, $"Res[{index}]"), totals.Res[index], totalsCapped.Res[index]));
             }
         }
 

@@ -15,7 +15,7 @@ public readonly record struct MetricValue(double Number, bool IsFlag)
     /// <returns>The value.</returns>
     public static MetricValue Of(double number)
     {
-        return new MetricValue(number, false);
+        return new MetricValue(number, IsFlag: false);
     }
 
     /// <summary>Wraps a flag.</summary>
@@ -23,7 +23,7 @@ public readonly record struct MetricValue(double Number, bool IsFlag)
     /// <returns>The value.</returns>
     public static MetricValue Flag(bool flag)
     {
-        return new MetricValue(flag ? 1.0 : 0.0, true);
+        return new MetricValue(flag ? 1.0 : 0.0, IsFlag: true);
     }
 
     /// <summary>Gets the value as a diagnostic's expected or actual: a bool or a double.</summary>

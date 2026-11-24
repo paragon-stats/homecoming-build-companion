@@ -124,6 +124,6 @@ public sealed record MathTables(
     {
         return column < tokens.Length
             ? tokens[column]
-            : throw new InvalidDataException($"Maths.mhd row has {tokens.Length} cells; expected at least {column + 1}");
+            : throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"Maths.mhd row has {tokens.Length} cells; expected at least {column + 1}"));
     }
 }

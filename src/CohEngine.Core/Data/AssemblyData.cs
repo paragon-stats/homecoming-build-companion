@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 
@@ -48,7 +49,7 @@ public static class AssemblyData
         IReadOnlyList<EffectExtensions> extensions = LoadExtended(path, AssemblyJsonContext.Default.IReadOnlyListEffectExtensions);
         string name = Path.GetFileName(path);
         return powers
-            .Select((power, i) => (power.BuildIndex, Effects: (IReadOnlyList<Effect>)Enrich(power.Effects, power.FullName, extensions[i].Effects, $"{name} build power {power.BuildIndex}")))
+            .Select((power, i) => (power.BuildIndex, Effects: (IReadOnlyList<Effect>)Enrich(power.Effects, power.FullName, extensions[i].Effects, string.Create(CultureInfo.InvariantCulture, $"{name} build power {power.BuildIndex}"))))
             .ToLastWinsDictionary(power => power.BuildIndex, power => power.Effects);
     }
 
@@ -67,7 +68,7 @@ public static class AssemblyData
         Dictionary<int, bool> procInclude = EnhancementData.LoadSlotEntries(slotsPath).ToLastWinsDictionary(
             entry => entry.BuildIndex,
             entry => entry.ProcInclude ?? throw new InvalidDataException(
-                $"E85: {slotsName} build power {entry.BuildIndex} is missing ['ProcInclude']; expected every key of the assembly export record; "
+                string.Create(CultureInfo.InvariantCulture, $"E85: {slotsName} build power {entry.BuildIndex} is missing ['ProcInclude']; expected every key of the assembly export record; ")
                 + "re-run the Mids dump harness so the file carries them"));
         Dictionary<int, BuildPowerAssembly> result = [];
         foreach (Power power in powers)
@@ -101,7 +102,7 @@ public static class AssemblyData
                     HasPowerOverrideEffect = record.HasPowerOverrideEffect,
                     AbsorbSummonEffects = record.AbsorbSummonEffects,
                     AbsorbSummonAttributes = record.AbsorbSummonAttributes,
-                    Effects = Enrich(power.Effects, power.FullName, record.Effects, $"{name} build power {power.BuildIndex}"),
+                    Effects = Enrich(power.Effects, power.FullName, record.Effects, string.Create(CultureInfo.InvariantCulture, $"{name} build power {power.BuildIndex}")),
                 });
         }
 
@@ -163,7 +164,7 @@ public static class AssemblyData
     private static InvalidDataException MissingRecord(string source, Power power)
     {
         return new InvalidDataException(
-            $"E86: {source} has no record for build power {power.BuildIndex} ({power.FullName}); "
+            string.Create(CultureInfo.InvariantCulture, $"E86: {source} has no record for build power {power.BuildIndex} ({power.FullName}); ")
             + "expected one per power of powers_effects.json; re-run the Mids dump harness");
     }
 }

@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using System.Globalization;
 using System.Text;
 
 using CohEngine.Core.Diagnostics;
@@ -11,7 +12,6 @@ public sealed class BinaryCursor
     private static readonly UTF8Encoding StrictUtf8 = new(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
 
     private readonly byte[] buffer;
-    private int position;
 
     /// <summary>Initializes a new instance of the <see cref="BinaryCursor"/> class.</summary>
     /// <param name="buffer">The bytes to read.</param>
@@ -20,11 +20,11 @@ public sealed class BinaryCursor
     {
         ArgumentNullException.ThrowIfNull(buffer);
         this.buffer = buffer;
-        this.position = position;
+        Position = position;
     }
 
     /// <summary>Gets the current byte offset.</summary>
-    public int Position => position;
+    public int Position { get; private set; }
 
     /// <summary>Gets the total buffer length in bytes.</summary>
     public int Length => buffer.Length;
@@ -117,13 +117,13 @@ public sealed class BinaryCursor
 
     private ReadOnlySpan<byte> Take(long count)
     {
-        if (count > buffer.Length - position)
+        if (count > buffer.Length - Position)
         {
-            throw new EndOfStreamException($"{ErrorCodes.StreamTruncated}: read past end of buffer at {position} (+{count}); the file is truncated or not a Mids export, re-export it from Mids");
+            throw new EndOfStreamException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.StreamTruncated}: read past end of buffer at {Position} (+{count}); the file is truncated or not a Mids export, re-export it from Mids"));
         }
 
-        ReadOnlySpan<byte> chunk = buffer.AsSpan(position, (int)count);
-        position += (int)count;
+        ReadOnlySpan<byte> chunk = buffer.AsSpan(Position, (int)count);
+        Position += (int)count;
         return chunk;
     }
 }

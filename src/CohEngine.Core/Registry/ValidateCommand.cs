@@ -25,7 +25,7 @@ public static class ValidateCommand
         ArgumentNullException.ThrowIfNull(buildDirectory);
         IReadOnlyList<Power> powers = EffectData.LoadPowersEffects(Path.Join(buildDirectory, "powers_effects.json"));
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = EnhancementData.LoadBuildSlots(Path.Join(buildDirectory, "slots.json"));
-        return Fold(powers, slots, midsDirectory, null, checks);
+        return Fold(powers, slots, midsDirectory, format: null, checks);
     }
 
     /// <summary>Validates a bare <c>.mbd</c> file through the source that resolves it.</summary>
