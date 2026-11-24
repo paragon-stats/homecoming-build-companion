@@ -35,10 +35,7 @@ public sealed class AssemblyParityTests
             inputs.Fixture.PowerAssembly,
             inputs.Slots,
             inputs.StatInclude,
-            Fixtures.Store.EnhancementEffects,
-            Fixtures.Store.SetBonuses,
-            Fixtures.Store.AssemblyPowers,
-            Fixtures.Store.AssemblyEntities,
+            new AssemblyDatabase(Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, Fixtures.Store.AssemblyPowers, Fixtures.Store.AssemblyEntities),
             inputs.ArchetypeIndex,
             effect => Conditionals.ConditionalsMet(effect, inputs.Expression),
             setBonusEffects);
@@ -52,7 +49,7 @@ public sealed class AssemblyParityTests
     private static List<string> Mismatches(string name)
     {
         BuildInputs inputs = new(name);
-        Power bonus = Accumulator.BuildSetBonusPower(inputs.Powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, false);
+        Power bonus = Accumulator.BuildSetBonusPower(inputs.Powers, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.SetBonuses, 50, disablePve: false);
         Dictionary<int, AssembledEffects> got = AssembleBuild(inputs, bonus.Effects);
 
         // Mids has multiplied a variable power's scale by its variable value; the engine does that when it reads it.
@@ -100,7 +97,7 @@ public sealed class AssemblyParityTests
             ("delayed_time", have.DelayedTime, want.DelayedTime),
             ("pv_mode", have.PvMode, want.PvMode),
             ("ignore_scaling", have.IgnoreScaling, want.IgnoreScaling),
-            ("conditionals", string.Join("|", have.Conditionals), string.Join("|", want.Conditionals)),
+            ("conditionals", string.Join('|', have.Conditionals), string.Join('|', want.Conditionals)),
         ];
         foreach ((string field, object got, object expected) in fields)
         {

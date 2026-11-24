@@ -34,26 +34,30 @@ internal static class PetAbsorption
                 power = TakeAttributes(power, entity.PowersetNids[0], firstOnly, inputs);
             }
 
-            if (!power.AbsorbSummonEffects)
+            if (power.AbsorbSummonEffects)
             {
-                continue;
-            }
-
-            foreach (int setNid in entity.PowersetNids)
-            {
-                if (setNid < 0)
-                {
-                    continue;
-                }
-
-                foreach (AssemblyPower pet in Absorption.PetPowers(setNid, power.FullName, inputs))
-                {
-                    effects.AddRange(AbsorbPetPower(pet, create, entity, inputs));
-                }
+                AbsorbEntityPowers(power.FullName, create, entity, effects, inputs);
             }
         }
 
         return power;
+    }
+
+    /// <summary>Every pet power of the entity's powersets, absorbed into <paramref name="effects"/> in order.</summary>
+    private static void AbsorbEntityPowers(string summoner, Effect create, AssemblyEntity entity, List<Effect> effects, AssemblyInputs inputs)
+    {
+        foreach (int setNid in entity.PowersetNids)
+        {
+            if (setNid < 0)
+            {
+                continue;
+            }
+
+            foreach (AssemblyPower pet in Absorption.PetPowers(setNid, summoner, inputs))
+            {
+                effects.AddRange(AbsorbPetPower(pet, create, entity, inputs));
+            }
+        }
     }
 
     /// <summary>The pet powers' targeting and ignored aspects copied onto the absorbing power, the last copy winning.</summary>
