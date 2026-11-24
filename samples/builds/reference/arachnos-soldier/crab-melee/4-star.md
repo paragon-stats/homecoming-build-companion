@@ -241,7 +241,7 @@ The five procs add 7% to the group chain and 10% to the single-target chain. The
 
 ## Against the ranged Crab
 
-The ranged Crab of this series is `Crab Spider Soldier-Crab Spider Training Arachnos Soldier - 4-Star` in the same folder. These figures are from its `.mbd` as it stood on 14 November 2026 at 22:22 (stamped 2026.5.1337, file hash beginning `0f11569`), dumped through the Mids dump harness on database 2026.5.1337 with the same Gaussian's proc removed; its defense and resistance are from its own `.mids-totals.json`.
+The ranged Crab of this series is `crab-ranged-4-star` in `characters/account1/laser-arachnos`. These figures are from its `.mbd` as it stood on 14 November 2026 at 22:22 (stamped 2026.5.1337, file hash beginning `0f11569`), dumped through the Mids dump harness on database 2026.5.1337 with the same Gaussian's proc removed; its defense and resistance are from its own `.mids-totals.json`.
 Both builds are run through the planner under the same rules (every click attack eligible, Venom Grenade included): ranged stance for the ranged Crab, melee stance for this one.
 
 | Measure | Ranged Crab | Melee Crab (this build) |

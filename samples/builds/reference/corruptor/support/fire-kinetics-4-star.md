@@ -2,7 +2,7 @@
 
 Level 50 Corruptor: Fire Blast / Kinetics, with the Leadership, Flight, Fighting and Speed pools and Soul Mastery.
 It is a support blaster for Homecoming 4-star task forces. It stays alive at range first and adds damage and buffs second, the same order as the posted 4-star Fire/Kinetics build. It is not a proc build.
-Loadable file: `fire-kin.mbd`. Every number below is from MidsReborn's own totals (`totals.json`, `TotalsCapped`) unless marked as my arithmetic.
+Loadable file: `fire-kinetics-4-star.mbd`. Every number below is from MidsReborn's own totals (`totals.json`, `TotalsCapped`) unless marked as my arithmetic.
 
 ## What the totals count
 
@@ -206,10 +206,5 @@ Under `homecoming-source-material/community/archetypes/`:
 Sibling files in this folder, all named "fire-kinetics-4-star" plus an ending:
 
 - `.mbd`
-- `.skif`
 - `.md`
-- `.sidekick-link.txt`
 - `.mids-totals.json`
-- `.sidekick-totals.txt`
-
-The Sidekick share link is in the file `fire-kinetics-4-star.sidekick-link.txt`.

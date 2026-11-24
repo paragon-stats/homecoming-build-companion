@@ -223,10 +223,5 @@ All paths are under `C:\Users\petek\repos\homecoming-source-material\`.
 Sibling files in this folder, all named "shield-fiery-4-star" plus an ending:
 
 - `.mbd`
-- `.skif`
 - `.md`
-- `.sidekick-link.txt`
 - `.mids-totals.json`
-- `.sidekick-totals.txt`
-
-The Sidekick share link is in the file `shield-fiery-4-star.sidekick-link.txt`.
