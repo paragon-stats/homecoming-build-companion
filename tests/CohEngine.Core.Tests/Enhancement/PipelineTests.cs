@@ -22,7 +22,7 @@ public sealed class PipelineTests
     public void Hasten_recharge_aggregates(string build, double want)
     {
         double result = Aggregate(SlotsOf(build, HastenIndex), "RechargeTime");
-        Assert.Equal(want, Math.Round(result, 4));
+        Assert.Equal(want, Math.Round(result, 4, MidpointRounding.ToEven));
         Assert.True(result < 1.0);
     }
 
@@ -58,8 +58,8 @@ public sealed class PipelineTests
     public void Pre_ed_addend_is_co_eded_and_skip_ed_returns_the_sum()
     {
         IReadOnlyList<SlotRef> slots = SlotsOf("shield_scrapper_slotted", HastenIndex);
-        double slotted = Pipeline.AggregateAndEd(slots, "RechargeTime", Fixtures.Store.EnhancementEffects, ForceLevel, Tables, skipEd: true);
-        double coEd = Pipeline.AggregateAndEd(slots, "RechargeTime", Fixtures.Store.EnhancementEffects, ForceLevel, Tables, preEdAddend: 0.25);
+        double slotted = Pipeline.AggregateAndEd(slots, "RechargeTime", new EnhancementTables(Fixtures.Store.EnhancementEffects, ForceLevel, Tables), skipEd: true);
+        double coEd = Pipeline.AggregateAndEd(slots, "RechargeTime", new EnhancementTables(Fixtures.Store.EnhancementEffects, ForceLevel, Tables), preEdAddend: 0.25);
         Assert.Equal(Ed.ApplyEd(Schedule.A, F32.Round(slotted + 0.25), Tables), coEd);
         Assert.Equal(F32.Round(3 * F32.Round(Tables.MultIo[49][0])), slotted, 1e-6);
     }
@@ -91,6 +91,6 @@ public sealed class PipelineTests
 
     private static double Aggregate(IEnumerable<SlotRef> slots, string aspect)
     {
-        return Pipeline.AggregateAndEd(slots, aspect, Fixtures.Store.EnhancementEffects, ForceLevel, Tables);
+        return Pipeline.AggregateAndEd(slots, aspect, new EnhancementTables(Fixtures.Store.EnhancementEffects, ForceLevel, Tables));
     }
 }

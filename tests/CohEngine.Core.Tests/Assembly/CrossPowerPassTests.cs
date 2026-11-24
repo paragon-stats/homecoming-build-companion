@@ -11,14 +11,16 @@ public sealed class CrossPowerPassTests
 {
     private static readonly Effect Base = Make.Effect;
 
-    public static TheoryData<Func<Effect, Effect>> SourcesThatDoNotCross => new()
+    private static readonly Dictionary<string, Func<Effect, Effect>> NonCrossing = new(StringComparer.Ordinal)
     {
-        effect => effect with { EffectClass = "Ignored" },
-        effect => effect with { EffectType = "Enhancement" },
-        effect => effect with { EffectType = "DamageBuff" },
-        effect => effect with { IgnoreEd = true },
-        effect => effect with { EffectType = "GrantPower", AbsorbedEffect = true, AbsorbedPowerType = "GlobalBoost" },
+        ["ignored class"] = effect => effect with { EffectClass = "Ignored" },
+        ["enhancement"] = effect => effect with { EffectType = "Enhancement" },
+        ["damage buff"] = effect => effect with { EffectType = "DamageBuff" },
+        ["ignores ED"] = effect => effect with { IgnoreEd = true },
+        ["absorbed grant"] = effect => effect with { EffectType = "GrantPower", AbsorbedEffect = true, AbsorbedPowerType = "GlobalBoost" },
     };
+
+    public static TheoryData<string> SourcesThatDoNotCross => [.. NonCrossing.Keys];
 
     public static TheoryData<int[], string> TargetsThatTakeNothing => new()
     {
@@ -77,9 +79,9 @@ public sealed class CrossPowerPassTests
 
     [Theory]
     [MemberData(nameof(SourcesThatDoNotCross))]
-    public void Source_effects_that_do_not_cross(Func<Effect, Effect> over)
+    public void Source_effects_that_do_not_cross(string over)
     {
-        BuildPowerAssembly source = Global([over(Base with { EffectType = "Recovery" })]);
+        BuildPowerAssembly source = Global([NonCrossing[over](Base with { EffectType = "Recovery" })]);
         Assert.Single(BuildAll(new() { [0] = Target(), [1] = source })[0]);
     }
 
@@ -225,7 +227,7 @@ public sealed class CrossPowerPassTests
         AssemblyPower pet = Power([], nid: 300, ignoreEnh: ["RechargeTime"]);
         AssemblyEntities entities = Entities(Entity(40, [30]), Powerset(30, 300));
         BuildPowerAssembly absorber = Build(Power([Base with { EffectType = "EntCreate", NSummon = 40, Duration = 30.0, Probability = 1.0 }], absorbAttributes: true));
-        AssembledEffects assembled = PowerAssembler.AssemblePower(absorber, [], EnhDb, SetDb, new Dictionary<int, AssemblyPower> { [300] = pet }, entities, Class, Never);
+        AssembledEffects assembled = PowerAssembler.AssemblePower(absorber, [], new AssemblyDatabase(EnhDb, SetDb, new Dictionary<int, AssemblyPower> { [300] = pet }, entities), Class, Never);
         Assert.True(assembled.IgnoreEnh.SetEquals(["RechargeTime"]));
     }
 
@@ -253,10 +255,7 @@ public sealed class CrossPowerPassTests
             entries,
             new Dictionary<int, IReadOnlyList<SlotRef>>(),
             statInclude ?? entries.Keys.ToDictionary(key => key, _ => true),
-            EnhDb,
-            SetDb,
-            (powers ?? []).ToDictionary(power => power.Nid),
-            NoEntities,
+            new AssemblyDatabase(EnhDb, SetDb, (powers ?? []).ToDictionary(power => power.Nid), NoEntities),
             Class,
             Never,
             setBonusEffects ?? []);

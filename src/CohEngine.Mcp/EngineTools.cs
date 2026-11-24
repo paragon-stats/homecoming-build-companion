@@ -23,6 +23,11 @@ namespace CohEngine.Mcp;
 [McpServerToolType]
 public sealed class EngineTools
 {
+    // Every tool is static; the type stays non-static only because WithTools<T> takes it as a type argument.
+    private EngineTools()
+    {
+    }
+
     /// <summary>Lists every registry.</summary>
     /// <returns>The legality rules, hard-limit rules, enhancement aspect handlers and scoring metrics.</returns>
     [McpServerTool(Name = "rules", ReadOnly = true)]
@@ -193,7 +198,7 @@ public sealed class EngineTools
                     Unknown: null,
                     unknown.Count == 0 ? null : unknown);
             },
-            Given(buildDir, null));
+            Given(buildDir, midsDir: null));
     }
 
     /// <summary>Plans a build dump's attack chains: the same plan <c>coh-engine chain --format json</c> prints.</summary>
@@ -265,7 +270,7 @@ public sealed class EngineTools
         for (int index = 0; index < values.Count; index++)
         {
             string name = names.GetValueOrDefault(index)
-                ?? throw new EngineException($"{ErrorCodes.E168}: the shared enums.json has no {enumName} member at index {index}; use the enums.json dumped with the build");
+                ?? throw new EngineException($"{ErrorCodes.E168}: the shared enums.json has no {enumName} member at index {index.ToString(CultureInfo.InvariantCulture)}; use the enums.json dumped with the build");
             named[name] = percent ? Math.Round(values[index] * 100.0, 4, MidpointRounding.ToEven) : values[index];
         }
 

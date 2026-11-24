@@ -43,28 +43,7 @@ public static class DamageModifiers
         ChainOption? chain = DamageSources.ChosenChain(context);
         HashSet<string> rotation = chain is not null ? [.. chain.Rotation] : [];
         ChainAttack[] chainDebuffs = [.. context.Attacks.Where(attack => attack.TargetResDebuff > 0.0 && attack.Profile.Role == Role.Chain && rotation.Contains(attack.FullName))];
-        List<(ChainAttack Attack, double Uptime)> others = [];
-        foreach (ChainAttack attack in context.Attacks)
-        {
-            if (attack.TargetResDebuff <= 0.0)
-            {
-                continue;
-            }
-
-            if (attack.Profile.Role is Role.Patch or Role.Support)
-            {
-                others.Add((attack, Uptime(attack, attack.TargetResDebuffDuration)));
-            }
-            else if (attack.Profile.Role == Role.PersistentDebuff)
-            {
-                double uptime = attack.Profile.NeedsMeleePosition ? DamageSources.MeleeShare(context) : 1.0;
-                if (uptime > 0.0)
-                {
-                    others.Add((attack, uptime));
-                }
-            }
-        }
-
+        List<(ChainAttack Attack, double Uptime)> others = OtherDebuffs(context);
         if (chainDebuffs.Length == 0 && others.Count == 0)
         {
             return null;
@@ -90,6 +69,34 @@ public static class DamageModifiers
                 + $"stacked -{PyFloat.Percent(stacked, 1)}: {string.Join("; ", parts)}",
             Additive = false,
         };
+    }
+
+    /// <summary>The patch, support and persistent -Res debuffs with their uptimes, in attack order.</summary>
+    private static List<(ChainAttack Attack, double Uptime)> OtherDebuffs(DamageContext context)
+    {
+        List<(ChainAttack Attack, double Uptime)> others = [];
+        foreach (ChainAttack attack in context.Attacks)
+        {
+            if (attack.TargetResDebuff <= 0.0)
+            {
+                continue;
+            }
+
+            if (attack.Profile.Role is Role.Patch or Role.Support)
+            {
+                others.Add((attack, Uptime(attack, attack.TargetResDebuffDuration)));
+            }
+            else if (attack.Profile.Role == Role.PersistentDebuff)
+            {
+                double uptime = attack.Profile.NeedsMeleePosition ? DamageSources.MeleeShare(context) : 1.0;
+                if (uptime > 0.0)
+                {
+                    others.Add((attack, uptime));
+                }
+            }
+        }
+
+        return others;
     }
 
     private static double Uptime(ChainAttack attack, double duration)

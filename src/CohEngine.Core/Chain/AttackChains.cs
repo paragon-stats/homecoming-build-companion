@@ -25,10 +25,7 @@ public static class AttackChains
     /// <param name="movement">The movement.</param>
     /// <param name="scenario">The scenario.</param>
     /// <param name="budget">The endurance budget.</param>
-    /// <param name="timelineAvailable">The timeline share left.</param>
-    /// <param name="otherDrainPerSec">The other sources' drain.</param>
-    /// <param name="minCycles">The cycles an option must last to be affordable.</param>
-    /// <param name="maxAttacks">The attack cap.</param>
+    /// <param name="limits">The timeline share, other drain, affordable cycles and attack cap; null for the defaults.</param>
     /// <returns>The plan.</returns>
     /// <exception cref="EngineException">E45 when the timeline share is outside (0, 1].</exception>
     public static ChainPlan Plan(
@@ -37,15 +34,16 @@ public static class AttackChains
         Movement movement,
         Scenario scenario,
         EnduranceBudget budget,
-        double timelineAvailable = 1.0,
-        double otherDrainPerSec = 0.0,
-        double minCycles = 4.0,
-        int maxAttacks = 12)
+        PlanLimits? limits = null)
     {
         ArgumentNullException.ThrowIfNull(attacks);
         ArgumentNullException.ThrowIfNull(movement);
         ArgumentNullException.ThrowIfNull(scenario);
         ArgumentNullException.ThrowIfNull(budget);
+        limits ??= new PlanLimits();
+        double timelineAvailable = limits.TimelineAvailable;
+        double minCycles = limits.MinCycles;
+        int maxAttacks = limits.MaxAttacks;
         if (timelineAvailable is not (> 0.0 and <= 1.0))
         {
             throw new EngineException(
@@ -89,50 +87,10 @@ public static class AttackChains
         List<ChainOption> options = [];
         for (int mask = 1; mask < (1 << perAttack.Length); mask++)
         {
-            List<Row> picked = [];
-            for (int i = 0; i < perAttack.Length; i++)
+            if (Option(Picked(perAttack, mask), stance, switchTime, scaled, limits.OtherDrainPerSec, budget) is { } option)
             {
-                if (((mask >> i) & 1) != 0)
-                {
-                    picked.Add(perAttack[i]);
-                }
+                options.Add(option);
             }
-
-            bool mixed = picked.Any(row => row.Melee) && !picked.All(row => row.Melee);
-            int switches = stance == Stance.Hybrid && mixed ? 2 : 0;
-            if (switches != 0 && double.IsPositiveInfinity(switchTime))
-            {
-                continue;
-            }
-
-            double moveTime = switches != 0 ? F32.Round(switches * switchTime) : 0.0;
-            double castSum = F32Sum(picked.Select(row => row.Cast));
-            double cycleTime = Math.Max(F32.Round(castSum + moveTime), picked.Max(row => row.Cycle));
-            double gap = F32.Round(cycleTime - F32.Round(castSum + moveTime));
-            double damage = F32Sum(picked.Select(row => row.Damage));
-            double endPerSec = F32.Round(F32.Round(F32Sum(picked.Select(row => row.EndCost)) / cycleTime) * scaled);
-            double drain = F32.Round(otherDrainPerSec + endPerSec);
-            double net = budget.NetPerSec(drain);
-            double period = F32.Round(cycleTime / scaled);
-            double resDebuff = F32Sum(picked.Where(row => row.Debuff > 0.0).Select(row => F32.Round(row.Debuff * Math.Min(1.0, F32.Round(row.DebuffDuration / period)))));
-            options.Add(new ChainOption
-            {
-                Rotation = [.. picked.Select(row => row.Name)],
-                Stance = stance,
-                CastSum = castSum,
-                Switches = switches,
-                MoveTime = moveTime,
-                CycleTime = cycleTime,
-                Gap = gap,
-                GapFree = gap <= 0.0,
-                DamagePerCycle = damage,
-                Dps = F32.Round(F32.Round(damage / cycleTime) * scaled),
-                EndPerSec = endPerSec,
-                NetEndPerSec = net,
-                TimeToEmpty = budget.TimeToEmpty(drain),
-                Sustainable = net >= 0.0,
-                ResDebuff = resDebuff,
-            });
         }
 
         bool Affordable(ChainOption option) => option.TimeToEmpty >= minCycles * F32.Round(option.CycleTime / scaled);
@@ -164,7 +122,7 @@ public static class AttackChains
         List<PowerStats> attacks = [.. powerStats.Where(stats => stats.IsAttack)];
         if (attacks.Count == 0)
         {
-            return new AttackChain([], 0.0, 0.0, 0.0, true, 0.0);
+            return new AttackChain([], 0.0, 0.0, 0.0, GapFree: true, 0.0);
         }
 
         double castSum = F32Sum(attacks.Select(stats => stats.CastTime));
@@ -175,6 +133,61 @@ public static class AttackChains
         string[] rotation = [.. PySort.Sorted(attacks, (left, right) => Compare(-left.RechargeTime, -right.RechargeTime, left.FullName, right.FullName)).Select(stats => stats.FullName)];
         double endPerSec = cycleTime > 0.0 ? F32.Round(endSum / cycleTime) : 0.0;
         return new AttackChain(rotation, castSum, cycleTime, gap, gap <= 0.0, endPerSec);
+    }
+
+    /// <summary>The rows a subset mask selects, in row order.</summary>
+    private static List<Row> Picked(Row[] perAttack, int mask)
+    {
+        List<Row> picked = [];
+        for (int i = 0; i < perAttack.Length; i++)
+        {
+            if (((mask >> i) & 1) != 0)
+            {
+                picked.Add(perAttack[i]);
+            }
+        }
+
+        return picked;
+    }
+
+    /// <summary>One subset's option, or null when a hybrid switch it needs never completes.</summary>
+    private static ChainOption? Option(List<Row> picked, Stance stance, double switchTime, double scaled, double otherDrainPerSec, EnduranceBudget budget)
+    {
+        bool mixed = picked.Exists(row => row.Melee) && !picked.TrueForAll(row => row.Melee);
+        int switches = stance == Stance.Hybrid && mixed ? 2 : 0;
+        if (switches != 0 && double.IsPositiveInfinity(switchTime))
+        {
+            return null;
+        }
+
+        double moveTime = switches != 0 ? F32.Round(switches * switchTime) : 0.0;
+        double castSum = F32Sum(picked.Select(row => row.Cast));
+        double cycleTime = Math.Max(F32.Round(castSum + moveTime), picked.Max(row => row.Cycle));
+        double gap = F32.Round(cycleTime - F32.Round(castSum + moveTime));
+        double damage = F32Sum(picked.Select(row => row.Damage));
+        double endPerSec = F32.Round(F32.Round(F32Sum(picked.Select(row => row.EndCost)) / cycleTime) * scaled);
+        double drain = F32.Round(otherDrainPerSec + endPerSec);
+        double net = budget.NetPerSec(drain);
+        double period = F32.Round(cycleTime / scaled);
+        double resDebuff = F32Sum(picked.Where(row => row.Debuff > 0.0).Select(row => F32.Round(row.Debuff * Math.Min(1.0, F32.Round(row.DebuffDuration / period)))));
+        return new ChainOption
+        {
+            Rotation = [.. picked.Select(row => row.Name)],
+            Stance = stance,
+            CastSum = castSum,
+            Switches = switches,
+            MoveTime = moveTime,
+            CycleTime = cycleTime,
+            Gap = gap,
+            GapFree = gap <= 0.0,
+            DamagePerCycle = damage,
+            Dps = F32.Round(F32.Round(damage / cycleTime) * scaled),
+            EndPerSec = endPerSec,
+            NetEndPerSec = net,
+            TimeToEmpty = budget.TimeToEmpty(drain),
+            Sustainable = net >= 0.0,
+            ResDebuff = resDebuff,
+        };
     }
 
     private static double F32Sum(IEnumerable<double> values)

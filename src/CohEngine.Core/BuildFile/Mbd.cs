@@ -118,8 +118,8 @@ public static partial class Mbd
     /// <summary>Reads the reference tables a <c>.mbd</c> is checked and resolved against.</summary>
     /// <param name="midsDir">The Mids dump directory.</param>
     /// <returns>The bundle.</returns>
-    /// <exception cref="FileNotFoundException">One of the four files is missing.</exception>
-    /// <exception cref="InvalidDataException">E118: a file lacks a field; re-dump with the current harness.</exception>
+    /// <exception cref="FileNotFoundException">One of the five files is missing.</exception>
+    /// <exception cref="InvalidDataException">E118: a file lacks a field, or a <c>version.json</c> field is missing or blank; re-dump with the current harness.</exception>
     public static MbdDb LoadMbdDb(string midsDir)
     {
         try
@@ -131,7 +131,8 @@ public static partial class Mbd
                     .ToLastWinsDictionary(record => record.Nid, record => (record.LevelMin, record.LevelMax)),
                 ArchetypeData.LoadArchetypes(Path.Join(midsDir, "archetypes.json")),
                 Json.Load(Path.Join(midsDir, "powers.json"), BuildFileJsonContext.Default.IReadOnlyListPowerDbRecord)
-                    .ToLastWinsDictionary(record => record.FullName, ToTemplate));
+                    .ToLastWinsDictionary(record => record.FullName, ToTemplate),
+                BuiltWith(Json.Load(Path.Join(midsDir, "version.json"), BuildFileJsonContext.Default.VersionRecord)));
         }
         catch (JsonException exception)
         {
@@ -191,7 +192,7 @@ public static partial class Mbd
 
             if (!database.Powers.TryGetValue(entry.PowerName, out PowerTemplate? template))
             {
-                throw new InvalidDataException($"E77: entry {position + 1} names {entry.PowerName}, which powers.json lacks; re-dump the Mids data or replace the entry");
+                throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E77: entry {position + 1} names {entry.PowerName}, which powers.json lacks; re-dump the Mids data or replace the entry"));
             }
 
             powers.Add(new Power(template.RequiresPowers, template.RequiresPowersNot)
@@ -357,7 +358,7 @@ public static partial class Mbd
 
         if (!database.Enhancements.TryGetValue(enhancement.Uid, out EnhInfo? info))
         {
-            throw new InvalidDataException($"E78: {entry.PowerName} slot at level {slot.Level + 1} holds {enhancement.Uid}, which enhancements.json lacks; re-dump the Mids data or replace the enhancement");
+            throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"E78: {entry.PowerName} slot at level {slot.Level + 1} holds {enhancement.Uid}, which enhancements.json lacks; re-dump the Mids data or replace the enhancement"));
         }
 
         return new SlotRef
@@ -382,5 +383,21 @@ public static partial class Mbd
         }
 
         throw new InvalidDataException($"{ErrorCodes.EnumOutOfRange}: {kind} '{name}' is not one of {string.Join(", ", table)}; use one of those names");
+    }
+
+    private static BuildMetaData BuiltWith(VersionRecord version)
+    {
+        return new BuildMetaData(
+            VersionField(version.AppName, nameof(VersionRecord.AppName)),
+            VersionField(version.AppVersion, nameof(VersionRecord.AppVersion)),
+            VersionField(version.DatabaseName, nameof(VersionRecord.DatabaseName)),
+            VersionField(version.DatabaseVersion, nameof(VersionRecord.DatabaseVersion)));
+    }
+
+    private static string VersionField(string? value, string field)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? throw new InvalidDataException($"{ErrorCodes.DocumentUnreadable}: version.json field {field} is missing or blank, so a written build has no BuiltWith {field}; re-dump with the current harness")
+            : value;
     }
 }

@@ -82,6 +82,38 @@ public static class PyText
     /// <returns>The repr text.</returns>
     public static string NumberRepr(double value)
     {
+        if (SpecialRepr(value) is { } special)
+        {
+            return special;
+        }
+
+        string sign = value < 0 ? "-" : string.Empty;
+        string[] parts = Math.Abs(value).ToString("R", CultureInfo.InvariantCulture).Split('E');
+        int exponent = parts.Length == 2 ? int.Parse(parts[1], CultureInfo.InvariantCulture) : 0;
+        string[] halves = parts[0].Split('.');
+        string digits = halves[0] + (halves.Length == 2 ? halves[1] : string.Empty);
+        int point = halves[0].Length + exponent;
+        string trimmed = digits.TrimStart('0');
+        point -= digits.Length - trimmed.Length;
+        digits = trimmed.TrimEnd('0');
+        if (point <= -4 || point > 16)
+        {
+            return sign + Scientific(digits, point);
+        }
+
+        if (point <= 0)
+        {
+            return sign + "0." + new string('0', -point) + digits;
+        }
+
+        return point >= digits.Length
+            ? sign + digits + new string('0', point - digits.Length) + ".0"
+            : sign + digits[..point] + "." + digits[point..];
+    }
+
+    /// <summary>The repr of NaN, an infinity or a zero, or null for any other value.</summary>
+    private static string? SpecialRepr(double value)
+    {
         if (double.IsNaN(value))
         {
             return "nan";
@@ -97,29 +129,13 @@ public static class PyText
             return double.IsNegative(value) ? "-0.0" : "0.0";
         }
 
-        string sign = value < 0 ? "-" : string.Empty;
-        string[] parts = Math.Abs(value).ToString("R", CultureInfo.InvariantCulture).Split('E');
-        int exponent = parts.Length == 2 ? int.Parse(parts[1], CultureInfo.InvariantCulture) : 0;
-        string[] halves = parts[0].Split('.');
-        string digits = halves[0] + (halves.Length == 2 ? halves[1] : string.Empty);
-        int point = halves[0].Length + exponent;
-        string trimmed = digits.TrimStart('0');
-        point -= digits.Length - trimmed.Length;
-        digits = trimmed.TrimEnd('0');
-        if (point <= -4 || point > 16)
-        {
-            string mantissa = digits.Length == 1 ? digits : digits[0] + "." + digits[1..];
-            int shown = point - 1;
-            return sign + mantissa + "e" + (shown < 0 ? "-" : "+") + Math.Abs(shown).ToString("00", CultureInfo.InvariantCulture);
-        }
+        return null;
+    }
 
-        if (point <= 0)
-        {
-            return sign + "0." + new string('0', -point) + digits;
-        }
-
-        return point >= digits.Length
-            ? sign + digits + new string('0', point - digits.Length) + ".0"
-            : sign + digits[..point] + "." + digits[point..];
+    private static string Scientific(string digits, int point)
+    {
+        string mantissa = digits.Length == 1 ? digits : digits[0] + "." + digits[1..];
+        int shown = point - 1;
+        return mantissa + "e" + (shown < 0 ? "-" : "+") + Math.Abs(shown).ToString("00", CultureInfo.InvariantCulture);
     }
 }

@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Assembly;
 using CohEngine.Core.Data;
 
@@ -115,7 +117,7 @@ internal static class AssemblyMake
         return new AssemblyEntity([.. (firstPowersetEffectTypes ?? []).Select(types => (ISet<string>)new HashSet<string>(types, StringComparer.Ordinal))])
         {
             Nid = nid,
-            Uid = uid ?? $"Pets_{nid}",
+            Uid = uid ?? $"Pets_{nid.ToString(CultureInfo.InvariantCulture)}",
             ClassNid = classNid,
             PowersetNids = powersets,
         };
@@ -123,7 +125,7 @@ internal static class AssemblyMake
 
     public static AssemblyPowerset Powerset(int nid, params int[] powers)
     {
-        return new AssemblyPowerset { Nid = nid, FullName = $"Pets.Set_{nid}", SetType = "Pet", PowerNids = powers };
+        return new AssemblyPowerset { Nid = nid, FullName = $"Pets.Set_{nid.ToString(CultureInfo.InvariantCulture)}", SetType = "Pet", PowerNids = powers };
     }
 
     public static SlotRef Slot(int enh)
@@ -133,7 +135,7 @@ internal static class AssemblyMake
 
     public static bool Never(Effect effect)
     {
-        throw new InvalidOperationException($"conditions called for effect {effect.Index}");
+        throw new InvalidOperationException($"conditions called for effect {effect.Index.ToString(CultureInfo.InvariantCulture)}");
     }
 
     public static IReadOnlyList<Effect> Assemble(
@@ -146,10 +148,7 @@ internal static class AssemblyMake
         return PowerAssembler.AssemblePower(
             buildPower,
             slots ?? [],
-            EnhDb,
-            SetDb,
-            (powers ?? []).ToDictionary(power => power.Nid),
-            entities ?? NoEntities,
+            new AssemblyDatabase(EnhDb, SetDb, (powers ?? []).ToDictionary(power => power.Nid), entities ?? NoEntities),
             Class,
             conditions ?? Never).Effects;
     }

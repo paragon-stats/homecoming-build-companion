@@ -12,6 +12,10 @@ public sealed class AskCommandTests : IDisposable
 {
     private const string Answer = "The build is a Scrapper and every metric was computed.";
     private const string Question = "Which class is this build?";
+
+    // No test sets this variable, so the machine's ANTHROPIC_BASE_URL cannot reach these runs.
+    internal const string UnsetBaseUrlVariable = "COH_ASK_TEST_BASE_URL_UNSET";
+
     private const string TestKey = "sk-test-secret-value";
 
     private static readonly FixtureStore Store = FixtureStore.Locate(AppContext.BaseDirectory);
@@ -39,7 +43,7 @@ public sealed class AskCommandTests : IDisposable
     {
         using StringWriter output = new();
         using StringWriter error = new();
-        int exit = await AskCommand.RunAsync(args, output, error, source, handler, TestContext.Current.CancellationToken).ConfigureAwait(false);
+        int exit = await AskCommand.RunAsync(args, output, error, source, handler, UnsetBaseUrlVariable, TestContext.Current.CancellationToken).ConfigureAwait(false);
         return (exit, output.ToString(), error.ToString());
     }
 
@@ -59,7 +63,7 @@ public sealed class AskCommandTests : IDisposable
         WithKey("COH_ASK_TEST_KEY_A", TestKey);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-score.json"), Fixture("anthropic-answer.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, null, Args("anthropic", "COH_ASK_TEST_KEY_A", Dump));
+        (int exit, string output, string error) = await RunAsync(handler, source: null, Args("anthropic", "COH_ASK_TEST_KEY_A", Dump));
 
         Assert.Equal((0, Answer + Environment.NewLine, string.Empty), (exit, output, error));
         Assert.Equal(2, handler.Sent.Count);
@@ -80,7 +84,7 @@ public sealed class AskCommandTests : IDisposable
         WithKey(variable, TestKey);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("openai-tool-call-score.json"), Fixture("openai-answer.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, null, Args(provider, variable, Dump));
+        (int exit, string output, string error) = await RunAsync(handler, source: null, Args(provider, variable, Dump));
 
         Assert.Equal((0, Answer + Environment.NewLine, string.Empty), (exit, output, error));
         Assert.Equal(2, handler.Sent.Count);
@@ -93,7 +97,7 @@ public sealed class AskCommandTests : IDisposable
     {
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("openai-answer.json"));
 
-        (int exit, string output, _) = await RunAsync(handler, null, Question, "--provider", "local", "--build", Dump, "--model", "llama3", "--base-url", "http://localhost:8080/v1");
+        (int exit, string output, _) = await RunAsync(handler, source: null, Question, "--provider", "local", "--build", Dump, "--model", "llama3", "--base-url", "http://localhost:8080/v1");
 
         Assert.Equal((0, Answer + Environment.NewLine), (exit, output));
         Assert.Contains("\"model\":\"llama3\"", Assert.Single(handler.Sent), StringComparison.Ordinal);
@@ -120,7 +124,7 @@ public sealed class AskCommandTests : IDisposable
         WithKey("COH_ASK_TEST_KEY_B", TestKey);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-unknown.json"), Fixture("anthropic-answer.json"));
 
-        (int exit, _, _) = await RunAsync(handler, null, Args("anthropic", "COH_ASK_TEST_KEY_B", Dump));
+        (int exit, _, _) = await RunAsync(handler, source: null, Args("anthropic", "COH_ASK_TEST_KEY_B", Dump));
 
         Assert.Equal(0, exit);
         Assert.Contains("error: no tool named no_such_tool", handler.Sent[1], StringComparison.Ordinal);
@@ -133,7 +137,7 @@ public sealed class AskCommandTests : IDisposable
         WithKey("COH_ASK_TEST_KEY_C", TestKey);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-score.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, null, Args("anthropic", "COH_ASK_TEST_KEY_C", Dump));
+        (int exit, string output, string error) = await RunAsync(handler, source: null, Args("anthropic", "COH_ASK_TEST_KEY_C", Dump));
 
         Assert.Equal((1, string.Empty), (exit, output));
         Assert.StartsWith($"error: {AskErrorCodes.RoundLimit}: the model was still calling tools after {AskCommand.MaxRounds} rounds", error, StringComparison.Ordinal);
@@ -145,10 +149,10 @@ public sealed class AskCommandTests : IDisposable
     [InlineData("openai", "E130")]
     public async Task A_missing_key_is_named_and_nothing_is_sent(string provider, string code)
     {
-        WithKey("COH_ASK_TEST_KEY_UNSET", null);
+        WithKey("COH_ASK_TEST_KEY_UNSET", value: null);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("openai-answer.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, null, Args(provider, "COH_ASK_TEST_KEY_UNSET", Dump));
+        (int exit, string output, string error) = await RunAsync(handler, source: null, Args(provider, "COH_ASK_TEST_KEY_UNSET", Dump));
 
         Assert.Equal((1, string.Empty), (exit, output));
         Assert.StartsWith($"error: {code}: COH_ASK_TEST_KEY_UNSET is not set", error, StringComparison.Ordinal);
@@ -162,8 +166,8 @@ public sealed class AskCommandTests : IDisposable
         SequenceHandler anthropic = new(HttpStatusCode.Unauthorized, AiFixture("error-401.json"));
         SequenceHandler openai = new(HttpStatusCode.InternalServerError, "{\"error\":\"" + TestKey + "\"}");
 
-        (int anthropicExit, _, string anthropicError) = await RunAsync(anthropic, null, Args("anthropic", "COH_ASK_TEST_KEY_D", Dump));
-        (int openaiExit, _, string openaiError) = await RunAsync(openai, null, Args("openai", "COH_ASK_TEST_KEY_D", Dump));
+        (int anthropicExit, _, string anthropicError) = await RunAsync(anthropic, source: null, Args("anthropic", "COH_ASK_TEST_KEY_D", Dump));
+        (int openaiExit, _, string openaiError) = await RunAsync(openai, source: null, Args("openai", "COH_ASK_TEST_KEY_D", Dump));
 
         Assert.Equal((1, 1), (anthropicExit, openaiExit));
         Assert.StartsWith("error: Anthropic API 401 authentication_error", anthropicError, StringComparison.Ordinal);
@@ -176,8 +180,8 @@ public sealed class AskCommandTests : IDisposable
     {
         WithKey("COH_ASK_TEST_KEY_E", TestKey);
 
-        (int downExit, _, string downError) = await RunAsync(new ThrowingHandler(), null, Args("anthropic", "COH_ASK_TEST_KEY_E", Dump));
-        (int garbledExit, _, string garbledError) = await RunAsync(new SequenceHandler(HttpStatusCode.OK, "this is not JSON"), null, Args("anthropic", "COH_ASK_TEST_KEY_E", Dump));
+        (int downExit, _, string downError) = await RunAsync(new ThrowingHandler(), source: null, Args("anthropic", "COH_ASK_TEST_KEY_E", Dump));
+        (int garbledExit, _, string garbledError) = await RunAsync(new SequenceHandler(HttpStatusCode.OK, "this is not JSON"), source: null, Args("anthropic", "COH_ASK_TEST_KEY_E", Dump));
 
         Assert.Equal((1, 1), (downExit, garbledExit));
         Assert.StartsWith($"error: {AskErrorCodes.ProviderReply}: the provider did not give a usable reply (HttpRequestException)", downError, StringComparison.Ordinal);
@@ -189,10 +193,10 @@ public sealed class AskCommandTests : IDisposable
     {
         WithKey("COH_ASK_TEST_KEY_F", TestKey);
 
-        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), null, Question, "--build", Dump, "--api-key-env", "COH_ASK_TEST_KEY_F", "--model", "m", "--base-url=ftp://example.test");
+        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), source: null, Question, "--build", Dump, "--api-key-env", "COH_ASK_TEST_KEY_F", "--model", "m", "--base-url=ftp://example.test");
 
         Assert.Equal(1, exit);
-        Assert.StartsWith("error: E132: base URL 'ftp://example.test'", error, StringComparison.Ordinal);
+        Assert.Equal("error: E132: base URL 'ftp://example.test' is not an absolute http(s) URL; pass --base-url https://host" + Environment.NewLine, error);
     }
 
     [Fact]
@@ -206,7 +210,7 @@ public sealed class AskCommandTests : IDisposable
 
         (int missingExit, _, string missingError) = await RunAsync(handler, source, Args("anthropic", "COH_ASK_TEST_KEY_G", Path.Join(scratch, "no-such-build")));
         (int brokenExit, _, string brokenError) = await RunAsync(handler, source, Args("anthropic", "COH_ASK_TEST_KEY_G", garbled));
-        (int noSourceExit, _, string noSourceError) = await RunAsync(handler, null, Args("anthropic", "COH_ASK_TEST_KEY_G", Bane));
+        (int noSourceExit, _, string noSourceError) = await RunAsync(handler, source: null, Args("anthropic", "COH_ASK_TEST_KEY_G", Bane));
 
         Assert.Equal((1, 1, 1), (missingExit, brokenExit, noSourceExit));
         Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build '", missingError, StringComparison.Ordinal);
@@ -225,7 +229,7 @@ public sealed class AskCommandTests : IDisposable
     [InlineData("argument --api-key-env: expected one argument", "q", "--build", "x", "--model", "m", "--api-key-env")]
     public async Task A_bad_command_line_is_a_usage_error(string problem, params string[] args)
     {
-        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), null, args);
+        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), source: null, args);
 
         Assert.Equal((2, string.Empty), (exit, output));
         Assert.StartsWith("usage: coh-engine ask", error, StringComparison.Ordinal);

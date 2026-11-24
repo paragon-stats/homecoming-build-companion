@@ -164,15 +164,12 @@ public static class DumpScoring
         int archetypeIndex,
         ExpressionContext expression)
     {
-        Power bonus = Accumulator.BuildSetBonusPower(raw, slots, shared.EnhDb, shared.SetDb, 50, false);
+        Power bonus = Accumulator.BuildSetBonusPower(raw, slots, shared.EnhDb, shared.SetDb, 50, disablePve: false);
         Dictionary<int, AssembledEffects> effects = CrossPowerPass.AssembleBuild(
             assembly,
             slots,
             raw.ToLastWinsDictionary(power => power.BuildIndex, power => power.StatInclude),
-            shared.EnhDb,
-            shared.SetDb,
-            shared.AssemblyPowers.Value,
-            shared.AssemblyEntities.Value,
+            new AssemblyDatabase(shared.EnhDb, shared.SetDb, shared.AssemblyPowers.Value, shared.AssemblyEntities.Value),
             archetypeIndex,
             effect => Conditionals.ConditionalsMet(effect, expression),
             bonus.Effects);

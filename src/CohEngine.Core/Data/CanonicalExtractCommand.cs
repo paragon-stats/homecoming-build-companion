@@ -22,30 +22,9 @@ public static class CanonicalExtractCommand
         ArgumentNullException.ThrowIfNull(args);
         ArgumentNullException.ThrowIfNull(output);
         ArgumentNullException.ThrowIfNull(error);
-        string? zip = null;
-        string? outDir = null;
-        bool force = false;
-        for (int i = 0; i < args.Count; i++)
+        if (ParseArguments(args, out string? zip, out string? outDir, out bool force) is { } problem)
         {
-            string token = args[i];
-            if (token is "--force")
-            {
-                force = true;
-                continue;
-            }
-
-            if (token is not ("--zip" or "--out-dir"))
-            {
-                return UsageError(error, $"unrecognized arguments: {token}");
-            }
-
-            if (++i >= args.Count)
-            {
-                return UsageError(error, $"argument {token}: expected one argument");
-            }
-
-            zip = token is "--zip" ? args[i] : zip;
-            outDir = token is "--out-dir" ? args[i] : outDir;
+            return UsageError(error, problem);
         }
 
         try
@@ -72,6 +51,40 @@ public static class CanonicalExtractCommand
             string reason = failure is FileNotFoundException or DirectoryNotFoundException ? "No such file or directory" : failure.Message;
             return Fail(error, $"{ErrorCodes.E72}: cannot read {where}: {reason}; check that the path exists and is readable");
         }
+    }
+
+    /// <summary>Reads the options, the last of a repeated one winning; returns the usage problem, or null.</summary>
+    private static string? ParseArguments(IReadOnlyList<string> args, out string? zip, out string? outDir, out bool force)
+    {
+        zip = null;
+        outDir = null;
+        force = false;
+        int i = 0;
+        while (i < args.Count)
+        {
+            string token = args[i++];
+            if (token is "--force")
+            {
+                force = true;
+                continue;
+            }
+
+            if (token is not ("--zip" or "--out-dir"))
+            {
+                return $"unrecognized arguments: {token}";
+            }
+
+            if (i >= args.Count)
+            {
+                return $"argument {token}: expected one argument";
+            }
+
+            string value = args[i++];
+            zip = token is "--zip" ? value : zip;
+            outDir = token is "--out-dir" ? value : outDir;
+        }
+
+        return null;
     }
 
     private static string NewestZip(string downloads)

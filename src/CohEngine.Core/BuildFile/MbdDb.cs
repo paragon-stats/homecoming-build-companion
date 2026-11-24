@@ -7,8 +7,10 @@ namespace CohEngine.Core.BuildFile;
 /// <param name="SetBounds">The IO-level bounds by set index.</param>
 /// <param name="Archetypes">The class table.</param>
 /// <param name="Powers">The powers by full name.</param>
+/// <param name="BuiltWith">The Mids release and database the dump was taken from, as a written build's <c>BuiltWith</c> block.</param>
 public sealed record MbdDb(
     IReadOnlyDictionary<string, EnhInfo> Enhancements,
     IReadOnlyDictionary<int, (int Min, int Max)> SetBounds,
     ArchetypeDb Archetypes,
-    IReadOnlyDictionary<string, PowerTemplate> Powers);
+    IReadOnlyDictionary<string, PowerTemplate> Powers,
+    BuildMetaData BuiltWith);

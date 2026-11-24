@@ -79,10 +79,10 @@ internal static class Accumulator
     {
         List<SetInfo> infos = [];
         Dictionary<int, SetInfo> bySet = [];
-        foreach (SlotRef slot in powerSlots)
+        foreach (int enh in powerSlots.Select(slot => slot.Enh))
         {
             // An enhancement absent from the records is skipped like a non-set piece, as validation does.
-            if (slot.Enh < 0 || !enhDb.TryGetValue(slot.Enh, out EnhancementRecord? record) || !string.Equals(record.TypeName, "SetO", StringComparison.Ordinal))
+            if (enh < 0 || !enhDb.TryGetValue(enh, out EnhancementRecord? record) || !string.Equals(record.TypeName, "SetO", StringComparison.Ordinal))
             {
                 continue;
             }
@@ -95,7 +95,7 @@ internal static class Accumulator
             }
 
             info.SlottedCount++;
-            info.EnhIndexes.Add(slot.Enh);
+            info.EnhIndexes.Add(enh);
         }
 
         return infos;

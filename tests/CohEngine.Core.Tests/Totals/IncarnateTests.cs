@@ -49,7 +49,7 @@ public sealed class IncarnateTests
     [InlineData("Enhancement", "Defense")]
     public void Supported_paths_pass(string effectType, string etModifies)
     {
-        IncarnateResolver.GuardSupported(Base with { EffectType = effectType, EtModifies = etModifies }, "Sub");
+        Assert.Null(Record.Exception(() => IncarnateResolver.GuardSupported(Base with { EffectType = effectType, EtModifies = etModifies }, "Sub")));
     }
 
     [Theory]
@@ -65,9 +65,9 @@ public sealed class IncarnateTests
     public void Pre_and_post_accumulate_independently()
     {
         Dictionary<string, (double PreEd, double PostEd)> bucket = new(StringComparer.Ordinal);
-        IncarnateResolver.AddSplit(bucket, "k", 0.11, false);
-        IncarnateResolver.AddSplit(bucket, "k", 0.22, true);
-        IncarnateResolver.AddSplit(bucket, "k", 0.05, false);
+        IncarnateResolver.AddSplit(bucket, "k", 0.11, ignoreEd: false);
+        IncarnateResolver.AddSplit(bucket, "k", 0.22, ignoreEd: true);
+        IncarnateResolver.AddSplit(bucket, "k", 0.05, ignoreEd: false);
         Assert.Equal((F32.Round(0.16), F32.Round(0.22)), bucket["k"]);
     }
 

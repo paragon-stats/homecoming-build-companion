@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- The Anthropic client's default base address; ANTHROPIC_BASE_URL and ask's base URL option replace it. -->
+    <AssemblyMetadata Include="AnthropicBaseUrl" Value="https://api.anthropic.com" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.AI" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" />
     <PackageReference Include="OpenAI" />

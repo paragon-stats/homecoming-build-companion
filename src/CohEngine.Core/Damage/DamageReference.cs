@@ -86,6 +86,29 @@ public static class DamageReference
 
         Dictionary<string, (double Mag, double Duration)> buff = [];
         Dictionary<string, (double Mag, double Duration)> debuff = [];
+        SumByType(fullName, byIndex, structural, buff, debuff);
+        (double buffMag, double buffDuration) = buff.Values.FirstOrDefault();
+        foreach ((double mag, double duration) in buff.Values)
+        {
+            // The largest magnitude, and on a tie the longest duration.
+            if ((mag, duration).CompareTo((buffMag, buffDuration)) > 0)
+            {
+                (buffMag, buffDuration) = (mag, duration);
+            }
+        }
+
+        (double debuffMag, double debuffDuration) = debuff.Count == CoreTypes.Length ? SharedDebuff(debuff) : (0.0, 0.0);
+        return (buffMag, buffDuration, debuffMag, debuffDuration);
+    }
+
+    /// <summary>Sums each core damage type's self damage buffs and target -Res, keeping the longest duration.</summary>
+    private static void SumByType(
+        string fullName,
+        Dictionary<int, JsonElement> byIndex,
+        IReadOnlyList<JsonElement> structural,
+        Dictionary<string, (double Mag, double Duration)> buff,
+        Dictionary<string, (double Mag, double Duration)> debuff)
+    {
         foreach (JsonElement effect in structural)
         {
             string kind = effect.ReqStr("EffectType");
@@ -112,30 +135,17 @@ public static class DamageReference
             (double oldMag, double oldDuration) = table.GetValueOrDefault(damageType);
             table[damageType] = (oldMag + mag, Math.Max(oldDuration, duration));
         }
+    }
 
-        (double buffMag, double buffDuration) = buff.Count > 0 ? buff.Values.First() : (0.0, 0.0);
-        foreach ((double mag, double duration) in buff.Values)
+    /// <summary>The largest summed magnitude over the core types, as a positive -Res amount, with its duration.</summary>
+    private static (double Mag, double Duration) SharedDebuff(Dictionary<string, (double Mag, double Duration)> debuff)
+    {
+        (double Mag, double Duration) best = debuff.Values.First();
+        foreach ((double Mag, double Duration) candidate in debuff.Values.Where(candidate => candidate.Mag > best.Mag))
         {
-            if (mag > buffMag || (Exact.Same(mag, buffMag) && duration > buffDuration))
-            {
-                (buffMag, buffDuration) = (mag, duration);
-            }
+            best = candidate;
         }
 
-        double debuffMag = 0.0;
-        double debuffDuration = 0.0;
-        if (debuff.Count == CoreTypes.Length)
-        {
-            (double Mag, double Duration) best = debuff.Values.First();
-            foreach ((double Mag, double Duration) candidate in debuff.Values.Where(candidate => candidate.Mag > best.Mag))
-            {
-                best = candidate;
-            }
-
-            debuffMag = Math.Max(0.0, -best.Mag);
-            debuffDuration = best.Duration;
-        }
-
-        return (buffMag, buffDuration, debuffMag, debuffDuration);
+        return (Math.Max(0.0, -best.Mag), best.Duration);
     }
 }

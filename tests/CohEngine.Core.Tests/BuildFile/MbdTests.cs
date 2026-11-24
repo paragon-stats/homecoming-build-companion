@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 using CohEngine.Core.BuildFile;
 using CohEngine.Core.Data;
 using CohEngine.TestSupport;
@@ -110,7 +112,7 @@ public sealed class MbdTests : IDisposable
         BuildPowerEntry parsed = Mbd.ParseMbd(Document(entry)).PowerEntries[0];
 
         Assert.Equal((3, 1, true), (parsed.VariableValue, parsed.InherentSlotsUsed, parsed.ProcInclude));
-        Assert.Equal(new BuildSubPower("Sub1", true), Assert.Single(parsed.SubPowerEntries));
+        Assert.Equal(new BuildSubPower("Sub1", StatInclude: true), Assert.Single(parsed.SubPowerEntries));
     }
 
     [Fact]
@@ -177,6 +179,37 @@ public sealed class MbdTests : IDisposable
         File.Copy(Path.Join(Fixtures.Store.MidsDirectory, "archetypes.json"), Path.Join(directory, "archetypes.json"));
 
         Assert.StartsWith("E118:", Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppVersion": "3.8.6.0"}""", "AppName")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppName": null, "AppVersion": "3.8.6.0"}""", "AppName")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "DatabaseName": "Homecoming", "AppName": "Mids Reborn", "AppVersion": ""}""", "AppVersion")]
+    [InlineData("""{"DatabaseVersion": "  ", "DatabaseName": "Homecoming", "AppName": "Mids Reborn", "AppVersion": "3.8.6.0"}""", "DatabaseVersion")]
+    [InlineData("""{"DatabaseVersion": "2026.1.1242", "AppName": "Mids Reborn", "AppVersion": "3.8.6.0"}""", "DatabaseName")]
+    public void A_version_field_that_is_missing_null_or_blank_is_E118_naming_the_field(string version, string field)
+    {
+        foreach (string file in new[] { "enhancements.json", "enhancement_sets.json", "powers.json", "archetypes.json" })
+        {
+            File.Copy(Path.Join(Fixtures.Store.MidsDirectory, file), Path.Join(directory, file));
+        }
+
+        File.WriteAllText(Path.Join(directory, "version.json"), version);
+
+        Assert.Equal(
+            $"E118: version.json field {field} is missing or blank, so a written build has no BuiltWith {field}; re-dump with the current harness",
+            Assert.Throws<InvalidDataException>(() => Mbd.LoadMbdDb(directory)).Message);
+    }
+
+    [Fact]
+    public void The_build_database_carries_the_dumps_version_as_built_with()
+    {
+        using JsonDocument version = JsonDocument.Parse(File.ReadAllText(Path.Join(Fixtures.Store.MidsDirectory, "version.json")));
+        JsonElement root = version.RootElement;
+
+        Assert.Equal(
+            new BuildMetaData(root.GetProperty("AppName").GetString()!, root.GetProperty("AppVersion").GetString()!, root.GetProperty("DatabaseName").GetString()!, root.GetProperty("DatabaseVersion").GetString()!),
+            BuildFileFixtures.Database.BuiltWith);
     }
 
     [Fact]
@@ -291,8 +324,8 @@ public sealed class MbdTests : IDisposable
         Assert.Equal(build.PowerEntries[0].GetHashCode(), again.PowerEntries[0].GetHashCode());
         Assert.NotEqual(build, again with { PowerSets = [] });
         Assert.NotEqual(build.PowerEntries[0], again.PowerEntries[1]);
-        Assert.False(build.Equals(null));
-        Assert.False(build.PowerEntries[0].Equals(null));
+        Assert.False(build.Equals(other: null));
+        Assert.False(build.PowerEntries[0].Equals(other: null));
     }
 
     [Fact]

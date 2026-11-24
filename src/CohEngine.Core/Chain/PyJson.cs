@@ -25,8 +25,6 @@ public static class PyJson
 
     private static void Write(StringBuilder builder, object? value, int depth, bool pythonReprNonFinite)
     {
-        string pad = new(' ', (depth + 1) * 2);
-        string close = new(' ', depth * 2);
         switch (value)
         {
             case null:
@@ -45,45 +43,56 @@ public static class PyJson
                 WriteString(builder, text);
                 break;
             case PyObject map:
-                if (map.Count == 0)
-                {
-                    builder.Append("{}");
-                    break;
-                }
-
-                builder.Append("{\n");
-                for (int i = 0; i < map.Count; i++)
-                {
-                    builder.Append(pad);
-                    WriteString(builder, map[i].Key);
-                    builder.Append(": ");
-                    Write(builder, map[i].Value, depth + 1, pythonReprNonFinite);
-                    builder.Append(i < map.Count - 1 ? ",\n" : "\n");
-                }
-
-                builder.Append(close).Append('}');
+                WriteObject(builder, map, depth, pythonReprNonFinite);
                 break;
             case IEnumerable<object?> or IEnumerable<int> or IEnumerable<string>:
-                List<object?> list = [.. ((IEnumerable)value).Cast<object?>()];
-                if (list.Count == 0)
-                {
-                    builder.Append("[]");
-                    break;
-                }
-
-                builder.Append("[\n");
-                for (int i = 0; i < list.Count; i++)
-                {
-                    builder.Append(pad);
-                    Write(builder, list[i], depth + 1, pythonReprNonFinite);
-                    builder.Append(i < list.Count - 1 ? ",\n" : "\n");
-                }
-
-                builder.Append(close).Append(']');
+                WriteList(builder, [.. ((IEnumerable)value).Cast<object?>()], depth, pythonReprNonFinite);
                 break;
             default:
                 throw new ArgumentException($"no JSON form for {value.GetType().Name}", nameof(value));
         }
+    }
+
+    private static void WriteObject(StringBuilder builder, PyObject map, int depth, bool pythonReprNonFinite)
+    {
+        if (map.Count == 0)
+        {
+            builder.Append("{}");
+            return;
+        }
+
+        string pad = new(' ', (depth + 1) * 2);
+        builder.Append("{\n");
+        for (int i = 0; i < map.Count; i++)
+        {
+            builder.Append(pad);
+            WriteString(builder, map[i].Key);
+            builder.Append(": ");
+            Write(builder, map[i].Value, depth + 1, pythonReprNonFinite);
+            builder.Append(i < map.Count - 1 ? ",\n" : "\n");
+        }
+
+        builder.Append(' ', depth * 2).Append('}');
+    }
+
+    private static void WriteList(StringBuilder builder, List<object?> list, int depth, bool pythonReprNonFinite)
+    {
+        if (list.Count == 0)
+        {
+            builder.Append("[]");
+            return;
+        }
+
+        string pad = new(' ', (depth + 1) * 2);
+        builder.Append("[\n");
+        for (int i = 0; i < list.Count; i++)
+        {
+            builder.Append(pad);
+            Write(builder, list[i], depth + 1, pythonReprNonFinite);
+            builder.Append(i < list.Count - 1 ? ",\n" : "\n");
+        }
+
+        builder.Append(' ', depth * 2).Append(']');
     }
 
     private static string JsonNonFinite(double value)

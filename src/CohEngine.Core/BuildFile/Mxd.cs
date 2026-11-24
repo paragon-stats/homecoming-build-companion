@@ -12,6 +12,8 @@ public static class Mxd
 {
     internal static readonly byte[] Magic = [0x4D, 0x78, 0x44, 0x0C];
 
+    private const string CurrentFormat = "current";
+
     private static readonly double PriorVersion = F32.Round(3.10);
     private static readonly double ThisVersion = F32.Round(3.20);
 
@@ -125,7 +127,7 @@ public static class Mxd
         byte[] raw = HexDecode(block.Payload);
         if (raw.Length != block.CompressedSize)
         {
-            throw new InvalidDataException($"{ErrorCodes.SharePayload}: mxd compressed size mismatch: header {block.CompressedSize}, actual {raw.Length}; the payload is truncated or edited, re-export it from Mids");
+            throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.SharePayload}: mxd compressed size mismatch: header {block.CompressedSize}, actual {raw.Length}; the payload is truncated or edited, re-export it from Mids"));
         }
 
         byte[] buffer = Inflate(raw);
@@ -205,7 +207,7 @@ public static class Mxd
     {
         if (version > ThisVersion)
         {
-            throw new InvalidDataException(FormattableString.Invariant($"{ErrorCodes.VersionTooNew}: mxd saved by a newer version ({version}); cannot read; update this tool or re-save the build from an older Mids"));
+            throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.VersionTooNew}: mxd saved by a newer version ({version}); cannot read; update this tool or re-save the build from an older Mids"));
         }
 
         if (version < PriorVersion)
@@ -213,7 +215,7 @@ public static class Mxd
             return "legacy";
         }
 
-        return version < ThisVersion ? "prior" : "current";
+        return version < ThisVersion ? "prior" : CurrentFormat;
     }
 
     internal static int ScanMagic(byte[] buffer)
@@ -282,38 +284,52 @@ public static class Mxd
         {
             level = cursor.ReadSByte();
             statInclude = cursor.ReadBoolean();
-            if (format is "current" or "prior")
+            if (format is CurrentFormat or "prior")
             {
                 procInclude = cursor.ReadBoolean();
             }
 
             variableValue = cursor.ReadInt32();
-            if (string.Equals(format, "current", StringComparison.Ordinal))
+            if (string.Equals(format, CurrentFormat, StringComparison.Ordinal))
             {
                 inherentSlotsUsed = cursor.ReadInt32();
             }
 
             if (hasSubPower)
             {
-                for (int subCount = cursor.ReadSByte() + 1; subCount > 0; subCount--)
-                {
-                    string subName = powerIndex.GetValueOrDefault(cursor.ReadInt32(), string.Empty);
-                    subPowers.Add(new BuildSubPower(subName, cursor.ReadBoolean()));
-                }
+                subPowers = ReadSubPowers(cursor, powerIndex);
             }
         }
 
+        List<BuildSlot> slots = ReadSlots(cursor, enhIndex, format, version);
+        return new BuildPowerEntry(powerName, level, statInclude, procInclude, variableValue, inherentSlotsUsed, subPowers, slots);
+    }
+
+    private static List<BuildSubPower> ReadSubPowers(BinaryCursor cursor, IReadOnlyDictionary<int, string> powerIndex)
+    {
+        List<BuildSubPower> subPowers = [];
+        for (int subCount = cursor.ReadSByte() + 1; subCount > 0; subCount--)
+        {
+            string subName = powerIndex.GetValueOrDefault(cursor.ReadInt32(), string.Empty);
+            subPowers.Add(new BuildSubPower(subName, cursor.ReadBoolean()));
+        }
+
+        return subPowers;
+    }
+
+    private static List<BuildSlot> ReadSlots(BinaryCursor cursor, IReadOnlyDictionary<int, EnhIndexEntry> enhIndex, string format, double version)
+    {
         List<BuildSlot> slots = [];
         for (int slotCount = cursor.ReadSByte() + 1; slotCount > 0; slotCount--)
         {
             int slotLevel = cursor.ReadSByte();
-            bool isInherent = string.Equals(format, "current", StringComparison.Ordinal) && cursor.ReadBoolean();
+            bool isInherent = string.Equals(format, CurrentFormat, StringComparison.Ordinal) && cursor.ReadBoolean();
             SlottedEnhancement? enhancement = ReadSlotData(cursor, enhIndex, version);
             SlottedEnhancement? flipped = cursor.ReadBoolean() ? ReadSlotData(cursor, enhIndex, version) : null;
             slots.Add(new BuildSlot(slotLevel, isInherent, enhancement, flipped));
         }
 
-        return new BuildPowerEntry(powerName, level, statInclude, procInclude, variableValue, inherentSlotsUsed, subPowers, slots);
+        return slots;
     }
 
     private static string EnumName(IReadOnlyList<string> table, int ordinal, string kind)
@@ -323,7 +339,7 @@ public static class Mxd
             return table[ordinal];
         }
 
-        throw new InvalidDataException($"{ErrorCodes.EnumOutOfRange}: corrupt .mxd: {kind} ordinal {ordinal} out of range; the file is corrupt, re-export it from Mids");
+        throw new InvalidDataException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.EnumOutOfRange}: corrupt .mxd: {kind} ordinal {ordinal} out of range; the file is corrupt, re-export it from Mids"));
     }
 
     private static byte[] Inflate(byte[] raw)

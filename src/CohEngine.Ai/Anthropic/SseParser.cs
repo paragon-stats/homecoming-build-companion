@@ -34,15 +34,10 @@ internal static class SseParser
                 continue;
             }
 
-            int colon = line.IndexOf(':', StringComparison.Ordinal);
-            if (colon == 0)
+            if (ParseField(line) is not (string field, string value))
             {
                 continue;
             }
-
-            string field = colon < 0 ? line : line[..colon];
-            string value = colon < 0 ? string.Empty : line[(colon + 1)..];
-            value = value.StartsWith(' ') ? value[1..] : value;
 
             // id and retry drive reconnection, which the client does not do, so they fall through unread.
             switch (field)
@@ -61,5 +56,19 @@ internal static class SseParser
         {
             yield return new SseEvent(eventName, data.ToString());
         }
+    }
+
+    /// <summary>A field line split into name and value, or null for a comment line.</summary>
+    private static (string Field, string Value)? ParseField(string line)
+    {
+        int colon = line.IndexOf(':', StringComparison.Ordinal);
+        if (colon == 0)
+        {
+            return null;
+        }
+
+        string field = colon < 0 ? line : line[..colon];
+        string value = colon < 0 ? string.Empty : line[(colon + 1)..];
+        return (field, value.StartsWith(' ') ? value[1..] : value);
     }
 }

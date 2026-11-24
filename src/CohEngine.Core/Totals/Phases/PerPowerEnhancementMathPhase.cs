@@ -82,8 +82,7 @@ internal static class PerPowerEnhancementMathPhase
     /// <param name="included">The included powers.</param>
     /// <param name="slots">The build's slots.</param>
     /// <param name="enhDb">The enhancement records.</param>
-    /// <param name="tables">The Maths.mhd tables.</param>
-    /// <param name="forceLevel">The exemplar cutoff.</param>
+    /// <param name="tables">The enhancement records, the exemplar cutoff and the Maths.mhd tables.</param>
     /// <param name="context">The base-magnitude context.</param>
     /// <param name="incarnateEffect">The incarnate effect addends.</param>
     /// <param name="selfEnhance">The <c>_selfEnhance</c> accumulator, or null.</param>
@@ -91,9 +90,7 @@ internal static class PerPowerEnhancementMathPhase
     public static Dictionary<(int BuildIndex, int EffectIndex), double> ComputeEnhMultipliers(
         IReadOnlyList<Power> included,
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots,
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
-        MathTables tables,
-        int forceLevel,
+        EnhancementTables tables,
         MagContext context,
         IReadOnlyDictionary<(int BuildIndex, int EffectIndex), (double PreEd, double PostEd)>? incarnateEffect = null,
         BuffsX? selfEnhance = null)
@@ -111,7 +108,7 @@ internal static class PerPowerEnhancementMathPhase
             foreach (Effect effect in power.Effects)
             {
                 (double PreEd, double PostEd)? inc = incarnateEffect is not null && incarnateEffect.TryGetValue((power.BuildIndex, effect.Index), out (double PreEd, double PostEd) found) ? found : null;
-                double? mult = EffectMultiplier(power, effect, powerSlots, memo, inc, new Inputs(enhDb, tables, forceLevel, context, selfEnhance));
+                double? mult = EffectMultiplier(power, effect, powerSlots, memo, inc, new Inputs(tables.EnhDb, tables.Tables, tables.ForceLevel, context, selfEnhance));
                 if (mult is { } value)
                 {
                     output[(power.BuildIndex, effect.Index)] = value;
@@ -150,8 +147,8 @@ internal static class PerPowerEnhancementMathPhase
             }
 
             (double preEd, _) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
-            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), "EnduranceDiscount", enhDb, forceLevel, tables, preEdAddend: preEd);
-            if (!Exact.Same(aggregate, 0.0))
+            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), "EnduranceDiscount", new EnhancementTables(enhDb, forceLevel, tables), preEdAddend: preEd);
+            if (!F32.IsZero(aggregate))
             {
                 output[power.BuildIndex] = aggregate;
             }
@@ -186,7 +183,7 @@ internal static class PerPowerEnhancementMathPhase
         foreach (Power power in included.Where(candidate => candidate.Effects.Any(effect => effect.ExprMagnitude.Contains("power.base>endcost", StringComparison.Ordinal))))
         {
             (double preEd, double postEd) = incarnateScalar.GetValueOrDefault((power.BuildIndex, AspectRouting.End.Aspect), (0.0, 0.0));
-            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), AspectRouting.End.Aspect, enhDb, forceLevel, tables, preEdAddend: preEd);
+            double aggregate = EnhancementPipeline.AggregateAndEd(slots.GetValueOrDefault(power.BuildIndex, []), AspectRouting.End.Aspect, new EnhancementTables(enhDb, forceLevel, tables), preEdAddend: preEd);
             output[power.BuildIndex] = F32.Round(power.EndCost / AspectRouting.FoldScalar(AspectRouting.End, aggregate, fold.GlobalEndRdx, power.IgnoreEnh, fold.RechargeCap, postEd));
         }
 
@@ -257,7 +254,7 @@ internal static class PerPowerEnhancementMathPhase
         string? aspect = EnhanceAspect(effect, context.EnhanceNames);
         double baseMag = context.Mag(effect, power);
         double glob = GlobalEnhancementTerm(effect, baseMag, inputs.SelfEnhance, context.Enums);
-        if (aspect is null && inc is null && Exact.Same(glob, 0.0))
+        if (aspect is null && inc is null && F32.IsZero(glob))
         {
             return null;
         }
@@ -272,9 +269,7 @@ internal static class PerPowerEnhancementMathPhase
             double aggregate = EnhancementPipeline.AggregateAndEd(
                 aspect is not null ? powerSlots : [],
                 edAspect,
-                inputs.EnhDb,
-                inputs.ForceLevel,
-                inputs.Tables,
+                new EnhancementTables(inputs.EnhDb, inputs.ForceLevel, inputs.Tables),
                 subEnh,
                 baseMag,
                 preEd,
@@ -282,7 +277,7 @@ internal static class PerPowerEnhancementMathPhase
             accumulator = memo[key] = F32.Round(F32.Round(aggregate + glob) + postEd);
         }
 
-        return !Exact.Same(accumulator, 0.0) ? F32.Round(1.0 + accumulator) : null;
+        return !F32.IsZero(accumulator) ? F32.Round(1.0 + accumulator) : null;
     }
 
     /// <summary>The terms the endurance fold takes beyond the slots.</summary>

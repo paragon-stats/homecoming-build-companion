@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 
@@ -19,10 +21,7 @@ internal static class CrossPowerPass
     /// <param name="build">The build powers' assembly inputs by build index.</param>
     /// <param name="slots">The build's slots by build index.</param>
     /// <param name="statInclude">Each build power's StatInclude flag.</param>
-    /// <param name="enhDb">The enhancement records.</param>
-    /// <param name="setDb">The set records.</param>
-    /// <param name="powers">The database powers assembly reaches.</param>
-    /// <param name="entities">The summoned entities.</param>
+    /// <param name="database">The enhancement, set, power and entity records.</param>
     /// <param name="archetypeIndex">The build's class index.</param>
     /// <param name="conditions">Whether a conditional GrantPower's conditions hold.</param>
     /// <param name="setBonusEffects">The set-bonus virtual power's effects, whose chance modifiers follow the build powers'.</param>
@@ -31,20 +30,17 @@ internal static class CrossPowerPass
         IReadOnlyDictionary<int, BuildPowerAssembly> build,
         IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots,
         IReadOnlyDictionary<int, bool> statInclude,
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
-        SetBonusDb setDb,
-        IReadOnlyDictionary<int, AssemblyPower> powers,
-        AssemblyEntities entities,
+        AssemblyDatabase database,
         int archetypeIndex,
         Func<Effect, bool> conditions,
         IReadOnlyList<Effect>? setBonusEffects = null)
     {
-        AssemblyInputs inputs = new(EveryPower(powers, build), entities, archetypeIndex);
+        AssemblyInputs inputs = new(EveryPower(database.Powers, build), database.Entities, archetypeIndex);
         int[] order = [.. build.Keys.Order()];
         Dictionary<int, (AssemblyPower Power, List<Effect> Effects)> assembled = [];
         foreach (int i in order)
         {
-            assembled[i] = PowerAssembler.Assemble(build[i], slots.GetValueOrDefault(i, []), enhDb, setDb, inputs, conditions);
+            assembled[i] = PowerAssembler.Assemble(build[i], slots.GetValueOrDefault(i, []), database.EnhDb, database.SetDb, inputs, conditions);
         }
 
         Dictionary<string, double> mods = new(StringComparer.Ordinal);
@@ -69,9 +65,9 @@ internal static class CrossPowerPass
     private static Dictionary<int, AssemblyPower> EveryPower(IReadOnlyDictionary<int, AssemblyPower> powers, IReadOnlyDictionary<int, BuildPowerAssembly> build)
     {
         Dictionary<int, AssemblyPower> every = [];
-        foreach (BuildPowerAssembly entry in build.Values)
+        foreach (AssemblyPower own in build.Values.Select(entry => entry.Power))
         {
-            every[entry.Power.Nid] = powers.GetValueOrDefault(entry.Power.Nid, entry.Power);
+            every[own.Nid] = powers.GetValueOrDefault(own.Nid, own);
         }
 
         foreach ((int nid, AssemblyPower power) in powers)
@@ -126,7 +122,7 @@ internal static class CrossPowerPass
                 continue;
             }
 
-            string where = $"{source.FullName} effect {effect.Index}";
+            string where = $"{source.FullName} effect {effect.Index.ToString(CultureInfo.InvariantCulture)}";
             AssemblyPower owner = effect.AbsorbedEffect && effect.AbsorbedPowerNid > -1 ? AssemblyInputs.Record(inputs.Powers, effect.AbsorbedPowerNid, "power", where) : source;
             if (!target.Enhancements.Overlaps(owner.Enhancements))
             {
@@ -135,22 +131,7 @@ internal static class CrossPowerPass
 
             if (string.Equals(effect.EffectType, "GrantPower", StringComparison.Ordinal))
             {
-                AssemblyPower granted = AssemblyInputs.Record(inputs.Powers, effect.NSummon, "granted power", where);
-                targetFx.AddRange(Absorption.Absorb(granted, effect.Duration, inputs.ArchetypeIndex, inputs));
-
-                // Mids rewrites every effect of the target here, not only the ones just absorbed.
-                for (int k = 0; k < targetFx.Count; k++)
-                {
-                    Effect rewritten = targetFx[k] with
-                    {
-                        ToWho = "Target",
-                        AbsorbedEffect = true,
-                        IsEnhancementEffect = effect.IsEnhancementEffect,
-                        BaseProbability = F32.Round(targetFx[k].BaseProbability * effect.BaseProbability),
-                        Ticks = effect.Ticks,
-                    };
-                    targetFx[k] = Chance.WithProbability(rewritten, F32.Round(Chance.Probability(rewritten, mods) * Chance.Probability(effect, mods)), mods);
-                }
+                AbsorbGrant(targetFx, effect, where, inputs, mods);
             }
             else
             {
@@ -160,6 +141,27 @@ internal static class CrossPowerPass
         }
 
         SettleChances(targetFx, start, grantRoot, sourceFx, mods);
+    }
+
+    /// <summary>Absorbs a GrantPower's granted power into the target, then rewrites every target effect as granted.</summary>
+    private static void AbsorbGrant(List<Effect> targetFx, Effect effect, string where, AssemblyInputs inputs, Dictionary<string, double> mods)
+    {
+        AssemblyPower granted = AssemblyInputs.Record(inputs.Powers, effect.NSummon, "granted power", where);
+        targetFx.AddRange(Absorption.Absorb(granted, effect.Duration, inputs.ArchetypeIndex, inputs));
+
+        // Mids rewrites every effect of the target here, not only the ones just absorbed.
+        for (int k = 0; k < targetFx.Count; k++)
+        {
+            Effect rewritten = targetFx[k] with
+            {
+                ToWho = "Target",
+                AbsorbedEffect = true,
+                IsEnhancementEffect = effect.IsEnhancementEffect,
+                BaseProbability = F32.Round(targetFx[k].BaseProbability * effect.BaseProbability),
+                Ticks = effect.Ticks,
+            };
+            targetFx[k] = Chance.WithProbability(rewritten, F32.Round(Chance.Probability(rewritten, mods) * Chance.Probability(effect, mods)), mods);
+        }
     }
 
     private static bool Skipped(Effect effect, AssemblyPower source)

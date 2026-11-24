@@ -58,6 +58,29 @@ public sealed class F32Tests
         Assert.True(double.IsNaN(F32.Round(double.NaN)));
     }
 
+    [Theory]
+    [InlineData(0.0, true)]
+    [InlineData(1.401298464324817e-45, false)]
+    [InlineData(-1.401298464324817e-45, false)]
+    [InlineData(1.0, false)]
+    [InlineData(double.NaN, false)]
+    [InlineData(double.PositiveInfinity, false)]
+    [InlineData(double.NegativeInfinity, false)]
+    public void IsZero_holds_for_either_zero_and_no_single(double value, bool expected)
+    {
+        Assert.Equal(expected, F32.IsZero(value));
+    }
+
+    [Fact]
+    public void IsZero_tells_a_sum_of_singles_from_zero_down_to_the_smallest_single()
+    {
+        double tenth = F32.Round(0.1);
+
+        Assert.True(F32.IsZero(-0.0));
+        Assert.True(F32.IsZero(tenth + -tenth));
+        Assert.False(F32.IsZero(float.Epsilon + float.Epsilon - float.Epsilon));
+    }
+
     // Python raises OverflowError ("float too large to pack with f format") for each of these.
     [Theory]
     [InlineData(3.4028235677973366e+38)]

@@ -21,22 +21,24 @@ public sealed class EnhancementParityTests
     private const int DeflectionIndex = 2;
     private const int HastenIndex = 6;
 
-    public static TheoryData<string> SlottedBuilds => [Slotted, Hasten2Rech];
+    private static readonly (Effect, string?)[] AspectsCases =
+    [
+        (Make.Effect with { EffectType = "Defense", Buffable = true }, "Defense"),
+        (Make.Effect with { EffectType = "Resistance", Buffable = true }, "Resistance"),
+        (Make.Effect with { EffectType = "Recovery", Buffable = true }, "Recovery"),
+        (Make.Effect with { EffectType = "Enhancement", EtModifies = "Accuracy", Buffable = true }, "Accuracy"),
+        (Make.Effect with { EffectType = "ResEffect", EtModifies = "Defense", Buffable = true }, "Defense"),
+        (Make.Effect with { EffectType = "ResEffect", EtModifies = "Regeneration", Buffable = true }, "Heal"),
+        (Make.Effect with { EffectType = "Defense", Buffable = false }, null),
+        (Make.Effect with { EffectType = "ResEffect", EtModifies = "Recovery", Buffable = true }, null),
+        (Make.Effect with { EffectType = "Damage", DamageType = "Special", Buffable = true }, null),
+        (Make.Effect with { EffectType = "Mez", AttribType = "Duration", Buffable = true }, null),
+        (Make.Effect with { EffectType = "ResEffect", EtModifies = "Regeneration", MezType = "Held", Buffable = true }, null),
+    ];
 
-    public static TheoryData<Effect, string?> Aspects => new()
-    {
-        { Make.Effect with { EffectType = "Defense", Buffable = true }, "Defense" },
-        { Make.Effect with { EffectType = "Resistance", Buffable = true }, "Resistance" },
-        { Make.Effect with { EffectType = "Recovery", Buffable = true }, "Recovery" },
-        { Make.Effect with { EffectType = "Enhancement", EtModifies = "Accuracy", Buffable = true }, "Accuracy" },
-        { Make.Effect with { EffectType = "ResEffect", EtModifies = "Defense", Buffable = true }, "Defense" },
-        { Make.Effect with { EffectType = "ResEffect", EtModifies = "Regeneration", Buffable = true }, "Heal" },
-        { Make.Effect with { EffectType = "Defense", Buffable = false }, null },
-        { Make.Effect with { EffectType = "ResEffect", EtModifies = "Recovery", Buffable = true }, null },
-        { Make.Effect with { EffectType = "Damage", DamageType = "Special", Buffable = true }, null },
-        { Make.Effect with { EffectType = "Mez", AttribType = "Duration", Buffable = true }, null },
-        { Make.Effect with { EffectType = "ResEffect", EtModifies = "Regeneration", MezType = "Held", Buffable = true }, null },
-    };
+    public static TheoryData<int> Aspects => [.. Enumerable.Range(0, AspectsCases.Length)];
+
+    public static TheoryData<string> SlottedBuilds => [Slotted, Hasten2Rech];
 
     [Theory]
     [MemberData(nameof(SlottedBuilds))]
@@ -64,7 +66,7 @@ public sealed class EnhancementParityTests
             Enums = Fixtures.Store.Enums,
         };
         List<Power> included = [.. inputs.Powers.Where(power => power.StatInclude)];
-        Dictionary<(int BuildIndex, int EffectIndex), double> enhMult = PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.Maths, 50, context);
+        Dictionary<(int BuildIndex, int EffectIndex), double> enhMult = PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, inputs.Slots, new EnhancementTables(Fixtures.Store.EnhancementEffects, 50, Fixtures.Store.Maths), context);
 
         Power deflection = inputs.Powers.Single(power => power.BuildIndex == DeflectionIndex);
         EnhancedPower dumped = inputs.Fixture.EnhancedPowers.Single(power => power.BuildIndex == DeflectionIndex);
@@ -91,8 +93,8 @@ public sealed class EnhancementParityTests
     public void Hasten_buffed_recharge_matches(string name, double rounded)
     {
         IReadOnlyList<SlotRef> slots = Fixtures.Store.Build(name).Slots.Single(entry => entry.BuildIndex == HastenIndex).Slots;
-        double aggregate = EnhancementPipeline.AggregateAndEd(slots, "RechargeTime", Fixtures.Store.EnhancementEffects, 50, Fixtures.Store.Maths);
-        Assert.Equal(rounded, Math.Round(aggregate, 4));
+        double aggregate = EnhancementPipeline.AggregateAndEd(slots, "RechargeTime", new EnhancementTables(Fixtures.Store.EnhancementEffects, 50, Fixtures.Store.Maths));
+        Assert.Equal(rounded, Math.Round(aggregate, 4, MidpointRounding.ToEven));
 
         EnhancedPower dumped = Fixtures.Store.Build(name).EnhancedPowers.Single(power => power.BuildIndex == HastenIndex);
         double buffed = F32.Round(dumped.Base.RechargeTime / F32.Round(1.0 + aggregate));
@@ -111,8 +113,9 @@ public sealed class EnhancementParityTests
 
     [Theory]
     [MemberData(nameof(Aspects))]
-    public void Enhance_aspect_routes_by_name_identity_and_special_cases(Effect effect, string? want)
+    public void Enhance_aspect_routes_by_name_identity_and_special_cases(int row)
     {
+        (Effect effect, string? want) = AspectsCases[row];
         Assert.Equal(want, PerPowerEnhancementMathPhase.EnhanceAspect(effect, PerPowerEnhancementMathPhase.EnhanceNames(Fixtures.Store.Enums)));
     }
 

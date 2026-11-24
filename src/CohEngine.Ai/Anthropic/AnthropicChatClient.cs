@@ -1,4 +1,6 @@
+using System.Globalization;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
@@ -19,8 +21,12 @@ public sealed class AnthropicChatClient : IChatClient
     /// <summary>The <c>max_tokens</c> sent when <see cref="ChatOptions.MaxOutputTokens"/> is unset; the API requires one.</summary>
     public const int DefaultMaxTokens = 1024;
 
-    private const string DefaultBaseUrl = "https://api.anthropic.com";
+    /// <summary>The environment variable that replaces the default base address when no base URL is passed.</summary>
+    public const string BaseUrlEnvironmentVariable = "ANTHROPIC_BASE_URL";
+
+    private const string BaseUrlMetadataKey = "AnthropicBaseUrl";
     private const string ApiVersion = "2023-06-01";
+    private const string ToolUse = "tool_use";
 
     // One connection pool for every client that brings no handler. The pool recycles connections so DNS
     // changes are seen, and the timeout allows a long generation that the 100 s default would cut off.
@@ -37,10 +43,10 @@ public sealed class AnthropicChatClient : IChatClient
 
     /// <summary>Initializes a new instance of the <see cref="AnthropicChatClient"/> class.</summary>
     /// <param name="model">The model sent when <see cref="ChatOptions.ModelId"/> is unset.</param>
-    /// <param name="baseUrl">Replaces <c>https://api.anthropic.com</c> (for a proxy or gateway).</param>
+    /// <param name="baseUrl">Replaces the default base address from the assembly's <c>AnthropicBaseUrl</c> metadata (for a proxy or gateway).</param>
     /// <param name="apiKeyEnvironmentVariable">Replaces <c>ANTHROPIC_API_KEY</c>; the key is read from here and nowhere else.</param>
     /// <param name="handler">Replaces the network layer; tests pass a fake, production leaves it null.</param>
-    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E140).</exception>
+    /// <exception cref="InvalidOperationException">The key variable is empty or unset (E140), or no base URL is passed and the default is missing (E143).</exception>
     public AnthropicChatClient(string model, string? baseUrl = null, string? apiKeyEnvironmentVariable = null, HttpMessageHandler? handler = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(model);
@@ -48,9 +54,9 @@ public sealed class AnthropicChatClient : IChatClient
         apiKey = Environment.GetEnvironmentVariable(keyVariable) is { Length: > 0 } value
             ? value
             : throw new InvalidOperationException(
-                $"{AiErrorCodes.Anthropic.MissingApiKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
+                $"{AiErrorCodes.Anthropic.MissingKey}: {keyVariable} is not set; export the API key in that variable or pass --api-key-env");
 
-        Uri root = new(baseUrl ?? DefaultBaseUrl);
+        Uri root = new(baseUrl ?? DefaultBaseUrl(typeof(AnthropicChatClient).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>()));
         endpoint = new Uri(root.AbsoluteUri.TrimEnd('/') + "/v1/messages");
         metadata = new ChatClientMetadata("anthropic", root, model);
 
@@ -128,7 +134,12 @@ public sealed class AnthropicChatClient : IChatClient
             return null;
         }
 
-        return serviceType == typeof(ChatClientMetadata) ? metadata : serviceType.IsInstanceOfType(this) ? this : null;
+        if (serviceType == typeof(ChatClientMetadata))
+        {
+            return metadata;
+        }
+
+        return serviceType.IsInstanceOfType(this) ? this : null;
     }
 
     /// <inheritdoc/>
@@ -138,6 +149,19 @@ public sealed class AnthropicChatClient : IChatClient
         {
             http.Dispose();
         }
+    }
+
+    /// <summary>The default base address, from the <c>AnthropicBaseUrl</c> assembly metadata the project file sets.</summary>
+    /// <param name="metadata">The assembly's metadata attributes.</param>
+    /// <returns>The address.</returns>
+    /// <exception cref="InvalidOperationException">E143 when the metadata is missing or blank.</exception>
+    internal static string DefaultBaseUrl(IEnumerable<AssemblyMetadataAttribute> metadata)
+    {
+        string? value = metadata.FirstOrDefault(attribute => string.Equals(attribute.Key, BaseUrlMetadataKey, StringComparison.Ordinal))?.Value;
+        return string.IsNullOrWhiteSpace(value)
+            ? throw new InvalidOperationException(
+                $"{AiErrorCodes.Anthropic.MissingBaseUrl}: the CohEngine.Ai assembly has no {BaseUrlMetadataKey} metadata, so there is no default base address; rebuild it from its project file or pass --base-url")
+            : value;
     }
 
     /// <summary>Maps the conversation and options to the request body.</summary>
@@ -186,7 +210,7 @@ public sealed class AnthropicChatClient : IChatClient
         {
             TextContent text => new AnthropicContentBlock("text", Text: text.Text),
             FunctionCallContent call => new AnthropicContentBlock(
-                "tool_use",
+                ToolUse,
                 CallId: call.CallId,
                 Name: call.Name,
                 Input: JsonSerializer.SerializeToElement(
@@ -217,9 +241,13 @@ public sealed class AnthropicChatClient : IChatClient
 
     private static AnthropicTool ToTool(AITool tool)
     {
-        return tool is AIFunctionDeclaration function
-            ? new AnthropicTool(function.Name, function.Description is { Length: > 0 } description ? description : null, function.JsonSchema)
-            : throw new NotSupportedException($"The Anthropic client does not send the {tool.GetType().Name} tool.");
+        if (tool is not AIFunctionDeclaration function)
+        {
+            throw new NotSupportedException($"The Anthropic client does not send the {tool.GetType().Name} tool.");
+        }
+
+        string? description = function.Description is { Length: > 0 } text ? text : null;
+        return new AnthropicTool(function.Name, description, function.JsonSchema);
     }
 
     private static AnthropicToolChoice? ToToolChoice(ChatToolMode? mode)
@@ -239,7 +267,7 @@ public sealed class AnthropicChatClient : IChatClient
         return block.Type switch
         {
             "text" => new TextContent(block.Text),
-            "tool_use" => ToCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, block.Input),
+            ToolUse => ToCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, block.Input),
             _ => null,
         };
     }
@@ -265,7 +293,7 @@ public sealed class AnthropicChatClient : IChatClient
             null => null,
             "end_turn" or "stop_sequence" => ChatFinishReason.Stop,
             "max_tokens" => ChatFinishReason.Length,
-            "tool_use" => ChatFinishReason.ToolCalls,
+            ToolUse => ChatFinishReason.ToolCalls,
             "refusal" => ChatFinishReason.ContentFilter,
             _ => new ChatFinishReason(stopReason),
         };
@@ -340,7 +368,7 @@ public sealed class AnthropicChatClient : IChatClient
                 state.ModelId = data.Message?.Model;
                 state.InputTokens = data.Message?.Usage?.InputTokens;
                 break;
-            case "content_block_start" when data.ContentBlock is { Type: "tool_use" } block:
+            case "content_block_start" when data.ContentBlock is { Type: ToolUse } block:
                 state.Pending[data.Index] = new PendingCall(block.CallId ?? string.Empty, block.Name ?? string.Empty, new StringBuilder());
                 break;
             case "content_block_delta" when data.Delta is { Type: "text_delta", Text: { } text }:
@@ -349,7 +377,7 @@ public sealed class AnthropicChatClient : IChatClient
             case "content_block_delta" when data.Delta is { Type: "input_json_delta" } delta:
                 PendingCall open = state.Pending.TryGetValue(data.Index, out PendingCall? found)
                     ? found
-                    : throw new JsonException($"The Messages API sent input_json_delta for content block {data.Index}, which no tool_use block started.");
+                    : throw new JsonException($"The Messages API sent input_json_delta for content block {data.Index.ToString(CultureInfo.InvariantCulture)}, which no tool_use block started.");
                 open.Json.Append(delta.PartialJson);
                 break;
             case "content_block_stop" when state.Pending.Remove(data.Index, out PendingCall? call):
@@ -366,7 +394,7 @@ public sealed class AnthropicChatClient : IChatClient
                 throw ApiError(response, data.Error, fallbackMessage: null);
         }
 
-        return contents.Count > 0 || finishReason is not null
+        return contents.Count > 0
             ? new ChatResponseUpdate(ChatRole.Assistant, contents) { ResponseId = state.ResponseId, ModelId = state.ModelId, FinishReason = finishReason }
             : null;
     }

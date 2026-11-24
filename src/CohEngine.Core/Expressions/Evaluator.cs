@@ -11,14 +11,21 @@ namespace CohEngine.Core.Expressions;
 /// <c>Expressions.Parse</c> for a magnitude: the keywords are substituted as text, in order, and the arithmetic
 /// left is evaluated. Floats are rendered as .NET renders them, and constants are replaced before the functions.
 /// </summary>
-internal static class Evaluator
+internal static partial class Evaluator
 {
     private const double DoubleEpsilon = 5e-324;
 
-    private static readonly Regex VariableVal = new(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex PowerGroupIn = new(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex PowerGroupNotIn = new(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
-    private static readonly Regex AndOrCall = new(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(1));
+    [GeneratedRegex(@"(?<name>[a-zA-Z\-_\.]+)>variableVal", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex VariableVal { get; }
+
+    [GeneratedRegex(@"powerGroupIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex PowerGroupIn { get; }
+
+    [GeneratedRegex(@"powerGroupNotIn\((?<group>[a-zA-Z0-9_\-\.]+)\)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex PowerGroupNotIn { get; }
+
+    [GeneratedRegex(@"\b(?<word>and|or)\s*\(", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    private static partial Regex AndOrCall { get; }
 
     /// <summary>
     /// Evaluates an effect's magnitude expression. Only the keywords and functions the committed builds use are
@@ -118,14 +125,16 @@ internal static class Evaluator
     internal static string FloatText(double value)
     {
         value = F32.Round(value);
-        for (int digits = 1; ; digits++)
+        int digits = 0;
+        string text;
+        do
         {
-            string text = value.ToString("G" + digits.ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-            if (Exact.Same(F32.Round(double.Parse(text, CultureInfo.InvariantCulture)), value))
-            {
-                return text;
-            }
+            digits++;
+            text = value.ToString("G" + digits.ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
         }
+        while (BitConverter.DoubleToInt64Bits(F32.Round(double.Parse(text, CultureInfo.InvariantCulture))) != BitConverter.DoubleToInt64Bits(value));
+
+        return text;
     }
 
     /// <summary>Double division as .NET does it: a zero divisor gives an infinity or NaN.</summary>
@@ -153,17 +162,29 @@ internal static class Evaluator
     {
         return (name, args.Length) switch
         {
-            ("eq", 2) => Math.Abs(args[0] - args[1]) < DoubleEpsilon ? 1 : 0,
-            ("ne", 2) => Math.Abs(args[0] - args[1]) > DoubleEpsilon ? 1 : 0,
-            ("gt", 2) => args[0] > args[1] ? 1 : 0,
-            ("gte", 2) => args[0] >= args[1] ? 1 : 0,
-            ("lt", 2) => args[0] < args[1] ? 1 : 0,
-            ("lte", 2) => args[0] <= args[1] ? 1 : 0,
-            ("minmax", 3) => PyMin(args[1] > args[2] ? args[1] : args[2], PyMax(args[1] > args[2] ? args[2] : args[1], args[0])),
-            ("and_", 2) => !Exact.Same(args[0], 0) && !Exact.Same(args[1], 0) ? 1 : 0,
-            ("or_", 2) => !Exact.Same(args[0], 0) || !Exact.Same(args[1], 0) ? 1 : 0,
+            ("eq", 2) => Flag(Math.Abs(args[0] - args[1]) < DoubleEpsilon),
+            ("ne", 2) => Flag(Math.Abs(args[0] - args[1]) > DoubleEpsilon),
+            ("gt", 2) => Flag(args[0] > args[1]),
+            ("gte", 2) => Flag(args[0] >= args[1]),
+            ("lt", 2) => Flag(args[0] < args[1]),
+            ("lte", 2) => Flag(args[0] <= args[1]),
+            ("minmax", 3) => MinMax(args[0], args[1], args[2]),
+            ("and_", 2) => Flag(!Exact.Same(args[0], 0) && !Exact.Same(args[1], 0)),
+            ("or_", 2) => Flag(!Exact.Same(args[0], 0) || !Exact.Same(args[1], 0)),
             _ => null,
         };
+    }
+
+    private static double Flag(bool condition)
+    {
+        return condition ? 1 : 0;
+    }
+
+    private static double MinMax(double value, double first, double second)
+    {
+        double high = first > second ? first : second;
+        double low = first > second ? second : first;
+        return PyMin(high, PyMax(low, value));
     }
 
     private static double Evaluate(Parser.Node node, Effect effect, Power power)
@@ -196,7 +217,7 @@ internal static class Evaluator
     private static NotSupportedException Unported(Effect effect, Power power, string what)
     {
         return new NotSupportedException(
-            $"E08: cannot compute Mag for {power.FullName} effect {effect.Index}: the magnitude expression "
+            $"E08: cannot compute Mag for {power.FullName} effect {effect.Index.ToString(CultureInfo.InvariantCulture)}: the magnitude expression "
             + $"'{effect.ExprMagnitude}' uses {what}, which the expression evaluator does not port; "
             + "port that keyword or function against a Mids reference dump that exercises it");
     }

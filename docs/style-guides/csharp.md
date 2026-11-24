@@ -27,19 +27,28 @@ Path.Combine(Store.MidsDirectory, "enhancements.json")
 Path.Join(Store.MidsDirectory, "enhancements.json")
 ```
 
-## Exact float comparison
+## Float comparison
 
-Rule: `cs/equality-on-floats`.
-Compare through `Exact.Same` in `src/CohEngine.Core/Maths/Exact.cs`; never write `==` or `!=` on a float or double.
-The port reproduces Python's `==`: NaN equals nothing, and 0.0 equals -0.0.
-A tolerance changes which branch runs, and a bit comparison treats NaN as equal to itself and 0.0 as different from -0.0, so either changes the captured output.
+Rules: `cs/equality-on-floats`, Sonar `S1244`.
+Never write `==` or `!=` on a float or double. Write the comparison the code means:
+
+- A quantity that cannot be negative is tested with `> 0` or `<= 0`, once its source shows it cannot be negative.
+- A value on the float32 grid, one `F32.Round` produced or a sum of such values, is tested with `F32.IsZero`.
+  Every such value is a whole multiple of 2^-149, so half that separates zero from all of them and the test is exact.
+- Where the representation is the question, such as a shortest round-trip spelling, compare bit patterns with `BitConverter.DoubleToInt64Bits`.
+- Exact IEEE equality, only where that is the meaning, goes through `Exact.Same` in `src/CohEngine.Core/Maths/Exact.cs`.
+  It reproduces Python's `==`: NaN equals nothing, and 0.0 equals -0.0.
 
 ```csharp
 // before
-if (divisor != 0)
+if (accumulator != 0)
 // after
-if (!Exact.Same(divisor, 0))
+if (!F32.IsZero(accumulator))
 ```
+
+The callers of `Exact.Same` are the ones whose meaning is exact equality on arbitrary doubles:
+the division guard and the `and_`/`or_` truth test in `Expressions/Evaluator.cs`, the profile `==` operator in `Registry/ScoringMetrics/Scoring.cs`,
+the summation compensation and the zero case of `General` in `Chain/PyFloat.cs`, and the zero case of `NumberRepr` in `Diagnostics/PyText.cs`.
 
 ## Filtering inside a loop
 
@@ -80,7 +89,9 @@ CodeQL ignores `paths-ignore` for a language analysed with a build, so `scripts/
 An alert that cannot be fixed without changing ported behaviour is dismissed on the Security tab with a written reason.
 It is never suppressed with a comment or a query filter in code.
 
-- `src/CohEngine.Core/Maths/Exact.cs:16` (alert 356, dismissed): the one exact float comparison; the rest of the code calls it.
+- `src/CohEngine.Core/Maths/Exact.cs:16` (CodeQL alert 356, dismissed; Sonar `S1244`, ignored for this file): the one exact float comparison.
+  The Sonar exclusion is a `sonar.issue.ignore.multicriteria` entry in `.github/workflows/sonar.yml`; [the Sonar page](../ci/sonar.md) lists it.
+  Its callers, listed under Float comparison, need exact IEEE equality; every other comparison states its meaning without it.
 - `src/CohEngine.Core/Assembly/CrossPowerPass.cs:167`: a complex condition kept as the literal port of the Mids branch order.
 - `src/CohEngine.Core/Totals/ActorTotalsCalculator.cs:101`: the loop calls `Mag` for every Fly effect, and `Mag` can throw for an unported expression.
   `Any` stops at the first match, so it would change which effects are evaluated.

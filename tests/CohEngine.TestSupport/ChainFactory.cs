@@ -18,17 +18,15 @@ public static class ChainFactory
         return new AttackProfile(name, delivery, shape, role, 80.0, 0.0, 0.0, maxTargets, [], modes ?? []);
     }
 
-    /// <summary>An attack with a profile of the given role.</summary>
+    /// <summary>A ranged single-target attack with a profile of the given role; replace the profile for another delivery or shape.</summary>
     /// <param name="name">The full name.</param>
     /// <param name="role">The role.</param>
     /// <param name="damage">The damage per activation.</param>
     /// <param name="cast">The cast time.</param>
     /// <param name="recharge">The recharge time.</param>
     /// <param name="end">The endurance cost.</param>
-    /// <param name="delivery">The delivery.</param>
-    /// <param name="shape">The shape.</param>
     /// <returns>The attack.</returns>
-    public static ChainAttack Attack(string name, Role role = Role.Chain, double damage = 100.0, double cast = 1.0, double recharge = 5.0, double end = 4.0, Delivery delivery = Delivery.Ranged, Shape shape = Shape.SingleTarget)
+    public static ChainAttack Attack(string name, Role role = Role.Chain, double damage = 100.0, double cast = 1.0, double recharge = 5.0, double end = 4.0)
     {
         return new ChainAttack
         {
@@ -37,7 +35,7 @@ public static class ChainFactory
             CastTime = cast,
             RechargeTime = recharge,
             EndCost = end,
-            Profile = Profile(role, delivery, shape, name: name),
+            Profile = Profile(role, name: name),
         };
     }
 
