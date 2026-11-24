@@ -28,9 +28,10 @@ public static class AskCommand
     /// <param name="error">Where a usage or run error goes.</param>
     /// <param name="mbdSource">Resolves a <c>.mbd</c> build; null reports the <c>.mbd</c> form as unavailable.</param>
     /// <param name="handler">Replaces the network layer; tests pass a fake, the program passes null.</param>
+    /// <param name="baseUrlEnvironmentVariable">Replaces <c>ANTHROPIC_BASE_URL</c>; tests name an unset variable, the program passes null.</param>
     /// <param name="cancellationToken">Stops the command.</param>
     /// <returns>0 with the answer on <paramref name="output"/>, 1 on a failed run, 2 on a bad command line.</returns>
-    public static async Task<int> RunAsync(IReadOnlyList<string> args, TextWriter output, TextWriter error, IMbdBuildSource? mbdSource, HttpMessageHandler? handler, CancellationToken cancellationToken)
+    public static async Task<int> RunAsync(IReadOnlyList<string> args, TextWriter output, TextWriter error, IMbdBuildSource? mbdSource, HttpMessageHandler? handler, string? baseUrlEnvironmentVariable, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(args);
         ArgumentNullException.ThrowIfNull(output);
@@ -46,7 +47,7 @@ public static class AskCommand
         try
         {
             IReadOnlyList<AIFunction> tools = LoadTools(parsed.BuildPath, mbdSource);
-            using IChatClient client = ChatClientFactory.Create(new ChatProviderOptions(parsed.Provider, parsed.Preset, parsed.Model, parsed.BaseUrl, parsed.ApiKeyEnvironmentVariable, handler));
+            using IChatClient client = ChatClientFactory.Create(new ChatProviderOptions(parsed.Provider, parsed.Preset, parsed.Model, parsed.BaseUrl, parsed.ApiKeyEnvironmentVariable, handler, baseUrlEnvironmentVariable));
             AskReply reply = await AskLoop.RunAsync(client, tools, parsed.Question, MaxRounds, cancellationToken).ConfigureAwait(false);
             await output.WriteLineAsync(reply.Text).ConfigureAwait(false);
             if (!reply.Truncated)

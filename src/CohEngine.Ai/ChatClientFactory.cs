@@ -58,19 +58,40 @@ public static class ChatClientFactory
     // The base URL option wins, then ANTHROPIC_BASE_URL; the client falls back to its built-in default.
     private static AnthropicChatClient CreateAnthropic(ChatProviderOptions options)
     {
-        string? baseUrl = options.BaseUrl ?? (Environment.GetEnvironmentVariable(AnthropicChatClient.BaseUrlEnvironmentVariable) is { Length: > 0 } fromEnvironment ? fromEnvironment : null);
-        Uri? root = null;
-        if (baseUrl is not null && (!Uri.TryCreate(baseUrl, UriKind.Absolute, out root) || root.Scheme is not ("http" or "https")))
+        if (options.BaseUrl is not null)
         {
-            throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: base URL '{baseUrl}' is not an absolute http(s) URL; pass --base-url https://host");
+            RequireAnthropicUrl(options.BaseUrl, variable: null);
+            return new AnthropicChatClient(options.Model, options.BaseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
         }
 
-        if (root is not null)
+        string variable = options.BaseUrlEnvironmentVariable ?? AnthropicChatClient.BaseUrlEnvironmentVariable;
+        string? fromEnvironment = Environment.GetEnvironmentVariable(variable) is { Length: > 0 } value ? value : null;
+        if (fromEnvironment is not null)
+        {
+            RequireAnthropicUrl(fromEnvironment, variable);
+        }
+
+        return new AnthropicChatClient(options.Model, fromEnvironment, options.ApiKeyEnvironmentVariable, options.Handler);
+    }
+
+    // A value from the environment names its variable and its fix; one from the option names the option.
+    private static void RequireAnthropicUrl(string baseUrl, string? variable)
+    {
+        if (!Uri.TryCreate(baseUrl, UriKind.Absolute, out Uri? root) || root.Scheme is not ("http" or "https"))
+        {
+            throw new InvalidOperationException(variable is null
+                ? $"{AiErrorCodes.BadBaseUrl}: base URL '{baseUrl}' is not an absolute http(s) URL; pass --base-url https://host"
+                : $"{AiErrorCodes.BadBaseUrl}: {variable} '{baseUrl}' is not an absolute http(s) URL; set {variable} to https://host or unset it");
+        }
+
+        if (variable is null)
         {
             RequireSecure(root, local: false);
         }
-
-        return new AnthropicChatClient(options.Model, baseUrl, options.ApiKeyEnvironmentVariable, options.Handler);
+        else if (!root.IsLoopback && !string.Equals(root.Scheme, Uri.UriSchemeHttps, StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException($"{AiErrorCodes.BadBaseUrl}: {variable} '{root}' is http on a remote host, which would send the key unencrypted; set {variable} to an https URL or a loopback address such as http://localhost, or unset it");
+        }
     }
 
     // Local servers ignore the key, but the SDK refuses an empty one.
