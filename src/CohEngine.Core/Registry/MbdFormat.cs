@@ -29,7 +29,7 @@ public sealed record MbdFormat(IReadOnlyList<string> PowerSets, object? LevelTex
             string digits = text.TrimStart('-');
             bool signed = text.Length - digits.Length <= 1;
             if (signed && digits.Length > 0 && digits.All(char.IsAsciiDigit)
-                && BigInteger.Parse(text, CultureInfo.InvariantCulture) is { } number && number >= 0 && number <= MaxLevelText)
+                && BigInteger.Parse(text, CultureInfo.InvariantCulture) is var number && number >= 0 && number <= MaxLevelText)
             {
                 return null;
             }

@@ -1,4 +1,3 @@
-using CohEngine.Core.Data;
 using CohEngine.Core.Profiles;
 
 using PowerStats = CohEngine.Core.Totals.PowerStatistics.PowerStats;
@@ -9,10 +8,9 @@ namespace CohEngine.Core.Registry.ScoringMetrics;
 internal static class PermaDominationMetric
 {
     /// <summary>Computes the metric.</summary>
-    /// <param name="totals">The totals, unused here.</param>
     /// <param name="powerStats">The per-power statistics.</param>
     /// <returns>The value.</returns>
-    public static MetricValue Evaluate(TotalStatistics totals, IReadOnlyList<PowerStats> powerStats)
+    public static MetricValue Evaluate(IReadOnlyList<PowerStats> powerStats)
     {
         return MetricValue.Flag(Scoring.PermaRecharge(powerStats, ".Domination", Scoring.DominationDuration));
     }

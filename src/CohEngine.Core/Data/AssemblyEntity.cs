@@ -34,5 +34,5 @@ public sealed record AssemblyEntity
     /// <summary>Gets <see cref="FirstPowersetEffectTypes"/> in the shape JSON reads and writes it.</summary>
     [JsonInclude]
     [JsonPropertyName("FirstPowersetEffectTypes")]
-    internal IReadOnlyList<ISet<string>> FirstPowersetEffectTypesJson => [.. FirstPowersetEffectTypes.Select(set => (ISet<string>)set)];
+    internal IReadOnlyList<ISet<string>> FirstPowersetEffectTypesJson => [.. FirstPowersetEffectTypes.Cast<ISet<string>>()];
 }
