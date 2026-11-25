@@ -120,7 +120,7 @@ public sealed class HardLimitTests
     public void Slots_placed_before_they_are_earned_are_h_slot_005()
     {
         Power[] powers = Numbered(3, "Scrapper_Melee.Dark_Melee");
-        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = powers.ToDictionary(power => power.BuildIndex, power => (IReadOnlyList<SlotRef>)[RegistryMake.Slot(1, 0), RegistryMake.Slot(1, 2)]);
+        IReadOnlyDictionary<int, IReadOnlyList<SlotRef>> slots = powers.ToDictionary<Power, int, IReadOnlyList<SlotRef>>(power => power.BuildIndex, _ => [RegistryMake.Slot(1, 0), RegistryMake.Slot(1, 2)]);
 
         Diagnostic found = Check(powers, slots).Single(diagnostic => string.Equals(diagnostic.RuleId, "H-SLOT-005", StringComparison.Ordinal));
 
