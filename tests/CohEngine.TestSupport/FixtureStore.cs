@@ -118,7 +118,7 @@ public sealed class FixtureStore
     /// <returns>The build's lazily loaded files.</returns>
     public BuildFixture Build(string name)
     {
-        return builds.GetOrAdd(name, key => new BuildFixture(Path.Join(MidsDirectory, "builds", key)));
+        return builds.GetOrAdd(name, static (key, store) => new BuildFixture(Path.Join(store.MidsDirectory, "builds", key)), this);
     }
 
     private string Mids(string file)

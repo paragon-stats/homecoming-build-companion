@@ -6,29 +6,33 @@ namespace CohEngine.Core.Tests.Chain;
 // Expected text is json.dumps(value, indent=2) from CPython 3.14.
 public sealed class PyJsonTests
 {
-    public static TheoryData<object?, string> Values => new()
-    {
-        { null, "null" },
-        { true, "true" },
-        { false, "false" },
-        { 7L, "7" },
-        { 1.0, "1.0" },
-        { 0.1, "0.1" },
-        { double.PositiveInfinity, "Infinity" },
-        { double.NegativeInfinity, "-Infinity" },
-        { double.NaN, "NaN" },
-        { "a\"b\\c\nd\re\tf\bg\fh", "\"a\\\"b\\\\c\\nd\\re\\tf\\bg\\fh\"" },
-        { "café \u0001 \u007f", "\"caf\\u00e9 \\u0001 \\u007f\"" },
-        { new PyObject(), "{}" },
-        { new List<object?>(), "[]" },
-        { new List<object?> { 1L, "x" }, "[\n  1,\n  \"x\"\n]" },
-        { new PyObject { { "a", 1L }, { "b", new List<object?> { new PyObject { { "c", null } } } } }, "{\n  \"a\": 1,\n  \"b\": [\n    {\n      \"c\": null\n    }\n  ]\n}" },
-    };
+    // Rows by index: the values are not serializable, so xUnit enumerates the cases by their position.
+    private static readonly (object? Value, string Expected)[] Cases =
+    [
+        (null, "null"),
+        (true, "true"),
+        (false, "false"),
+        (7L, "7"),
+        (1.0, "1.0"),
+        (0.1, "0.1"),
+        (double.PositiveInfinity, "Infinity"),
+        (double.NegativeInfinity, "-Infinity"),
+        (double.NaN, "NaN"),
+        ("a\"b\\c\nd\re\tf\bg\fh", "\"a\\\"b\\\\c\\nd\\re\\tf\\bg\\fh\""),
+        ("café \u0001 \u007f", "\"caf\\u00e9 \\u0001 \\u007f\""),
+        (new PyObject(), "{}"),
+        (new List<object?>(), "[]"),
+        (new List<object?> { 1L, "x" }, "[\n  1,\n  \"x\"\n]"),
+        (new PyObject { { "a", 1L }, { "b", new List<object?> { new PyObject { { "c", null } } } } }, "{\n  \"a\": 1,\n  \"b\": [\n    {\n      \"c\": null\n    }\n  ]\n}"),
+    ];
+
+    public static TheoryData<int> Values => [.. Enumerable.Range(0, Cases.Length)];
 
     [Theory]
     [MemberData(nameof(Values))]
-    public void Dumps_matches_python_json_with_indent_2(object? value, string expected)
+    public void Dumps_matches_python_json_with_indent_2(int row)
     {
+        (object? value, string expected) = Cases[row];
         Assert.Equal(expected, PyJson.Dumps(value));
     }
 
@@ -57,7 +61,7 @@ public sealed class PyJsonTests
     {
         Diagnostic diagnostic = new("P-X-001", "info", "message") { Path = "build" };
 
-        Assert.Equal("rule_id,severity,path,line,column,message", string.Join(",", ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
+        Assert.Equal("rule_id,severity,path,line,column,message", string.Join(',', ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
     }
 
     [Fact]
@@ -65,7 +69,7 @@ public sealed class PyJsonTests
     {
         Diagnostic diagnostic = new("P-X-001", "warning", "message") { Path = "build", Fix = "do this", Expected = ">= 1", Actual = "0" };
 
-        Assert.Equal("rule_id,severity,path,line,column,message,fix,expected,actual", string.Join(",", ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
+        Assert.Equal("rule_id,severity,path,line,column,message,fix,expected,actual", string.Join(',', ChainReport.DiagnosticJson(diagnostic).Select(pair => pair.Key)));
     }
 
     [Fact]

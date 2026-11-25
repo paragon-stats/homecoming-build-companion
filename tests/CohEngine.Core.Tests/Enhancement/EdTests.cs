@@ -30,7 +30,7 @@ public sealed class EdTests
     [Fact]
     public void Second_band_slope_is_0_9()
     {
-        Assert.Equal(0.8332, Math.Round(Ed.ApplyEd(Schedule.A, 0.848, Tables), 4));
+        Assert.Equal(0.8332, Math.Round(Ed.ApplyEd(Schedule.A, 0.848, Tables), 4, MidpointRounding.ToEven));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public sealed class EdTests
     [Fact]
     public void Above_the_third_threshold_slope_is_0_15()
     {
-        Assert.Equal(0.9908, Math.Round(Ed.ApplyEd(Schedule.A, 1.272, Tables), 4));
+        Assert.Equal(0.9908, Math.Round(Ed.ApplyEd(Schedule.A, 1.272, Tables), 4, MidpointRounding.ToEven));
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public sealed class EdTests
     {
         double preEd = count * Tables.MultIo[49][(int)Schedule.A];
         Assert.Equal(preEdWant, preEd, 1e-6);
-        Assert.Equal(want, Math.Round(Ed.ApplyEd(Schedule.A, preEd, Tables), 4));
+        Assert.Equal(want, Math.Round(Ed.ApplyEd(Schedule.A, preEd, Tables), 4, MidpointRounding.ToEven));
     }
 
     [Theory]
@@ -120,7 +120,7 @@ public sealed class EdTests
     public void The_handlers_are_the_five_registered_scalar_aspects()
     {
         AspectHandler[] handlers = [AspectRouting.Accuracy, AspectRouting.End, AspectRouting.Interrupt, AspectRouting.Range, AspectRouting.Recharge];
-        Assert.Equal([.. RuleRegistry.EnhancementAspects.Select(rule => rule.Id)], handlers.Select(handler => handler.Aspect).ToArray());
+        Assert.Equal([.. RuleRegistry.EnhancementAspects.Select(rule => rule.Id)], [.. handlers.Select(handler => handler.Aspect)]);
         Assert.All(handlers, handler => Assert.Equal(handler.Capped, ReferenceEquals(handler, AspectRouting.Recharge)));
     }
 
