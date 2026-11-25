@@ -17,10 +17,10 @@
       "best_sustainable": {
         "attacks": [
           "Tanker_Melee.Energy_Melee.Total_Focus",
-          "Tanker_Melee.Energy_Melee.Barrage",
+          "Tanker_Melee.Energy_Melee.Bone_Smasher",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 65.94912719726562,
+        "chain_dps": 70.1158218383789,
         "sustainable": true
       },
       "best_overall": {
@@ -61,7 +61,7 @@
       },
       "labels": {
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 72.7 s, 18 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -77,11 +77,11 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.3147690296173096,
-      "toggle_drain_per_s": 1.5030429363250732,
+      "toggle_drain_per_s": 1.433505654335022,
       "chain_drain_per_s": 3.3057596683502197,
       "other_drain_per_s": 0.0,
-      "net_per_s": -1.4940335750579834,
-      "time_to_empty_s": 69.34248352050781
+      "net_per_s": -1.4244962930679321,
+      "time_to_empty_s": 72.72746276855469
     },
     "health": {
       "max_hp": 2148.08251953125,
@@ -151,10 +151,10 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.3147690296173096,
-      "toggle_drain_per_s": 1.5030429363250732,
+      "toggle_drain_per_s": 1.433505654335022,
       "chain_drain_per_s": 0,
       "other_drain_per_s": 0.0,
-      "net_per_s": 1.8117260932922363,
+      "net_per_s": 1.8812633752822876,
       "time_to_empty_s": null
     },
     "health": {
@@ -209,10 +209,10 @@
       "best_sustainable": {
         "attacks": [
           "Tanker_Melee.Energy_Melee.Total_Focus",
-          "Tanker_Melee.Energy_Melee.Barrage",
+          "Tanker_Melee.Energy_Melee.Bone_Smasher",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 65.94912719726562,
+        "chain_dps": 70.1158218383789,
         "sustainable": true
       },
       "best_overall": {
@@ -253,7 +253,7 @@
       },
       "labels": {
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 69.3 s, 17 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 72.7 s, 18 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -269,11 +269,11 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.3147690296173096,
-      "toggle_drain_per_s": 1.5030429363250732,
+      "toggle_drain_per_s": 1.433505654335022,
       "chain_drain_per_s": 3.3057596683502197,
       "other_drain_per_s": 0.0,
-      "net_per_s": -1.4940335750579834,
-      "time_to_empty_s": 69.34248352050781
+      "net_per_s": -1.4244962930679321,
+      "time_to_empty_s": 72.72746276855469
     },
     "health": {
       "max_hp": 2148.08251953125,

@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 4180,
+    "NIDPower": 4181,
     "FullName": "Dominator_Control.Arsenal_Control.Tranquilizer",
     "StaticIndex": 11295,
     "PowerType": "Click",
@@ -19,6 +19,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       2,
       13,
@@ -473,7 +474,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 4063,
+    "NIDPower": 4064,
     "FullName": "Dominator_Assault.Arsenal_Assault.Burst",
     "StaticIndex": 11309,
     "PowerType": "Click",
@@ -491,6 +492,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       2,
       21,
@@ -1021,7 +1023,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 4182,
+    "NIDPower": 4183,
     "FullName": "Dominator_Control.Arsenal_Control.Sleep_Grenade",
     "StaticIndex": 11297,
     "PowerType": "Click",
@@ -1039,6 +1041,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       14,
       13,
@@ -1454,7 +1457,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -1472,6 +1475,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7,
       18,
@@ -2584,7 +2588,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 4183,
+    "NIDPower": 4184,
     "FullName": "Dominator_Control.Arsenal_Control.Liquid_Nitrogen",
     "StaticIndex": 11298,
     "PowerType": "Click",
@@ -2602,6 +2606,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       3,
       44,
@@ -2936,7 +2941,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 4184,
+    "NIDPower": 4185,
     "FullName": "Dominator_Control.Arsenal_Control.Cloaking_Device",
     "StaticIndex": 11299,
     "PowerType": "Toggle",
@@ -2954,6 +2959,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -3517,7 +3523,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -3525,9 +3531,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 9,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -3535,6 +3541,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       11,
@@ -4999,7 +5006,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 7135,
+    "NIDPower": 7138,
     "FullName": "Pool.Leaping.Long_Jump",
     "StaticIndex": 1815,
     "PowerType": "Toggle",
@@ -5017,6 +5024,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       18,
       28,
@@ -5425,7 +5433,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -5433,9 +5441,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 13,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -5443,6 +5451,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       8
     ],
@@ -5859,7 +5868,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 4065,
+    "NIDPower": 4066,
     "FullName": "Dominator_Assault.Arsenal_Assault.Buckshot",
     "StaticIndex": 11311,
     "PowerType": "Click",
@@ -5877,6 +5886,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       3,
       44,
@@ -6055,7 +6065,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 4186,
+    "NIDPower": 4187,
     "FullName": "Dominator_Control.Arsenal_Control.Flash_Bang",
     "StaticIndex": 11301,
     "PowerType": "Click",
@@ -6073,6 +6083,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       3,
       11,
@@ -6450,7 +6461,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -6458,9 +6469,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 19,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -6468,6 +6479,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -7395,7 +7407,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7128,
+    "NIDPower": 7131,
     "FullName": "Pool.Leadership.Defense",
     "StaticIndex": 1809,
     "PowerType": "Toggle",
@@ -7413,6 +7425,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -8288,7 +8301,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 4069,
+    "NIDPower": 4070,
     "FullName": "Dominator_Assault.Arsenal_Assault.Targeting_Drone",
     "StaticIndex": 11315,
     "PowerType": "Toggle",
@@ -8306,6 +8319,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       25
     ],
@@ -8479,7 +8493,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 4188,
+    "NIDPower": 4189,
     "FullName": "Dominator_Control.Arsenal_Control.Tri_Cannon",
     "StaticIndex": 11303,
     "PowerType": "Click",
@@ -8497,6 +8511,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       6,
       24,
@@ -8558,7 +8573,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 4070,
+    "NIDPower": 4071,
     "FullName": "Dominator_Assault.Arsenal_Assault.Sniper_Rifle",
     "StaticIndex": 11316,
     "PowerType": "Click",
@@ -8576,6 +8591,7 @@
     "VariableEnabled": true,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       2,
       5,
@@ -8678,7 +8694,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 4071,
+    "NIDPower": 4072,
     "FullName": "Dominator_Assault.Arsenal_Assault.Ignite",
     "StaticIndex": 11317,
     "PowerType": "Click",
@@ -8696,6 +8712,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       3,
       44
@@ -8950,7 +8967,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 7130,
+    "NIDPower": 7133,
     "FullName": "Pool.Leadership.Tactics",
     "StaticIndex": 1811,
     "PowerType": "Toggle",
@@ -8968,6 +8985,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       25
     ],
@@ -9267,7 +9285,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4187,
+    "NIDPower": 4188,
     "FullName": "Dominator_Control.Arsenal_Control.Tear_Gas",
     "StaticIndex": 11302,
     "PowerType": "Click",
@@ -9285,6 +9303,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       3,
       10,
@@ -9737,7 +9756,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4067,
+    "NIDPower": 4068,
     "FullName": "Dominator_Assault.Arsenal_Assault.Power_Up",
     "StaticIndex": 11313,
     "PowerType": "Click",
@@ -9755,6 +9774,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [],
     "Enhancements": [
       8,
@@ -10939,7 +10959,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 4066,
+    "NIDPower": 4067,
     "FullName": "Dominator_Assault.Arsenal_Assault.Elbow_Strike",
     "StaticIndex": 11312,
     "PowerType": "Click",
@@ -10957,6 +10977,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       23,
@@ -11134,7 +11155,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 4068,
+    "NIDPower": 4069,
     "FullName": "Dominator_Assault.Arsenal_Assault.Trip_Mine",
     "StaticIndex": 11314,
     "PowerType": "Click",
@@ -11152,6 +11173,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       4,
       23,
@@ -11329,7 +11351,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 4181,
+    "NIDPower": 4182,
     "FullName": "Dominator_Control.Arsenal_Control.Cryo_Freeze_Ray",
     "StaticIndex": 11296,
     "PowerType": "Click",
@@ -11347,6 +11369,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       2,
       10,
@@ -11996,7 +12019,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -12014,6 +12037,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [],
     "Enhancements": [
       18
@@ -12105,7 +12129,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5841,
+    "NIDPower": 5843,
     "FullName": "Inherent.Inherent.Domination",
     "StaticIndex": 1058,
     "PowerType": "Click",
@@ -12123,6 +12147,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
     "RequiresPowers": [],
@@ -13072,7 +13097,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -13092,6 +13117,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       1,
       44
@@ -13422,7 +13448,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -13440,6 +13466,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       18,
       19
@@ -13575,7 +13602,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -13593,6 +13620,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       2,
@@ -14622,7 +14650,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -14640,6 +14668,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       10,
@@ -14732,7 +14761,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -14750,6 +14779,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       15
@@ -14841,7 +14871,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -14859,6 +14889,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       9
     ],
@@ -14952,7 +14983,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -14970,6 +15001,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       22
     ],
@@ -15024,7 +15056,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",
@@ -15042,6 +15074,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
     "RequiresPowers": [],
@@ -15108,7 +15141,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5806,
+    "NIDPower": 5807,
     "FullName": "Inherent.Inherent.Double_Jump",
     "StaticIndex": 10948,
     "PowerType": "Toggle",
@@ -15126,6 +15159,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
     "RequiresPowers": [
@@ -15181,7 +15215,7 @@
   },
   {
     "BuildIndex": 34,
-    "NIDPower": 5972,
+    "NIDPower": 5975,
     "FullName": "Inherent.Inherent.Fast_Snipe",
     "StaticIndex": 10827,
     "PowerType": "Toggle",
@@ -15199,6 +15233,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
     "RequiresPowers": [
@@ -15449,7 +15484,7 @@
   },
   {
     "BuildIndex": 35,
-    "NIDPower": 4707,
+    "NIDPower": 4708,
     "FullName": "Incarnate.Alpha.Cardiac_Core_Paragon",
     "StaticIndex": 4927,
     "PowerType": "Auto_",
@@ -15467,6 +15502,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
     "RequiresPowers": [],

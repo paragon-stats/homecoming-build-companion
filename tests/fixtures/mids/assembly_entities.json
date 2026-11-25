@@ -81,7 +81,7 @@
       "UID": "Pets_VoltaicSentinel_Corruptor",
       "ClassNid": 18,
       "PowersetNids": [
-        3343
+        3342
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -233,7 +233,7 @@
       "UID": "Pets_Quicksand",
       "ClassNid": 18,
       "PowersetNids": [
-        3244
+        3242
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -352,7 +352,7 @@
       "UID": "Pets_Howling",
       "ClassNid": 18,
       "PowersetNids": [
-        3172
+        3171
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -367,7 +367,7 @@
       "UID": "Pets_HowlingVillain",
       "ClassNid": 18,
       "PowersetNids": [
-        3171
+        3172
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -399,7 +399,7 @@
       "UID": "Pets_Mine",
       "ClassNid": 18,
       "PowersetNids": [
-        3213
+        3214
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -472,40 +472,6 @@
         ],
         [
           "Null"
-        ]
-      ]
-    },
-    {
-      "Nid": 79,
-      "UID": "Pets_Fallout",
-      "ClassNid": 18,
-      "PowersetNids": [
-        3153
-      ],
-      "FirstPowersetEffectTypes": [
-        [
-          "Damage",
-          "ToHit",
-          "Defense",
-          "DamageBuff",
-          "Resistance"
-        ]
-      ]
-    },
-    {
-      "Nid": 80,
-      "UID": "Pets_Fallout_Controller",
-      "ClassNid": 18,
-      "PowersetNids": [
-        3154
-      ],
-      "FirstPowersetEffectTypes": [
-        [
-          "Damage",
-          "ToHit",
-          "Defense",
-          "DamageBuff",
-          "Resistance"
         ]
       ]
     },
@@ -633,7 +599,7 @@
       "UID": "Pets_MMTwilight",
       "ClassNid": 18,
       "PowersetNids": [
-        3655
+        3657
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -646,7 +612,7 @@
       "UID": "Pets_Spirit_Tree",
       "ClassNid": 18,
       "PowersetNids": [
-        3639
+        3641
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -660,7 +626,7 @@
       "UID": "Pets_Creeper_Patch",
       "ClassNid": 18,
       "PowersetNids": [
-        3592
+        3594
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -682,7 +648,7 @@
       "UID": "Pets_Poison_Trap",
       "ClassNid": 18,
       "PowersetNids": [
-        3622
+        3624
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -705,7 +671,7 @@
       "UID": "Pets_Poison_Poison_Gas",
       "ClassNid": 18,
       "PowersetNids": [
-        3621
+        3623
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -729,7 +695,7 @@
       "UID": "Pets_Traps_FF_Generator",
       "ClassNid": 18,
       "PowersetNids": [
-        3603
+        3605
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -756,7 +722,7 @@
       "UID": "Pets_Traps_Poison_Trap",
       "ClassNid": 18,
       "PowersetNids": [
-        3620
+        3622
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -779,7 +745,7 @@
       "UID": "Pets_Traps_Poison_Gas",
       "ClassNid": 18,
       "PowersetNids": [
-        3619
+        3621
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -801,7 +767,7 @@
       "UID": "Pets_Traps_Acid_Mortar",
       "ClassNid": 18,
       "PowersetNids": [
-        3567
+        3569
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -827,7 +793,7 @@
       "UID": "Pets_Patron_Powers_Water_Spout",
       "ClassNid": 18,
       "PowersetNids": [
-        3658
+        3660
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -989,7 +955,7 @@
       "UID": "Pets_Epic_Quicksand",
       "ClassNid": 18,
       "PowersetNids": [
-        3243
+        3244
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1007,7 +973,7 @@
       "UID": "Pets_Patron_Powers_Water_Spout_Stalker",
       "ClassNid": 18,
       "PowersetNids": [
-        3657
+        3659
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1134,7 +1100,7 @@
       "UID": "Pets_Embraced_Quicksand",
       "ClassNid": 18,
       "PowersetNids": [
-        3242
+        3243
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1183,7 +1149,7 @@
       "UID": "Pets_DistortionField_Corruptor",
       "ClassNid": 18,
       "PowersetNids": [
-        3647
+        3649
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1202,7 +1168,7 @@
       "UID": "Pets_DistortionField_Mastermind",
       "ClassNid": 18,
       "PowersetNids": [
-        3648
+        3650
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1221,7 +1187,7 @@
       "UID": "Pets_Lifegiving_Spores_Defender",
       "ClassNid": 18,
       "PowersetNids": [
-        3196
+        3198
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1235,7 +1201,7 @@
       "UID": "Pets_Lifegiving_Spores_Controller",
       "ClassNid": 18,
       "PowersetNids": [
-        3197
+        3196
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1249,7 +1215,7 @@
       "UID": "Pets_Lifegiving_Spores_Corruptor",
       "ClassNid": 18,
       "PowersetNids": [
-        3198
+        3195
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1263,7 +1229,7 @@
       "UID": "Pets_Lifegiving_Spores_Mastermind",
       "ClassNid": 18,
       "PowersetNids": [
-        3195
+        3197
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -1295,23 +1261,6 @@
       "FirstPowersetEffectTypes": [
         [
           "Endurance"
-        ]
-      ]
-    },
-    {
-      "Nid": 426,
-      "UID": "Pets_Fallout_Mastermind",
-      "ClassNid": 18,
-      "PowersetNids": [
-        3155
-      ],
-      "FirstPowersetEffectTypes": [
-        [
-          "Damage",
-          "ToHit",
-          "Defense",
-          "DamageBuff",
-          "Resistance"
         ]
       ]
     },
@@ -1384,15 +1333,15 @@
       "UID": "Pets_Thug_Posse",
       "ClassNid": 18,
       "PowersetNids": [
-        3060,
-        3055,
-        3061,
-        3056,
         3064,
-        3057,
-        3062,
         3059,
+        3060,
+        3056,
         3063,
+        3057,
+        3061,
+        3055,
+        3062,
         3058
       ],
       "FirstPowersetEffectTypes": [
@@ -1433,7 +1382,7 @@
       "UID": "Pets_Traps_Mine_Defender",
       "ClassNid": 18,
       "PowersetNids": [
-        3214
+        3213
       ],
       "FirstPowersetEffectTypes": [
         [
@@ -5668,24 +5617,14 @@
       "FullName": "Kheldian_Pets.Omega_Bomb",
       "SetType": "Pet",
       "PowerNids": [
-        5983,
-        5984,
-        5985
+        5986,
+        5987,
+        5988
       ]
     },
     {
       "Nid": 2951,
       "FullName": "Kheldian_Pets.Energy_Drone1",
-      "SetType": "Pet",
-      "PowerNids": [
-        5974,
-        5975,
-        5976
-      ]
-    },
-    {
-      "Nid": 2952,
-      "FullName": "Kheldian_Pets.Energy_Drone2",
       "SetType": "Pet",
       "PowerNids": [
         5977,
@@ -5694,8 +5633,8 @@
       ]
     },
     {
-      "Nid": 2953,
-      "FullName": "Kheldian_Pets.Energy_Drone3",
+      "Nid": 2952,
+      "FullName": "Kheldian_Pets.Energy_Drone2",
       "SetType": "Pet",
       "PowerNids": [
         5980,
@@ -5704,15 +5643,25 @@
       ]
     },
     {
+      "Nid": 2953,
+      "FullName": "Kheldian_Pets.Energy_Drone3",
+      "SetType": "Pet",
+      "PowerNids": [
+        5983,
+        5984,
+        5985
+      ]
+    },
+    {
       "Nid": 2954,
       "FullName": "Kheldian_Pets.Warshade_Extraction",
       "SetType": "Pet",
       "PowerNids": [
-        5986,
-        5987,
-        5988,
         5989,
-        5990
+        5990,
+        5991,
+        5992,
+        5993
       ]
     },
     {
@@ -5720,13 +5669,13 @@
       "FullName": "Mastermind_Pets.Ghosts",
       "SetType": "Pet",
       "PowerNids": [
-        6236,
-        6237,
-        6238,
         6239,
         6240,
         6241,
-        6242
+        6242,
+        6243,
+        6244,
+        6245
       ]
     },
     {
@@ -5734,17 +5683,17 @@
       "FullName": "Mastermind_Pets.Living_Hellfire",
       "SetType": "Pet",
       "PowerNids": [
-        6301,
-        6302,
-        6303
+        6304,
+        6305,
+        6306
       ]
     },
     {
       "Nid": 3055,
-      "FullName": "Mastermind_Pets.Thug_Pose_Brawl",
+      "FullName": "Mastermind_Pets.Thug_Pose_Sledgehammer",
       "SetType": "Pet",
       "PowerNids": [
-        6418
+        6427
       ]
     },
     {
@@ -5752,7 +5701,7 @@
       "FullName": "Mastermind_Pets.Thug_Pose_Pipe",
       "SetType": "Pet",
       "PowerNids": [
-        6420
+        6423
       ]
     },
     {
@@ -5760,7 +5709,7 @@
       "FullName": "Mastermind_Pets.Thug_Pose_Revolver",
       "SetType": "Pet",
       "PowerNids": [
-        6422
+        6425
       ]
     },
     {
@@ -5768,56 +5717,56 @@
       "FullName": "Mastermind_Pets.Thug_Pose_Axe",
       "SetType": "Pet",
       "PowerNids": [
-        6416
+        6419
       ]
     },
     {
       "Nid": 3059,
-      "FullName": "Mastermind_Pets.Thug_Pose_Sledgehammer",
-      "SetType": "Pet",
-      "PowerNids": [
-        6424
-      ]
-    },
-    {
-      "Nid": 3060,
-      "FullName": "Mastermind_Pets.Thug_Pose",
-      "SetType": "Pet",
-      "PowerNids": [
-        6414,
-        6415
-      ]
-    },
-    {
-      "Nid": 3061,
-      "FullName": "Mastermind_Pets.Thug_Pose_Rock",
-      "SetType": "Pet",
-      "PowerNids": [
-        6423
-      ]
-    },
-    {
-      "Nid": 3062,
-      "FullName": "Mastermind_Pets.Thug_Pose_Pistol",
+      "FullName": "Mastermind_Pets.Thug_Pose_Brawl",
       "SetType": "Pet",
       "PowerNids": [
         6421
       ]
     },
     {
-      "Nid": 3063,
+      "Nid": 3060,
+      "FullName": "Mastermind_Pets.Thug_Pose_Rock",
+      "SetType": "Pet",
+      "PowerNids": [
+        6426
+      ]
+    },
+    {
+      "Nid": 3061,
+      "FullName": "Mastermind_Pets.Thug_Pose_Pistol",
+      "SetType": "Pet",
+      "PowerNids": [
+        6424
+      ]
+    },
+    {
+      "Nid": 3062,
       "FullName": "Mastermind_Pets.Thug_Pose_Bat",
       "SetType": "Pet",
       "PowerNids": [
-        6417
+        6420
+      ]
+    },
+    {
+      "Nid": 3063,
+      "FullName": "Mastermind_Pets.Thug_Pose_Knife",
+      "SetType": "Pet",
+      "PowerNids": [
+        6422
       ]
     },
     {
       "Nid": 3064,
-      "FullName": "Mastermind_Pets.Thug_Pose_Knife",
+      "FullName": "Mastermind_Pets.Thug_Pose",
       "SetType": "Pet",
       "PowerNids": [
-        6419
+        6417,
+        6418
       ]
     },
     {
@@ -5825,8 +5774,8 @@
       "FullName": "Pets.Traps_Acid_Mortar_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6996,
-        6997
+        6999,
+        7000
       ]
     },
     {
@@ -5834,7 +5783,7 @@
       "FullName": "Pets.Caltrops",
       "SetType": "Pet",
       "PowerNids": [
-        6549
+        6552
       ]
     },
     {
@@ -5842,7 +5791,7 @@
       "FullName": "Pets.SonicDebuffArrow",
       "SetType": "Pet",
       "PowerNids": [
-        6905
+        6908
       ]
     },
     {
@@ -5850,31 +5799,7 @@
       "FullName": "Pets.Earthquake",
       "SetType": "Pet",
       "PowerNids": [
-        6655
-      ]
-    },
-    {
-      "Nid": 3153,
-      "FullName": "Pets.Fallout",
-      "SetType": "Pet",
-      "PowerNids": [
-        6674
-      ]
-    },
-    {
-      "Nid": 3154,
-      "FullName": "Pets.Fallout_Controller",
-      "SetType": "Pet",
-      "PowerNids": [
-        6675
-      ]
-    },
-    {
-      "Nid": 3155,
-      "FullName": "Pets.Fallout_Mastermind",
-      "SetType": "Pet",
-      "PowerNids": [
-        6676
+        6658
       ]
     },
     {
@@ -5882,9 +5807,9 @@
       "FullName": "Pets.Traps_FF_Generator_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6999,
-        7000,
-        7001
+        7002,
+        7003,
+        7004
       ]
     },
     {
@@ -5892,25 +5817,25 @@
       "FullName": "Pets.Galvanic_Sentinel_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6685,
-        6686,
-        6687
+        6688,
+        6689,
+        6690
       ]
     },
     {
       "Nid": 3171,
-      "FullName": "Pets.HowlingVillain",
+      "FullName": "Pets.Howling",
       "SetType": "Pet",
       "PowerNids": [
-        6705
+        6707
       ]
     },
     {
       "Nid": 3172,
-      "FullName": "Pets.Howling",
+      "FullName": "Pets.HowlingVillain",
       "SetType": "Pet",
       "PowerNids": [
-        6704
+        6708
       ]
     },
     {
@@ -5918,54 +5843,44 @@
       "FullName": "Pets.IcePatch",
       "SetType": "Pet",
       "PowerNids": [
-        6706
+        6709
       ]
     },
     {
       "Nid": 3195,
-      "FullName": "Pets.Lifegiving_Spores_Mastermind",
+      "FullName": "Pets.Lifegiving_Spores_Corruptor",
+      "SetType": "Pet",
+      "PowerNids": [
+        6739
+      ]
+    },
+    {
+      "Nid": 3196,
+      "FullName": "Pets.Lifegiving_Spores_Controller",
       "SetType": "Pet",
       "PowerNids": [
         6738
       ]
     },
     {
-      "Nid": 3196,
-      "FullName": "Pets.Lifegiving_Spores_Defender",
-      "SetType": "Pet",
-      "PowerNids": [
-        6737
-      ]
-    },
-    {
       "Nid": 3197,
-      "FullName": "Pets.Lifegiving_Spores_Controller",
+      "FullName": "Pets.Lifegiving_Spores_Mastermind",
       "SetType": "Pet",
       "PowerNids": [
-        6735
+        6741
       ]
     },
     {
       "Nid": 3198,
-      "FullName": "Pets.Lifegiving_Spores_Corruptor",
+      "FullName": "Pets.Lifegiving_Spores_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6736
+        6740
       ]
     },
     {
       "Nid": 3200,
       "FullName": "Pets.LightningStorm",
-      "SetType": "Pet",
-      "PowerNids": [
-        6741,
-        6742,
-        6743
-      ]
-    },
-    {
-      "Nid": 3201,
-      "FullName": "Pets.LightningStorm_Controller",
       "SetType": "Pet",
       "PowerNids": [
         6744,
@@ -5974,11 +5889,21 @@
       ]
     },
     {
+      "Nid": 3201,
+      "FullName": "Pets.LightningStorm_Controller",
+      "SetType": "Pet",
+      "PowerNids": [
+        6747,
+        6748,
+        6749
+      ]
+    },
+    {
       "Nid": 3203,
       "FullName": "Pets.Liquefy",
       "SetType": "Pet",
       "PowerNids": [
-        6753
+        6756
       ]
     },
     {
@@ -5986,7 +5911,7 @@
       "FullName": "Pets.ShockDef",
       "SetType": "Pet",
       "PowerNids": [
-        6892
+        6895
       ]
     },
     {
@@ -5994,7 +5919,7 @@
       "FullName": "Pets.Liquefy_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6754
+        6757
       ]
     },
     {
@@ -6002,27 +5927,27 @@
       "FullName": "Pets.ShockCont",
       "SetType": "Pet",
       "PowerNids": [
-        6891
+        6894
       ]
     },
     {
       "Nid": 3213,
-      "FullName": "Pets.Mine",
+      "FullName": "Pets.Traps_Trip_Mine_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6766,
-        6767,
-        6768
+        7032,
+        7033,
+        7034
       ]
     },
     {
       "Nid": 3214,
-      "FullName": "Pets.Traps_Trip_Mine_Defender",
+      "FullName": "Pets.Mine",
       "SetType": "Pet",
       "PowerNids": [
-        7029,
-        7030,
-        7031
+        6769,
+        6770,
+        6771
       ]
     },
     {
@@ -6030,9 +5955,9 @@
       "FullName": "Pets.Villain_Mine",
       "SetType": "Pet",
       "PowerNids": [
-        7048,
-        7049,
-        7050
+        7051,
+        7052,
+        7053
       ]
     },
     {
@@ -6040,7 +5965,7 @@
       "FullName": "Pets.Phoenix",
       "SetType": "Pet",
       "PowerNids": [
-        6811
+        6814
       ]
     },
     {
@@ -6048,8 +5973,8 @@
       "FullName": "Pets.PoisonGasArrow",
       "SetType": "Pet",
       "PowerNids": [
-        6812,
-        6813
+        6815,
+        6816
       ]
     },
     {
@@ -6057,32 +5982,32 @@
       "FullName": "Pets.Traps_Poison_Trap_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        7005,
-        7006
+        7008,
+        7009
       ]
     },
     {
       "Nid": 3242,
-      "FullName": "Pets.Embraced_Quicksand",
+      "FullName": "Pets.Quicksand",
       "SetType": "Pet",
       "PowerNids": [
-        6660
+        6845
       ]
     },
     {
       "Nid": 3243,
-      "FullName": "Pets.Epic_Quicksand",
+      "FullName": "Pets.Embraced_Quicksand",
       "SetType": "Pet",
       "PowerNids": [
-        6670
+        6663
       ]
     },
     {
       "Nid": 3244,
-      "FullName": "Pets.Quicksand",
+      "FullName": "Pets.Epic_Quicksand",
       "SetType": "Pet",
       "PowerNids": [
-        6842
+        6673
       ]
     },
     {
@@ -6090,8 +6015,8 @@
       "FullName": "Pets.StickyArrow",
       "SetType": "Pet",
       "PowerNids": [
-        6916,
-        6917
+        6919,
+        6920
       ]
     },
     {
@@ -6099,7 +6024,7 @@
       "FullName": "Pets.TarPatch",
       "SetType": "Pet",
       "PowerNids": [
-        6937
+        6940
       ]
     },
     {
@@ -6107,9 +6032,9 @@
       "FullName": "Pets.Terror",
       "SetType": "Pet",
       "PowerNids": [
-        6954,
-        6955,
-        6956
+        6957,
+        6958,
+        6959
       ]
     },
     {
@@ -6117,7 +6042,7 @@
       "FullName": "Pets.DistortionField_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        6651
+        6654
       ]
     },
     {
@@ -6125,7 +6050,7 @@
       "FullName": "Pets.DistortionField_Controller",
       "SetType": "Pet",
       "PowerNids": [
-        6650
+        6653
       ]
     },
     {
@@ -6133,10 +6058,10 @@
       "FullName": "Pets.Tornado",
       "SetType": "Pet",
       "PowerNids": [
-        6979,
-        6980,
-        6981,
-        6982
+        6982,
+        6983,
+        6984,
+        6985
       ]
     },
     {
@@ -6144,7 +6069,7 @@
       "FullName": "Pets.Transference",
       "SetType": "Pet",
       "PowerNids": [
-        6984
+        6987
       ]
     },
     {
@@ -6152,7 +6077,7 @@
       "FullName": "Pets.Transference_Mastermind",
       "SetType": "Pet",
       "PowerNids": [
-        6986
+        6989
       ]
     },
     {
@@ -6160,7 +6085,7 @@
       "FullName": "Pets.Transference_Controller",
       "SetType": "Pet",
       "PowerNids": [
-        6985
+        6988
       ]
     },
     {
@@ -6168,7 +6093,7 @@
       "FullName": "Pets.Transfusion_Controller",
       "SetType": "Pet",
       "PowerNids": [
-        6988
+        6991
       ]
     },
     {
@@ -6176,7 +6101,7 @@
       "FullName": "Pets.Transfusion_Mastermind",
       "SetType": "Pet",
       "PowerNids": [
-        6989
+        6992
       ]
     },
     {
@@ -6184,7 +6109,7 @@
       "FullName": "Pets.Transfusion",
       "SetType": "Pet",
       "PowerNids": [
-        6987
+        6990
       ]
     },
     {
@@ -6192,9 +6117,9 @@
       "FullName": "Pets.Turret",
       "SetType": "Pet",
       "PowerNids": [
-        7037,
-        7038,
-        7039
+        7040,
+        7041,
+        7042
       ]
     },
     {
@@ -6202,7 +6127,7 @@
       "FullName": "Pets.Twilight",
       "SetType": "Pet",
       "PowerNids": [
-        7040
+        7043
       ]
     },
     {
@@ -6210,8 +6135,8 @@
       "FullName": "Pets.VolcanicGasses",
       "SetType": "Pet",
       "PowerNids": [
-        7051,
-        7052
+        7054,
+        7055
       ]
     },
     {
@@ -6219,8 +6144,8 @@
       "FullName": "Pets.VolcanicGeyser",
       "SetType": "Pet",
       "PowerNids": [
-        7053,
-        7054
+        7056,
+        7057
       ]
     },
     {
@@ -6228,8 +6153,8 @@
       "FullName": "Pets.VoltaicSentinel",
       "SetType": "Pet",
       "PowerNids": [
-        7055,
-        7056
+        7058,
+        7059
       ]
     },
     {
@@ -6237,8 +6162,8 @@
       "FullName": "Pets.VoltaicSentinel_Defender",
       "SetType": "Pet",
       "PowerNids": [
-        7061,
-        7062
+        7064,
+        7065
       ]
     },
     {
@@ -6246,140 +6171,140 @@
       "FullName": "Pets.VoltaicSentinel_Dominator",
       "SetType": "Pet",
       "PowerNids": [
-        7063,
-        7064
+        7066,
+        7067
       ]
     },
     {
-      "Nid": 3343,
+      "Nid": 3342,
       "FullName": "Pets.VoltaicSentinel_Corruptor",
       "SetType": "Pet",
       "PowerNids": [
-        7057,
-        7058
+        7060,
+        7061
       ]
     },
     {
-      "Nid": 3567,
+      "Nid": 3569,
       "FullName": "Villain_Pets.Traps_Acid_Mortar",
       "SetType": "Pet",
       "PowerNids": [
-        10887,
-        10888
+        10903,
+        10904
       ]
     },
     {
-      "Nid": 3592,
+      "Nid": 3594,
       "FullName": "Villain_Pets.Creeper_Patch",
       "SetType": "Pet",
       "PowerNids": [
-        10726,
-        10727,
-        10728
+        10742,
+        10743,
+        10744
       ]
     },
     {
-      "Nid": 3603,
+      "Nid": 3605,
       "FullName": "Villain_Pets.Traps_FF_Generator",
       "SetType": "Pet",
       "PowerNids": [
-        10890,
-        10891,
-        10892
-      ]
-    },
-    {
-      "Nid": 3619,
-      "FullName": "Villain_Pets.Traps_Poison_Gas",
-      "SetType": "Pet",
-      "PowerNids": [
-        10893,
-        10894,
-        10895
-      ]
-    },
-    {
-      "Nid": 3620,
-      "FullName": "Villain_Pets.Traps_Poison_Trap",
-      "SetType": "Pet",
-      "PowerNids": [
-        10896,
-        10897
+        10906,
+        10907,
+        10908
       ]
     },
     {
       "Nid": 3621,
-      "FullName": "Villain_Pets.Poison_Poison_Gas",
+      "FullName": "Villain_Pets.Traps_Poison_Gas",
       "SetType": "Pet",
       "PowerNids": [
-        10826,
-        10827,
-        10828
+        10909,
+        10910,
+        10911
       ]
     },
     {
       "Nid": 3622,
+      "FullName": "Villain_Pets.Traps_Poison_Trap",
+      "SetType": "Pet",
+      "PowerNids": [
+        10912,
+        10913
+      ]
+    },
+    {
+      "Nid": 3623,
+      "FullName": "Villain_Pets.Poison_Poison_Gas",
+      "SetType": "Pet",
+      "PowerNids": [
+        10842,
+        10843,
+        10844
+      ]
+    },
+    {
+      "Nid": 3624,
       "FullName": "Villain_Pets.Poison_Trap",
       "SetType": "Pet",
       "PowerNids": [
-        10829,
-        10830
+        10845,
+        10846
       ]
     },
     {
-      "Nid": 3639,
+      "Nid": 3641,
       "FullName": "Villain_Pets.Spirit_Tree",
       "SetType": "Pet",
       "PowerNids": [
-        10862
+        10878
       ]
     },
     {
-      "Nid": 3647,
+      "Nid": 3649,
       "FullName": "Villain_Pets.DistortionField_Corruptor",
       "SetType": "Pet",
       "PowerNids": [
-        10735
+        10751
       ]
     },
     {
-      "Nid": 3648,
+      "Nid": 3650,
       "FullName": "Villain_Pets.DistortionField_Mastermind",
       "SetType": "Pet",
       "PowerNids": [
-        10736
-      ]
-    },
-    {
-      "Nid": 3655,
-      "FullName": "Villain_Pets.MMTwilight",
-      "SetType": "Pet",
-      "PowerNids": [
-        10780
+        10752
       ]
     },
     {
       "Nid": 3657,
-      "FullName": "Villain_Pets.Water_Spout_Stalker",
+      "FullName": "Villain_Pets.MMTwilight",
       "SetType": "Pet",
       "PowerNids": [
-        10930,
-        10931,
-        10932,
-        10933,
-        10934
+        10796
       ]
     },
     {
-      "Nid": 3658,
+      "Nid": 3659,
+      "FullName": "Villain_Pets.Water_Spout_Stalker",
+      "SetType": "Pet",
+      "PowerNids": [
+        10946,
+        10947,
+        10948,
+        10949,
+        10950
+      ]
+    },
+    {
+      "Nid": 3660,
       "FullName": "Villain_Pets.Water_Spout",
       "SetType": "Pet",
       "PowerNids": [
-        10925,
-        10926,
-        10927,
-        10928,
-        10929
+        10941,
+        10942,
+        10943,
+        10944,
+        10945
       ]
     }
   ]

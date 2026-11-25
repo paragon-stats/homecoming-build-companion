@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 4190,
+    "NIDPower": 4191,
     "FullName": "Dominator_Control.Darkness_Control.Dark_Grasp",
     "StaticIndex": 6140,
     "PowerType": "Click",
@@ -319,7 +319,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 4135,
+    "NIDPower": 4136,
     "FullName": "Dominator_Assault.Psionic_Assault.Psionic_Dart",
     "StaticIndex": 775,
     "PowerType": "Click",
@@ -514,7 +514,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 4191,
+    "NIDPower": 4192,
     "FullName": "Dominator_Control.Darkness_Control.Living_Shadows",
     "StaticIndex": 6141,
     "PowerType": "Click",
@@ -1027,7 +1027,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 4136,
+    "NIDPower": 4137,
     "FullName": "Dominator_Assault.Psionic_Assault.Mind_Probe",
     "StaticIndex": 776,
     "PowerType": "Click",
@@ -1260,7 +1260,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 4192,
+    "NIDPower": 4193,
     "FullName": "Dominator_Control.Darkness_Control.Possess",
     "StaticIndex": 6142,
     "PowerType": "Click",
@@ -1455,7 +1455,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 4193,
+    "NIDPower": 4194,
     "FullName": "Dominator_Control.Darkness_Control.Fearsome_Stare",
     "StaticIndex": 6143,
     "PowerType": "Click",
@@ -1692,7 +1692,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 4137,
+    "NIDPower": 4138,
     "FullName": "Dominator_Assault.Psionic_Assault.Telekinetic_Thrust",
     "StaticIndex": 777,
     "PowerType": "Click",
@@ -2007,7 +2007,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 4194,
+    "NIDPower": 4195,
     "FullName": "Dominator_Control.Darkness_Control.Heart_of_Darkness",
     "StaticIndex": 6144,
     "PowerType": "Click",
@@ -2324,7 +2324,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7161,
+    "NIDPower": 7164,
     "FullName": "Pool.Teleportation.Teleport",
     "StaticIndex": 1831,
     "PowerType": "Click",
@@ -2595,7 +2595,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -2705,7 +2705,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 4195,
+    "NIDPower": 4196,
     "FullName": "Dominator_Control.Darkness_Control.Haunt",
     "StaticIndex": 6145,
     "PowerType": "Click",
@@ -2867,7 +2867,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 4140,
+    "NIDPower": 4141,
     "FullName": "Dominator_Assault.Psionic_Assault.Drain_Psyche",
     "StaticIndex": 780,
     "PowerType": "Click",
@@ -3180,7 +3180,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7128,
+    "NIDPower": 7131,
     "FullName": "Pool.Leadership.Defense",
     "StaticIndex": 1809,
     "PowerType": "Toggle",
@@ -4074,7 +4074,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 4196,
+    "NIDPower": 4197,
     "FullName": "Dominator_Control.Darkness_Control.Shadow_Field",
     "StaticIndex": 6146,
     "PowerType": "Click",
@@ -4194,7 +4194,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -4202,9 +4202,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 25,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -5677,7 +5677,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 7160,
+    "NIDPower": 7163,
     "FullName": "Pool.Teleportation.Teleport_Foe",
     "StaticIndex": 1830,
     "PowerType": "Click",
@@ -5795,7 +5795,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -5803,9 +5803,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 29,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -6230,7 +6230,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 4197,
+    "NIDPower": 4198,
     "FullName": "Dominator_Control.Darkness_Control.Umbra_Beast",
     "StaticIndex": 6147,
     "PowerType": "Click",
@@ -6316,7 +6316,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4142,
+    "NIDPower": 4143,
     "FullName": "Dominator_Assault.Psionic_Assault.Psionic_Lance",
     "StaticIndex": 782,
     "PowerType": "Click",
@@ -6747,7 +6747,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4143,
+    "NIDPower": 4144,
     "FullName": "Dominator_Assault.Psionic_Assault.Psychic_Shockwave",
     "StaticIndex": 783,
     "PowerType": "Click",
@@ -7180,7 +7180,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 4434,
+    "NIDPower": 4435,
     "FullName": "Epic.Dominator_Mu_Mastery.Charged_Armor",
     "StaticIndex": 908,
     "PowerType": "Toggle",
@@ -7188,9 +7188,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 40,
-    "EndCost": 0.1625,
+    "EndCost": 0.13,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.26,
     "RechargeTime": 8,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -7648,7 +7648,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 4435,
+    "NIDPower": 4436,
     "FullName": "Epic.Dominator_Mu_Mastery.Ball_Lightning",
     "StaticIndex": 909,
     "PowerType": "Click",
@@ -7656,9 +7656,9 @@
     "ClickBuff": false,
     "Level": 38,
     "PickLevel": 43,
-    "EndCost": 18.98,
+    "EndCost": 15.184,
     "ActivatePeriod": 0,
-    "ToggleCost": 18.98,
+    "ToggleCost": 15.184,
     "RechargeTime": 32,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -8049,7 +8049,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -8057,9 +8057,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 46,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -8995,7 +8995,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 4433,
+    "NIDPower": 4434,
     "FullName": "Epic.Dominator_Mu_Mastery.Power_Sink",
     "StaticIndex": 907,
     "PowerType": "Click",
@@ -9003,9 +9003,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 48,
-    "EndCost": 16.25,
+    "EndCost": 13,
     "ActivatePeriod": 0,
-    "ToggleCost": 16.25,
+    "ToggleCost": 13,
     "RechargeTime": 120,
     "CastTime": 2.03,
     "InterruptTime": 0,
@@ -9190,7 +9190,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5841,
+    "NIDPower": 5843,
     "FullName": "Inherent.Inherent.Domination",
     "StaticIndex": 1058,
     "PowerType": "Click",
@@ -10158,7 +10158,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -10509,7 +10509,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -10663,7 +10663,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -11711,7 +11711,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -11822,7 +11822,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -11932,7 +11932,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -12044,7 +12044,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -12117,7 +12117,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",
@@ -12202,7 +12202,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5972,
+    "NIDPower": 5975,
     "FullName": "Inherent.Inherent.Fast_Snipe",
     "StaticIndex": 10827,
     "PowerType": "Toggle",

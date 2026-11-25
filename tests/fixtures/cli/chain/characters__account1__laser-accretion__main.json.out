@@ -18,10 +18,10 @@
     "alternatives": {
       "best_sustainable": {
         "attacks": [
-          "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+          "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 178.5181121826172,
+        "chain_dps": 211.97291564941406,
         "sustainable": true
       },
       "best_overall": {
@@ -81,7 +81,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 43.1 s, 4 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 48.0 s, 5 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -101,11 +101,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 3.5933339595794678,
-      "toggle_drain_per_s": 2.008674383163452,
-      "chain_drain_per_s": 3.553818702697754,
+      "toggle_drain_per_s": 2.001469612121582,
+      "chain_drain_per_s": 3.3239405155181885,
       "other_drain_per_s": 0.3511502742767334,
-      "net_per_s": -2.3203094005584717,
-      "time_to_empty_s": 43.09770202636719
+      "net_per_s": -2.083226442337036,
+      "time_to_empty_s": 48.002464294433594
     },
     "health": {
       "max_hp": 2043.650146484375,
@@ -141,16 +141,22 @@
       "cycle_time_s": 8.5729341506958,
       "gap_s": 6.98893404006958,
       "move_time_s": 0.0,
-      "sustainable": false
+      "sustainable": true
     },
     "alternatives": {
-      "best_sustainable": null,
+      "best_sustainable": {
+        "attacks": [
+          "Epic.Stalker_Soul_Mastery.Moonbeam"
+        ],
+        "chain_dps": 144.344970703125,
+        "sustainable": true
+      },
       "best_overall": {
         "attacks": [
           "Epic.Stalker_Soul_Mastery.Moonbeam"
         ],
         "chain_dps": 144.344970703125,
-        "sustainable": false
+        "sustainable": true
       }
     },
     "dps": {
@@ -182,7 +188,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 1712.0 s, 200 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, sustainable; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -202,11 +208,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 3.5933339595794678,
-      "toggle_drain_per_s": 2.008674383163452,
-      "chain_drain_per_s": 1.2919193506240845,
+      "toggle_drain_per_s": 2.001469612121582,
+      "chain_drain_per_s": 1.0335354804992676,
       "other_drain_per_s": 0.3511502742767334,
-      "net_per_s": -0.058410048484802246,
-      "time_to_empty_s": 1712.0341796875
+      "net_per_s": 0.20717859268188477,
+      "time_to_empty_s": null
     },
     "health": {
       "max_hp": 2043.650146484375,
@@ -250,10 +256,10 @@
     "alternatives": {
       "best_sustainable": {
         "attacks": [
-          "Scrapper_Melee.Dark_Melee.Shadow_Maul",
+          "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 178.5181121826172,
+        "chain_dps": 211.97291564941406,
         "sustainable": true
       },
       "best_overall": {
@@ -308,7 +314,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 60.8 s, 8 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 61.1 s, 8 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -328,11 +334,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 3.5933339595794678,
-      "toggle_drain_per_s": 2.008674383163452,
+      "toggle_drain_per_s": 2.001469612121582,
       "chain_drain_per_s": 2.877429246902466,
       "other_drain_per_s": 0.3511502742767334,
-      "net_per_s": -1.6439199447631836,
-      "time_to_empty_s": 60.8302116394043
+      "net_per_s": -1.6367151737213135,
+      "time_to_empty_s": 61.097984313964844
     },
     "health": {
       "max_hp": 2043.650146484375,

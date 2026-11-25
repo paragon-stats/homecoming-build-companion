@@ -263,9 +263,22 @@ public sealed class ToolTests
     [Fact]
     public async Task A_field_an_older_dump_leaves_out_is_unknown_while_a_genuine_zero_stays_a_number()
     {
+        using ScratchDirectory scratch = new();
+        string older = scratch.CopyOf(McpHarness.BuildDir("shield_scrapper_slotted"), "older");
+        string file = Path.Join(older, "powers_effects.json");
+        JsonArray records = JsonNode.Parse(await File.ReadAllTextAsync(file, TestContext.Current.CancellationToken).ConfigureAwait(true))!.AsArray();
+        foreach (JsonObject record in records.Select(node => node!.AsObject()))
+        {
+            foreach (string key in record.Select(field => field.Key).Where(key => key.StartsWith("Requires", StringComparison.Ordinal) || string.Equals(key, "Chosen", StringComparison.Ordinal)).ToList())
+            {
+                record.Remove(key);
+            }
+        }
+
+        await File.WriteAllTextAsync(file, records.ToJsonString(), TestContext.Current.CancellationToken).ConfigureAwait(true);
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
 
-        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Scrapper_Melee.Dark_Melee.Smite"), ("buildDir", McpHarness.BuildDir("shield_scrapper_slotted"))).ConfigureAwait(true);
+        JsonNode result = await harness.CallJsonAsync("power_lookup", ("fullName", "Scrapper_Melee.Dark_Melee.Smite"), ("buildDir", older)).ConfigureAwait(true);
 
         JsonObject power = result["power"]!.AsObject();
         Assert.False(power.ContainsKey("requires_powers"));

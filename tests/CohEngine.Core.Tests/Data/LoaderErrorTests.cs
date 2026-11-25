@@ -60,9 +60,10 @@ public sealed class LoaderErrorTests : IDisposable
     {
         BuildFixture build = Fixtures.Store.Build("shield_scrapper_noslots");
         string assembly = Write("power_assembly.json", "[]");
+        string slots = Write("slots.json", """[{"BuildIndex": 0, "Slots": []}]""");
 
         InvalidDataException exception = Assert.Throws<InvalidDataException>(
-            () => AssemblyData.LoadBuildPowerAssembly(assembly, Path.Join(build.Directory, "slots.json"), build.Powers));
+            () => AssemblyData.LoadBuildPowerAssembly(assembly, slots, build.Powers));
 
         Assert.StartsWith("E85: slots.json", exception.Message, StringComparison.Ordinal);
     }

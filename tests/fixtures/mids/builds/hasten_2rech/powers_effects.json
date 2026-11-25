@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 7404,
+    "NIDPower": 7414,
     "FullName": "Scrapper_Melee.Dark_Melee.Smite",
     "StaticIndex": 1906,
     "PowerType": "Click",
@@ -21,6 +21,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       26,
@@ -35,6 +36,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -391,7 +396,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 7331,
+    "NIDPower": 7340,
     "FullName": "Scrapper_Defense.Shield_Defense.Active_Defense",
     "StaticIndex": 3338,
     "PowerType": "Toggle",
@@ -409,6 +414,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7,
       8
@@ -419,6 +425,10 @@
       18,
       19
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -775,7 +785,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 7332,
+    "NIDPower": 7341,
     "FullName": "Scrapper_Defense.Shield_Defense.Deflection",
     "StaticIndex": 3339,
     "PowerType": "Toggle",
@@ -793,6 +803,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -801,6 +812,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -1079,7 +1094,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -1097,6 +1112,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7,
       18,
@@ -1108,6 +1124,10 @@
       8,
       15
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -2205,7 +2225,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 7333,
+    "NIDPower": 7342,
     "FullName": "Scrapper_Defense.Shield_Defense.True_Grit",
     "StaticIndex": 3340,
     "PowerType": "Auto_",
@@ -2223,6 +2243,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       8,
       9
@@ -2231,6 +2252,10 @@
       11,
       19
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -2470,7 +2495,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 7407,
+    "NIDPower": 7417,
     "FullName": "Scrapper_Melee.Dark_Melee.Siphon_Life",
     "StaticIndex": 1909,
     "PowerType": "Click",
@@ -2488,6 +2513,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       9,
@@ -2505,6 +2531,10 @@
       11,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -2822,7 +2852,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -2840,10 +2870,15 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [],
     "Enhancements": [
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -2927,7 +2962,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 7135,
+    "NIDPower": 7138,
     "FullName": "Pool.Leaping.Long_Jump",
     "StaticIndex": 1815,
     "PowerType": "Toggle",
@@ -2945,6 +2980,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       18,
       28,
@@ -2954,6 +2990,10 @@
       8,
       15
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -3349,7 +3389,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -3357,9 +3397,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 13,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -3367,6 +3407,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       11,
@@ -3379,6 +3420,10 @@
       18,
       23
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -4827,7 +4872,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 7405,
+    "NIDPower": 7415,
     "FullName": "Scrapper_Melee.Dark_Melee.Shadow_Maul",
     "StaticIndex": 1907,
     "PowerType": "Click",
@@ -4847,6 +4892,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       4,
       26,
@@ -4861,6 +4907,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -5217,7 +5267,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 7335,
+    "NIDPower": 7344,
     "FullName": "Scrapper_Defense.Shield_Defense.Against_all_Odds",
     "StaticIndex": 3342,
     "PowerType": "Toggle",
@@ -5235,6 +5285,7 @@
     "VariableEnabled": true,
     "StatInclude": false,
     "VariableValue": 1,
+    "Chosen": true,
     "SetTypes": [
       24
     ],
@@ -5243,6 +5294,10 @@
       18,
       24
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -6262,7 +6317,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -6270,9 +6325,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 19,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -6280,6 +6335,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       8
     ],
@@ -6288,6 +6344,19 @@
       18,
       19
     ],
+    "RequiresPowers": [
+      [
+        "Pool.Fighting.Boxing",
+        ""
+      ],
+      [
+        "Pool.Fighting.Kick",
+        ""
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -6683,7 +6752,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7410,
+    "NIDPower": 7420,
     "FullName": "Scrapper_Melee.Dark_Melee.Soul_Drain",
     "StaticIndex": 1912,
     "PowerType": "Click",
@@ -6703,6 +6772,7 @@
     "VariableEnabled": true,
     "StatInclude": false,
     "VariableValue": 1,
+    "Chosen": true,
     "SetTypes": [
       4,
       25,
@@ -6716,6 +6786,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -7540,7 +7614,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -7548,9 +7622,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 23,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -7558,6 +7632,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -7566,6 +7641,23 @@
       8,
       18
     ],
+    "RequiresPowers": [
+      [
+        "Pool.Fighting.Boxing",
+        "Pool.Fighting.Kick"
+      ],
+      [
+        "Pool.Fighting.Boxing",
+        "Pool.Fighting.Tough"
+      ],
+      [
+        "Pool.Fighting.Kick",
+        "Pool.Fighting.Tough"
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -8468,7 +8560,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 7411,
+    "NIDPower": 7421,
     "FullName": "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
     "StaticIndex": 1913,
     "PowerType": "Click",
@@ -8488,6 +8580,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       1,
       12,
@@ -8504,6 +8597,10 @@
       13,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -8977,7 +9074,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 7338,
+    "NIDPower": 7347,
     "FullName": "Scrapper_Defense.Shield_Defense.Shield_Charge",
     "StaticIndex": 3345,
     "PowerType": "Click",
@@ -8995,6 +9092,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       4,
       23,
@@ -9009,6 +9107,10 @@
       17,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -9092,7 +9194,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 7128,
+    "NIDPower": 7131,
     "FullName": "Pool.Leadership.Defense",
     "StaticIndex": 1809,
     "PowerType": "Toggle",
@@ -9110,6 +9212,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -9118,6 +9221,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -9981,7 +10088,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 7334,
+    "NIDPower": 7343,
     "FullName": "Scrapper_Defense.Shield_Defense.Battle_Agility",
     "StaticIndex": 3341,
     "PowerType": "Click",
@@ -9999,11 +10106,16 @@
     "VariableEnabled": true,
     "StatInclude": true,
     "VariableValue": 1,
+    "Chosen": true,
     "SetTypes": [],
     "Enhancements": [
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -11257,7 +11369,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4659,
+    "NIDPower": 4660,
     "FullName": "Epic.Stalker_Soul_Mastery.Moonbeam",
     "StaticIndex": 1000,
     "PowerType": "Click",
@@ -11265,9 +11377,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 34,
-    "EndCost": 17.94,
+    "EndCost": 14.352,
     "ActivatePeriod": 0,
-    "ToggleCost": 17.94,
+    "ToggleCost": 14.352,
     "RechargeTime": 24,
     "CastTime": 1.33,
     "InterruptTime": 0,
@@ -11275,6 +11387,7 @@
     "VariableEnabled": true,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       2,
       5,
@@ -11291,6 +11404,13 @@
       17,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [
+      "Class_Scrapper",
+      "Class_Stalker"
+    ],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -12232,7 +12352,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4660,
+    "NIDPower": 4661,
     "FullName": "Epic.Stalker_Soul_Mastery.Shadow_Meld",
     "StaticIndex": 3320,
     "PowerType": "Click",
@@ -12240,9 +12360,9 @@
     "ClickBuff": true,
     "Level": 38,
     "PickLevel": 37,
-    "EndCost": 5.2,
+    "EndCost": 4.16,
     "ActivatePeriod": 0,
-    "ToggleCost": 5.2,
+    "ToggleCost": 4.16,
     "RechargeTime": 90,
     "CastTime": 3,
     "InterruptTime": 0,
@@ -12250,6 +12370,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -12258,6 +12379,19 @@
       8,
       18
     ],
+    "RequiresPowers": [
+      [
+        "Epic.Stalker_Soul_Mastery.Dark_Blast",
+        ""
+      ],
+      [
+        "Epic.Stalker_Soul_Mastery.Moonbeam",
+        ""
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -12731,7 +12865,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 7336,
+    "NIDPower": 7345,
     "FullName": "Scrapper_Defense.Shield_Defense.Phalanx_Fighting",
     "StaticIndex": 3343,
     "PowerType": "Auto_",
@@ -12749,12 +12883,17 @@
     "VariableEnabled": true,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
     "Enhancements": [
       5
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -12994,7 +13133,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 7337,
+    "NIDPower": 7346,
     "FullName": "Scrapper_Defense.Shield_Defense.Grant_Cover",
     "StaticIndex": 3344,
     "PowerType": "Toggle",
@@ -13012,6 +13151,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       7
     ],
@@ -13020,6 +13160,10 @@
       8,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -13454,7 +13598,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 7130,
+    "NIDPower": 7133,
     "FullName": "Pool.Leadership.Tactics",
     "StaticIndex": 1811,
     "PowerType": "Toggle",
@@ -13472,6 +13616,7 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       25
     ],
@@ -13480,6 +13625,19 @@
       8,
       18
     ],
+    "RequiresPowers": [
+      [
+        "Pool.Leadership.Defense",
+        ""
+      ],
+      [
+        "Pool.Leadership.Assault",
+        ""
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -13758,7 +13916,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 7339,
+    "NIDPower": 7348,
     "FullName": "Scrapper_Defense.Shield_Defense.One_with_the_Shield",
     "StaticIndex": 3346,
     "PowerType": "Click",
@@ -13778,6 +13936,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": true,
     "SetTypes": [
       8,
       9,
@@ -13789,6 +13948,10 @@
       7,
       19
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -14730,7 +14893,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5838,
+    "NIDPower": 5840,
     "FullName": "Inherent.Inherent.Critical_Hit",
     "StaticIndex": 1055,
     "PowerType": "Auto_",
@@ -14748,8 +14911,15 @@
     "VariableEnabled": true,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [
+      "Class_Scrapper"
+    ],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -15106,7 +15276,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -15126,6 +15296,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       1,
       44
@@ -15135,6 +15306,10 @@
       4,
       18
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -15452,7 +15627,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -15470,6 +15645,7 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       18,
       19
@@ -15479,6 +15655,10 @@
       15,
       20
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -15601,7 +15781,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -15619,12 +15799,17 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       2,
       7,
       11
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -16644,7 +16829,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -16662,11 +16847,16 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       10,
       20
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -16750,7 +16940,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -16768,10 +16958,15 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [
       15
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -16855,7 +17050,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -16873,12 +17068,17 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       9
     ],
     "Enhancements": [
       11
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -16962,7 +17162,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -16980,12 +17180,17 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [
       22
     ],
     "Enhancements": [
       7
     ],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -17030,7 +17235,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",
@@ -17048,8 +17253,29 @@
     "VariableEnabled": false,
     "StatInclude": true,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
+    "RequiresPowers": [],
+    "RequiresPowersNot": [],
+    "RequiresClass": [
+      "Class_Blaster",
+      "Class_Controller",
+      "Class_Defender",
+      "Class_Scrapper",
+      "Class_Tanker",
+      "Class_Peacebringer",
+      "Class_Warshade",
+      "Class_Sentinel",
+      "Class_Brute",
+      "Class_Stalker",
+      "Class_Mastermind",
+      "Class_Dominator",
+      "Class_Corruptor",
+      "Class_Arachnos_Widow",
+      "Class_Arachnos_Soldier"
+    ],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -17094,7 +17320,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5806,
+    "NIDPower": 5807,
     "FullName": "Inherent.Inherent.Double_Jump",
     "StaticIndex": 10948,
     "PowerType": "Toggle",
@@ -17112,8 +17338,18 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
+    "RequiresPowers": [
+      [
+        "Pool.Leaping.Long_Jump",
+        ""
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,
@@ -17158,7 +17394,7 @@
   },
   {
     "BuildIndex": 34,
-    "NIDPower": 5972,
+    "NIDPower": 5975,
     "FullName": "Inherent.Inherent.Fast_Snipe",
     "StaticIndex": 10827,
     "PowerType": "Toggle",
@@ -17176,8 +17412,213 @@
     "VariableEnabled": false,
     "StatInclude": false,
     "VariableValue": 0,
+    "Chosen": false,
     "SetTypes": [],
     "Enhancements": [],
+    "RequiresPowers": [
+      [
+        "Blaster_Ranged.Archery.Ranged_Shot",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Assault_Rifle.Sniper_Rifle",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Dark_Blast.Moonbeam",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Electrical_Blast.Zapp",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Energy_Blast.Sniper_Blast",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Fire_Blast.Blazing_Bolt",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Psychic_Blast.Psionic_Lance",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Radiation_Blast.Proton_Volley",
+        ""
+      ],
+      [
+        "Defender_Ranged.Archery.Ranged_Shot",
+        ""
+      ],
+      [
+        "Defender_Ranged.Assault_Rifle.Sniper_Rifle",
+        ""
+      ],
+      [
+        "Defender_Ranged.Beam_Rifle.Penetrating_Ray",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Beam_Rifle.Penetrating_Ray",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Seismic_Blast.Tombstone",
+        ""
+      ],
+      [
+        "Defender_Ranged.Dark_Blast.Moonbeam",
+        ""
+      ],
+      [
+        "Defender_Ranged.Electrical_Blast.Zapp",
+        ""
+      ],
+      [
+        "Defender_Ranged.Energy_Blast.Sniper_Blast",
+        ""
+      ],
+      [
+        "Defender_Ranged.Fire_Blast.Blazing_Bolt",
+        ""
+      ],
+      [
+        "Defender_Ranged.Psychic_Blast.Psionic_Lance",
+        ""
+      ],
+      [
+        "Defender_Ranged.Radiation_Blast.Proton_Volley",
+        ""
+      ],
+      [
+        "Defender_Ranged.Seismic_Blast.Tombstone",
+        ""
+      ],
+      [
+        "Epic.Scrapper_Mace_Mastery.Mace_Beam",
+        ""
+      ],
+      [
+        "Epic.Stalker_Mu_Mastery.Zapp",
+        ""
+      ],
+      [
+        "Epic.Stalker_Soul_Mastery.Moonbeam",
+        ""
+      ],
+      [
+        "Dominator_Assault.Dark_Assault.Death_Shroud",
+        ""
+      ],
+      [
+        "Dominator_Assault.Electricity_Manipulation.Lightning_Clap",
+        ""
+      ],
+      [
+        "Dominator_Assault.Energy_Assault.Sniper_Blast",
+        ""
+      ],
+      [
+        "Dominator_Assault.Fiery_Assault.Blazing_Bolt",
+        ""
+      ],
+      [
+        "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+        ""
+      ],
+      [
+        "Dominator_Assault.Martial_Assault.Masterful_Throw",
+        ""
+      ],
+      [
+        "Dominator_Assault.Radioactive_Assault.Proton_Volley",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Archery.Ranged_Shot",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Assault_Rifle.Sniper_Rifle",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Beam_Rifle.Penetrating_Ray",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Dark_Blast.Moonbeam",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Electrical_Blast.Zapp",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Energy_Blast.Sniper_Blast",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Fire_Blast.Blazing_Bolt",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Psychic_Blast.Psionic_Lance",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Radiation_Blast.Proton_Volley",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Seismic_Blast.Tombstone",
+        ""
+      ],
+      [
+        "Epic.Stalker_Mace_Mastery.Mace_Beam",
+        ""
+      ],
+      [
+        "Blaster_Ranged.Storm_Blast.Direct_Strike",
+        ""
+      ],
+      [
+        "Corruptor_Ranged.Storm_Blast.Direct_Strike",
+        ""
+      ],
+      [
+        "Defender_Ranged.Storm_Blast.Direct_Strike",
+        ""
+      ],
+      [
+        "Dominator_Assault.Arsenal_Assault.Sniper_Rifle",
+        ""
+      ],
+      [
+        "Epic.Munitions_Mastery.LRM_Rocket",
+        ""
+      ],
+      [
+        "Epic.Ice_Mastery_ScrapStalk.Frozen_Spear",
+        ""
+      ],
+      [
+        "Epic.Psionic_Mastery_ScrapStalk.Psionic_Lance",
+        ""
+      ]
+    ],
+    "RequiresPowersNot": [],
+    "RequiresClass": [
+      "Class_Blaster",
+      "Class_Defender",
+      "Class_Scrapper",
+      "Class_Stalker",
+      "Class_Dominator",
+      "Class_Corruptor"
+    ],
+    "RequiresClassNot": [],
     "Effects": [
       {
         "Index": 0,

@@ -1353,7 +1353,7 @@
     "FullName": "Pool.Fighting.Boxing",
     "Accuracy": 2.1157722,
     "AccuracyMult": 4.7688847,
-    "EndCost": 2.4348426,
+    "EndCost": 2.1759338,
     "InterruptTime": 0,
     "Range": 8.05,
     "RechargeTime": 0.7218392,
@@ -1361,7 +1361,7 @@
     "DamagePerActivation": 78.409584,
     "Base": {
       "Accuracy": 1,
-      "EndCost": 4.42,
+      "EndCost": 3.95,
       "InterruptTime": 0,
       "Range": 7,
       "RechargeTime": 2.5,
@@ -1990,7 +1990,7 @@
     "FullName": "Pool.Fighting.Tough",
     "Accuracy": 1.2109069,
     "AccuracyMult": 1.5620698,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "InterruptTime": 0,
     "Range": 0,
     "RechargeTime": 3.6529677,
@@ -1998,7 +1998,7 @@
     "DamagePerActivation": 0,
     "Base": {
       "Accuracy": 1,
-      "EndCost": 0.1625,
+      "EndCost": 0.16,
       "InterruptTime": 0,
       "Range": 0,
       "RechargeTime": 10,
@@ -2102,7 +2102,7 @@
     "FullName": "Pool.Fighting.Weave",
     "Accuracy": 1.2109069,
     "AccuracyMult": 1.5620698,
-    "EndCost": 0.09621077,
+    "EndCost": 0.09473061,
     "InterruptTime": 0,
     "Range": 0,
     "RechargeTime": 3.3305576,
@@ -2110,7 +2110,7 @@
     "DamagePerActivation": 0,
     "Base": {
       "Accuracy": 1,
-      "EndCost": 0.1625,
+      "EndCost": 0.16,
       "InterruptTime": 0,
       "Range": 0,
       "RechargeTime": 10,
@@ -2425,7 +2425,7 @@
     "FullName": "Epic.Corruptor_Mace_Mastery.Scorpion_Shield",
     "Accuracy": 1.2109069,
     "AccuracyMult": 1.5620698,
-    "EndCost": 0.08640399,
+    "EndCost": 0.06912319,
     "InterruptTime": 0,
     "Range": 0,
     "RechargeTime": 2.712324,
@@ -2433,7 +2433,7 @@
     "DamagePerActivation": 0,
     "Base": {
       "Accuracy": 1,
-      "EndCost": 0.1625,
+      "EndCost": 0.13,
       "InterruptTime": 0,
       "Range": 0,
       "RechargeTime": 8,
@@ -3125,7 +3125,7 @@
     "Range": 69,
     "RechargeTime": 109.589035,
     "CastTime": 3.2,
-    "DamagePerActivation": 324.76242,
+    "DamagePerActivation": 304.46622,
     "Base": {
       "Accuracy": 1,
       "EndCost": 20.8,
@@ -3137,363 +3137,345 @@
     "Effects": [
       {
         "Index": 0,
-        "EffectType": "EntCreate",
-        "DamageType": "None",
+        "EffectType": "Damage",
+        "DamageType": "Energy",
         "MezType": "None",
         "ETModifies": "None",
-        "Math_Mag": -1,
-        "Math_Duration": 1
+        "Math_Mag": 304.46622,
+        "Math_Duration": 0
       },
       {
         "Index": 1,
-        "EffectType": "Null",
+        "EffectType": "ToHit",
         "DamageType": "None",
         "MezType": "None",
         "ETModifies": "None",
-        "Math_Mag": 1,
-        "Math_Duration": 0.5
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
       },
       {
         "Index": 2,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 3,
+        "EffectType": "DamageBuff",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 4,
+        "EffectType": "DamageBuff",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 5,
+        "EffectType": "DamageBuff",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 6,
+        "EffectType": "DamageBuff",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 7,
+        "EffectType": "DamageBuff",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 8,
+        "EffectType": "DamageBuff",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 9,
+        "EffectType": "DamageBuff",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 10,
+        "EffectType": "DamageBuff",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 11,
+        "EffectType": "Resistance",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 31
+      },
+      {
+        "Index": 12,
+        "EffectType": "Resistance",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 32
+      },
+      {
+        "Index": 13,
+        "EffectType": "Resistance",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 33
+      },
+      {
+        "Index": 14,
+        "EffectType": "Resistance",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 34
+      },
+      {
+        "Index": 15,
+        "EffectType": "Resistance",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 35
+      },
+      {
+        "Index": 16,
+        "EffectType": "Resistance",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 36
+      },
+      {
+        "Index": 17,
+        "EffectType": "Resistance",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 37
+      },
+      {
+        "Index": 18,
+        "EffectType": "Resistance",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 38
+      },
+      {
+        "Index": 19,
+        "EffectType": "ToHit",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 20,
+        "EffectType": "Defense",
+        "DamageType": "None",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 21,
+        "EffectType": "DamageBuff",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 22,
+        "EffectType": "DamageBuff",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 23,
+        "EffectType": "DamageBuff",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 24,
+        "EffectType": "DamageBuff",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 25,
+        "EffectType": "DamageBuff",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 26,
+        "EffectType": "DamageBuff",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 27,
+        "EffectType": "DamageBuff",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 28,
+        "EffectType": "DamageBuff",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.3,
+        "Math_Duration": 30
+      },
+      {
+        "Index": 29,
+        "EffectType": "Resistance",
+        "DamageType": "Smashing",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 31
+      },
+      {
+        "Index": 30,
+        "EffectType": "Resistance",
+        "DamageType": "Lethal",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 32
+      },
+      {
+        "Index": 31,
+        "EffectType": "Resistance",
+        "DamageType": "Fire",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 33
+      },
+      {
+        "Index": 32,
+        "EffectType": "Resistance",
+        "DamageType": "Cold",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 34
+      },
+      {
+        "Index": 33,
+        "EffectType": "Resistance",
+        "DamageType": "Energy",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 35
+      },
+      {
+        "Index": 34,
+        "EffectType": "Resistance",
+        "DamageType": "Negative",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 36
+      },
+      {
+        "Index": 35,
+        "EffectType": "Resistance",
+        "DamageType": "Toxic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 37
+      },
+      {
+        "Index": 36,
+        "EffectType": "Resistance",
+        "DamageType": "Psionic",
+        "MezType": "None",
+        "ETModifies": "None",
+        "Math_Mag": -0.375,
+        "Math_Duration": 38
+      },
+      {
+        "Index": 37,
         "EffectType": "Mez",
         "DamageType": "None",
         "MezType": "Knockback",
         "ETModifies": "None",
         "Math_Mag": 0.67,
         "Math_Duration": 0
-      },
-      {
-        "Index": 3,
-        "EffectType": "Damage",
-        "DamageType": "Energy",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": 324.76242,
-        "Math_Duration": 0
-      },
-      {
-        "Index": 4,
-        "EffectType": "ToHit",
-        "DamageType": "None",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 5,
-        "EffectType": "Defense",
-        "DamageType": "None",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 6,
-        "EffectType": "DamageBuff",
-        "DamageType": "Smashing",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 7,
-        "EffectType": "DamageBuff",
-        "DamageType": "Lethal",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 8,
-        "EffectType": "DamageBuff",
-        "DamageType": "Fire",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 9,
-        "EffectType": "DamageBuff",
-        "DamageType": "Cold",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 10,
-        "EffectType": "DamageBuff",
-        "DamageType": "Energy",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 11,
-        "EffectType": "DamageBuff",
-        "DamageType": "Negative",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 12,
-        "EffectType": "DamageBuff",
-        "DamageType": "Toxic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 13,
-        "EffectType": "DamageBuff",
-        "DamageType": "Psionic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 14,
-        "EffectType": "Resistance",
-        "DamageType": "Smashing",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 31
-      },
-      {
-        "Index": 15,
-        "EffectType": "Resistance",
-        "DamageType": "Lethal",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 32
-      },
-      {
-        "Index": 16,
-        "EffectType": "Resistance",
-        "DamageType": "Fire",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 33
-      },
-      {
-        "Index": 17,
-        "EffectType": "Resistance",
-        "DamageType": "Cold",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 34
-      },
-      {
-        "Index": 18,
-        "EffectType": "Resistance",
-        "DamageType": "Energy",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 35
-      },
-      {
-        "Index": 19,
-        "EffectType": "Resistance",
-        "DamageType": "Negative",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 36
-      },
-      {
-        "Index": 20,
-        "EffectType": "Resistance",
-        "DamageType": "Toxic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 37
-      },
-      {
-        "Index": 21,
-        "EffectType": "Resistance",
-        "DamageType": "Psionic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 38
-      },
-      {
-        "Index": 22,
-        "EffectType": "ToHit",
-        "DamageType": "None",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 23,
-        "EffectType": "Defense",
-        "DamageType": "None",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 24,
-        "EffectType": "DamageBuff",
-        "DamageType": "Smashing",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 25,
-        "EffectType": "DamageBuff",
-        "DamageType": "Lethal",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 26,
-        "EffectType": "DamageBuff",
-        "DamageType": "Fire",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 27,
-        "EffectType": "DamageBuff",
-        "DamageType": "Cold",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 28,
-        "EffectType": "DamageBuff",
-        "DamageType": "Energy",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 29,
-        "EffectType": "DamageBuff",
-        "DamageType": "Negative",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 30,
-        "EffectType": "DamageBuff",
-        "DamageType": "Toxic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 31,
-        "EffectType": "DamageBuff",
-        "DamageType": "Psionic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.22500001,
-        "Math_Duration": 30
-      },
-      {
-        "Index": 32,
-        "EffectType": "Resistance",
-        "DamageType": "Smashing",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 31
-      },
-      {
-        "Index": 33,
-        "EffectType": "Resistance",
-        "DamageType": "Lethal",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 32
-      },
-      {
-        "Index": 34,
-        "EffectType": "Resistance",
-        "DamageType": "Fire",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 33
-      },
-      {
-        "Index": 35,
-        "EffectType": "Resistance",
-        "DamageType": "Cold",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 34
-      },
-      {
-        "Index": 36,
-        "EffectType": "Resistance",
-        "DamageType": "Energy",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 35
-      },
-      {
-        "Index": 37,
-        "EffectType": "Resistance",
-        "DamageType": "Negative",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 36
-      },
-      {
-        "Index": 38,
-        "EffectType": "Resistance",
-        "DamageType": "Toxic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 37
-      },
-      {
-        "Index": 39,
-        "EffectType": "Resistance",
-        "DamageType": "Psionic",
-        "MezType": "None",
-        "ETModifies": "None",
-        "Math_Mag": -0.5,
-        "Math_Duration": 38
       }
     ]
   },

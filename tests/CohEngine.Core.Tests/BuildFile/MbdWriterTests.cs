@@ -70,7 +70,7 @@ public sealed class MbdWriterTests
         Assert.Equal([picks[1].Power, picks[0].Power, .. picks.Skip(2).Select(pick => pick.Power)], build.PowerEntries.Take(24).Select(entry => entry.PowerName), StringComparer.Ordinal);
         Assert.Equal([1, 3, 3], build.PowerEntries[1].SlotEntries.Select(slot => slot.Level + 1));
         Assert.Equal([4, 5], build.PowerEntries[3].SlotEntries.Select(slot => slot.Level + 1));
-        Assert.Equal((24, "2026.1.1242"), (build.LastPower, build.Meta.DatabaseVersion));
+        Assert.Equal((24, "2026.5.1337"), (build.LastPower, build.Meta.DatabaseVersion));
     }
 
     [Fact]

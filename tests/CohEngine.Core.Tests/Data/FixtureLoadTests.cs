@@ -42,23 +42,23 @@ public sealed class FixtureLoadTests
         ["characters__account1__laser-accretion__main"] = ([35, 413, 98, 11, 61, 0, 0], -9763.307191612199, [35, 125, 0, 30, 413]),
         ["characters__account1__laser-fallout__main"] = ([12, 73, 10, 9, 0, 0, 0], -10133.557000037283, [12, 7, 0, 7, 16]),
         ["characters__account1__laser-hazmat__pve"] = ([50, 416, 103, 26, 17, 5, 50], -9729.410621963441, [50, 51, 0, 39, 460]),
-        ["characters__account1__laser-nuke__main"] = ([35, 339, 98, 11, 65, 0, 0], -5368.604772558436, [35, 70, 5, 29, 342]),
+        ["characters__account1__laser-nuke__main"] = ([35, 338, 98, 11, 65, 0, 0], -5367.604772558436, [35, 70, 5, 29, 340]),
         ["characters__account1__laser-prime__main"] = ([37, 393, 98, 13, 67, 1, 42], -5211.053490880877, [37, 87, 7, 28, 366]),
         ["characters__account1__laser-quantum__main"] = ([42, 378, 98, 18, 21, 4, 30], -9609.680998882279, [42, 54, 0, 32, 361]),
         ["community__arachnos-widow__general__unknown-melee"] = ([33, 461, 98, 9, 18, 0, 0], -8183.364050041884, [33, 166, 0, 29, 374]),
         ["community__mastermind__general__unknown-petless"] = ([34, 500, 98, 10, 33, 0, 0], -8951.783750299364, [34, 156, 0, 26, 379]),
-        ["community__stalker__general__unknown-fiery-invulnerability"] = ([34, 423, 98, 10, 11, 0, 0], -7535.1079298220575, [34, 94, 0, 30, 403]),
-        ["arsenal_dominator_cardiac"] = ([36, 365, 31, 0, 59, 1, 20], -9718.347001144662, []),
-        ["arsenal_dominator_incarnate"] = ([36, 365, 32, 0, 59, 1, 30], -9718.347001144662, []),
-        ["arsenal_dominator_incarnate_slotted"] = ([36, 365, 37, 0, 59, 1, 30], -9718.347001144662, []),
-        ["arsenal_dominator_noslots"] = ([35, 357, 32, 0, 0, 0, 0], -9726.347001144662, []),
-        ["hasten_2rech"] = ([35, 413, 99, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_global_endrdx"] = ([35, 413, 100, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_mixed_sets"] = ([35, 413, 99, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_noslots"] = ([35, 413, 98, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_set_bonuses"] = ([35, 413, 95, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_set_bonuses_exemplar25"] = ([35, 413, 95, 0, 0, 0, 0], -9763.307191612199, []),
-        ["shield_scrapper_slotted"] = ([35, 413, 99, 0, 0, 0, 0], -9763.307191612199, []),
+        ["community__stalker__general__unknown-fiery-invulnerability"] = ([34, 422, 98, 10, 11, 0, 0], -7535.6079298220575, [34, 94, 0, 30, 402]),
+        ["arsenal_dominator_cardiac"] = ([36, 365, 31, 12, 59, 1, 20], -9718.347001144662, []),
+        ["arsenal_dominator_incarnate"] = ([36, 365, 32, 12, 59, 1, 30], -9718.347001144662, []),
+        ["arsenal_dominator_incarnate_slotted"] = ([36, 365, 37, 12, 59, 1, 30], -9718.347001144662, []),
+        ["arsenal_dominator_noslots"] = ([35, 357, 32, 11, 59, 0, 0], -9726.347001144662, []),
+        ["hasten_2rech"] = ([35, 413, 99, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_global_endrdx"] = ([35, 413, 100, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_mixed_sets"] = ([35, 413, 99, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_noslots"] = ([35, 413, 98, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_set_bonuses"] = ([35, 413, 95, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_set_bonuses_exemplar25"] = ([35, 413, 95, 11, 61, 0, 0], -9763.307191612199, []),
+        ["shield_scrapper_slotted"] = ([35, 413, 99, 11, 61, 0, 0], -9763.307191612199, []),
         ["wpss_tanker_leadership"] = ([35, 386, 98, 11, 13, 1, 28], -17873.936132313684, []),
     };
 
@@ -137,9 +137,9 @@ public sealed class FixtureLoadTests
         Assert.Equal(61, store.Archetypes.Classes.Count);
         Assert.Equal(3, store.Archetypes.NidFromUidClass("class_scrapper"));
         Assert.Equal(-1, store.Archetypes.NidFromUidClass("Class_Nobody"));
-        Assert.Equal(1827, store.AssemblyPowers.Count);
-        Assert.Equal(241, store.AssemblyEntities.Entities.Count);
-        Assert.Equal(81, store.AssemblyEntities.Powersets.Count);
+        Assert.Equal(1840, store.AssemblyPowers.Count);
+        Assert.Equal(238, store.AssemblyEntities.Entities.Count);
+        Assert.Equal(78, store.AssemblyEntities.Powersets.Count);
         Assert.Equal(1345, store.EnhancementEffects.Count);
         Assert.Equal(227, store.SetBonuses.Sets.Count);
         Assert.Equal(233, store.SetBonuses.Powers.Count);

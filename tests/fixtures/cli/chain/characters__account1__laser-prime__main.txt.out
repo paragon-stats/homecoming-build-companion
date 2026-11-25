@@ -14,7 +14,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   blaster_defiance: x1.096 (Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description)
   click_buff: x1.151 (click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime)
-endurance: max 103.6, recovery 2.81/s, toggles 0.88/s, chain 1.43/s, other 0.13/s, net +0.38/s, time to empty sustainable
+endurance: max 103.6, recovery 2.81/s, toggles 0.85/s, chain 1.43/s, other 0.13/s, net +0.41/s, time to empty sustainable
 health: max 1477.6, regen 31.58/s
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-001: melee stance: melee defense is 42.7%, under the 45% soft cap
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
@@ -36,7 +36,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   blaster_defiance: x1.096 (Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description)
   click_buff: x1.151 (click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime)
-endurance: max 103.6, recovery 2.81/s, toggles 0.88/s, chain 1.43/s, other 0.13/s, net +0.38/s, time to empty sustainable
+endurance: max 103.6, recovery 2.81/s, toggles 0.85/s, chain 1.43/s, other 0.13/s, net +0.41/s, time to empty sustainable
 health: max 1477.6, regen 31.58/s
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-002: power Pool.Flight.Evasive_Maneuvers is not modelled: no canonical file (E35)
@@ -57,7 +57,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   blaster_defiance: x1.096 (Class_Blaster.damage_bonus=0.3 average stacked bonus (default 0.30, approximate; verify in MidsReborn); data/canonical/powers/inherent/inherent/defiance.json gives only the 7.5 s stacking description)
   click_buff: x1.151 (click buffs fired on cooldown: Blaster_Support.Energy_Manipulation.Build_Up +100% at 31% uptime; Blaster_Ranged.Energy_Blast.Aim +62% at 27% uptime)
-endurance: max 103.6, recovery 2.81/s, toggles 0.88/s, chain 1.43/s, other 0.13/s, net +0.38/s, time to empty sustainable
+endurance: max 103.6, recovery 2.81/s, toggles 0.85/s, chain 1.43/s, other 0.13/s, net +0.41/s, time to empty sustainable
 health: max 1477.6, regen 31.58/s
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-001: hybrid stance: melee defense is 42.7%, under the 45% soft cap
 tests\fixtures\mids\builds\characters__account1__laser-prime__main:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

@@ -90,7 +90,7 @@
       },
       "labels": {
         "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)",
-        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 86.9 s, 8 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -106,11 +106,11 @@
     "endurance": {
       "max": 102.25,
       "recovery_per_s": 4.4308342933654785,
-      "toggle_drain_per_s": 1.106623649597168,
-      "chain_drain_per_s": 4.703424453735352,
+      "toggle_drain_per_s": 1.0560202598571777,
+      "chain_drain_per_s": 4.446983337402344,
       "other_drain_per_s": 0.10451269149780273,
-      "net_per_s": -1.4837265014648438,
-      "time_to_empty_s": 68.91431427001953
+      "net_per_s": -1.1766819953918457,
+      "time_to_empty_s": 86.89688873291016
     },
     "health": {
       "max_hp": 1093.3013916015625,
@@ -159,9 +159,10 @@
         "attacks": [
           "Epic.Dominator_Mu_Mastery.Ball_Lightning",
           "Dominator_Assault.Psionic_Assault.Psionic_Lance",
+          "Dominator_Control.Darkness_Control.Dark_Grasp",
           "Dominator_Assault.Psionic_Assault.Psionic_Dart"
         ],
-        "chain_dps": 83.6392822265625,
+        "chain_dps": 90.65166473388672,
         "sustainable": true
       },
       "best_overall": {
@@ -222,7 +223,7 @@
       },
       "labels": {
         "pet": "pet AI not modelled: each pet runs its best chain; enhancement approximate; Shade x2 uptime 0%, Umbra Beast x1 uptime 100% (permanent)",
-        "chain": "chain, affordable: empties in 78.3 s, 8 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 102.4 s, 10 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -238,11 +239,11 @@
     "endurance": {
       "max": 102.25,
       "recovery_per_s": 4.4308342933654785,
-      "toggle_drain_per_s": 1.106623649597168,
-      "chain_drain_per_s": 4.525697708129883,
+      "toggle_drain_per_s": 1.0560202598571777,
+      "chain_drain_per_s": 4.269255638122559,
       "other_drain_per_s": 0.10451269149780273,
-      "net_per_s": -1.305999755859375,
-      "time_to_empty_s": 78.29251098632812
+      "net_per_s": -0.9989542961120605,
+      "time_to_empty_s": 102.3570327758789
     },
     "health": {
       "max_hp": 1093.3013916015625,
@@ -365,10 +366,10 @@
     "endurance": {
       "max": 102.25,
       "recovery_per_s": 4.4308342933654785,
-      "toggle_drain_per_s": 1.106623649597168,
+      "toggle_drain_per_s": 1.0560202598571777,
       "chain_drain_per_s": 2.6649513244628906,
       "other_drain_per_s": 0.10451292991638184,
-      "net_per_s": 0.5547463893890381,
+      "net_per_s": 0.6053497791290283,
       "time_to_empty_s": null
     },
     "health": {
