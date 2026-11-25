@@ -5,7 +5,7 @@ rotation: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > M
   best overall: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption (chain 76.7 DPS)
 dps (scaled; items below each layer are before modifiers):
   pet: 0.0  [no pets summoned]
-  chain: 90.6  [chain, affordable: empties in 54.4 s, 10 cycles; damage is the Mids reference figure standing in for #31]
+  chain: 90.6  [chain, affordable: empties in 66.4 s, 13 cycles; damage is the Mids reference figure standing in for #31]
     Pool.Fighting.Cross_Punch: 28.3
     Mastermind_Summon.Demon_Summoning.Lash: 28.6
     Mastermind_Summon.Demon_Summoning.Corruption: 19.9
@@ -13,7 +13,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
   target_debuff: x1.183 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -18.3%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res)
-endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 2.91/s, other 0.00/s, net -1.84/s, time to empty 54.4 s
+endurance: max 100.0, recovery 2.86/s, toggles 1.74/s, chain 2.62/s, other 0.00/s, net -1.51/s, time to empty 66.4 s
 health: max 893.4, regen 7.30/s
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-001: melee stance: melee defense is 39.1%, under the 45% soft cap
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
@@ -27,13 +27,13 @@ rotation: Mastermind_Summon.Demon_Summoning.Corruption
   best overall: Mastermind_Summon.Demon_Summoning.Corruption (chain 43.3 DPS)
 dps (scaled; items below each layer are before modifiers):
   pet: 0.0  [no pets summoned]
-  chain: 47.4  [chain, affordable: empties in 409.0 s, 169 cycles; damage is the Mids reference figure standing in for #31]
+  chain: 47.4  [chain, affordable: empties in 486.9 s, 201 cycles; damage is the Mids reference figure standing in for #31]
     Mastermind_Summon.Demon_Summoning.Corruption: 43.3
   total: 47.4
 modifiers:
   mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
   target_debuff: x1.094 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -9.4%: Mastermind_Summon.Demon_Summoning.Corruption -9% res)
-endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 1.32/s, other 0.00/s, net -0.24/s, time to empty 409.0 s
+endurance: max 100.0, recovery 2.86/s, toggles 1.74/s, chain 1.32/s, other 0.00/s, net -0.21/s, time to empty 486.9 s
 health: max 893.4, regen 7.30/s
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-001: ranged stance: ranged defense is 35.9%, under the 45% soft cap
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
@@ -47,7 +47,7 @@ rotation: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > M
   best overall: Pool.Fighting.Cross_Punch > Mastermind_Summon.Demon_Summoning.Lash > Mastermind_Summon.Demon_Summoning.Corruption (chain 65.4 DPS)
 dps (scaled; items below each layer are before modifiers):
   pet: 0.0  [no pets summoned]
-  chain: 76.2  [chain, affordable: empties in 70.9 s, 11 cycles; damage is the Mids reference figure standing in for #31]
+  chain: 76.2  [chain, affordable: empties in 89.3 s, 14 cycles; damage is the Mids reference figure standing in for #31]
     Pool.Fighting.Cross_Punch: 24.1
     Mastermind_Summon.Demon_Summoning.Lash: 24.3
     Mastermind_Summon.Demon_Summoning.Corruption: 16.9
@@ -55,7 +55,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   mastermind_supremacy: x1.119 (Class_Mastermind.pets_in_range=1.0 share of pets within range (default 1); +25% damage from data/canonical/powers/inherent/inherent/supremacy.json)
   target_debuff: x1.167 (debuffs from the chosen chain, patches, support and persistent powers against 0% resistance, stacked -16.7%: Mastermind_Summon.Demon_Summoning.Corruption -9% res; Mastermind_Summon.Demon_Summoning.Lash -9% res)
-endurance: max 100.0, recovery 2.86/s, toggles 1.78/s, chain 2.48/s, other 0.00/s, net -1.41/s, time to empty 70.9 s
+endurance: max 100.0, recovery 2.86/s, toggles 1.74/s, chain 2.23/s, other 0.00/s, net -1.12/s, time to empty 89.3 s
 health: max 893.4, regen 7.30/s
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-001: hybrid stance: melee defense is 39.1%, under the 45% soft cap
 tests\fixtures\mids\builds\community__mastermind__general__unknown-petless:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

@@ -76,7 +76,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 64.2 s, 5 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 64.6 s, 5 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -96,11 +96,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 2.083333730697632,
-      "toggle_drain_per_s": 1.7084884643554688,
+      "toggle_drain_per_s": 1.6988499164581299,
       "chain_drain_per_s": 1.791375756263733,
       "other_drain_per_s": 0.14208340644836426,
-      "net_per_s": -1.558613896369934,
-      "time_to_empty_s": 64.1595687866211
+      "net_per_s": -1.5489753484725952,
+      "time_to_empty_s": 64.55880737304688
     },
     "health": {
       "max_hp": 1497.961181640625,
@@ -187,7 +187,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 232.3 s, 9 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 347.0 s, 14 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -207,11 +207,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 2.083333730697632,
-      "toggle_drain_per_s": 1.7084884643554688,
-      "chain_drain_per_s": 0.6632286310195923,
+      "toggle_drain_per_s": 1.6988499164581299,
+      "chain_drain_per_s": 0.5305829048156738,
       "other_drain_per_s": 0.14208340644836426,
-      "net_per_s": -0.43046677112579346,
-      "time_to_empty_s": 232.30596923828125
+      "net_per_s": -0.28818249702453613,
+      "time_to_empty_s": 347.0023498535156
     },
     "health": {
       "max_hp": 1497.961181640625,
@@ -324,7 +324,7 @@
       "labels": {
         "patch": "location patches cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 64.2 s, 5 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 64.6 s, 5 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -344,11 +344,11 @@
     "endurance": {
       "max": 100.0,
       "recovery_per_s": 2.083333730697632,
-      "toggle_drain_per_s": 1.7084884643554688,
+      "toggle_drain_per_s": 1.6988499164581299,
       "chain_drain_per_s": 1.791375756263733,
       "other_drain_per_s": 0.14208340644836426,
-      "net_per_s": -1.558613896369934,
-      "time_to_empty_s": 64.1595687866211
+      "net_per_s": -1.5489753484725952,
+      "time_to_empty_s": 64.55880737304688
     },
     "health": {
       "max_hp": 1497.961181640625,

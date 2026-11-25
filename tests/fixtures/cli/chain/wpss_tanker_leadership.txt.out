@@ -17,7 +17,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
   click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
-endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 2.91/s, other 0.04/s, net +0.26/s, time to empty sustainable
+endurance: max 103.6, recovery 4.42/s, toggles 1.15/s, chain 2.82/s, other 0.04/s, net +0.41/s, time to empty sustainable
 health: max 2614.3, regen 58.14/s
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: melee stance: melee defense is 23.3%, under the 45% soft cap
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
@@ -36,7 +36,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
   click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
-endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 0.74/s, other 0.04/s, net +2.43/s, time to empty sustainable
+endurance: max 103.6, recovery 4.42/s, toggles 1.15/s, chain 0.59/s, other 0.04/s, net +2.64/s, time to empty sustainable
 health: max 2614.3, regen 58.14/s
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: ranged stance: ranged defense is 26.2%, under the 45% soft cap
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on
@@ -60,7 +60,7 @@ dps (scaled; items below each layer are before modifiers):
 modifiers:
   tanker_gauntlet: x1.000 (Class_Tanker: neutral, Gauntlet only grants/revokes the taunt power, no damage effect (data/canonical/powers/inherent/inherent/gauntlet.json))
   click_buff: x1.105 (click buffs fired on cooldown: Pool.Leadership.Vengeance +35% at 85% uptime)
-endurance: max 103.6, recovery 4.42/s, toggles 1.21/s, chain 2.61/s, other 0.04/s, net +0.55/s, time to empty sustainable
+endurance: max 103.6, recovery 4.42/s, toggles 1.15/s, chain 2.58/s, other 0.04/s, net +0.64/s, time to empty sustainable
 health: max 2614.3, regen 58.14/s
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-001: hybrid stance: melee defense is 23.3%, under the 45% soft cap
 tests\fixtures\mids\builds\wpss_tanker_leadership:1:1: info: P-CHAIN-002: no clicks-off dump found; click buffs are counted always-on

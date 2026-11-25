@@ -66,7 +66,7 @@
       },
       "labels": {
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 46.0 s, 7 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -82,11 +82,11 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.4255735874176025,
-      "toggle_drain_per_s": 1.5173239707946777,
+      "toggle_drain_per_s": 1.5135927200317383,
       "chain_drain_per_s": 4.165293216705322,
       "other_drain_per_s": 0.0,
-      "net_per_s": -2.2570436000823975,
-      "time_to_empty_s": 45.900753021240234
+      "net_per_s": -2.253312349319458,
+      "time_to_empty_s": 45.97675704956055
     },
     "health": {
       "max_hp": 1572.966796875,
@@ -147,10 +147,10 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.4255735874176025,
-      "toggle_drain_per_s": 1.5173239707946777,
+      "toggle_drain_per_s": 1.5135927200317383,
       "chain_drain_per_s": 0,
       "other_drain_per_s": 0.0,
-      "net_per_s": 1.9082496166229248,
+      "net_per_s": 1.9119808673858643,
       "time_to_empty_s": null
     },
     "health": {
@@ -245,7 +245,7 @@
       },
       "labels": {
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 45.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 46.0 s, 7 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -261,11 +261,11 @@
     "endurance": {
       "max": 103.5999984741211,
       "recovery_per_s": 3.4255735874176025,
-      "toggle_drain_per_s": 1.5173239707946777,
+      "toggle_drain_per_s": 1.5135927200317383,
       "chain_drain_per_s": 4.165293216705322,
       "other_drain_per_s": 0.0,
-      "net_per_s": -2.2570436000823975,
-      "time_to_empty_s": 45.900753021240234
+      "net_per_s": -2.253312349319458,
+      "time_to_empty_s": 45.97675704956055
     },
     "health": {
       "max_hp": 1572.966796875,

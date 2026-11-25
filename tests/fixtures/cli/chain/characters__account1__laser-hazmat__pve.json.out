@@ -18,9 +18,10 @@
       "best_sustainable": {
         "attacks": [
           "Brute_Defense.Fiery_Aura.Burn",
+          "Pool.Fighting.Boxing",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 135.99143981933594,
+        "chain_dps": 160.115478515625,
         "sustainable": true
       },
       "best_overall": {
@@ -78,7 +79,7 @@
         "aura": "damage auras at melee share 1.00; per-tick damage assumed",
         "buff_cast": "buff clicks cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 71.4 s, 8 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -110,27 +111,17 @@
     "endurance": {
       "max": 110.0,
       "recovery_per_s": 3.8131325244903564,
-      "toggle_drain_per_s": 2.680372714996338,
+      "toggle_drain_per_s": 2.6243538856506348,
       "chain_drain_per_s": 2.3704771995544434,
       "other_drain_per_s": 0.3591494560241699,
-      "net_per_s": -1.5968668460845947,
-      "time_to_empty_s": 68.88489532470703
+      "net_per_s": -1.5408480167388916,
+      "time_to_empty_s": 71.3892593383789
     },
     "health": {
-      "max_hp": 2259.8720703125,
-      "regen_per_sec": 31.638208389282227
+      "max_hp": 2421.22021484375,
+      "regen_per_sec": 33.8970832824707
     },
     "diagnostics": [
-      {
-        "rule_id": "P-CHAIN-001",
-        "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\characters__account1__laser-hazmat__pve",
-        "line": 1,
-        "column": 1,
-        "message": "melee stance: melee defense is 44.6%, under the 45% soft cap",
-        "expected": ">= 45%",
-        "actual": "44.6%"
-      },
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",
@@ -213,15 +204,15 @@
     "endurance": {
       "max": 110.0,
       "recovery_per_s": 3.8131325244903564,
-      "toggle_drain_per_s": 2.680372714996338,
+      "toggle_drain_per_s": 2.6243538856506348,
       "chain_drain_per_s": 0,
       "other_drain_per_s": 0.3591494858264923,
-      "net_per_s": 0.7736103534698486,
+      "net_per_s": 0.8296291828155518,
       "time_to_empty_s": null
     },
     "health": {
-      "max_hp": 2259.8720703125,
-      "regen_per_sec": 31.638208389282227
+      "max_hp": 2421.22021484375,
+      "regen_per_sec": 33.8970832824707
     },
     "diagnostics": [
       {
@@ -230,9 +221,9 @@
         "path": "tests\\fixtures\\mids\\builds\\characters__account1__laser-hazmat__pve",
         "line": 1,
         "column": 1,
-        "message": "ranged stance: ranged defense is 24.6%, under the 45% soft cap",
+        "message": "ranged stance: ranged defense is 27.7%, under the 45% soft cap",
         "expected": ">= 45%",
-        "actual": "24.6%"
+        "actual": "27.7%"
       },
       {
         "rule_id": "P-CHAIN-002",
@@ -282,9 +273,10 @@
       "best_sustainable": {
         "attacks": [
           "Brute_Defense.Fiery_Aura.Burn",
+          "Pool.Fighting.Boxing",
           "Inherent.Inherent.Brawl"
         ],
-        "chain_dps": 135.99143981933594,
+        "chain_dps": 160.115478515625,
         "sustainable": true
       },
       "best_overall": {
@@ -342,7 +334,7 @@
         "aura": "damage auras at melee share 1.00; per-tick damage assumed",
         "buff_cast": "buff clicks cast on cooldown",
         "pet": "no pets summoned",
-        "chain": "chain, affordable: empties in 68.9 s, 7 cycles; damage is the Mids reference figure standing in for #31"
+        "chain": "chain, affordable: empties in 71.4 s, 8 cycles; damage is the Mids reference figure standing in for #31"
       }
     },
     "modifiers": [
@@ -374,27 +366,17 @@
     "endurance": {
       "max": 110.0,
       "recovery_per_s": 3.8131325244903564,
-      "toggle_drain_per_s": 2.680372714996338,
+      "toggle_drain_per_s": 2.6243538856506348,
       "chain_drain_per_s": 2.3704771995544434,
       "other_drain_per_s": 0.3591494560241699,
-      "net_per_s": -1.5968668460845947,
-      "time_to_empty_s": 68.88489532470703
+      "net_per_s": -1.5408480167388916,
+      "time_to_empty_s": 71.3892593383789
     },
     "health": {
-      "max_hp": 2259.8720703125,
-      "regen_per_sec": 31.638208389282227
+      "max_hp": 2421.22021484375,
+      "regen_per_sec": 33.8970832824707
     },
     "diagnostics": [
-      {
-        "rule_id": "P-CHAIN-001",
-        "severity": "info",
-        "path": "tests\\fixtures\\mids\\builds\\characters__account1__laser-hazmat__pve",
-        "line": 1,
-        "column": 1,
-        "message": "hybrid stance: melee defense is 44.6%, under the 45% soft cap",
-        "expected": ">= 45%",
-        "actual": "44.6%"
-      },
       {
         "rule_id": "P-CHAIN-002",
         "severity": "info",

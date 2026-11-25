@@ -22,6 +22,9 @@ The Python engine at commit `5812ba123ad06c0f22771902c71ece520d56e819`, Python 3
 python -m coh_engine chain tests/fixtures/mids/builds/<build> --format <text|json> [--mids-db tests/fixtures/attribmod]
 ```
 
+When the dumps moved to Mids database 2026.5.1337, every capture was re-run the same way with the Python engine at commit `992752ad`.
+On the old dumps that run reproduced the committed captures byte for byte; the captures whose output the new data changed were replaced.
+
 Windows line endings were changed to LF.
 Standard output sits in `.out` files because a run that failed printed nothing, and an empty `.json` file fails the JSON check.
 The diagnostic lines and the JSON `path` fields print the build path the way Python's `str(Path)` does, so a capture made on Windows holds backslashes.
