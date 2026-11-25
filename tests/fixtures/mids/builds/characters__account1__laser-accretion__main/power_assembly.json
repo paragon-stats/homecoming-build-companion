@@ -1818,7 +1818,7 @@
       "Foe"
     ],
     "BaseRechargeTime": 10,
-    "AoEModifier": 2.2,
+    "AoEModifier": 2.8,
     "HasGrantPowerEffect": false,
     "HasPowerOverrideEffect": false,
     "AbsorbSummonEffects": false,
@@ -2970,7 +2970,7 @@
       {
         "Index": 1,
         "Summon": "Villain_Pets.Shield_Charge_AoE3.Shield_Charge_AoE_Scrapper",
-        "nSummon": 10856,
+        "nSummon": 10872,
         "Duration": 4,
         "EffectId": "Ones",
         "Reward": "",
@@ -5749,7 +5749,7 @@
       {
         "Index": 0,
         "Summon": "Redirects.Special_Set_Bonuses.Impervious_Skin_E",
-        "nSummon": 7204,
+        "nSummon": 7212,
         "Duration": 0,
         "EffectId": "ImperviousSkinRegen",
         "Reward": "",

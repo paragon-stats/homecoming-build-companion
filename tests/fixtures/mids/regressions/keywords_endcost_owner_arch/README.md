@@ -33,8 +33,9 @@ dotnet run -c Debug --no-build -- <fork>/MidsReborn/Databases/Homecoming <out> -
 - Mids fork: `MidsReborn` at commit `dd189d08d`, with only `MidsReborn/clsToonX.cs` modified.
   That is the uncommitted `gbpa-sequential.patch`, and `git apply --reverse --check` on the patch succeeded.
   The harness's unpatched-fork refusal (E15) did not fire.
-- Database version: `2026.1.1242` (`version.json` of the same run).
-- Dumped on 2026-11-10.
+- Database version: `2026.5.1337` (`version.json` of the same run), from a copy of the installed Mids database, passed as the first argument.
+- Dumped on 2026-11-24.
+  The run ends with `E21` and exit 1 because the exemplar variant's source build is not in this one-build folder; the build's own files are complete.
 - The files here are the eight per-build files the harness wrote, unchanged.
   They are `powers_effects`, `slots`, `power_assembly`, `assembled_powers`, `enhanced_powers`, `set_bonus_virtual_power`, `incarnates` and `totals`.
   No value was edited by hand or by script.

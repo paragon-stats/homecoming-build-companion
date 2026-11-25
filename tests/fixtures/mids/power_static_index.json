@@ -12116,6 +12116,10 @@
     "FullName": "Brute_Melee.Broad_Sword.Slice"
   },
   {
+    "StaticIndex": 11579,
+    "FullName": "Brute_Melee.Broad_Sword.Boomerang_Slice"
+  },
+  {
     "StaticIndex": 5254,
     "FullName": "Brute_Melee.Broad_Sword.Build_Up"
   },
@@ -12336,20 +12340,20 @@
     "FullName": "Brute_Melee.Fiery_Melee.Build_Up"
   },
   {
-    "StaticIndex": 275,
-    "FullName": "Brute_Melee.Fiery_Melee.Incinerate"
+    "StaticIndex": 277,
+    "FullName": "Brute_Melee.Fiery_Melee.Breath_of_Fire"
   },
   {
     "StaticIndex": 276,
     "FullName": "Brute_Melee.Fiery_Melee.Taunt"
   },
   {
-    "StaticIndex": 277,
-    "FullName": "Brute_Melee.Fiery_Melee.Breath_of_Fire"
-  },
-  {
     "StaticIndex": 278,
     "FullName": "Brute_Melee.Fiery_Melee.Fire_Sword_Circle"
+  },
+  {
+    "StaticIndex": 275,
+    "FullName": "Brute_Melee.Fiery_Melee.Incinerate"
   },
   {
     "StaticIndex": 279,
@@ -23252,6 +23256,10 @@
     "FullName": "Inherent.Inherent.Speed_Phase"
   },
   {
+    "StaticIndex": 11588,
+    "FullName": "Inherent.Inherent.Spines_Poison"
+  },
+  {
     "StaticIndex": 11427,
     "FullName": "Inherent.Inherent.SR_HP_Slider"
   },
@@ -23522,6 +23530,10 @@
   {
     "StaticIndex": 10602,
     "FullName": "Inherent.Inherent.Opportunity_Meter"
+  },
+  {
+    "StaticIndex": 11589,
+    "FullName": "Inherent.Inherent.Perfection_of_Body_Stalker"
   },
   {
     "StaticIndex": 1066,
@@ -28728,6 +28740,26 @@
     "FullName": "Redirects.Kinetics.SiphonPower"
   },
   {
+    "StaticIndex": 11583,
+    "FullName": "Redirects.Kinetic_Melee.DamageDebuff_1"
+  },
+  {
+    "StaticIndex": 11584,
+    "FullName": "Redirects.Kinetic_Melee.DamageDebuff_2"
+  },
+  {
+    "StaticIndex": 11585,
+    "FullName": "Redirects.Kinetic_Melee.DamageDebuff_3"
+  },
+  {
+    "StaticIndex": 11586,
+    "FullName": "Redirects.Kinetic_Melee.DamageDebuff_4"
+  },
+  {
+    "StaticIndex": 11587,
+    "FullName": "Redirects.Kinetic_Melee.DamageDebuff_5"
+  },
+  {
     "StaticIndex": 11420,
     "FullName": "Redirects.Marine_Affinity.Rough_Waters"
   },
@@ -28822,6 +28854,10 @@
   {
     "StaticIndex": 11084,
     "FullName": "Redirects.Spring_Attack.Spring_Attack"
+  },
+  {
+    "StaticIndex": 11590,
+    "FullName": "Redirects.Staff_Fighting.Stance_Bonus"
   },
   {
     "StaticIndex": 11381,
@@ -29550,6 +29586,10 @@
   {
     "StaticIndex": 1889,
     "FullName": "Scrapper_Melee.Broad_Sword.Slice"
+  },
+  {
+    "StaticIndex": 11580,
+    "FullName": "Scrapper_Melee.Broad_Sword.Boomerang_Slice"
   },
   {
     "StaticIndex": 1890,
@@ -35972,6 +36012,10 @@
     "FullName": "Stalker_Melee.Broad_Sword.Slice"
   },
   {
+    "StaticIndex": 11581,
+    "FullName": "Stalker_Melee.Broad_Sword.Boomerang_Slice"
+  },
+  {
     "StaticIndex": 4030,
     "FullName": "Stalker_Melee.Broad_Sword.Assassins_Slash"
   },
@@ -37212,6 +37256,10 @@
     "FullName": "Tanker_Melee.Broad_Sword.Slash"
   },
   {
+    "StaticIndex": 11582,
+    "FullName": "Tanker_Melee.Broad_Sword.Boomerang_Slice"
+  },
+  {
     "StaticIndex": 10133,
     "FullName": "Tanker_Melee.Broad_Sword.Slice"
   },
@@ -38056,6 +38104,10 @@
     "FullName": "Temporary_Powers.Accolades.Born_In_Battle"
   },
   {
+    "StaticIndex": 11592,
+    "FullName": "Temporary_Powers.Accolades.Conqueror_of_the_Labyrinth"
+  },
+  {
     "StaticIndex": 2642,
     "FullName": "Temporary_Powers.Accolades.Crey_CBX-9_Pistol"
   },
@@ -38098,6 +38150,10 @@
   {
     "StaticIndex": 2650,
     "FullName": "Temporary_Powers.Accolades.Marshall"
+  },
+  {
+    "StaticIndex": 11593,
+    "FullName": "Temporary_Powers.Accolades.Mazebreaker"
   },
   {
     "StaticIndex": 2651,
@@ -41540,6 +41596,10 @@
     "FullName": "Temporary_Powers.Temporary_Powers.Molten_Embrace_Proc"
   },
   {
+    "StaticIndex": 11591,
+    "FullName": "Temporary_Powers.Temporary_Powers.Mote_of_the_Gladiator"
+  },
+  {
     "StaticIndex": 4301,
     "FullName": "Temporary_Powers.Temporary_Powers.Mutation:_Acute_Senses"
   },
@@ -42150,6 +42210,10 @@
   {
     "StaticIndex": 2926,
     "FullName": "Temporary_Powers.Temporary_Powers.Snake-B-Gone"
+  },
+  {
+    "StaticIndex": 11594,
+    "FullName": "Temporary_Powers.Temporary_Powers.Soulbound_Armor"
   },
   {
     "StaticIndex": 5211,

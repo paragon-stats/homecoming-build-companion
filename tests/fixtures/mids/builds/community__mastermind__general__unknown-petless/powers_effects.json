@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 6441,
+    "NIDPower": 6444,
     "FullName": "Mastermind_Summon.Demon_Summoning.Corruption",
     "StaticIndex": 4248,
     "PowerType": "Click",
@@ -22,7 +22,8 @@
     "Chosen": true,
     "SetTypes": [
       2,
-      44
+      44,
+      40
     ],
     "Enhancements": [
       1,
@@ -469,7 +470,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 6028,
+    "NIDPower": 6031,
     "FullName": "Mastermind_Buff.Force_Field.Deflection_Shield",
     "StaticIndex": 1119,
     "PowerType": "Click",
@@ -662,7 +663,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 6443,
+    "NIDPower": 6446,
     "FullName": "Mastermind_Summon.Demon_Summoning.Lash",
     "StaticIndex": 4250,
     "PowerType": "Click",
@@ -684,7 +685,8 @@
     "SetTypes": [
       1,
       23,
-      44
+      44,
+      40
     ],
     "Enhancements": [
       1,
@@ -1209,7 +1211,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -2340,7 +2342,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 6029,
+    "NIDPower": 6032,
     "FullName": "Mastermind_Buff.Force_Field.Insulation_Shield",
     "StaticIndex": 1120,
     "PowerType": "Click",
@@ -2689,7 +2691,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 6445,
+    "NIDPower": 6448,
     "FullName": "Mastermind_Summon.Demon_Summoning.Crack_Whip",
     "StaticIndex": 4252,
     "PowerType": "Click",
@@ -2711,7 +2713,8 @@
     "SetTypes": [
       3,
       23,
-      44
+      44,
+      40
     ],
     "Enhancements": [
       1,
@@ -3236,7 +3239,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7135,
+    "NIDPower": 7138,
     "FullName": "Pool.Leaping.Long_Jump",
     "StaticIndex": 1815,
     "PowerType": "Toggle",
@@ -3663,7 +3666,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 7109,
+    "NIDPower": 7112,
     "FullName": "Pool.Fighting.Kick",
     "StaticIndex": 1794,
     "PowerType": "Click",
@@ -3671,9 +3674,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 11,
-    "EndCost": 4.94,
+    "EndCost": 4.37,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.94,
+    "ToggleCost": 4.37,
     "RechargeTime": 3,
     "CastTime": 1.83,
     "InterruptTime": 0,
@@ -5185,7 +5188,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -5193,9 +5196,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 13,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -5620,7 +5623,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 7136,
+    "NIDPower": 7139,
     "FullName": "Pool.Leaping.Leap",
     "StaticIndex": 1816,
     "PowerType": "Toggle",
@@ -6096,7 +6099,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 6447,
+    "NIDPower": 6450,
     "FullName": "Mastermind_Summon.Demon_Summoning.Hell_on_Earth",
     "StaticIndex": 4254,
     "PowerType": "Click",
@@ -6879,7 +6882,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 6032,
+    "NIDPower": 6035,
     "FullName": "Mastermind_Buff.Force_Field.Dispersion_Bubble",
     "StaticIndex": 1123,
     "PowerType": "Toggle",
@@ -7578,7 +7581,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7137,
+    "NIDPower": 7140,
     "FullName": "Pool.Leaping.Spring_Attack",
     "StaticIndex": 5633,
     "PowerType": "Click",
@@ -7710,7 +7713,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -7718,9 +7721,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 23,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -8656,7 +8659,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 7125,
+    "NIDPower": 7128,
     "FullName": "Pool.Invisibility.Invisibility",
     "StaticIndex": 1807,
     "PowerType": "Toggle",
@@ -10141,7 +10144,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 6034,
+    "NIDPower": 6037,
     "FullName": "Mastermind_Buff.Force_Field.Repulsion_Bomb",
     "StaticIndex": 1125,
     "PowerType": "Click",
@@ -10164,7 +10167,8 @@
       3,
       11,
       23,
-      44
+      44,
+      40
     ],
     "Enhancements": [
       1,
@@ -10769,7 +10773,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 6035,
+    "NIDPower": 6038,
     "FullName": "Mastermind_Buff.Force_Field.Force_Bubble",
     "StaticIndex": 1126,
     "PowerType": "Click",
@@ -10883,7 +10887,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 7112,
+    "NIDPower": 7115,
     "FullName": "Pool.Fighting.Cross_Punch",
     "StaticIndex": 9612,
     "PowerType": "Click",
@@ -10891,9 +10895,9 @@
     "ClickBuff": true,
     "Level": 14,
     "PickLevel": 31,
-    "EndCost": 10.66,
+    "EndCost": 8.53,
     "ActivatePeriod": 0,
-    "ToggleCost": 10.66,
+    "ToggleCost": 8.53,
     "RechargeTime": 8,
     "CastTime": 1.67,
     "InterruptTime": 0,
@@ -12510,7 +12514,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4524,
+    "NIDPower": 4525,
     "FullName": "Epic.Mastermind_Mace_Mastery.Scorpion_Shield",
     "StaticIndex": 952,
     "PowerType": "Toggle",
@@ -12518,9 +12522,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 34,
-    "EndCost": 0.1625,
+    "EndCost": 0.13,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.26,
     "RechargeTime": 8,
     "CastTime": 2,
     "InterruptTime": 0,
@@ -13289,7 +13293,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4523,
+    "NIDPower": 4524,
     "FullName": "Epic.Mastermind_Mace_Mastery.Web_Envelope",
     "StaticIndex": 951,
     "PowerType": "Click",
@@ -13297,9 +13301,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 37,
-    "EndCost": 12.74,
+    "EndCost": 8.6008,
     "ActivatePeriod": 0,
-    "ToggleCost": 12.74,
+    "ToggleCost": 8.6008,
     "RechargeTime": 16,
     "CastTime": 2,
     "InterruptTime": 0,
@@ -13607,7 +13611,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 7159,
+    "NIDPower": 7162,
     "FullName": "Pool.Teleportation.Recall_Friend",
     "StaticIndex": 1829,
     "PowerType": "Click",
@@ -14271,7 +14275,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 7124,
+    "NIDPower": 7127,
     "FullName": "Pool.Invisibility.Grant_Invisibility",
     "StaticIndex": 1806,
     "PowerType": "Click",
@@ -15322,7 +15326,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 6031,
+    "NIDPower": 6034,
     "FullName": "Mastermind_Buff.Force_Field.Personal_Force_Field",
     "StaticIndex": 1122,
     "PowerType": "Toggle",
@@ -16801,7 +16805,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -16809,9 +16813,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 48,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -18284,7 +18288,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5944,
+    "NIDPower": 5947,
     "FullName": "Inherent.Inherent.Supremacy",
     "StaticIndex": 1101,
     "PowerType": "Click",
@@ -18745,7 +18749,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -19096,7 +19100,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -19250,7 +19254,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -20298,7 +20302,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -20409,7 +20413,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -20519,7 +20523,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -20631,7 +20635,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -20704,7 +20708,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5806,
+    "NIDPower": 5807,
     "FullName": "Inherent.Inherent.Double_Jump",
     "StaticIndex": 10948,
     "PowerType": "Toggle",
@@ -20778,7 +20782,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",

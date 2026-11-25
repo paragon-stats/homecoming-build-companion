@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 3135,
+    "NIDPower": 3136,
     "FullName": "Brute_Melee.Radiation_Melee.Radioactive_Smash",
     "StaticIndex": 9868,
     "PowerType": "Click",
@@ -1217,7 +1217,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 7113,
+    "NIDPower": 7116,
     "FullName": "Pool.Flight.Combat_Flight",
     "StaticIndex": 1801,
     "PowerType": "Toggle",
@@ -2387,7 +2387,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 3138,
+    "NIDPower": 3139,
     "FullName": "Brute_Melee.Radiation_Melee.Radiation_Siphon",
     "StaticIndex": 9871,
     "PowerType": "Click",
@@ -3060,7 +3060,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7115,
+    "NIDPower": 7118,
     "FullName": "Pool.Flight.Fly",
     "StaticIndex": 1803,
     "PowerType": "Toggle",
@@ -3409,7 +3409,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 3137,
+    "NIDPower": 3138,
     "FullName": "Brute_Melee.Radiation_Melee.Fusion",
     "StaticIndex": 9870,
     "PowerType": "Click",
@@ -3835,7 +3835,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -4683,7 +4683,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 3140,
+    "NIDPower": 3141,
     "FullName": "Brute_Melee.Radiation_Melee.Irradiated_Ground",
     "StaticIndex": 9873,
     "PowerType": "Toggle",
@@ -5160,7 +5160,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7117,
+    "NIDPower": 7120,
     "FullName": "Pool.Flight.Evasive_Maneuvers",
     "StaticIndex": 10946,
     "PowerType": "Toggle",
@@ -5914,7 +5914,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -7045,7 +7045,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 3141,
+    "NIDPower": 3142,
     "FullName": "Brute_Melee.Radiation_Melee.Devastating_Blow",
     "StaticIndex": 9874,
     "PowerType": "Click",
@@ -7953,7 +7953,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 3142,
+    "NIDPower": 3143,
     "FullName": "Brute_Melee.Radiation_Melee.Atom_Smasher",
     "StaticIndex": 9875,
     "PowerType": "Click",
@@ -8469,7 +8469,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -8477,9 +8477,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 31,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -9952,7 +9952,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4464,
+    "NIDPower": 4465,
     "FullName": "Epic.Energy_Mastery_Brute.Focused_Accuracy",
     "StaticIndex": 4362,
     "PowerType": "Toggle",
@@ -9960,9 +9960,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 34,
-    "EndCost": 0.195,
+    "EndCost": 0.156,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.39,
+    "ToggleCost": 0.312,
     "RechargeTime": 10,
     "CastTime": 1.17,
     "InterruptTime": 0,
@@ -10569,7 +10569,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 4466,
+    "NIDPower": 4467,
     "FullName": "Epic.Energy_Mastery_Brute.Physical_Perfection",
     "StaticIndex": 4364,
     "PowerType": "Auto_",
@@ -10692,7 +10692,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -10700,9 +10700,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 43,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -11127,7 +11127,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -11135,9 +11135,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 46,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -12497,7 +12497,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5931,
+    "NIDPower": 5934,
     "FullName": "Inherent.Inherent.Rage_Buff",
     "StaticIndex": 1094,
     "PowerType": "Auto_",
@@ -12880,7 +12880,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -13231,7 +13231,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -13385,7 +13385,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -14433,7 +14433,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -14544,7 +14544,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -14654,7 +14654,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -14766,7 +14766,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -14839,7 +14839,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5786,
+    "NIDPower": 5787,
     "FullName": "Inherent.Inherent.Afterburner",
     "StaticIndex": 5632,
     "PowerType": "Toggle",
@@ -14955,7 +14955,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5881,
+    "NIDPower": 5884,
     "FullName": "Inherent.Inherent.prestige_BestBuy_Sprintp",
     "StaticIndex": 1066,
     "PowerType": "Toggle",
@@ -15109,7 +15109,7 @@
   },
   {
     "BuildIndex": 34,
-    "NIDPower": 5891,
+    "NIDPower": 5894,
     "FullName": "Inherent.Inherent.prestige_DVD_Glidep",
     "StaticIndex": 1072,
     "PowerType": "Toggle",
@@ -15302,7 +15302,7 @@
   },
   {
     "BuildIndex": 35,
-    "NIDPower": 5892,
+    "NIDPower": 5895,
     "FullName": "Inherent.Inherent.prestige_EB_Sprintp",
     "StaticIndex": 1073,
     "PowerType": "Toggle",
@@ -15456,7 +15456,7 @@
   },
   {
     "BuildIndex": 36,
-    "NIDPower": 5895,
+    "NIDPower": 5898,
     "FullName": "Inherent.Inherent.prestige_Gamestop_Sprintp",
     "StaticIndex": 1075,
     "PowerType": "Toggle",
@@ -15610,7 +15610,7 @@
   },
   {
     "BuildIndex": 37,
-    "NIDPower": 5896,
+    "NIDPower": 5899,
     "FullName": "Inherent.Inherent.prestige_generic_Sprintp",
     "StaticIndex": 1076,
     "PowerType": "Toggle",
@@ -15764,7 +15764,7 @@
   },
   {
     "BuildIndex": 38,
-    "NIDPower": 5966,
+    "NIDPower": 5969,
     "FullName": "Inherent.Inherent.Prestige_Ninja_Run",
     "StaticIndex": 4105,
     "PowerType": "Toggle",
@@ -16223,7 +16223,7 @@
   },
   {
     "BuildIndex": 39,
-    "NIDPower": 4910,
+    "NIDPower": 4911,
     "FullName": "Incarnate.Destiny.Ageless_Core_Epiphany",
     "StaticIndex": 5015,
     "PowerType": "Click",
@@ -16452,7 +16452,7 @@
   },
   {
     "BuildIndex": 40,
-    "NIDPower": 5304,
+    "NIDPower": 5305,
     "FullName": "Incarnate.Judgement.Ion_Core_Final_Judgement",
     "StaticIndex": 5145,
     "PowerType": "Click",
@@ -16684,7 +16684,7 @@
   },
   {
     "BuildIndex": 41,
-    "NIDPower": 5143,
+    "NIDPower": 5144,
     "FullName": "Incarnate.Interface.Degenerative_Radial_Flawless_Interface",
     "StaticIndex": 5959,
     "PowerType": "Auto_",
@@ -16948,7 +16948,7 @@
   },
   {
     "BuildIndex": 42,
-    "NIDPower": 5365,
+    "NIDPower": 5366,
     "FullName": "Incarnate.Lore.Banished_Pantheon_Radial_Superior_Ally",
     "StaticIndex": 9451,
     "PowerType": "Click",
@@ -17140,7 +17140,7 @@
   },
   {
     "BuildIndex": 43,
-    "NIDPower": 5034,
+    "NIDPower": 5035,
     "FullName": "Incarnate.Hybrid.Assault_Radial_Embodiment",
     "StaticIndex": 8873,
     "PowerType": "Toggle",
@@ -17369,7 +17369,7 @@
   },
   {
     "BuildIndex": 44,
-    "NIDPower": 4727,
+    "NIDPower": 4728,
     "FullName": "Incarnate.Alpha.Musculature_Core_Paragon",
     "StaticIndex": 4939,
     "PowerType": "Auto_",
@@ -17711,7 +17711,7 @@
   },
   {
     "BuildIndex": 45,
-    "NIDPower": 9520,
+    "NIDPower": 9533,
     "FullName": "Temporary_Powers.Accolades.High_Pain_Threshold",
     "StaticIndex": 2647,
     "PowerType": "Auto_",
@@ -17780,7 +17780,7 @@
   },
   {
     "BuildIndex": 46,
-    "NIDPower": 9521,
+    "NIDPower": 9534,
     "FullName": "Temporary_Powers.Accolades.Invader",
     "StaticIndex": 2648,
     "PowerType": "Auto_",
@@ -17849,7 +17849,7 @@
   },
   {
     "BuildIndex": 47,
-    "NIDPower": 9524,
+    "NIDPower": 9537,
     "FullName": "Temporary_Powers.Accolades.Marshall",
     "StaticIndex": 2650,
     "PowerType": "Auto_",
@@ -17918,7 +17918,7 @@
   },
   {
     "BuildIndex": 48,
-    "NIDPower": 9513,
+    "NIDPower": 9525,
     "FullName": "Temporary_Powers.Accolades.Born_In_Battle",
     "StaticIndex": 2641,
     "PowerType": "Auto_",
@@ -18026,7 +18026,7 @@
   },
   {
     "BuildIndex": 49,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",

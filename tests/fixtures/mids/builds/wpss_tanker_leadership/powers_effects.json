@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 9274,
+    "NIDPower": 9285,
     "FullName": "Tanker_Defense.Willpower.High_Pain_Tolerance",
     "StaticIndex": 2532,
     "PowerType": "Auto_",
@@ -427,7 +427,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 9467,
+    "NIDPower": 9479,
     "FullName": "Tanker_Melee.Super_Strength.Punch",
     "StaticIndex": 2605,
     "PowerType": "Click",
@@ -784,7 +784,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 9275,
+    "NIDPower": 9286,
     "FullName": "Tanker_Defense.Willpower.Mind_Over_Body",
     "StaticIndex": 2533,
     "PowerType": "Toggle",
@@ -1054,7 +1054,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 9468,
+    "NIDPower": 9480,
     "FullName": "Tanker_Melee.Super_Strength.Haymaker",
     "StaticIndex": 2606,
     "PowerType": "Click",
@@ -1411,7 +1411,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 9277,
+    "NIDPower": 9288,
     "FullName": "Tanker_Defense.Willpower.Indomitable_Will",
     "StaticIndex": 2535,
     "PowerType": "Toggle",
@@ -2734,7 +2734,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 9278,
+    "NIDPower": 9289,
     "FullName": "Tanker_Defense.Willpower.Rise_to_the_Challenge",
     "StaticIndex": 2536,
     "PowerType": "Toggle",
@@ -3086,7 +3086,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -4217,7 +4217,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 7135,
+    "NIDPower": 7138,
     "FullName": "Pool.Leaping.Long_Jump",
     "StaticIndex": 1815,
     "PowerType": "Toggle",
@@ -4644,7 +4644,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -4652,9 +4652,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 13,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -6127,7 +6127,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -6135,9 +6135,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 15,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -6562,7 +6562,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 9280,
+    "NIDPower": 9291,
     "FullName": "Tanker_Defense.Willpower.Heightened_Senses",
     "StaticIndex": 2538,
     "PowerType": "Toggle",
@@ -7183,7 +7183,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 9471,
+    "NIDPower": 9483,
     "FullName": "Tanker_Melee.Super_Strength.Knockout_Blow",
     "StaticIndex": 2609,
     "PowerType": "Click",
@@ -7620,7 +7620,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 9276,
+    "NIDPower": 9287,
     "FullName": "Tanker_Defense.Willpower.Fast_Healing",
     "StaticIndex": 2534,
     "PowerType": "Auto_",
@@ -7732,7 +7732,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 9472,
+    "NIDPower": 9484,
     "FullName": "Tanker_Melee.Super_Strength.Rage",
     "StaticIndex": 2610,
     "PowerType": "Click",
@@ -8587,7 +8587,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 7128,
+    "NIDPower": 7131,
     "FullName": "Pool.Leadership.Defense",
     "StaticIndex": 1809,
     "PowerType": "Toggle",
@@ -9481,7 +9481,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 9279,
+    "NIDPower": 9290,
     "FullName": "Tanker_Defense.Willpower.Quick_Recovery",
     "StaticIndex": 2537,
     "PowerType": "Auto_",
@@ -9554,7 +9554,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 9474,
+    "NIDPower": 9486,
     "FullName": "Tanker_Melee.Super_Strength.Foot_Stomp",
     "StaticIndex": 2612,
     "PowerType": "Click",
@@ -9911,7 +9911,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 9282,
+    "NIDPower": 9293,
     "FullName": "Tanker_Defense.Willpower.Strength_of_Will",
     "StaticIndex": 2540,
     "PowerType": "Click",
@@ -10884,7 +10884,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 7130,
+    "NIDPower": 7133,
     "FullName": "Pool.Leadership.Tactics",
     "StaticIndex": 1811,
     "PowerType": "Toggle",
@@ -11202,7 +11202,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4473,
+    "NIDPower": 4474,
     "FullName": "Epic.Fire_Mastery.Fire_Blast",
     "StaticIndex": 931,
     "PowerType": "Click",
@@ -11210,9 +11210,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 37,
-    "EndCost": 6.5,
+    "EndCost": 5.2,
     "ActivatePeriod": 0,
-    "ToggleCost": 6.5,
+    "ToggleCost": 5.2,
     "RechargeTime": 8,
     "CastTime": 1.67,
     "InterruptTime": 0,
@@ -11438,7 +11438,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 4475,
+    "NIDPower": 4476,
     "FullName": "Epic.Fire_Mastery.Fire_Shield",
     "StaticIndex": 933,
     "PowerType": "Toggle",
@@ -11446,9 +11446,9 @@
     "ClickBuff": false,
     "Level": 38,
     "PickLevel": 40,
-    "EndCost": 0.1625,
+    "EndCost": 0.104,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.208,
     "RechargeTime": 8,
     "CastTime": 1.67,
     "InterruptTime": 0,
@@ -11951,7 +11951,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 7131,
+    "NIDPower": 7134,
     "FullName": "Pool.Leadership.Vengeance",
     "StaticIndex": 1812,
     "PowerType": "Click",
@@ -13329,7 +13329,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 9469,
+    "NIDPower": 9481,
     "FullName": "Tanker_Melee.Super_Strength.Taunt",
     "StaticIndex": 2607,
     "PowerType": "Click",
@@ -13522,7 +13522,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -13632,7 +13632,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5866,
+    "NIDPower": 5868,
     "FullName": "Inherent.Inherent.Gauntlet",
     "StaticIndex": 1065,
     "PowerType": "Auto_",
@@ -13703,7 +13703,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -14054,7 +14054,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -14208,7 +14208,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -15256,7 +15256,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -15367,7 +15367,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -15477,7 +15477,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -15589,7 +15589,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -15662,7 +15662,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 4722,
+    "NIDPower": 4723,
     "FullName": "Incarnate.Alpha.Cardiac_Radial_Paragon",
     "StaticIndex": 4928,
     "PowerType": "Auto_",
@@ -16238,7 +16238,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5806,
+    "NIDPower": 5807,
     "FullName": "Inherent.Inherent.Double_Jump",
     "StaticIndex": 10948,
     "PowerType": "Toggle",
@@ -16312,7 +16312,7 @@
   },
   {
     "BuildIndex": 34,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",

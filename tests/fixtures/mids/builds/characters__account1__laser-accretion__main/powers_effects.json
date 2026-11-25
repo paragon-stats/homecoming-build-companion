@@ -1,7 +1,7 @@
 [
   {
     "BuildIndex": 0,
-    "NIDPower": 7404,
+    "NIDPower": 7414,
     "FullName": "Scrapper_Melee.Dark_Melee.Smite",
     "StaticIndex": 1906,
     "PowerType": "Click",
@@ -396,7 +396,7 @@
   },
   {
     "BuildIndex": 1,
-    "NIDPower": 7331,
+    "NIDPower": 7340,
     "FullName": "Scrapper_Defense.Shield_Defense.Active_Defense",
     "StaticIndex": 3338,
     "PowerType": "Toggle",
@@ -785,7 +785,7 @@
   },
   {
     "BuildIndex": 2,
-    "NIDPower": 7332,
+    "NIDPower": 7341,
     "FullName": "Scrapper_Defense.Shield_Defense.Deflection",
     "StaticIndex": 3339,
     "PowerType": "Toggle",
@@ -1094,7 +1094,7 @@
   },
   {
     "BuildIndex": 3,
-    "NIDPower": 7134,
+    "NIDPower": 7137,
     "FullName": "Pool.Leaping.Combat_Jumping",
     "StaticIndex": 1814,
     "PowerType": "Toggle",
@@ -2225,7 +2225,7 @@
   },
   {
     "BuildIndex": 4,
-    "NIDPower": 7333,
+    "NIDPower": 7342,
     "FullName": "Scrapper_Defense.Shield_Defense.True_Grit",
     "StaticIndex": 3340,
     "PowerType": "Auto_",
@@ -2495,7 +2495,7 @@
   },
   {
     "BuildIndex": 5,
-    "NIDPower": 7407,
+    "NIDPower": 7417,
     "FullName": "Scrapper_Melee.Dark_Melee.Siphon_Life",
     "StaticIndex": 1909,
     "PowerType": "Click",
@@ -2852,7 +2852,7 @@
   },
   {
     "BuildIndex": 6,
-    "NIDPower": 7155,
+    "NIDPower": 7158,
     "FullName": "Pool.Speed.Hasten",
     "StaticIndex": 1826,
     "PowerType": "Click",
@@ -2962,7 +2962,7 @@
   },
   {
     "BuildIndex": 7,
-    "NIDPower": 7135,
+    "NIDPower": 7138,
     "FullName": "Pool.Leaping.Long_Jump",
     "StaticIndex": 1815,
     "PowerType": "Toggle",
@@ -3389,7 +3389,7 @@
   },
   {
     "BuildIndex": 8,
-    "NIDPower": 7108,
+    "NIDPower": 7111,
     "FullName": "Pool.Fighting.Boxing",
     "StaticIndex": 1793,
     "PowerType": "Click",
@@ -3397,9 +3397,9 @@
     "ClickBuff": false,
     "Level": 4,
     "PickLevel": 13,
-    "EndCost": 4.42,
+    "EndCost": 3.95,
     "ActivatePeriod": 0,
-    "ToggleCost": 4.42,
+    "ToggleCost": 3.95,
     "RechargeTime": 2.5,
     "CastTime": 1.07,
     "InterruptTime": 0,
@@ -4872,7 +4872,7 @@
   },
   {
     "BuildIndex": 9,
-    "NIDPower": 7405,
+    "NIDPower": 7415,
     "FullName": "Scrapper_Melee.Dark_Melee.Shadow_Maul",
     "StaticIndex": 1907,
     "PowerType": "Click",
@@ -5267,7 +5267,7 @@
   },
   {
     "BuildIndex": 10,
-    "NIDPower": 7335,
+    "NIDPower": 7344,
     "FullName": "Scrapper_Defense.Shield_Defense.Against_all_Odds",
     "StaticIndex": 3342,
     "PowerType": "Toggle",
@@ -6317,7 +6317,7 @@
   },
   {
     "BuildIndex": 11,
-    "NIDPower": 7110,
+    "NIDPower": 7113,
     "FullName": "Pool.Fighting.Tough",
     "StaticIndex": 1795,
     "PowerType": "Toggle",
@@ -6325,9 +6325,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 19,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 3.1,
     "InterruptTime": 0,
@@ -6752,7 +6752,7 @@
   },
   {
     "BuildIndex": 12,
-    "NIDPower": 7410,
+    "NIDPower": 7420,
     "FullName": "Scrapper_Melee.Dark_Melee.Soul_Drain",
     "StaticIndex": 1912,
     "PowerType": "Click",
@@ -7614,7 +7614,7 @@
   },
   {
     "BuildIndex": 13,
-    "NIDPower": 7111,
+    "NIDPower": 7114,
     "FullName": "Pool.Fighting.Weave",
     "StaticIndex": 1796,
     "PowerType": "Toggle",
@@ -7622,9 +7622,9 @@
     "ClickBuff": false,
     "Level": 14,
     "PickLevel": 23,
-    "EndCost": 0.1625,
+    "EndCost": 0.16,
     "ActivatePeriod": 0.5,
-    "ToggleCost": 0.325,
+    "ToggleCost": 0.32,
     "RechargeTime": 10,
     "CastTime": 0.67,
     "InterruptTime": 0,
@@ -8560,7 +8560,7 @@
   },
   {
     "BuildIndex": 14,
-    "NIDPower": 7411,
+    "NIDPower": 7421,
     "FullName": "Scrapper_Melee.Dark_Melee.Midnight_Grasp",
     "StaticIndex": 1913,
     "PowerType": "Click",
@@ -9074,7 +9074,7 @@
   },
   {
     "BuildIndex": 15,
-    "NIDPower": 7338,
+    "NIDPower": 7347,
     "FullName": "Scrapper_Defense.Shield_Defense.Shield_Charge",
     "StaticIndex": 3345,
     "PowerType": "Click",
@@ -9194,7 +9194,7 @@
   },
   {
     "BuildIndex": 16,
-    "NIDPower": 7128,
+    "NIDPower": 7131,
     "FullName": "Pool.Leadership.Defense",
     "StaticIndex": 1809,
     "PowerType": "Toggle",
@@ -10088,7 +10088,7 @@
   },
   {
     "BuildIndex": 17,
-    "NIDPower": 7334,
+    "NIDPower": 7343,
     "FullName": "Scrapper_Defense.Shield_Defense.Battle_Agility",
     "StaticIndex": 3341,
     "PowerType": "Click",
@@ -11369,7 +11369,7 @@
   },
   {
     "BuildIndex": 18,
-    "NIDPower": 4659,
+    "NIDPower": 4660,
     "FullName": "Epic.Stalker_Soul_Mastery.Moonbeam",
     "StaticIndex": 1000,
     "PowerType": "Click",
@@ -11377,9 +11377,9 @@
     "ClickBuff": false,
     "Level": 35,
     "PickLevel": 34,
-    "EndCost": 17.94,
+    "EndCost": 14.352,
     "ActivatePeriod": 0,
-    "ToggleCost": 17.94,
+    "ToggleCost": 14.352,
     "RechargeTime": 24,
     "CastTime": 1.33,
     "InterruptTime": 0,
@@ -12352,7 +12352,7 @@
   },
   {
     "BuildIndex": 19,
-    "NIDPower": 4660,
+    "NIDPower": 4661,
     "FullName": "Epic.Stalker_Soul_Mastery.Shadow_Meld",
     "StaticIndex": 3320,
     "PowerType": "Click",
@@ -12360,9 +12360,9 @@
     "ClickBuff": true,
     "Level": 38,
     "PickLevel": 37,
-    "EndCost": 5.2,
+    "EndCost": 4.16,
     "ActivatePeriod": 0,
-    "ToggleCost": 5.2,
+    "ToggleCost": 4.16,
     "RechargeTime": 90,
     "CastTime": 3,
     "InterruptTime": 0,
@@ -12865,7 +12865,7 @@
   },
   {
     "BuildIndex": 20,
-    "NIDPower": 7336,
+    "NIDPower": 7345,
     "FullName": "Scrapper_Defense.Shield_Defense.Phalanx_Fighting",
     "StaticIndex": 3343,
     "PowerType": "Auto_",
@@ -13133,7 +13133,7 @@
   },
   {
     "BuildIndex": 21,
-    "NIDPower": 7337,
+    "NIDPower": 7346,
     "FullName": "Scrapper_Defense.Shield_Defense.Grant_Cover",
     "StaticIndex": 3344,
     "PowerType": "Toggle",
@@ -13598,7 +13598,7 @@
   },
   {
     "BuildIndex": 22,
-    "NIDPower": 7130,
+    "NIDPower": 7133,
     "FullName": "Pool.Leadership.Tactics",
     "StaticIndex": 1811,
     "PowerType": "Toggle",
@@ -13916,7 +13916,7 @@
   },
   {
     "BuildIndex": 23,
-    "NIDPower": 7339,
+    "NIDPower": 7348,
     "FullName": "Scrapper_Defense.Shield_Defense.One_with_the_Shield",
     "StaticIndex": 3346,
     "PowerType": "Click",
@@ -14893,7 +14893,7 @@
   },
   {
     "BuildIndex": 24,
-    "NIDPower": 5838,
+    "NIDPower": 5840,
     "FullName": "Inherent.Inherent.Critical_Hit",
     "StaticIndex": 1055,
     "PowerType": "Auto_",
@@ -15276,7 +15276,7 @@
   },
   {
     "BuildIndex": 25,
-    "NIDPower": 5835,
+    "NIDPower": 5837,
     "FullName": "Inherent.Inherent.Brawl",
     "StaticIndex": 1052,
     "PowerType": "Click",
@@ -15627,7 +15627,7 @@
   },
   {
     "BuildIndex": 26,
-    "NIDPower": 5943,
+    "NIDPower": 5946,
     "FullName": "Inherent.Inherent.Sprint",
     "StaticIndex": 1100,
     "PowerType": "Toggle",
@@ -15781,7 +15781,7 @@
   },
   {
     "BuildIndex": 27,
-    "NIDPower": 5956,
+    "NIDPower": 5959,
     "FullName": "Inherent.Inherent.Rest",
     "StaticIndex": 1104,
     "PowerType": "Toggle",
@@ -16829,7 +16829,7 @@
   },
   {
     "BuildIndex": 28,
-    "NIDPower": 5782,
+    "NIDPower": 5783,
     "FullName": "Inherent.Fitness.Swift",
     "StaticIndex": 2797,
     "PowerType": "Auto_",
@@ -16940,7 +16940,7 @@
   },
   {
     "BuildIndex": 29,
-    "NIDPower": 5784,
+    "NIDPower": 5785,
     "FullName": "Inherent.Fitness.Hurdle",
     "StaticIndex": 2798,
     "PowerType": "Auto_",
@@ -17050,7 +17050,7 @@
   },
   {
     "BuildIndex": 30,
-    "NIDPower": 5783,
+    "NIDPower": 5784,
     "FullName": "Inherent.Fitness.Health",
     "StaticIndex": 2799,
     "PowerType": "Auto_",
@@ -17162,7 +17162,7 @@
   },
   {
     "BuildIndex": 31,
-    "NIDPower": 5785,
+    "NIDPower": 5786,
     "FullName": "Inherent.Fitness.Stamina",
     "StaticIndex": 2800,
     "PowerType": "Auto_",
@@ -17235,7 +17235,7 @@
   },
   {
     "BuildIndex": 32,
-    "NIDPower": 5811,
+    "NIDPower": 5812,
     "FullName": "Inherent.Inherent.Special_Set_Bonuses",
     "StaticIndex": 11536,
     "PowerType": "Auto_",
@@ -17320,7 +17320,7 @@
   },
   {
     "BuildIndex": 33,
-    "NIDPower": 5806,
+    "NIDPower": 5807,
     "FullName": "Inherent.Inherent.Double_Jump",
     "StaticIndex": 10948,
     "PowerType": "Toggle",
@@ -17394,7 +17394,7 @@
   },
   {
     "BuildIndex": 34,
-    "NIDPower": 5972,
+    "NIDPower": 5975,
     "FullName": "Inherent.Inherent.Fast_Snipe",
     "StaticIndex": 10827,
     "PowerType": "Toggle",
