@@ -75,6 +75,16 @@ public sealed class ProfileTests
     }
 
     [Fact]
+    public void A_false_target_keeps_its_literal()
+    {
+        using JsonDocument profiles = JsonDocument.Parse("{\"off\":{\"display_name\":\"Off\",\"priority\":[],\"targets\":[{\"metric\":\"perma_hasten\",\"op\":\"==\",\"value\":false}]}}");
+
+        BuildProfile profile = ProfileResolver.Resolve("off", profiles.RootElement, Breakpoints, "Scrapper");
+
+        Assert.Equal(new Target("perma_hasten", "==", MetricValue.Flag(flag: false)), Assert.Single(profile.Targets));
+    }
+
+    [Fact]
     public void The_theme_profile_has_no_targets()
     {
         Assert.Empty(Resolve("theme-rp").Targets);
