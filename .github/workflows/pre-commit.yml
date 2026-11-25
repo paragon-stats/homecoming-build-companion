@@ -46,10 +46,12 @@ jobs:
           python-version: "3.14"
           cache: "pip"
 
+      # The job needs only pre-commit and PyYAML (for the SKIP list below); the local
+      # hooks are stdlib scripts run from the checkout, and the other hooks bring their
+      # own environments. Exact versions, wheels only: nothing builds from source.
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e '.[dev]'
+          python -m pip install --only-binary :all: pre-commit==4.6.0 PyYAML==6.0.3
 
       - name: Determine diff range
         id: diff
@@ -105,12 +107,18 @@ jobs:
         if: steps.hooks.outputs.exit_code != '0'
         shell: bash
         run: |
-          # `|| true`: pre-commit can fail with no per-hook 'Failed' lines
-          # (hook-env install error, malformed config); under pipefail a
-          # no-match grep would otherwise fail this annotation step itself.
-          { grep -E '\.{3,}Failed\s*$' /tmp/pre-commit-output.txt || true; } | while IFS= read -r line; do
-            hook_name="${line%%.*}"
-            echo "::error title=pre-commit: ${hook_name}::Hook '${hook_name}' failed"
+          # pre-commit prints '- hook id: <id>' under each failed hook; the id, not
+          # the display name, is what `pre-commit run` takes.
+          # `|| true`: pre-commit can fail with no per-hook lines (hook-env
+          # install error, malformed config); under pipefail a no-match grep
+          # would otherwise fail this annotation step itself. The job still
+          # fails in "Fail if hooks failed".
+          { grep -E '^- hook id: [A-Za-z0-9_.-]+$' /tmp/pre-commit-output.txt || true; } | while IFS= read -r line; do
+            hook_id="${line#- hook id: }"
+            fix="Run 'pre-commit run ${hook_id} --all-files' locally, fix what it reports, and commit."
+            # Workflow commands are read from stdout; the plain line is for the log.
+            echo "::error title=pre-commit: ${hook_id}::Hook '${hook_id}' failed. ${fix}"
+            echo "pre-commit hook '${hook_id}' failed. ${fix}" >&2
           done
 
       - name: Generate hook summary

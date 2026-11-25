@@ -27,11 +27,9 @@ public sealed class ToolTests
 
         JsonNode result = await harness.CallJsonAsync("rules").ConfigureAwait(true);
 
-        (string Output, int ExitCode) cli = CliCapture.Run("rules");
-        string[] listed = Sections
-            .SelectMany(section => result[section]!.AsArray().Select(rule => rule!["rule_id"]!.GetValue<string>()))
-            .ToArray();
-        string[] printed = cli.Output.Split('\n').Where(line => line.StartsWith("  ", StringComparison.Ordinal)).Select(line => line.Trim()).ToArray();
+        (string output, _) = CliCapture.Run("rules");
+        string[] listed = [.. Sections.SelectMany(section => result[section]!.AsArray().Select(rule => rule!["rule_id"]!.GetValue<string>()))];
+        string[] printed = [.. output.Split('\n').Where(line => line.StartsWith("  ", StringComparison.Ordinal)).Select(line => line.Trim())];
         Assert.Equal(printed, listed, StringComparer.Ordinal);
     }
 
@@ -152,11 +150,11 @@ public sealed class ToolTests
         JsonNode hardLimits = await harness.CallJsonAsync("check_hard_limits", ("buildDir", buildDir)).ConfigureAwait(true);
         JsonNode legality = await harness.CallJsonAsync("check_legality", ("buildDir", buildDir)).ConfigureAwait(true);
 
-        (string Output, int ExitCode) cli = CliCapture.Run("validate", buildDir, "--format", "json");
+        (string output, int exitCode) = CliCapture.Run("validate", buildDir, "--format", "json");
         JsonArray together = [.. hardLimits["diagnostics"]!.AsArray().Concat(legality["diagnostics"]!.AsArray()).Select(item => item!.DeepClone())];
-        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(cli.Output), together));
+        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output), together));
         int[] codes = [hardLimits["exit_code"]!.GetValue<int>(), legality["exit_code"]!.GetValue<int>()];
-        Assert.Equal(cli.ExitCode, codes.Contains(1) ? 1 : codes.Contains(2) ? 2 : 0);
+        Assert.Equal(exitCode, codes.Contains(1) ? 1 : codes.Contains(2) ? 2 : 0);
     }
 
     [Fact]
@@ -183,9 +181,9 @@ public sealed class ToolTests
 
         foreach (JsonNode? metric in result["metrics"]!.AsArray())
         {
-            string claim = metric!["flag"] is { } flag ? flag.GetValue<bool>().ToString().ToLowerInvariant() : Math.Round(metric["number"]!.GetValue<double>(), 2).ToString("F2", CultureInfo.InvariantCulture);
-            (string Output, int ExitCode) cli = CliCapture.Run("validate", buildDir, "--expect", metric["name"]!.GetValue<string>() + "=" + claim);
-            Assert.DoesNotContain("P-EXPECT-001", cli.Output, StringComparison.Ordinal);
+            string claim = metric!["flag"] is { } flag ? flag.GetValue<bool>().ToString().ToLowerInvariant() : Math.Round(metric["number"]!.GetValue<double>(), 2, MidpointRounding.ToEven).ToString("F2", CultureInfo.InvariantCulture);
+            (string output, _) = CliCapture.Run("validate", buildDir, "--expect", metric["name"]!.GetValue<string>() + "=" + claim);
+            Assert.DoesNotContain("P-EXPECT-001", output, StringComparison.Ordinal);
         }
     }
 

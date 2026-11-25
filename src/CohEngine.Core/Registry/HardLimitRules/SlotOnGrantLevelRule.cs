@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.HardLimitRules;
@@ -13,7 +15,7 @@ internal static class SlotOnGrantLevelRule
         IReadOnlySet<int> grantLevels = context.Schedule.SlotGrantLevels;
         foreach ((Data.Power power, Data.SlotRef slot) in context.AddedPairs.Where(pair => !grantLevels.Contains(pair.Slot.Level)))
         {
-            string message = $"a slot in {PyText.Repr(power.FullName)} is placed at level {slot.Level + 1}, which grants no "
+            string message = string.Create(CultureInfo.InvariantCulture, $"a slot in {PyText.Repr(power.FullName)} is placed at level {slot.Level + 1}, which grants no ")
                 + "enhancement slot in the level schedule";
             yield return new Diagnostic("H-SLOT-004", "error", message)
             {

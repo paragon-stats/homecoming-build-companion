@@ -90,7 +90,7 @@ public sealed class ChatClientFactoryTests
     {
         FakeHandler handler = new(HttpStatusCode.OK, CannedReply);
 
-        await AskAsync(Local(null), handler);
+        await AskAsync(Local(baseUrl: null), handler);
 
         Assert.Equal("http://localhost:11434/v1/chat/completions", Assert.Single(handler.Requests).Uri?.ToString());
     }
@@ -124,7 +124,7 @@ public sealed class ChatClientFactoryTests
     {
         ChatProviderOptions options = new(ChatProvider.OpenAiCompatible, preset, "m");
 
-        InvalidOperationException error = WithKey(variable, null, () => Assert.Throws<InvalidOperationException>(() => ChatClientFactory.Create(options)));
+        InvalidOperationException error = WithKey(variable, value: null, () => Assert.Throws<InvalidOperationException>(() => ChatClientFactory.Create(options)));
 
         Assert.Equal($"E130: {variable} is not set; export the API key in that variable or pass --api-key-env", error.Message);
     }

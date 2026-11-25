@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -107,7 +108,7 @@ public sealed class ChainReportPortTests
 
         ChainSetup setup = Setup(build);
 
-        Assert.Equal("False 1234.5 False", $"{setup.ClicksAlwaysOn} {setup.Context.Attacks.Single(attack => attack.FullName.EndsWith(".Smite", StringComparison.Ordinal)).Damage} {ChainReport.RunChain(setup, [Stance.Melee]).SelectMany(result => result.Diagnostics).Any(diagnostic => diagnostic.Message.Contains("always-on", StringComparison.Ordinal))}");
+        Assert.Equal("False 1234.5 False", string.Create(CultureInfo.InvariantCulture, $"{setup.ClicksAlwaysOn} {setup.Context.Attacks.Single(attack => attack.FullName.EndsWith(".Smite", StringComparison.Ordinal)).Damage} {ChainReport.RunChain(setup, [Stance.Melee]).SelectMany(result => result.Diagnostics).Any(diagnostic => diagnostic.Message.Contains("always-on", StringComparison.Ordinal))}"));
     }
 
     [Fact]
@@ -116,7 +117,7 @@ public sealed class ChainReportPortTests
         ChainSetup setup = Setup(standoff: 30.0, assumptions: new Dictionary<string, double>(StringComparer.Ordinal) { ["damage.enhancement_avg"] = 0.5, ["x.y"] = 1.0 }, scenario: ChainReport.ParseTarget("spawn:5"));
         ChainSetup plain = Setup();
 
-        Assert.Equal("5 30 1 40", $"{setup.Context.Scenario.Targets} {setup.Context.Movement.StandoffFt} {setup.Context.Assumptions["x.y"]} {plain.Context.Movement.StandoffFt}");
+        Assert.Equal("5 30 1 40", string.Create(CultureInfo.InvariantCulture, $"{setup.Context.Scenario.Targets} {setup.Context.Movement.StandoffFt} {setup.Context.Assumptions["x.y"]} {plain.Context.Movement.StandoffFt}"));
         Assert.Equal(setup.Capped.RunSpd, setup.Context.Movement.SpeedFtPerSec);
         Near.Abs(1.0 + setup.Capped.BuffDam + 0.5, setup.Context.DamageBuffBaseline, 1e-5);
         Near.Abs(1.0 + setup.Capped.BuffDam + 0.95, plain.Context.DamageBuffBaseline, 1e-5);
@@ -165,7 +166,7 @@ public sealed class ChainReportPortTests
 
         Setup(hooks: hooks);
 
-        Assert.True(seen.Count > 0 && seen.All(resolve => resolve is not null));
+        Assert.True(seen.Count > 0 && seen.TrueForAll(resolve => resolve is not null));
     }
 
     private static Diagnostic[] DiagnosticsOf(ChainSetup setup, Stance stance)
@@ -175,7 +176,7 @@ public sealed class ChainReportPortTests
 
     private static PowerDamageRef Ref(string name, double damage = 0.0)
     {
-        return new PowerDamageRef(name, damage, 1.0, 1.0, 1.0, 0.0, "Click", true, 0.0, 0.0, 0.0, 0.0);
+        return new PowerDamageRef(name, damage, 1.0, 1.0, 1.0, 0.0, "Click", StatInclude: true, 0.0, 0.0, 0.0, 0.0);
     }
 
     private static void WritePower(TempTree tree, string name, string effects)
@@ -268,7 +269,7 @@ public sealed class ChainReportPortTests
     {
         IReadOnlyDictionary<string, double> parsed = ChainReport.ParseAssumptions(["a.b=0.5", " c = 2"]);
 
-        Assert.Equal("0.5 2", $"{parsed["a.b"]} {parsed["c"]}");
+        Assert.Equal("0.5 2", string.Create(CultureInfo.InvariantCulture, $"{parsed["a.b"]} {parsed["c"]}"));
     }
 
     [Theory]
@@ -281,7 +282,7 @@ public sealed class ChainReportPortTests
     [Fact]
     public void Targets_parse()
     {
-        Assert.Equal("1 8", $"{ChainReport.ParseTarget("single").Targets} {ChainReport.ParseTarget("spawn:8").Targets}");
+        Assert.Equal("1 8", string.Create(CultureInfo.InvariantCulture, $"{ChainReport.ParseTarget("single").Targets} {ChainReport.ParseTarget("spawn:8").Targets}"));
     }
 
     [Fact]
@@ -297,7 +298,7 @@ public sealed class ChainReportPortTests
     {
         StanceReport result = ChainReport.RunChain(SingleAttack(20.0), [Stance.Melee])[0];
 
-        Assert.Equal("10 40 False", $"{result.Chain!.CycleTime} {result.Chain.TimeToEmpty} {Rules(result).Contains("P-END-002", StringComparison.Ordinal)}");
+        Assert.Equal("10 40 False", string.Create(CultureInfo.InvariantCulture, $"{result.Chain!.CycleTime} {result.Chain.TimeToEmpty} {Rules(result).Contains("P-END-002", StringComparison.Ordinal)}"));
         Assert.Contains("affordable: empties in", Source(result, "chain", source => source.Label), StringComparison.Ordinal);
         Assert.DoesNotContain("not affordable", Source(result, "chain", source => source.Label), StringComparison.Ordinal);
     }
@@ -307,7 +308,7 @@ public sealed class ChainReportPortTests
     {
         StanceReport result = ChainReport.RunChain(SingleAttack(19.5), [Stance.Melee])[0];
 
-        Assert.Equal("39 True", $"{result.Chain!.TimeToEmpty} {Rules(result).Contains("P-END-002", StringComparison.Ordinal)}");
+        Assert.Equal("39 True", string.Create(CultureInfo.InvariantCulture, $"{result.Chain!.TimeToEmpty} {Rules(result).Contains("P-END-002", StringComparison.Ordinal)}"));
         Assert.Contains("not affordable", Source(result, "chain", source => source.Label), StringComparison.Ordinal);
     }
 

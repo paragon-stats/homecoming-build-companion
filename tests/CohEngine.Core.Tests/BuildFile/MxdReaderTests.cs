@@ -112,10 +112,10 @@ public sealed class MxdReaderTests
     {
         Buf buf = Header(F32.Round(3.20), qualified: false, hasSub: true).Int32(1);
         buf.Int32(-1).SByte(-1);
-        buf.Int32(100).SByte(5).Boolean(true).Boolean(false).Int32(2).Int32(1);
-        buf.SByte(0).Int32(101).Boolean(true);
+        buf.Int32(100).SByte(5).Boolean(value: true).Boolean(value: false).Int32(2).Int32(1);
+        buf.SByte(0).Int32(101).Boolean(value: true);
         buf.SByte(0);
-        buf.SByte(5).Boolean(false).Int32(5).SByte(5).SByte(0).Boolean(false);
+        buf.SByte(5).Boolean(value: false).Int32(5).SByte(5).SByte(0).Boolean(value: false);
 
         MxdBuild build = Read(buf);
 
@@ -123,7 +123,7 @@ public sealed class MxdReaderTests
         Assert.Equal("current", build.Format);
         Assert.Equal(2, build.PowerEntries.Count);
         Assert.Equal(("Test.Set.Power", 5, 2, 1), (power.PowerName, power.Level, power.VariableValue, power.InherentSlotsUsed));
-        Assert.Equal(new BuildSubPower("Test.Set.SubPower", true), Assert.Single(power.SubPowerEntries));
+        Assert.Equal(new BuildSubPower("Test.Set.SubPower", StatInclude: true), Assert.Single(power.SubPowerEntries));
         Assert.Equal("Enh_Normal", power.SlotEntries[0].Enhancement?.Uid);
     }
 
@@ -131,8 +131,8 @@ public sealed class MxdReaderTests
     public void A_flipped_enhancement_follows_its_flag()
     {
         Buf buf = Header(F32.Round(3.20), qualified: false, hasSub: false).Int32(0);
-        buf.Int32(100).SByte(5).Boolean(true).Boolean(false).Int32(0).Int32(0);
-        buf.SByte(0).SByte(5).Boolean(true).Int32(7).Boolean(true).Int32(7);
+        buf.Int32(100).SByte(5).Boolean(value: true).Boolean(value: false).Int32(0).Int32(0);
+        buf.SByte(0).SByte(5).Boolean(value: true).Int32(7).Boolean(value: true).Int32(7);
 
         BuildSlot slot = Assert.Single(Assert.Single(Read(buf).PowerEntries).SlotEntries);
 
@@ -145,7 +145,7 @@ public sealed class MxdReaderTests
     public void The_prior_format_reads_proc_but_not_inherent_slots()
     {
         Buf buf = Header(F32.Round(3.15), qualified: false, hasSub: false).Int32(0);
-        buf.Int32(100).SByte(3).Boolean(true).Boolean(true).Int32(0).SByte(-1);
+        buf.Int32(100).SByte(3).Boolean(value: true).Boolean(value: true).Int32(0).SByte(-1);
 
         MxdBuild build = Read(buf);
 
@@ -158,7 +158,7 @@ public sealed class MxdReaderTests
     public void The_legacy_format_reads_no_proc_and_no_inherent()
     {
         Buf buf = Header(F32.Round(3.0), qualified: false, hasSub: false).Int32(0);
-        buf.Int32(100).SByte(2).Boolean(true).Int32(0).SByte(-1);
+        buf.Int32(100).SByte(2).Boolean(value: true).Int32(0).SByte(-1);
 
         MxdBuild build = Read(buf);
 
@@ -170,7 +170,7 @@ public sealed class MxdReaderTests
     [Fact]
     public void A_version_of_one_has_no_alignment()
     {
-        Buf buf = new Buf().Raw(Mxd.Magic).Single(1.0).Boolean(false).Boolean(false).Text("Class_Scrapper").Text("Magic").Text("Synthetic");
+        Buf buf = new Buf().Raw(Mxd.Magic).Single(1.0).Boolean(value: false).Boolean(value: false).Text("Class_Scrapper").Text("Magic").Text("Synthetic");
         buf.Int32(0).Text("Pool.Fitness").Int32(1).Int32(-1);
 
         MxdBuild build = Read(buf);

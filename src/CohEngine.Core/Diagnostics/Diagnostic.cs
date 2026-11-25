@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace CohEngine.Core.Diagnostics;
 
 /// <summary>
@@ -61,6 +63,6 @@ public sealed record Diagnostic
     /// <returns>The line.</returns>
     public string FormatText()
     {
-        return $"{Path}:{Line}:{Column}: {Severity}: {RuleId}: {Message}";
+        return string.Create(CultureInfo.InvariantCulture, $"{Path}:{Line}:{Column}: {Severity}: {RuleId}: {Message}");
     }
 }

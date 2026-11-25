@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 using Microsoft.Extensions.AI;
@@ -34,7 +36,7 @@ internal static class AskLoop
             messages.Add(new ChatMessage(ChatRole.Tool, results));
         }
 
-        throw new EngineException($"{AskErrorCodes.RoundLimit}: the model was still calling tools after {maxRounds} rounds; ask a narrower question or use a stronger model");
+        throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{AskErrorCodes.RoundLimit}: the model was still calling tools after {maxRounds} rounds; ask a narrower question or use a stronger model"));
     }
 
     private static async Task<object?> RunToolAsync(IReadOnlyList<AIFunction> tools, FunctionCallContent call, CancellationToken cancellationToken)

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Chain;
@@ -63,7 +64,7 @@ public sealed class CanonicalJsonTests
     {
         JsonElement record = CanonicalPowers.Parse("{\"n\":2.5,\"s\":\"x\",\"l\":[\"p\"]}");
 
-        Assert.Equal(["x:2.5", "d:9", "p"], [record.Str("s") + ":" + record.Num("n", 0.0), record.Str("t", "d") + ":" + record.Num("m", 9.0), string.Join(",", record.Strings("l")) + string.Join(",", record.Strings("none"))]);
+        Assert.Equal(["x:2.5", "d:9", "p"], [record.Str("s") + ":" + record.Num("n", 0.0).ToString(CultureInfo.InvariantCulture), record.Str("t", "d") + ":" + record.Num("m", 9.0).ToString(CultureInfo.InvariantCulture), string.Join(',', record.Strings("l")) + string.Join(',', record.Strings("none"))]);
     }
 
     [Fact]
@@ -71,7 +72,7 @@ public sealed class CanonicalJsonTests
     {
         JsonElement record = CanonicalPowers.Parse("{\"n\":2.5,\"s\":\"x\",\"l\":[1,2]}");
 
-        Assert.Equal("2.5 x 2", record.ReqNum("n") + " " + record.ReqStr("s") + " " + record.ReqItems("l").Count);
+        Assert.Equal("2.5 x 2", record.ReqNum("n").ToString(CultureInfo.InvariantCulture) + " " + record.ReqStr("s") + " " + record.ReqItems("l").Count.ToString(CultureInfo.InvariantCulture));
     }
 
     [Fact]

@@ -17,7 +17,7 @@ public static class CanonicalPowers
     public static string Template(string[] attribs, string aspect = "Absolute", string target = "AnyAffected", string table = "Melee_Damage", double scale = 1.0, string extra = "")
     {
         ArgumentNullException.ThrowIfNull(attribs);
-        string names = string.Join(",", attribs.Select(attrib => $"\"{attrib}\""));
+        string names = string.Join(',', attribs.Select(attrib => $"\"{attrib}\""));
         return $"{{\"attribs\":[{names}],\"aspect\":\"{aspect}\",\"target\":\"{target}\",\"table\":\"{table}\",\"scale\":{scale.ToString("R", CultureInfo.InvariantCulture)}{extra}}}";
     }
 
@@ -28,7 +28,7 @@ public static class CanonicalPowers
     public static string Effect(string[] templates, string extra = "")
     {
         ArgumentNullException.ThrowIfNull(templates);
-        return $"{{\"templates\":[{string.Join(",", templates)}]{extra}}}";
+        return $"{{\"templates\":[{string.Join(',', templates)}]{extra}}}";
     }
 
     /// <summary>A canonical power as JSON text.</summary>
@@ -42,9 +42,9 @@ public static class CanonicalPowers
     /// <returns>The JSON text.</returns>
     public static string Text(string name = "Test.Set.Power", string type = "Click", string[]? effects = null, string area = "SingleTarget", double range = 7.0, string[]? categories = null, string extra = "")
     {
-        string cats = string.Join(",", (categories ?? []).Select(category => $"\"{category}\""));
+        string cats = string.Join(',', (categories ?? []).Select(category => $"\"{category}\""));
         return $"{{\"full_name\":\"{name}\",\"type\":\"{type}\",\"effect_area\":\"{area}\",\"range\":{range.ToString("R", CultureInfo.InvariantCulture)},\"radius\":0.0,\"arc\":0.0,"
-            + $"\"max_targets_hit\":0,\"allowed_boostset_cats\":[{cats}],\"effects\":[{string.Join(",", effects ?? [])}]{extra}}}";
+            + $"\"max_targets_hit\":0,\"allowed_boostset_cats\":[{cats}],\"effects\":[{string.Join(',', effects ?? [])}]{extra}}}";
     }
 
     /// <summary>A canonical power parsed from its text.</summary>

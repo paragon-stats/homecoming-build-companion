@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 
@@ -20,11 +22,11 @@ internal static class PickAtGrantLevelRule
         foreach (Power power in context.Picks.Where(pick => pick.BuildIndex < order.Count && pick.PickLevel != order[pick.BuildIndex]))
         {
             int expected = order[power.BuildIndex] + 1;
-            string message = $"{PyText.Repr(power.FullName)} is pick {power.BuildIndex + 1} of {order.Count}, which the schedule "
-                + $"grants at level {expected}, but it is picked at level {power.PickLevel + 1}";
+            string message = string.Create(CultureInfo.InvariantCulture, $"{PyText.Repr(power.FullName)} is pick {power.BuildIndex + 1} of {order.Count}, which the schedule ")
+                + string.Create(CultureInfo.InvariantCulture, $"grants at level {expected}, but it is picked at level {power.PickLevel + 1}");
             yield return new Diagnostic("H-POWER-003", "error", message)
             {
-                Fix = $"move this power to the pick the schedule grants at level {power.PickLevel + 1}, or pick it at level {expected}",
+                Fix = string.Create(CultureInfo.InvariantCulture, $"move this power to the pick the schedule grants at level {power.PickLevel + 1}, or pick it at level {expected}"),
                 Expected = expected,
                 Actual = power.PickLevel + 1,
             };

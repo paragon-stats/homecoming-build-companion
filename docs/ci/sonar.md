@@ -28,6 +28,7 @@ One rule is ignored for one file, through `sonar.issue.ignore.multicriteria` in 
 | Rule | File | Why |
 | --- | --- | --- |
 | `csharpsquid:S1244` | `src/CohEngine.Core/Maths/Exact.cs` | `Exact.Same` is the one exact float comparison; its callers, listed in [the C# style guide](../style-guides/csharp.md#float-comparison), need exact IEEE equality. |
+| `githubactions:S7677` | `.github/workflows/pre-commit.yml` | The flagged line is the `::error` workflow command for a failed hook, not an error message; GitHub reads workflow commands only from stdout. A plain copy of the message goes to stderr beside it. |
 
 ## How the quality gate blocks
 

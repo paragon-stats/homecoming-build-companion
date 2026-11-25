@@ -36,10 +36,10 @@ public static class RuleRegistry
     /// <summary>Gets the scoring metrics with their bodies, sorted by name; a new metric is a new line here.</summary>
     internal static IReadOnlyList<RegisteredMetric> ScoringMetrics { get; } =
     [
-        new(new("defense_positional_min", "Lowest of Melee/Ranged/AoE defense as a percentage (the positional softcap metric)."), DefensePositionalMinMetric.Evaluate),
-        new(new("perma_dom", "Perma-Domination: Domination's buffed recharge <= its 90s duration."), PermaDominationMetric.Evaluate),
-        new(new("perma_hasten", "Perma-Hasten: Hasten's buffed recharge <= its 120s duration."), PermaHastenMetric.Evaluate),
-        new(new("resist_min", "Lowest typed resistance (Smashing..Psionic) as a percentage."), ResistMinMetric.Evaluate),
+        new(new("defense_positional_min", "Lowest of Melee/Ranged/AoE defense as a percentage (the positional softcap metric)."), (totals, _) => DefensePositionalMinMetric.Evaluate(totals)),
+        new(new("perma_dom", "Perma-Domination: Domination's buffed recharge <= its 90s duration."), (_, powerStats) => PermaDominationMetric.Evaluate(powerStats)),
+        new(new("perma_hasten", "Perma-Hasten: Hasten's buffed recharge <= its 120s duration."), (_, powerStats) => PermaHastenMetric.Evaluate(powerStats)),
+        new(new("resist_min", "Lowest typed resistance (Smashing..Psionic) as a percentage."), (totals, _) => ResistMinMetric.Evaluate(totals)),
     ];
 
     /// <summary>Gets the legality rules with their bodies, in registration order; a new rule is a new line here.</summary>
