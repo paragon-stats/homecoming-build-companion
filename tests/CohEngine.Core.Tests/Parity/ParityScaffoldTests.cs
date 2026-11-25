@@ -76,7 +76,9 @@ public sealed class ParityScaffoldTests
     // The Python engine's effect magnitudes against Math_Mag, effects paired by identity: how many differ from Mids,
     // how many it computes, and the SHA-256 of their float32 bit patterns (little-endian, in effect order). The engine
     // reads the pre-Pass5 enhanced magnitude, so Mids' post-buff multiply and its assembled effect order account for
-    // the differences; the C# must reproduce all three.
+    // the differences; the C# must reproduce all three. Four builds (laser-hazmat, laser-fallout, laser-nuke and the fiery
+    // Stalker) instead carry the C# engine's values, re-baselined on database 2026.5.1337, because no Python script
+    // produces these digests.
     private static readonly Dictionary<string, (int Mismatches, int Count, string Digest)> PythonMagnitudes = new(StringComparer.Ordinal)
     {
         [Cardiac] = (30, 365, "68bf49d4847a3525849641fb1f4ea382ba689a9889f6f3693ecb85ee80de5502"),
@@ -88,9 +90,9 @@ public sealed class ParityScaffoldTests
         ["characters__account1__laser-accretion__main"] = (2, 452, "89a3a460c977a53b0b30c431d91689b6aee0c344d90fbe71239c67a985fd3d51"),
         ["characters__account1__laser-alt-f4__main"] = (8, 366, "e5972a12ed7ce61473de8f10f35767e8b428e9ea3621d6ca94b91fa6a83d5c93"),
         ["reference__arachnos-soldier__bane-mace__bane-leviathan"] = (32, 403, "bffd93920a1246ecb1ecd595323947bd47188c3c099c410c69c94a007df7bf5a"),
-        ["characters__account1__laser-fallout__main"] = (0, 77, "2f98f0c1bc7b0b85091ac5085b7098b1114426f21c6ce5489e67456bf5022a7a"),
-        ["characters__account1__laser-hazmat__pve"] = (34, 578, "b12e26882298e9dc2c413da58c2bd92339cffc416d599d8688cd0d4f15d04762"),
-        ["characters__account1__laser-nuke__main"] = (2, 391, "a186fcc4302a34c4bb8e024400ee932eb945e2dcea82a82285fa907de41bc246"),
+        ["characters__account1__laser-fallout__main"] = (0, 77, "dc5cf9f991c353242e171680acdcd0bef92fbb6a3a791b8c824cf04b3b5243bb"),
+        ["characters__account1__laser-hazmat__pve"] = (34, 578, "8f5e366c208cf1a1c9c8f244adc920590ee518079a37b36f781601118ae8235c"),
+        ["characters__account1__laser-nuke__main"] = (2, 389, "2fa7cd7c8d2844f58da24825162f415548bfd850d1de53bc6783496c4995f134"),
         [Blaster] = (17, 451, "5a9a829e9b49fca4ff8f23a015caf2b4cf37bfc56de59154e6ca6acc5e437361"),
         ["characters__account1__laser-quantum__main"] = (6, 463, "c9827c8d80034ac3bb224a447f3576a7e052b63b43d2919f91d87710f41168d1"),
         ["community__arachnos-widow__general__unknown-melee"] = (62, 483, "837a928e6ab6e6d9d8f263cf0903da3490b09075cdca69af47bac20df40e707d"),
@@ -101,7 +103,7 @@ public sealed class ParityScaffoldTests
         ["shield_scrapper_set_bonuses"] = (106, 413, "5614bddb594a1bf4e39e44ccffed445ed7ef4ac9059808b0263daabc925866f9"),
         ["shield_scrapper_set_bonuses_exemplar25"] = (95, 413, "30e04235d70ef7390d46f34e04a8219d1b22ee7758fa187820b891d94863b759"),
         ["shield_scrapper_slotted"] = (7, 413, "cb9a6033ebdd9b6fb8daea5274d716859620b1a5274b3a5ea3048869692326f8"),
-        [Stalker] = (2, 447, "98ccb536584966923e5428a555991c6259d1cfee00eb4f5c03eb9876fdac5144"),
+        [Stalker] = (2, 446, "c710f1670dcc8c81bb0918941204233fdf466b7ccb84b24b8d27eb49338d60b5"),
         [Tanker] = (121, 386, "7681f6164050022ed1db011391660a2dd0ae5b94e89b218d4b062762fa48ebad"),
     };
 
