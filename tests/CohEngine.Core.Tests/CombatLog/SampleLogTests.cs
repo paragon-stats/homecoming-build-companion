@@ -42,7 +42,7 @@ public sealed class SampleLogTests
         var thin = Sample.Value
             .OfType<RecognisedEvent>()
             .GroupBy(combatEvent => combatEvent.GetType().Name, StringComparer.Ordinal)
-            .Where(group => group.Count() < 2)
+            .Where(group => !group.Skip(1).Any())
             .Select(group => group.Key)
             .ToList();
 

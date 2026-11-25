@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 
 namespace CohEngine.Core.Assembly;
@@ -24,7 +26,7 @@ internal sealed record AssemblyInputs(IReadOnlyDictionary<int, AssemblyPower> Po
         }
 
         throw new InvalidDataException(
-            $"E90: {where} points at {what} {key}, which the assembly inputs do not hold; expected every record "
+            string.Create(CultureInfo.InvariantCulture, $"E90: {where} points at {what} {key}, which the assembly inputs do not hold; expected every record ")
             + "assembly reaches; re-run the Mids dump harness so the export carries it");
     }
 }

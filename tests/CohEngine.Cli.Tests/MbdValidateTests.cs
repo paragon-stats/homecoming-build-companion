@@ -60,7 +60,7 @@ public sealed class MbdValidateTests : IDisposable
         (string json, int jsonCode) = CliCapture.Run(Source, "validate", Bane, "--format", "json");
         (_, int textCode) = CliCapture.Run(Source, "validate", Bane);
 
-        Assert.Equal((true, true, true), (jsonCode is 0 or 2, textCode is 0 or 2, Rules(json).All(rule => !string.Equals(rule.Severity, "error", StringComparison.Ordinal))));
+        Assert.Equal((true, true, true), (jsonCode is 0 or 2, textCode is 0 or 2, Rules(json).TrueForAll(rule => !string.Equals(rule.Severity, "error", StringComparison.Ordinal))));
     }
 
     [Fact]

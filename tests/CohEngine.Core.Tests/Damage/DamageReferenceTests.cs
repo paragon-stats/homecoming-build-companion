@@ -13,22 +13,22 @@ public sealed class DamageReferenceTests
 
     private static string Structural(string name, int index, params string[] effects)
     {
-        return $"{{\"BuildIndex\":{index},\"FullName\":\"{name}\",\"ActivatePeriod\":0.0,\"PowerType\":\"Click\",\"StatInclude\":true,\"Effects\":[{string.Join(",", effects)}]}}";
+        return string.Create(CultureInfo.InvariantCulture, $"{{\"BuildIndex\":{index},\"FullName\":\"{name}\",\"ActivatePeriod\":0.0,\"PowerType\":\"Click\",\"StatInclude\":true,\"Effects\":[{string.Join(',', effects)}]}}");
     }
 
     private static string Enhanced(int index, params string[] effects)
     {
-        return $"{{\"BuildIndex\":{index},\"DamagePerActivation\":10.5,\"CastTime\":1.0,\"RechargeTime\":2.0,\"EndCost\":3.0,\"Effects\":[{string.Join(",", effects)}]}}";
+        return string.Create(CultureInfo.InvariantCulture, $"{{\"BuildIndex\":{index},\"DamagePerActivation\":10.5,\"CastTime\":1.0,\"RechargeTime\":2.0,\"EndCost\":3.0,\"Effects\":[{string.Join(',', effects)}]}}");
     }
 
     private static string Structure(int index, string kind, string who, string type)
     {
-        return $"{{\"Index\":{index},\"EffectType\":\"{kind}\",\"ToWho\":\"{who}\",\"DamageType\":\"{type}\"}}";
+        return string.Create(CultureInfo.InvariantCulture, $"{{\"Index\":{index},\"EffectType\":\"{kind}\",\"ToWho\":\"{who}\",\"DamageType\":\"{type}\"}}");
     }
 
     private static string Magnitude(int index, double mag, double duration)
     {
-        return $"{{\"Index\":{index},\"Math_Mag\":{mag.ToString("R", CultureInfo.InvariantCulture)},\"Math_Duration\":{duration.ToString("R", CultureInfo.InvariantCulture)}}}";
+        return string.Create(CultureInfo.InvariantCulture, $"{{\"Index\":{index},\"Math_Mag\":{mag.ToString("R", CultureInfo.InvariantCulture)},\"Math_Duration\":{duration.ToString("R", CultureInfo.InvariantCulture)}}}");
     }
 
     private static void Seed(TempTree tree, string enhanced, string structural)
@@ -81,7 +81,7 @@ public sealed class DamageReferenceTests
 
         PowerDamageRef reference = DamageReference.LoadDamageRefs(tree.Root)["A.B.C"];
 
-        Assert.Equal("10.5 1 2 3 Click True", $"{reference.DamagePerActivation} {reference.CastTime} {reference.RechargeTime} {reference.EndCost} {reference.PowerType} {reference.StatInclude}");
+        Assert.Equal("10.5 1 2 3 Click True", string.Create(CultureInfo.InvariantCulture, $"{reference.DamagePerActivation} {reference.CastTime} {reference.RechargeTime} {reference.EndCost} {reference.PowerType} {reference.StatInclude}"));
     }
 
     [Fact]
@@ -95,7 +95,7 @@ public sealed class DamageReferenceTests
 
         PowerDamageRef reference = DamageReference.LoadDamageRefs(tree.Root)["A.B.C"];
 
-        Assert.Equal("0.75 9", $"{reference.SelfDamageBuff} {reference.SelfDamageBuffDuration}");
+        Assert.Equal("0.75 9", string.Create(CultureInfo.InvariantCulture, $"{reference.SelfDamageBuff} {reference.SelfDamageBuffDuration}"));
     }
 
     [Fact]
@@ -108,7 +108,7 @@ public sealed class DamageReferenceTests
 
         PowerDamageRef reference = DamageReference.LoadDamageRefs(tree.Root)["A.B.C"];
 
-        Assert.Equal("0.10000000149011612 10", $"{reference.TargetResDebuff} {reference.TargetResDebuffDuration}");
+        Assert.Equal("0.10000000149011612 10", string.Create(CultureInfo.InvariantCulture, $"{reference.TargetResDebuff} {reference.TargetResDebuffDuration}"));
     }
 
     [Fact]
@@ -131,7 +131,7 @@ public sealed class DamageReferenceTests
         using TempTree tree = new();
         Seed(tree, Enhanced(1, enhanced), Structural("A.B.C", 1, structural));
 
-        Assert.Equal("0.10000000149011612 17", $"{DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuff} {DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuffDuration}");
+        Assert.Equal("0.10000000149011612 17", string.Create(CultureInfo.InvariantCulture, $"{DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuff} {DamageReference.LoadDamageRefs(tree.Root)["A.B.C"].TargetResDebuffDuration}"));
     }
 
     [Fact]

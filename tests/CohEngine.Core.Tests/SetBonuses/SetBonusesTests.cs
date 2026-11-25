@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.SetBonuses;
 
@@ -176,7 +178,7 @@ public sealed class SetBonusesTests
         {
             BuildIndex = buildIndex,
             NidPower = buildIndex,
-            FullName = $"Test.Set.Power{buildIndex}",
+            FullName = string.Create(CultureInfo.InvariantCulture, $"Test.Set.Power{buildIndex}"),
             StaticIndex = buildIndex,
             Level = level,
             PickLevel = level,
@@ -211,7 +213,7 @@ public sealed class SetBonusesTests
         return new SetBonusPower
         {
             PowerId = pid,
-            FullName = $"Set_Bonus.Set_Bonus.Bonus_{pid}",
+            FullName = string.Create(CultureInfo.InvariantCulture, $"Set_Bonus.Set_Bonus.Bonus_{pid}"),
             PowerType = "Auto_",
             MyPetTarget = myPet,
             MyPetEntities = myPet,

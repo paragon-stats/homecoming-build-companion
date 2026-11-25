@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core;
 using CohEngine.Core.Chain;
 using CohEngine.TestSupport;
@@ -44,7 +46,7 @@ public sealed class ChainCommandTests
     {
         (int code, _, string error) = Run(args);
 
-        Assert.Equal($"2 coh-engine chain: error: {problem}", $"{code} {error.Split('\n')[1]}");
+        Assert.Equal($"2 coh-engine chain: error: {problem}", string.Create(CultureInfo.InvariantCulture, $"{code} {error.Split('\n')[1]}"));
     }
 
     [Theory]
@@ -53,7 +55,7 @@ public sealed class ChainCommandTests
     {
         (int code, string output, _) = Run(args);
 
-        Assert.Equal($"{expectedCode} True", $"{code} {output.Contains(expectedText, StringComparison.Ordinal)}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{expectedCode} True"), string.Create(CultureInfo.InvariantCulture, $"{code} {output.Contains(expectedText, StringComparison.Ordinal)}"));
     }
 
     [Fact]
@@ -82,7 +84,7 @@ public sealed class ChainCommandTests
         System.Text.Json.JsonElement low = Melee("--assume", "Class_Scrapper.crit_chance=0");
         System.Text.Json.JsonElement high = Melee("--assume", "Class_Scrapper.crit_chance=0.5");
 
-        Assert.Equal("1 True True", $"{CritFactor(low)} {CritFactor(high) > 1.0} {high.Req("dps").ReqNum("total") > low.Req("dps").ReqNum("total")}");
+        Assert.Equal("1 True True", string.Create(CultureInfo.InvariantCulture, $"{CritFactor(low)} {CritFactor(high) > 1.0} {high.Req("dps").ReqNum("total") > low.Req("dps").ReqNum("total")}"));
     }
 
     [Fact]
@@ -99,7 +101,7 @@ public sealed class ChainCommandTests
     {
         (int code, string output, string error) = Run(Build, "--assume", "Class_Scrapper.crit_chance=2");
 
-        Assert.Equal("1 True True", $"{code} {error.Contains("E50", StringComparison.Ordinal)} {output.Length == 0 && !error.Contains("Traceback", StringComparison.Ordinal)}");
+        Assert.Equal("1 True True", string.Create(CultureInfo.InvariantCulture, $"{code} {error.Contains("E50", StringComparison.Ordinal)} {output.Length == 0 && !error.Contains("Traceback", StringComparison.Ordinal)}"));
     }
 
     [Fact]
@@ -116,7 +118,7 @@ public sealed class ChainCommandTests
 
         int code = CliRunner.Run(["chain", Path.Join(Store.RepositoryRoot, Build), "--stance", "melee"], output, error);
 
-        Assert.Equal("0 True", $"{code} {output.ToString().Contains("== melee stance ==", StringComparison.Ordinal)}");
+        Assert.Equal("0 True", string.Create(CultureInfo.InvariantCulture, $"{code} {output.ToString().Contains("== melee stance ==", StringComparison.Ordinal)}"));
     }
 
     [Fact]
@@ -127,7 +129,7 @@ public sealed class ChainCommandTests
 
         (int code, string output, _) = Run(build, "--mids-dir", Store.MidsDirectory);
 
-        Assert.Equal("2 True", $"{code} {output.Contains("P-END-002", StringComparison.Ordinal)}");
+        Assert.Equal("2 True", string.Create(CultureInfo.InvariantCulture, $"{code} {output.Contains("P-END-002", StringComparison.Ordinal)}"));
     }
 
     [Theory]
@@ -140,7 +142,7 @@ public sealed class ChainCommandTests
     {
         (int code, string output, string error) = Run(Build, option, value);
 
-        Assert.Equal($"1 True {string.Empty}", $"{code} {error.StartsWith(expected, StringComparison.Ordinal)} {output}");
+        Assert.Equal($"1 True {string.Empty}", string.Create(CultureInfo.InvariantCulture, $"{code} {error.StartsWith(expected, StringComparison.Ordinal)} {output}"));
     }
 
     [Fact]
@@ -150,7 +152,7 @@ public sealed class ChainCommandTests
         string build = tree.CopyFiles(Path.Join(Store.MidsDirectory, "builds", "shield_scrapper_set_bonuses"), "b");
         File.WriteAllText(Path.Join(build, "totals.json"), File.ReadAllText(Path.Join(build, "totals.json")).Replace("\"Class\"", "\"Klass\"", StringComparison.Ordinal));
 
-        Assert.Equal("1 error: E72: an input is missing the key 'Class'; re-dump the build or check the data matches its schema\n", $"{Run(build, "--mids-dir", Store.MidsDirectory).Code} {Run(build, "--mids-dir", Store.MidsDirectory).Error}");
+        Assert.Equal("1 error: E72: an input is missing the key 'Class'; re-dump the build or check the data matches its schema\n", string.Create(CultureInfo.InvariantCulture, $"{Run(build, "--mids-dir", Store.MidsDirectory).Code} {Run(build, "--mids-dir", Store.MidsDirectory).Error}"));
     }
 
     [Fact]

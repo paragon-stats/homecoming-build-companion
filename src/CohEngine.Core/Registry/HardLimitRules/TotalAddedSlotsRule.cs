@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.HardLimitRules;
@@ -13,9 +15,9 @@ internal static class TotalAddedSlotsRule
         int total = context.AddedByPower.Values.Sum();
         if (total > context.MaxSlots)
         {
-            yield return new Diagnostic("H-SLOT-001", "error", $"total added slots ({total}) exceeds the cap ({context.MaxSlots})")
+            yield return new Diagnostic("H-SLOT-001", "error", string.Create(CultureInfo.InvariantCulture, $"total added slots ({total}) exceeds the cap ({context.MaxSlots})"))
             {
-                Fix = $"remove {total - context.MaxSlots} slot(s) from one or more powers",
+                Fix = string.Create(CultureInfo.InvariantCulture, $"remove {total - context.MaxSlots} slot(s) from one or more powers"),
                 Expected = context.MaxSlots,
                 Actual = total,
             };

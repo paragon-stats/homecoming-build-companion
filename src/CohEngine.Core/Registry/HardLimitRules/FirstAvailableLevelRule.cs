@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 
@@ -16,8 +18,8 @@ internal static class FirstAvailableLevelRule
     {
         foreach (Power power in context.Picks.Where(pick => pick.Level > 0 && pick.PickLevel + 1 < pick.Level))
         {
-            string message = $"{PyText.Repr(power.FullName)} is picked at level {power.PickLevel + 1} but is not available until "
-                + $"level {power.Level}";
+            string message = string.Create(CultureInfo.InvariantCulture, $"{PyText.Repr(power.FullName)} is picked at level {power.PickLevel + 1} but is not available until ")
+                + string.Create(CultureInfo.InvariantCulture, $"level {power.Level}");
             yield return new Diagnostic("H-POWER-002", "error", message)
             {
                 Fix = "pick this power at or after its earliest available level",

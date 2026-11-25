@@ -47,7 +47,7 @@ public sealed class SlotValueTests
     [InlineData("None", 49, GradeNone, RelEven, SchA)]
     public void Schedule_mult_is_zero(string type, int ioLevel, int grade, int relative, int schedule)
     {
-        Assert.Equal(0.0, SlotValue.ScheduleMult(type, false, ioLevel, grade, relative, schedule, Tables));
+        Assert.Equal(0.0, SlotValue.ScheduleMult(type, superior: false, ioLevel, grade, relative, schedule, Tables));
     }
 
     [Fact]
@@ -115,8 +115,8 @@ public sealed class SlotValueTests
     public void Single_recharge_io_contributes_0_424()
     {
         double perSlot = SlotValue.EnhancementEffect(EnhDb[CraftedRecharge], Slot(), "RechargeTime", -1, 1.0, Tables);
-        Assert.Equal(1.272, Math.Round(3 * perSlot, 3));
-        Assert.Equal(0.848, Math.Round(2 * perSlot, 3));
+        Assert.Equal(1.272, Math.Round(3 * perSlot, 3, MidpointRounding.ToEven));
+        Assert.Equal(0.848, Math.Round(2 * perSlot, 3, MidpointRounding.ToEven));
     }
 
     internal static SlotRef Slot(int enh = CraftedRecharge, int level = 9)

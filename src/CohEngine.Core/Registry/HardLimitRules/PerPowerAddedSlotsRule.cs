@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 
@@ -16,11 +18,11 @@ internal static class PerPowerAddedSlotsRule
             int count = context.AddedByPower.GetValueOrDefault(power.BuildIndex);
             if (count > PowerGroups.MaxAddedSlotsPerPower)
             {
-                string message = $"{PyText.Repr(power.FullName)} has {count} added slots; a power may hold at most "
+                string message = string.Create(CultureInfo.InvariantCulture, $"{PyText.Repr(power.FullName)} has {count} added slots; a power may hold at most ")
                     + $"{PowerGroups.MaxAddedSlotsPerPower} (plus its inherent slot)";
                 yield return new Diagnostic("H-SLOT-002", "error", message)
                 {
-                    Fix = $"remove {count - PowerGroups.MaxAddedSlotsPerPower} slot(s) from this power",
+                    Fix = string.Create(CultureInfo.InvariantCulture, $"remove {count - PowerGroups.MaxAddedSlotsPerPower} slot(s) from this power"),
                     Expected = PowerGroups.MaxAddedSlotsPerPower,
                     Actual = count,
                 };

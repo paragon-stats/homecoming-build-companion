@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace CohEngine.Ai.Anthropic;
 
 /// <summary>An error the Messages API returned, as a non-2xx response or as an <c>error</c> stream event.</summary>
@@ -5,14 +7,14 @@ public sealed class AnthropicApiException : Exception
 {
     /// <summary>Initializes a new instance of the <see cref="AnthropicApiException"/> class.</summary>
     public AnthropicApiException()
-        : this(0, "unknown_error", "The Messages API returned an error.", null)
+        : this(0, "unknown_error", "The Messages API returned an error.", requestId: null)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AnthropicApiException"/> class.</summary>
     /// <param name="message">The error message.</param>
     public AnthropicApiException(string message)
-        : this(0, "unknown_error", message, null)
+        : this(0, "unknown_error", message, requestId: null)
     {
     }
 
@@ -31,7 +33,7 @@ public sealed class AnthropicApiException : Exception
     /// <param name="message">The API's error message.</param>
     /// <param name="requestId">The <c>request-id</c> response header, for a support request.</param>
     public AnthropicApiException(int status, string errorType, string message, string? requestId)
-        : base($"Anthropic API {status} {errorType}: {message}")
+        : base(string.Create(CultureInfo.InvariantCulture, $"Anthropic API {status} {errorType}: {message}"))
     {
         Status = status;
         ErrorType = errorType;

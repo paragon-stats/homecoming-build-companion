@@ -10,12 +10,23 @@ public sealed class PowerAssemblerTests
 {
     private static readonly Effect Base = Make.Effect;
 
-    public static TheoryData<bool, Func<Effect, Effect>> UnmetOverrides => new()
+    // Theory rows name the change to an effect, so xUnit can serialize them; each test applies the named change.
+    private static readonly Dictionary<string, Func<Effect, Effect>> Changes = new(StringComparer.Ordinal)
     {
-        { false, effect => effect },
-        { true, effect => effect with { Probability = 0.5 } },
-        { true, effect => effect with { SpecialCase = "Domination" } },
-        { true, effect => effect with { EffectType = "Defense" } },
+        ["unchanged"] = effect => effect,
+        ["half probability"] = effect => effect with { Probability = 0.5 },
+        ["Domination special case"] = effect => effect with { SpecialCase = "Domination" },
+        ["Defense type"] = effect => effect with { EffectType = "Defense" },
+        ["no summon"] = effect => effect with { NSummon = -1 },
+        ["Ignored class"] = effect => effect with { EffectClass = "Ignored" },
+    };
+
+    public static TheoryData<bool, string> UnmetOverrides => new()
+    {
+        { false, "unchanged" },
+        { true, "half probability" },
+        { true, "Domination special case" },
+        { true, "Defense type" },
     };
 
     public static TheoryData<string[][], int> PetsOnlyCopies => new()
@@ -26,12 +37,7 @@ public sealed class PowerAssemblerTests
         { [], 0 },
     };
 
-    public static TheoryData<Func<Effect, Effect>> CreatesNotAbsorbed => new()
-    {
-        effect => effect with { NSummon = -1 },
-        effect => effect with { Probability = 0.5 },
-        effect => effect with { EffectType = "Defense" },
-    };
+    public static TheoryData<string> CreatesNotAbsorbed => ["no summon", "half probability", "Defense type"];
 
     public static TheoryData<string[], string> PetAttributes => new()
     {
@@ -43,12 +49,7 @@ public sealed class PowerAssemblerTests
         { ["Foe"], "All" },
     };
 
-    public static TheoryData<Func<Effect, Effect>> GrantNothing => new()
-    {
-        effect => effect with { EffectClass = "Ignored" },
-        effect => effect with { NSummon = -1 },
-        effect => effect with { EffectType = "Defense" },
-    };
+    public static TheoryData<string> GrantNothing => ["Ignored class", "no summon", "Defense type"];
 
     public static TheoryData<string[], string, string, int> GrantedTargets => new()
     {
@@ -76,9 +77,9 @@ public sealed class PowerAssemblerTests
 
     [Theory]
     [MemberData(nameof(UnmetOverrides))]
-    public void Unmet_override_is_ignored(bool flag, Func<Effect, Effect> over)
+    public void Unmet_override_is_ignored(bool flag, string change)
     {
-        Effect effect = over(Base with { EffectType = "PowerRedirect" });
+        Effect effect = Changes[change](Base with { EffectType = "PowerRedirect" });
         Assert.Single(Assemble(Build(Power([effect], hasOverride: flag))));
     }
 
@@ -213,9 +214,9 @@ public sealed class PowerAssemblerTests
 
     [Theory]
     [MemberData(nameof(CreatesNotAbsorbed))]
-    public void Creates_that_are_not_absorbed(Func<Effect, Effect> over)
+    public void Creates_that_are_not_absorbed(string change)
     {
-        Assert.Single(Assemble(Build(Power([over(Create())], absorbEffects: true))));
+        Assert.Single(Assemble(Build(Power([Changes[change](Create())], absorbEffects: true))));
     }
 
     [Fact]
@@ -327,9 +328,9 @@ public sealed class PowerAssemblerTests
 
     [Theory]
     [MemberData(nameof(GrantNothing))]
-    public void Effects_that_grant_nothing(Func<Effect, Effect> over)
+    public void Effects_that_grant_nothing(string change)
     {
-        Assert.Single(Assemble(Build(Power([over(Grant())], hasGrant: true))));
+        Assert.Single(Assemble(Build(Power([Changes[change](Grant())], hasGrant: true))));
     }
 
     [Theory]
@@ -506,7 +507,7 @@ public sealed class PowerAssemblerTests
     public void Stat_include_sub_powers_are_appended()
     {
         AssemblyPower sub = Power([Base with { EffectType = "Heal" }], nid: 900, powerType: "Toggle");
-        BuildPowerAssembly build = Build(Power([Base]), subPowers: [new SubPower(900, true), new SubPower(900, false), new SubPower(-1, true)]);
+        BuildPowerAssembly build = Build(Power([Base]), subPowers: [new SubPower(900, StatInclude: true), new SubPower(900, StatInclude: false), new SubPower(-1, StatInclude: true)]);
         IReadOnlyList<Effect> output = Assemble(build, [sub]);
         Assert.Equal(["Defense", "Heal"], Types(output));
         Assert.Equal((true, 900, "Toggle"), (output[1].AbsorbedEffect, output[1].AbsorbedPowerNid, output[1].AbsorbedPowerType));
@@ -515,7 +516,7 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Missing_sub_power_refuses()
     {
-        BuildPowerAssembly build = Build(Power([]), subPowers: [new SubPower(900, true)]);
+        BuildPowerAssembly build = Build(Power([]), subPowers: [new SubPower(900, StatInclude: true)]);
         Assert.Contains("E90", Assert.Throws<InvalidDataException>(() => Assemble(build)).Message, StringComparison.Ordinal);
     }
 

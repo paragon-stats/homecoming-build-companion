@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text.Json;
 
 using CohEngine.Core.Data;
@@ -31,7 +32,7 @@ public sealed class LegalityTests
 
     private static Power ForSet(int index, int enh)
     {
-        return RegistryMake.Power(index, "p" + index, setTypes: [RegistryMake.SetType(enh)]);
+        return RegistryMake.Power(index, "p" + index.ToString(CultureInfo.InvariantCulture), setTypes: [RegistryMake.SetType(enh)]);
     }
 
     private static int[] Ints(JsonElement element)

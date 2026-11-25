@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace CohEngine.Core.CombatLog;
 
 /// <summary>The E150 to E159 block: what the combat-log reader refuses, and the message each one carries.</summary>
@@ -19,7 +21,7 @@ public static class CombatLogErrorCodes
     internal static InvalidDataException BadTimestamp(int number, string prefix)
     {
         return new InvalidDataException(
-            $"{MalformedTimestamp}: line {number} starts '{prefix}', which is not a real 'YYYY-MM-DD HH:MM:SS' timestamp; "
+            string.Create(CultureInfo.InvariantCulture, $"{MalformedTimestamp}: line {number} starts '{prefix}', which is not a real 'YYYY-MM-DD HH:MM:SS' timestamp; ")
             + "repair or delete the line");
     }
 }

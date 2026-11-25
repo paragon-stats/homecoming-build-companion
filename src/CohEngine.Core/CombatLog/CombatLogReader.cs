@@ -62,7 +62,7 @@ public static class CombatLogReader
     {
         if (!LooksTimestamped(raw))
         {
-            return new CombatLogLine(number, null, raw, null, raw);
+            return new CombatLogLine(number, Timestamp: null, raw, Channel: null, raw);
         }
 
         if (!DateTime.TryParseExact(

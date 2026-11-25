@@ -15,7 +15,7 @@ public static class DiagnosticFormatter
     public static string FormatText(IEnumerable<Diagnostic> diagnostics)
     {
         ArgumentNullException.ThrowIfNull(diagnostics);
-        return string.Join("\n", diagnostics.Select(diagnostic => diagnostic.FormatText()));
+        return string.Join('\n', diagnostics.Select(diagnostic => diagnostic.FormatText()));
     }
 
     /// <summary>The <c>--format=json</c> array for a run's diagnostics, in order.</summary>

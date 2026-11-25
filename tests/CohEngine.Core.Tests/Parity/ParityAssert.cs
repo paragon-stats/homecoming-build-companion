@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Maths;
 
 using Xunit.Sdk;
@@ -26,7 +28,7 @@ internal static class ParityAssert
         // Plain ==, as the Python parity tests compare: 0.0 equals -0.0 and NaN equals nothing.
         if (!Exact.Same(want, actual))
         {
-            throw new XunitException(FormattableString.Invariant($"{path}: expected {want:R}, got {actual:R}"));
+            throw new XunitException(string.Create(CultureInfo.InvariantCulture, $"{path}: expected {want:R}, got {actual:R}"));
         }
     }
 
@@ -35,7 +37,7 @@ internal static class ParityAssert
         Count(expected.Count, actual.Count, path);
         for (int i = 0; i < expected.Count; i++)
         {
-            Equal(expected[i], actual[i], $"{path}[{i}]");
+            Equal(expected[i], actual[i], string.Create(CultureInfo.InvariantCulture, $"{path}[{i}]"));
         }
     }
 
@@ -43,7 +45,7 @@ internal static class ParityAssert
     {
         if (expected != actual)
         {
-            throw new XunitException($"{path}: expected {expected} entries, got {actual}");
+            throw new XunitException(string.Create(CultureInfo.InvariantCulture, $"{path}: expected {expected} entries, got {actual}"));
         }
     }
 }
