@@ -51,7 +51,7 @@ internal static class PowerStatistics
     private static double ScalarFold(Power power, IReadOnlyList<SlotRef> powerSlots, AspectHandler handler, StatsContext context)
     {
         (double preEd, double postEd) = context.IncarnateScalar.GetValueOrDefault((power.BuildIndex, handler.Aspect), (0.0, 0.0));
-        double aggregate = EnhancementPipeline.AggregateAndEd(powerSlots, handler.Aspect, context.EnhDb, context.Config.ForceLevel, context.Tables, preEdAddend: preEd);
+        double aggregate = EnhancementPipeline.AggregateAndEd(powerSlots, handler.Aspect, new EnhancementTables(context.EnhDb, context.Config.ForceLevel, context.Tables), preEdAddend: preEd);
         return AspectRouting.FoldScalar(handler, aggregate, AspectRouting.GlobalTerm(handler, context.GlobalEnhance), power.IgnoreEnh, context.RechargeCap, postEd);
     }
 

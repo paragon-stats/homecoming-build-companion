@@ -1,9 +1,9 @@
 namespace CohEngine.Core.Maths;
 
 /// <summary>
-/// Exact floating-point comparison, named so the intent is stated once. The Python port compares floats with
-/// <c>==</c>, and the planner's branches and the captured output depend on that exactness, so a tolerance or a
-/// bit comparison would change behaviour.
+/// Exact IEEE-754 equality, for the comparisons whose meaning is equality on arbitrary doubles. A comparison that
+/// means something narrower says so instead: a sign test for a quantity that cannot be negative,
+/// <see cref="F32.IsZero"/> for a value on the float32 grid, and a bit comparison where the representation is the question.
 /// </summary>
 public static class Exact
 {

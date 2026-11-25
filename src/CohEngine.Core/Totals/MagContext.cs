@@ -101,27 +101,7 @@ internal sealed record MagContext
         List<(Effect Effect, double Mag)> output = [];
         foreach (Effect effect in power.Effects)
         {
-            bool flag = (string.Equals(effect.ToWho, "Target", StringComparison.Ordinal) && !onlySelf)
-                || (string.Equals(effect.ToWho, "Self", StringComparison.Ordinal) && !onlyTarget)
-                || string.Equals(effect.ToWho, "All", StringComparison.Ordinal);
-            if (SpeedEffectTypes.Contains(effectType, StringComparer.Ordinal) && !maxMode && string.Equals(effect.Aspect, "Max", StringComparison.Ordinal))
-            {
-                flag = false;
-            }
-
-            if ((Config.Suppression & effect.Suppression) != 0)
-            {
-                flag = false;
-            }
-
-            if (!flag
-                || effect.Probability <= 0
-                || (maxMode && !string.Equals(effect.Aspect, "Max", StringComparison.Ordinal))
-                || !string.Equals(effect.EffectType, effectType, StringComparison.Ordinal)
-                || effect.EffectClass is "Ignored" or "Special"
-                || (effect.DelayedTime > 5 && !includeDelayed)
-                || !CanInclude(effect)
-                || !PvxInclude(effect))
+            if (!Sums(effect, effectType, includeDelayed, onlySelf, onlyTarget, maxMode))
             {
                 continue;
             }
@@ -170,5 +150,31 @@ internal sealed record MagContext
         }
 
         return output;
+    }
+
+    /// <summary>Whether <see cref="EffectMagSum"/> counts the effect: its target, aspect, suppression, type, class, delay and conditions all allow it.</summary>
+    private bool Sums(Effect effect, string effectType, bool includeDelayed, bool onlySelf, bool onlyTarget, bool maxMode)
+    {
+        bool flag = (string.Equals(effect.ToWho, "Target", StringComparison.Ordinal) && !onlySelf)
+            || (string.Equals(effect.ToWho, "Self", StringComparison.Ordinal) && !onlyTarget)
+            || string.Equals(effect.ToWho, "All", StringComparison.Ordinal);
+        if (SpeedEffectTypes.Contains(effectType, StringComparer.Ordinal) && !maxMode && string.Equals(effect.Aspect, "Max", StringComparison.Ordinal))
+        {
+            flag = false;
+        }
+
+        if ((Config.Suppression & effect.Suppression) != 0)
+        {
+            flag = false;
+        }
+
+        return !(!flag
+            || effect.Probability <= 0
+            || (maxMode && !string.Equals(effect.Aspect, "Max", StringComparison.Ordinal))
+            || !string.Equals(effect.EffectType, effectType, StringComparison.Ordinal)
+            || effect.EffectClass is "Ignored" or "Special"
+            || (effect.DelayedTime > 5 && !includeDelayed)
+            || !CanInclude(effect)
+            || !PvxInclude(effect));
     }
 }

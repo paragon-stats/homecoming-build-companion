@@ -19,12 +19,15 @@ public static class AiErrorCodes
     public static class Anthropic
     {
         /// <summary>The environment variable that should hold the Anthropic API key is empty or unset.</summary>
-        public const string MissingApiKey = "E140";
+        public const string MissingKey = "E140";
 
         /// <summary>The response stream ended before <c>message_stop</c>, or with a tool call still open.</summary>
         public const string IncompleteStream = "E141";
 
         /// <summary>A tool result is neither a string nor a <c>JsonElement</c>, so a Native AOT build cannot serialize it.</summary>
         public const string UnsupportedToolResult = "E142";
+
+        /// <summary>The assembly carries no <c>AnthropicBaseUrl</c> metadata, or a blank one, so there is no default base address.</summary>
+        public const string MissingBaseUrl = "E143";
     }
 }

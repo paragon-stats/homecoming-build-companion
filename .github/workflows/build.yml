@@ -72,12 +72,15 @@ jobs:
       # runner; coverlet.collector / OpenCover do not.
       - name: Test with coverage
         run: dotnet tool run dotnet-coverage collect "dotnet test --no-build" -f xml -o coverage.xml
+      # Source-generator output (*.g.cs under obj/, such as the [GeneratedRegex] code) is not
+      # hand-written, so it is left out of the report by path.
       - name: Coverage report
         run: >
           dotnet tool run reportgenerator -reports:coverage.xml
           -targetdir:coveragereport
           -reporttypes:"MarkdownSummaryGithub;JsonSummary"
           -assemblyfilters:"-*.Tests.dll"
+          -filefilters:"-*.g.cs"
       # No `if: always()`: coverage measured over a failed test run is partial,
       # and publishing it invites chasing a number that reflects the failure
       # rather than the code.

@@ -58,8 +58,10 @@ jobs:
               echo "::error::PR number must be a positive integer, got '$PR_NUMBER'"
               exit 1
               ;;
+            *)
+              python -m scripts.github.pr_summary --pr "$PR_NUMBER"
+              ;;
           esac
-          python -m scripts.github.pr_summary --pr "$PR_NUMBER"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}

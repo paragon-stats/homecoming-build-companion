@@ -1,4 +1,5 @@
 using System.Buffers.Binary;
+using System.Globalization;
 using System.Security.Cryptography;
 
 using CohEngine.Core.Data;
@@ -9,6 +10,8 @@ using CohEngine.Core.Totals.Incarnate;
 using CohEngine.Core.Totals.Phases;
 
 using Xunit.Sdk;
+
+using EnhancementTables = CohEngine.Core.Enhancement.EnhancementTables;
 
 namespace CohEngine.Core.Tests.Parity;
 
@@ -137,7 +140,7 @@ public sealed class ParityScaffoldTests
             Check(name, want.Base.Range, StandIn(want.Base.Range), $"{want.FullName}.Base.Range");
             for (int j = 0; j < want.Effects.Count; j++)
             {
-                Check(name, want.Effects[j].MathDuration, StandIn(want.Effects[j].MathDuration), $"{want.FullName}.Effects[{j}].Math_Duration");
+                Check(name, want.Effects[j].MathDuration, StandIn(want.Effects[j].MathDuration), string.Create(CultureInfo.InvariantCulture, $"{want.FullName}.Effects[{j}].Math_Duration"));
             }
         }
     }
@@ -189,8 +192,8 @@ public sealed class ParityScaffoldTests
         foreach ((string build, string path, double python) in KnownGaps)
         {
             (double mids, double got) = Gap(build, path);
-            Assert.True(Exact.Same(got, F32.Round(python)), FormattableString.Invariant($"{build}.{path}: the engine gives {got:R}, the Python engine {python:R}"));
-            Assert.True(!Exact.Same(got, F32.Round(mids)), FormattableString.Invariant($"{build}.{path}: now matches Mids ({mids:R}); drop the gap"));
+            Assert.True(Exact.Same(got, F32.Round(python)), string.Create(CultureInfo.InvariantCulture, $"{build}.{path}: the engine gives {got:R}, the Python engine {python:R}"));
+            Assert.False(Exact.Same(got, F32.Round(mids)), string.Create(CultureInfo.InvariantCulture, $"{build}.{path}: now matches Mids ({mids:R}); drop the gap"));
         }
     }
 
@@ -324,7 +327,7 @@ public sealed class ParityScaffoldTests
         }
 
         IncarnateAddends addends = IncarnateResolver.Resolve(inputs.Fixture.Incarnates, powers, Fixtures.Store.AttribMods, Fixtures.Store.Archetypes, inputs.ArchetypeIndex);
-        return PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, inputs.Slots, Fixtures.Store.EnhancementEffects, Fixtures.Store.Maths, context.Config.ForceLevel, context, addends.Effect, selfEnhance);
+        return PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, inputs.Slots, new EnhancementTables(Fixtures.Store.EnhancementEffects, context.Config.ForceLevel, Fixtures.Store.Maths), context, addends.Effect, selfEnhance);
     }
 
     private static void CompareTotals(string name, TotalStatistics expected, TotalStatistics actual, string side)

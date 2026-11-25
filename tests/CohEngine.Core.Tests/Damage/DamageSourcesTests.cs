@@ -136,7 +136,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void A_hybrid_aura_share_is_one_for_an_all_melee_rotation()
     {
-        Near.Rel(AuraFull, DamageSources.AuraSource(Of(Stance.Hybrid, Aura(), MeleeHit()))!.Dps);
+        Assert.Equal(AuraFull, DamageSources.AuraSource(Of(Stance.Hybrid, Aura(), MeleeHit()))!.Dps, AuraFull * 1e-6);
     }
 
     [Fact]
@@ -157,7 +157,7 @@ public sealed class DamageSourcesTests
     {
         DamageContext context = Context(Stance.Hybrid, new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 0.25 }, attacks: [Aura(), RangedHit()]);
 
-        Near.Rel(AuraFull * 0.25, DamageSources.AuraSource(context)!.Dps);
+        Assert.Equal(AuraFull * 0.25, DamageSources.AuraSource(context)!.Dps, AuraFull * 0.25 * 1e-6);
     }
 
     [Fact]

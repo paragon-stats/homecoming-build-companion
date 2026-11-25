@@ -52,13 +52,8 @@ public static class EnumText
     /// <returns>Whether the text names a stance.</returns>
     public static bool TryParseStance(string text, out Stance stance)
     {
-        foreach (Stance candidate in Stances.Where(candidate => string.Equals(candidate.Value(), text, StringComparison.Ordinal)))
-        {
-            stance = candidate;
-            return true;
-        }
-
-        stance = Stance.Melee;
-        return false;
+        // Melee is the fallback, and it reads back as its own text, so the match check holds either way.
+        stance = Array.Find(Stances, candidate => string.Equals(candidate.Value(), text, StringComparison.Ordinal));
+        return string.Equals(stance.Value(), text, StringComparison.Ordinal);
     }
 }

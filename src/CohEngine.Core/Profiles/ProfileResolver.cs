@@ -127,8 +127,8 @@ public static class ProfileResolver
         {
             MetricValue value = literal.ValueKind switch
             {
-                JsonValueKind.True => MetricValue.Flag(true),
-                JsonValueKind.False => MetricValue.Flag(false),
+                JsonValueKind.True => MetricValue.Flag(flag: true),
+                JsonValueKind.False => MetricValue.Flag(flag: false),
                 _ => MetricValue.Of(literal.GetDouble()),
             };
             return new Target(metric, comparison, value);

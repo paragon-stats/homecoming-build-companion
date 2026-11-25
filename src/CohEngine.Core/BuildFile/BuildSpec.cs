@@ -30,9 +30,6 @@ public sealed record BuildSpec
     /// <summary>Gets the incarnate power names.</summary>
     public IReadOnlyList<string> Incarnates { get; init; } = [];
 
-    /// <summary>Gets the provenance block.</summary>
-    public BuildMetaData Meta { get; init; } = Mbd.Homecoming;
-
     /// <summary>Gets the character level; the file stores it minus one.</summary>
     public int Level { get; init; } = 50;
 }

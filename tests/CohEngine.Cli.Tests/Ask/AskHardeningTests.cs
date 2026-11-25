@@ -33,13 +33,8 @@ public sealed class AskHardeningTests : IDisposable
     {
         using StringWriter output = new();
         using StringWriter error = new();
-        int exit = await AskCommand.RunAsync(args, output, error, new MbdBuildSource(Store.MidsDirectory), handler, token).ConfigureAwait(false);
+        int exit = await AskCommand.RunAsync(args, output, error, new MbdBuildSource(Store.MidsDirectory), handler, AskCommandTests.UnsetBaseUrlVariable, token).ConfigureAwait(false);
         return (exit, output.ToString(), error.ToString());
-    }
-
-    private static Task<(int Exit, string Output, string Error)> RunAsync(HttpMessageHandler handler, params string[] args)
-    {
-        return RunAsync(handler, TestContext.Current.CancellationToken, args);
     }
 
     private static string[] Args(string provider, string keyVariable, string? baseUrl = null, string build = "")
@@ -61,7 +56,7 @@ public sealed class AskHardeningTests : IDisposable
     {
         string[] args = [Question, "--build", Dump, "--model", "m", option];
 
-        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), args);
+        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), TestContext.Current.CancellationToken, args);
 
         Assert.Equal((2, string.Empty), (exit, output));
         Assert.Contains($"argument {option[..^1]}: expected a non-empty value", error, StringComparison.Ordinal);
@@ -70,7 +65,7 @@ public sealed class AskHardeningTests : IDisposable
     [Fact]
     public async Task An_empty_question_is_a_usage_error()
     {
-        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), string.Empty, "--build", Dump, "--model", "m");
+        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), TestContext.Current.CancellationToken, string.Empty, "--build", Dump, "--model", "m");
 
         Assert.Equal(2, exit);
         Assert.Contains("the following arguments are required: question", error, StringComparison.Ordinal);
@@ -84,7 +79,7 @@ public sealed class AskHardeningTests : IDisposable
     {
         string[] args = second.Length == 0 ? [Question, "--build", Dump, "--model", "m", first] : [Question, "--build", Dump, "--model", "m", first, second];
 
-        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), args);
+        (int exit, string output, string error) = await RunAsync(new ThrowingHandler(), TestContext.Current.CancellationToken, args);
 
         Assert.Equal(2, exit);
         Assert.Contains("argument --api-key-env: takes the name of an environment variable, not a key", error, StringComparison.Ordinal);
@@ -94,7 +89,7 @@ public sealed class AskHardeningTests : IDisposable
     [Fact]
     public async Task An_unknown_option_is_named_without_its_value()
     {
-        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), Question, "--build", Dump, "--model", "m", "--api-key=" + TestKey);
+        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), TestContext.Current.CancellationToken, Question, "--build", Dump, "--model", "m", "--api-key=" + TestKey);
 
         Assert.Equal(2, exit);
         Assert.Contains("unrecognized arguments: --api-key", error, StringComparison.Ordinal);
@@ -107,7 +102,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_1");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-answer.json"));
 
-        (int exit, _, _) = await RunAsync(handler, "--build", Dump, "--model", "m", "--api-key-env", "COH_ASK_HARD_KEY_1", "--", "-why is it so?");
+        (int exit, _, _) = await RunAsync(handler, TestContext.Current.CancellationToken, "--build", Dump, "--model", "m", "--api-key-env", "COH_ASK_HARD_KEY_1", "--", "-why is it so?");
 
         Assert.Equal(0, exit);
         Assert.Contains("-why is it so?", Assert.Single(handler.Sent), StringComparison.Ordinal);
@@ -122,11 +117,10 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_2");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("openai-answer.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, Args(provider, "COH_ASK_HARD_KEY_2", url));
+        (int exit, string output, string error) = await RunAsync(handler, TestContext.Current.CancellationToken, Args(provider, "COH_ASK_HARD_KEY_2", url));
 
         Assert.Equal((1, string.Empty), (exit, output));
-        Assert.StartsWith($"error: E132: base URL '{url}", error, StringComparison.Ordinal);
-        Assert.Contains("use https, or a loopback address", error, StringComparison.Ordinal);
+        Assert.Equal($"error: E132: base URL '{new Uri(url)}' is http on a remote host, which would send the key unencrypted; use https, or a loopback address such as http://localhost" + Environment.NewLine, error);
         Assert.Empty(handler.Sent);
     }
 
@@ -142,7 +136,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_3");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture(reply));
 
-        (int exit, _, _) = await RunAsync(handler, Args(provider, "COH_ASK_HARD_KEY_3", url));
+        (int exit, _, _) = await RunAsync(handler, TestContext.Current.CancellationToken, Args(provider, "COH_ASK_HARD_KEY_3", url));
 
         Assert.Equal(0, exit);
         Assert.Single(handler.Sent);
@@ -154,7 +148,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_4");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-answer.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, Args("anthropic", "COH_ASK_HARD_KEY_4", build: scratch));
+        (int exit, string output, string error) = await RunAsync(handler, TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_4", build: scratch));
 
         Assert.Equal((1, string.Empty), (exit, output));
         Assert.StartsWith($"error: {AskErrorCodes.BuildUnreadable}: cannot read the build '", error, StringComparison.Ordinal);
@@ -169,7 +163,7 @@ public sealed class AskHardeningTests : IDisposable
         File.Copy(Bane, upper);
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-answer.json"));
 
-        (int exit, _, _) = await RunAsync(handler, Args("anthropic", "COH_ASK_HARD_KEY_5", build: upper));
+        (int exit, _, _) = await RunAsync(handler, TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_5", build: upper));
 
         Assert.Equal(0, exit);
         Assert.Contains("\"name\":\"validate\"", Assert.Single(handler.Sent), StringComparison.Ordinal);
@@ -180,7 +174,7 @@ public sealed class AskHardeningTests : IDisposable
     {
         WithKey("COH_ASK_HARD_KEY_6");
 
-        (int exit, string output, string error) = await RunAsync(new SequenceHandler(HttpStatusCode.OK, Fixture("anthropic-empty.json")), Args("anthropic", "COH_ASK_HARD_KEY_6"));
+        (int exit, string output, string error) = await RunAsync(new SequenceHandler(HttpStatusCode.OK, Fixture("anthropic-empty.json")), TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_6"));
 
         Assert.Equal((1, string.Empty), (exit, output));
         Assert.StartsWith($"error: {AskErrorCodes.ProviderReply}: the model returned no text", error, StringComparison.Ordinal);
@@ -192,7 +186,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_7");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-truncated.json"));
 
-        (int exit, string output, string error) = await RunAsync(handler, Args("anthropic", "COH_ASK_HARD_KEY_7"));
+        (int exit, string output, string error) = await RunAsync(handler, TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_7"));
 
         Assert.Equal(1, exit);
         Assert.StartsWith("The build is a Scrapper and the first metrics are", output, StringComparison.Ordinal);
@@ -207,7 +201,7 @@ public sealed class AskHardeningTests : IDisposable
         using CancellationTokenSource cancelled = new();
         await cancelled.CancelAsync();
 
-        (int timeoutExit, _, string timeoutError) = await RunAsync(new TimeoutHandler(), Args("anthropic", "COH_ASK_HARD_KEY_8"));
+        (int timeoutExit, _, string timeoutError) = await RunAsync(new TimeoutHandler(), TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_8"));
         (int cancelExit, string cancelOutput, string cancelError) = await RunAsync(new SequenceHandler(HttpStatusCode.OK, Fixture("anthropic-answer.json")), cancelled.Token, Args("anthropic", "COH_ASK_HARD_KEY_8"));
 
         Assert.Equal((1, 1), (timeoutExit, cancelExit));
@@ -220,7 +214,7 @@ public sealed class AskHardeningTests : IDisposable
     {
         WithKey("COH_ASK_HARD_KEY_9");
 
-        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), Args("openai", "COH_ASK_HARD_KEY_9"));
+        (int exit, _, string error) = await RunAsync(new ThrowingHandler(), TestContext.Current.CancellationToken, Args("openai", "COH_ASK_HARD_KEY_9"));
 
         Assert.Equal(1, exit);
         Assert.DoesNotContain("HTTP 0", error, StringComparison.Ordinal);
@@ -233,7 +227,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_10");
         SequenceHandler anthropic = new(HttpStatusCode.Unauthorized, Fixture("anthropic-error-echo-key.json"));
 
-        (int exit, string output, string error) = await RunAsync(anthropic, Args("anthropic", "COH_ASK_HARD_KEY_10"));
+        (int exit, string output, string error) = await RunAsync(anthropic, TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_10"));
 
         Assert.Equal(1, exit);
         Assert.StartsWith("error: Anthropic API 401 authentication_error: invalid x-api-key", error, StringComparison.Ordinal);
@@ -246,7 +240,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_11");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("anthropic-tool-use-bad-chain.json"), Fixture("anthropic-answer.json"));
 
-        (int exit, _, _) = await RunAsync(handler, Args("anthropic", "COH_ASK_HARD_KEY_11"));
+        (int exit, _, _) = await RunAsync(handler, TestContext.Current.CancellationToken, Args("anthropic", "COH_ASK_HARD_KEY_11"));
 
         Assert.Equal(0, exit);
         Assert.Contains("argument --stance: invalid choice", handler.Sent[1], StringComparison.Ordinal);
@@ -258,7 +252,7 @@ public sealed class AskHardeningTests : IDisposable
         WithKey("COH_ASK_HARD_KEY_12");
         SequenceHandler handler = new(HttpStatusCode.OK, Fixture("openai-tool-call-bad-arguments.json"), Fixture("openai-answer.json"));
 
-        (int exit, _, _) = await RunAsync(handler, Args("openai", "COH_ASK_HARD_KEY_12"));
+        (int exit, _, _) = await RunAsync(handler, TestContext.Current.CancellationToken, Args("openai", "COH_ASK_HARD_KEY_12"));
 
         Assert.Equal(0, exit);
         Assert.Contains("the tool was not run", handler.Sent[1], StringComparison.Ordinal);

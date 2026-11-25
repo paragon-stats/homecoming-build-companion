@@ -105,9 +105,9 @@ public sealed class FixtureLoadTests
             effects.Length,
             build.Slots.Sum(entry => entry.Slots.Count),
             build.Powers.Count(power => !power.Chosen),
-            build.Powers.Sum(power => power.RequiresPowers.Sum(group => group.Count)),
+            build.Powers.SelectMany(power => power.RequiresPowers).Sum(group => group.Count),
             build.Incarnates.Count,
-            build.Incarnates.Sum(incarnate => incarnate.SubPowers.Sum(sub => sub.Effects.Count)),
+            build.Incarnates.SelectMany(incarnate => incarnate.SubPowers).Sum(sub => sub.Effects.Count),
         ];
         Assert.Equal(counts, actual);
         Assert.Equal(scaleSum, effects.Sum(effect => effect.Scale));
@@ -116,7 +116,7 @@ public sealed class FixtureLoadTests
             int[] actualAssembly =
             [
                 build.PowerAssembly.Count,
-                build.PowerAssembly.Values.Sum(power => power.Power.Effects.Sum(effect => effect.Conditionals.Count)),
+                build.PowerAssembly.Values.SelectMany(power => power.Power.Effects).Sum(effect => effect.Conditionals.Count),
                 build.PowerAssembly.Values.Count(power => power.ProcInclude),
                 build.AssembledPowers.Count,
                 build.AssembledPowers.Values.Sum(list => list.Count),

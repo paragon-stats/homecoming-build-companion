@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Maths;
 
@@ -16,10 +18,7 @@ internal static class PowerAssembler
     /// <summary>One build power's assembled effects, before the cross-power pass.</summary>
     /// <param name="buildPower">The build power.</param>
     /// <param name="slots">Its slots.</param>
-    /// <param name="enhDb">The enhancement records.</param>
-    /// <param name="setDb">The set records.</param>
-    /// <param name="powers">The database powers assembly reaches.</param>
-    /// <param name="entities">The summoned entities.</param>
+    /// <param name="database">The enhancement, set, power and entity records.</param>
     /// <param name="archetypeIndex">The build's class index.</param>
     /// <param name="conditions">Whether a conditional GrantPower's conditions hold.</param>
     /// <returns>The assembled effects.</returns>
@@ -28,15 +27,12 @@ internal static class PowerAssembler
     public static AssembledEffects AssemblePower(
         BuildPowerAssembly buildPower,
         IReadOnlyList<SlotRef> slots,
-        IReadOnlyDictionary<int, EnhancementRecord> enhDb,
-        SetBonusDb setDb,
-        IReadOnlyDictionary<int, AssemblyPower> powers,
-        AssemblyEntities entities,
+        AssemblyDatabase database,
         int archetypeIndex,
         Func<Effect, bool> conditions)
     {
-        AssemblyInputs inputs = new(powers, entities, archetypeIndex);
-        (AssemblyPower power, List<Effect> effects) = Assemble(buildPower, slots, enhDb, setDb, inputs, conditions);
+        AssemblyInputs inputs = new(database.Powers, database.Entities, archetypeIndex);
+        (AssemblyPower power, List<Effect> effects) = Assemble(buildPower, slots, database.EnhDb, database.SetDb, inputs, conditions);
         return new AssembledEffects(Reindex(effects), power.IgnoreEnh);
     }
 
@@ -134,10 +130,10 @@ internal static class PowerAssembler
         }
 
         effects = ExpandExecutes(effects, byName);
-        foreach (SubPower sub in buildPower.SubPowers.Where(sub => sub.NidPower > -1 && sub.StatInclude))
+        foreach (int subNid in buildPower.SubPowers.Where(sub => sub.NidPower > -1 && sub.StatInclude).Select(sub => sub.NidPower))
         {
-            AssemblyPower subPower = AssemblyInputs.Record(inputs.Powers, sub.NidPower, "sub-power", $"build power {buildPower.BuildIndex} ({power.FullName})");
-            effects.AddRange(subPower.Effects.Select(effect => effect with { AbsorbedEffect = true, AbsorbedPowerNid = sub.NidPower, AbsorbedPowerType = subPower.PowerType }));
+            AssemblyPower subPower = AssemblyInputs.Record(inputs.Powers, subNid, "sub-power", $"build power {buildPower.BuildIndex.ToString(CultureInfo.InvariantCulture)} ({power.FullName})");
+            effects.AddRange(subPower.Effects.Select(effect => effect with { AbsorbedEffect = true, AbsorbedPowerNid = subNid, AbsorbedPowerType = subPower.PowerType }));
         }
 
         return (power, effects);
@@ -150,15 +146,12 @@ internal static class PowerAssembler
             return;
         }
 
-        foreach (Effect effect in power.Effects)
+        if (power.Effects.FirstOrDefault(effect => string.Equals(effect.EffectType, "PowerRedirect", StringComparison.Ordinal) && Math.Abs(effect.Probability - 1) < 0.01 && string.Equals(effect.SpecialCase, "None", StringComparison.Ordinal)) is { } redirect)
         {
-            if (string.Equals(effect.EffectType, "PowerRedirect", StringComparison.Ordinal) && Math.Abs(effect.Probability - 1) < 0.01 && string.Equals(effect.SpecialCase, "None", StringComparison.Ordinal))
-            {
-                throw new InvalidDataException(
-                    $"E88: {power.FullName} effect {effect.Index} redirects the power, but the export carries no "
-                    + "redirect target; expected the target power in the assembly inputs, found none; export the "
-                    + "effect's Override power before assembling this build");
-            }
+            throw new InvalidDataException(
+                $"E88: {power.FullName} effect {redirect.Index.ToString(CultureInfo.InvariantCulture)} redirects the power, but the export carries no "
+                + "redirect target; expected the target power in the assembly inputs, found none; export the "
+                + "effect's Override power before assembling this build");
         }
     }
 
@@ -187,33 +180,28 @@ internal static class PowerAssembler
         SetBonusDb setDb,
         AssemblyInputs inputs)
     {
-        string where = $"build power {buildPower.BuildIndex} ({buildPower.Power.FullName})";
-        bool summons = current.Any(effect => string.Equals(effect.EffectType, "EntCreate", StringComparison.Ordinal));
+        string where = $"build power {buildPower.BuildIndex.ToString(CultureInfo.InvariantCulture)} ({buildPower.Power.FullName})";
+        bool summons = current.Exists(effect => string.Equals(effect.EffectType, "EntCreate", StringComparison.Ordinal));
         List<Effect> output = [];
         bool grants = false;
-        foreach (SlotRef slot in slots)
+        foreach (int enhNid in slots.Select(slot => slot.Enh).Where(enhNid => enhNid >= 0))
         {
-            if (slot.Enh < 0)
-            {
-                continue;
-            }
-
-            EnhancementRecord enh = AssemblyInputs.Record(enhDb, slot.Enh, "enhancement", where);
+            EnhancementRecord enh = AssemblyInputs.Record(enhDb, enhNid, "enhancement", where);
             if (enh.PowerNid < 0 || (buildPower.ProcInclude && enh.IsProc) || enh.NidSet < 0)
             {
                 continue;
             }
 
-            EnhancementSetDef setDef = AssemblyInputs.Record(setDb.Sets, enh.NidSet, "enhancement set", $"enhancement {enh.Nid}");
-            int position = IndexOf(setDef.Enhancements, slot.Enh);
-            foreach (Effect effect in AssemblyInputs.Record(inputs.Powers, enh.PowerNid, "power", $"enhancement {enh.Nid}").Effects)
+            EnhancementSetDef setDef = AssemblyInputs.Record(setDb.Sets, enh.NidSet, "enhancement set", $"enhancement {enh.Nid.ToString(CultureInfo.InvariantCulture)}");
+            int position = IndexOf(setDef.Enhancements, enhNid);
+            foreach (Effect effect in AssemblyInputs.Record(inputs.Powers, enh.PowerNid, "power", $"enhancement {enh.Nid.ToString(CultureInfo.InvariantCulture)}").Effects)
             {
                 int copies;
-                if (summons && effect.Reward.Contains("Set_Bonus", StringComparison.Ordinal) && setDef.SetTypeName.Contains("Pet", StringComparison.Ordinal))
+                if (IsPetSetBonus(effect, setDef, summons))
                 {
                     copies = PetsOnlyCopies(effect, current, inputs.Entities, where);
                 }
-                else if (position < 0 || setDef.SpecialBonus[position].Index.Count != 0 || (enh.Effects.Count != 0 && IsBoostTable(effect.ModifierTable)))
+                else if (SkipsCopy(effect, enh, setDef, position))
                 {
                     continue;
                 }
@@ -229,6 +217,16 @@ internal static class PowerAssembler
         }
 
         return (output, grants);
+    }
+
+    private static bool IsPetSetBonus(Effect effect, EnhancementSetDef setDef, bool summons)
+    {
+        return summons && effect.Reward.Contains("Set_Bonus", StringComparison.Ordinal) && setDef.SetTypeName.Contains("Pet", StringComparison.Ordinal);
+    }
+
+    private static bool SkipsCopy(Effect effect, EnhancementRecord enh, EnhancementSetDef setDef, int position)
+    {
+        return position < 0 || setDef.SpecialBonus[position].Index.Count != 0 || (enh.Effects.Count != 0 && IsBoostTable(effect.ModifierTable));
     }
 
     private static int IndexOf(IReadOnlyList<int> values, int value)
@@ -255,7 +253,7 @@ internal static class PowerAssembler
         if (!string.Equals(effect.SpecialCase, "None", StringComparison.Ordinal))
         {
             throw new NotSupportedException(
-                $"E91: GrantPower effect {effect.Index} ({effect.Summon}) is gated on special case {effect.SpecialCase}; "
+                $"E91: GrantPower effect {effect.Index.ToString(CultureInfo.InvariantCulture)} ({effect.Summon}) is gated on special case {effect.SpecialCase}; "
                 + "expected special case None, found one; the character state it reads is not modelled");
         }
 
@@ -285,7 +283,7 @@ internal static class PowerAssembler
             foreach (int i in found)
             {
                 Effect grant = effects[i] = effects[i] with { EffectClass = "Ignored" };
-                AssemblyPower granted = AssemblyInputs.Record(inputs.Powers, grant.NSummon, "granted power", $"{power.FullName} effect {grant.Index}");
+                AssemblyPower granted = AssemblyInputs.Record(inputs.Powers, grant.NSummon, "granted power", $"{power.FullName} effect {grant.Index.ToString(CultureInfo.InvariantCulture)}");
                 effects.AddRange(Absorption.Absorb(granted, grant.Duration, inputs.ArchetypeIndex, inputs));
                 effects[^1] = Granted(effects[^1], grant, power);
             }

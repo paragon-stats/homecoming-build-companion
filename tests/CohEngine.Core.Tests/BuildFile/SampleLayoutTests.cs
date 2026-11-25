@@ -27,8 +27,9 @@ public sealed partial class SampleLayoutTests
         { ["community/scrapper/general/someone-dark-shield.mbd", "community/Scrapper/general/someone-dark-shield.mbd"], "differ only in letter case" },
     };
 
-    // Lower-case words joined by hyphens; a file name adds its extensions after dots, and an extension such as mids-totals.json may hold hyphens.
-    [GeneratedRegex(@"^[a-z0-9]+(-[a-z0-9]+)*(\.[a-z0-9]+(-[a-z0-9]+)*)*$", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
+    // Lower-case words joined by single hyphens or dots: a file name adds its extensions after dots, and an extension such as mids-totals.json may hold hyphens.
+    // Lookaheads over one character class, since the generated code for a repeated group leaves an unused label (CS0164).
+    [GeneratedRegex(@"^(?![.-])(?!.*[.-][.-])(?!.*[.-]$)[a-z0-9.-]+$", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 1000)]
     private static partial Regex LowerCaseName { get; }
 
     // A revision replaces the file and git keeps the history, so v2, r4, rev3 or i25 does not belong in a name.

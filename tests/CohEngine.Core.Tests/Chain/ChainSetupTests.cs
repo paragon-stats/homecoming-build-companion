@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Data;
@@ -65,7 +67,7 @@ public sealed class ChainSetupTests
     {
         ChainSetup setup = ChainReport.BuildChainSetup(Request());
 
-        Assert.Equal("Class_Scrapper Melee True 4 40", $"{setup.Context.ArchetypeClass} {setup.Context.Stance} {setup.ClicksAlwaysOn} {setup.Context.Assume("chain.min_cycles", 0.0)} {setup.Context.Movement.StandoffFt}");
+        Assert.Equal("Class_Scrapper Melee True 4 40", string.Create(CultureInfo.InvariantCulture, $"{setup.Context.ArchetypeClass} {setup.Context.Stance} {setup.ClicksAlwaysOn} {setup.Context.Assume("chain.min_cycles", 0.0)} {setup.Context.Movement.StandoffFt}"));
     }
 
     [Fact]

@@ -9,6 +9,7 @@ namespace CohEngine.Core.Chain;
 public static class AttackProfiles
 {
     private const string PveAlways = "target>enttype eq 'critter'";
+    private const string EffectsKey = "effects";
 
     private static readonly string[] SelfTargets = ["Self", "SelfAndPets"];
     private static readonly string[] PetCategories = ["Pet Damage", "Recharge Intensive Pets"];
@@ -36,18 +37,7 @@ public static class AttackProfiles
     public static IEnumerable<JsonElement> Templates(IEnumerable<JsonElement> effects)
     {
         ArgumentNullException.ThrowIfNull(effects);
-        foreach (JsonElement effect in effects)
-        {
-            foreach (JsonElement template in effect.Items("templates"))
-            {
-                yield return template;
-            }
-
-            foreach (JsonElement template in Templates(effect.Items("child_effects")))
-            {
-                yield return template;
-            }
-        }
+        return TemplatesOf(effects);
     }
 
     /// <summary>Whether one attribute is foe -Res: direction comes from the table name, the plain table's sign decides.</summary>
@@ -76,7 +66,7 @@ public static class AttackProfiles
     /// <returns>The templates.</returns>
     public static IReadOnlyList<JsonElement> FoeResDebuffTemplates(JsonElement power, PowerResolver? resolve)
     {
-        List<JsonElement> own = [.. Templates(power.ReqItems("effects"))];
+        List<JsonElement> own = [.. Templates(power.ReqItems(EffectsKey))];
         List<JsonElement> sources = [power];
         if (resolve is not null)
         {
@@ -86,7 +76,7 @@ public static class AttackProfiles
         return
         [
             .. sources
-                .SelectMany(source => PveTemplates(source.ReqItems("effects")))
+                .SelectMany(source => PveTemplates(source.ReqItems(EffectsKey)))
                 .Where(template => template.ReqItems("attribs").Any(attrib => FoeRes(attrib.GetString() ?? string.Empty, template.ReqStr("aspect"), template.ReqStr("target"), template.Str("table"), template.Num("scale", 0.0)))),
         ];
     }
@@ -152,6 +142,22 @@ public static class AttackProfiles
             && condition[prefix.Length..^1].All(letter => char.IsLetterOrDigit(letter) || letter == '_');
     }
 
+    private static IEnumerable<JsonElement> TemplatesOf(IEnumerable<JsonElement> effects)
+    {
+        foreach (JsonElement effect in effects)
+        {
+            foreach (JsonElement template in effect.Items("templates"))
+            {
+                yield return template;
+            }
+
+            foreach (JsonElement template in TemplatesOf(effect.Items("child_effects")))
+            {
+                yield return template;
+            }
+        }
+    }
+
     private static IEnumerable<JsonElement> PveTemplates(IEnumerable<JsonElement> effects)
     {
         foreach (JsonElement effect in effects)
@@ -204,7 +210,7 @@ public static class AttackProfiles
                 bool damage = attrib.EndsWith("_Dmg", StringComparison.Ordinal) && !string.Equals(attrib, "Heal_Dmg", StringComparison.Ordinal);
                 found.CreatesEntity |= string.Equals(attrib, "Create_Entity", StringComparison.Ordinal);
                 found.FoeDamage |= damage && string.Equals(aspect, "Absolute", StringComparison.Ordinal) && !string.Equals(target, "Self", StringComparison.Ordinal);
-                found.FoeRes |= FoeRes(attrib, aspect, target, table, template.Num("scale", 0.0));
+                found.FoeResDebuff |= FoeRes(attrib, aspect, target, table, template.Num("scale", 0.0));
                 if (damage && string.Equals(aspect, "Strength", StringComparison.Ordinal) && table.Contains("Buff_Dmg", StringComparison.Ordinal))
                 {
                     if (linked || SelfTargets.Contains(target))
@@ -269,16 +275,8 @@ public static class AttackProfiles
 
     private static Role RoleOf(JsonElement power, PowerResolver? resolve)
     {
-        IReadOnlyList<JsonElement> effects = power.ReqItems("effects");
-        if (effects.Count == 0 && resolve is not null && DefaultRedirect(power, resolve) is { } target)
-        {
-            effects = target.ReqItems("effects");
-        }
-
-        List<JsonElement> templates = [.. Templates(effects)];
-        Facts own = FactsOf(templates, linked: false);
-        Facts link = FactsOf(resolve is null ? [] : LinkedPowers(templates, resolve).SelectMany(linkedPower => Templates(linkedPower.ReqItems("effects"))), linked: true);
-        bool foeRes = own.FoeRes || link.FoeRes;
+        (Facts own, Facts link) = RoleFacts(power, resolve);
+        bool foeRes = own.FoeResDebuff || link.FoeResDebuff;
         string type = power.ReqStr("type");
         bool persistent = type is "Toggle" or "Auto";
         bool petCategory = power.Req("allowed_boostset_cats").EnumerateArray().Any(item => PetCategories.Contains(item.GetString()));
@@ -289,12 +287,7 @@ public static class AttackProfiles
 
         if (own.CreatesEntity)
         {
-            if (petCategory)
-            {
-                return Role.PetSummon;
-            }
-
-            return foeRes && !link.FoeDamage ? Role.Support : Role.Patch;
+            return EntityRole(petCategory, foeRes, link);
         }
 
         if (own.FoeDamage || link.FoeDamage)
@@ -304,14 +297,9 @@ public static class AttackProfiles
 
         if (string.Equals(type, "Click", StringComparison.Ordinal))
         {
-            if (foeRes || own.TeamBuff)
+            if (ClickRole(foeRes, own, link) is { } click)
             {
-                return Role.Support;
-            }
-
-            if (own.SelfBuff || link.SelfBuff)
-            {
-                return Role.BuffClick;
+                return click;
             }
         }
         else if (persistent && foeRes)
@@ -324,11 +312,46 @@ public static class AttackProfiles
             + "click damage buff; filter it out before classifying (Mids already counts self and team damage-buff toggles)");
     }
 
+    /// <summary>The power's own facts and its linked powers', following a no-mode redirect when it has no effects.</summary>
+    private static (Facts Own, Facts Link) RoleFacts(JsonElement power, PowerResolver? resolve)
+    {
+        IReadOnlyList<JsonElement> effects = power.ReqItems(EffectsKey);
+        if (effects.Count == 0 && resolve is not null && DefaultRedirect(power, resolve) is { } target)
+        {
+            effects = target.ReqItems(EffectsKey);
+        }
+
+        List<JsonElement> templates = [.. Templates(effects)];
+        Facts own = FactsOf(templates, linked: false);
+        Facts link = FactsOf(resolve is null ? [] : LinkedPowers(templates, resolve).SelectMany(linkedPower => Templates(linkedPower.ReqItems(EffectsKey))), linked: true);
+        return (own, link);
+    }
+
+    private static Role EntityRole(bool petCategory, bool foeRes, Facts link)
+    {
+        if (petCategory)
+        {
+            return Role.PetSummon;
+        }
+
+        return foeRes && !link.FoeDamage ? Role.Support : Role.Patch;
+    }
+
+    private static Role? ClickRole(bool foeRes, Facts own, Facts link)
+    {
+        if (foeRes || own.TeamBuff)
+        {
+            return Role.Support;
+        }
+
+        return own.SelfBuff || link.SelfBuff ? Role.BuffClick : null;
+    }
+
     private struct Facts
     {
         public bool CreatesEntity;
         public bool FoeDamage;
-        public bool FoeRes;
+        public bool FoeResDebuff;
         public bool SelfBuff;
         public bool TeamBuff;
     }

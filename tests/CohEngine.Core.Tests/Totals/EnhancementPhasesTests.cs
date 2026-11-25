@@ -20,45 +20,8 @@ public sealed class EnhancementPhasesTests
     private static readonly Effect Base = Make.Effect;
     private static readonly SlotRef Io50 = new() { Level = 0, IsInherent = false, Enh = 1, Grade = 0, IoLevel = 49, RelativeLevel = 4 };
 
-    public static TheoryData<Effect, string, string, string> GlobalTerms => new()
-    {
-        { Base with { EffectType = "Regeneration" }, "effect", "eEffectType", "Regeneration" },
-        { Base with { EffectType = "Defense", DamageType = "Cold" }, "defense", "eDamage", "Cold" },
-        { Base with { EffectType = "Resistance", DamageType = "Cold" }, "resistance", "eDamage", "Cold" },
-        { Base with { EffectType = "Damage", DamageType = "Cold" }, "damage", "eDamage", "Cold" },
-        { Base with { EffectType = "Mez", MezType = "Held" }, "mez", "eMez", "Held" },
-        { Base with { EffectType = "SpeedFlying", Scale = 1.0 }, "effect", "eEffectType", "SpeedFlying" },
-        { Base with { EffectType = "SpeedFlying", Scale = -1.0 }, "effect_aux", "eEffectType", "SpeedFlying" },
-        { Base with { EffectType = "Enhancement", EtModifies = "SpeedJumping", Scale = -1.0 }, "effect_aux", "eEffectType", "SpeedJumping" },
-        { Base with { EffectType = "Enhancement", EtModifies = "SpeedJumping", Scale = 1.0 }, "effect", "eEffectType", "SpeedJumping" },
-    };
-
-    public static TheoryData<Effect> GlobalSkips => new()
-    {
-        // A scalar aspect is folded into the power, not the effect.
-        Base with { EffectType = "RechargeTime" },
-        Base with { EffectType = "Regeneration", Buffable = false },
-        Base with { EffectType = "SpeedFlying", Scale = 0.0 },
-        Base with { EffectType = "Mez", MezType = "Held", AttribType = "Duration" },
-    };
-
-    public static TheoryData<Effect, string, int> EnhancePassRoutes => new()
-    {
-        { Base with { EffectType = "Enhancement", EtModifies = "Mez", MezType = "Held", ToWho = "Self" }, "mez", Mez("Held") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "Fire", ToWho = "Self" }, "defense", TotalsMake.Damage("Fire") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "None", ToWho = "Self" }, "effect", Type("Defense") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "None", ToWho = "Self" }, "effect", Type("Resistance") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "Cold", ToWho = "Self" }, "resistance", TotalsMake.Damage("Cold") },
-        { Base with { EffectType = "DamageBuff", DamageType = "Fire", ToWho = "Self" }, "damage", TotalsMake.Damage("Fire") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Heal", ToWho = "Self" }, "effect", Type("Heal") },
-        { Base with { EffectType = "Enhancement", EtModifies = "RechargeTime", ToWho = "Self" }, "effect", Type("RechargeTime") },
-        { Base with { EffectType = "Enhancement", EtModifies = "SpeedRunning", ToWho = "Self", BuffMode = "Normal" }, "effect", Type("SpeedRunning") },
-        { Base with { EffectType = "Enhancement", EtModifies = "SpeedRunning", ToWho = "Self", BuffMode = "Debuff" }, "effect_aux", Type("SpeedRunning") },
-        { Base with { EffectType = "Enhancement", EtModifies = "Mez", MezType = "None", ToWho = "Self" }, "mez", Mez("None") },
-    };
-
-    public static TheoryData<Effect> EnhancementSumsExcluded => new()
-    {
+    private static readonly Effect[] EnhancementSumsExcludedCases =
+    [
         Base with { EffectType = "Enhancement", EtModifies = "Haste", Probability = 0.0 },
         Base with { EffectType = "Defense", EtModifies = "Haste" },
         Base with { EffectType = "Enhancement", EtModifies = "Haste", ToWho = "Target" },
@@ -66,7 +29,52 @@ public sealed class EnhancementPhasesTests
         Base with { EffectType = "Enhancement", EtModifies = "Haste", PvMode = "PvP" },
         Base with { EffectType = "Enhancement", EtModifies = "Haste", AbsorbedEffect = true, AbsorbedPowerType = "GlobalBoost" },
         Base with { EffectType = "Enhancement", EtModifies = "Recovery" },
-    };
+    ];
+
+    private static readonly (Effect, string, int)[] EnhancePassRoutesCases =
+    [
+        (Base with { EffectType = "Enhancement", EtModifies = "Mez", MezType = "Held", ToWho = "Self" }, "mez", Mez("Held")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "Fire", ToWho = "Self" }, "defense", TotalsMake.Damage("Fire")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Defense", DamageType = "None", ToWho = "Self" }, "effect", Type("Defense")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "None", ToWho = "Self" }, "effect", Type("Resistance")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Resistance", DamageType = "Cold", ToWho = "Self" }, "resistance", TotalsMake.Damage("Cold")),
+        (Base with { EffectType = "DamageBuff", DamageType = "Fire", ToWho = "Self" }, "damage", TotalsMake.Damage("Fire")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Heal", ToWho = "Self" }, "effect", Type("Heal")),
+        (Base with { EffectType = "Enhancement", EtModifies = "RechargeTime", ToWho = "Self" }, "effect", Type("RechargeTime")),
+        (Base with { EffectType = "Enhancement", EtModifies = "SpeedRunning", ToWho = "Self", BuffMode = "Normal" }, "effect", Type("SpeedRunning")),
+        (Base with { EffectType = "Enhancement", EtModifies = "SpeedRunning", ToWho = "Self", BuffMode = "Debuff" }, "effect_aux", Type("SpeedRunning")),
+        (Base with { EffectType = "Enhancement", EtModifies = "Mez", MezType = "None", ToWho = "Self" }, "mez", Mez("None")),
+    ];
+
+    private static readonly Effect[] GlobalSkipsCases =
+    [
+        // A scalar aspect is folded into the power, not the effect.
+        Base with { EffectType = "RechargeTime" },
+        Base with { EffectType = "Regeneration", Buffable = false },
+        Base with { EffectType = "SpeedFlying", Scale = 0.0 },
+        Base with { EffectType = "Mez", MezType = "Held", AttribType = "Duration" },
+    ];
+
+    private static readonly (Effect, string, string, string)[] GlobalTermsCases =
+    [
+        (Base with { EffectType = "Regeneration" }, "effect", "eEffectType", "Regeneration"),
+        (Base with { EffectType = "Defense", DamageType = "Cold" }, "defense", "eDamage", "Cold"),
+        (Base with { EffectType = "Resistance", DamageType = "Cold" }, "resistance", "eDamage", "Cold"),
+        (Base with { EffectType = "Damage", DamageType = "Cold" }, "damage", "eDamage", "Cold"),
+        (Base with { EffectType = "Mez", MezType = "Held" }, "mez", "eMez", "Held"),
+        (Base with { EffectType = "SpeedFlying", Scale = 1.0 }, "effect", "eEffectType", "SpeedFlying"),
+        (Base with { EffectType = "SpeedFlying", Scale = -1.0 }, "effect_aux", "eEffectType", "SpeedFlying"),
+        (Base with { EffectType = "Enhancement", EtModifies = "SpeedJumping", Scale = -1.0 }, "effect_aux", "eEffectType", "SpeedJumping"),
+        (Base with { EffectType = "Enhancement", EtModifies = "SpeedJumping", Scale = 1.0 }, "effect", "eEffectType", "SpeedJumping"),
+    ];
+
+    public static TheoryData<int> EnhancementSumsExcluded => [.. Enumerable.Range(0, EnhancementSumsExcludedCases.Length)];
+
+    public static TheoryData<int> EnhancePassRoutes => [.. Enumerable.Range(0, EnhancePassRoutesCases.Length)];
+
+    public static TheoryData<int> GlobalSkips => [.. Enumerable.Range(0, GlobalSkipsCases.Length)];
+
+    public static TheoryData<int> GlobalTerms => [.. Enumerable.Range(0, GlobalTermsCases.Length)];
 
     private static MathTables Tables => Fixtures.Store.Maths;
 
@@ -110,7 +118,7 @@ public sealed class EnhancementPhasesTests
     {
         Power power = Make.Power(Base with { EffectType = "Defense", Buffable = true }, Base with { Index = 1, EffectType = "Defense", Buffable = true }) with { BuildIndex = 0 };
         Dictionary<(int BuildIndex, int EffectIndex), (double PreEd, double PostEd)> incarnate = new() { [(0, 1)] = (0.1, 0.2) };
-        Dictionary<(int BuildIndex, int EffectIndex), double> mults = PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], Slots(1), EnhDb(Record(("Defense", -1, 1))), Tables, 50, Context(), incarnate);
+        Dictionary<(int BuildIndex, int EffectIndex), double> mults = PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], Slots(1), new EnhancementTables(EnhDb(Record(("Defense", -1, 1))), 50, Tables), Context(), incarnate);
         double slotted = mults[(0, 0)];
         double preEd = F32.Round(Tables.MultIo[49][1] + 0.1);
         Assert.Equal(F32.Round(1.0 + F32.Round(F32.Round(Ed.ApplyEd(Schedule.B, preEd, Tables) + 0.0) + 0.2)), mults[(0, 1)]);
@@ -119,8 +127,9 @@ public sealed class EnhancementPhasesTests
 
     [Theory]
     [MemberData(nameof(GlobalTerms))]
-    public void Global_term_is_added_after_ed(Effect effect, string bucket, string enumName, string member)
+    public void Global_term_is_added_after_ed(int row)
     {
+        (Effect effect, string bucket, string enumName, string member) = GlobalTermsCases[row];
         BuffsX selfEnhance = new(Enums);
         Bucket(selfEnhance, bucket)[Enums.Maps[enumName][member]] = F32.Round(0.25);
         Assert.Equal(F32.Round(1.25), Multiplier(effect with { Buffable = true }, Record(), 0, selfEnhance));
@@ -128,8 +137,9 @@ public sealed class EnhancementPhasesTests
 
     [Theory]
     [MemberData(nameof(GlobalSkips))]
-    public void Global_term_skips(Effect effect)
+    public void Global_term_skips(int row)
     {
+        Effect effect = GlobalSkipsCases[row];
         BuffsX selfEnhance = new(Enums);
         foreach (string name in new[] { "RechargeTime", "Regeneration", "SpeedFlying" })
         {
@@ -147,7 +157,7 @@ public sealed class EnhancementPhasesTests
         BuffsX selfEnhance = new(Enums);
         selfEnhance.Effect[Type("Regeneration")] = F32.Round(0.25);
         Power power = Make.Power(Base with { EffectType = "Regeneration", Buffable = true }) with { BuildIndex = Accumulator.SetBonusBuildIndex };
-        Assert.Empty(PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], new Dictionary<int, IReadOnlyList<SlotRef>>(), EnhDb(), Tables, 50, Context(), selfEnhance: selfEnhance));
+        Assert.Empty(PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], new Dictionary<int, IReadOnlyList<SlotRef>>(), new EnhancementTables(EnhDb(), 50, Tables), Context(), selfEnhance: selfEnhance));
     }
 
     [Fact]
@@ -176,8 +186,9 @@ public sealed class EnhancementPhasesTests
 
     [Theory]
     [MemberData(nameof(EnhancePassRoutes))]
-    public void Enhance_pass_routes_to_its_bucket(Effect effect, string bucket, int index)
+    public void Enhance_pass_routes_to_its_bucket(int row)
     {
+        (Effect effect, string bucket, int index) = EnhancePassRoutesCases[row];
         BuffsX buffs = EnhancePass(Make.Power(effect));
         Assert.Equal(F32.Round(1.0), Bucket(buffs, bucket)[index]);
         if (bucket is "effect" or "effect_aux")
@@ -235,8 +246,9 @@ public sealed class EnhancementPhasesTests
 
     [Theory]
     [MemberData(nameof(EnhancementSumsExcluded))]
-    public void Enhancement_mag_sum_excludes(Effect effect)
+    public void Enhancement_mag_sum_excludes(int row)
     {
+        Effect effect = EnhancementSumsExcludedCases[row];
         Assert.Empty(Context().EnhancementMagSum(Make.Power(effect), "Haste"));
     }
 
@@ -358,7 +370,7 @@ public sealed class EnhancementPhasesTests
     private static double? Multiplier(Effect effect, EnhancementRecord record, int slotCount, BuffsX? selfEnhance = null)
     {
         Power power = Make.Power(effect) with { BuildIndex = 0 };
-        Dictionary<(int BuildIndex, int EffectIndex), double> mults = PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], Slots(slotCount), EnhDb(record), Tables, 50, Context(), selfEnhance: selfEnhance);
+        Dictionary<(int BuildIndex, int EffectIndex), double> mults = PerPowerEnhancementMathPhase.ComputeEnhMultipliers([power], Slots(slotCount), new EnhancementTables(EnhDb(record), 50, Tables), Context(), selfEnhance: selfEnhance);
         return mults.TryGetValue((0, effect.Index), out double value) ? value : null;
     }
 }

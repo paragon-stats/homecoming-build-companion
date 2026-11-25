@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Diagnostics;
@@ -67,7 +69,7 @@ public sealed class DamageModelTests
     {
         EnduranceBudget budget = new(100.0, 2.0, 0.5);
 
-        Assert.Equal($"{F32.Round(1.5)} True {F32.Round(100.0)}", $"{budget.NetPerSec()} {double.IsPositiveInfinity(budget.TimeToEmpty())} {budget.TimeToEmpty(2.5)}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(1.5)} True {F32.Round(100.0)}"), string.Create(CultureInfo.InvariantCulture, $"{budget.NetPerSec()} {double.IsPositiveInfinity(budget.TimeToEmpty())} {budget.TimeToEmpty(2.5)}"));
     }
 
     [Theory]
@@ -80,7 +82,7 @@ public sealed class DamageModelTests
     [Fact]
     public void Crossing_the_standoff_takes_distance_over_speed_and_no_speed_means_never()
     {
-        Assert.Equal($"{F32.Round(2.0)} True", $"{new Movement(20.0, 40.0).SwitchTime} {double.IsPositiveInfinity(new Movement(0.0, 40.0).SwitchTime)}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(2.0)} True"), string.Create(CultureInfo.InvariantCulture, $"{new Movement(20.0, 40.0).SwitchTime} {double.IsPositiveInfinity(new Movement(0.0, 40.0).SwitchTime)}"));
     }
 
     [Fact]
@@ -97,24 +99,25 @@ public sealed class DamageModelTests
     {
         List<(double, double)> seen = [];
         SourceRegistration patch = Source("patch", 10.0, 0.25, 0.5);
-        Func<DamageContext, SourceResult?> record = context =>
+        SourceResult? Record(DamageContext context)
         {
             seen.Add((context.TimelineAvailable, context.OtherDrainPerSec));
             return new SourceResult { Source = "chain", Dps = 100.0, EndPerSec = 1.0 };
-        };
-        SourceRegistration chain = new(record, FillsRemainder: true);
+        }
+
+        SourceRegistration chain = new(Record, FillsRemainder: true);
 
         DamageReport report = DamageModel.Evaluate(Context(), [chain, patch, new(_ => null, FillsRemainder: false)], []);
 
-        Assert.Equal($"{F32.Round(0.75)},{F32.Round(0.5)} patch,chain {F32.Round(110.0)} {F32.Round(1.5)} True {F32.Round(0.75)} {F32.Round(0.5)}", $"{seen[0].Item1},{seen[0].Item2} {string.Join(',', report.Sources.Select(source => source.Source))} {report.TotalDps} {report.TotalDrainPerSec} {double.IsPositiveInfinity(report.TimeToEmpty)} {report.RemainderContext.TimelineAvailable} {report.RemainderContext.OtherDrainPerSec}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(0.75)},{F32.Round(0.5)} patch,chain {F32.Round(110.0)} {F32.Round(1.5)} True {F32.Round(0.75)} {F32.Round(0.5)}"), string.Create(CultureInfo.InvariantCulture, $"{seen[0].Item1},{seen[0].Item2} {string.Join(',', report.Sources.Select(source => source.Source))} {report.TotalDps} {report.TotalDrainPerSec} {double.IsPositiveInfinity(report.TimeToEmpty)} {report.RemainderContext.TimelineAvailable} {report.RemainderContext.OtherDrainPerSec}"));
     }
 
     [Fact]
     public void A_scoped_modifier_scales_only_its_sources_an_unscoped_one_scales_all_and_none_is_skipped()
     {
-        DamageReport report = DamageModel.Evaluate(Context(), [new(Chain, true), Source("pet", 50.0)], [Modifier("debuff", 1.2, 0.5), Modifier("fury", 2.0, appliesTo: ["chain"]), _ => null]);
+        DamageReport report = DamageModel.Evaluate(Context(), [new(Chain, FillsRemainder: true), Source("pet", 50.0)], [Modifier("debuff", 1.2, 0.5), Modifier("fury", 2.0, appliesTo: ["chain"]), _ => null]);
 
-        Assert.Equal($"{F32.Round(100.0 * 1.1 * 2.0)} {F32.Round(50.0 * 1.1)} debuff,fury", $"{Scaled(report, "chain")} {Scaled(report, "pet")} {string.Join(',', report.Modifiers.Select(modifier => modifier.Modifier))}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(100.0 * 1.1 * 2.0)} {F32.Round(50.0 * 1.1)} debuff,fury"), string.Create(CultureInfo.InvariantCulture, $"{Scaled(report, "chain")} {Scaled(report, "pet")} {string.Join(',', report.Modifiers.Select(modifier => modifier.Modifier))}"));
     }
 
     [Fact]
@@ -123,7 +126,7 @@ public sealed class DamageModelTests
         ModifierResult buff = new() { Modifier = "fury", Multiplier = 2.0, Additive = true };
         ModifierResult doubling = new() { Modifier = "containment", Multiplier = 2.0 };
 
-        Assert.Equal($"{F32.Round(1.5)} {F32.Round(2.0)}", $"{buff.Scale(2.0)} {doubling.Scale(2.0)}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(1.5)} {F32.Round(2.0)}"), string.Create(CultureInfo.InvariantCulture, $"{buff.Scale(2.0)} {doubling.Scale(2.0)}"));
     }
 
     [Fact]
@@ -132,18 +135,18 @@ public sealed class DamageModelTests
         Func<DamageContext, ModifierResult?> fury = Modifier("fury", 2.5, additive: true);
         Func<DamageContext, ModifierResult?> buildUp = Modifier("build_up", 2.0, additive: true);
 
-        DamageReport both = DamageModel.Evaluate(Context(2.5), [new(Chain, true)], [fury, buildUp]);
-        DamageReport mixed = DamageModel.Evaluate(Context(2.5), [new(Chain, true)], [fury, buildUp, Modifier("contain", 1.5)]);
+        DamageReport both = DamageModel.Evaluate(Context(2.5), [new(Chain, FillsRemainder: true)], [fury, buildUp]);
+        DamageReport mixed = DamageModel.Evaluate(Context(2.5), [new(Chain, FillsRemainder: true)], [fury, buildUp, Modifier("contain", 1.5)]);
 
-        Assert.Equal($"{F32.Round(100.0 * 2.0)} {F32.Round(100.0 * 3.0)}", $"{Scaled(both, "chain")} {Scaled(mixed, "chain")}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(100.0 * 2.0)} {F32.Round(100.0 * 3.0)}"), string.Create(CultureInfo.InvariantCulture, $"{Scaled(both, "chain")} {Scaled(mixed, "chain")}"));
     }
 
     [Fact]
     public void A_source_with_its_own_baseline_is_scaled_against_it()
     {
-        DamageReport report = DamageModel.Evaluate(Context(2.0), [new(Chain, true), Source("pet", 100.0, baseline: 1.0)], [Modifier("buff", 1.5, additive: true)]);
+        DamageReport report = DamageModel.Evaluate(Context(2.0), [new(Chain, FillsRemainder: true), Source("pet", 100.0, baseline: 1.0)], [Modifier("buff", 1.5, additive: true)]);
 
-        Assert.Equal($"{F32.Round(125.0)} {F32.Round(150.0)}", $"{Scaled(report, "chain")} {Scaled(report, "pet")}");
+        Assert.Equal(string.Create(CultureInfo.InvariantCulture, $"{F32.Round(125.0)} {F32.Round(150.0)}"), string.Create(CultureInfo.InvariantCulture, $"{Scaled(report, "chain")} {Scaled(report, "pet")}"));
     }
 
     [Fact]
@@ -151,13 +154,13 @@ public sealed class DamageModelTests
     {
         List<(double, double)> seen = [];
 
-        Func<DamageContext, ModifierResult?> probe = context =>
+        ModifierResult? Probe(DamageContext context)
         {
             seen.Add((context.TimelineAvailable, context.OtherDrainPerSec));
             return null;
-        };
+        }
 
-        DamageModel.Evaluate(Context(), [Source("patch", 1.0, 0.25, 0.5)], [probe]);
+        DamageModel.Evaluate(Context(), [Source("patch", 1.0, 0.25, 0.5)], [Probe]);
 
         Assert.Equal((F32.Round(0.75), F32.Round(0.5)), Assert.Single(seen));
     }
@@ -181,7 +184,7 @@ public sealed class DamageModelTests
     [Fact]
     public void A_probe_source_and_modifier_fold_to_nothing()
     {
-        DamageReport report = DamageModel.Evaluate(Context(), [new(_ => null, true)], [_ => null]);
+        DamageReport report = DamageModel.Evaluate(Context(), [new(_ => null, FillsRemainder: true)], [_ => null]);
 
         Assert.Empty(report.ScaledDps);
     }
@@ -191,15 +194,15 @@ public sealed class DamageModelTests
     {
         DamageReport report = DamageModel.Evaluate(Context(), [Source("a", 1.0), Source("a", 2.0)], []);
 
-        Assert.Equal("a=2", string.Join(',', report.ScaledDps.Select(pair => $"{pair.Key}={pair.Value}")));
+        Assert.Equal("a=2", string.Join(',', report.ScaledDps.Select(pair => string.Create(CultureInfo.InvariantCulture, $"{pair.Key}={pair.Value}"))));
     }
 
     [Fact]
     public void Evaluate_totals_scaled_dps_and_orders_remainder_sources_last()
     {
-        DamageReport report = DamageModel.Evaluate(Context(), [Source("r", 20.0, remainder: true), Source("a", 10.0, 0.25, 1.0), new(_ => null, false), new(_ => null, true)], [Modifier("m1", 1.5, additive: true), Modifier("m2", 2.0, appliesTo: ["a"]), _ => null]);
+        DamageReport report = DamageModel.Evaluate(Context(), [Source("r", 20.0, remainder: true), Source("a", 10.0, 0.25, 1.0), new(_ => null, FillsRemainder: false), new(_ => null, FillsRemainder: true)], [Modifier("m1", 1.5, additive: true), Modifier("m2", 2.0, appliesTo: ["a"]), _ => null]);
 
-        Assert.Equal("a=30,r=30 60", string.Join(',', report.ScaledDps.Select(pair => $"{pair.Key}={pair.Value}")) + " " + report.TotalDps);
+        Assert.Equal("a=30,r=30 60", string.Join(',', report.ScaledDps.Select(pair => string.Create(CultureInfo.InvariantCulture, $"{pair.Key}={pair.Value}"))) + " " + report.TotalDps.ToString(CultureInfo.InvariantCulture));
     }
 
     [Fact]
@@ -237,6 +240,6 @@ public sealed class DamageModelTests
     {
         DamageContext context = Context() with { Assumptions = new Dictionary<string, double>(StringComparer.Ordinal) { ["k"] = 3.0 } };
 
-        Assert.Equal("3 9", $"{context.Assume("k", 9.0)} {context.Assume("none", 9.0)}");
+        Assert.Equal("3 9", string.Create(CultureInfo.InvariantCulture, $"{context.Assume("k", 9.0)} {context.Assume("none", 9.0)}"));
     }
 }

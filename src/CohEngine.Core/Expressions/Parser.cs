@@ -44,40 +44,51 @@ internal sealed class Parser
         int i = 0;
         while (i < text.Length)
         {
-            char current = text[i];
-            int start = i;
-            if (char.IsWhiteSpace(current))
+            if (char.IsWhiteSpace(text[i]))
             {
                 i++;
                 continue;
             }
 
-            if (char.IsAsciiDigit(current) || (current == '.' && i + 1 < text.Length && char.IsAsciiDigit(text[i + 1])))
+            int end = TokenEnd(text, i);
+            if (end < 0)
             {
-                i = ScanNumber(text, i);
-            }
-            else if (char.IsLetter(current) || current == '_')
-            {
-                while (i < text.Length && (char.IsLetterOrDigit(text[i]) || text[i] == '_'))
-                {
-                    i++;
-                }
-            }
-            else
-            {
-                string? symbol = Symbols.FirstOrDefault(candidate => string.CompareOrdinal(text, start, candidate, 0, candidate.Length) == 0);
-                if (symbol is null)
-                {
-                    return null;
-                }
-
-                i += symbol.Length;
+                return null;
             }
 
-            found.Add(text[start..i]);
+            found.Add(text[i..end]);
+            i = end;
         }
 
         return found;
+    }
+
+    /// <summary>Where the token starting at a position ends, or -1 when no token starts there.</summary>
+    private static int TokenEnd(string text, int start)
+    {
+        char current = text[start];
+        if (char.IsAsciiDigit(current) || (current == '.' && start + 1 < text.Length && char.IsAsciiDigit(text[start + 1])))
+        {
+            return ScanNumber(text, start);
+        }
+
+        if (char.IsLetter(current) || current == '_')
+        {
+            return ScanName(text, start);
+        }
+
+        string? symbol = Symbols.FirstOrDefault(candidate => string.CompareOrdinal(text, start, candidate, 0, candidate.Length) == 0);
+        return symbol is null ? -1 : start + symbol.Length;
+    }
+
+    private static int ScanName(string text, int i)
+    {
+        while (i < text.Length && (char.IsLetterOrDigit(text[i]) || text[i] == '_'))
+        {
+            i++;
+        }
+
+        return i;
     }
 
     private static int ScanNumber(string text, int i)
@@ -87,22 +98,27 @@ internal sealed class Parser
             i++;
         }
 
-        if (i < text.Length && (text[i] == 'e' || text[i] == 'E'))
-        {
-            int exponent = i + 1;
-            if (exponent < text.Length && (text[exponent] == '+' || text[exponent] == '-'))
-            {
-                exponent++;
-            }
+        return i < text.Length && (text[i] == 'e' || text[i] == 'E') ? ScanExponent(text, i) : i;
+    }
 
-            if (exponent < text.Length && char.IsAsciiDigit(text[exponent]))
-            {
-                i = exponent;
-                while (i < text.Length && char.IsAsciiDigit(text[i]))
-                {
-                    i++;
-                }
-            }
+    /// <summary>The end of an exponent starting at the 'e', or the 'e' itself when no digits follow.</summary>
+    private static int ScanExponent(string text, int mark)
+    {
+        int exponent = mark + 1;
+        if (exponent < text.Length && (text[exponent] == '+' || text[exponent] == '-'))
+        {
+            exponent++;
+        }
+
+        if (exponent >= text.Length || !char.IsAsciiDigit(text[exponent]))
+        {
+            return mark;
+        }
+
+        int i = exponent;
+        while (i < text.Length && char.IsAsciiDigit(text[i]))
+        {
+            i++;
         }
 
         return i;
@@ -194,18 +210,7 @@ internal sealed class Parser
         {
             if (Accept("("))
             {
-                List<Node> args = [];
-                while (!Accept(")"))
-                {
-                    if ((args.Count > 0 && !Accept(",")) || Comparison() is not { } arg)
-                    {
-                        return null;
-                    }
-
-                    args.Add(arg);
-                }
-
-                node = new Node.Call(node, args);
+                node = Call(node);
             }
             else if (Accept("."))
             {
@@ -218,6 +223,22 @@ internal sealed class Parser
         }
 
         return node;
+    }
+
+    private Node.Call? Call(Node function)
+    {
+        List<Node> args = [];
+        while (!Accept(")"))
+        {
+            if ((args.Count > 0 && !Accept(",")) || Comparison() is not { } arg)
+            {
+                return null;
+            }
+
+            args.Add(arg);
+        }
+
+        return new Node.Call(function, args);
     }
 
     private Node? Atom()

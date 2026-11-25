@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Diagnostics;
 
 namespace CohEngine.Core.Registry.HardLimitRules;
@@ -13,11 +15,11 @@ internal static class PowerPickCountRule
         int count = context.Picks.Count;
         if (count > PowerGroups.MaxPowerPicks)
         {
-            string message = $"the build picks {count} powers; the game grants only {PowerGroups.MaxPowerPicks} picks "
+            string message = string.Create(CultureInfo.InvariantCulture, $"the build picks {count} powers; the game grants only {PowerGroups.MaxPowerPicks} picks ")
                 + "(inherents excluded)";
             yield return new Diagnostic("H-POWER-001", "error", message)
             {
-                Fix = $"remove {count - PowerGroups.MaxPowerPicks} power pick(s)",
+                Fix = string.Create(CultureInfo.InvariantCulture, $"remove {count - PowerGroups.MaxPowerPicks} power pick(s)"),
                 Expected = PowerGroups.MaxPowerPicks,
                 Actual = count,
             };

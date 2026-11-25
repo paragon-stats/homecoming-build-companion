@@ -2,16 +2,18 @@ using System.Text.RegularExpressions;
 
 namespace CohEngine.Ai.Tests;
 
-public sealed class NoSecretsTests
+public sealed partial class NoSecretsTests
 {
     private static readonly string[] TextExtensions = [".cs", ".csproj", ".props", ".json", ".yml", ".yaml", ".md", ".txt", ".xml", ".slnx", ".sh", ".ps1"];
 
-    // The second pattern is assembled from parts so this file does not match itself.
-    private static readonly Regex[] Patterns =
-    [
-        new("sk-[A-Za-z0-9]{20,}", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5)),
-        new("(ANTHROPIC|OPENAI)" + "_API_KEY=\\S+", RegexOptions.ExplicitCapture, TimeSpan.FromSeconds(5)),
-    ];
+    private static readonly Regex[] Patterns = [ProviderKey, KeyAssignment];
+
+    [GeneratedRegex("sk-[A-Za-z0-9]{20,}", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex ProviderKey { get; }
+
+    // The pattern is assembled from parts so this file does not match itself.
+    [GeneratedRegex("(ANTHROPIC|OPENAI)" + "_API_KEY=\\S+", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex KeyAssignment { get; }
 
     private static bool IsBuildOutput(string file) =>
         file.Contains($"{Path.DirectorySeparatorChar}bin{Path.DirectorySeparatorChar}", StringComparison.Ordinal)
@@ -31,8 +33,7 @@ public sealed class NoSecretsTests
         foreach (string folder in new[] { "src", "tests", ".github" })
         {
             hits.AddRange(Directory.EnumerateFiles(Path.Join(root.FullName, folder), "*", SearchOption.AllDirectories)
-                .Where(file => TextExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase) && !IsBuildOutput(file))
-                .Where(file => Patterns.Any(pattern => pattern.IsMatch(File.ReadAllText(file)))));
+                .Where(file => TextExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase) && !IsBuildOutput(file) && Patterns.Any(pattern => pattern.IsMatch(File.ReadAllText(file)))));
         }
 
         Assert.Empty(hits);

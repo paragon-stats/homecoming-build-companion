@@ -69,62 +69,12 @@ public static class PetDamage
             int position = 0;
             foreach (Entity entity in Summoned(power, casterLevel))
             {
-                string path = Path.Join(canonicalRoot, "entities", entity.Name.ToLowerInvariant() + ".json");
-                if (!File.Exists(path) || new FileInfo(path).Length == 0)
-                {
-                    throw new EngineException($"{ErrorCodes.E60}: entity {entity.Name} (summoned by {name}) has no file {path}; restore the canonical entity");
-                }
-
-                JsonElement data = CanonicalJson.ReadJson(path, ErrorCodes.E63);
+                JsonElement data = EntityData(canonicalRoot, entity, name);
                 int petClass = ClassIndex(data, classes);
                 int level = PetLevel(entity.Table, casterLevel, attribmod, classes, petClass, name);
-                string[] names = [.. data.Req("defaults").Req("power_full_names").EnumerateArray().Select(item => item.GetString() ?? string.Empty)];
-                IReadOnlyDictionary<string, JsonElement> powers;
-                try
-                {
-                    powers = CanonicalJson.LoadCanonicalPowers(powersRoot, names);
-                }
-                catch (EngineException error)
-                {
-                    throw new EngineException($"{ErrorCodes.E60}: pet powers of {entity.Name} missing ({error.Message}); restore the canonical files", error);
-                }
-
-                List<ChainAttack> attacks = [];
-                foreach (JsonElement petPower in powers.Values)
-                {
-                    AttackProfile? profile = PetProfile(petPower);
-                    if (profile is null)
-                    {
-                        continue;
-                    }
-
-                    attacks.Add(new ChainAttack
-                    {
-                        FullName = petPower.ReqStr("full_name"),
-                        Damage = F32.Round(DamagePerActivation(petPower, attribmod, classes, petClass, level) * (1.0 + enhancement)),
-                        CastTime = petPower.ReqNum("activation_time"),
-                        RechargeTime = petPower.ReqNum("recharge_time"),
-                        EndCost = 0.0,
-                        Profile = profile,
-                        ActivatePeriod = petPower.ReqNum("activate_period"),
-                    });
-                }
-
-                IReadOnlyList<string> displayNames = data.Items("levels") is { Count: > 0 } levels ? levels[0].Strings("display_names") : [];
-                string petName = displayNames.Count > 0 ? displayNames[0] : entity.Name;
-                result.Add(new PetSummon
-                {
-                    SummonName = name,
-                    PetName = petName,
-                    PetAttacks = attacks,
-                    PetCount = entity.Count,
-                    Duration = entity.Duration,
-                    SummonCastTime = position == 0 ? summon.CastTime : 0.0,
-                    SummonRecharge = summon.RechargeTime,
-                    SummonEndCost = position == 0 ? summon.EndCost : 0.0,
-                    DamageBuffBaseline = F32.Round(1.0 + enhancement),
-                    Label = $"{entity.Name} level {level}" + (attacks.Count > 0 ? string.Empty : " (no damaging attacks found)"),
-                });
+                IReadOnlyDictionary<string, JsonElement> powers = PetPowers(powersRoot, data, entity);
+                List<ChainAttack> attacks = PetAttacks(powers.Values, attribmod, classes, petClass, level, enhancement);
+                result.Add(Summon(summon, entity, position, data, attacks, level, enhancement));
                 position++;
             }
         }
@@ -178,6 +128,76 @@ public static class PetDamage
             Detail = detail,
             Label = $"{Approximation}; {string.Join(", ", uptimes)}",
             DamageBuffBaseline = baseline,
+        };
+    }
+
+    private static JsonElement EntityData(string canonicalRoot, Entity entity, string summonName)
+    {
+        string path = Path.Join(canonicalRoot, "entities", entity.Name.ToLowerInvariant() + ".json");
+        if (!File.Exists(path) || new FileInfo(path).Length == 0)
+        {
+            throw new EngineException($"{ErrorCodes.E60}: entity {entity.Name} (summoned by {summonName}) has no file {path}; restore the canonical entity");
+        }
+
+        return CanonicalJson.ReadJson(path, ErrorCodes.E63);
+    }
+
+    private static IReadOnlyDictionary<string, JsonElement> PetPowers(string powersRoot, JsonElement data, Entity entity)
+    {
+        string[] names = [.. data.Req("defaults").Req("power_full_names").EnumerateArray().Select(item => item.GetString() ?? string.Empty)];
+        try
+        {
+            return CanonicalJson.LoadCanonicalPowers(powersRoot, names);
+        }
+        catch (EngineException error)
+        {
+            throw new EngineException($"{ErrorCodes.E60}: pet powers of {entity.Name} missing ({error.Message}); restore the canonical files", error);
+        }
+    }
+
+    private static List<ChainAttack> PetAttacks(IEnumerable<JsonElement> petPowers, AttribMods attribmod, ArchetypeDb classes, int petClass, int level, double enhancement)
+    {
+        List<ChainAttack> attacks = [];
+        foreach (JsonElement petPower in petPowers)
+        {
+            AttackProfile? profile = PetProfile(petPower);
+            if (profile is null)
+            {
+                continue;
+            }
+
+            attacks.Add(new ChainAttack
+            {
+                FullName = petPower.ReqStr("full_name"),
+                Damage = F32.Round(DamagePerActivation(petPower, attribmod, classes, petClass, level) * (1.0 + enhancement)),
+                CastTime = petPower.ReqNum("activation_time"),
+                RechargeTime = petPower.ReqNum("recharge_time"),
+                EndCost = 0.0,
+                Profile = profile,
+                ActivatePeriod = petPower.ReqNum("activate_period"),
+            });
+        }
+
+        return attacks;
+    }
+
+    /// <summary>One summoned entity as a pet summon; only the summon's first entity carries its cast time and endurance cost.</summary>
+    private static PetSummon Summon(ChainAttack summon, Entity entity, int position, JsonElement data, List<ChainAttack> attacks, int level, double enhancement)
+    {
+        IReadOnlyList<string> displayNames = data.Items("levels") is { Count: > 0 } levels ? levels[0].Strings("display_names") : [];
+        string petName = displayNames.Count > 0 ? displayNames[0] : entity.Name;
+        return new PetSummon
+        {
+            SummonName = summon.FullName,
+            PetName = petName,
+            PetAttacks = attacks,
+            PetCount = entity.Count,
+            Duration = entity.Lifespan,
+            SummonCastTime = position == 0 ? summon.CastTime : 0.0,
+            SummonRecharge = summon.RechargeTime,
+            SummonEndCost = position == 0 ? summon.EndCost : 0.0,
+            DamageBuffBaseline = F32.Round(1.0 + enhancement),
+            Label = $"{entity.Name} level {level.ToString(CultureInfo.InvariantCulture)}" + (attacks.Count > 0 ? string.Empty : " (no damaging attacks found)"),
         };
     }
 
@@ -386,5 +406,5 @@ public static class PetDamage
         }
     }
 
-    private sealed record Entity(string Name, int Count, double Duration, string Table);
+    private sealed record Entity(string Name, int Count, double Lifespan, string Table);
 }

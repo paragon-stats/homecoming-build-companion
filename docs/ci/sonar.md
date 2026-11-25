@@ -23,6 +23,13 @@ It follows the workflow in paragon-stats/paragon-stats.
 
 Sonar's coverage figure and the repository's gate therefore measure the same .NET code.
 
+One rule is ignored for one file, through `sonar.issue.ignore.multicriteria` in the begin step:
+
+| Rule | File | Why |
+| --- | --- | --- |
+| `csharpsquid:S1244` | `src/CohEngine.Core/Maths/Exact.cs` | `Exact.Same` is the one exact float comparison; its callers, listed in [the C# style guide](../style-guides/csharp.md#float-comparison), need exact IEEE equality. |
+| `githubactions:S7677` | `.github/workflows/pre-commit.yml` | The flagged line is the `::error` workflow command for a failed hook, not an error message; GitHub reads workflow commands only from stdout. A plain copy of the message goes to stderr beside it. |
+
 ## How the quality gate blocks
 
 The begin step sets `sonar.qualitygate.wait=true`, so the end step waits for SonarQube Cloud and fails the `sonar` job when the project's quality gate fails.

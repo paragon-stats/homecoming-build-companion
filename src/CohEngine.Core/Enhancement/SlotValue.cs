@@ -119,22 +119,18 @@ internal static class SlotValue
     /// <summary>The schedule-table cell the enhancement type selects.</summary>
     private static double BaseTableValue(string typeName, int grade, int ioLevel, int schedule, MathTables tables)
     {
-        switch (typeName)
+        return typeName switch
         {
-            case "Normal":
-                return grade switch
-                {
-                    GradeTrainingO => tables.MultTo[schedule],
-                    GradeDualO => tables.MultDo[schedule],
-                    GradeSingleO => tables.MultSo[schedule],
-                    _ => 0.0,
-                };
-            case "InventO" or "SetO":
-                return tables.MultIo[ioLevel][schedule];
-            case "SpecialO":
-                return tables.MultSo[schedule];
-            default:
-                return 0.0;
-        }
+            "Normal" => grade switch
+            {
+                GradeTrainingO => tables.MultTo[schedule],
+                GradeDualO => tables.MultDo[schedule],
+                GradeSingleO => tables.MultSo[schedule],
+                _ => 0.0,
+            },
+            "InventO" or "SetO" => tables.MultIo[ioLevel][schedule],
+            "SpecialO" => tables.MultSo[schedule],
+            _ => 0.0,
+        };
     }
 }

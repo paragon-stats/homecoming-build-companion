@@ -28,7 +28,7 @@ public sealed class CliCapture
     /// <returns>The stdout with LF line endings and the exit code.</returns>
     public static (string Output, int ExitCode) Run(params string[] args)
     {
-        return Run(null, args);
+        return Run(source: null, args);
     }
 
     /// <summary>Runs the CLI in process with a <c>.mbd</c> source and returns its stdout and exit code.</summary>

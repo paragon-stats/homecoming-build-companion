@@ -13,6 +13,19 @@ public sealed partial class ExpressionsTests
     private const string Boxing = "Active:Pool.Fighting.Boxing";
     private const string Kick = "Active:Pool.Fighting.Kick";
 
+    private static readonly (string Expr, Func<Power, Power> Power, double Want)[] PowerBaseKeywordCases =
+    [
+        ("power.base>rechargetime * 2", power => power with { BaseRechargeTime = F32.Round(0.1) }, F32.Round(0.2)),
+        ("power.base>areafactor + 1", power => power with { AoeModifier = F32.Round(0.75) }, 1.75),
+        ("power.base>activateperiod * 10", power => power with { ActivatePeriod = F32.Round(0.1) }, 1.0),
+        ("0.7 * power.base>activatetime + 0.4", power => power with { CastTime = F32.Round(2.0), ActivatePeriod = F32.Round(3.0) }, 1.8),
+        ("power.base>endcost / 2 * 3", power => power with { EndCost = F32.Round(5.2) }, F32.Round(7.8)),
+        ("power.base>areafactor", power => power, 1.0),
+        ("power.base>rechargetime", power => power, 0.0),
+    ];
+
+    public static TheoryData<int> PowerBaseKeywords => [.. Enumerable.Range(0, PowerBaseKeywordCases.Length)];
+
     public static TheoryData<double, string> FloatTexts => new()
     {
         { F32.Round(0.1), "0.1" },
@@ -20,17 +33,6 @@ public sealed partial class ExpressionsTests
         { 0.1, "0.1" },
         { 5.0, "5" },
         { F32.Round(1339.35), "1339.35" },
-    };
-
-    public static TheoryData<string, Func<Power, Power>, double> PowerBaseKeywords => new()
-    {
-        { "power.base>rechargetime * 2", power => power with { BaseRechargeTime = F32.Round(0.1) }, F32.Round(0.2) },
-        { "power.base>areafactor + 1", power => power with { AoeModifier = F32.Round(0.75) }, 1.75 },
-        { "power.base>activateperiod * 10", power => power with { ActivatePeriod = F32.Round(0.1) }, 1.0 },
-        { "0.7 * power.base>activatetime + 0.4", power => power with { CastTime = F32.Round(2.0), ActivatePeriod = F32.Round(3.0) }, 1.8 },
-        { "power.base>endcost / 2 * 3", power => power with { EndCost = F32.Round(5.2) }, F32.Round(7.8) },
-        { "power.base>areafactor", power => power, 1.0 },
-        { "power.base>rechargetime", power => power, 0.0 },
     };
 
     public static TheoryData<string, double> PowerGroups => new()
@@ -116,10 +118,18 @@ public sealed partial class ExpressionsTests
         Assert.Equal(text, Evaluator.FloatText(value));
     }
 
+    [Fact]
+    public void Float_text_of_nan_returns_nan_and_negative_zero_keeps_its_sign()
+    {
+        Assert.Equal("NaN", Evaluator.FloatText(double.NaN));
+        Assert.Equal("-0", Evaluator.FloatText(-0.0));
+    }
+
     [Theory]
     [MemberData(nameof(PowerBaseKeywords))]
-    public void Power_base_keywords_read_the_owning_power(string expr, Func<Power, Power> power, double want)
+    public void Power_base_keywords_read_the_owning_power(int row)
     {
+        (string expr, Func<Power, Power> power, double want) = PowerBaseKeywordCases[row];
         Assert.Equal(F32.Round(want), Evaluate(expr, configure: power));
     }
 
@@ -358,7 +368,7 @@ public sealed partial class ExpressionsTests
     [Fact]
     public void Unconditional_effect_is_included_with_or_without_a_context()
     {
-        Assert.True(Conditionals.EffectIncluded(Make.Effect, null));
+        Assert.True(Conditionals.EffectIncluded(Make.Effect, context: null));
         Assert.True(Conditionals.EffectIncluded(Make.Effect, Context()));
     }
 
@@ -366,7 +376,7 @@ public sealed partial class ExpressionsTests
     public void Special_case_effect_is_excluded()
     {
         Effect hidden = Make.Effect with { SpecialCase = "Hidden" };
-        Assert.False(Conditionals.EffectIncluded(hidden, null));
+        Assert.False(Conditionals.EffectIncluded(hidden, context: null));
         Assert.False(Conditionals.EffectIncluded(hidden, Context()));
         Assert.False(Conditionals.EffectIncluded(Conditional(Boxing, "True") with { SpecialCase = "Hidden" }, Context()));
     }
@@ -375,7 +385,7 @@ public sealed partial class ExpressionsTests
     public void Conditional_effect_needs_a_context_and_met_conditions()
     {
         Effect effect = Conditional(Boxing, "True");
-        Assert.False(Conditionals.EffectIncluded(effect, null));
+        Assert.False(Conditionals.EffectIncluded(effect, context: null));
         Assert.True(Conditionals.EffectIncluded(effect, Context()));
         Assert.False(Conditionals.EffectIncluded(Conditional(Kick, "True"), Context()));
     }
@@ -396,7 +406,7 @@ public sealed partial class ExpressionsTests
     public void Conditions_known_only_by_count_are_not_evaluated()
     {
         Effect effect = Make.Effect with { ActiveConditionalsCount = 2 };
-        Assert.False(Conditionals.EffectIncluded(effect, null));
+        Assert.False(Conditionals.EffectIncluded(effect, context: null));
         InvalidDataException error = Assert.Throws<InvalidDataException>(() => Conditionals.EffectIncluded(effect, Context()));
         Assert.Matches("E94.*counts 2 conditions", error.Message);
     }
@@ -404,7 +414,7 @@ public sealed partial class ExpressionsTests
     [Fact]
     public void Conditions_without_a_count_still_exclude_without_a_context()
     {
-        Assert.False(Conditionals.EffectIncluded(Make.Effect with { Conditionals = [Make.Condition(Boxing, "True")] }, null));
+        Assert.False(Conditionals.EffectIncluded(Make.Effect with { Conditionals = [Make.Condition(Boxing, "True")] }, context: null));
     }
 
     private static ExpressionContext Context()

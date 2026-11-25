@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 
 namespace CohEngine.Core.Assembly;
@@ -22,11 +24,8 @@ internal static class Absorption
             duration = petDuration;
         }
 
-        List<Effect> picked = chosen is null
-            ? [.. source.Effects.Where(effect => grant || !IsOnly(source.EntitiesAffected, "Caster") || string.Equals(effect.EffectType, "EntCreate", StringComparison.Ordinal))]
-            : [chosen];
-        IReadOnlySet<string> autoHit = source.EntitiesAutoHit;
-        bool toTarget = (autoHit.Contains("Friend") || autoHit.Contains("MyPet")) && (chosen is not null || !autoHit.Contains("Caster"));
+        List<Effect> picked = Picked(source, grant, chosen);
+        bool toTarget = ToTarget(source.EntitiesAutoHit, chosen);
         bool ticking = source.PowerType is "Auto_" or "Toggle";
         List<Effect> output = [];
         foreach (Effect effect in picked)
@@ -60,7 +59,7 @@ internal static class Absorption
         if (!inputs.Entities.Powersets.TryGetValue(nid, out AssemblyPowerset? powerset))
         {
             throw new NotSupportedException(
-                $"E89: {where} needs powerset {nid}, which assembly_entities.json does not hold; expected every "
+                $"E89: {where} needs powerset {nid.ToString(CultureInfo.InvariantCulture)}, which assembly_entities.json does not hold; expected every "
                 + "powerset pet absorption reads; re-run the Mids dump harness so the export carries it");
         }
 
@@ -81,7 +80,7 @@ internal static class Absorption
         }
 
         throw new NotSupportedException(
-            $"E89: {where} creates entity {nid}, which assembly_entities.json does not hold; expected every "
+            $"E89: {where} creates entity {nid.ToString(CultureInfo.InvariantCulture)}, which assembly_entities.json does not hold; expected every "
             + "entity pet absorption reads; re-run the Mids dump harness so the export carries it");
     }
 
@@ -92,6 +91,18 @@ internal static class Absorption
     public static bool IsOnly(IReadOnlySet<string> set, string name)
     {
         return set.Count == 1 && set.Contains(name);
+    }
+
+    private static List<Effect> Picked(AssemblyPower source, bool grant, Effect? chosen)
+    {
+        return chosen is null
+            ? [.. source.Effects.Where(effect => grant || !IsOnly(source.EntitiesAffected, "Caster") || string.Equals(effect.EffectType, "EntCreate", StringComparison.Ordinal))]
+            : [chosen];
+    }
+
+    private static bool ToTarget(IReadOnlySet<string> autoHit, Effect? chosen)
+    {
+        return (autoHit.Contains("Friend") || autoHit.Contains("MyPet")) && (chosen is not null || !autoHit.Contains("Caster"));
     }
 
     private static int SetTicks(double duration, double interval)

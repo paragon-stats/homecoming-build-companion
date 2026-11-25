@@ -23,7 +23,7 @@ internal static class Conditionals
         {
             (string key, string value) = effect.Conditionals[position];
             bool held = ConditionHolds(effect, key, value, context);
-            if (groups.Count > 0 && !(position > 0 && key.StartsWith("OR ", StringComparison.Ordinal)))
+            if (groups.Count > 0 && !key.StartsWith("OR ", StringComparison.Ordinal))
             {
                 groups[^1].Add(held);
             }
@@ -33,7 +33,7 @@ internal static class Conditionals
             }
         }
 
-        return groups.Count == 0 || groups.Any(group => group.All(held => held));
+        return groups.Count == 0 || groups.Exists(group => group.TrueForAll(held => held));
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ internal static class Conditionals
         if (effect.ActiveConditionalsCount != 0 && effect.Conditionals.Count == 0)
         {
             throw new InvalidDataException(
-                $"E94: effect {effect.Index} counts {effect.ActiveConditionalsCount} conditions but carries none: "
+                $"E94: effect {effect.Index.ToString(CultureInfo.InvariantCulture)} counts {effect.ActiveConditionalsCount.ToString(CultureInfo.InvariantCulture)} conditions but carries none: "
                 + "expected the conditions loaded with the effect, found an empty list; "
                 + "load the effect from a record that holds ActiveConditionals");
         }
@@ -100,7 +100,7 @@ internal static class Conditionals
                 if (!int.TryParse(count, NumberStyles.AllowLeadingSign | NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, CultureInfo.InvariantCulture, out int wanted))
                 {
                     throw new InvalidDataException(
-                        $"E93: effect {effect.Index} condition '{key}': expected a Stacks value of the form "
+                        $"E93: effect {effect.Index.ToString(CultureInfo.InvariantCulture)} condition '{key}': expected a Stacks value of the form "
                         + $"'<op> <integer>', found '{value}'; fix the condition record");
                 }
 
@@ -114,7 +114,7 @@ internal static class Conditionals
                 };
             default:
                 throw new NotSupportedException(
-                    $"E92: effect {effect.Index} condition '{key}': expected a condition type of Active, Taken or Stacks, "
+                    $"E92: effect {effect.Index.ToString(CultureInfo.InvariantCulture)} condition '{key}': expected a condition type of Active, Taken or Stacks, "
                     + $"found '{kind}'; port that condition type against a Mids reference dump that exercises it");
         }
     }
@@ -126,7 +126,7 @@ internal static class Conditionals
         if (text is not ("true" or "false"))
         {
             throw new InvalidDataException(
-                $"E93: effect {effect.Index} condition '{key}': expected the value 'True' or 'False', "
+                $"E93: effect {effect.Index.ToString(CultureInfo.InvariantCulture)} condition '{key}': expected the value 'True' or 'False', "
                 + $"found '{value}'; fix the condition record");
         }
 

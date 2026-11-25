@@ -11,9 +11,9 @@ public sealed record Effect
     /// <summary>Initializes a new instance of the <see cref="Effect"/> class.</summary>
     /// <remarks>
     /// The optional fields arrive through this constructor so an absent key keeps the Python default; the JSON source
-    /// generator would write default(T) into an absent init-only property instead.
+    /// generator would write default(T) into an absent init-only property instead. A field whose Python default is
+    /// default(T), such as <see cref="IsEnhancementEffect"/>, needs no parameter.
     /// </remarks>
-    /// <param name="isEnhancementEffect">Whether <c>GBPA_AddEnhFX</c> added the effect.</param>
     /// <param name="summon">The summoned entity's UID.</param>
     /// <param name="nSummon">The summoned entity's index, or -1.</param>
     /// <param name="duration">The effect duration.</param>
@@ -23,7 +23,6 @@ public sealed record Effect
     /// <param name="absorbedPowerNid">The absorbed power's index, or -1.</param>
     [JsonConstructor]
     public Effect(
-        bool isEnhancementEffect = false,
         string summon = "",
         int nSummon = -1,
         double duration = 0.0,
@@ -32,7 +31,6 @@ public sealed record Effect
         IReadOnlyList<KeyValuePair<string, string>>? conditionals = null,
         int absorbedPowerNid = -1)
     {
-        IsEnhancementEffect = isEnhancementEffect;
         Summon = summon;
         NSummon = nSummon;
         Duration = duration;

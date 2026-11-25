@@ -190,7 +190,7 @@ public sealed class ScoringTests
     [Fact]
     public void An_eq_target_compares_flags()
     {
-        ScoreResult result = Score(Custom(new Target("perma_dom", "==", MetricValue.Flag(true))));
+        ScoreResult result = Score(Custom(new Target("perma_dom", "==", MetricValue.Flag(flag: true))));
 
         Assert.False(result.Met["perma_dom"]);
     }
@@ -251,6 +251,6 @@ public sealed class ScoringTests
     [Fact]
     public void Metric_values_print_and_box_as_python_does()
     {
-        Assert.Equal(("True", "45.0", (object)true, (object)2.5), (MetricValue.Flag(true).ToPython(), MetricValue.Of(45.0).ToPython(), MetricValue.Flag(true).ToDiagnosticValue(), MetricValue.Of(2.5).ToDiagnosticValue()));
+        Assert.Equal(("True", "45.0", (object)true, (object)2.5), (MetricValue.Flag(flag: true).ToPython(), MetricValue.Of(45.0).ToPython(), MetricValue.Flag(flag: true).ToDiagnosticValue(), MetricValue.Of(2.5).ToDiagnosticValue()));
     }
 }

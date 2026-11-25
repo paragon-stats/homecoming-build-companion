@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Chain;
 using CohEngine.Core.Damage;
 using CohEngine.Core.Data;
@@ -19,7 +21,7 @@ public sealed class PetDamageTests
 
     private static string Message(TempTree tree, double level = 49.0, ChainAttack? summon = null)
     {
-        return Assert.Throws<EngineException>(() => Build(tree, level, null, summon)).Message;
+        return Assert.Throws<EngineException>(() => Build(tree, level, enhancement: null, summon)).Message;
     }
 
     private static void Seed(TempTree tree, string table = "Pet_Levelminus1", string duration = "60 seconds", string effectExtra = "")
@@ -35,7 +37,7 @@ public sealed class PetDamageTests
 
         PetSummon pet = Assert.Single(Build(tree));
 
-        Assert.Equal("Imp 1 60 Thing level 49", $"{pet.PetName} {pet.PetCount} {pet.Duration} {pet.Label}");
+        Assert.Equal("Imp 1 60 Thing level 49", string.Create(CultureInfo.InvariantCulture, $"{pet.PetName} {pet.PetCount} {pet.Duration} {pet.Label}"));
     }
 
     [Fact]
@@ -56,7 +58,7 @@ public sealed class PetDamageTests
 
         PetSummon pet = Assert.Single(Build(tree, enhancement: overrides));
 
-        Assert.Equal("1.5 15", $"{F32.Round(1.0 + 0.5)} {Assert.Single(pet.PetAttacks).Damage}");
+        Assert.Equal("1.5 15", string.Create(CultureInfo.InvariantCulture, $"{F32.Round(1.0 + 0.5)} {Assert.Single(pet.PetAttacks).Damage}"));
     }
 
     [Fact]
@@ -67,7 +69,7 @@ public sealed class PetDamageTests
 
         PetSummon pet = Assert.Single(Build(tree));
 
-        Assert.Equal("1 60 10", $"{pet.SummonCastTime} {pet.SummonRecharge} {pet.SummonEndCost}");
+        Assert.Equal("1 60 10", string.Create(CultureInfo.InvariantCulture, $"{pet.SummonCastTime} {pet.SummonRecharge} {pet.SummonEndCost}"));
     }
 
     [Fact]
@@ -180,7 +182,7 @@ public sealed class PetDamageTests
 
         IReadOnlyList<PetSummon> pets = Build(tree);
 
-        Assert.Equal("1 0 10 0", $"{pets[0].SummonCastTime} {pets[1].SummonCastTime} {pets[0].SummonEndCost} {pets[1].SummonEndCost}");
+        Assert.Equal("1 0 10 0", string.Create(CultureInfo.InvariantCulture, $"{pets[0].SummonCastTime} {pets[1].SummonCastTime} {pets[0].SummonEndCost} {pets[1].SummonEndCost}"));
     }
 
     [Fact]

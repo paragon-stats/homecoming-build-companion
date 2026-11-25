@@ -16,7 +16,12 @@ public static class ChainPaths
         string[] segments = path.Split('/', '\\');
         bool rooted = segments.Length > 1 && segments[0].Length == 0;
         string joined = string.Join(Path.DirectorySeparatorChar, segments.Where(segment => segment.Length > 0 && !string.Equals(segment, ".", StringComparison.Ordinal)));
-        return rooted ? Path.DirectorySeparatorChar + joined : joined.Length == 0 ? "." : joined;
+        if (rooted)
+        {
+            return Path.DirectorySeparatorChar + joined;
+        }
+
+        return joined.Length == 0 ? "." : joined;
     }
 
     /// <summary>Finds the repository root, the directory holding <c>strategy/breakpoints.json</c>, from the binary and then the working directory.</summary>

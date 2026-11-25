@@ -5,6 +5,7 @@ using CohEngine.Core.SetBonuses;
 using CohEngine.Core.Totals.Incarnate;
 using CohEngine.Core.Totals.Phases;
 
+using EnhancementTables = CohEngine.Core.Enhancement.EnhancementTables;
 using IncarnatePower = CohEngine.Core.Data.Incarnate;
 
 namespace CohEngine.Core.Totals;
@@ -78,7 +79,7 @@ internal static class Pipeline
         {
             buffContext = baseContext with
             {
-                EnhMult = PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, baseContext, addends?.Effect, selfEnhance),
+                EnhMult = PerPowerEnhancementMathPhase.ComputeEnhMultipliers(included, build.Slots, new EnhancementTables(build.EnhDb, data.Config.ForceLevel, build.Tables), baseContext, addends?.Effect, selfEnhance),
             };
             toggleEndAgg = PerPowerEnhancementMathPhase.ComputeToggleEndAgg(included, build.Slots, build.EnhDb, build.Tables, data.Config.ForceLevel, incarnateScalar);
             buffContext = buffContext with

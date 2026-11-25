@@ -10,5 +10,6 @@ namespace CohEngine.Core.BuildFile;
 [JsonSerializable(typeof(IReadOnlyList<EnhancementSetRecord>))]
 [JsonSerializable(typeof(IReadOnlyList<PowerDbRecord>))]
 [JsonSerializable(typeof(MbdDocument))]
+[JsonSerializable(typeof(VersionRecord))]
 [ExcludeFromCodeCoverage(Justification = "Source-generated serializer metadata; the loaders that use it are covered.")]
 internal sealed partial class BuildFileJsonContext : JsonSerializerContext;

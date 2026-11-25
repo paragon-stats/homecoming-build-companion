@@ -1,3 +1,5 @@
+using System.Globalization;
+
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 
@@ -20,13 +22,13 @@ internal static class MbdIoLevelsRule
         {
             foreach (SlotRef slot in context.Slots.GetValueOrDefault(power.BuildIndex, []).Where(slot => format.IoBoundsByNid.TryGetValue(slot.Enh, out (int Min, int Max) range) && (slot.IoLevel < range.Min || slot.IoLevel > range.Max)))
             {
-                (int Min, int Max) bounds = format.IoBoundsByNid[slot.Enh];
-                string message = $"a slot in {PyText.Repr(power.FullName)} at level {slot.Level + 1} has IoLevel {slot.IoLevel} for "
-                    + $"enhancement nID {slot.Enh}, outside {bounds.Min} to {bounds.Max}";
+                (int min, int max) = format.IoBoundsByNid[slot.Enh];
+                string message = string.Create(CultureInfo.InvariantCulture, $"a slot in {PyText.Repr(power.FullName)} at level {slot.Level + 1} has IoLevel {slot.IoLevel} for ")
+                    + string.Create(CultureInfo.InvariantCulture, $"enhancement nID {slot.Enh}, outside {min} to {max}");
                 yield return new Diagnostic("H-FMT-002", "error", message)
                 {
-                    Fix = $"write the IoLevel as at most {bounds.Max}",
-                    Expected = bounds.Max,
+                    Fix = string.Create(CultureInfo.InvariantCulture, $"write the IoLevel as at most {max}"),
+                    Expected = max,
                     Actual = slot.IoLevel,
                 };
             }

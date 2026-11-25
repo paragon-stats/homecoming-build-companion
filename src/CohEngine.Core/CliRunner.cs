@@ -87,10 +87,20 @@ public static class CliRunner
             () =>
             {
                 IReadOnlyList<Diagnostic> diagnostics = [.. Validate(parsed, mbdSource), .. Verify(parsed)];
-                output.WriteLine(parsed.Json ? DiagnosticFormatter.FormatJson(diagnostics) : diagnostics.Count > 0 ? DiagnosticFormatter.FormatText(diagnostics) : "no violations");
+                output.WriteLine(ValidationText(parsed.Json, diagnostics));
                 return DiagnosticFormatter.ExitCode(diagnostics);
             },
             error);
+    }
+
+    private static string ValidationText(bool json, IReadOnlyList<Diagnostic> diagnostics)
+    {
+        if (json)
+        {
+            return DiagnosticFormatter.FormatJson(diagnostics);
+        }
+
+        return diagnostics.Count > 0 ? DiagnosticFormatter.FormatText(diagnostics) : "no violations";
     }
 
     private static IReadOnlyList<Diagnostic> Validate(ValidateArguments parsed, IMbdBuildSource? mbdSource)

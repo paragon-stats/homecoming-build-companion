@@ -61,23 +61,22 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
         question = null;
         values = new(StringComparer.Ordinal);
         bool literal = false;
-        for (int index = 0; index < args.Count; index++)
+        int index = 0;
+        while (index < args.Count)
         {
-            string arg = args[index];
+            string arg = args[index++];
             if (!literal && string.Equals(arg, "--", StringComparison.Ordinal))
             {
                 literal = true;
                 continue;
             }
 
-            string name = literal ? string.Empty : arg.Split('=')[0];
+            string name = OptionName(arg, literal);
             if (!Options.Contains(name, StringComparer.Ordinal))
             {
-                bool looksLikeOption = !literal && arg.StartsWith('-');
-                if (looksLikeOption || question is not null)
+                if (Unrecognized(arg, literal, question) is { } unknown)
                 {
-                    // An unknown option is named without its value, which could be a key.
-                    problem = "unrecognized arguments: " + (looksLikeOption ? arg.Split('=')[0] : arg);
+                    problem = "unrecognized arguments: " + unknown;
                     return false;
                 }
 
@@ -89,9 +88,9 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
             {
                 values[name] = arg[(name.Length + 1)..];
             }
-            else if (++index < args.Count)
+            else if (index < args.Count)
             {
-                values[name] = args[index];
+                values[name] = args[index++];
             }
             else
             {
@@ -100,18 +99,40 @@ internal sealed record AskArguments(string Question, string BuildPath, ChatProvi
             }
         }
 
-        problem = string.Empty;
-        if (values.FirstOrDefault(option => option.Value.Length == 0) is { Key: { } empty })
+        problem = ValueProblem(values);
+        return problem.Length == 0;
+    }
+
+    private static string OptionName(string arg, bool literal)
+    {
+        return literal ? string.Empty : arg.Split('=')[0];
+    }
+
+    // An unknown option is named without its value, which could be a key.
+    private static string? Unrecognized(string arg, bool literal, string? question)
+    {
+        if (!literal && arg.StartsWith('-'))
         {
-            problem = $"argument {empty}: expected a non-empty value";
-        }
-        else if (values.TryGetValue("--api-key-env", out string? keyVariable) && !IsEnvironmentName(keyVariable))
-        {
-            // The name is echoed in the missing-key message, so a key passed here by mistake must not get that far.
-            problem = "argument --api-key-env: takes the name of an environment variable, not a key";
+            return arg.Split('=')[0];
         }
 
-        return problem.Length == 0;
+        return question is not null ? arg : null;
+    }
+
+    private static string ValueProblem(Dictionary<string, string> values)
+    {
+        if (values.FirstOrDefault(option => option.Value.Length == 0) is { Key: { } empty })
+        {
+            return $"argument {empty}: expected a non-empty value";
+        }
+
+        if (values.TryGetValue("--api-key-env", out string? keyVariable) && !IsEnvironmentName(keyVariable))
+        {
+            // The name is echoed in the missing-key message, so a key passed here by mistake must not get that far.
+            return "argument --api-key-env: takes the name of an environment variable, not a key";
+        }
+
+        return string.Empty;
     }
 
     private static bool IsEnvironmentName(string name)

@@ -31,12 +31,12 @@ public sealed class AttackProfilesTests
         { CanonicalPowers.Text(effects: [CanonicalPowers.Effect([], ",\"child_effects\":[" + CanonicalPowers.Effect([FoeDamage]) + "]")]), Role.Chain },
     };
 
-    public static TheoryData<string> Unclassifiable => new()
-    {
+    public static TheoryData<string> Unclassifiable =>
+    [
         CanonicalPowers.Text(type: "Toggle", effects: [CanonicalPowers.Effect([SelfBuff])]),
         CanonicalPowers.Text(effects: [CanonicalPowers.Effect([CanonicalPowers.Template(["Fire_Dmg"], "Strength", "Self", "Ranged_Dmg")])]),
         CanonicalPowers.Text(type: "Grant"),
-    };
+    ];
 
     public static TheoryData<string, Shape> Shapes => new()
     {
@@ -156,9 +156,9 @@ public sealed class AttackProfilesTests
         JsonElement entity = CanonicalPowers.Parse("{\"defaults\":{\"power_full_names\":[\"Test.Set.Zap\"]}}");
         JsonElement zap = CanonicalPowers.Parse(CanonicalPowers.Text(name: "Test.Set.Zap", effects: [CanonicalPowers.Effect([FoeDamage])]));
         JsonElement power = CanonicalPowers.Parse(CanonicalPowers.Text(effects: [CanonicalPowers.Effect([Summon])]));
-        PowerResolver resolve = name => string.Equals(name, "Thing", StringComparison.Ordinal) ? entity : string.Equals(name, "Test.Set.Zap", StringComparison.Ordinal) ? zap : null;
+        JsonElement? Resolve(string name) => string.Equals(name, "Thing", StringComparison.Ordinal) ? entity : string.Equals(name, "Test.Set.Zap", StringComparison.Ordinal) ? zap : null;
 
-        Assert.Equal(Role.Patch, AttackProfiles.Classify(power, resolve: resolve).Role);
+        Assert.Equal(Role.Patch, AttackProfiles.Classify(power, resolve: Resolve).Role);
     }
 
     [Fact]
@@ -176,7 +176,7 @@ public sealed class AttackProfilesTests
     {
         JsonElement power = CanonicalPowers.Parse(CanonicalPowers.Text(effects: [CanonicalPowers.Effect([FoeRes])]));
 
-        Assert.Single(AttackProfiles.FoeResDebuffTemplates(power, null));
+        Assert.Single(AttackProfiles.FoeResDebuffTemplates(power, resolve: null));
     }
 
     [Theory]
