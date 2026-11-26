@@ -171,6 +171,20 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
+    public void A_scratch_tree_runs_scripts_under_the_repositorys_pinned_sdk()
+    {
+        using TempTree tree = new();
+        string pinned = System.Text.Json.JsonDocument.Parse(File.ReadAllText(Path.Join(DevScripts.RepositoryRoot, "global.json"))).RootElement.GetProperty("sdk").GetProperty("version").GetString()!;
+
+        (int exit, string output) = DevScripts.Run(tree.Root, "dotnet", "--version");
+
+        // latestPatch keeps the feature band: 10.0.400 allows 10.0.4xx and nothing newer, as the hooks get from the checkout.
+        Assert.True(exit == 0, output);
+        Assert.StartsWith(pinned[..(pinned.LastIndexOf('.') + 2)], output.Trim(), StringComparison.Ordinal);
+        Assert.True(File.Exists(tree.FullPath("global.json")), "the scratch tree has no global.json, so dotnet picks the newest SDK");
+    }
+
+    [Fact]
     public void The_hook_check_rejects_a_hooks_path_that_names_another_checkout()
     {
         using TempTree tree = new();

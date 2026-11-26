@@ -50,6 +50,13 @@ internal static class DevScripts
     /// <returns>The exit code, the combined output, standard output and standard error.</returns>
     internal static (int Exit, string Output, string StandardOutput, string StandardError) RunSeparately(string workingDirectory, string program, IReadOnlyDictionary<string, string?> environment, string? input, params string[] args)
     {
+        // Without the checkout's global.json a scratch tree runs dotnet under the newest SDK installed, not the one the hooks get.
+        string pin = Path.Join(workingDirectory, "global.json");
+        if (Directory.Exists(workingDirectory) && !File.Exists(pin))
+        {
+            File.Copy(Path.Join(RepositoryRoot, "global.json"), pin);
+        }
+
         ProcessStartInfo start = new(program)
         {
             WorkingDirectory = workingDirectory,
@@ -201,7 +208,7 @@ internal static class DevScripts
     {
         Git(tree.Root, "init", "--quiet");
         Git(tree.Root, "config", "core.hooksPath", ".husky");
-        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
+        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
         {
             Directory.CreateDirectory(Path.GetDirectoryName(tree.FullPath(file))!);
             File.Copy(Path.Join(RepositoryRoot, file), tree.FullPath(file));
