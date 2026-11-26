@@ -155,11 +155,22 @@ public sealed partial class DevScriptTests
         string[] checkov = File.ReadAllLines(Path.Join(DevScripts.RepositoryRoot, ".github", "linters", ".checkov.yaml"));
 
         // The workflow and the local runner both read the shared file, so the settings live there and nowhere else.
-        Assert.Contains("LOG_LEVEL=NOTICE", shared, StringComparer.Ordinal);
-        Assert.Contains("SUPPRESS_POSSUM=true", shared, StringComparer.Ordinal);
+        Assert.Equal("LOG_LEVEL=NOTICE", Assert.Single(shared, line => line.StartsWith("LOG_LEVEL=", StringComparison.Ordinal)));
+        Assert.Equal("SUPPRESS_POSSUM=true", Assert.Single(shared, line => line.StartsWith("SUPPRESS_POSSUM=", StringComparison.Ordinal)));
         Assert.DoesNotContain("LOG_LEVEL", workflow, StringComparison.Ordinal);
         Assert.DoesNotContain("SUPPRESS_POSSUM", workflow, StringComparison.Ordinal);
         Assert.Contains("quiet: true", checkov, StringComparer.Ordinal);
+        Assert.DoesNotContain(SuperLinterPlan(null), line => line.Contains("LOG_LEVEL", StringComparison.Ordinal) || line.Contains("SUPPRESS_POSSUM", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void The_super_linter_runner_forwards_a_log_level_of_the_developers_choosing()
+    {
+        string[] plan = SuperLinterPlan("INFO");
+
+        int forwarded = Array.IndexOf(plan, "LOG_LEVEL=INFO");
+        Assert.True(forwarded > 0, string.Join(Environment.NewLine, plan));
+        Assert.Equal("-e", plan[forwarded - 1]);
     }
 
     [Fact]
@@ -209,6 +220,18 @@ public sealed partial class DevScriptTests
     }
 
     // The pre-commit checks this repository wrote, as Husky runs them; dotnet-format needs a solution and prints the SDK's own output.
+    private static string[] SuperLinterPlan(string? logLevel)
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        Dictionary<string, string?> environment = new(StringComparer.Ordinal) { ["SUPER_LINTER_LOG_LEVEL"] = logLevel };
+
+        (int exit, string output) = DevScripts.RunScriptWithEnvironment("run-super-linter.cs", tree.Root, environment, "--print-plan");
+
+        Assert.True(exit == 0, output);
+        return output.ReplaceLineEndings("\n").Split('\n', StringSplitOptions.RemoveEmptyEntries);
+    }
+
     private static TempTree SeedHookRepository()
     {
         TempTree tree = new();
