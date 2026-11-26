@@ -211,12 +211,26 @@ public static class PyText
         return text.Replace("\r\n", "\n", StringComparison.Ordinal).Replace('\r', '\n');
     }
 
-    /// <summary>Python's <c>Path.write_text(text, encoding="utf-8", newline="\n")</c>: UTF-8 without a byte-order mark, the text as given.</summary>
+    /// <summary>
+    /// Python's <c>Path.write_text(text, encoding="utf-8", newline="\n")</c>: UTF-8 without a byte-order mark, the text as
+    /// given. The text goes to a temporary file beside the target, which then replaces it, so a failed write leaves the
+    /// old file whole.
+    /// </summary>
     /// <param name="path">The file.</param>
     /// <param name="text">The text.</param>
     public static void WriteText(string path, string text)
     {
-        File.WriteAllText(path, text, StrictUtf8);
+        string full = Path.GetFullPath(path);
+        string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetFileName(full) + "." + Path.GetRandomFileName() + ".tmp");
+        try
+        {
+            File.WriteAllText(temporary, text, StrictUtf8);
+            File.Move(temporary, full, overwrite: true);
+        }
+        finally
+        {
+            File.Delete(temporary);
+        }
     }
 
     /// <summary>Python's <c>int()</c> of a run of decimal digits, any script's, as a regex <c>\d+</c> captures them.</summary>

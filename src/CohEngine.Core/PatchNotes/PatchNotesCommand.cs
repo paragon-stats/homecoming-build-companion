@@ -190,8 +190,9 @@ internal sealed class PatchNotesCommand
     /// <param name="outDir">The records on disk.</param>
     /// <param name="source">The source.</param>
     /// <param name="error">Where an index row that names a file outside the folder is reported.</param>
+    /// <param name="doomed">Receives the records no page produces any more; the caller deletes them once the new index is written.</param>
     /// <returns>The changed, unchanged, removed and kept counts.</returns>
-    public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source, TextWriter error)
+    public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source, TextWriter error, ICollection<string> doomed)
     {
         (int changed, int unchanged, int removed, int kept) = (0, 0, 0, 0);
         HashSet<string> produced = new(StringComparer.Ordinal);
@@ -227,7 +228,7 @@ internal sealed class PatchNotesCommand
                 continue;
             }
 
-            File.Delete(Path.Join(outDir, name));
+            doomed.Add(Path.Join(outDir, name));
             removed++;
         }
 
@@ -689,6 +690,7 @@ internal sealed class PatchNotesCommand
         List<PyObject> oldRows = Index(outDir);
         Dictionary<string, (int Changed, int Unchanged, int Removed, int Kept)> counts = new(StringComparer.Ordinal);
         DirectoryInfo scratch = Directory.CreateTempSubdirectory("coh-patch-notes-");
+        List<string> doomed = [];
         bool failed;
         try
         {
@@ -707,10 +709,12 @@ internal sealed class PatchNotesCommand
                     continue;
                 }
 
-                counts[source] = Sync(scratch.FullName, outDir, source, error);
+                counts[source] = Sync(scratch.FullName, outDir, source, error, doomed);
             }
 
+            // The index is written before any record goes, so a failure up to here leaves no row naming a deleted file.
             WriteIndex(outDir, Sources.SelectMany(source => (counts.ContainsKey(source) ? newRows : oldRows).Where(row => IsOf(row, source))));
+            doomed.ForEach(File.Delete);
         }
         finally
         {

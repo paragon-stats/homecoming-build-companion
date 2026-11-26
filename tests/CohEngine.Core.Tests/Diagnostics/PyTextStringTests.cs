@@ -51,6 +51,18 @@ public sealed class PyTextStringTests
     }
 
     [Fact]
+    public void A_write_that_fails_leaves_the_old_file_whole_and_no_temporary_file()
+    {
+        using TempTree tree = new();
+        string path = tree.Write("a.txt", "old\n");
+
+        Assert.Throws<EncoderFallbackException>(() => PyText.WriteText(path, "\ud800"));
+
+        Assert.Equal("old\n", File.ReadAllText(path));
+        Assert.Equal([path], Directory.GetFiles(tree.Root));
+    }
+
+    [Fact]
     public void Number_reads_any_script_s_decimal_digits_and_holds_at_the_long_range()
     {
         Assert.Equal(48, PyText.Number("48"));

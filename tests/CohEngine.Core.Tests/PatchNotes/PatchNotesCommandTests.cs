@@ -293,6 +293,28 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void A_failure_syncing_a_later_source_deletes_no_file_the_index_still_names()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        WikiRoutes(site);
+        site.Routes[Base + "/patch-notes/?show=categories"] = $"<a href=\"{Base}/patch-notes/issue-28/page-4/\">x</a>";
+        site.Routes[Base + "/patch-notes/issue-28/page-4/"] = $"<a href='{PatchParserTests.EntryUrl}'>a</a>";
+        site.Routes[PatchParserTests.EntryUrl] = PatchParserTests.Sample;
+        string stray = tree.Write("2003-01-01-paragonwiki-gone.json", "{\"changes\": []}\n");
+        string index = "{\"url\": \"gone\", \"published\": \"2003-01-01\", \"source\": \"paragonwiki\", \"file\": \"2003-01-01-paragonwiki-gone.json\"}\n";
+        tree.Write("index.jsonl", index);
+        Directory.CreateDirectory(tree.FullPath("2026-10-20-october-20-update-r48.json"));
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "paragonwiki", "--source", "release-notes", "--reparse");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E224", error, StringComparison.Ordinal);
+        Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
+        Assert.True(File.Exists(stray));
+    }
+
+    [Fact]
     public void A_listing_or_entry_page_that_cannot_be_read_fails_the_run()
     {
         using TempTree tree = new();
