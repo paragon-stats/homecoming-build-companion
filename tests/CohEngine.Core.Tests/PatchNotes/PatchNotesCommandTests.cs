@@ -604,6 +604,23 @@ public sealed class PatchNotesCommandTests
         Assert.Contains("error: E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void An_index_another_process_holds_is_tried_three_times_then_named_and_left_whole()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string index = tree.Write("index.jsonl", "{\"url\": \"u0\"}\n");
+
+        IOException refused;
+        using (new FileStream(index, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            refused = Assert.Throws<IOException>(() => PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, TextWriter.Null));
+        }
+
+        Assert.Equal($"{index} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal("{\"url\": \"u0\"}\n", File.ReadAllText(index));
+    }
+
     [Theory]
     [InlineData("--source", "nowhere", "argument --source: invalid choice: 'nowhere' (choose from release-notes, forum-beta, paragonwiki)")]
     [InlineData("--delay", "soon", "argument --delay: invalid float value: 'soon'")]

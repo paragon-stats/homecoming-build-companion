@@ -107,6 +107,63 @@ public sealed class PyTextStringTests
     }
 
     [Fact]
+    public void An_append_adds_the_text_after_the_old_bytes_and_creates_a_missing_file()
+    {
+        using TempTree tree = new();
+        string path = tree.FullPath("index.jsonl");
+
+        PyText.AppendText(path, "a\n");
+        PyText.AppendText(path, "é\n");
+
+        Assert.Equal("a\né\n"u8.ToArray(), File.ReadAllBytes(path));
+        Assert.Equal([path], Directory.GetFiles(tree.Root));
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void An_append_to_a_file_released_before_the_last_attempt_is_written(int heldThroughWaits)
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("index.jsonl", "a\n");
+        using FileStream holder = new(path, FileMode.Open, FileAccess.Read, FileShare.None);
+        List<TimeSpan> waits = [];
+
+        PyText.AppendText(path, "b\n", wait =>
+        {
+            waits.Add(wait);
+            if (waits.Count == heldThroughWaits)
+            {
+                holder.Dispose();
+            }
+        });
+
+        Assert.Equal(heldThroughWaits, waits.Count);
+        Assert.Equal("a\nb\n", File.ReadAllText(path));
+    }
+
+    [Fact]
+    public void An_append_to_a_file_another_process_holds_is_tried_three_times_then_named_and_left_whole()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("index.jsonl", "a\n");
+        List<TimeSpan> waits = [];
+
+        IOException refused;
+        using (new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            refused = Assert.Throws<IOException>(() => PyText.AppendText(path, "b\n", waits.Add));
+        }
+
+        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal(2, waits.Count);
+        Assert.Equal("a\n", File.ReadAllText(path));
+        Assert.Equal([path], Directory.GetFiles(tree.Root));
+    }
+
+    [Fact]
     public void A_file_name_at_the_length_limit_can_be_written()
     {
         using TempTree tree = new();

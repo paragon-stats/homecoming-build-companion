@@ -443,7 +443,7 @@ internal sealed class PatchNotesCommand
 
     private static void AppendRow(string outDir, PyObject row)
     {
-        File.AppendAllText(Path.Join(outDir, IndexFile), PyJson.Dumps(row, indented: false, ensureAscii: false) + "\n", new UTF8Encoding(encoderShouldEmitUTF8Identifier: false));
+        PyText.AppendText(Path.Join(outDir, IndexFile), PyJson.Dumps(row, indented: false, ensureAscii: false) + "\n");
     }
 
     private static void WriteIndex(string outDir, IEnumerable<PyObject> rows)

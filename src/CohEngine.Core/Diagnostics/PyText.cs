@@ -250,6 +250,15 @@ public static class PyText
         WriteText(path, text, Thread.Sleep);
     }
 
+    /// <summary>Appends text to a file as UTF-8, creating it when missing; the old bytes and the text replace the file whole, as <see cref="WriteText(string, string)"/> does.</summary>
+    /// <param name="path">The file.</param>
+    /// <param name="text">The text.</param>
+    /// <exception cref="IOException">Another process held the file through every attempt to replace it.</exception>
+    public static void AppendText(string path, string text)
+    {
+        AppendText(path, text, Thread.Sleep);
+    }
+
     /// <summary>Deletes a file, retrying while another process holds it, as <see cref="WriteText(string, string)"/> does.</summary>
     /// <param name="path">The file.</param>
     /// <exception cref="IOException">Another process held the file through every attempt to delete it.</exception>
@@ -264,14 +273,39 @@ public static class PyText
     /// <param name="wait">Waits the given time.</param>
     internal static void WriteText(string path, string text, Action<TimeSpan> wait)
     {
-        string full = Path.GetFullPath(path);
+        byte[] content = StrictUtf8.GetBytes(text);
+        Replace(Path.GetFullPath(path), () => content, wait);
+    }
 
+    /// <summary>As <see cref="AppendText(string, string)"/>, waiting between attempts with <paramref name="wait"/>.</summary>
+    /// <param name="path">The file.</param>
+    /// <param name="text">The text.</param>
+    /// <param name="wait">Waits the given time.</param>
+    internal static void AppendText(string path, string text, Action<TimeSpan> wait)
+    {
+        string full = Path.GetFullPath(path);
+        byte[] added = StrictUtf8.GetBytes(text);
+        Replace(full, () => File.Exists(full) ? [.. File.ReadAllBytes(full), .. added] : added, wait);
+    }
+
+    /// <summary>
+    /// Writes the content to a temporary file beside the target, which then replaces it, so a failed write leaves the old
+    /// file whole; reading the content and replacing the file are retried while another process holds it.
+    /// </summary>
+    private static void Replace(string full, Func<byte[]> content, Action<TimeSpan> wait)
+    {
         // A short name of its own, so a target name at the length limit still leaves room for it.
         string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetRandomFileName() + ".tmp");
         try
         {
-            File.WriteAllText(temporary, text, StrictUtf8);
-            Retried(full, () => File.Move(temporary, full, overwrite: true), wait);
+            Retried(
+                full,
+                () =>
+                {
+                    File.WriteAllBytes(temporary, content());
+                    File.Move(temporary, full, overwrite: true);
+                },
+                wait);
         }
         finally
         {
