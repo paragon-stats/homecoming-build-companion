@@ -7,13 +7,15 @@ namespace CohEngine.Core.Chain;
 /// <summary>Path helpers that print as Python's <c>str(Path(...))</c> does.</summary>
 public static class ChainPaths
 {
+    private static readonly char[] Separators = ['/', '\\'];
+
     /// <summary>Normalizes separators to the platform's, dropping empty and <c>.</c> segments and trailing separators.</summary>
     /// <param name="path">The path as typed.</param>
     /// <returns>The path as Python prints it.</returns>
     public static string Norm(string path)
     {
         ArgumentNullException.ThrowIfNull(path);
-        string[] segments = path.Split('/', '\\');
+        string[] segments = path.Split(Separators);
         bool rooted = segments.Length > 1 && segments[0].Length == 0;
         string joined = string.Join(Path.DirectorySeparatorChar, segments.Where(segment => segment.Length > 0 && !string.Equals(segment, ".", StringComparison.Ordinal)));
         if (rooted)
