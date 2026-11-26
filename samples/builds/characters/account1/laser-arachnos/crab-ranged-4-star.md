@@ -197,7 +197,14 @@ The lowest exemplar level at which a piece's own bonus works follows the wiki's 
 
 The four Luck of the Gambler +7.5% recharge globals are crafted at 50 and work from exemplar 47.
 
-**Preventive Medicine's absorb is crafted 50 in the file.** An `.mbd` marks a piece attuned only by an `Attuned_...` identifier, and the
+**Proc or global** is the game data's: `boost_info.is_proc` in `data/canonical/powers/boosts/crafted_<piece>/crafted_<piece>.json`.
+Panacea, Regenerative Tissue, Miracle, Numina's Convalescence and Performance Shifter's Chance for +End have `is_proc: true` and
+carry their effect in the piece. The other pieces in the table have `is_proc: false` and carry it in a `global_bonuses` power, which
+follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor, Shield Wall).
+
+**Preventive Medicine's absorb is crafted 50 in the file.** By the game data it is a global, not a proc: `is_proc: false`, and the
+absorb comes from its `global_bonuses` power `set_bonus.set_bonus.preventive_medicine`, which fires by chance. An `.mbd` marks a piece
+attuned only by an `Attuned_...` identifier, and the
 Mids 3.8.6 database the file is written against has none for Preventive Medicine. Slotted as the file holds it, the absorb is off below
 exemplar 47. To have it from 17, buy it attuned in game (or crafted 20, which also works from 17). The absorb counts in no total here, so
 no figure changes.
@@ -211,7 +218,8 @@ More copies could be slotted, each adding the same psionic resistance bonus; thi
 
 - **Preventive Medicine absorb.** It checks every 5 s: a 10% chance at 31 to 75% health, 100% below 31%. Each trigger grants absorb equal
   to 20% of max HP for 30 s, **at most once every 120 s** (the earlier text said 90 s). That is about 398 absorb at 1,989 HP with Serum up,
-  273 with Serum down, and at most 398 / 120 = 3.3 HP/s (arithmetic; the earlier 90 s implied 4.4).
+  273 with Serum down, and at most 398 / 120 = 3.3 HP/s (arithmetic; the earlier 90 s implied 4.4). By the data it is a chance-based
+  global, not a proc (`is_proc: false`; see "Unique placement").
 - **Panacea.** 3 PPM in an auto power, checked every 10 s: 3 × 10 / 60 = a 50% chance per check, about three triggers a minute. Each heals
   (scale 0.67 on the heal table) and restores 7.5% endurance: 0.5 × 7.87 / 10 = **0.39 end/s** (estimate).
 - **Performance Shifter: Chance for +End** (crafted 21). 1.5 PPM, checked every 10 s: a 25% chance, +10% endurance: 0.25 × 10.5 / 10 =
@@ -618,7 +626,7 @@ Unchanged from the previous file.
 Each piece is named with its real kind and level:
 
 - **Superior, attuned:** Superior Spider's Bite, Superior Winter's Bite, Superior Dominion of Arachnos, Superior Frozen Blast. No level.
-- **Attuned:** the Preventive Medicine absorb proc, in game. The file holds it crafted 50 (see "Unique placement").
+- **Attuned:** the Preventive Medicine absorb global, in game. The file holds it crafted 50 (see "Unique placement").
 - **Crafted, with its level:** every other piece. "Invention" pieces are common IOs, crafted at 50.
 
 `(A)` is the free slot; numbers in brackets are the levels the added slots are placed at. "+5" marks a planned boost.

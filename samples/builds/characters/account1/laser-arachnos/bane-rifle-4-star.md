@@ -309,6 +309,11 @@ The lowest exemplar level at which each piece's own bonus works, by the rules ab
 | Achilles' Heel: Chance for Res Debuff | Surveillance | crafted 20 | no (proc) | 19 (Surveillance usable) | crafted 20 |
 | Annihilation: Chance for Res Debuff | Heavy Burst | crafted 50 | no (proc) | 3 (Heavy Burst usable) | — |
 
+**Proc or global** is the game data's: `boost_info.is_proc` in `data/canonical/powers/boosts/crafted_<piece>/crafted_<piece>.json`.
+The "(proc)" rows have `is_proc: true` and carry their effect in the piece. The others have `is_proc: false` and carry it in a
+`global_bonuses` power, which follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor,
+Shield Wall). Preventive Medicine's chance-based absorb is one of these globals.
+
 "—" means the screenshots did not show that piece's level. **Against the game, measured:** Steadfast Protection at 10 (+5) in place of 30
 costs 0.41 points of S/L and 0.57 of the other resistances at 50 and gains +3% defense in every position from 7 to 26.
 
@@ -316,6 +321,7 @@ costs 0.41 points of S/L and 0.57 of the other resistances at 50 and gains +3% d
 
 - **Preventive Medicine absorb.** It checks every 5 s: a 10% chance at 31 to 75% health, 100% below 31%. Each trigger grants absorb equal
   to 20% of max HP for 30 s, **at most once every 120 s**: about 308 absorb at 1,542 HP, at most 308 / 120 = 2.6 HP/s (arithmetic).
+  By the data it is a chance-based global, not a proc (`is_proc: false`), which is why it works from 17 here.
 - **Panacea.** 3 PPM in an auto power, checked every 10 s: a 50% chance per check, +7.5% endurance: 0.5 × 7.77 / 10 = **0.39 end/s**.
 - **Performance Shifter: Chance for +End.** 1.5 PPM, a 25% chance per 10 s check, +10% endurance: 0.25 × 10.36 / 10 = **0.26 end/s**.
 - **None of these procs is modelled by Mids.** "Endurance against real encounter lengths" shows the bars with and without them.

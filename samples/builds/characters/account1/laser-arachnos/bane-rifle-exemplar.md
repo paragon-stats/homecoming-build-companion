@@ -5,7 +5,7 @@
 This build is designed around the pieces below being **attuned** in game. The Mids file cannot mark them attuned: an `.mbd` marks a piece
 attuned only by its identifier (`Attuned_...`), and the Mids 3.8.6 database the file is written against (2026.5.1337) has attuned
 identifiers only for archetype, Winter and attuned-only sets. The file therefore holds each of these 29 pieces as the crafted piece at the
-level shown. Buy them attuned:
+level shown. Buy them attuned, except Regenerative Tissue: it is a proc, and the crafted 30 piece works as well (see the last note below).
 
 | Power | Pieces to buy attuned | In the file |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ level shown. Buy them attuned:
 | Tough | Unbreakable Guard: Resistance, Resistance/Endurance, RechargeTime/Resistance, Resistance/Endurance/RechargeTime, +Max HP | crafted 50 |
 | Tough | Aegis: Psionic/Status Resistance | crafted 50 |
 | Build Up | Gaussian's Synchronized Fire-Control: To Hit Buff, To Hit Buff/Recharge, To Hit Buff/Recharge/Endurance, Chance for Build Up | crafted 50 |
-| Health | Regenerative Tissue: +Regeneration | crafted 30 |
+| Health | Regenerative Tissue: +Regeneration | crafted 30, which works the same (a proc) |
 | Health | Preventive Medicine: Chance for +Absorb | crafted 50 |
 
 **Which figures assume attuned.** Every per-exemplar-level table below (totals, hit chance, damage, endurance) was computed with these
@@ -40,9 +40,15 @@ class's base hit points at that level. The rule of five was not re-run for these
 - **Recharge** is Mids' figure, Hasten not counted. The "Recharge" columns below are time-averages with Hasten at its real uptime;
   30% less recharge also shortens Hasten's uptime, so the time-average falls by more. The hit-chance tables at 25-45 use the +42%
   accuracy, so they fall too. Neither was re-measured.
-- **Procs work at any piece level,** so the Achilles' Heel and Gaussian's procs change nothing. The Preventive Medicine absorb is a
-  global in the game data and counts in no total here; in the file it works only from 47. The game data marks Regenerative Tissue's
-  +Regeneration as a proc (`is_proc`), so by the rules here its crafted 30 piece counts at every level and changes no figure.
+- **Proc or global, by the game data.** Each piece's `boost_info` in
+  `data/canonical/powers/boosts/crafted_<piece>/crafted_<piece>.json` says which it is.
+  - **Procs** (`is_proc: true`, effect in the piece itself, no `global_bonuses`) work at any piece level while their power is usable:
+    Achilles' Heel's Chance for Res Debuff, Gaussian's Chance for Build Up and Regenerative Tissue's +Regeneration. Regenerative Tissue
+    is a lone piece, so crafted 30 costs nothing: 28 of the 29 pieces cost something, it does not. The Achilles' Heel and Gaussian's
+    procs stay on the list because they count toward their sets' bonuses, which follow the level rule.
+  - **Preventive Medicine's Chance for +Absorb is a global** (`is_proc: false`; its absorb comes from the `global_bonuses` power
+    `set_bonus.set_bonus.preventive_medicine`, which fires by chance). It follows the level rule: from 17 attuned, from 47 as the file
+    holds it. It counts in no total here.
 
 ## Checks run on this file
 
@@ -70,7 +76,8 @@ Every check below was run on this build itself (the file in this folder). No fig
     are listed in the order they are first picked (Leadership 4, Leaping 6, Speed 28, Fighting 30): passes.
 13. **Piece kinds against the file:** the kind of every piece in the slotting table was compared with the `.mbd`. They agree except the
     29 pieces in "Buy these pieces attuned": the table gives them as attuned, the in-game kind, and the file holds them crafted, because
-    the Mids 3.8.6 database has no attuned form of a regular set.
+    the Mids 3.8.6 database has no attuned form of a regular set. One of them, Regenerative Tissue, is a proc, so its difference costs
+    nothing.
 
 Before any change, the previously delivered build was rebuilt from its spec: the rebuilt `.mbd` is byte-identical to the delivered one,
 and its dump is byte-identical to the delivered `.mids-totals.json`.
@@ -537,8 +544,9 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 | Combat Training: Defensive | Shield Wall +5% Res (all) (moved here) | crafted 50 | PvP global: works at every level wherever it sits |
 | | (Karma Knockback Protection, removed) | — | Its slot went to Surveillance's Accuracy IO; knockback protection 15 → 11 |
 | Wide Area Web Grenade | Accuracy | crafted 50, +5 | One slot (on the ALT row, not the key row) |
-| Health | Panacea +HP/End, Numina's +Regen/Recovery (30), Miracle +Recovery (20) | crafted | Procs: any level works; lowest craftable |
-| | Regenerative Tissue +Regen, Preventive Medicine +Absorb | attuned; file: crafted 30 and crafted 50 | Globals: from 7 and from 17 |
+| Health | Panacea +HP/End, Numina's +Regen/Recovery (30), Miracle +Recovery (20) | crafted | Procs by the game data (`is_proc: true`): any level works; lowest craftable |
+| | Regenerative Tissue +Regen | attuned; file: crafted 30, which works the same | Proc by the game data (`is_proc: true`): any level works |
+| | Preventive Medicine +Absorb | attuned; file: crafted 50 | Global by the game data (`is_proc: false`, `global_bonuses`): from 17 attuned, from 47 crafted 50 |
 | Stamina | Performance Shifter +End proc | crafted 21 | Proc; lowest craftable |
 | | Performance Shifter EndMod, EndMod/Rech | crafted 50, +5 | The dual-aspect piece keeps its boost at every level. Attuned would add only the 3-piece +1.88% HP at 18-46 |
 | **Brawl** (new) | Accuracy | crafted 50 | Takes Accuracy, Damage or Recharge; never pressed; empty it hit +4 at 70.1%, now 91.1% at 50 [H] |
@@ -566,7 +574,7 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 | Impervium at 15 | Best |
 | Gladiator's Armor | Any level works |
 | Health procs, Performance Shifter at 21, Achilles' Heel at 20 | Any level works |
-| Regenerative Tissue | Use 10 or attuned, not 30 |
+| Regenerative Tissue | Any level works: a proc in the game data (`is_proc: true`). The first version's verdict, "use 10 or attuned, not 30", treated it as a global |
 | Preventive Medicine | Use 20 or attuned, not 40 |
 | Kismet at 30 | Fine by the data, which flags it as a proc; 10 is safe either way |
 | A unique in Tough at 25 | Same as attuned if it is Aegis; Unbreakable Guard +HP is better at 20 or attuned |
@@ -735,6 +743,8 @@ This is the recipe of the repository's sample-build parity test, and it adds the
    - Pieces that ignore exemplaring always count.
    - Attuned pieces count down to the set minimum − 3; crafted pieces down to their level − 3.
    - The pieces in "Buy these pieces attuned" are taken as attuned, as designed, although the file holds them crafted.
+   - Regenerative Tissue's +Regeneration was described as an attuned global (from 7). The game data makes it a proc (`is_proc: true`),
+     which counts at every level Health is usable; either way it counts at every tabulated level (10 and up), so no figure moves.
    - Procs count only in a usable power.
    - The rule of five is applied as Mids applies it.
 3. **Values:** each piece's values are scaled by the wiki's table (unchanged at 5% or less, the 10%/20% thresholds, the 41.5% cap), and the class tables and hit points are taken at level N.
