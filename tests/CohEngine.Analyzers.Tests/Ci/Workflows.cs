@@ -51,9 +51,10 @@ internal static partial class Workflows
 
     /// <summary>Whether an <c>if:</c> lets the event through.</summary>
     /// <remarks>
-    /// shortcut: only <c>github.event_name == '...'</c> tests are read; a condition with none admits every event,
-    /// so a filter written another way (<c>!=</c>, <c>contains</c>) is not seen. Extend when a workflow needs one.
+    /// Only <c>github.event_name == '...'</c> tests are read, and a condition with none admits every event.
+    /// Any other use of <c>github.event_name</c> (<c>!=</c>, <c>contains</c>) throws rather than being guessed at.
     /// </remarks>
+    /// <exception cref="NotSupportedException">The condition tests the event in a form this reader does not know.</exception>
     public static bool Admits(string? condition, string eventName)
     {
         if (condition is null)
@@ -62,8 +63,17 @@ internal static partial class Workflows
         }
 
         List<string> named = [.. EventTest.Matches(condition).Select(match => match.Groups["event"].Value)];
+        if (named.Count != Regex.Count(condition, @"github\.event_name", RegexOptions.None, TimeSpan.FromSeconds(5)))
+        {
+            throw new NotSupportedException($"cannot read the event test in '{condition}'");
+        }
+
         return named.Count == 0 || named.Contains(eventName, StringComparer.Ordinal);
     }
+
+    /// <summary>The steps of a job that run the report-status-context action.</summary>
+    public static IEnumerable<YamlMappingNode> StatusSteps(YamlMappingNode job) =>
+        Steps(job).Where(step => (Scalar(step, "uses") ?? string.Empty).EndsWith(StatusAction, StringComparison.Ordinal));
 
     /// <summary>Every context the workflows report on one event, with the job that reports it.</summary>
     /// <remarks>
@@ -84,8 +94,10 @@ internal static partial class Workflows
             {
                 string where = $"{Path.GetFileName(path)} / {jobId}";
                 string? name = Scalar(job, "name");
-                bool runs = Admits(Scalar(job, "if"), eventName);
-                List<YamlMappingNode> reporting = [.. Steps(job).Where(step => (Scalar(step, "uses") ?? string.Empty).EndsWith(StatusAction, StringComparison.Ordinal) && Admits(Scalar(step, "if"), eventName))];
+
+                // The job's condition matters only for the statuses it posts; its own check reports either way.
+                List<YamlMappingNode> reporting = [.. StatusSteps(job).Where(step => Admits(Scalar(step, "if"), eventName))];
+                bool runs = reporting.Count > 0 && Admits(Scalar(job, "if"), eventName);
                 foreach (Dictionary<string, string> combination in Combinations(job))
                 {
                     found.Add((name is null ? DefaultName(jobId, combination) : Expand(name, combination), where));

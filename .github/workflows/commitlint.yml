@@ -160,6 +160,7 @@ jobs:
           persist-credentials: false
 
       - name: Report the commitlint context
+        if: ${{ always() }}
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -168,6 +169,7 @@ jobs:
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
       - name: Report the pr-title context
+        if: ${{ always() }}
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
