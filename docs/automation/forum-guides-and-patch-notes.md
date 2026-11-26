@@ -118,7 +118,8 @@ From a source checkout, `dotnet run --project src/CohEngine.Cli -- patch-notes .
 It takes the options and writes the bytes of `python -m scripts.forum_scrape.patch_notes`, which stays in the tree
 until the Python is removed. Its errors carry their own numbers: a failed fetch is `E200`, a refused or unreadable
 `robots.txt` `E201` or `E202`, an unreadable category browser or wiki index `E203` or `E204`, a missing beta
-listing page `E205`, an entry with no change lines `E206`, and a canonical tree with no powerset names `E207`.
+listing page `E205`, an entry with no change lines `E206`, a canonical tree with no powerset names `E207`, and a source not read completely `E208`.
+A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
 
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:

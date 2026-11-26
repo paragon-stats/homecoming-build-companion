@@ -75,7 +75,8 @@ public sealed class PatchNotesCommandTests
 
         (int code, string output, string error) = Run(site, args);
 
-        Assert.Equal(0, code);
+        Assert.Equal(1, code);
+        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
         Assert.Contains("3 entries written", output, StringComparison.Ordinal);
         Assert.Contains($"E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
         Assert.Equal(["2026-10-20-issue-28-page-4-r47.json", "2026-10-20-october-20-update-r48.json", "undated-placeholder-r1.json"], Json(tree.Root));
@@ -190,6 +191,60 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(["Recluse's Victory opens."], Changes(early).Select(change => change["text"]));
         Assert.DoesNotContain("Recluse's Victory opens.", File.ReadAllText(later), StringComparison.Ordinal);
         Assert.Equal([pages[1], pages[0], pages[2]], Index(outDir).Select(row => row["url"]));
+    }
+
+    [Fact]
+    public void Reparse_leaves_a_source_it_could_not_read_completely_as_it_was()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        string[] pages = WikiRoutes(site);
+        string outDir = tree.FullPath("patches");
+        Assert.Equal(0, Run(site, "--out", outDir, "--delay", "0", "--source", "paragonwiki").Code);
+        string index = File.ReadAllText(Path.Join(outDir, "index.jsonl"));
+        List<string> records = Json(outDir);
+        Directory.Delete(Path.Join(outDir, ".cache"), recursive: true);
+        site.Routes.Remove(pages[0]);
+
+        (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "paragonwiki", "--reparse");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E208: paragonwiki was not read completely", error, StringComparison.Ordinal);
+        Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
+        Assert.Equal(index, File.ReadAllText(Path.Join(outDir, "index.jsonl")));
+        Assert.Equal(records, Json(outDir));
+    }
+
+    [Fact]
+    public void Reparse_keeps_the_release_notes_when_the_category_browser_cannot_be_read()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        tree.Write("index.jsonl", "{\"url\": \"u\", \"published\": \"2024-01-01\", \"source\": \"release-notes\", \"file\": \"a.json\"}\n");
+        tree.Write("a.json", "{\"changes\": []}\n");
+        site.Routes[Base + "/patch-notes/?show=categories"] = HttpStatusCode.ServiceUnavailable;
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--reparse");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
+        Assert.True(File.Exists(tree.FullPath("a.json")));
+        Assert.Single(Index(tree.Root));
+    }
+
+    [Fact]
+    public void A_listing_or_entry_page_that_cannot_be_read_fails_the_run()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Base + "/patch-notes/?show=categories"] = Categories;
+        site.Routes[Base + "/patch-notes/issue-28/page-4/"] = $"<a href='{PatchParserTests.EntryUrl}'>a</a>";
+
+        (int code, string output, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes");
+
+        Assert.Equal(1, code);
+        Assert.Contains("0 entries written", output, StringComparison.Ordinal);
+        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
     }
 
     [Fact]

@@ -83,9 +83,9 @@ internal sealed class PatchNotesCommand
             return command.Reparse(sources, outDir) ? 1 : 0;
         }
 
-        (int total, bool failed) = command.Collect(sources, outDir);
+        (int total, IReadOnlySet<string> incomplete) = command.Collect(sources, outDir);
         output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{total} entries written to {outDir}"));
-        return failed ? 1 : 0;
+        return incomplete.Count > 0 ? 1 : 0;
     }
 
     /// <summary>The lower-case names of the player powersets the canonical tree has a folder for.</summary>
@@ -440,55 +440,55 @@ internal sealed class PatchNotesCommand
         return (topics, failed);
     }
 
-    /// <summary>Collects the requested sources into <paramref name="outDir"/>.</summary>
-    private (int Total, bool Failed) Collect(IReadOnlyList<string> sources, string outDir)
+    /// <summary>Collects the requested sources into <paramref name="outDir"/>; returns the entries written and the sources not read completely.</summary>
+    private (int Total, IReadOnlySet<string> Incomplete) Collect(IReadOnlyList<string> sources, string outDir)
     {
         List<PyObject> rows = Index(outDir);
         HashSet<string> written = [.. rows.Select(row => PyText.Str(row["url"]))];
         int total = 0;
-        bool failed = false;
+        HashSet<string> incomplete = new(StringComparer.Ordinal);
         PageFetcher forum = new(http, agent, delay, PatchParser.Forum, error);
-        if (sources.Contains(PatchParser.ReleaseNotes, StringComparer.Ordinal))
+        foreach (string source in Sources.Where(source => sources.Contains(source, StringComparer.Ordinal)))
         {
-            int count = CollectReleaseNotes(forum, written, outDir);
-            failed |= count < 0;
-            total += Math.Max(count, 0);
+            (int count, bool complete) = source switch
+            {
+                PatchParser.ReleaseNotes => CollectReleaseNotes(forum, written, outDir),
+                PatchParser.ForumBeta => CollectForumBeta(forum, written, outDir, rows),
+                _ => CollectWiki(new PageFetcher(http, agent, delay, PatchParser.Wiki, error), written, outDir, rows),
+            };
+            total += count;
+            if (!complete)
+            {
+                incomplete.Add(source);
+                error.WriteLine($"{ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; re-run when every page named above can be read");
+            }
+
             rows = Index(outDir);
         }
 
-        if (sources.Contains(PatchParser.ForumBeta, StringComparer.Ordinal))
-        {
-            (int count, bool complete) = CollectForumBeta(forum, written, outDir, rows);
-            failed |= !complete;
-            total += count;
-        }
-
-        if (sources.Contains(PatchParser.ParagonWiki, StringComparer.Ordinal))
-        {
-            int count = CollectWiki(new PageFetcher(http, agent, delay, PatchParser.Wiki, error), written, outDir, rows);
-            failed |= count < 0;
-            total += Math.Max(count, 0);
-        }
-
-        return (total, failed);
+        return (total, incomplete);
     }
 
-    private int CollectReleaseNotes(PageFetcher fetcher, HashSet<string> written, string outDir)
+    private (int Count, bool Complete) CollectReleaseNotes(PageFetcher fetcher, HashSet<string> written, string outDir)
     {
         string? categories = fetcher.Get(CategoriesUrl);
         if (categories is null)
         {
             error.WriteLine($"{ErrorCodes.E203}: could not read the patch-notes category browser at {CategoriesUrl}");
-            return -1;
+            return (0, false);
         }
 
         int count = 0;
+        bool complete = true;
         foreach (string categoryUrl in PatchParser.ListCategories(categories))
         {
-            foreach (string entryUrl in PatchParser.ListEntries(fetcher.Get(categoryUrl) ?? string.Empty).Where(url => !written.Contains(url)))
+            string? listing = fetcher.Get(categoryUrl);
+            complete &= listing is not null;
+            foreach (string entryUrl in PatchParser.ListEntries(listing ?? string.Empty).Where(url => !written.Contains(url)))
             {
                 if (Cached(fetcher, entryUrl) is not { } page)
                 {
+                    complete = false;
                     continue;
                 }
 
@@ -504,7 +504,7 @@ internal sealed class PatchNotesCommand
             }
         }
 
-        return count;
+        return (count, complete);
     }
 
     /// <summary>Beta threads the live application does not cover; returns the entries written and whether every listing page was read.</summary>
@@ -532,6 +532,7 @@ internal sealed class PatchNotesCommand
         {
             if (Cached(fetcher, topic) is not { } page)
             {
+                gaps.Add(topic);
                 continue;
             }
 
@@ -548,25 +549,28 @@ internal sealed class PatchNotesCommand
         return (WriteDated(entries, outDir, rows, written, output, error), gaps.Count == 0);
     }
 
-    private int CollectWiki(PageFetcher fetcher, HashSet<string> written, string outDir, IReadOnlyList<PyObject> rows)
+    private (int Count, bool Complete) CollectWiki(PageFetcher fetcher, HashSet<string> written, string outDir, IReadOnlyList<PyObject> rows)
     {
         string? index = fetcher.Get(WikiIndexUrl);
         if (index is null)
         {
             error.WriteLine($"{ErrorCodes.E204}: could not read the wiki patch-notes index at {WikiIndexUrl}");
-            return -1;
+            return (0, false);
         }
 
         List<PatchEntry> entries = [];
+        bool complete = true;
         foreach (string pageUrl in PatchParser.WikiPages(index).Where(url => !written.Contains(url)))
         {
-            if (Cached(fetcher, pageUrl) is { } page)
+            string? page = Cached(fetcher, pageUrl);
+            complete &= page is not null;
+            if (page is not null)
             {
                 entries.Add(PatchParser.ParseWikiPage(page, pageUrl));
             }
         }
 
-        return WriteDated(entries, outDir, rows, written, output, error);
+        return (WriteDated(entries, outDir, rows, written, output, error), complete);
     }
 
     /// <summary>The cached page for <paramref name="url"/>, else the fetched one, cached for next time. Listing and index pages never go through it.</summary>
@@ -594,31 +598,31 @@ internal sealed class PatchNotesCommand
         List<PyObject> oldRows = Index(outDir);
         Dictionary<string, (int Changed, int Unchanged, int Removed, int Kept)> counts = new(StringComparer.Ordinal);
         DirectoryInfo scratch = Directory.CreateTempSubdirectory("coh-patch-notes-");
-        bool failed;
+        IReadOnlySet<string> incomplete;
         try
         {
             // Other sources' rows stay in view: the beta collector needs the live coverage.
             WriteIndex(scratch.FullName, oldRows.Where(row => !sources.Contains(SourceOf(row), StringComparer.Ordinal)));
-            (_, failed) = Collect(sources, scratch.FullName);
-            foreach (string source in sources)
+            (_, incomplete) = Collect(sources, scratch.FullName);
+            foreach (string source in sources.Where(source => !incomplete.Contains(source)))
             {
                 counts[source] = Sync(scratch.FullName, outDir, source);
             }
 
             List<PyObject> newRows = Index(scratch.FullName);
-            WriteIndex(outDir, Sources.SelectMany(source => (sources.Contains(source, StringComparer.Ordinal) ? newRows : oldRows).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal))));
+            WriteIndex(outDir, Sources.SelectMany(source => (counts.ContainsKey(source) ? newRows : oldRows).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal))));
         }
         finally
         {
             scratch.Delete(recursive: true);
         }
 
-        foreach (string source in Sources.Where(source => sources.Contains(source, StringComparer.Ordinal)))
+        foreach (string source in Sources.Where(counts.ContainsKey))
         {
             (int changed, int unchanged, int removed, int kept) = counts[source];
             output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{source}: {changed} changed, {unchanged} unchanged, {removed} removed, {kept} kept, {Redate(outDir, source)} re-dated"));
         }
 
-        return failed;
+        return incomplete.Count > 0;
     }
 }

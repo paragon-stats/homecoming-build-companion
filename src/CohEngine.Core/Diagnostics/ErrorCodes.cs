@@ -284,6 +284,9 @@ public static class ErrorCodes
     /// <summary>The canonical tree names no powerset, so no heading fills <c>powerset</c>.</summary>
     public const string E207 = "E207";
 
+    /// <summary>A source was not read completely, so its records on disk and its index rows are left as they are.</summary>
+    public const string E208 = "E208";
+
     // E210-E219: source-manifest.
 
     /// <summary>The source-material root is missing or is not a directory.</summary>
