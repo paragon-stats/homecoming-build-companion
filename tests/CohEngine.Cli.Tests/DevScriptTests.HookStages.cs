@@ -84,7 +84,7 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_hooks_and_the_environment_check_name_the_restore_when_the_husky_tool_is_missing()
+    public void The_commit_hook_names_the_restore_when_the_husky_tool_is_missing()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
@@ -95,12 +95,79 @@ public sealed partial class DevScriptTests
         File.WriteAllText(manifest, tools.ToJsonString());
 
         (int hookExit, string hookOutput, _, string hookError) = RunHook(tree, "pre-commit");
-        (int verifyExit, string verifyOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
 
         Assert.True(hookExit != 0, hookOutput);
-        Assert.Contains("dotnet tool restore", hookError, StringComparison.Ordinal);
-        Assert.Equal(1, verifyExit);
-        Assert.Contains("local .NET tools are not restored - run: dotnet tool restore", verifyOutput, StringComparison.Ordinal);
+        Assert.Contains("Run \"dotnet tool restore\" to make the \"husky\" command available.", hookError, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_environment_check_fails_on_an_unrestored_husky_alone_and_passes_once_it_is_restored()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        foreach (string hook in new[] { "pre-commit", "commit-msg", "pre-push" })
+        {
+            File.Copy(Path.Join(DevScripts.RepositoryRoot, ".husky", hook), tree.FullPath($".husky/{hook}"));
+        }
+
+        DevScripts.Git(tree.Root, "config", "commit.gpgsign", "true");
+        string manifest = tree.FullPath(".config/dotnet-tools.json");
+        string restored = File.ReadAllText(manifest);
+        JsonNode tools = JsonNode.Parse(restored)!;
+        tools["tools"]!["husky"]!["version"] = "0.0.1-never-restored";
+        File.WriteAllText(manifest, tools.ToJsonString());
+
+        (int missingExit, string missingOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
+        File.WriteAllText(manifest, restored);
+        (int restoredExit, string restoredOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
+
+        Assert.Equal(1, missingExit);
+        string[] problems = [.. missingOutput.ReplaceLineEndings("\n").Split('\n').Where(line => line.StartsWith("  - ", StringComparison.Ordinal))];
+        Assert.Equal(["  - local .NET tools are not restored - run: dotnet tool restore"], problems);
+        Assert.True(restoredExit == 0, restoredOutput);
+        Assert.DoesNotContain("not restored", restoredOutput, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData(null, true)]
+    [InlineData("Somebody Else", false)]
+    public void The_banned_words_check_says_in_its_one_outcome_line_when_the_name_check_was_not_run(string? names, bool skipped)
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        Dictionary<string, string?> environment = new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = names, ["GITHUB_ACTIONS"] = null };
+
+        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", environment, input: null, "run", Path.Join(DevScripts.RepositoryRoot, "scripts", "dev", "check-banned-words.cs"));
+
+        Assert.True(exit == 0, output);
+        Assert.Equal(string.Empty, standardError);
+        string expected = skipped
+            ? "[OK] no banned words found; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty."
+            : "[OK] no banned words found.";
+        Assert.Equal(expected, standardOutput.TrimEnd());
+    }
+
+    [Fact]
+    public void The_super_linter_runner_prints_no_outcome_line_of_success_when_the_container_run_fails()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+
+        // The stand-in accepts every command but run, as a Docker whose lint run reports findings.
+        Dictionary<string, string?> docker = new(StringComparer.Ordinal)
+        {
+            ["SUPER_LINTER_DOCKER_CMD"] = $"\"{DevScripts.Bash()}\" -c \"test $0 != run\"",
+            ["SUPER_LINTER_PULL_POLICY"] = "missing",
+            ["SUPER_LINTER_VALIDATE_ALL_CODEBASE"] = "false",
+        };
+        string script = Path.Join(DevScripts.RepositoryRoot, "scripts", "dev", "run-super-linter.cs");
+
+        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", docker, input: null, "run", script);
+
+        Assert.True(exit != 0, output);
+        Assert.Contains("[INFO] running Super-Linter locally", standardOutput, StringComparison.Ordinal);
+        Assert.DoesNotContain("[OK]", standardOutput, StringComparison.Ordinal);
+        Assert.Contains("[FAIL] Super-Linter reported findings", standardError, StringComparison.Ordinal);
     }
 
     [Fact]
