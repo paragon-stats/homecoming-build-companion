@@ -33,7 +33,7 @@ public static class CliRunner
         {
             case []:
                 output.WriteLine("coh_engine: MidsReborn build-math port.");
-                output.WriteLine("Spec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, score, extract-canonical, mcp, ask.");
+                output.WriteLine("Spec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, score, extract-canonical, patch-notes, source-manifest, mcp, ask.");
                 return 0;
             case ["--version"]:
                 output.WriteLine("coh-engine " + EngineInfo.Version);
