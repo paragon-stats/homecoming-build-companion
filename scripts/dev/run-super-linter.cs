@@ -122,8 +122,15 @@ if (image == defaultImage
     envPairs.Add($"JSCPD_LINTER_RULES={Workspace}/.github/linters/.jscpd.json");
 }
 
-string[] dockerCommand = (Env("SUPER_LINTER_DOCKER_CMD") is { Length: > 0 } custom ? custom : "docker")
-    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+string dockerOverride = Env("SUPER_LINTER_DOCKER_CMD");
+string[] dockerCommand = SplitCommand(dockerOverride.Length > 0 ? dockerOverride : "docker");
+if (dockerCommand.Length == 0)
+{
+    Console.Error.WriteLine("[FAIL] SUPER_LINTER_DOCKER_CMD names no program.");
+    return 1;
+}
+
+(string Path, string Content)? gitFile = null;
 
 List<string> run = ["run", "--rm", "--pull", pullPolicy == "always" ? "never" : pullPolicy];
 if (File.Exists(EnvFile))
@@ -147,16 +154,36 @@ if (args.Contains("--print-plan"))
     return 0;
 }
 
-if (Docker(capture: true, "version") != 0)
+int probe = Docker(capture: true, "version");
+if (probe == 127 && dockerOverride.Length == 0)
 {
     Console.Error.WriteLine(
-        "[SKIP] Docker is not usable here - skipping the local Super-Linter pass; CI will still lint. " +
-        "Install Docker (or set SUPER_LINTER_DOCKER_CMD) for local parity.");
+        "[SKIP] Docker is not installed - skipping the local Super-Linter pass; CI will still lint. " +
+        "Install Docker for local parity.");
     return 0;
+}
+
+if (probe == 127)
+{
+    Console.Error.WriteLine($"[FAIL] SUPER_LINTER_DOCKER_CMD names a program that was not found: {dockerCommand[0]}");
+    return 1;
+}
+
+if (probe != 0)
+{
+    Console.Error.WriteLine(
+        $"[FAIL] Docker was found but is not usable ('{string.Join(' ', dockerCommand)} version' exited {probe}). " +
+        "To fix it, start Docker (the Docker Desktop app or the docker service), check your user may use it, then run this again.");
+    return 1;
 }
 
 // One run at a time per repository keeps the output readable and the machine responsive.
 using FileStream lockFile = AcquireLock();
+if (gitFile is { } linked)
+{
+    File.WriteAllText(linked.Path, linked.Content);
+}
+
 int fresh = pullPolicy == "always" ? EnsureImageFresh() : 0;
 if (fresh != 0)
 {
@@ -171,6 +198,10 @@ if (result != 0)
 }
 
 return result;
+
+// Split a command line on spaces, keeping a double-quoted part (a path with spaces) whole.
+static string[] SplitCommand(string command) =>
+    [.. System.Text.RegularExpressions.Regex.Matches(command, @"""([^""]*)""|(\S+)").Select(m => m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)];
 
 static string Env(string name) => (Environment.GetEnvironmentVariable(name) ?? string.Empty).Trim();
 
@@ -281,6 +312,7 @@ int EnsureImageFresh()
 FileStream AcquireLock()
 {
     string lockPath = Path.Join(CommonGitDirectory(), "super-linter.lock");
+    bool told = false;
     while (true)
     {
         try
@@ -289,6 +321,12 @@ FileStream AcquireLock()
         }
         catch (IOException)
         {
+            if (!told)
+            {
+                Console.Error.WriteLine($"[INFO] waiting for another Super-Linter run on this repository to finish (lock file {lockPath}) ...");
+                told = true;
+            }
+
             Thread.Sleep(1000);
         }
     }
@@ -323,14 +361,14 @@ List<string> WorktreeArguments()
     string gitDir = LinkedGitDirectory(dotGit);
     string common = CommonGitDirectory();
     string containerGitDir = $"{GitCommon}/{Path.GetRelativePath(common, gitDir).Replace('\\', '/')}";
-    string gitFile = Path.Join(gitDir, "super-linter.gitfile");
+    string gitFilePath = Path.Join(gitDir, "super-linter.gitfile");
 
-    // No trailing newline: Super-Linter keeps it as part of the path it reads.
-    File.WriteAllText(gitFile, $"gitdir: {containerGitDir}");
+    // Written just before the run, with no trailing newline: Super-Linter keeps it as part of the path it reads.
+    gitFile = (gitFilePath, $"gitdir: {containerGitDir}");
     return
     [
         "-v", $"{common}:{GitCommon}",
-        "-v", $"{gitFile}:{Workspace}/.git:ro",
+        "-v", $"{gitFilePath}:{Workspace}/.git:ro",
         "-e", "GIT_CONFIG_COUNT=1",
         "-e", "GIT_CONFIG_KEY_0=safe.directory",
         "-e", "GIT_CONFIG_VALUE_0=*",

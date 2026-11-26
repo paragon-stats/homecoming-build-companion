@@ -43,7 +43,7 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_pre_commit_group_fails_on_a_markdown_line_that_breaks_markdownlint()
+    public void The_text_file_task_run_by_husky_fails_on_a_markdown_line_that_breaks_markdownlint()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
@@ -57,7 +57,7 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_pre_commit_group_fails_on_a_file_missing_its_final_newline()
+    public void The_text_file_task_run_by_husky_fails_on_a_file_missing_its_final_newline()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
@@ -71,7 +71,7 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_pre_commit_group_passes_on_a_clean_tree()
+    public void The_text_file_task_run_by_husky_passes_on_a_clean_tree()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
@@ -176,13 +176,26 @@ public sealed partial class DevScriptTests
         Directory.CreateDirectory(Path.Join(linked, ".github", "workflows"));
         File.Copy(Path.Join(DevScripts.RepositoryRoot, ".github", "workflows", "super-linter.yml"), Path.Join(linked, ".github", "workflows", "super-linter.yml"));
 
-        (int exit, string output) = DevScripts.RunScript("run-super-linter.cs", linked, "--print-plan");
-
-        Assert.True(exit == 0, output);
-        Assert.Contains(":/git-common", output, StringComparison.Ordinal);
-        Assert.Contains("super-linter.gitfile", output, StringComparison.Ordinal);
         string gitDir = Directory.GetDirectories(Path.Join(main.Root, ".git", "worktrees")).Single();
-        Assert.Equal($"gitdir: /git-common/worktrees/{Path.GetFileName(gitDir)}", File.ReadAllText(Path.Join(gitDir, "super-linter.gitfile")));
+        string gitFile = Path.Join(gitDir, "super-linter.gitfile");
+
+        (int planExit, string plan) = DevScripts.RunScript("run-super-linter.cs", linked, "--print-plan");
+
+        Assert.True(planExit == 0, plan);
+        Assert.Contains(":/git-common", plan, StringComparison.Ordinal);
+        Assert.Contains("super-linter.gitfile", plan, StringComparison.Ordinal);
+        Assert.False(File.Exists(gitFile), "--print-plan must write nothing");
+
+        // node -p 0 stands in for docker: it exits 0 whatever follows it, so the real run reaches the point where the file is written.
+        Dictionary<string, string?> fakeDocker = new(StringComparer.Ordinal)
+        {
+            ["SUPER_LINTER_DOCKER_CMD"] = $"\"{DevScripts.Locate("node")}\" -p 0",
+            ["SUPER_LINTER_PULL_POLICY"] = "missing",
+        };
+        (int runExit, string run) = DevScripts.RunScriptWithEnvironment("run-super-linter.cs", linked, fakeDocker);
+
+        Assert.True(runExit == 0, run);
+        Assert.Equal($"gitdir: /git-common/worktrees/{Path.GetFileName(gitDir)}", File.ReadAllText(gitFile));
     }
 
     [Fact]

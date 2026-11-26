@@ -28,7 +28,7 @@ return 1;
 
 static string? Problem()
 {
-    if (Config("commit.gpgsign") != "true")
+    if (!Config("commit.gpgsign").Equals("true", StringComparison.OrdinalIgnoreCase))
     {
         return "commit.gpgsign is not set to 'true'";
     }
@@ -45,8 +45,10 @@ static string? Problem()
         return "user.signingkey is not set";
     }
 
-    string keyPath = key.StartsWith('~') ? Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), key[1..].TrimStart('/', '\\')) : key;
-    if (!File.Exists(keyPath))
+    // 1Password and ssh-agent setups write the public key itself, plain or after "key::".
+    bool literal = key.StartsWith("key::", StringComparison.Ordinal) || key.StartsWith("ssh-", StringComparison.Ordinal);
+    string keyPath = literal ? string.Empty : key.StartsWith('~') ? Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), key[1..].TrimStart('/', '\\')) : key;
+    if (!literal && !File.Exists(keyPath))
     {
         return $"signing key file not found: {key}";
     }
@@ -54,20 +56,28 @@ static string? Problem()
     string program = Config("gpg.ssh.program");
     if (program.Length > 0)
     {
-        return File.Exists(program) || OnPath(program) ? null : $"gpg.ssh.program not found: {program}";
+        return Resolves(program) ? null : $"gpg.ssh.program not found: {program}";
     }
 
-    return SignTestFile(keyPath);
+    return SignTestFile(literal ? key.Replace("key::", string.Empty, StringComparison.Ordinal) : keyPath, literal);
 }
 
-static string? SignTestFile(string keyPath)
+static string? SignTestFile(string keyPath, bool literal)
 {
+    // A literal key is a public key: sign through the agent, which holds the private half.
+    string keyFile = keyPath;
+    if (literal)
+    {
+        keyFile = Path.GetTempFileName();
+        File.WriteAllText(keyFile, keyPath + "\n");
+    }
+
     string file = Path.GetTempFileName();
     File.WriteAllText(file, "signing-test\n");
     try
     {
         ProcessStartInfo info = new("ssh-keygen") { RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false };
-        foreach (string argument in new[] { "-Y", "sign", "-f", keyPath, "-n", "git", file })
+        foreach (string argument in (literal ? new[] { "-Y", "sign", "-U", "-f", keyFile, "-n", "git", file } : new[] { "-Y", "sign", "-f", keyFile, "-n", "git", file }))
         {
             info.ArgumentList.Add(argument);
         }
@@ -90,6 +100,10 @@ static string? SignTestFile(string keyPath)
     {
         File.Delete(file);
         File.Delete(file + ".sig");
+        if (literal)
+        {
+            File.Delete(keyFile);
+        }
     }
 }
 
@@ -101,7 +115,14 @@ static string Config(string key)
     return value;
 }
 
-static bool OnPath(string program) =>
-    (Environment.GetEnvironmentVariable("PATH") ?? string.Empty)
-        .Split(Path.PathSeparator)
-        .Any(dir => File.Exists(Path.Join(dir, program)) || File.Exists(Path.Join(dir, program + ".exe")));
+// A program is a path, or a name found on PATH with the extensions Windows tries (PATHEXT: .exe, .cmd, .bat).
+static bool Resolves(string program)
+{
+    string[] extensions = OperatingSystem.IsWindows()
+        ? [string.Empty, .. (Environment.GetEnvironmentVariable("PATHEXT") ?? ".EXE;.CMD;.BAT").Split(';', StringSplitOptions.RemoveEmptyEntries)]
+        : [string.Empty];
+    IEnumerable<string> folders = Path.IsPathRooted(program) || program.Contains('/') || program.Contains('\\')
+        ? [string.Empty]
+        : (Environment.GetEnvironmentVariable("PATH") ?? string.Empty).Split(Path.PathSeparator);
+    return folders.Any(folder => extensions.Any(extension => File.Exists(Path.Join(folder, program + extension))));
+}

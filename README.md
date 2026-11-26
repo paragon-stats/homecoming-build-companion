@@ -21,7 +21,7 @@ The remaining Python (`scripts/`, `src/coh_engine`) has its own venv until it is
 
 ```bash
 python -m venv .venv
-.venv/bin/python -m pip install -e ".[dev]"   # Windows: .venvScriptspython.exe
+.venv/bin/python -m pip install -e ".[dev]"   # Windows: .venv\Scripts\python.exe -m pip install -e ".[dev]"
 ```
 
 Verify with `make help` — should list `lint`, `fix`, `test`, `cov`, `cov-html`, `validate`.
