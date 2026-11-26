@@ -52,6 +52,12 @@ public sealed partial class ScoreCommandTests
         Assert.Equal(Run("score", Build), Run("score", Build, "--mids-dir", Store.MidsDirectory, "--attribmod", attribMod, "--maths", maths));
     }
 
+    [Fact]
+    public void An_option_may_be_written_with_an_equals_sign()
+    {
+        Assert.Equal(Run("score", Build, "--mids-dir", Store.MidsDirectory), Run("score", Build, "--mids-dir=" + Store.MidsDirectory));
+    }
+
     [Theory]
     [InlineData("score")]
     [InlineData("score", "--bogus")]
@@ -111,7 +117,7 @@ public sealed partial class ScoreCommandTests
 
         (_, string help, _) = Run("--help");
 
-        Assert.Superset(new HashSet<string>(["ask", "chain", "extract-canonical", "mcp", "rules", "score", "validate"], StringComparer.Ordinal), commands.ToHashSet(StringComparer.Ordinal));
+        Assert.Equal(["ask", "chain", "extract-canonical", "mcp", "rules", "score", "validate"], commands.Order(StringComparer.Ordinal), StringComparer.Ordinal);
         Assert.All(commands, command => Assert.Contains(command, help, StringComparison.Ordinal));
     }
 }

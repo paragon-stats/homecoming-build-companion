@@ -27,15 +27,15 @@ internal sealed record ScoreCommand(string BuildDirectory, string? MidsDirectory
         for (int index = 0; index < args.Count; index++)
         {
             string arg = args[index];
-            if (arg is "--mids-dir" or "--attribmod" or "--maths")
+            if (arg.Split('=')[0] is "--mids-dir" or "--attribmod" or "--maths")
             {
-                if (++index == args.Count)
+                if (!ValidateArguments.TryTakeValue(args, ref index, out string name, out string value))
                 {
-                    problem = $"argument {arg}: expected one argument";
+                    problem = $"argument {name}: expected one argument";
                     return false;
                 }
 
-                options[arg] = args[index];
+                options[name] = value;
             }
             else if (arg.StartsWith('-') || build is not null)
             {
