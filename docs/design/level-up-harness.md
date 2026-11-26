@@ -227,6 +227,8 @@ The client's move names three things:
 - **For a crafted piece, its level and its boost** (none to +5).
 
 The binary refuses a kind the data does not allow: an attuned-only piece cannot be crafted, an attuned piece cannot be boosted, a crafted level must lie in the set's range.
+With the Mids 3.8.6 database a build file cannot carry an attuned regular-set piece ([build-file-format.md](../build-file-format.md#attuned-pieces)),
+so the file holds the crafted piece and the write-up must say which pieces to buy attuned.
 Slotting warnings (P-ED, P-SET and the rest) come back with the accepted move, so a client sees them at the slot that caused them.
 
 Section 6 gives the defaults by build goal.
