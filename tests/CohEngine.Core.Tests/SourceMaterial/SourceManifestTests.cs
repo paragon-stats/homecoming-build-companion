@@ -121,11 +121,11 @@ public sealed class SourceManifestTests
     {
         using TempTree tree = new();
         tree.Write("community/a.md", "---\ntitle: \"A\"\n---\nbody\n");
-        tree.Write("community/guides.jsonl", line + "\n");
+        tree.Write("community/guides.jsonl", "\n" + line + "\n");
 
         string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => SourceManifest.Build(tree.FullPath("community"), TextWriter.Null)).Message;
 
-        Assert.StartsWith($"E216: line 1 of {Path.Join(tree.FullPath("community"), "guides.jsonl")} is not a ledger row", message, StringComparison.Ordinal);
+        Assert.StartsWith($"E216: line 2 of {Path.Join(tree.FullPath("community"), "guides.jsonl")} is not a ledger row", message, StringComparison.Ordinal);
     }
 
     [Fact]

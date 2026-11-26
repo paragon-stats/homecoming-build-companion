@@ -254,14 +254,12 @@ internal static class SourceManifest
             IReadOnlyList<string> lines = PyText.SplitLines(Text(path, path, ErrorCodes.E216));
             for (int number = 1; number <= lines.Count; number++)
             {
-                if (PyText.Strip(lines[number - 1]).Length == 0)
+                if (PyText.Strip(lines[number - 1]).Length > 0)
                 {
-                    continue;
+                    PyObject row = LedgerRow(lines[number - 1])
+                        ?? throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E216}: line {number} of {path} is not a ledger row (a JSON object with a topic_url string, and a file string when it names one); correct or remove that line in the source checkout"));
+                    topics.Set((string)row["topic_url"]!, row);
                 }
-
-                PyObject row = LedgerRow(lines[number - 1])
-                    ?? throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E216}: line {number} of {path} is not a ledger row (a JSON object with a topic_url string, and a file string when it names one); correct or remove that line in the source checkout"));
-                topics.Set((string)row["topic_url"]!, row);
             }
         }
 
