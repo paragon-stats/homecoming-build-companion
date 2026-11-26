@@ -6,42 +6,22 @@ The binding rules for builds, naming and the engine are the guides in [docs/styl
 
 ---
 
-## Getting started — bootstrap the venv
+## Getting started - bootstrap the dev environment
 
-Python 3.14+ is required. The bootstrap creates `.venv/`, installs dev dependencies from `pyproject.toml`, and prepares the environments of the Python pre-commit checks.
-Git hooks are a separate one-time step, below.
+The .NET 10 SDK is required. The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
 
 ```bash
 make bootstrap
 ```
 
-`make bootstrap` detects the platform and runs `python -m scripts.dev.bootstrap_venv` on Windows or `scripts/dev/bootstrap_venv.sh` elsewhere. For flags or direct invocation:
+`make hooks-check` (`dotnet run scripts/dev/bootstrap.cs -- --verify`) checks the same without changing anything.
+The bootstrap is idempotent. See [CONTRIBUTING.md](CONTRIBUTING.md#git-hooks).
+
+The remaining Python (`scripts/`, `src/coh_engine`) has its own venv until it is removed:
 
 ```bash
-python -m scripts.dev.bootstrap_venv --dry-run  # preview without changes
-python -m scripts.dev.bootstrap_venv --verify   # verify installed packages match pyproject.toml
-```
-
-The bootstrap is idempotent — hashes `pyproject.toml` and `.pre-commit-config.yaml` and skips when unchanged. Re-run when dependencies change.
-
-Install the Git hooks once per clone, from the main checkout:
-
-```bash
-dotnet tool restore && dotnet husky install
-```
-
-This sets `core.hooksPath=.husky` for the repository, so every `git worktree` runs the committed hooks with no step of its own.
-`make hooks-check` fails with this command when the hooks are not installed.
-See [CONTRIBUTING.md](CONTRIBUTING.md#git-hooks).
-
-After the bootstrap, activate the venv:
-
-```powershell
-.venv\Scripts\Activate.ps1     # Windows PowerShell
-```
-
-```bash
-source .venv/bin/activate      # Linux / macOS / WSL
+python -m venv .venv
+.venv/bin/python -m pip install -e ".[dev]"   # Windows: .venv\Scripts\python.exe -m pip install -e ".[dev]"
 ```
 
 Verify with `make help` — should list `lint`, `fix`, `test`, `cov`, `cov-html`, `validate`.

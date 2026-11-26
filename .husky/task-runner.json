@@ -26,10 +26,16 @@
       "args": ["run", "scripts/dev/check-coverage-exclusions.cs", "--", "--staged"]
     },
     {
-      "name": "python-pre-commit",
+      "name": "check-text-files",
       "group": "pre-commit",
-      "command": "sh",
-      "args": ["scripts/dev/hook-python.sh", "-m", "pre_commit", "run", "--hook-stage", "pre-commit"]
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/check-text-files.cs"]
+    },
+    {
+      "name": "check-git-signing",
+      "group": "pre-commit",
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/check-git-signing.cs"]
     },
     {
       "name": "check-commit-message",
@@ -54,6 +60,12 @@
       "group": "pre-push",
       "command": "dotnet",
       "args": ["run", "scripts/dev/check-banned-words.cs"]
+    },
+    {
+      "name": "super-linter",
+      "group": "pre-push",
+      "command": "dotnet",
+      "args": ["run", "scripts/dev/run-super-linter.cs"]
     }
   ]
 }

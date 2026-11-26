@@ -119,9 +119,7 @@ Use this checklist when relevant to the change type.
 
 ## Setup commands
 
-- Bootstrap repo venv:
-  - Windows: `py -3 -m scripts.dev.bootstrap_venv`
-  - Linux/macOS: `python3 -m scripts.dev.bootstrap_venv`
+- Bootstrap tools and hooks: `dotnet run scripts/dev/bootstrap.cs` (`make bootstrap`)
 - Setup Git commit signing:
   - If venv is available: `python -m scripts.devops.setup_git_signing`
   - If venv is unavailable: `python3 -m scripts.devops.setup_git_signing`
@@ -308,8 +306,8 @@ Single-issue PRs retain the existing flat format (`### 🚀 Features` at H3 with
 Bootstrap helpers:
 
 ```bash
-# Bootstrap repo venv (cross-platform)
-python -m scripts.dev.bootstrap_venv
+# Bootstrap tools and hooks (cross-platform)
+dotnet run scripts/dev/bootstrap.cs
 
 # Setup Git commit signing (one-time, cross-platform)
 python -m scripts.devops.setup_git_signing
