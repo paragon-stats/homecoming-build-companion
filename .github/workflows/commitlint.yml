@@ -39,7 +39,8 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           fail=0
-          for sha in $(git rev-list "$BASE_SHA..$HEAD_SHA"); do
+          shas="$(git rev-list "$BASE_SHA..$HEAD_SHA")" || exit 1
+          for sha in $shas; do
             git log -1 --format=%B "$sha" > "$RUNNER_TEMP/commit-msg.txt"
             path="$(bash scripts/ci/changed-path.sh diff-tree --no-commit-id --name-only -r "$sha")" || exit 1
             if ! MESSAGE_FILE="$RUNNER_TEMP/commit-msg.txt" CHANGED_PATHS="$path" \
