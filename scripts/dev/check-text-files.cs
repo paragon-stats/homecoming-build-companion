@@ -39,6 +39,7 @@ List<(Regex Glob, string Key, string Value)> editorRules = ReadEditorConfig(".ed
 int filesAt = Array.IndexOf(args, "--files");
 bool staged = filesAt < 0 && !args.Contains("--all");
 List<string> files;
+List<string> ids = [];
 if (filesAt >= 0)
 {
     files = [.. args.Skip(filesAt + 1)];
@@ -68,11 +69,13 @@ else
             if (meta[1] is "100644" or "100755")
             {
                 files.Add(records[i + 1]);
+                ids.Add(meta[3]);
             }
         }
     }
 }
 
+using Process? blobs = staged ? StartBlobReader(ids) : null;
 List<string> findings = [];
 List<string> markdown = [];
 foreach (string file in files)
@@ -133,16 +136,52 @@ if (findings.Count > 0)
 Console.WriteLine("[OK] text files are clean.");
 return 0;
 
+// The next blob from the batch reader, which answers in the order the ids were listed.
 byte[]? StagedBytes(string path)
 {
-    (int code, byte[] output, _) = Git("cat-file", "blob", ":" + path);
-    if (code != 0)
+    Stream stream = blobs!.StandardOutput.BaseStream;
+    StringBuilder header = new();
+    for (int next = stream.ReadByte(); next is not ('\n' or -1); next = stream.ReadByte())
+    {
+        header.Append((char)next);
+    }
+
+    // "<id> blob <size>", or "<id> missing" when the object is not in the repository.
+    if (header.ToString().Split(' ') is not [_, "blob", string size])
     {
         findings.Add($"{path}:1:1: error: H-TEXT-010: git cannot read the staged content of this file");
         return null;
     }
 
-    return output;
+    byte[] blob = new byte[int.Parse(size, System.Globalization.CultureInfo.InvariantCulture)];
+    stream.ReadExactly(blob);
+    _ = stream.ReadByte();
+    return blob;
+}
+
+// One git process serves every staged blob, so a commit of thousands of files starts git once, not per file.
+static Process StartBlobReader(List<string> ids)
+{
+    ProcessStartInfo info = new("git", "cat-file --batch")
+    {
+        RedirectStandardInput = true,
+        RedirectStandardOutput = true,
+        UseShellExecute = false,
+        StandardInputEncoding = new UTF8Encoding(false),
+    };
+    Process process = Process.Start(info)!;
+
+    // Written from another thread: git stops reading ids while its answers wait to be read.
+    _ = Task.Run(() =>
+    {
+        foreach (string id in ids)
+        {
+            process.StandardInput.Write(id + "\n");
+        }
+
+        process.StandardInput.Close();
+    });
+    return process;
 }
 
 void CheckJson(string path, string text)
