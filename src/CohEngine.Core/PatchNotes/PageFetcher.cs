@@ -80,7 +80,7 @@ internal sealed class PageFetcher
 
         if (!OnSite(target))
         {
-            error.WriteLine($"{ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; only links to that site are followed");
+            error.WriteLine($"{ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; check the link on the page that named it, which points off the site");
             return null;
         }
 
@@ -108,7 +108,7 @@ internal sealed class PageFetcher
 
             if (!OnSite(answered))
             {
-                error.WriteLine($"{ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed");
+                error.WriteLine($"{ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand");
                 return null;
             }
 

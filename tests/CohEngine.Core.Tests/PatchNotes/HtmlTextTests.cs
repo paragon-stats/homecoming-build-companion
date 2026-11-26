@@ -228,8 +228,8 @@ public sealed class HtmlTextTests
         Assert.Null(fetcher.Get("http://forums.homecomingservers.com/topic/1-a/"));
         Assert.Null(fetcher.Get(FakeSite.Forum + "/away"));
         Assert.DoesNotContain(site.Calls, call => call.Contains("elsewhere", StringComparison.Ordinal) || call.StartsWith("http:", StringComparison.Ordinal));
-        Assert.Contains("E222: https://elsewhere.example/topic/1-a/ is not on https://forums.homecomingservers.com", error.ToString(), StringComparison.Ordinal);
-        Assert.Contains("E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("E222: https://elsewhere.example/topic/1-a/ is not on https://forums.homecomingservers.com; it was not fetched; check the link on the page that named it, which points off the site", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand", error.ToString(), StringComparison.Ordinal);
     }
 
     [Fact]
