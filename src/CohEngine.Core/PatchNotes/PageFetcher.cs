@@ -41,8 +41,14 @@ internal sealed class PageFetcher
         IReadOnlyList<string> lines = [];
         try
         {
-            (int status, byte[] body, _) = Raw(new Uri(robots), _ => true);
-            if (status is 401 or 403)
+            (int status, byte[] body, Uri answered) = Raw(new Uri(robots), _ => true);
+            if (status is >= 300 and < 400)
+            {
+                // A redirect off the site, or one past the hop limit, gives no rules to trust.
+                blocked = true;
+                error.WriteLine($"{ErrorCodes.E202}: robots.txt unreadable (redirected to {answered}) at {robots}; re-run when the site recovers, or check where its robots.txt now lives");
+            }
+            else if (status is 401 or 403)
             {
                 blocked = true;
                 error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched; ask the site's operator for access, or leave this source out with --source"));

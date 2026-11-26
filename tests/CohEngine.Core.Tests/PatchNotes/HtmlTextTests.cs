@@ -275,6 +275,23 @@ public sealed class HtmlTextTests
         Assert.Contains($"E221: {FakeSite.Forum}/ok was not fetched because {FakeSite.Forum}/robots.txt could not be read (see above); re-run when the site answers", error.ToString(), StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("https://elsewhere.example/robots.txt")]
+    [InlineData("https://forums.homecomingservers.com/robots.txt")]
+    public void A_robots_file_that_redirects_away_or_in_a_loop_is_unreadable(string target)
+    {
+        using FakeSite site = new();
+        site.Routes[FakeSite.Forum + "/robots.txt"] = new Uri(target);
+        site.Routes[FakeSite.Forum + "/ok"] = "x";
+        using HttpClient http = new(site, disposeHandler: false);
+        using StringWriter error = new();
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/ok"));
+        Assert.StartsWith($"E202: robots.txt unreadable (redirected to {target}) at {FakeSite.Forum}/robots.txt", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("E221", error.ToString(), StringComparison.Ordinal);
+        Assert.Equal(0, site.Count(FakeSite.Forum + "/ok"));
+    }
+
     [Fact]
     public void An_unreachable_robots_file_blocks_the_site_and_a_missing_one_allows_it()
     {
