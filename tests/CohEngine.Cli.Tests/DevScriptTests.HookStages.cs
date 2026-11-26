@@ -160,7 +160,7 @@ public sealed partial class DevScriptTests
         Assert.DoesNotContain("LOG_LEVEL", workflow, StringComparison.Ordinal);
         Assert.DoesNotContain("SUPPRESS_POSSUM", workflow, StringComparison.Ordinal);
         Assert.Contains("quiet: true", checkov, StringComparer.Ordinal);
-        Assert.DoesNotContain(SuperLinterPlan(null), line => line.Contains("LOG_LEVEL", StringComparison.Ordinal) || line.Contains("SUPPRESS_POSSUM", StringComparison.Ordinal));
+        Assert.DoesNotContain(SuperLinterPlan(logLevel: null), line => line.Contains("LOG_LEVEL", StringComparison.Ordinal) || line.Contains("SUPPRESS_POSSUM", StringComparison.Ordinal));
     }
 
     [Fact]
