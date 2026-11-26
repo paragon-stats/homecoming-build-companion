@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 using CohEngine.Core.Chain;
@@ -25,7 +26,12 @@ internal sealed class PatchNotesCommand
     /// <summary>The most pages of one beta listing that are read; the real sections hold a handful.</summary>
     private const int MaxListingPages = 100;
 
+    /// <summary>The longest file name NTFS and ext4 hold.</summary>
+    private const int MaxNameLength = 255;
+
     private static readonly string[] Sources = [PatchParser.ReleaseNotes, PatchParser.ForumBeta, PatchParser.ParagonWiki];
+
+    private static readonly string[] ChangeKeys = ["category", "subsection", "archetype", "powerset", "power", "text"];
 
     private static readonly string[] BetaSections = [PatchParser.Forum + "/forum/73-open-beta-patch-notes/", PatchParser.Forum + "/forum/100-staging-patch-notes/"];
 
@@ -122,12 +128,28 @@ internal sealed class PatchNotesCommand
     /// <summary>The index rows of a folder, in file order.</summary>
     /// <param name="outDir">The folder.</param>
     /// <returns>The rows; none when the folder has no index.</returns>
+    /// <exception cref="EngineException">E225: a line is not a JSON object with a <c>url</c>.</exception>
     public static List<PyObject> Index(string outDir)
     {
         string index = Path.Join(outDir, IndexFile);
-        return File.Exists(index)
-            ? [.. PyText.SplitLines(PyText.ReadText(index)).Where(line => PyText.Strip(line).Length > 0).Select(line => (PyObject)PyJson.Loads(line)!)]
-            : [];
+        if (!File.Exists(index))
+        {
+            return [];
+        }
+
+        IReadOnlyList<string> lines = PyText.SplitLines(Readable(index));
+        List<PyObject> rows = [];
+        for (int number = 1; number <= lines.Count; number++)
+        {
+            if (PyText.Strip(lines[number - 1]).Length > 0)
+            {
+                rows.Add(Parsed(lines[number - 1]) is PyObject row && row.Get("url") is string
+                    ? row
+                    : throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E225}: line {number} of {index} is not an index row (a JSON object with a url); correct or remove that line, then re-run")));
+            }
+        }
+
+        return rows;
     }
 
     /// <summary>Writes <c>&lt;date&gt;-&lt;slug&gt;.json</c> and appends the entry to the index.</summary>
@@ -210,7 +232,7 @@ internal sealed class PatchNotesCommand
             {
                 unchanged++;
             }
-            else if (current is not null && !HasChanges(text) && HasChanges(current))
+            else if (current is not null && !HasChanges(Record(Path.Join(fresh, name))) && HasChanges(Record(target)))
             {
                 // A page that now parses to nothing keeps the lines filled in by hand.
                 kept++;
@@ -258,7 +280,7 @@ internal sealed class PatchNotesCommand
         foreach (PyObject row in held)
         {
             string path = Path.Join(outDir, PyText.Str(row["file"]));
-            PyObject document = (PyObject)PyJson.Loads(PyText.ReadText(path))!;
+            PyObject document = Record(path);
             List<object?> changes = (List<object?>)document["changes"]!;
             List<object?> kept = [];
             foreach (object? change in changes)
@@ -342,7 +364,7 @@ internal sealed class PatchNotesCommand
     /// </summary>
     private static bool IsPlainName(string name)
     {
-        return name is not ("." or "..") && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny([.. Path.GetInvalidFileNameChars(), '\\']) < 0;
+        return name is not ("." or "..") && name.Length <= MaxNameLength && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny([.. Path.GetInvalidFileNameChars(), '\\']) < 0;
     }
 
     /// <summary>Writes the entry, or reports why its name was refused and returns null.</summary>
@@ -432,9 +454,45 @@ internal sealed class PatchNotesCommand
         return PyObject.Truthy(file) ? PyText.Str(file) : string.Empty;
     }
 
-    private static bool HasChanges(string document)
+    private static bool HasChanges(PyObject document)
     {
-        return PyObject.Truthy(((PyObject)PyJson.Loads(document)!)["changes"]);
+        return PyObject.Truthy(document["changes"]);
+    }
+
+    /// <summary>A record file: a JSON object whose <c>changes</c> list holds change objects of six strings.</summary>
+    /// <exception cref="EngineException">E225: the file is not such a record.</exception>
+    private static PyObject Record(string path)
+    {
+        return Parsed(Readable(path)) is PyObject document && document.Get("changes") is List<object?> changes && changes.TrueForAll(change => change is PyObject line && ChangeKeys.All(key => line.Get(key) is string))
+            ? document
+            : throw new EngineException($"{ErrorCodes.E225}: {path} is not a patch-notes record (a JSON object whose changes list holds objects with category, subsection, archetype, powerset, power and text strings); restore it from git, or delete it with its index row and run --reparse");
+    }
+
+    /// <summary>A file of the output folder as text.</summary>
+    /// <exception cref="EngineException">E225: the file is not valid UTF-8.</exception>
+    private static string Readable(string path)
+    {
+        try
+        {
+            return PyText.ReadText(path);
+        }
+        catch (DecoderFallbackException invalid)
+        {
+            throw new EngineException($"{ErrorCodes.E225}: {path} is not valid UTF-8; restore it from git, or delete it with its index row and run --reparse", invalid);
+        }
+    }
+
+    /// <summary>The JSON value of a text, or null when it is not JSON.</summary>
+    private static object? Parsed(string text)
+    {
+        try
+        {
+            return PyJson.Loads(text);
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
     }
 
     private static Change LineOf(PyObject change)
@@ -463,7 +521,7 @@ internal sealed class PatchNotesCommand
         foreach (PyObject row in held)
         {
             string name = PyText.Str(row["file"]);
-            PyObject document = (PyObject)PyJson.Loads(PyText.ReadText(Path.Join(outDir, name)))!;
+            PyObject document = Record(Path.Join(outDir, name));
             foreach (object? change in (List<object?>)document["changes"]!)
             {
                 seen.TryAdd(LineOf((PyObject)change!), (name, PyText.Str(row.Get("published", string.Empty))));
@@ -530,7 +588,7 @@ internal sealed class PatchNotesCommand
         HashSet<string> written = [.. rows.Select(row => PyText.Str(row["url"]))];
         int total = 0;
         HashSet<string> incomplete = new(StringComparer.Ordinal);
-        PageFetcher forum = new(http, agent, delay, PatchParser.Forum, error);
+        PageFetcher? forum = null;
         foreach (string source in Sources.Where(source => sources.Contains(source, StringComparer.Ordinal)))
         {
             (int count, bool complete) = (0, false);
@@ -538,8 +596,8 @@ internal sealed class PatchNotesCommand
             {
                 (count, complete) = source switch
                 {
-                    PatchParser.ReleaseNotes => CollectReleaseNotes(forum, written, outDir),
-                    PatchParser.ForumBeta => CollectForumBeta(forum, written, outDir, rows),
+                    PatchParser.ReleaseNotes => CollectReleaseNotes(forum ??= new PageFetcher(http, agent, delay, PatchParser.Forum, error), written, outDir),
+                    PatchParser.ForumBeta => CollectForumBeta(forum ??= new PageFetcher(http, agent, delay, PatchParser.Forum, error), written, outDir, rows),
                     _ => CollectWiki(new PageFetcher(http, agent, delay, PatchParser.Wiki, error), written, outDir, rows),
                 };
             }

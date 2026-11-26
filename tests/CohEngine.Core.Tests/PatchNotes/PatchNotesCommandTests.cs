@@ -453,6 +453,57 @@ public sealed class PatchNotesCommandTests
         Assert.False(site.Disposed);
     }
 
+    [Theory]
+    [InlineData("[1, 2]")]
+    [InlineData("{\"file\": \"a.json\"}")]
+    [InlineData("{not json")]
+    public void An_index_line_that_is_not_a_row_is_a_coded_error_naming_the_file(string line)
+    {
+        using TempTree tree = new();
+        tree.Write("index.jsonl", "{\"url\": \"u\"}\n" + line + "\n");
+
+        string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.Index(tree.Root)).Message;
+
+        Assert.StartsWith($"E225: line 2 of {Path.Join(tree.Root, "index.jsonl")} is not an index row", message, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("{\"changes\": [1]}")]
+    [InlineData("{\"changes\": \"none\"}")]
+    [InlineData("[]")]
+    [InlineData("{\"changes\": [{\"category\": \"Powers\"}]}")]
+    public void A_record_that_is_not_a_patch_entry_is_a_coded_error_naming_the_file(string record)
+    {
+        using TempTree tree = new();
+        tree.Write("index.jsonl", "{\"url\": \"u\", \"published\": \"2024-01-01\", \"source\": \"paragonwiki\", \"file\": \"a.json\"}\n");
+        tree.Write("a.json", record + "\n");
+
+        string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.Redate(tree.Root, "paragonwiki")).Message;
+
+        Assert.StartsWith($"E225: {Path.Join(tree.Root, "a.json")} is not a patch-notes record", message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_record_that_is_not_utf8_is_a_coded_error_naming_the_file()
+    {
+        using TempTree tree = new();
+        tree.Write("index.jsonl", "{\"url\": \"u\", \"published\": \"2024-01-01\", \"source\": \"paragonwiki\", \"file\": \"a.json\"}\n");
+        File.WriteAllBytes(tree.FullPath("a.json"), [(byte)'{', 0xff, (byte)'}']);
+
+        string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.Redate(tree.Root, "paragonwiki")).Message;
+
+        Assert.StartsWith($"E225: {tree.FullPath("a.json")} is not valid UTF-8", message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_slug_too_long_for_a_file_name_is_refused()
+    {
+        using TempTree tree = new();
+        PatchEntry entry = Entry(Base + "/topic/" + new string('a', 300) + "/", "2021-01-01");
+
+        Assert.StartsWith("E209: entry", Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.WriteEntry(entry, tree.Root)).Message, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void Re_dating_leaves_live_release_notes_whole()
     {

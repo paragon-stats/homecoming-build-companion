@@ -310,6 +310,12 @@ public static class ErrorCodes
     /// <summary>The name filter has no name to withhold (<c>COH_BANNED_NAMES</c> unset or empty, and no usable git user name), so no manifest is written.</summary>
     public const string E215 = "E215";
 
+    /// <summary>A line of a <c>guides.jsonl</c> ledger is not a ledger row, or the ledger is not valid UTF-8.</summary>
+    public const string E216 = "E216";
+
+    /// <summary>A capture file is not valid UTF-8.</summary>
+    public const string E217 = "E217";
+
     // E220-E229: patch-notes, second block.
 
     /// <summary>The site's robots.txt disallows a URL, so it is not fetched.</summary>
@@ -326,6 +332,9 @@ public static class ErrorCodes
 
     /// <summary>A file under the patch-notes output folder or its cache could not be read or written.</summary>
     public const string E224 = "E224";
+
+    /// <summary>An index line or a record file of the patch-notes folder is not what the command wrote: not JSON, the wrong shape, or not UTF-8.</summary>
+    public const string E225 = "E225";
 
     /// <summary>A beta listing declares more pages than are read, so its source counts as not read completely.</summary>
     public const string E226 = "E226";

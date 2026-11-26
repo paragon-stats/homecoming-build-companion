@@ -113,6 +113,32 @@ public sealed class SourceManifestTests
         Assert.Contains("\\u2013", SourceManifest.Render(rows), StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("[1]")]
+    [InlineData("{\"file\": \"a.md\"}")]
+    [InlineData("{not json")]
+    public void A_ledger_line_that_is_not_a_row_is_a_coded_error_naming_the_file(string line)
+    {
+        using TempTree tree = new();
+        tree.Write("community/a.md", "---\ntitle: \"A\"\n---\nbody\n");
+        tree.Write("community/guides.jsonl", line + "\n");
+
+        string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => SourceManifest.Build(tree.FullPath("community"), TextWriter.Null)).Message;
+
+        Assert.StartsWith($"E216: line 1 of {Path.Join(tree.FullPath("community"), "guides.jsonl")} is not a ledger row", message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_capture_that_is_not_utf8_is_a_coded_error_naming_the_file()
+    {
+        using TempTree tree = new();
+        File.WriteAllBytes(tree.Write("community/a.md", string.Empty), [(byte)'-', (byte)'-', (byte)'-', 0xff]);
+
+        string message = Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => SourceManifest.Build(tree.FullPath("community"), TextWriter.Null)).Message;
+
+        Assert.StartsWith("E217: a.md is not valid UTF-8", message, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void An_empty_root_is_reported_and_writes_nothing()
     {

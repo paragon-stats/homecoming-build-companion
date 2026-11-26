@@ -128,6 +128,7 @@ A link or a redirect to a host other than the forum or the wiki is not fetched (
 A page that takes a parsing pattern past its time limit stops its source with `E223`; that source counts as not read completely.
 A page robots.txt disallows is skipped with `E220`, and every page of a site whose robots.txt was refused or unreadable with `E221`.
 A file under the output folder or its cache that cannot be read or written stops the run with `E224`.
+An index line or a record file that is not what the command writes (not JSON, the wrong shape, or not UTF-8) stops the run with `E225`, naming the file.
 
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:

@@ -132,7 +132,7 @@ internal static class SourceManifest
         foreach (string file in Directory.EnumerateFiles(community, "*.md", SearchOption.AllDirectories))
         {
             string relative = Path.GetRelativePath(community, file).Replace('\\', '/');
-            (Dictionary<string, string> keys, string body) = Split(PyText.ReadText(file));
+            (Dictionary<string, string> keys, string body) = Split(Text(file, relative, ErrorCodes.E217));
             if (keys.Count == 0)
             {
                 continue;
@@ -251,10 +251,17 @@ internal static class SourceManifest
         PyObject topics = [];
         if (File.Exists(path))
         {
-            foreach (string line in PyText.SplitLines(PyText.ReadText(path)).Where(line => PyText.Strip(line).Length > 0))
+            IReadOnlyList<string> lines = PyText.SplitLines(Text(path, path, ErrorCodes.E216));
+            for (int number = 1; number <= lines.Count; number++)
             {
-                PyObject row = (PyObject)PyJson.Loads(line)!;
-                topics.Set(PyText.Str(row["topic_url"]), row);
+                if (PyText.Strip(lines[number - 1]).Length == 0)
+                {
+                    continue;
+                }
+
+                PyObject row = LedgerRow(lines[number - 1])
+                    ?? throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E216}: line {number} of {path} is not a ledger row (a JSON object with a topic_url string, and a file string when it names one); correct or remove that line in the source checkout"));
+                topics.Set((string)row["topic_url"]!, row);
             }
         }
 
@@ -265,5 +272,32 @@ internal static class SourceManifest
         }
 
         return urls;
+    }
+
+    /// <summary>A ledger line as a row, or null when it is not a JSON object with a <c>topic_url</c> string and, if it has one, a <c>file</c> string.</summary>
+    private static PyObject? LedgerRow(string line)
+    {
+        try
+        {
+            return PyJson.Loads(line) is PyObject row && row.Get("topic_url") is string && row.Get("file") is null or string ? row : null;
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>A source-material file as text.</summary>
+    /// <exception cref="EngineException">The file is not valid UTF-8, under the given code.</exception>
+    private static string Text(string path, string shown, string code)
+    {
+        try
+        {
+            return PyText.ReadText(path);
+        }
+        catch (DecoderFallbackException invalid)
+        {
+            throw new EngineException($"{code}: {shown} is not valid UTF-8; re-save it as UTF-8 in the source checkout", invalid);
+        }
     }
 }
