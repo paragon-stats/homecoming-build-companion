@@ -98,7 +98,7 @@ internal sealed class PatchNotesCommand
         IReadOnlySet<string> names = Powersets(canonical);
         if (names.Count == 0)
         {
-            error.WriteLine($"warning: {ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
+            error.WriteLine($"error: {ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
         }
 
         using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }, disposeHandler: handler is null) { Timeout = TimeSpan.FromSeconds(30) };
@@ -269,7 +269,7 @@ internal sealed class PatchNotesCommand
             string name = FileOf(row);
             if (!IsPlainName(name))
             {
-                error.WriteLine($"warning: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted");
+                error.WriteLine($"error: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted");
                 continue;
             }
 
@@ -339,7 +339,7 @@ internal sealed class PatchNotesCommand
         {
             if (entry.Changes.Count == 0)
             {
-                error.WriteLine($"warning: {ErrorCodes.E206}: no change lines parsed from {entry.Url}; check the post's layout");
+                error.WriteLine($"error: {ErrorCodes.E206}: no change lines parsed from {entry.Url}; check the post's layout");
             }
 
             string origin = DedupeLines(entry, seen);
@@ -666,7 +666,7 @@ internal sealed class PatchNotesCommand
                 PatchEntry entry = PatchParser.ParseEntry(page, entryUrl, powersets);
                 if (entry.Changes.Count == 0)
                 {
-                    error.WriteLine($"warning: {ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
+                    error.WriteLine($"error: {ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
                 }
 
                 if (TryWrite(entry, outDir, error) is not { } name)

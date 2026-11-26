@@ -105,7 +105,7 @@ public sealed class SourceManifestTests
 
         IReadOnlyList<PyObject> rows = SourceManifest.Build(tree.FullPath("community"), error);
 
-        Assert.Equal("warning: E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
+        Assert.Equal("error: E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
         PyObject odd = Assert.Single(rows);
         Assert.Equal("Fire/Kin Controllers \u2013 a guide", odd["title"]);
         Assert.Equal("2024", odd["date_posted"]);
@@ -141,7 +141,7 @@ public sealed class SourceManifestTests
     }
 
     [Fact]
-    public void Every_coded_line_opens_with_its_severity()
+    public void Every_coded_line_opens_with_error()
     {
         using TempTree tree = new();
         string empty = Directory.CreateDirectory(tree.FullPath("empty")).FullName;

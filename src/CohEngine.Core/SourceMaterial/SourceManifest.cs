@@ -143,7 +143,7 @@ internal static class SourceManifest
 
             if (!keys.TryGetValue("title", out string? rawTitle))
             {
-                error.WriteLine($"warning: {ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
+                error.WriteLine($"error: {ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
                 continue;
             }
 

@@ -79,7 +79,7 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(1, code);
         Assert.Contains("error: E208: release-notes was not read completely", error, StringComparison.Ordinal);
         Assert.Contains("3 entries written", output, StringComparison.Ordinal);
-        Assert.Contains($"warning: E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
         Assert.Equal(["2026-10-20-issue-28-page-4-r47.json", "2026-10-20-october-20-update-r48.json", "undated-placeholder-r1.json"], Json(tree.Root));
         int fetched = site.Count(PatchParserTests.EntryUrl);
         Assert.Contains("0 entries written", Run(site, args).Output, StringComparison.Ordinal);
@@ -97,7 +97,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.Contains("error: E203: could not read the patch-notes category browser", error, StringComparison.Ordinal);
-        Assert.Contains($"warning: E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
         Assert.Contains("; no release notes were read; re-run when the forum answers", error, StringComparison.Ordinal);
     }
 
@@ -409,7 +409,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(0, code);
         Assert.True(File.Exists(keep));
-        Assert.Contains($"warning: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted" + Environment.NewLine, error, StringComparison.Ordinal);
+        Assert.Contains($"error: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted" + Environment.NewLine, error, StringComparison.Ordinal);
         Assert.DoesNotContain("\"gone\"", File.ReadAllText(tree.FullPath("patches/index.jsonl")), StringComparison.Ordinal);
     }
 
@@ -601,7 +601,7 @@ public sealed class PatchNotesCommandTests
         Assert.Equal((1, true), PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
         Assert.Equal((0, true), PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
         Assert.Empty(Changes(Directory.GetFiles(tree.Root, "2021-01-01-*.json").Single()));
-        Assert.Contains("warning: E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("error: E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
     }
 
     [Theory]
@@ -664,7 +664,7 @@ public sealed class PatchNotesCommandTests
     [Theory]
     [InlineData(false)]
     [InlineData(true)]
-    public void Every_coded_line_opens_with_its_severity(bool robotsRefused)
+    public void Every_coded_line_opens_with_error(bool robotsRefused)
     {
         using TempTree tree = new();
         using FakeSite site = new();
