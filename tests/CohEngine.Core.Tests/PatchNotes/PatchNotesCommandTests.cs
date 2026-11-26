@@ -409,7 +409,8 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(0, code);
         Assert.True(File.Exists(keep));
-        Assert.Contains("warning: E209: index row gone names '..\\keep.json'", error, StringComparison.Ordinal);
+        Assert.Contains($"warning: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted" + Environment.NewLine, error, StringComparison.Ordinal);
+        Assert.DoesNotContain("\"gone\"", File.ReadAllText(tree.FullPath("patches/index.jsonl")), StringComparison.Ordinal);
     }
 
     [Fact]

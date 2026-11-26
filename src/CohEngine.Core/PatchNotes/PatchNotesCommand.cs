@@ -269,7 +269,7 @@ internal sealed class PatchNotesCommand
             string name = FileOf(row);
             if (!IsPlainName(name))
             {
-                error.WriteLine($"warning: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the file was left alone; correct the row's file name");
+                error.WriteLine($"warning: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted");
                 continue;
             }
 
