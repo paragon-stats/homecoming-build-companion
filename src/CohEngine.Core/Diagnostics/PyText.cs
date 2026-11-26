@@ -264,7 +264,7 @@ public static class PyText
     /// <exception cref="IOException">Another process held the file through every attempt to delete it.</exception>
     public static void DeleteFile(string path)
     {
-        Retried(Path.GetFullPath(path), () => File.Delete(path), Thread.Sleep);
+        DeleteFile(path, Thread.Sleep);
     }
 
     /// <summary>As <see cref="WriteText(string, string)"/>, waiting between attempts with <paramref name="wait"/>.</summary>
@@ -275,6 +275,14 @@ public static class PyText
     {
         byte[] content = StrictUtf8.GetBytes(text);
         Replace(Path.GetFullPath(path), () => content, wait);
+    }
+
+    /// <summary>As <see cref="DeleteFile(string)"/>, waiting between attempts with <paramref name="wait"/>.</summary>
+    /// <param name="path">The file.</param>
+    /// <param name="wait">Waits the given time.</param>
+    internal static void DeleteFile(string path, Action<TimeSpan> wait)
+    {
+        Retried(Path.GetFullPath(path), () => File.Delete(path), wait);
     }
 
     /// <summary>As <see cref="AppendText(string, string)"/>, waiting between attempts with <paramref name="wait"/>.</summary>

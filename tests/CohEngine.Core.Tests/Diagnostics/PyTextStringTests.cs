@@ -184,6 +184,62 @@ public sealed class PyTextStringTests
     }
 
     [Fact]
+    public void A_delete_of_a_file_another_process_holds_is_tried_three_times_then_named_and_the_file_kept()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to delete a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("a.json", "old\n");
+        List<TimeSpan> waits = [];
+
+        IOException refused;
+        using (new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            refused = Assert.Throws<IOException>(() => PyText.DeleteFile(path, waits.Add));
+        }
+
+        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times; the system said: {refused.InnerException!.Message}", refused.Message);
+        Assert.Equal(2, waits.Count);
+        Assert.Equal("old\n", File.ReadAllText(path));
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void A_delete_of_a_file_released_before_the_last_attempt_removes_it(int heldThroughWaits)
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to delete a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("a.json", "old\n");
+        using FileStream holder = new(path, FileMode.Open, FileAccess.Read, FileShare.None);
+        List<TimeSpan> waits = [];
+
+        PyText.DeleteFile(path, wait =>
+        {
+            waits.Add(wait);
+            if (waits.Count == heldThroughWaits)
+            {
+                holder.Dispose();
+            }
+        });
+
+        Assert.Equal(heldThroughWaits, waits.Count);
+        Assert.False(File.Exists(path));
+    }
+
+    [Fact]
+    public void A_failure_that_is_not_a_held_file_fails_at_once_with_no_wait()
+    {
+        using TempTree tree = new();
+        string missing = tree.FullPath(Path.Join("gone", "a.json"));
+        List<TimeSpan> waits = [];
+
+        Assert.Throws<DirectoryNotFoundException>(() => PyText.WriteText(missing, "x\n", waits.Add));
+        Assert.Throws<DirectoryNotFoundException>(() => PyText.AppendText(missing, "x\n", waits.Add));
+        Assert.Throws<DirectoryNotFoundException>(() => PyText.DeleteFile(missing, waits.Add));
+        Assert.Empty(waits);
+    }
+
+    [Fact]
     public void A_file_name_at_the_length_limit_can_be_written()
     {
         using TempTree tree = new();
