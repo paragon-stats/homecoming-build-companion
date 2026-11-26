@@ -91,7 +91,7 @@ internal sealed class PageFetcher
             return null;
         }
 
-        if (!rules.CanFetch(agent, target.AbsoluteUri))
+        if (!Allowed(target))
         {
             error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
             return null;
@@ -100,7 +100,7 @@ internal sealed class PageFetcher
         string reason;
         try
         {
-            (int status, byte[] body, Uri answered) = Raw(target, hop => rules.CanFetch(agent, hop.AbsoluteUri));
+            (int status, byte[] body, Uri answered) = Raw(target, Allowed);
             if (status < 300)
             {
                 return Encoding.UTF8.GetString(body);
@@ -112,7 +112,7 @@ internal sealed class PageFetcher
                 return null;
             }
 
-            if (!rules.CanFetch(agent, answered.AbsoluteUri))
+            if (!Allowed(answered))
             {
                 error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {answered}, where {url} redirects; it was not fetched; leave the page out, or ask the site's operator to allow it");
                 return null;
@@ -132,6 +132,12 @@ internal sealed class PageFetcher
     private static bool IsRedirect(int status)
     {
         return status is 301 or 302 or 303 or 307 or 308;
+    }
+
+    /// <summary>Whether robots.txt lets the agent fetch a URL, judged without its fragment, which is never sent.</summary>
+    private bool Allowed(Uri url)
+    {
+        return rules.CanFetch(agent, url.GetLeftPart(UriPartial.Query));
     }
 
     /// <summary>Whether a URL is on the site: same scheme, host and port, and no user name or password in it.</summary>

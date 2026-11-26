@@ -173,6 +173,19 @@ public sealed class HtmlTextTests
     }
 
     [Fact]
+    public void A_fragment_does_not_hide_a_path_an_anchored_rule_disallows()
+    {
+        using FakeSite site = new();
+        site.Routes[FakeSite.Forum + "/robots.txt"] = "User-agent: *\nDisallow: /*.php$\n";
+        string page = FakeSite.Forum + "/a.php#top";
+        site.Routes[page] = "script";
+        using HttpClient http = new(site, disposeHandler: false);
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, TextWriter.Null).Get(page));
+        Assert.Equal(0, site.Count(page));
+    }
+
+    [Fact]
     public void A_url_inside_the_query_does_not_hide_a_disallowed_path()
     {
         using FakeSite site = new();
