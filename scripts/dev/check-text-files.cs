@@ -46,7 +46,7 @@ if (filesAt >= 0)
 else
 {
     string[] listing = staged
-        ? ["diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z"]
+        ? ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--diff-filter=ACM", "-z"]
         : ["ls-files", "-z"];
     (int code, byte[] output, string error) = Git(listing);
     if (code != 0)
@@ -56,6 +56,21 @@ else
     }
 
     files = [.. Encoding.UTF8.GetString(output).Split('\0', StringSplitOptions.RemoveEmptyEntries)];
+    if (staged)
+    {
+        // Raw records alternate ":<old mode> <new mode> <old id> <new id> <status>" and the path.
+        // A symlink (120000) holds a target and a submodule (160000) a commit: neither is text to judge.
+        string[] records = [.. files];
+        files = [];
+        for (int i = 0; i + 1 < records.Length; i += 2)
+        {
+            string[] meta = records[i].Split(' ');
+            if (meta[1] is "100644" or "100755")
+            {
+                files.Add(records[i + 1]);
+            }
+        }
+    }
 }
 
 List<string> findings = [];

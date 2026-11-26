@@ -28,6 +28,23 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
+    public void The_text_check_skips_a_staged_symlink_and_a_submodule()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+
+        // A symlink's blob is its target, written with no final newline; a submodule entry names a commit this repository lacks.
+        tree.Write("link-target", "target  ");
+        string blob = DevScripts.Git(tree.Root, "hash-object", "-w", "link-target").Trim();
+        DevScripts.Git(tree.Root, "update-index", "--add", "--cacheinfo", $"120000,{blob},link.txt");
+        DevScripts.Git(tree.Root, "update-index", "--add", "--cacheinfo", $"160000,{new string('1', 40)},vendor/sub");
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root);
+
+        Assert.True(exit == 0, output);
+    }
+
+    [Fact]
     public void The_text_check_reads_a_staged_file_with_a_non_ascii_name()
     {
         using TempTree tree = new();
