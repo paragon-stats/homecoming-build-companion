@@ -804,7 +804,7 @@ internal sealed class PatchNotesCommand
 
             // The index is written before any record goes, so a failure up to here leaves no row naming a deleted file.
             WriteIndex(outDir, Sources.SelectMany(source => (counts.ContainsKey(source) ? newRows : oldRows).Where(row => IsOf(row, source))));
-            doomed.ForEach(File.Delete);
+            doomed.ForEach(PyText.DeleteFile);
         }
         finally
         {

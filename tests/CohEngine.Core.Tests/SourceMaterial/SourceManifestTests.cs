@@ -223,6 +223,24 @@ public sealed class SourceManifestTests
         Assert.Contains("; check that the path names a file in a folder you can write to", error, StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void A_manifest_another_process_holds_is_a_write_error_naming_it()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string written = tree.Write("manifest.json", "old\n");
+
+        (int Code, string Output, string Error) result;
+        using (new FileStream(written, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            result = Run(variables: null, "--source-root", Path.Join(Captures, "source"), "--out", written);
+        }
+
+        Assert.Equal(1, result.Code);
+        Assert.StartsWith($"error: E214: cannot write {written}: {written} is in use by another process (or access to it is denied); it was tried 3 times; ", result.Error, StringComparison.Ordinal);
+        Assert.Equal("old\n", File.ReadAllText(written));
+    }
+
     [Theory]
     [InlineData("--bogus")]
     [InlineData("--out")]

@@ -9,6 +9,15 @@ namespace CohEngine.Core.Diagnostics;
 /// <summary>Python's text forms (<c>repr</c>, <c>str</c>, float repr), so messages and JSON match the Python engine byte for byte.</summary>
 public static class PyText
 {
+    /// <summary>The tries at replacing or deleting a file another process holds before the write fails.</summary>
+    private const int FileAttempts = 3;
+
+    private const int ErrorSharingViolation = 32;
+
+    private const int ErrorLockViolation = 33;
+
+    private static readonly TimeSpan FileRetryWait = TimeSpan.FromMilliseconds(100);
+
     private static readonly UTF8Encoding StrictUtf8 = new(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
 
     /// <summary>Python's <c>repr</c> of a string: single quotes unless the text holds one and no double quote.</summary>
@@ -212,30 +221,6 @@ public static class PyText
         return text.Replace("\r\n", "\n", StringComparison.Ordinal).Replace('\r', '\n');
     }
 
-    /// <summary>
-    /// Python's <c>Path.write_text(text, encoding="utf-8", newline="\n")</c>: UTF-8 without a byte-order mark, the text as
-    /// given. The text goes to a temporary file beside the target, which then replaces it, so a failed write leaves the
-    /// old file whole.
-    /// </summary>
-    /// <param name="path">The file.</param>
-    /// <param name="text">The text.</param>
-    public static void WriteText(string path, string text)
-    {
-        string full = Path.GetFullPath(path);
-
-        // A short name of its own, so a target name at the length limit still leaves room for it.
-        string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetRandomFileName() + ".tmp");
-        try
-        {
-            File.WriteAllText(temporary, text, StrictUtf8);
-            File.Move(temporary, full, overwrite: true);
-        }
-        finally
-        {
-            File.Delete(temporary);
-        }
-    }
-
     /// <summary>Python's <c>int()</c> of a run of decimal digits, any script's, as a regex <c>\d+</c> captures them.</summary>
     /// <param name="digits">The digits.</param>
     /// <returns>The number, held at <see cref="long.MaxValue"/> past its range.</returns>
@@ -250,6 +235,80 @@ public static class PyText
         }
 
         return number;
+    }
+
+    /// <summary>
+    /// Python's <c>Path.write_text(text, encoding="utf-8", newline="\n")</c>: UTF-8 without a byte-order mark, the text as
+    /// given. The text goes to a temporary file beside the target, which then replaces it, so a failed write leaves the
+    /// old file whole.
+    /// </summary>
+    /// <param name="path">The file.</param>
+    /// <param name="text">The text.</param>
+    /// <exception cref="IOException">Another process held the file through every attempt to replace it.</exception>
+    public static void WriteText(string path, string text)
+    {
+        WriteText(path, text, Thread.Sleep);
+    }
+
+    /// <summary>Deletes a file, retrying while another process holds it, as <see cref="WriteText(string, string)"/> does.</summary>
+    /// <param name="path">The file.</param>
+    /// <exception cref="IOException">Another process held the file through every attempt to delete it.</exception>
+    public static void DeleteFile(string path)
+    {
+        Retried(Path.GetFullPath(path), () => File.Delete(path), Thread.Sleep);
+    }
+
+    /// <summary>As <see cref="WriteText(string, string)"/>, waiting between attempts with <paramref name="wait"/>.</summary>
+    /// <param name="path">The file.</param>
+    /// <param name="text">The text.</param>
+    /// <param name="wait">Waits the given time.</param>
+    internal static void WriteText(string path, string text, Action<TimeSpan> wait)
+    {
+        string full = Path.GetFullPath(path);
+
+        // A short name of its own, so a target name at the length limit still leaves room for it.
+        string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetRandomFileName() + ".tmp");
+        try
+        {
+            File.WriteAllText(temporary, text, StrictUtf8);
+            Retried(full, () => File.Move(temporary, full, overwrite: true), wait);
+        }
+        finally
+        {
+            File.Delete(temporary);
+        }
+    }
+
+    /// <summary>Runs a replace or delete of <paramref name="path"/>, retrying while another process holds the file; the last refusal names it.</summary>
+    private static void Retried(string path, Action change, Action<TimeSpan> wait)
+    {
+        for (int attempt = 1; attempt < FileAttempts; attempt++)
+        {
+            try
+            {
+                change();
+                return;
+            }
+            catch (Exception exception) when (IsHeld(exception))
+            {
+                wait(FileRetryWait);
+            }
+        }
+
+        try
+        {
+            change();
+        }
+        catch (Exception exception) when (IsHeld(exception))
+        {
+            throw new IOException(string.Create(CultureInfo.InvariantCulture, $"{path} is in use by another process (or access to it is denied); it was tried {FileAttempts} times"), exception);
+        }
+    }
+
+    /// <summary>Whether a failure is a sharing or lock violation, or access denied, as Windows reports a file another handle holds.</summary>
+    private static bool IsHeld(Exception exception)
+    {
+        return exception is UnauthorizedAccessException || (exception is IOException && (exception.HResult & 0xFFFF) is ErrorSharingViolation or ErrorLockViolation);
     }
 
     /// <summary>The repr of NaN, an infinity or a zero, or null for any other value.</summary>

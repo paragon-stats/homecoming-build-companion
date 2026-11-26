@@ -63,6 +63,50 @@ public sealed class PyTextStringTests
     }
 
     [Fact]
+    public void A_file_another_process_holds_is_tried_three_times_then_named_and_left_whole()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("a.txt", "old\n");
+        List<TimeSpan> waits = [];
+
+        IOException refused;
+        using (new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            refused = Assert.Throws<IOException>(() => PyText.WriteText(path, "new\n", waits.Add));
+        }
+
+        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal(2, waits.Count);
+        Assert.Equal("old\n", File.ReadAllText(path));
+        Assert.Equal([path], Directory.GetFiles(tree.Root));
+    }
+
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    public void A_file_released_before_the_last_attempt_is_written(int heldThroughWaits)
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("a.txt", "old\n");
+        using FileStream holder = new(path, FileMode.Open, FileAccess.Read, FileShare.None);
+        List<TimeSpan> waits = [];
+
+        PyText.WriteText(path, "new\n", wait =>
+        {
+            waits.Add(wait);
+            if (waits.Count == heldThroughWaits)
+            {
+                holder.Dispose();
+            }
+        });
+
+        Assert.Equal(heldThroughWaits, waits.Count);
+        Assert.Equal("new\n", File.ReadAllText(path));
+    }
+
+    [Fact]
     public void A_file_name_at_the_length_limit_can_be_written()
     {
         using TempTree tree = new();
