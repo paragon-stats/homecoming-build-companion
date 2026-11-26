@@ -72,7 +72,12 @@ internal sealed class PageFetcher
     public string? Get(string url)
     {
         // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the path it will send.
-        Uri target = new(url);
+        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? target))
+        {
+            error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; it was skipped");
+            return null;
+        }
+
         if (!OnSite(target))
         {
             error.WriteLine($"{ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; only links to that site are followed");

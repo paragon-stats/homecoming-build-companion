@@ -295,6 +295,23 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void A_page_too_slow_to_parse_stops_its_source_with_a_coded_error()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Base + "/patch-notes/?show=categories"] = $"<a href=\"{Base}/patch-notes/issue-28/page-4/\">x</a>";
+        site.Routes[Base + "/patch-notes/issue-28/page-4/"] = $"<a href='{PatchParserTests.EntryUrl}'>a</a>";
+        site.Routes[PatchParserTests.EntryUrl] = "<section class='ipsType_richText'>" + string.Concat(Enumerable.Repeat("<p>", 200_000)) + "</section>";
+        site.Routes[Wiki + "/robots.txt"] = HttpStatusCode.Forbidden;
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--source", "paragonwiki");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E223: a page from release-notes took too long to parse", error, StringComparison.Ordinal);
+        Assert.Contains("E204", error, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void Re_dating_leaves_live_release_notes_whole()
     {
         using TempTree tree = new();

@@ -305,4 +305,7 @@ public static class ErrorCodes
 
     /// <summary>A link or a redirect names a host other than the site being read, so it is not fetched.</summary>
     public const string E222 = "E222";
+
+    /// <summary>A page took a parsing pattern past its time limit, so its source stops there and counts as not read completely.</summary>
+    public const string E223 = "E223";
 }

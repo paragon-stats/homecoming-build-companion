@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.Diagnostics;
@@ -429,7 +430,7 @@ internal sealed class PatchNotesCommand
             return (PyText.Str(row.Get("issue", string.Empty)), PyText.Str(row.Get("page", string.Empty)));
         }
 
-        System.Text.RegularExpressions.Match match = PatchParser.Entry.Match($"\"{PyText.Str(row["url"])}\"");
+        Match match = PatchParser.Entry.Match($"\"{PyText.Str(row["url"])}\"");
         return match.Success && match.Index == 0 ? (match.Groups["issue"].Value, match.Groups["page"].Value) : (string.Empty, string.Empty);
     }
 
@@ -490,12 +491,21 @@ internal sealed class PatchNotesCommand
         PageFetcher forum = new(http, agent, delay, PatchParser.Forum, error);
         foreach (string source in Sources.Where(source => sources.Contains(source, StringComparer.Ordinal)))
         {
-            (int count, bool complete) = source switch
+            (int count, bool complete) = (0, false);
+            try
             {
-                PatchParser.ReleaseNotes => CollectReleaseNotes(forum, written, outDir),
-                PatchParser.ForumBeta => CollectForumBeta(forum, written, outDir, rows),
-                _ => CollectWiki(new PageFetcher(http, agent, delay, PatchParser.Wiki, error), written, outDir, rows),
-            };
+                (count, complete) = source switch
+                {
+                    PatchParser.ReleaseNotes => CollectReleaseNotes(forum, written, outDir),
+                    PatchParser.ForumBeta => CollectForumBeta(forum, written, outDir, rows),
+                    _ => CollectWiki(new PageFetcher(http, agent, delay, PatchParser.Wiki, error), written, outDir, rows),
+                };
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                error.WriteLine($"{ErrorCodes.E223}: a page from {source} took too long to parse (over 1 s for one pattern), so {source} stopped there; entries written before it stay; look for a very large or broken page among those fetched last");
+            }
+
             total += count;
             if (!complete)
             {

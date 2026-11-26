@@ -70,6 +70,17 @@ public sealed class PyJsonTests
         Assert.Equal("fallback", value.Get("absent", "fallback"));
     }
 
+    [Fact]
+    public void Loads_reads_numbers_past_the_double_range_as_python_does()
+    {
+        string huge = "1" + new string('0', 400);
+
+        Assert.Equal(System.Numerics.BigInteger.Parse(huge, System.Globalization.CultureInfo.InvariantCulture), PyJson.Loads(huge));
+        Assert.Equal(double.PositiveInfinity, PyJson.Loads("1e999"));
+        Assert.Equal(double.NegativeInfinity, PyJson.Loads("-1.5e999"));
+        Assert.Equal("inf", CohEngine.Core.SourceMaterial.SourceManifest.Unquote("1e999"));
+    }
+
     [Theory]
     [InlineData("null", false)]
     [InlineData("false", false)]

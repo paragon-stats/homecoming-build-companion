@@ -67,12 +67,29 @@ public static class PyJson
             case JsonValueKind.String:
                 return element.GetString();
             case JsonValueKind.Number:
-                return element.TryGetInt64(out long whole) ? (object)whole : element.GetDouble();
+                return Number(element);
             case JsonValueKind.True or JsonValueKind.False:
                 return element.GetBoolean();
             default:
                 return null;
         }
+    }
+
+    /// <summary>A JSON number as Python reads it: an integer of any size, else a float, infinite past the double range.</summary>
+    private static object Number(JsonElement element)
+    {
+        string text = element.GetRawText();
+        if (element.TryGetInt64(out long whole))
+        {
+            return whole;
+        }
+
+        if (text.IndexOfAny(['.', 'e', 'E']) < 0)
+        {
+            return BigInteger.Parse(text, CultureInfo.InvariantCulture);
+        }
+
+        return element.TryGetDouble(out double real) ? real : (text[0] == '-' ? double.NegativeInfinity : double.PositiveInfinity);
     }
 
     private static void Write(StringBuilder builder, object? value, int depth, Style style)

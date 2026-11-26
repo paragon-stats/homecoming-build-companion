@@ -190,6 +190,17 @@ public sealed class HtmlTextTests
         Assert.Contains("E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com", error.ToString(), StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void A_link_that_is_not_a_url_is_a_coded_fetch_failure()
+    {
+        using FakeSite site = new();
+        using HttpClient http = new(site, disposeHandler: false);
+        using StringWriter error = new();
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get("https://a..b/topic/1-a/"));
+        Assert.StartsWith("E200: fetch failed for https://a..b/topic/1-a/: ", error.ToString(), StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData(HttpStatusCode.Forbidden, "E201: robots.txt refused (403) at https://forums.homecomingservers.com/robots.txt; nothing will be fetched")]
     [InlineData(HttpStatusCode.BadGateway, "E202: robots.txt unreadable (502) at https://forums.homecomingservers.com/robots.txt; re-run when the site recovers")]
