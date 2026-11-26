@@ -39,8 +39,8 @@ internal sealed class PatchNotesCommand
     /// <summary>The longest file name NTFS and ext4 hold.</summary>
     private const int MaxNameLength = 255;
 
-    /// <summary>The longest gap <c>--delay</c> takes; past it a run would stall rather than be polite.</summary>
-    private const double MaxDelaySeconds = 3600;
+    /// <summary>The longest gap <c>--delay</c> takes between requests; a run is held to minutes, so a longer one would never finish.</summary>
+    private const double MaxDelaySeconds = 60;
 
     private static readonly string[] Sources = [PatchParser.ReleaseNotes, PatchParser.ForumBeta, PatchParser.ParagonWiki];
 
