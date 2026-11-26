@@ -61,8 +61,8 @@ public sealed class CanonicalTreeTests
 
         PowerResolver resolve = CanonicalJson.CanonicalResolver(Path.Join(Canonical, "powers"));
         IEnumerable<string> links = powers.Values
-            .SelectMany(power => power.Items("effects"))
-            .SelectMany(effect => effect.Items("templates"))
+            .SelectMany(power => power.ReqItems("effects"))
+            .SelectMany(effect => effect.ReqItems("templates"))
             .Select(template => template.Opt("params"))
             .Where(parameters => parameters is not null)
             .SelectMany(parameters => parameters!.Value.Strings("power_names").Concat(parameters.Value.Strings("redirects")))
