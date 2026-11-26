@@ -63,6 +63,18 @@ public sealed class PyTextStringTests
     }
 
     [Fact]
+    public void A_file_name_at_the_length_limit_can_be_written()
+    {
+        using TempTree tree = new();
+        string path = tree.FullPath(new string('a', 250) + ".json");
+
+        PyText.WriteText(path, "{}\n");
+
+        Assert.Equal("{}\n", File.ReadAllText(path));
+        Assert.Equal([path], Directory.GetFiles(tree.Root));
+    }
+
+    [Fact]
     public void Number_reads_any_script_s_decimal_digits_and_holds_at_the_long_range()
     {
         Assert.Equal(48, PyText.Number("48"));

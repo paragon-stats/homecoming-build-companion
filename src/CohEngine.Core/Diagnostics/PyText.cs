@@ -221,7 +221,8 @@ public static class PyText
     public static void WriteText(string path, string text)
     {
         string full = Path.GetFullPath(path);
-        string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetFileName(full) + "." + Path.GetRandomFileName() + ".tmp");
+        // A short name of its own, so a target name at the length limit still leaves room for it.
+        string temporary = Path.Join(Path.GetDirectoryName(full), "." + Path.GetRandomFileName() + ".tmp");
         try
         {
             File.WriteAllText(temporary, text, StrictUtf8);
