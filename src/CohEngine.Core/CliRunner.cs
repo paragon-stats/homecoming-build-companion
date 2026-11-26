@@ -3,7 +3,9 @@ using System.Text.Json;
 using CohEngine.Core.Chain;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
+using CohEngine.Core.PatchNotes;
 using CohEngine.Core.Registry;
+using CohEngine.Core.SourceMaterial;
 
 namespace CohEngine.Core;
 
@@ -13,7 +15,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | chain BUILD_DIR [options] | score BUILD_DIR [--mids-dir DIR] [--attribmod PATH] [--maths PATH] | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | extract-canonical [--zip ZIP] [--out-dir DIR] [--force] | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | chain BUILD_DIR [options] | score BUILD_DIR [--mids-dir DIR] [--attribmod PATH] [--maths PATH] | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | extract-canonical [--zip ZIP] [--out-dir DIR] [--force] | patch-notes [--out DIR] [--source NAME]... [--delay S] [--user-agent UA] [--canonical DIR] [--cache DIR] [--reparse] | source-manifest [--source-root PATH] [--out FILE] | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -50,6 +52,10 @@ public static class CliRunner
                 return RunValidate(args, output, error, mbdSource);
             case ["score", ..]:
                 return RunScore(args, output, error);
+            case ["patch-notes", ..]:
+                return Guarded(() => PatchNotesCommand.Run(args[1..], output, error, handler: null), error);
+            case ["source-manifest", ..]:
+                return Guarded(() => SourceManifest.Run(args[1..], output, error, Environment.GetEnvironmentVariable), error);
             default:
                 error.WriteLine(Usage);
                 return 2;

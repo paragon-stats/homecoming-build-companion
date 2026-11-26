@@ -9,6 +9,8 @@ namespace CohEngine.Core.Diagnostics;
 /// <summary>Python's text forms (<c>repr</c>, <c>str</c>, float repr), so messages and JSON match the Python engine byte for byte.</summary>
 public static class PyText
 {
+    private static readonly UTF8Encoding StrictUtf8 = new(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+
     /// <summary>Python's <c>repr</c> of a string: single quotes unless the text holds one and no double quote.</summary>
     /// <param name="value">The text.</param>
     /// <returns>The quoted form.</returns>
@@ -109,6 +111,128 @@ public static class PyText
         return point >= digits.Length
             ? sign + digits + new string('0', point - digits.Length) + ".0"
             : sign + digits[..point] + "." + digits[point..];
+    }
+
+    /// <summary>Python's <c>str.isspace</c> for one character: .NET's white space plus the four separators U+001C to U+001F.</summary>
+    /// <param name="letter">The character.</param>
+    /// <returns>True when Python counts it as white space.</returns>
+    public static bool IsSpace(char letter)
+    {
+        return char.IsWhiteSpace(letter) || letter is >= '\u001c' and <= '\u001f';
+    }
+
+    /// <summary>Python's <c>str.strip()</c>.</summary>
+    /// <param name="value">The text.</param>
+    /// <returns>The text without leading and trailing white space.</returns>
+    public static string Strip(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        int start = 0;
+        int end = value.Length;
+        while (start < end && IsSpace(value[start]))
+        {
+            start++;
+        }
+
+        while (end > start && IsSpace(value[end - 1]))
+        {
+            end--;
+        }
+
+        return value[start..end];
+    }
+
+    /// <summary>Python's <c>" ".join(value.split())</c>: every run of white space folded to one space, none at the ends.</summary>
+    /// <param name="value">The text.</param>
+    /// <returns>The folded text.</returns>
+    public static string Fold(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        StringBuilder builder = new(value.Length);
+        bool gap = false;
+        foreach (char letter in value)
+        {
+            if (IsSpace(letter))
+            {
+                gap = builder.Length > 0;
+                continue;
+            }
+
+            if (gap)
+            {
+                builder.Append(' ');
+                gap = false;
+            }
+
+            builder.Append(letter);
+        }
+
+        return builder.ToString();
+    }
+
+    /// <summary>Python's <c>str.splitlines()</c>: lines split at every line boundary Python knows, the boundaries dropped.</summary>
+    /// <param name="value">The text.</param>
+    /// <returns>The lines; no trailing empty line for text that ends with a boundary.</returns>
+    public static IReadOnlyList<string> SplitLines(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        List<string> lines = [];
+        int start = 0;
+        for (int index = 0; index < value.Length; index++)
+        {
+            char letter = value[index];
+            if (letter is '\n' or '\r' or '\v' or '\f' or '\u0085' or '\u2028' or '\u2029' or (>= '\u001c' and <= '\u001e'))
+            {
+                lines.Add(value[start..index]);
+                if (letter == '\r' && index + 1 < value.Length && value[index + 1] == '\n')
+                {
+                    index++;
+                }
+
+                start = index + 1;
+            }
+        }
+
+        if (start < value.Length)
+        {
+            lines.Add(value[start..]);
+        }
+
+        return lines;
+    }
+
+    /// <summary>Python's <c>Path.read_text(encoding="utf-8")</c>: strict UTF-8, a byte-order mark kept, and every <c>\r\n</c> and <c>\r</c> read as <c>\n</c>.</summary>
+    /// <param name="path">The file.</param>
+    /// <returns>The text.</returns>
+    /// <exception cref="DecoderFallbackException">The file is not valid UTF-8.</exception>
+    public static string ReadText(string path)
+    {
+        string text = StrictUtf8.GetString(File.ReadAllBytes(path));
+        return text.Replace("\r\n", "\n", StringComparison.Ordinal).Replace('\r', '\n');
+    }
+
+    /// <summary>Python's <c>Path.write_text(text, encoding="utf-8", newline="\n")</c>: UTF-8 without a byte-order mark, the text as given.</summary>
+    /// <param name="path">The file.</param>
+    /// <param name="text">The text.</param>
+    public static void WriteText(string path, string text)
+    {
+        File.WriteAllText(path, text, StrictUtf8);
+    }
+
+    /// <summary>Python's <c>int()</c> of a run of decimal digits, any script's, as a regex <c>\d+</c> captures them.</summary>
+    /// <param name="digits">The digits.</param>
+    /// <returns>The number, held at <see cref="long.MaxValue"/> past its range.</returns>
+    public static long Number(string digits)
+    {
+        ArgumentNullException.ThrowIfNull(digits);
+        long number = 0;
+        foreach (char digit in digits)
+        {
+            int value = (int)char.GetNumericValue(digit);
+            number = number > (long.MaxValue - value) / 10 ? long.MaxValue : (number * 10) + value;
+        }
+
+        return number;
     }
 
     /// <summary>The repr of NaN, an infinity or a zero, or null for any other value.</summary>

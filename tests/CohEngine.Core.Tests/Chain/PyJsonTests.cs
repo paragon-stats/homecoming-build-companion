@@ -51,6 +51,52 @@ public sealed class PyJsonTests
     }
 
     [Fact]
+    public void Dumps_writes_one_line_and_keeps_non_ascii_text_as_json_dumps_does_by_default()
+    {
+        PyObject value = new() { { "a", new List<object?> { 1L, "é\u007f\u0001" } }, { "b", new PyObject() }, { "c", new List<object?>() } };
+
+        Assert.Equal("{\"a\": [1, \"é\u007f\\u0001\"], \"b\": {}, \"c\": []}", PyJson.Dumps(value, indented: false, ensureAscii: false));
+        Assert.Equal("[\n  \"\\u00e9\"\n]", PyJson.Dumps(new List<object?> { "é" }, indented: true, ensureAscii: true));
+    }
+
+    [Fact]
+    public void Loads_keeps_key_order_number_kinds_and_the_last_value_of_a_repeated_key()
+    {
+        PyObject value = (PyObject)PyJson.Loads("{\"b\": 1, \"a\": [1.5, \"x\", true, false, null], \"b\": 2}")!;
+
+        Assert.Equal("{\"b\": 2, \"a\": [1.5, \"x\", true, false, null]}", PyJson.Dumps(value, indented: false, ensureAscii: false));
+        Assert.IsType<long>(value["b"]);
+        Assert.Throws<KeyNotFoundException>(() => value["absent"]);
+        Assert.Equal("fallback", value.Get("absent", "fallback"));
+    }
+
+    [Theory]
+    [InlineData("null", false)]
+    [InlineData("false", false)]
+    [InlineData("true", true)]
+    [InlineData("\"\"", false)]
+    [InlineData("\"x\"", true)]
+    [InlineData("0", false)]
+    [InlineData("3", true)]
+    [InlineData("0.0", false)]
+    [InlineData("0.5", true)]
+    [InlineData("[]", false)]
+    [InlineData("[0]", true)]
+    [InlineData("{}", false)]
+    public void Truthy_is_python_s_truth_value(string json, bool expected)
+    {
+        Assert.Equal(expected, PyObject.Truthy(PyJson.Loads(json)));
+    }
+
+    [Fact]
+    public void Truthy_counts_nan_an_int_and_any_other_value_as_python_does()
+    {
+        Assert.True(PyObject.Truthy(double.NaN));
+        Assert.False(PyObject.Truthy(0));
+        Assert.True(PyObject.Truthy(DateTime.UnixEpoch));
+    }
+
+    [Fact]
     public void Dumps_refuses_a_value_with_no_json_form()
     {
         Assert.Equal("no JSON form for DateTime (Parameter 'value')", Assert.Throws<ArgumentException>(() => PyJson.Dumps(DateTime.UnixEpoch)).Message);

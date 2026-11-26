@@ -257,4 +257,41 @@ public static class ErrorCodes
 
     /// <summary>An entry of the City of Data raw-data zip resolves outside the target folder.</summary>
     public const string E191 = "E191";
+
+    // E200-E209: patch-notes.
+
+    /// <summary>A page fetch failed: a network error, a timeout or an HTTP error status.</summary>
+    public const string E200 = "E200";
+
+    /// <summary>A site's robots.txt answered 401 or 403, so nothing on that site is fetched.</summary>
+    public const string E201 = "E201";
+
+    /// <summary>A site's robots.txt could not be read (a 5xx status or a network error), so nothing on that site is fetched.</summary>
+    public const string E202 = "E202";
+
+    /// <summary>The Release Notes category browser could not be read.</summary>
+    public const string E203 = "E203";
+
+    /// <summary>The Paragon Wiki Archive's patch-notes index could not be read.</summary>
+    public const string E204 = "E204";
+
+    /// <summary>A page of a beta patch-notes listing could not be read, so its threads are missing from the run.</summary>
+    public const string E205 = "E205";
+
+    /// <summary>An entry parsed to no change lines; it is still recorded.</summary>
+    public const string E206 = "E206";
+
+    /// <summary>The canonical tree names no powerset, so no heading fills <c>powerset</c>.</summary>
+    public const string E207 = "E207";
+
+    // E210-E219: source-manifest.
+
+    /// <summary>The source-material root is missing or is not a directory.</summary>
+    public const string E210 = "E210";
+
+    /// <summary>The source-material root holds no capture with front matter.</summary>
+    public const string E211 = "E211";
+
+    /// <summary>A capture's front matter has no title; the capture is skipped.</summary>
+    public const string E212 = "E212";
 }

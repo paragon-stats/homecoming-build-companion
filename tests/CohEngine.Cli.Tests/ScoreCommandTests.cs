@@ -117,7 +117,7 @@ public sealed partial class ScoreCommandTests
 
         (_, string help, _) = Run("--help");
 
-        Assert.Equal(["ask", "chain", "extract-canonical", "mcp", "rules", "score", "validate"], commands.Order(StringComparer.Ordinal), StringComparer.Ordinal);
+        Assert.Equal(["ask", "chain", "extract-canonical", "mcp", "patch-notes", "rules", "score", "source-manifest", "validate"], commands.Order(StringComparer.Ordinal), StringComparer.Ordinal);
         Assert.All(commands, command => Assert.Contains(command, help, StringComparison.Ordinal));
     }
 }
