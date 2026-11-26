@@ -32,6 +32,12 @@ static int Check(string[] args, TextWriter output, TextWriter error)
     }
 
     (string factSet, string pyproject) = (args[0], args[1]);
+    foreach (string path in args.Where(path => !File.Exists(path)))
+    {
+        error.WriteLine($"{path}:1:1: error: E82: input file not found; pass commit-types.txt and pyproject.toml");
+        return 2;
+    }
+
     Dictionary<string, string> facts;
     try
     {
@@ -63,9 +69,10 @@ static int Check(string[] args, TextWriter output, TextWriter error)
         string[] got = [.. Regex.Matches(list.Groups["items"].Value, "\"([^\"]*)\"").Select(item => item.Groups[1].Value)];
         string[] missing = [.. want.Except(got).Order(StringComparer.Ordinal)];
         string[] extra = [.. got.Except(want).Order(StringComparer.Ordinal)];
-        if (missing.Length + extra.Length > 0)
+        string[] repeated = [.. got.GroupBy(tag => tag).Where(group => group.Count() > 1).Select(group => group.Key).Order(StringComparer.Ordinal)];
+        if (missing.Length + extra.Length + repeated.Length > 0)
         {
-            string detail = string.Join("; ", new[] { missing.Length > 0 ? $"missing [{string.Join(", ", missing)}]" : "", extra.Length > 0 ? $"extra [{string.Join(", ", extra)}]" : "" }.Where(part => part.Length > 0));
+            string detail = string.Join("; ", new[] { missing.Length > 0 ? $"missing [{string.Join(", ", missing)}]" : "", extra.Length > 0 ? $"extra [{string.Join(", ", extra)}]" : "", repeated.Length > 0 ? $"repeated [{string.Join(", ", repeated)}]" : "" }.Where(part => part.Length > 0));
             errors.Add($"{pyproject}:1:1: error: H-REL-001: {key} drifted from commit-types.txt ({detail}); copy the fact-set's list");
         }
     }
@@ -180,6 +187,13 @@ static int SelfTest()
         Expect(noSection.Code == 2 && noSection.Err.Contains("E81"), "no section: E81");
         var noKey = Run(Types, Matching.Replace("patch_tags = [\"fix\", \"security\"]", ""));
         Expect(noKey.Code == 2 && noKey.Err.Contains("E81") && noKey.Err.Contains("patch_tags"), "missing key: E81 names it");
+
+        var repeated = Run(Types, Matching.Replace("minor_tags = [\"feat\"]", "minor_tags = [\"feat\", \"feat\"]"));
+        Expect(repeated.Code == 1 && repeated.Err.Contains("minor_tags drifted from commit-types.txt (repeated [feat])"), "repeated tag: drift");
+
+        StringWriter missingError = new();
+        int missingCode = Check([Path.Join(root, "commit-types.txt"), Path.Join(root, "no-such-pyproject.toml")], TextWriter.Null, missingError);
+        Expect(missingCode == 2 && missingError.ToString().Contains("no-such-pyproject.toml:1:1: error: E82"), "missing input file: E82");
 
         Expect(Check(["only-one"], TextWriter.Null, TextWriter.Null) == 2, "one argument: exit 2");
     }
