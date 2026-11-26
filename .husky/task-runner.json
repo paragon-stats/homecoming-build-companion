@@ -11,7 +11,7 @@
       "name": "check-encoding",
       "group": "pre-commit",
       "command": "dotnet",
-      "args": ["run", "scripts/dev/check-encoding.cs"]
+      "args": ["run", "scripts/dev/check-encoding.cs", "--", "--staged"]
     },
     {
       "name": "check-coverage-exclusions",
@@ -29,7 +29,7 @@
       "name": "check-banned-words",
       "group": "pre-commit",
       "command": "dotnet",
-      "args": ["run", "scripts/dev/check-banned-words.cs"]
+      "args": ["run", "scripts/dev/check-banned-words.cs", "--", "--staged"]
     },
     {
       "name": "dotnet-format",
