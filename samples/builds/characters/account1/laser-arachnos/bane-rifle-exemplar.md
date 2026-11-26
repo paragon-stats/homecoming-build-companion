@@ -1,5 +1,49 @@
 # Bane Spider Soldier-Bane Spider Training Arachnos Soldier - Ranged Rifle - Exemplar
 
+## Buy these pieces attuned: the file holds crafted stand-ins
+
+This build is designed around the pieces below being **attuned** in game. The Mids file cannot mark them attuned: an `.mbd` marks a piece
+attuned only by its identifier (`Attuned_...`), and the Mids 3.8.6 database the file is written against (2026.5.1337) has attuned
+identifiers only for archetype, Winter and attuned-only sets. The file therefore holds each of these 29 pieces as the crafted piece at the
+level shown. Buy them attuned:
+
+| Power | Pieces to buy attuned | In the file |
+| --- | --- | --- |
+| Combat Jumping | Luck of the Gambler: Defense/Increased Global Recharge Speed, Defense/Endurance | crafted 50 |
+| Tactical Training: Maneuvers | Luck of the Gambler: Defense/Increased Global Recharge Speed, Defense/Endurance, Defense/Endurance/Recharge, Endurance/Recharge | crafted 50 |
+| Cloaking Device | Luck of the Gambler: the same four | crafted 50 |
+| Weave | Luck of the Gambler: the same four | crafted 50 |
+| Surveillance | Achilles' Heel: Chance for Res Debuff, Defense Debuff, Defense Debuff/Recharge | crafted 20 |
+| Tough | Unbreakable Guard: Resistance, Resistance/Endurance, RechargeTime/Resistance, Resistance/Endurance/RechargeTime, +Max HP | crafted 50 |
+| Tough | Aegis: Psionic/Status Resistance | crafted 50 |
+| Build Up | Gaussian's Synchronized Fire-Control: To Hit Buff, To Hit Buff/Recharge, To Hit Buff/Recharge/Endurance, Chance for Build Up | crafted 50 |
+| Health | Regenerative Tissue: +Regeneration | crafted 30 |
+| Health | Preventive Medicine: Chance for +Absorb | crafted 50 |
+
+**Which figures assume attuned.** Every per-exemplar-level table below (totals, hit chance, damage, endurance) was computed with these
+pieces attuned. At level 50 an attuned piece and a crafted 50 piece have the same values, so the level 50 row, the Mids totals
+(`.mids-totals.json`), the survival score, the boost evidence and the Enhancement Diversification audit describe the file exactly.
+
+**What the file costs if slotted as written** (crafted, at the levels above), against the per-level tables [A]. A crafted piece keeps its
+set bonus and global down to three levels below its own level; an attuned piece down to three below the set's minimum level
+(`docs/survivability-planning.md`). Values are the set-bonus and global figures in the Mids data; hit points are a share of the
+class's base hit points at that level. The rule of five was not re-run for these differences.
+
+| Exemplar | Defense | Resistance | Hit points | Recharge (Mids-style) | Accuracy | Also lost |
+| --- | --- | --- | --- | --- | --- | --- |
+| 10-15 | AoE −1.9 (Fire/Cold −0.9): Achilles' Heel three-piece | — | — | — | — | damage −1.5% (Achilles' Heel two-piece) |
+| 20 | melee −3.1 (S/L −1.6): Unbreakable Guard four-piece | E/N −2.25, Toxic and Psionic −3.75 (Unbreakable Guard) | −9.4% of base, 639 → about 597: the +Max HP global and Gaussian's three-piece | — | — | endurance cost −2.5%, recovery −2.5%, the Preventive Medicine absorb |
+| 25-45 | melee −3.1 (S/L −1.6) | E/N −2.25, Toxic −3.75, Psionic −8.75 (with Aegis' 5) | −12.75% of base, adding Luck of the Gambler's three-piece ×3: 854 → about 779 at 25, 1,061 → 968 at 30, 1,255 → 1,145 at 35, 1,414 → 1,290 at 40, 1,518 → 1,385 at 45 | −30%: the four +7.5% globals | −27% (+42% → +15%): Luck of the Gambler's four-piece ×3 | as at 20, plus regeneration −40% (Luck of the Gambler's two-piece ×4) and mez resistance −20% (Aegis) |
+
+- **Where the losses start:** at 17 (Unbreakable Guard, Preventive Medicine), 18 (Gaussian's) and 22 (Luck of the Gambler, Aegis);
+  Achilles' Heel's bonuses are lost below 17. From 47 the file and the design agree.
+- **Recharge** is Mids' figure, Hasten not counted. The "Recharge" columns below are time-averages with Hasten at its real uptime;
+  30% less recharge also shortens Hasten's uptime, so the time-average falls by more. The hit-chance tables at 25-45 use the +42%
+  accuracy, so they fall too. Neither was re-measured.
+- **Procs work at any piece level,** so the Achilles' Heel and Gaussian's procs change nothing. The Preventive Medicine absorb is a
+  global in the game data and counts in no total here; in the file it works only from 47. The game data marks Regenerative Tissue's
+  +Regeneration as a proc (`is_proc`), so by the rules here its crafted 30 piece counts at every level and changes no figure.
+
 ## Checks run on this file
 
 Every check below was run on this build itself (the file in this folder). No figure is borrowed from another variant.
@@ -13,8 +57,9 @@ Every check below was run on this build itself (the file in this folder). No fig
 5. **Chains:** single target and 10-target spawn at every exemplar level 10 to 50 (Hasten at its real uptime), and at 50 as Mids counts
    Hasten; bars as measured and with the proc estimate.
 6. **Enhancement Diversification audit:** every power, every aspect, measured on this build.
-7. **Exemplar:** the full table at 10, 15, 20, 25, 30, 35, 40, 45 and 50, re-measured on this file. Parity at 50 against the harness matches
-   every field but hit points (0.10 apart). The hand-worked check passes: +30.0% recharge at exactly exemplar 22 (19 under the data floors).
+7. **Exemplar:** the full table at 10, 15, 20, 25, 30, 35, 40, 45 and 50, re-measured on this file with the pieces in "Buy these pieces
+   attuned" treated as attuned, not as the file's crafted stand-ins. Parity at 50 against the harness matches every field but hit points
+   (0.10 apart). The hand-worked check passes: +30.0% recharge at exactly exemplar 22 (19 under the data floors).
 8. **Survival score:** both tiers, both damage mixes, at 50, against the previous delivery (22 November) and against the final
    Bane 4-star build, with the hand check.
 9. **Boost evidence:** each boosted piece's value before and after (all ×1.25). Set bonuses and globals are byte-identical. 95 boosters.
@@ -23,6 +68,9 @@ Every check below was run on this build itself (the file in this folder). No fig
 11. **Granted slots:** every slot of every power is filled (none empty).
 12. **File order:** the level 1 primary pick (Single Shot) comes before the secondary pick (Bane Spider Armor Upgrade), and the pools
     are listed in the order they are first picked (Leadership 4, Leaping 6, Speed 28, Fighting 30): passes.
+13. **Piece kinds against the file:** the kind of every piece in the slotting table was compared with the `.mbd`. They agree except the
+    29 pieces in "Buy these pieces attuned": the table gives them as attuned, the in-game kind, and the file holds them crafted, because
+    the Mids 3.8.6 database has no attuned form of a regular set.
 
 Before any change, the previously delivered build was rebuilt from its spec: the rebuilt `.mbd` is byte-identical to the delivered one,
 and its dump is byte-identical to the delivered `.mids-totals.json`.
@@ -83,7 +131,8 @@ This build is for a third build slot. Its job is playing exemplared task forces 
   - The second version had Hasten at pick 8 and Heavy Burst at 28. It is kept below as a labelled comparison row.
   - This version swaps those two picks, as the operator chose: **Heavy Burst at 8, Hasten at 28**. Every other pick and every piece is the same.
 
-Loadable file: `bane-rifle-exemplar.mbd`, stamped with Mids database 2026.5.1337.
+Loadable file: `bane-rifle-exemplar.mbd`, stamped with Mids database 2026.5.1337. It holds crafted stand-ins for the attuned pieces
+(see "Buy these pieces attuned").
 
 Every figure carries one of these marks:
 
@@ -207,7 +256,8 @@ How these figures are built:
 
 ## Totals at 50 and at each exemplar level
 
-All [S] except the 50 row [H].
+All [S] except the 50 row [H]. The rows below 50 assume the attuned pieces; "Buy these pieces attuned" gives what the file as written
+loses.
 
 - **Recharge** is the time-average with Hasten at its real uptime [S]. Mids' own figure, which counts Hasten as always on, is +140% at 50.
 - **Mez protection** is hold, stun, immobilize and knockback.
@@ -457,7 +507,7 @@ Epiphany and Assault Radial Embodiment. None is counted below 45.
 
 The swap moved no piece. Mids placed some added slots at different levels; that does not matter when exemplared, because every slot in a usable power counts.
 
-| Power | Pieces | Kind | Why |
+| Power | Pieces | Kind (in game; the file's where it differs) | Why |
 | --- | --- | --- | --- |
 | Bane Spider Armor | Gladiator's Armor +3% Def | crafted 10 | PvP global: never lost |
 | | Steadfast Protection Res/+3% Def, Knockback Protection | crafted 10 | Set 10-30: crafted at 10 keeps them to 7, as attuned would |
@@ -466,29 +516,29 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 | Burst | Superior Winter's Bite, 6 | attuned (only form) | Winter set: ranged, E/N, F/C and AoE defense at every level |
 | Maneuvers | Shield Wall Def/End, Def/Rech, Def/End/Rech, End/Rech | crafted 50, +5 | PvP: bonuses at every level; End/Rech in place of pure Defense for endurance |
 | | Kismet +ToHit (moved here) | crafted 10 | Proc by the data: +6% to-hit whenever Maneuvers is usable, so from exemplar 1 |
-| Combat Jumping | Luck of the Gambler +Recharge, Def/End | attuned | Global and 2-piece bonus from 22 |
+| Combat Jumping | Luck of the Gambler +Recharge, Def/End | attuned; file: crafted 50 | Global and 2-piece bonus from 22 |
 | Heavy Burst | Superior Frozen Blast, 6 | attuned (only form) | AoE and F/C defense at every level |
-| Tactical Training: Maneuvers | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned | Bonuses from 22 |
+| Tactical Training: Maneuvers | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
 | Venom Grenade | Superior Dominion of Arachnos, 6 | attuned (only form) | Archetype set; −damage/fear proc |
 | Assault, Tactical Training: Assault and Leadership, Tactics | Endurance Reduction | crafted 50, +5 | No set pays for slots there |
 | Frag Grenade | Overwhelming Force, 6 | attuned (only form) | Knockback to knockdown; knockback protection 4 at every level |
 | Mental Training | Run Speed | crafted 50, +5 | |
-| Cloaking Device | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned | Bonuses from 22 |
-| Surveillance | Achilles' Heel −Res proc, Def Debuff, Def Debuff/Rech | attuned | Proc whenever Surveillance is usable; bonuses from 7 |
+| Cloaking Device | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
+| Surveillance | Achilles' Heel −Res proc, Def Debuff, Def Debuff/Rech | attuned; file: crafted 20 | Proc whenever Surveillance is usable; bonuses from 7 |
 | | Accuracy (new, fourth slot, level 48) | crafted 50, +5 | 95% against +4 at 50; the +5 is needed (91.1% at +0) |
 | Hasten | Recharge Reduction x2 | crafted 50, +5 | The norm |
 | Boxing | Accuracy | crafted 50, +5 | One slot: a prerequisite, not on a key |
-| Tough | Unbreakable Guard Res, Res/End, Res/Rech, Res/End/Rech, +Max HP | attuned | Set 20-50: bonuses and the +HP global from 17 (crafted 50 would stop below 47) |
-| | Aegis +Res Mez/Psionic | attuned | Global from 22 |
-| Weave | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned | Bonuses from 22 |
+| Tough | Unbreakable Guard Res, Res/End, Res/Rech, Res/End/Rech, +Max HP | attuned; file: crafted 50 | Set 20-50: bonuses and the +HP global from 17 (crafted 50 would stop below 47) |
+| | Aegis +Res Mez/Psionic | attuned; file: crafted 50 | Global from 22 |
+| Weave | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
 | Poisonous Ray | Apocalypse Acc/Dmg/Rech, Acc/Rech, Dmg/Rech, Dmg/End, Dmg | crafted 50; only Acc/Rech and Dmg/End +5 | Purple: bonuses at every level |
 | | Apocalypse −Energy proc | crafted 50 | Proc |
-| Build Up | Gaussian's ToHit, Rech/ToHit, End/Rech/ToHit, Build Up proc | attuned | Bonuses from 18. In Build Up so Mids does not count the proc as always on |
+| Build Up | Gaussian's ToHit, Rech/ToHit, End/Rech/ToHit, Build Up proc | attuned; file: crafted 50 | Bonuses from 18. In Build Up so Mids does not count the proc as always on |
 | Combat Training: Defensive | Shield Wall +5% Res (all) (moved here) | crafted 50 | PvP global: works at every level wherever it sits |
 | | (Karma Knockback Protection, removed) | — | Its slot went to Surveillance's Accuracy IO; knockback protection 15 → 11 |
 | Wide Area Web Grenade | Accuracy | crafted 50, +5 | One slot (on the ALT row, not the key row) |
 | Health | Panacea +HP/End, Numina's +Regen/Recovery (30), Miracle +Recovery (20) | crafted | Procs: any level works; lowest craftable |
-| | Regenerative Tissue +Regen, Preventive Medicine +Absorb | attuned | Globals: from 7 and from 17 |
+| | Regenerative Tissue +Regen, Preventive Medicine +Absorb | attuned; file: crafted 30 and crafted 50 | Globals: from 7 and from 17 |
 | Stamina | Performance Shifter +End proc | crafted 21 | Proc; lowest craftable |
 | | Performance Shifter EndMod, EndMod/Rech | crafted 50, +5 | The dual-aspect piece keeps its boost at every level. Attuned would add only the 3-piece +1.88% HP at 18-46 |
 | **Brawl** (new) | Accuracy | crafted 50 | Takes Accuracy, Damage or Recharge; never pressed; empty it hit +4 at 70.1%, now 91.1% at 50 [H] |
@@ -501,6 +551,7 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 
 - **Sets that ignore exemplaring** (purple, PvP, archetype, Winter, Overwhelming Force) come first. Their bonuses are never lost, so purple and PvP pieces are crafted at 50 and boosted.
 - **Regular sets are attuned**, keeping bonuses to the set minimum − 3. Crafted at 50 they stop below 47.
+  The Mids file cannot hold an attuned regular-set piece, so it holds the crafted piece at the level in the table's "file:" note.
 - **Globals crafted at the set minimum** equal attuned.
 - **Procs** ignore the minus-3 rule.
 - **Single-aspect IOs boosted to +5** gain nothing at 45 and below, because the cap is 41.5% [A].
@@ -576,7 +627,7 @@ last threshold (100% on schedule A, 60% on schedule B); every other aspect of ev
 | Venom Grenade | Damage / Recharge | 142.4 / 132.5% | 101.4 / 99.9% | Superior Dominion of Arachnos (archetype set) |
 | Frag Grenade | Damage | 114.0% | 97.1% | Overwhelming Force: knockdown, knockback protection 4 |
 | Hasten | Recharge | 106.0% | 95.9% | Two +5 Recharge IOs, the operator's norm (a plain IO past ED) |
-| Tough | Resistance | 70.1% | 57.5% | Unbreakable Guard, attuned (bonuses from 17) |
+| Tough | Resistance | 70.1% | 57.5% | Unbreakable Guard, attuned in game (bonuses from 17); crafted 50 in the file, the same values at 50 |
 | Poisonous Ray | Damage / Recharge | 182.2 / 115.9% | 107.3 / 97.4% | Apocalypse (purple, six pieces) |
 
 ## His call
@@ -683,6 +734,7 @@ This is the recipe of the repository's sample-build parity test, and it adds the
 2. **Set bonuses and globals:** taken from every power, usable or not.
    - Pieces that ignore exemplaring always count.
    - Attuned pieces count down to the set minimum − 3; crafted pieces down to their level − 3.
+   - The pieces in "Buy these pieces attuned" are taken as attuned, as designed, although the file holds them crafted.
    - Procs count only in a usable power.
    - The rule of five is applied as Mids applies it.
 3. **Values:** each piece's values are scaled by the wiki's table (unchanged at 5% or less, the 10%/20% thresholds, the 41.5% cap), and the class tables and hit points are taken at level N.
@@ -694,8 +746,9 @@ This is the recipe of the repository's sample-build parity test, and it adds the
 **Checks:**
 
 - **Parity at 50:** the script matches the harness on every compared field. Hit points differ by 0.1 because of the previous-recompute term.
-- **Hand-worked case:** the build's four attuned Luck of the Gambler +Recharge globals switch on at 22, a jump of exactly 30.0 recharge, and at 19 under the data floors.
-  Hasten is left out of that check: from 23 it adds its own step.
+- **Hand-worked case:** the build's four Luck of the Gambler +Recharge globals, taken as attuned, switch on at 22, a jump of exactly 30.0
+  recharge, and at 19 under the data floors. Hasten is left out of that check: from 23 it adds its own step.
+  The file's crafted 50 stand-ins switch on only at 47.
 
 ## Where the repository docs disagree with the wiki
 

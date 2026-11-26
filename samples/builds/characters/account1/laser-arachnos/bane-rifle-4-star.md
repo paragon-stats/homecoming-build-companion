@@ -54,7 +54,9 @@ What changes, power by power:
 - **Granted slots that were empty:** Swift (Run Speed IO), Hurdle (Jump IO), Brawl (Accuracy IO), Sprint (Run Speed IO), Rest
   (Endurance Modification IO), all plain level 50 IOs.
 - **Unique and global levels** set to the best level by the wiki's exemplar rules: Steadfast Protection 10, Unbreakable Guard +Max HP 20,
-  Aegis 25, Reactive Defenses 20, Preventive Medicine 20, Regenerative Tissue 10, Panacea attuned. Luck of the Gambler pieces stay at 50.
+  Aegis 25, Reactive Defenses 20, Preventive Medicine 20, Regenerative Tissue 10, Panacea attuned in game. Luck of the Gambler pieces stay
+  at 50. **The file holds Panacea crafted 50:** an `.mbd` marks a piece attuned only by an `Attuned_...` identifier, and the Mids 3.8.6
+  database has none for Panacea. It is a proc in a set that ignores exemplaring, so no figure changes.
 - **Boosts:** 28 set pieces, where at least half the boost survives Enhancement Diversification (see "Enhancement Boosters").
 - **Unchanged by the operator's choice:** Frag Grenade keeps Superior Dominion of Arachnos and its knockback; Heavy Burst keeps Ragnarok
   five plus the Annihilation proc; Stamina keeps two pieces; every Luck of the Gambler piece is crafted at 50.
@@ -91,8 +93,8 @@ at 10/45/45, with this file = 100.
 ## Corrections to the previous write-up
 
 - **Piece kinds.** It said "set pieces are level 50, attuned or superior". The Luck of the Gambler, Ragnarok, Apocalypse, Adjusted
-  Targeting, Analyze Weakness, Unbreakable Guard, Gaussian's and Health pieces are crafted, not attuned (Panacea alone is attuned, as in
-  game). The slotting list below names each piece's kind and level.
+  Targeting, Analyze Weakness, Unbreakable Guard, Gaussian's and Health pieces are crafted, not attuned (Panacea alone is attuned in
+  game; the file holds it crafted 50, as above). The slotting list below names each piece's kind and level.
 - **Uniques.** Its "Unique placement" table listed Luck of the Gambler: Defense/Increased Global Recharge Speed and Performance Shifter:
   Chance for +End as uniques. Neither carries the data's one-per-character `slot_requires` in `data/canonical/boost_sets`.
 - **Exemplar levels.** Its table used the power's pick level and the slot's level (Mids' rule). By the wiki's rules a crafted piece works
@@ -301,7 +303,7 @@ The lowest exemplar level at which each piece's own bonus works, by the rules ab
 | Preventive Medicine: Chance for +Absorb | Health | crafted 20 | yes | 17 | crafted 20 |
 | Numina's Convalescence: +Regeneration/+Recovery | Health | crafted 50 | yes (proc) | every level | crafted 50 |
 | Miracle: +Recovery | Health | crafted 40 | yes (proc) | every level | crafted 40 |
-| Panacea: +Hit Points/Endurance | Health | attuned | yes (proc) | every level | attuned |
+| Panacea: +Hit Points/Endurance | Health | crafted 50 (attuned in game; the Mids database has no attuned Panacea) | yes (proc) | every level | attuned |
 | Regenerative Tissue: +Regeneration | Health | crafted 10 | yes (proc) | every level | crafted 10 |
 | Performance Shifter: Chance for +End | Stamina | crafted 50 | **no** (proc) | every level | crafted 50 |
 | Achilles' Heel: Chance for Res Debuff | Surveillance | crafted 20 | no (proc) | 19 (Surveillance usable) | crafted 20 |
@@ -444,7 +446,7 @@ at 49; Build Up (6) at 41 and Wide Area Web Grenade (6) at 44.
 ## Powers by level, with slotting
 
 Each piece is named with its kind and level: **superior attuned** (Superior Winter's Bite, Superior Spider's Bite, Superior Frozen Blast,
-Superior Dominion of Arachnos; no level), **attuned** (Panacea), **crafted** at the level shown. "Invention" pieces are common IOs.
+Superior Dominion of Arachnos; no level), **attuned** (Panacea, in game; crafted 50 in the file), **crafted** at the level shown. "Invention" pieces are common IOs.
 `(A)` is the free slot; numbers in brackets are slot levels. "+5" marks a boost.
 
 - **1 Single Shot (key 1):** Superior Winter's Bite, superior attuned: Accuracy/Damage (A), Accuracy/Damage/Recharge (3),
@@ -490,7 +492,7 @@ Superior Dominion of Arachnos; no level), **attuned** (Panacea), **crafted** at 
 - **47 Assault:** Invention: Endurance Reduction, crafted 50, +5 (A).
 - **49 Tactics:** Invention: Endurance Reduction, crafted 50, +5 (A).
 - **Health:** Numina's Convalescence: +Regeneration/+Recovery, crafted 50 (A); Miracle: +Recovery, crafted 40 (13); Panacea: +Hit
-  Points/Endurance, attuned (15); Preventive Medicine: Chance for +Absorb, crafted 20 (17); Regenerative Tissue: +Regeneration, crafted 10 (23).
+  Points/Endurance, attuned in game, crafted 50 in the file (15); Preventive Medicine: Chance for +Absorb, crafted 20 (17); Regenerative Tissue: +Regeneration, crafted 10 (23).
 - **Stamina:** Performance Shifter: Chance for +End, crafted 50 (A); Performance Shifter: EndMod, crafted 50, +5 (17).
 - **Brawl:** Invention: Accuracy, crafted 50 (A). **Sprint:** Invention: Run Speed, crafted 50 (A). **Rest:** Invention: Endurance
   Modification, crafted 50 (A). **Swift:** Invention: Run Speed, crafted 50 (A). **Hurdle:** Invention: Jumping, crafted 50 (A).
