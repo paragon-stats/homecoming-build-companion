@@ -47,6 +47,7 @@ public sealed partial class RequiredCheckTests
     [Theory]
     [InlineData(".github/workflows/build.yml")]
     [InlineData(".github/workflows/codeql.yml")]
+    [InlineData(".github/workflows/commitlint.yml")]
     [InlineData(".github/workflows/pr-summary.yml")]
     [InlineData(".github/workflows/sonar.yml")]
     [InlineData(".github/workflows/super-linter.yml")]
