@@ -32,7 +32,7 @@ internal delegate string Gh(string[] argv, string? input = null);
 
 internal sealed record Commit(string Sha, string Type, string? Scope, string Summary, int[] Issues);
 
-internal sealed record IssueInfo(int Number, string Title, string Objective, string Acceptance);
+internal sealed record IssueInfo(int Number, string Title, string Objective);
 
 internal static class Summaries
 {
@@ -220,7 +220,7 @@ internal static class Summaries
     {
         JsonNode data = JsonNode.Parse(gh(["gh", "api", $"repos/{repo}/issues/{number}"]))!;
         string body = (string?)data["body"] ?? "";
-        return new IssueInfo(number, (string)data["title"]!, Section(body, "Objective"), Section(body, "Acceptance criteria"));
+        return new IssueInfo(number, (string)data["title"]!, Section(body, "Objective"));
     }
 
     public static string RunGh(string[] argv, string? input = null)
@@ -336,15 +336,15 @@ internal static class Summaries
         // --- build_summary ---
         Dictionary<int, IssueInfo> issues = new()
         {
-            [21] = new(21, "Damage parsing", "Parse combat damage lines.\n\nMore detail.", "- [ ] totals correct"),
-            [22] = new(22, "CLI robustness", "", ""),
+            [21] = new(21, "Damage parsing", "Parse combat damage lines.\n\nMore detail."),
+            [22] = new(22, "CLI robustness", ""),
         };
         string summary = BuildSummary(
             [ParseCommit("aaa1111", "feat(core): parse damage events", "Closes #21"), ParseCommit("bbb2222", "fix(cli): handle empty log", "Refs #22"), ParseCommit("ccc3333", "chore: tidy", "")],
             issues);
         Check(
             summary.StartsWith("**Issue #21 — Damage parsing:**\nParse combat damage lines.\n\n#### Features\n", StringComparison.Ordinal)
-                && !summary.Contains("More detail.", StringComparison.Ordinal) && !summary.Contains("- [ ] totals correct", StringComparison.Ordinal)
+                && !summary.Contains("More detail.", StringComparison.Ordinal)
                 && summary.Contains("**Issue #22 — CLI robustness:**\n\n#### Bug Fixes\n- **cli:** handle empty log (bbb2222)", StringComparison.Ordinal)
                 && summary.EndsWith("**Other changes:**\n\n#### Chores\n- tidy (ccc3333)", StringComparison.Ordinal),
             "summary: several issues use the template heading and the first Objective paragraph");
@@ -390,9 +390,9 @@ internal static class Summaries
 
         const string IssueBody = "### Objective\n\nDo the thing.\n\n### Acceptance criteria\n\n- [ ] done\n";
         fake = Fake((["gh", "api", $"repos/{Repo}/issues/21"], new JsonObject { ["title"] = "T", ["body"] = IssueBody }.ToJsonString()));
-        Check(FetchIssue(fake.Gh, Repo, 21) == new IssueInfo(21, "T", "Do the thing.", "- [ ] done"), "fetch: issue title and sections");
+        Check(FetchIssue(fake.Gh, Repo, 21) == new IssueInfo(21, "T", "Do the thing."), "fetch: issue title and sections");
         fake = Fake((["gh", "api", $"repos/{Repo}/issues/21"], """{"title": "T", "body": null}"""));
-        Check(FetchIssue(fake.Gh, Repo, 21) == new IssueInfo(21, "T", "", ""), "fetch: issue with null body");
+        Check(FetchIssue(fake.Gh, Repo, 21) == new IssueInfo(21, "T", ""), "fetch: issue with null body");
 
         // --- handle ---
         const string RiskBody = "### Objective\n\nDo the thing.\n\n### Risk\n\nlow\n";
