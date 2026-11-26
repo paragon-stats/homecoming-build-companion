@@ -220,7 +220,9 @@ internal sealed class PatchNotesCommand
     public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source, TextWriter error, ICollection<string> doomed)
     {
         (int changed, int unchanged, int removed, int kept) = (0, 0, 0, 0);
-        HashSet<string> produced = new(StringComparer.Ordinal);
+
+        // Names compare as the file system does, so an old row differing only in case never removes the record just written.
+        HashSet<string> produced = new(OperatingSystem.IsWindows() || OperatingSystem.IsMacOS() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
         foreach (PyObject row in Index(fresh).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file"))))
         {
             string name = PyText.Str(row["file"]);

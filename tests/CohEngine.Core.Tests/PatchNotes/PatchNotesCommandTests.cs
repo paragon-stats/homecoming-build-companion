@@ -505,6 +505,22 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void Reparse_does_not_remove_a_record_it_just_wrote_under_a_name_differing_only_in_case()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        WikiRoutes(site);
+        string written = tree.FullPath("2005-10-27-paragonwiki-2005-10-27.json");
+        tree.Write("2005-10-27-PARAGONWIKI-2005-10-27.json", "{\"changes\": []}\n");
+        tree.Write("index.jsonl", $"{{\"url\": \"{Wiki}/wiki/Patch_Notes/2005-10-27\", \"published\": \"2005-10-27\", \"source\": \"paragonwiki\", \"file\": \"2005-10-27-PARAGONWIKI-2005-10-27.json\"}}\n");
+
+        Assert.Equal(0, Run(site, "--out", tree.Root, "--delay", "0", "--source", "paragonwiki", "--reparse").Code);
+
+        Assert.True(File.Exists(written));
+        Assert.Contains("Recluse's Victory opens.", File.ReadAllText(written), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void Re_dating_leaves_live_release_notes_whole()
     {
         using TempTree tree = new();
