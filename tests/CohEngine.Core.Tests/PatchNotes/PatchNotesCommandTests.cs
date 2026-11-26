@@ -280,6 +280,24 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void A_release_note_dated_with_a_path_is_skipped()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        string outDir = Directory.CreateDirectory(tree.FullPath("patches")).FullName;
+        site.Routes[Base + "/patch-notes/?show=categories"] = $"<a href=\"{Base}/patch-notes/issue-28/page-4/\">x</a>";
+        site.Routes[Base + "/patch-notes/issue-28/page-4/"] = $"<a href='{PatchParserTests.EntryUrl}'>a</a>";
+        site.Routes[PatchParserTests.EntryUrl] = "<html><head><title>x - Page 4 - Homecoming</title></head><body><time datetime='..\\..\\escape'></time></body></html>";
+
+        (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "release-notes");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E209: entry " + PatchParserTests.EntryUrl, error, StringComparison.Ordinal);
+        Assert.Contains("0 entries written", output, StringComparison.Ordinal);
+        Assert.Empty(Directory.GetFiles(tree.Root, "*.json", SearchOption.AllDirectories));
+    }
+
+    [Fact]
     public void Reparse_removes_no_file_an_index_row_names_outside_the_output_folder()
     {
         using TempTree tree = new();
