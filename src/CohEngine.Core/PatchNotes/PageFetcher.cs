@@ -71,7 +71,7 @@ internal sealed class PageFetcher
     /// <returns>The page text, or null.</returns>
     public string? Get(string url)
     {
-        // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the path it will send.
+        // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the URI it will send.
         if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? target))
         {
             error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; check the link on the page that named it");
@@ -91,7 +91,7 @@ internal sealed class PageFetcher
             return null;
         }
 
-        if (!rules.CanFetch(agent, target.PathAndQuery))
+        if (!rules.CanFetch(agent, target.AbsoluteUri))
         {
             error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
             return null;

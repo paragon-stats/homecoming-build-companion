@@ -172,6 +172,18 @@ public sealed class HtmlTextTests
     }
 
     [Fact]
+    public void A_url_inside_the_query_does_not_hide_a_disallowed_path()
+    {
+        using FakeSite site = new();
+        string search = FakeSite.Forum + "/search/?q=https://x/ok";
+        site.Routes[search] = "results";
+        using HttpClient http = new(site, disposeHandler: false);
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, TextWriter.Null).Get(search));
+        Assert.Equal(0, site.Count(search));
+    }
+
+    [Fact]
     public void Only_the_site_s_own_host_is_fetched_and_a_redirect_elsewhere_is_not_followed()
     {
         using FakeSite site = new();
