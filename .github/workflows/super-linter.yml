@@ -56,7 +56,9 @@ jobs:
           # Excluded from linting:
           # - samples/, test fixtures/, data/canonical/: verbatim/harvested
           #   game data and captured pages, must stay byte-identical to their source.
-          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|data/diff/|inbox/).*|.*/LICENSE$)'
+          # - scripts/git/: the vendored commit-message validator, which commitlint.yml
+          #   holds byte-identical to its tagged upstream.
+          FILTER_REGEX_EXCLUDE: '((.*/)?(samples/|fixtures/|data/canonical/|data/diff/|inbox/|scripts/git/).*|.*/LICENSE$)'
           JSCPD_LINTER_RULES: /github/workspace/.github/linters/.jscpd.json
           # Checkov path/framework carve-outs live in ONE place:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).
