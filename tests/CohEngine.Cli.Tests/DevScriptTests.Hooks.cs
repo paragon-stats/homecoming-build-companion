@@ -55,11 +55,31 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_text_check_never_hands_a_file_name_with_shell_characters_to_a_shell()
+    public void The_text_check_lints_a_staged_markdown_file_whose_name_has_a_space()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
-        string name = $"x&{Environment.MachineName}&.md";
+        tree.Write("my notes.md", "# Title\n\n- one\n* two\n");
+        DevScripts.Git(tree.Root, "add", "--", "my notes.md");
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root);
+
+        Assert.Equal(1, exit);
+        Assert.Contains("my notes.md:4", output, StringComparison.Ordinal);
+        Assert.Contains("MD004", output, StringComparison.Ordinal);
+    }
+
+    // A '|' cannot be in a Windows file name, so the Windows CI cannot stage one.
+    [Theory]
+    [InlineData('&')]
+    [InlineData('^')]
+    [InlineData('%')]
+    [InlineData('!')]
+    public void The_text_check_never_hands_a_file_name_with_shell_characters_to_a_shell(char shellCharacter)
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        string name = $"x{shellCharacter}{Environment.MachineName}{shellCharacter}.md";
         tree.Write(name, CleanMarkdown);
         DevScripts.Git(tree.Root, "add", "--", name);
 

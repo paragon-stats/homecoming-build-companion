@@ -205,14 +205,14 @@ void RunMarkdownlint(List<string> paths)
         return;
     }
 
-    string? npx = Resolve("npx");
-    if (npx is null)
+    if (Resolve("npx") is null)
     {
         findings.Add("package.json:1:1: error: H-TEXT-007: npx not found; install Node.js so markdownlint can run");
         return;
     }
 
-    ProcessStartInfo info = new(OperatingSystem.IsWindows() ? "cmd" : npx)
+    // The bare name: a quoted full path ahead of a quoted file name makes cmd strip the outer quotes.
+    ProcessStartInfo info = new(OperatingSystem.IsWindows() ? "cmd" : "npx")
     {
         RedirectStandardOutput = true,
         RedirectStandardError = true,
@@ -221,7 +221,7 @@ void RunMarkdownlint(List<string> paths)
     if (OperatingSystem.IsWindows())
     {
         info.ArgumentList.Add("/c");
-        info.ArgumentList.Add(npx);
+        info.ArgumentList.Add("npx");
     }
 
     foreach (string argument in new[] { "--yes", MarkdownlintPackage, "--config", ".github/linters/.markdownlint.yml" }.Concat(safe))
