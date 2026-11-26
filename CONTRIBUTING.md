@@ -72,7 +72,7 @@ Super-Linter prints one `Successfully linted <linter>` line for each linter that
 It reads `LOG_LEVEL=NOTICE` and `SUPPRESS_POSSUM=true` from `.github/super-linter.env`, which CI reads too, and Checkov lists failed checks only (`quiet: true` in `.github/linters/.checkov.yaml`).
 The final `All files and directories linted successfully` or `Super-linter detected linting errors` line, and any `[WARN]` line, still print.
 A NOTICE log does not say which linter is running, so a run that hangs or times out shows only the lines printed before the linters started.
-Warnings from a linter that passes are not shown either: yamllint reports some rules, such as line length, at warning level and passes.
+Warnings from a linter that passes are not shown either, so a yamllint warning fails the YAML check instead (`YAML_ERROR_ON_WARNING=true`, rules in `.github/linters/.yaml-lint.yml`, copied from paragon-stats).
 JSCPD passes while the duplicated share stays under the threshold set in `.github/linters/.jscpd.json`, so clone reports under it are a pass by configuration.
 For the full log locally, set `SUPER_LINTER_LOG_LEVEL=INFO` (or `DEBUG`) for the run; the runner passes it as `LOG_LEVEL`, over the shared file.
 For the full log in CI, re-run the job with debug logging enabled; Super-Linter then logs at debug level, with no change to the repository.
