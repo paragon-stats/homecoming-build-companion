@@ -495,6 +495,24 @@ public sealed class PatchNotesCommandTests
         Assert.StartsWith($"E225: {tree.FullPath("a.json")} is not valid UTF-8", message, StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData(':')]
+    [InlineData('*')]
+    [InlineData('?')]
+    [InlineData('"')]
+    [InlineData('<')]
+    [InlineData('>')]
+    [InlineData('|')]
+    [InlineData('\u0001')]
+    public void A_slug_with_a_character_windows_refuses_is_refused_on_every_system(char letter)
+    {
+        using TempTree tree = new();
+        PatchEntry entry = Entry(Base + "/topic/7-a" + letter + "b/", "2021-01-01");
+
+        Assert.StartsWith("E209: entry", Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.WriteEntry(entry, tree.Root)).Message, StringComparison.Ordinal);
+        Assert.Empty(Directory.GetFiles(tree.Root));
+    }
+
     [Fact]
     public void A_slug_too_long_for_a_file_name_is_refused()
     {

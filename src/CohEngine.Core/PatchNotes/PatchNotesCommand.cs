@@ -1,3 +1,4 @@
+using System.Buffers;
 using System.Globalization;
 using System.Net;
 using System.Security.Cryptography;
@@ -37,6 +38,9 @@ internal sealed class PatchNotesCommand
     private static readonly string[] ChangeKeys = ["category", "subsection", "archetype", "powerset", "power", "text"];
 
     private static readonly string[] BetaSections = [PatchParser.Forum + "/forum/73-open-beta-patch-notes/", PatchParser.Forum + "/forum/100-staging-patch-notes/"];
+
+    /// <summary>The characters a Windows file name cannot hold: the controls, <c>"*/:&lt;&gt;?\|</c>.</summary>
+    private static readonly SearchValues<char> RefusedNameChars = SearchValues.Create([.. Enumerable.Range(0, 32).Select(code => (char)code), '"', '*', '/', ':', '<', '>', '?', '\\', '|']);
 
     private static readonly string CategoriesUrl = PatchParser.Forum + "/patch-notes/?show=categories";
 
@@ -365,11 +369,11 @@ internal sealed class PatchNotesCommand
 
     /// <summary>
     /// Whether a name from an index row or a page is one plain file name, so joining it to the folder stays inside the
-    /// folder. A backslash is refused on every system, so a name that is a path on Windows is refused on Linux too.
+    /// folder. The characters Windows refuses are refused on every system, so a record written on Linux can be checked out on Windows.
     /// </summary>
     private static bool IsPlainName(string name)
     {
-        return name is not ("." or "..") && name.Length <= MaxNameLength && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny([.. Path.GetInvalidFileNameChars(), '\\']) < 0;
+        return name is not ("." or "..") && name.Length <= MaxNameLength && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.AsSpan().IndexOfAny(RefusedNameChars) < 0;
     }
 
     /// <summary>Writes the entry, or reports why its name was refused and returns null.</summary>
