@@ -157,7 +157,7 @@ if (args.Contains("--print-plan"))
 int probe = dockerOverride.Length > 0 || OnPath("docker") ? Docker(capture: true, "version") : 127;
 if (probe == 127 && dockerOverride.Length == 0)
 {
-    Console.Error.WriteLine(
+    Console.WriteLine(
         "[SKIP] Docker is not installed - skipping the local Super-Linter pass; CI will still lint. " +
         "Install Docker for local parity.");
     return 0;
@@ -190,14 +190,16 @@ if (fresh != 0)
     return fresh;
 }
 
-Console.Error.WriteLine("[INFO] running Super-Linter locally (RUN_LOCAL) ...");
+Console.WriteLine("[INFO] running Super-Linter locally (RUN_LOCAL) ...");
 int result = Docker(capture: false, [.. run]);
 if (result != 0)
 {
     Console.Error.WriteLine("[FAIL] Super-Linter reported findings - fix them before pushing.");
+    return result;
 }
 
-return result;
+Console.WriteLine("[OK] Super-Linter found nothing to fix.");
+return 0;
 
 // Split a command line on spaces, keeping a double-quoted part (a path with spaces) whole.
 static string[] SplitCommand(string command) =>

@@ -3,8 +3,6 @@
 # build and tests then.
 REFS="$(cat)"
 [ -n "$REFS" ] || exit 0
-restored="$(dotnet tool restore 2>&1)" || {
-  echo "$restored" >&2
-  exit 1
-}
-dotnet husky run --group pre-push
+# The hook restores no tools; without them dotnet husky fails and names the restore command.
+# --quiet drops Husky's banner and separator lines; run the same line without it to see them.
+dotnet husky run --quiet --group pre-push

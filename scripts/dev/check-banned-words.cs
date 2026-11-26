@@ -32,6 +32,7 @@ string[] binaryExtensions =
 string[] names = (Environment.GetEnvironmentVariable("COH_BANNED_NAMES") ?? string.Empty)
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 string nameSource = "COH_BANNED_NAMES";
+string nameCheck = string.Empty;
 if (names.Length == 0 && Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is null)
 {
     names = OperatorNames();
@@ -46,7 +47,7 @@ if (names.Length == 0)
         return 1;
     }
 
-    Console.WriteLine("[SKIP] COH_BANNED_NAMES is unset and git config user.name is empty: the operator-name check was not run.");
+    nameCheck = "; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty";
 }
 
 (Regex Pattern, string Label)[] rules =
@@ -115,11 +116,11 @@ foreach (string path in files)
 
 if (hits > 0)
 {
-    Console.Error.WriteLine($"[FAIL] {hits} banned-word hit(s). See docs/style-guides/naming-and-words.md.");
+    Console.Error.WriteLine($"[FAIL] {hits} banned-word hit(s){nameCheck}. See docs/style-guides/naming-and-words.md.");
     return 1;
 }
 
-Console.WriteLine("[OK] no banned words found.");
+Console.WriteLine($"[OK] no banned words found{nameCheck}.");
 return 0;
 
 static string[] OperatorNames()

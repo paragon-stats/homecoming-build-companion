@@ -97,6 +97,12 @@ if (verify)
         problems.Add("commit.gpgsign != true - signed commits are required (CONTRIBUTING.md, \"Sign your commits\").");
     }
 
+    // The hooks restore no tools; they need Husky restored once per clone.
+    if (string.IsNullOrWhiteSpace(Capture("dotnet", "husky --version")))
+    {
+        problems.Add("local .NET tools are not restored - run: dotnet tool restore");
+    }
+
     if (problems.Count > 0)
     {
         Console.Error.WriteLine("[FAIL] dev environment is not ready:");
