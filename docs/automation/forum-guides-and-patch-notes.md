@@ -123,12 +123,16 @@ A source not read completely keeps its records and index rows as they are, even 
 A listing that answers but names no link, such as a maintenance page, is `E227` and leaves its source not read completely.
 A beta listing that declares more than 100 pages is read to page 100 only (`E226`), and its source counts as not read completely.
 So does a re-parse that yields no records for a source whose records the folder holds.
-An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`.
+An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`, an error.
+Under `--reparse`, an old index row whose file name is not a plain name inside the output folder is reported with `E209` as a warning, and the file it names is not deleted.
 A link or a redirect to a host other than the forum or the wiki is not fetched (`E222`).
 A page that takes a parsing pattern past its time limit stops its source with `E223`; that source counts as not read completely.
 A page robots.txt disallows is skipped with `E220`, and every page of a site whose robots.txt was refused or unreadable with `E221`.
 A file under the output folder or its cache that cannot be read or written stops the run with `E224`.
 An index line or a record file that is not what the command writes (not JSON, the wrong shape, or not UTF-8) stops the run with `E225`, naming the file.
+Every coded line goes to standard error and opens with its severity, `error:` or `warning:`.
+The warnings are `E206`, `E207`, `E209` for an old index row left alone under `--reparse`, and `E212` from `source-manifest`; they leave the exit code at 0.
+Every other code is an error, and the run exits 1.
 
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:
