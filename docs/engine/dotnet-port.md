@@ -151,6 +151,11 @@ The CLI prints such a message as `error: <message>` on stderr and exits 1; a mis
 | E100-E109 | P3b |
 | E110-E119 | P3c |
 | E120 and up | CP work |
+| E200-E209 | `patch-notes` |
+| E210-E219 | `source-manifest` |
+
+`patch-notes` and `source-manifest` port `scripts/forum_scrape/patch_notes.py` and `manifest.py`.
+The Python numbers for the same errors (E01 to E05, E24, E60 to E68) are taken by engine codes, so the ports number them anew.
 
 ## Chain planner
 
