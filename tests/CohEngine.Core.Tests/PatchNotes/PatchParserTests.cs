@@ -4,8 +4,8 @@ using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.PatchNotes;
 
-// tests/fixtures/patch-notes/expected/ holds what `write_entry(parse_entry(...))` in scripts/forum_scrape/patch_notes.py
-// wrote for patch_entry_sample.html, with the powerset names of data/canonical.
+// tests/fixtures/patch-notes/expected/, expected-beta/ and expected-wiki/ hold what `write_entry` in scripts/forum_scrape/patch_notes.py
+// wrote for the three sample pages, parsed with the powerset names of data/canonical. The beta and wiki pages are invented.
 public sealed class PatchParserTests
 {
     public const string Base = FakeSite.Forum;
@@ -35,6 +35,24 @@ public sealed class PatchParserTests
         Assert.Equal("2026-10-20-october-20-update-r48.json", name);
         Assert.Equal(File.ReadAllBytes(Path.Join(Folder, "expected", name)), File.ReadAllBytes(tree.FullPath(name)));
         Assert.Equal(File.ReadAllBytes(Path.Join(Folder, "expected", "index.jsonl")), File.ReadAllBytes(tree.FullPath("index.jsonl")));
+    }
+
+    [Theory]
+    [InlineData("beta", "https://forums.homecomingservers.com/topic/2-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2/")]
+    [InlineData("wiki", "https://archive.paragonwiki.com/wiki/Patch_Notes/2005-10-27")]
+    public void The_beta_and_wiki_samples_parse_to_the_json_the_python_wrote(string kind, string url)
+    {
+        using TempTree tree = new();
+        string page = File.ReadAllText(Path.Join(Folder, kind is "beta" ? "beta_thread_sample.html" : "wiki_page_sample.html"));
+        PatchEntry entry = kind is "beta"
+            ? PatchParser.ParseBetaThread(page, url, PatchNotesCommand.Powersets(Path.Join(Fixtures.Store.RepositoryRoot, "data", "canonical")))
+            : PatchParser.ParseWikiPage(page, url);
+
+        string name = PatchNotesCommand.WriteEntry(entry, tree.Root);
+
+        string expected = Path.Join(Folder, "expected-" + kind);
+        Assert.Equal(File.ReadAllBytes(Path.Join(expected, name)), File.ReadAllBytes(tree.FullPath(name)));
+        Assert.Equal(File.ReadAllBytes(Path.Join(expected, "index.jsonl")), File.ReadAllBytes(tree.FullPath("index.jsonl")));
     }
 
     [Fact]
