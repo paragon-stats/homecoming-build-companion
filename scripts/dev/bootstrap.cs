@@ -93,7 +93,10 @@ static string? HooksProblem()
     string root = Capture("git", "rev-parse --show-toplevel");
     string hooksPath = Capture("git", "config --get core.hooksPath");
     string husky = Path.GetFullPath(".husky", root);
-    if (hooksPath.Length == 0 || Path.GetFullPath(hooksPath, root) != husky)
+
+    // Windows paths ignore case, the drive letter included; a trailing separator names the same folder.
+    StringComparison comparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+    if (hooksPath.Length == 0 || !string.Equals(Path.TrimEndingDirectorySeparator(Path.GetFullPath(hooksPath, root)), husky, comparison))
     {
         return $"Husky.Net hooks not installed - run: {InstallCommand}";
     }

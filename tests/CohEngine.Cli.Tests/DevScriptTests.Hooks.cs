@@ -140,9 +140,11 @@ public sealed partial class DevScriptTests
     }
 
     [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void The_hook_check_accepts_an_absolute_or_a_relative_hooks_path(bool absolute)
+    [InlineData("absolute")]
+    [InlineData("relative")]
+    [InlineData("trailing separator")]
+    [InlineData("other drive-letter case")]
+    public void The_hook_check_accepts_any_spelling_of_this_checkouts_hooks_path(string spelling)
     {
         using TempTree tree = new();
         DevScripts.Git(tree.Root, "init", "--quiet");
@@ -151,7 +153,15 @@ public sealed partial class DevScriptTests
             tree.Write($".husky/{hook}", "#!/bin/sh\n");
         }
 
-        DevScripts.Git(tree.Root, "config", "core.hooksPath", absolute ? tree.FullPath(".husky") : ".husky");
+        string absolute = tree.FullPath(".husky");
+        string hooksPath = spelling switch
+        {
+            "absolute" => absolute,
+            "relative" => ".husky",
+            "trailing separator" => ".husky/",
+            _ => (char.IsUpper(absolute[0]) ? char.ToLowerInvariant(absolute[0]) : char.ToUpperInvariant(absolute[0])) + absolute[1..],
+        };
+        DevScripts.Git(tree.Root, "config", "core.hooksPath", hooksPath);
 
         (int exit, string output) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
 
