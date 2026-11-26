@@ -4,13 +4,15 @@ name: Commit Message Lint
 on:
   pull_request:
     types: [opened, synchronize, edited, reopened]
+  merge_group:
+    branches: [main]
+    types: [checks_requested]
 permissions:
   contents: read
 
 
 jobs:
   commitlint:
-    name: Lint the commits on the pull request
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
@@ -54,7 +56,6 @@ jobs:
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
           job-status: ${{ job.status }}
           status-context: Commit Message Lint / commitlint
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -65,8 +66,6 @@ jobs:
   # the required context `Commit Message Lint / release-policy`; the ruleset makes
   # that context block the merge, so a drifted policy cannot reach main.
   release-policy:
-    name: Verify the release bump mapping matches the org fact-set
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -98,7 +97,6 @@ jobs:
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
           job-status: ${{ job.status }}
           status-context: Commit Message Lint / release-policy
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -108,7 +106,6 @@ jobs:
   # read. Nothing validated it until this job existed, so a badly-typed title could put
   # a non-conventional commit on main with no gate anywhere in the pipeline.
   pr-title:
-    name: Lint the pull request title
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
@@ -145,7 +142,39 @@ jobs:
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
+          job-status: ${{ job.status }}
+          status-context: Commit Message Lint / pr-title
+          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+  # The commits and the title belong to a pull request, and a merge group has
+  # neither: both were linted on the pull request before it could join the queue.
+  # The queue still waits for every required context on the merge group's commit,
+  # so this job reports the two pull-request contexts there. release-policy runs
+  # in full on the merge group.
+  merge-group:
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Report the commitlint context
+        uses: $/.github/actions/report-status-context
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          job-status: ${{ job.status }}
+          status-context: Commit Message Lint / commitlint
+          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Report the pr-title context
+        uses: $/.github/actions/report-status-context
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           job-status: ${{ job.status }}
           status-context: Commit Message Lint / pr-title
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

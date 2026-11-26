@@ -117,11 +117,10 @@ jobs:
           retention-days: 14
 
       - name: Report status context
-        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        if: ${{ !cancelled() && (github.event_name == 'pull_request' || github.event_name == 'merge_group') }}
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
           job-status: ${{ job.status }}
           status-context: "--> Tested: ${{ matrix.display }}"
           target-url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -153,11 +152,10 @@ jobs:
           fi
 
       - name: Report status context
-        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        if: ${{ !cancelled() && (github.event_name == 'pull_request' || github.event_name == 'merge_group') }}
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
           job-status: ${{ job.status }}
           status-context: "All Tests Passed"
           target-url: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
