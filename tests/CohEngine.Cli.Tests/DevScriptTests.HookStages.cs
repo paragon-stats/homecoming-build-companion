@@ -110,16 +110,22 @@ public sealed partial class DevScriptTests
             File.Copy(Path.Join(DevScripts.RepositoryRoot, ".husky", hook), tree.FullPath($".husky/{hook}"));
         }
 
+        // Signing set up as the signing task wants it, with a signer found on PATH, so the tool is the only problem.
         DevScripts.Git(tree.Root, "config", "commit.gpgsign", "true");
+        DevScripts.Git(tree.Root, "config", "gpg.format", "ssh");
+        DevScripts.Git(tree.Root, "config", "user.signingkey", SigningKeyLiteral);
+        DevScripts.Git(tree.Root, "config", "gpg.ssh.program", "signer");
+        tree.Write(OperatingSystem.IsWindows() ? "bin/signer.cmd" : "bin/signer", "exit 0\n");
+        Dictionary<string, string?> path = new(StringComparer.Ordinal) { ["PATH"] = tree.FullPath("bin") + Path.PathSeparator + (Environment.GetEnvironmentVariable("PATH") ?? string.Empty) };
         string manifest = tree.FullPath(".config/dotnet-tools.json");
         string restored = File.ReadAllText(manifest);
         JsonNode tools = JsonNode.Parse(restored)!;
         tools["tools"]!["husky"]!["version"] = "0.0.1-never-restored";
         File.WriteAllText(manifest, tools.ToJsonString());
 
-        (int missingExit, string missingOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
+        (int missingExit, string missingOutput) = DevScripts.RunScriptWithEnvironment("bootstrap.cs", tree.Root, path, "--verify");
         File.WriteAllText(manifest, restored);
-        (int restoredExit, string restoredOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
+        (int restoredExit, string restoredOutput) = DevScripts.RunScriptWithEnvironment("bootstrap.cs", tree.Root, path, "--verify");
 
         Assert.Equal(1, missingExit);
         string[] problems = [.. missingOutput.ReplaceLineEndings("\n").Split('\n').Where(line => line.StartsWith("  - ", StringComparison.Ordinal))];
