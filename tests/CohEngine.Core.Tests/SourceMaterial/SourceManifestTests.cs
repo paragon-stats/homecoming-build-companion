@@ -12,9 +12,14 @@ public sealed class SourceManifestTests
 
     private static (int Code, string Output, string Error) Run(Dictionary<string, string>? variables, params string[] args)
     {
+        return RunAs(gitUserName: null, variables, args);
+    }
+
+    private static (int Code, string Output, string Error) RunAs(string? gitUserName, Dictionary<string, string>? variables, params string[] args)
+    {
         using StringWriter output = new();
         using StringWriter error = new();
-        int code = SourceManifest.Run(args, output, error, name => variables?.GetValueOrDefault(name));
+        int code = SourceManifest.Run(args, output, error, name => variables?.GetValueOrDefault(name), () => gitUserName);
         return (code, output.ToString(), error.ToString());
     }
 
@@ -29,7 +34,7 @@ public sealed class SourceManifestTests
         (int code, string output, string error) = Run(variables: null, "--source-root", Path.Join(Captures, root), "--out=" + written);
 
         Assert.Equal((0, string.Empty), (code, error));
-        Assert.Contains("name filter off: COH_BANNED_NAMES is unset, no row withheld", output, StringComparison.Ordinal);
+        Assert.Contains("name filter off: COH_BANNED_NAMES is unset and git config user.name is empty, no row withheld", output, StringComparison.Ordinal);
         Assert.Equal(File.ReadAllBytes(Path.Join(Captures, $"expected-{root}-manifest.json")), File.ReadAllBytes(written));
     }
 
@@ -106,6 +111,19 @@ public sealed class SourceManifestTests
         Assert.Contains("2 row(s) withheld by the name filter", output, StringComparison.Ordinal);
         Assert.Contains("1 capture(s) listed in " + written, output, StringComparison.Ordinal);
         Assert.DoesNotContain("claws", File.ReadAllText(written), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void With_the_variable_unset_the_filter_takes_the_git_user_name_and_its_first_word()
+    {
+        using TempTree tree = new();
+        string written = tree.FullPath("manifest.json");
+
+        (int code, string output, _) = RunAs("Claws Keeper", variables: null, "--source-root", Path.Join(Captures, "source"), "--out", written);
+
+        Assert.Equal(0, code);
+        Assert.Contains("2 row(s) withheld by the name filter", output, StringComparison.Ordinal);
+        Assert.DoesNotContain("claws", File.ReadAllText(written), StringComparison.OrdinalIgnoreCase);
     }
 
     [Theory]

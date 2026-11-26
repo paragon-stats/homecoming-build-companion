@@ -33,6 +33,24 @@ public static class BannedNames
             : new Regex(@"\b(?:" + string.Join('|', names.Select(Regex.Escape)) + @")\b", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant, TimeSpan.FromSeconds(1));
     }
 
+    /// <summary>
+    /// The names to withhold: those in <c>COH_BANNED_NAMES</c>, else, as the banned-word check does locally, the git user
+    /// name and its first word, so a local run cannot write the operator's name into a committed file.
+    /// </summary>
+    /// <param name="value">The variable's value, or null when it is unset.</param>
+    /// <param name="gitUserName">Reads <c>git config user.name</c>; null when git has none.</param>
+    /// <returns>The names; none when both are empty.</returns>
+    internal static IReadOnlyList<string> Names(string? value, Func<string?> gitUserName)
+    {
+        IReadOnlyList<string> names = Parse(value);
+        if (names.Count > 0 || gitUserName() is not { } full)
+        {
+            return names;
+        }
+
+        return [.. new[] { full, full.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0] }.Distinct(StringComparer.OrdinalIgnoreCase)];
+    }
+
     /// <summary>The rows that name no banned name, judged on each row's one-line JSON, and how many were left out.</summary>
     /// <param name="rows">The rows.</param>
     /// <param name="pattern">The pattern, or null to keep every row.</param>
@@ -55,7 +73,7 @@ public static class BannedNames
     internal static string Report(Regex? pattern, int withheld)
     {
         return pattern is null
-            ? $"name filter off: {EnvironmentVariable} is unset, no row withheld"
+            ? $"name filter off: {EnvironmentVariable} is unset and git config user.name is empty, no row withheld"
             : string.Create(CultureInfo.InvariantCulture, $"{withheld} row(s) withheld by the name filter");
     }
 }

@@ -50,7 +50,23 @@ internal static class SourceRoot
     /// <returns>The main checkout.</returns>
     public static string MainCheckout(string repository, string git = "git")
     {
-        ProcessStartInfo start = new(git, ["rev-parse", "--path-format=absolute", "--git-common-dir"])
+        string? common = Git(repository, git, ["rev-parse", "--path-format=absolute", "--git-common-dir"]);
+        return common is null ? repository : Path.GetDirectoryName(common)!;
+    }
+
+    /// <summary>The <c>git config user.name</c> seen from <paramref name="repository"/>, or null when git has none or cannot run.</summary>
+    /// <param name="repository">The directory git runs in.</param>
+    /// <param name="git">The git executable.</param>
+    /// <returns>The name, or null.</returns>
+    public static string? GitUserName(string repository, string git = "git")
+    {
+        return Git(repository, git, ["config", "user.name"]) is { Length: > 0 } name ? name : null;
+    }
+
+    /// <summary>A git command's trimmed standard output, or null when it fails or git cannot run.</summary>
+    private static string? Git(string repository, string git, string[] args)
+    {
+        ProcessStartInfo start = new(git, args)
         {
             WorkingDirectory = repository,
             RedirectStandardOutput = true,
@@ -60,14 +76,14 @@ internal static class SourceRoot
         try
         {
             using Process process = Process.Start(start)!;
-            string common = process.StandardOutput.ReadToEnd().Trim();
+            string text = process.StandardOutput.ReadToEnd().Trim();
             process.StandardError.ReadToEnd();
             process.WaitForExit();
-            return process.ExitCode == 0 ? Path.GetDirectoryName(common)! : repository;
+            return process.ExitCode == 0 ? text : null;
         }
         catch (Win32Exception)
         {
-            return repository;
+            return null;
         }
     }
 }

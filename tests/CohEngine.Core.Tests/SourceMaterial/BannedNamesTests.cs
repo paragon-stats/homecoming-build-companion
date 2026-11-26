@@ -46,7 +46,7 @@ public sealed partial class BannedNamesTests
         Assert.Equal((1, 1), (kept.Count, withheld));
         Assert.Same(clean, kept[0]);
         Assert.Equal("1 row(s) withheld by the name filter", BannedNames.Report(pattern, withheld));
-        Assert.Equal("name filter off: COH_BANNED_NAMES is unset, no row withheld", BannedNames.Report(pattern: null, withheld: 0));
+        Assert.Equal("name filter off: COH_BANNED_NAMES is unset and git config user.name is empty, no row withheld", BannedNames.Report(pattern: null, withheld: 0));
         Assert.Equal(2, BannedNames.Withhold([named, clean], pattern: null).Kept.Count);
     }
 

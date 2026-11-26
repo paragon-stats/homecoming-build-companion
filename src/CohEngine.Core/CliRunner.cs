@@ -55,7 +55,7 @@ public static class CliRunner
             case ["patch-notes", ..]:
                 return Guarded(() => PatchNotesCommand.Run(args[1..], output, error, handler: null), error);
             case ["source-manifest", ..]:
-                return Guarded(() => SourceManifest.Run(args[1..], output, error, Environment.GetEnvironmentVariable), error);
+                return Guarded(() => SourceManifest.Run(args[1..], output, error, Environment.GetEnvironmentVariable, () => SourceRoot.GitUserName(Directory.GetCurrentDirectory())), error);
             default:
                 error.WriteLine(Usage);
                 return 2;

@@ -58,9 +58,10 @@ internal static class SourceManifest
     /// <param name="output">Where the status lines go.</param>
     /// <param name="error">Where errors go.</param>
     /// <param name="variable">Reads an environment variable.</param>
+    /// <param name="gitUserName">Reads the git user name, the name filter's fallback; null when git has none.</param>
     /// <returns>0 when the manifest was written; 1 on an error; 2 on bad arguments.</returns>
     /// <exception cref="EngineException">E210: the source root is not a directory.</exception>
-    public static int Run(IReadOnlyList<string> args, TextWriter output, TextWriter error, Func<string, string?> variable)
+    public static int Run(IReadOnlyList<string> args, TextWriter output, TextWriter error, Func<string, string?> variable, Func<string?> gitUserName)
     {
         if (!CommandOptions.TryParse(args, [SourceRootOption, OutOption], [], out Dictionary<string, List<string>>? options, out string problem))
         {
@@ -72,7 +73,7 @@ internal static class SourceManifest
         string? flag = options.GetValueOrDefault(SourceRootOption)?[^1];
         string outPath = options.GetValueOrDefault(OutOption)?[^1] ?? "data/source-material/manifest.json";
         string community = Path.Join(SourceRoot.Resolve(flag, variable(SourceRoot.EnvironmentVariable), Directory.GetCurrentDirectory()), "community");
-        Regex? pattern = BannedNames.Pattern(BannedNames.Parse(variable(BannedNames.EnvironmentVariable)));
+        Regex? pattern = BannedNames.Pattern(BannedNames.Names(variable(BannedNames.EnvironmentVariable), gitUserName));
         (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(Build(community, error), pattern);
         if (rows.Count == 0)
         {

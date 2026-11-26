@@ -58,6 +58,18 @@ public sealed class SourceRootTests
     }
 
     [Fact]
+    public void The_git_user_name_is_the_one_git_reports_and_none_without_git()
+    {
+        using TempTree tree = new();
+        using Process git = Process.Start(new ProcessStartInfo("git", ["config", "user.name"]) { WorkingDirectory = tree.Root, RedirectStandardOutput = true, UseShellExecute = false })!;
+        string expected = git.StandardOutput.ReadToEnd().Trim();
+        git.WaitForExit();
+
+        Assert.Equal(expected.Length > 0 ? expected : null, SourceRoot.GitUserName(tree.Root));
+        Assert.Null(SourceRoot.GitUserName(tree.Root, git: tree.FullPath("no-such-git")));
+    }
+
+    [Fact]
     public void Outside_a_repository_or_without_git_the_directory_is_its_own_main_checkout()
     {
         using TempTree tree = new();
