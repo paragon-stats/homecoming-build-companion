@@ -36,7 +36,7 @@ internal sealed class PageFetcher
         IReadOnlyList<string> lines = [];
         try
         {
-            (int status, byte[] body) = Raw(robots);
+            (int status, byte[] body) = Raw(new Uri(robots));
             if (status is 401 or 403)
             {
                 blocked = true;
@@ -66,7 +66,9 @@ internal sealed class PageFetcher
     /// <returns>The page text, or null.</returns>
     public string? Get(string url)
     {
-        if (blocked || !rules.CanFetch(agent, url))
+        // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the path it will send.
+        Uri target = new(url);
+        if (blocked || !rules.CanFetch(agent, target.PathAndQuery))
         {
             error.WriteLine("skip (robots.txt disallows): " + url);
             return null;
@@ -75,7 +77,7 @@ internal sealed class PageFetcher
         string reason;
         try
         {
-            (int status, byte[] body) = Raw(url);
+            (int status, byte[] body) = Raw(target);
             if (status < 400)
             {
                 return Encoding.UTF8.GetString(body);
@@ -93,7 +95,7 @@ internal sealed class PageFetcher
     }
 
     /// <summary>One request: its status code and body.</summary>
-    private (int Status, byte[] Body) Raw(string url)
+    private (int Status, byte[] Body) Raw(Uri url)
     {
         Pace();
         using HttpRequestMessage request = new(HttpMethod.Get, url);

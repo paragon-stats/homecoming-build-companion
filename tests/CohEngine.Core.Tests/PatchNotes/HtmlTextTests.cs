@@ -158,6 +158,18 @@ public sealed class HtmlTextTests
             error.ToString());
     }
 
+    [Fact]
+    public void Robots_rules_judge_the_path_that_is_sent_not_the_text_of_the_link()
+    {
+        using FakeSite site = new();
+        string sneaky = FakeSite.Forum + "/topic/1-a\\..\\..\\search\\x/";
+        site.Routes[sneaky] = "secret";
+        using HttpClient http = new(site, disposeHandler: false);
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, TextWriter.Null).Get(sneaky));
+        Assert.Equal(0, site.Count(sneaky));
+    }
+
     [Theory]
     [InlineData(HttpStatusCode.Forbidden, "E201: robots.txt refused (403) at https://forums.homecomingservers.com/robots.txt; nothing will be fetched")]
     [InlineData(HttpStatusCode.BadGateway, "E202: robots.txt unreadable (502) at https://forums.homecomingservers.com/robots.txt; re-run when the site recovers")]
