@@ -157,6 +157,10 @@ public sealed partial class DevScriptTests
         // The workflow and the local runner both read the shared file, so the settings live there and nowhere else.
         Assert.Equal("LOG_LEVEL=NOTICE", Assert.Single(shared, line => line.StartsWith("LOG_LEVEL=", StringComparison.Ordinal)));
         Assert.Equal("SUPPRESS_POSSUM=true", Assert.Single(shared, line => line.StartsWith("SUPPRESS_POSSUM=", StringComparison.Ordinal)));
+
+        // A NOTICE log hides a passing linter's warnings, so a YAML warning must fail instead, under the rules in .yaml-lint.yml.
+        Assert.Equal("YAML_ERROR_ON_WARNING=true", Assert.Single(shared, line => line.StartsWith("YAML_ERROR_ON_WARNING=", StringComparison.Ordinal)));
+        Assert.True(File.Exists(Path.Join(DevScripts.RepositoryRoot, ".github", "linters", ".yaml-lint.yml")), "yamllint falls back to Super-Linter's own rules without .github/linters/.yaml-lint.yml");
         Assert.DoesNotContain("LOG_LEVEL", workflow, StringComparison.Ordinal);
         Assert.DoesNotContain("SUPPRESS_POSSUM", workflow, StringComparison.Ordinal);
         Assert.Contains("quiet: true", checkov, StringComparer.Ordinal);
