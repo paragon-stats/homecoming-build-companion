@@ -587,6 +587,11 @@ public sealed class PatchNotesCommandTests
     [Theory]
     [InlineData("--source", "nowhere", "argument --source: invalid choice: 'nowhere' (choose from release-notes, forum-beta, paragonwiki)")]
     [InlineData("--delay", "soon", "argument --delay: invalid float value: 'soon'")]
+    [InlineData("--delay", "Infinity", "argument --delay: not a number of seconds from 0 to 3600: 'Infinity'")]
+    [InlineData("--delay", "NaN", "argument --delay: not a number of seconds from 0 to 3600: 'NaN'")]
+    [InlineData("--delay", "1e300", "argument --delay: not a number of seconds from 0 to 3600: '1e300'")]
+    [InlineData("--delay", "3e6", "argument --delay: not a number of seconds from 0 to 3600: '3e6'")]
+    [InlineData("--delay", "-1", "argument --delay: not a number of seconds from 0 to 3600: '-1'")]
     [InlineData("--reparse=yes", "", "unrecognized arguments: --reparse=yes")]
     public void Bad_arguments_print_the_usage_and_exit_2(string name, string value, string problem)
     {

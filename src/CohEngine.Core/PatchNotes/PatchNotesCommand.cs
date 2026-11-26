@@ -29,6 +29,9 @@ internal sealed class PatchNotesCommand
     /// <summary>The longest file name NTFS and ext4 hold.</summary>
     private const int MaxNameLength = 255;
 
+    /// <summary>The longest gap <c>--delay</c> takes; past it a run would stall rather than be polite.</summary>
+    private const double MaxDelaySeconds = 3600;
+
     private static readonly string[] Sources = [PatchParser.ReleaseNotes, PatchParser.ForumBeta, PatchParser.ParagonWiki];
 
     private static readonly string[] ChangeKeys = ["category", "subsection", "archetype", "powerset", "power", "text"];
@@ -405,6 +408,10 @@ internal sealed class PatchNotesCommand
         else if (given is not null && !double.TryParse(given, NumberStyles.Float, CultureInfo.InvariantCulture, out delay))
         {
             problem = $"argument --delay: invalid float value: '{given}'";
+        }
+        else if (delay is not (>= 0 and <= MaxDelaySeconds))
+        {
+            problem = string.Create(CultureInfo.InvariantCulture, $"argument --delay: not a number of seconds from 0 to {MaxDelaySeconds}: '{given}'");
         }
 
         return problem.Length == 0;
