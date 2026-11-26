@@ -23,16 +23,12 @@ PYTEST  := $(PYTHON) -m pytest
 COV_PACKAGE ?=
 
 # ---------------------------------------------------------------------------
-# Bootstrap (cross-platform venv + dev tooling)
+# Bootstrap (cross-platform .NET tools + Husky hooks)
 # ---------------------------------------------------------------------------
 
 .PHONY: bootstrap
-bootstrap: ## Bootstrap repo venv and dev tooling (cross-platform)
-ifeq ($(OS),Windows_NT)
-	python -m scripts.dev.bootstrap_venv
-else
-	./scripts/dev/bootstrap_venv.sh
-endif
+bootstrap: ## Restore .NET tools and install the Husky hooks (cross-platform)
+	dotnet run scripts/dev/bootstrap.cs
 
 # ---------------------------------------------------------------------------
 # Lint / Format / Type
@@ -51,12 +47,12 @@ fix: ## Auto-fix ruff lint issues and reformat
 
 .PHONY: super-linter
 super-linter: ## Run full Super-Linter in Docker (same image + config as CI)
-	$(PYTHON) -m scripts.linting.run_super_linter
+	dotnet run scripts/dev/run-super-linter.cs
 
 # Git runs the hooks committed in .husky/ only when core.hooksPath points there and the hook files exist here.
 .PHONY: hooks-check
 hooks-check: ## Fail with the fix unless git will run the Husky hooks in this checkout
-	@$(if $(wildcard $(PYTHON)),$(PYTHON),python) -m scripts.dev.bootstrap_venv --check-hooks
+	@dotnet run scripts/dev/bootstrap.cs -- --verify
 
 # ---------------------------------------------------------------------------
 # Test / Coverage

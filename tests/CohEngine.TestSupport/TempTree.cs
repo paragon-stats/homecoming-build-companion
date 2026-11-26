@@ -51,6 +51,12 @@ public sealed class TempTree : IDisposable
     /// <inheritdoc/>
     public void Dispose()
     {
+        // Git writes its object files read-only, and Windows refuses to delete those.
+        foreach (string file in Directory.EnumerateFiles(Root, "*", SearchOption.AllDirectories))
+        {
+            File.SetAttributes(file, FileAttributes.Normal);
+        }
+
         Directory.Delete(Root, recursive: true);
     }
 }

@@ -3,8 +3,11 @@
 ## Setup
 
 Requires the .NET 10 SDK on Windows x64, the only platform CI verifies. Python tooling remains until
-[#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108); its venv is created by `scripts/dev/bootstrap_venv.py`.
+[#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108); the hooks no longer need it.
 Signed commits are required.
+Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks and fails until commit signing is set up.
+The pre-commit markdownlint check runs through `npx`, so install Node.js.
+Docker is needed only for the pre-push Super-Linter run, which is skipped when Docker is missing.
 
 ## Build and test
 
@@ -17,7 +20,7 @@ CI runs the same checks plus the coverage gate.
 
 ## Git hooks
 
-Install the hooks once per clone, from the main checkout:
+`make bootstrap` installs the hooks once per clone, from the main checkout; it runs:
 
 ```text
 dotnet tool restore && dotnet husky install
@@ -33,13 +36,29 @@ A worktree or branch cut before the hooks were merged has no `.husky/pre-commit`
 
 | Hook | Checks |
 | --- | --- |
-| `pre-commit` | `dotnet format`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files (`[ExcludeFromCodeCoverage]` only in a `*JsonContext.cs` file that derives from `JsonSerializerContext`; CI runs the same check on the working tree), and the Python `pre-commit` checks in `.pre-commit-config.yaml` (commit signing, ruff, mypy, markdownlint, editorconfig, file hygiene) |
+| `pre-commit` | `dotnet format`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files (`[ExcludeFromCodeCoverage]` only in a `*JsonContext.cs` file that derives from `JsonSerializerContext`; CI runs the same check on the working tree), the commit-signing check, and the text-file check (`scripts/dev/check-text-files.cs`: trailing whitespace, final newline and line endings as `.editorconfig` sets them, JSON syntax, files over 15 MB, markdownlint) on the staged files |
 | `commit-msg` | the Conventional Commit check that the commitlint workflow runs |
-| `pre-push` | `dotnet build`, `dotnet test --no-build` and the banned-words check |
+| `pre-push` | `dotnet build`, `dotnet test --no-build`, the banned-words check and Super-Linter in Docker |
 
-The Python checks need the venv from `make bootstrap`.
-A worktree uses the main checkout's `.venv`, or the one on `PATH`; with neither, the hook fails and prints the bootstrap command.
-Super-Linter stays manual: `make super-linter`.
+The text-file check skips the files the CI Super-Linter job excludes.
+`scripts/dev/run-super-linter.cs` reads that pattern (`FILTER_REGEX_EXCLUDE`) and the image version from `.github/workflows/super-linter.yml`, so the workflow is the only list.
+The pre-push Super-Linter run lints the changes against `origin/main` with the image CI uses; run it by hand with `make super-linter`.
+YAML syntax is checked there, not at commit time.
+
+## Sign your commits
+
+Every commit is signed with an SSH key. Set it up once:
+
+```text
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_signing -C "you@example.com"
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519_signing.pub
+git config --global commit.gpgsign true
+```
+
+Then add the public key to your GitHub account as a **signing key** (Settings, SSH and GPG keys).
+With a 1Password or other signing program, set `gpg.ssh.program` to it instead of running `ssh-keygen`.
+The pre-commit `check-git-signing` task signs a test file with the key and fails with the diagnostic `H-SIGN-001` when signing does not work.
 
 ## Commits and pull requests
 
