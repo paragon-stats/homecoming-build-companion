@@ -28,7 +28,7 @@ public sealed partial class DevScriptTests
                 task.GetProperty("command").GetString() + " " + string.Join(' ', task.GetProperty("args").EnumerateArray().Select(arg => arg.GetString())))),
         ];
 
-        foreach ((string group, string name, string line) in tasks.Where(task => !string.Equals(task.Group, "commit-msg", StringComparison.Ordinal)))
+        foreach ((string group, string name, string line) in tasks)
         {
             Assert.DoesNotContain("python", line, StringComparison.OrdinalIgnoreCase);
             Assert.DoesNotContain("pre_commit", line, StringComparison.Ordinal);

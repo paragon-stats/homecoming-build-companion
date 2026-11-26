@@ -49,7 +49,7 @@ flowchart TD
 | Each commit on a PR | `commitlint` | `pull_request` | Type drives the version bump and the changelog group |
 | PR title | `pr-title` | `pull_request` including `edited` | Becomes the merge commit subject on `main` |
 
-Both run the same validator, `scripts/testing/hooks/check_commit_message.py`, so they
+Both run the same validator, the org's `check-commit-message.sh` vendored in `scripts/git/`, so they
 cannot disagree about what a valid message is.
 
 ## Why the title is gated
@@ -88,7 +88,7 @@ in practice each PR produces one version. Skipping a release for a no-release me
 next release covers more than one PR and they collapse into a single bump.
 
 The mapping is declared in `pyproject.toml` under `[tool.semantic_release.commit_parser_options]`
-and restates `commit-types.txt` in `paragon-stats/github-actions`, the org's source of truth for
+and restates `commit-types.txt` (vendored from `paragon-stats/github-actions` into `scripts/git/`), the org's source of truth for
 commit types and their release levels. The commitlint workflow fails a pull request when the two drift.
 
 ## Version history
@@ -138,7 +138,7 @@ change that satisfies both goals; signature enforcement is untouched.
 ## Reference
 
 - [`docs/repository-standards/git-standards.md`](../repository-standards/git-standards.md) — the binding conventions.
-- [`scripts/testing/hooks/check_commit_message.py`](../../scripts/testing/hooks/check_commit_message.py) — the single validator all three gates call.
+- [`scripts/git/check-commit-message.sh`](../../scripts/git/check-commit-message.sh) — the single validator the hook and both gates call; never edit the vendored copy.
 - [`.github/workflows/commitlint.yml`](../../.github/workflows/commitlint.yml) — the three gates.
 - [`pyproject.toml`](../../pyproject.toml) `[tool.semantic_release]` — the bump rules the release workflow applies.
-- [`scripts/testing/hooks/check_release_policy.py`](../../scripts/testing/hooks/check_release_policy.py) — the drift check against the org's `commit-types.txt`.
+- [`scripts/ci/check-release-policy.cs`](../../scripts/ci/check-release-policy.cs) — the drift check against `commit-types.txt`.

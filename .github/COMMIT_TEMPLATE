@@ -11,6 +11,12 @@ Validation:
 - [tests] [what was added/updated]
 - [results] [key outputs, exit codes]
 
+# feat, fix, perf, security and revert must change a file under src/
+# (checked in CI only); tooling, tests, CI and docs use chore, ci, test
+# or docs. A breaking marker (! or BREAKING CHANGE:) cuts a release for
+# any type, even with no src/ change. One scope, no commas.
+# Rules: docs/style-guides/repository-conventions.md.
+#
 # STRONGLY RECOMMENDED: add an issue trailer to EVERY commit.
 #
 # The PR auto-summary (scripts.github.pr_auto_summary) groups commits

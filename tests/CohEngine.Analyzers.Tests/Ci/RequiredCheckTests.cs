@@ -16,6 +16,9 @@ public sealed partial class RequiredCheckTests
     [GeneratedRegex(@"(^|[\s;&|(])python3?(\s|$)", RegexOptions.ExplicitCapture | RegexOptions.Multiline, matchTimeoutMilliseconds: 5000)]
     private static partial Regex PythonCommand { get; }
 
+    [GeneratedRegex(@"\bfor\s+\w+\s+in\s+[^;\n]*\$\(", RegexOptions.None, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex LoopOverSubstitution { get; }
+
     public static TheoryData<string, string> RulesetsAndEvents() => new()
     {
         { MainRuleset, PullRequest },
@@ -47,6 +50,7 @@ public sealed partial class RequiredCheckTests
     [Theory]
     [InlineData(".github/workflows/build.yml")]
     [InlineData(".github/workflows/codeql.yml")]
+    [InlineData(".github/workflows/commitlint.yml")]
     [InlineData(".github/workflows/pr-summary.yml")]
     [InlineData(".github/workflows/sonar.yml")]
     [InlineData(".github/workflows/super-linter.yml")]
@@ -109,6 +113,21 @@ public sealed partial class RequiredCheckTests
         ];
 
         Assert.Empty(unguarded);
+    }
+
+    // Bash ignores a failed command substitution in a for list: the loop runs zero times and the step passes having checked nothing.
+    [Fact]
+    public void No_run_step_loops_over_a_command_substitution()
+    {
+        List<string> swallowing =
+        [
+            .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal)
+                .SelectMany(path => Workflows.Jobs(Workflows.Load(path)).SelectMany(job => Workflows.Steps(job.Value).Select(step => (Where: $"{Path.GetFileName(path)} / {job.Key} / {Workflows.Scalar(step, "name")}", Run: Workflows.Scalar(step, "run") ?? string.Empty))))
+                .Where(step => LoopOverSubstitution.IsMatch(step.Run))
+                .Select(step => step.Where),
+        ];
+
+        Assert.Empty(swallowing);
     }
 
     private static JsonNode WithoutChecks(string ruleset)

@@ -128,6 +128,20 @@ internal static class DevScripts
             .First(File.Exists);
     }
 
+    /// <summary>Finds the bash git itself runs hooks with; on Windows that is Git for Windows' bash, never the WSL launcher.</summary>
+    /// <returns>The full path of bash.</returns>
+    internal static string Bash()
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            return Locate("bash");
+        }
+
+        // git --exec-path is <Git>/<mingw64 or ucrt64>/libexec/git-core.
+        string execPath = Git(RepositoryRoot, "--exec-path").Trim();
+        return Path.GetFullPath(Path.Join(execPath, "..", "..", "..", "usr", "bin", "bash.exe"));
+    }
+
     /// <summary>Runs git in a directory and fails the test when git fails.</summary>
     /// <param name="workingDirectory">The repository.</param>
     /// <param name="args">The git arguments.</param>
@@ -145,7 +159,7 @@ internal static class DevScripts
     {
         Git(tree.Root, "init", "--quiet");
         Git(tree.Root, "config", "core.hooksPath", ".husky");
-        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs" })
+        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
         {
             Directory.CreateDirectory(Path.GetDirectoryName(tree.FullPath(file))!);
             File.Copy(Path.Join(RepositoryRoot, file), tree.FullPath(file));

@@ -17,22 +17,11 @@ const string InstallCommand = "dotnet tool restore && dotnet husky install";
 
 bool verify = args.Contains("--verify");
 
-static int Run(string file, string fileArgs, bool quiet = false)
+static int Run(string file, string fileArgs)
 {
     try
     {
-        using var proc = Process.Start(new ProcessStartInfo(file, fileArgs)
-        {
-            UseShellExecute = false,
-            RedirectStandardOutput = quiet,
-            RedirectStandardError = quiet,
-        })!;
-        if (quiet)
-        {
-            _ = proc.StandardOutput.ReadToEnd();
-            _ = proc.StandardError.ReadToEnd();
-        }
-
+        using var proc = Process.Start(new ProcessStartInfo(file, fileArgs) { UseShellExecute = false })!;
         proc.WaitForExit();
         return proc.ExitCode;
     }
@@ -65,28 +54,6 @@ static string Capture(string file, string fileArgs)
 // --type=bool prints yes, on, 1 and any case of true as "true", as git itself reads them.
 static bool SigningConfigured() =>
     Capture("git", "config --type=bool --get commit.gpgsign") == "true";
-
-// The commit-msg hook still runs Python (scripts/dev/hook-python.sh) until the commit-message check is ported.
-// Same search as the hook: this checkout's venv, the main checkout's venv, then python on PATH.
-static string? PythonProblem()
-{
-    string common = Capture("git", "rev-parse --path-format=absolute --git-common-dir");
-    string main = Path.GetDirectoryName(common.TrimEnd('/', '\\')) ?? string.Empty;
-    string[] candidates =
-    [
-        ".venv/Scripts/python.exe", ".venv/bin/python",
-        Path.Join(main, ".venv/Scripts/python.exe"), Path.Join(main, ".venv/bin/python"),
-        "python", "python3",
-    ];
-    if (candidates.Any(python => Run(python, "-m pre_commit --version", quiet: true) == 0))
-    {
-        return null;
-    }
-
-    return "the commit-msg hook still needs a Python with pre-commit installed (until its check is ported); create it:" + Environment.NewLine +
-        "      python -m venv .venv" + Environment.NewLine +
-        "      .venv/Scripts/python.exe -m pip install -e \".[dev]\"   (Linux/macOS: .venv/bin/python -m pip install -e \".[dev]\")";
-}
 
 // Git runs a hook only when core.hooksPath resolves to this checkout's .husky and the hook file exists.
 static string? HooksProblem()
@@ -128,11 +95,6 @@ if (verify)
     if (!SigningConfigured())
     {
         problems.Add("commit.gpgsign != true - signed commits are required (CONTRIBUTING.md, \"Sign your commits\").");
-    }
-
-    if (PythonProblem() is { } python)
-    {
-        problems.Add(python);
     }
 
     if (problems.Count > 0)
@@ -179,12 +141,6 @@ if (!SigningConfigured())
 {
     Console.Error.WriteLine(
         "[FAIL] commit.gpgsign != true - signed commits are required. Configure signing (CONTRIBUTING.md, \"Sign your commits\"), then re-run.");
-    return 1;
-}
-
-if (PythonProblem() is { } missingPython)
-{
-    Console.Error.WriteLine($"[FAIL] {missingPython}");
     return 1;
 }
 

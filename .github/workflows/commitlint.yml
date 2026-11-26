@@ -27,27 +27,29 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
-        with:
-          python-version: '3.14'
-
+      # The validator is paragon-stats/github-actions' check-commit-message.sh, vendored
+      # in scripts/git so the Husky commit-msg hook runs the same file; release-policy
+      # holds the copy byte-identical to the tagged upstream. changed-path.sh hands it
+      # the one path its src/ rule needs, so a commit of thousands of files cannot
+      # overflow the environment, and fails the step when git fails.
       - name: Lint commit messages
         shell: bash
         env:
-          BASE_REF: ${{ github.base_ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          failed=0
-          for sha in $(git log --format=%H "origin/$BASE_REF"..HEAD); do
-            tmpfile=$(mktemp)
-            git log -1 --format=%B "$sha" > "$tmpfile"
-            if ! python3 scripts/testing/hooks/check_commit_message.py "$tmpfile"; then
-              echo "::error::Commit $sha failed commitlint"
-              failed=1
+          fail=0
+          shas="$(git rev-list "$BASE_SHA..$HEAD_SHA")" || exit 1
+          for sha in $shas; do
+            git log -1 --format=%B "$sha" > "$RUNNER_TEMP/commit-msg.txt"
+            path="$(bash scripts/ci/changed-path.sh diff-tree --no-commit-id --name-only -r "$sha")" || exit 1
+            if ! MESSAGE_FILE="$RUNNER_TEMP/commit-msg.txt" CHANGED_PATHS="$path" \
+                bash scripts/git/check-commit-message.sh; then
+              echo "::error::Bad commit (bad format, or a release-triggering type without a src/ change): $(git log -1 --format='%h %s' "$sha")"
+              fail=1
             fi
-            rm -f "$tmpfile"
           done
-          exit $failed
+          exit "$fail"
 
       - name: Report required status context
         if: ${{ github.event_name == 'pull_request' && always() }}
@@ -58,11 +60,12 @@ jobs:
           status-context: Commit Message Lint / commitlint
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
-  # pyproject.toml restates the bump mapping for the release tooling; the org's
-  # commit-types.txt (paragon-stats/github-actions, pinned to the same SHA as the
-  # release action) stays the source of truth. Drift fails this job, which reports
-  # the required context `Commit Message Lint / release-policy`; the ruleset makes
-  # that context block the merge, so a drifted policy cannot reach main.
+  # scripts/git holds the org's validator and commit-types.txt, vendored from
+  # paragon-stats/github-actions at the SHA the release action is pinned to, and
+  # commit-types.txt stays the source of truth. pyproject.toml restates the bump
+  # mapping for the release tooling. An edited copy or a drifted mapping fails this
+  # job, which reports the required context `Commit Message Lint / release-policy`;
+  # it runs in the merge queue too, so neither can reach main.
   release-policy:
     runs-on: ubuntu-latest
     permissions:
@@ -74,20 +77,26 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
-        with:
-          python-version: '3.14'
-
-      - name: Compare pyproject.toml with commit-types.txt
+      - name: Verify the vendored validator matches upstream v2.2.1
         shell: bash
         run: |
-          set -euo pipefail
           base="https://raw.githubusercontent.com/paragon-stats/github-actions/8e164c6001e7a28bf2b06e6c528f97cda9af37cb"
-          curl -fsSL --proto '=https' "$base/commit-types.txt" -o "$RUNNER_TEMP/commit-types.txt"
-          # As a module, not a file: the checker imports the commit-lint allowlist from
-          # its package, which needs the repository root on sys.path.
-          python3 -m scripts.testing.hooks.check_release_policy "$RUNNER_TEMP/commit-types.txt" pyproject.toml
+          curl -fsSL --proto '=https' "$base/check-commit-message/check-commit-message.sh" -o "$RUNNER_TEMP/upstream.sh"
+          curl -fsSL --proto '=https' "$base/commit-types.txt" -o "$RUNNER_TEMP/upstream-types.txt"
+          drift=0
+          diff -u "$RUNNER_TEMP/upstream.sh" scripts/git/check-commit-message.sh || drift=1
+          diff -u "$RUNNER_TEMP/upstream-types.txt" scripts/git/commit-types.txt || drift=1
+          if [ "$drift" -ne 0 ]; then
+            echo "::error::scripts/git/ has drifted from paragon-stats/github-actions@8e164c6 (v2.2.1). Never edit the vendored copy; re-vendor from the new upstream pin and bump this SHA."
+            exit 1
+          fi
+
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73  # v6.1.0
+        with:
+          global-json-file: global.json
+
+      - name: Compare pyproject.toml with commit-types.txt
+        run: dotnet run scripts/ci/check-release-policy.cs -- scripts/git/commit-types.txt pyproject.toml
 
       - name: Report required status context
         if: ${{ always() }}
@@ -112,26 +121,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
+          fetch-depth: 0  # the PR diff for the src/ guard
           persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
-        with:
-          python-version: '3.14'
-
+      # The title keeps the commit rules, including the release-type-needs-src guard,
+      # judged against everything the pull request changes.
       - name: Lint the PR title
         shell: bash
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
-          tmpfile=$(mktemp)
-          echo "$PR_TITLE" > "$tmpfile"
-          if ! python3 scripts/testing/hooks/check_commit_message.py "$tmpfile"; then
+          printf '%s\n' "$PR_TITLE" > "$RUNNER_TEMP/pr-title.txt"
+          path="$(bash scripts/ci/changed-path.sh diff --name-only "$BASE_SHA...$HEAD_SHA")" || exit 1
+          if ! MESSAGE_FILE="$RUNNER_TEMP/pr-title.txt" CHANGED_PATHS="$path" \
+              bash scripts/git/check-commit-message.sh; then
             echo "::error::PR title is not a valid conventional commit. It becomes the merge commit subject on main."
-            rm -f "$tmpfile"
             exit 1
           fi
-          rm -f "$tmpfile"
 
       - name: Report required status context
         if: ${{ always() }}

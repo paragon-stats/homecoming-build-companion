@@ -72,7 +72,7 @@ jobs:
       # The CI scripts run outside the solution, so their tests are built in: --selftest.
       - name: Self-test the CI scripts
         run: |
-          foreach ($script in 'scripts/ci/filter-sarif.cs', 'scripts/ci/sonar-gate.cs', 'tools/pr-summary.cs') {
+          foreach ($script in 'scripts/ci/filter-sarif.cs', 'scripts/ci/sonar-gate.cs', 'scripts/ci/check-release-policy.cs', 'tools/pr-summary.cs') {
             dotnet run $script -- --selftest
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }

@@ -184,7 +184,7 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
-    public void The_hook_check_prints_the_commands_that_make_the_python_the_commit_message_hook_needs()
+    public void The_hook_check_needs_no_python()
     {
         using TempTree tree = new();
         DevScripts.Git(tree.Root, "init", "--quiet");
@@ -193,8 +193,7 @@ public sealed partial class DevScriptTests
         (int exit, string output) = DevScripts.RunScriptWithEnvironment("bootstrap.cs", tree.Root, noPython, "--verify");
 
         Assert.Equal(1, exit);
-        Assert.Contains("python -m venv .venv", output, StringComparison.Ordinal);
-        Assert.Contains("pip install", output, StringComparison.Ordinal);
+        Assert.DoesNotContain("python", output, StringComparison.OrdinalIgnoreCase);
     }
 
     [Fact]
