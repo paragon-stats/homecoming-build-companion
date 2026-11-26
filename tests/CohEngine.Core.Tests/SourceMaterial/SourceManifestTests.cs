@@ -69,7 +69,7 @@ public sealed class SourceManifestTests
     [Fact]
     public void Rows_take_the_url_from_the_ledger_and_hash_the_body_when_the_capture_records_neither()
     {
-        IReadOnlyList<PyObject> rows = SourceManifest.Build(Path.Join(Captures, "source", "community"), TextWriter.Null);
+        IReadOnlyList<PyObject> rows = SourceManifest.Build(Path.Join(Captures, "source", "community"), TextWriter.Null).Rows;
 
         Assert.Equal(["community/archetypes/scrapper/bio.md", "community/mechanics/claws.md", "community/pre-sunset/mechanics/old.md"], rows.Select(row => (string)row["path"]!), StringComparer.Ordinal);
         Assert.Equal("https://forums.example/topic/2-bio/", rows[0]["url"]);
@@ -86,8 +86,8 @@ public sealed class SourceManifestTests
         tree.Write("lf/community/a.md", capture);
         tree.Write("crlf/community/a.md", capture.Replace("\n", "\r\n", StringComparison.Ordinal));
 
-        string lfText = SourceManifest.Render(SourceManifest.Build(tree.FullPath("lf/community"), TextWriter.Null));
-        string crlf = SourceManifest.Render(SourceManifest.Build(tree.FullPath("crlf/community"), TextWriter.Null));
+        string lfText = SourceManifest.Render(SourceManifest.Build(tree.FullPath("lf/community"), TextWriter.Null).Rows);
+        string crlf = SourceManifest.Render(SourceManifest.Build(tree.FullPath("crlf/community"), TextWriter.Null).Rows);
 
         Assert.Equal(lfText, crlf);
         Assert.Contains(SourceManifest.ContentHash("# Kin guide\n\nBody.\n"), crlf, StringComparison.Ordinal);
@@ -103,9 +103,10 @@ public sealed class SourceManifestTests
         tree.Write("community/odd.md", "---\ntitle: 'Fire/Kin Controllers \u2013 a guide'\ndate_posted: 2024\nurl: null\n---\nbody\n");
         using StringWriter error = new();
 
-        IReadOnlyList<PyObject> rows = SourceManifest.Build(tree.FullPath("community"), error);
+        (IReadOnlyList<PyObject> rows, int untitled) = SourceManifest.Build(tree.FullPath("community"), error);
 
-        Assert.Equal("error: E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
+        Assert.Equal("error: E212: untitled.md: front matter has no title, so no manifest is written; add a title: line to its front matter" + Environment.NewLine, error.ToString());
+        Assert.Equal(1, untitled);
         PyObject odd = Assert.Single(rows);
         Assert.Equal("Fire/Kin Controllers \u2013 a guide", odd["title"]);
         Assert.Equal("2024", odd["date_posted"]);
@@ -155,6 +156,27 @@ public sealed class SourceManifestTests
         ];
 
         Assert.All(runs, error => Assert.Single(CodedOutput.AssertLabelled(error)));
+    }
+
+    [Fact]
+    public void Captures_without_a_title_fail_the_run_and_every_one_is_named_and_no_manifest_is_written()
+    {
+        using TempTree tree = new();
+        tree.Write("root/community/a.md", "---\ntitle: \"A\"\n---\nbody\n");
+        tree.Write("root/community/b/untitled.md", "---\nurl: \"x\"\n---\nbody\n");
+        tree.Write("root/community/c.md", "---\ntitle: \"C\"\n---\nbody\n");
+        tree.Write("root/community/z-untitled.md", "---\nurl: \"y\"\n---\nbody\n");
+        string written = tree.Write("manifest.json", "old\n");
+
+        (int code, string output, string error) = Run(variables: null, "--source-root", tree.FullPath("root"), "--out", written);
+
+        Assert.Equal(1, code);
+        Assert.Equal(string.Empty, output);
+        Assert.Equal(
+            ["error: E212: b/untitled.md: front matter has no title, so no manifest is written; add a title: line to its front matter", "error: E212: z-untitled.md: front matter has no title, so no manifest is written; add a title: line to its front matter"],
+            error.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Order(StringComparer.Ordinal),
+            StringComparer.Ordinal);
+        Assert.Equal("old\n", File.ReadAllText(written));
     }
 
     [Fact]

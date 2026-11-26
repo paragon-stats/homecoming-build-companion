@@ -98,7 +98,9 @@ internal sealed class PatchNotesCommand
         IReadOnlySet<string> names = Powersets(canonical);
         if (names.Count == 0)
         {
-            error.WriteLine($"error: {ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
+            // Stop before any fetch: records parsed now would lack powerset, and a later run never refetches a written URL.
+            error.WriteLine($"error: {ErrorCodes.E207}: no powerset names under {canonical}, so headings could not fill powerset and nothing was fetched or written; pass --canonical with the folder that holds powers/");
+            return 1;
         }
 
         using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }, disposeHandler: handler is null) { Timeout = TimeSpan.FromSeconds(30) };
@@ -232,19 +234,30 @@ internal sealed class PatchNotesCommand
     /// <param name="source">The source.</param>
     /// <param name="error">Where an index row that names a file outside the folder is reported.</param>
     /// <param name="doomed">Receives the records no page produces any more; the caller deletes them once the new index is written.</param>
-    /// <returns>The changed, unchanged, removed and kept counts.</returns>
-    public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source, TextWriter error, ICollection<string> doomed)
+    /// <returns>The changed, unchanged, removed and kept counts, or null when an old index row was refused and nothing of the source was touched.</returns>
+    public static (int Changed, int Unchanged, int Removed, int Kept)? Sync(string fresh, string outDir, string source, TextWriter error, ICollection<string> doomed)
     {
         (int changed, int unchanged, int removed, int kept) = (0, 0, 0, 0);
 
         // Names compare as the file system does, so an old row differing only in case never removes the record just written.
         HashSet<string> produced = new(OperatingSystem.IsWindows() || OperatingSystem.IsMacOS() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
-        IEnumerable<string> names = Index(fresh)
+        IEnumerable<string> freshNames = Index(fresh)
             .Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")))
             .Select(row => PyText.Str(row["file"]));
+        List<string> names = [.. freshNames];
+        produced.UnionWith(names);
+        List<PyObject> gone = [.. Index(outDir).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && FileOf(row).Length > 0 && !produced.Contains(FileOf(row)))];
+
+        // Checked before anything is written, so a refused row leaves the source's records and index rows as they were.
+        List<PyObject> refused = gone.FindAll(row => !IsPlainName(FileOf(row)));
+        refused.ForEach(row => error.WriteLine($"error: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{FileOf(row)}', which is not a plain file name inside {outDir}; {source} was left as it is on disk, its records and index rows unchanged; correct or remove that row, then re-run"));
+        if (refused.Count > 0)
+        {
+            return null;
+        }
+
         foreach (string name in names)
         {
-            produced.Add(name);
             string text = PyText.ReadText(Path.Join(fresh, name));
             string target = Path.Join(outDir, name);
             string? current = File.Exists(target) ? PyText.ReadText(target) : null;
@@ -264,16 +277,9 @@ internal sealed class PatchNotesCommand
             }
         }
 
-        foreach (PyObject row in Index(outDir).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && FileOf(row).Length > 0 && !produced.Contains(FileOf(row))))
+        foreach (string doomedFile in gone.Select(row => Path.Join(outDir, FileOf(row))))
         {
-            string name = FileOf(row);
-            if (!IsPlainName(name))
-            {
-                error.WriteLine($"error: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted");
-                continue;
-            }
-
-            doomed.Add(Path.Join(outDir, name));
+            doomed.Add(doomedFile);
             removed++;
         }
 
@@ -799,7 +805,15 @@ internal sealed class PatchNotesCommand
                     continue;
                 }
 
-                counts[source] = Sync(scratch.FullName, outDir, source, error, doomed);
+                // A refused index row keeps the source out of counts, so its old rows stay and none of its records go.
+                if (Sync(scratch.FullName, outDir, source, error, doomed) is { } synced)
+                {
+                    counts[source] = synced;
+                }
+                else
+                {
+                    failed = true;
+                }
             }
 
             // The index is written before any record goes, so a failure up to here leaves no row naming a deleted file.

@@ -18,6 +18,6 @@ It writes the bytes `python -m scripts.forum_scrape.manifest` writes, and leaves
 With the variable unset it falls back to the git user name and its first word, outside CI only, as the banned-word check does.
 With no name from either it writes nothing (`E215`): set `COH_BANNED_NAMES`.
 A `guides.jsonl` line that is not a ledger row is `E216`, and a capture that is not UTF-8 is `E217`; both name the file.
-No captures under the root is `E211`; a capture whose front matter has no title is skipped with `E212`.
+No captures under the root is `E211`; a capture whose front matter has no title is `E212`: every such capture is named and no manifest is written.
 A root whose every capture the name filter withholds is `E213`, and a manifest that cannot be written is `E214`; one another process holds is tried three times first.
-`E212` is reported but does not stop the run or change the exit code; every other code makes the run exit 1.
+Every code makes the run exit 1.

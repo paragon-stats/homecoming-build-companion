@@ -86,7 +86,14 @@ internal static class SourceManifest
             return 1;
         }
 
-        (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(Build(community, error), pattern);
+        (IReadOnlyList<PyObject> built, int untitled) = Build(community, error);
+        if (untitled > 0)
+        {
+            // Every untitled capture is named above; a manifest written without them would look complete.
+            return 1;
+        }
+
+        (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(built, pattern);
         if (rows.Count == 0 && withheld > 0)
         {
             error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E213}: every capture under {community} was withheld by the name filter ({withheld} rows), so nothing was written; check the names in {BannedNames.EnvironmentVariable}, or the git user name when it is unset"));
@@ -118,12 +125,12 @@ internal static class SourceManifest
     /// <summary>One row per capture under <paramref name="community"/>, sorted by path, keys in the order the rows are built.</summary>
     /// <param name="community">The <c>community/</c> folder.</param>
     /// <param name="error">Where a skipped capture is reported.</param>
-    /// <returns>The rows.</returns>
-    public static IReadOnlyList<PyObject> Build(string community, TextWriter error)
+    /// <returns>The rows, and how many captures were left out for having no title.</returns>
+    public static (IReadOnlyList<PyObject> Rows, int Untitled) Build(string community, TextWriter error)
     {
         if (!Directory.Exists(community))
         {
-            return [];
+            return ([], 0);
         }
 
         Dictionary<string, Dictionary<string, string>> ledgers = new(StringComparer.Ordinal)
@@ -132,6 +139,7 @@ internal static class SourceManifest
             [PreSunset] = LedgerUrls(Path.Join(community, PreSunset)),
         };
         List<PyObject> rows = [];
+        int untitled = 0;
         foreach (string file in Directory.EnumerateFiles(community, "*.md", SearchOption.AllDirectories))
         {
             string relative = Path.GetRelativePath(community, file).Replace('\\', '/');
@@ -143,7 +151,8 @@ internal static class SourceManifest
 
             if (!keys.TryGetValue("title", out string? rawTitle))
             {
-                error.WriteLine($"error: {ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
+                error.WriteLine($"error: {ErrorCodes.E212}: {relative}: front matter has no title, so no manifest is written; add a title: line to its front matter");
+                untitled++;
                 continue;
             }
 
@@ -164,7 +173,7 @@ internal static class SourceManifest
             });
         }
 
-        return [.. rows.OrderBy(row => (string)row["path"]!, StringComparer.Ordinal)];
+        return ([.. rows.OrderBy(row => (string)row["path"]!, StringComparer.Ordinal)], untitled);
     }
 
     /// <summary>The manifest file's text: keys sorted, two-space indent, every non-ASCII character escaped.</summary>

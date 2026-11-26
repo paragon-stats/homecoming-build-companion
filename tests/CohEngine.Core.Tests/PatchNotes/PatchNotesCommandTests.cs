@@ -52,6 +52,8 @@ public sealed class PatchNotesCommandTests
 
     private static readonly string Smite = PatchParserTests.H("Powers", 18) + "<ul><li>Dark Melee &gt; Smite: Buffed.</li></ul>";
 
+    private static readonly string CanonicalFixture = Path.Join(Fixtures.Store.Root, "patch-notes", "canonical");
+
     public static string Thread(string title, string when, string body)
     {
         return $"<html><head><title>{title} - Open Beta Patch Notes - Homecoming</title></head><body>"
@@ -87,18 +89,37 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
-    public void An_unreachable_browser_and_an_empty_canonical_tree_are_reported()
+    public void An_unreachable_category_browser_is_reported()
     {
         using TempTree tree = new();
         using FakeSite site = new();
         site.Routes[Base + "/patch-notes/?show=categories"] = new HttpRequestException("boom");
 
-        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--canonical", tree.Root);
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes");
 
         Assert.Equal(1, code);
         Assert.Contains("error: E203: could not read the patch-notes category browser", error, StringComparison.Ordinal);
-        Assert.Contains($"error: E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
         Assert.Contains("; no release notes were read; re-run when the forum answers", error, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void A_canonical_tree_with_no_powerset_names_fails_the_run_before_anything_is_fetched_or_written(bool reparse)
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        string outDir = tree.FullPath("patches");
+        string empty = Directory.CreateDirectory(tree.FullPath("canonical")).FullName;
+        string[] args = ["--out", outDir, "--delay", "0", "--canonical", empty];
+
+        (int code, string output, string error) = Run(site, reparse ? [.. args, "--reparse"] : args);
+
+        Assert.Equal(1, code);
+        Assert.Equal($"error: E207: no powerset names under {empty}, so headings could not fill powerset and nothing was fetched or written; pass --canonical with the folder that holds powers/" + Environment.NewLine, error);
+        Assert.Equal(string.Empty, output);
+        Assert.Empty(site.Calls);
+        Assert.False(Directory.Exists(outDir));
     }
 
     [Fact]
@@ -403,14 +424,20 @@ public sealed class PatchNotesCommandTests
         using FakeSite site = new();
         WikiRoutes(site);
         string keep = tree.Write("keep.json", "{}\n");
-        tree.Write("patches/index.jsonl", "{\"url\": \"gone\", \"published\": \"2003-01-01\", \"source\": \"paragonwiki\", \"file\": \"..\\\\keep.json\"}\n");
+        string old = tree.Write("patches/old.json", "{}\n");
+        const string IndexText = "{\"url\": \"gone\", \"published\": \"2003-01-01\", \"source\": \"paragonwiki\", \"file\": \"..\\\\keep.json\"}\n{\"url\": \"old\", \"published\": \"2002-01-01\", \"source\": \"paragonwiki\", \"file\": \"old.json\"}\n";
+        string index = tree.Write("patches/index.jsonl", IndexText);
 
-        (int code, _, string error) = Run(site, "--out", tree.FullPath("patches"), "--delay", "0", "--source", "paragonwiki", "--reparse");
+        (int code, string output, string error) = Run(site, "--out", tree.FullPath("patches"), "--delay", "0", "--source", "paragonwiki", "--reparse");
 
-        Assert.Equal(0, code);
+        // The source is left exactly as it was: no record written or removed, the index untouched.
+        Assert.Equal(1, code);
+        Assert.Contains($"error: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; paragonwiki was left as it is on disk, its records and index rows unchanged; correct or remove that row, then re-run" + Environment.NewLine, error, StringComparison.Ordinal);
+        Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
         Assert.True(File.Exists(keep));
-        Assert.Contains($"error: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; the row was dropped from the index and the file it names was not deleted; delete that file by hand if it is no longer wanted" + Environment.NewLine, error, StringComparison.Ordinal);
-        Assert.DoesNotContain("\"gone\"", File.ReadAllText(tree.FullPath("patches/index.jsonl")), StringComparison.Ordinal);
+        Assert.True(File.Exists(old));
+        Assert.Equal(IndexText, File.ReadAllText(index));
+        Assert.Equal(["index.jsonl", "old.json"], Directory.GetFiles(tree.FullPath("patches")).Select(Path.GetFileName).Order(StringComparer.Ordinal), StringComparer.Ordinal);
     }
 
     [Fact]
@@ -691,16 +718,19 @@ public sealed class PatchNotesCommandTests
             site.Routes[Wiki + "/robots.txt"] = HttpStatusCode.Forbidden;
         }
 
-        (_, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--canonical", tree.FullPath("none"));
+        (_, _, string error) = Run(site, "--out", tree.Root, "--delay", "0");
 
-        Assert.True(CodedOutput.AssertLabelled(error).Length >= 5, error);
+        Assert.True(CodedOutput.AssertLabelled(error).Length >= 4, error);
     }
 
     private static (int Code, string Output, string Error) Run(FakeSite site, params string[] args)
     {
         using StringWriter output = new();
         using StringWriter error = new();
-        int code = PatchNotesCommand.Run(args, output, error, site);
+
+        // A canonical tree with one placeholder set, so a missing --canonical does not fail the run with E207.
+        string[] given = args.Contains("--canonical", StringComparer.Ordinal) ? [.. args] : [.. args, "--canonical", CanonicalFixture];
+        int code = PatchNotesCommand.Run(given, output, error, site);
         return (code, output.ToString(), error.ToString());
     }
 

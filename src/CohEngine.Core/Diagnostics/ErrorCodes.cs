@@ -281,7 +281,7 @@ public static class ErrorCodes
     /// <summary>An entry parsed to no change lines; it is still recorded.</summary>
     public const string E206 = "E206";
 
-    /// <summary>The canonical tree names no powerset, so no heading fills <c>powerset</c>.</summary>
+    /// <summary>The canonical tree names no powerset, so no heading could fill <c>powerset</c>; the run stops before anything is fetched or written.</summary>
     public const string E207 = "E207";
 
     /// <summary>A source was not read completely, so its records on disk and its index rows are left as they are.</summary>
@@ -298,7 +298,7 @@ public static class ErrorCodes
     /// <summary>The source-material root holds no capture with front matter.</summary>
     public const string E211 = "E211";
 
-    /// <summary>A capture's front matter has no title; the capture is skipped.</summary>
+    /// <summary>A capture's front matter has no title; every such capture is named and no manifest is written.</summary>
     public const string E212 = "E212";
 
     /// <summary>Every capture under the root was withheld by the name filter, so no manifest is written.</summary>
