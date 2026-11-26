@@ -233,6 +233,12 @@ internal static partial class HtmlText
     private static string Named(string name)
     {
         // shortcut: .NET knows only the HTML 4 names, so an HTML 5-only one such as &NewLine; stays as text, carry the HTML 5 table if a page uses one.
+        // HTML 5 moved the two angle brackets to the mathematical ones; every other HTML 4 name keeps its character.
+        if (name is "lang;" or "rang;")
+        {
+            return name is "lang;" ? "\u27e8" : "\u27e9";
+        }
+
         if (name.EndsWith(';') && WebUtility.HtmlDecode("&" + name) is var decoded && !string.Equals(decoded, "&" + name, StringComparison.Ordinal))
         {
             return decoded;

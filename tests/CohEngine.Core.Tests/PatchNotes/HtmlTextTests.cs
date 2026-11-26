@@ -53,6 +53,7 @@ public sealed class HtmlTextTests
     [InlineData("&#99999999999999999999;", "\ufffd")]
     [InlineData("x&y", "x&y")]
     [InlineData("&#x9F;", "\u0178")]
+    [InlineData("&lang;x&rang;", "\u27e8x\u27e9")]
     [InlineData("plain", "plain")]
     public void Unescape_decodes_as_python_does(string text, string expected)
     {
