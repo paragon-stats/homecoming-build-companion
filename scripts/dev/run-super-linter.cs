@@ -10,7 +10,8 @@
 //
 // Environment: SUPER_LINTER_DOCKER_CMD (default "docker", for example "sudo -n docker"), SUPER_LINTER_IMAGE,
 // SUPER_LINTER_PULL_POLICY ("always" checks the registry digest, "missing" pulls only when absent),
-// SUPER_LINTER_DEFAULT_BRANCH, SUPER_LINTER_VALIDATE_ALL_CODEBASE, FILTER_REGEX_EXCLUDE.
+// SUPER_LINTER_DEFAULT_BRANCH, SUPER_LINTER_VALIDATE_ALL_CODEBASE, SUPER_LINTER_LOG_LEVEL (for example INFO, passed
+// as LOG_LEVEL over the shared file's NOTICE), FILTER_REGEX_EXCLUDE.
 // CI tooling, not shipped product code: exempt from the solution-wide analyzers.
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
@@ -120,6 +121,13 @@ if (image == defaultImage
     && File.Exists(".github/linters/.jscpd.json"))
 {
     envPairs.Add($"JSCPD_LINTER_RULES={Workspace}/.github/linters/.jscpd.json");
+}
+
+// A level asked for here outranks the shared file's LOG_LEVEL, for a full log without editing a tracked file.
+string logLevel = Env("SUPER_LINTER_LOG_LEVEL");
+if (logLevel.Length > 0)
+{
+    envPairs.Add($"LOG_LEVEL={logLevel}");
 }
 
 string dockerOverride = Env("SUPER_LINTER_DOCKER_CMD");
