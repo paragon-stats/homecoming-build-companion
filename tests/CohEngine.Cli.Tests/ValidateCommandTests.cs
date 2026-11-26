@@ -196,7 +196,7 @@ public sealed class ValidateCommandTests
     {
         (int code, string output, _) = Run();
 
-        Assert.Equal((0, "coh_engine: MidsReborn build-math port.\nSpec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, extract-canonical (score lands with the build-eval pipeline).\n"), (code, output));
+        Assert.Equal((0, "coh_engine: MidsReborn build-math port.\nSpec: docs/engine/mids-port-spec.md. Commands: rules, validate, chain, score, extract-canonical, mcp, ask.\n"), (code, output));
     }
 
     [Fact]
