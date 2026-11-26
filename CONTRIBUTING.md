@@ -67,7 +67,10 @@ When the banned-words check finds no operator name to look for, it still checks 
 `[OK] no banned words found; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty.`
 In CI an unset `COH_BANNED_NAMES` fails the check instead.
 Findings go to standard error.
-`dotnet format`, `dotnet build`, `dotnet test` and Super-Linter print their own output.
+`dotnet format`, `dotnet build` and `dotnet test` print their own output.
+Super-Linter prints one `Successfully linted <linter>` line for each linter that passes, and a failing linter's full output.
+It reads `LOG_LEVEL=NOTICE` and `SUPPRESS_POSSUM=true` from `.github/super-linter.env`, which CI reads too, and Checkov lists failed checks only (`quiet: true` in `.github/linters/.checkov.yaml`).
+To see everything again, run `make super-linter` with `LOG_LEVEL=INFO` in that file, and leave it unchanged when you commit.
 To see Husky's banner and per-check lines, run the group by hand without the switch, for example `dotnet husky run --group pre-commit`.
 
 The hooks do not restore the .NET tools.
