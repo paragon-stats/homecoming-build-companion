@@ -336,10 +336,13 @@ internal sealed class PatchNotesCommand
         return (count, complete);
     }
 
-    /// <summary>Whether a name from an index row or a page is one plain file name, so joining it to the folder stays inside the folder.</summary>
+    /// <summary>
+    /// Whether a name from an index row or a page is one plain file name, so joining it to the folder stays inside the
+    /// folder. A backslash is refused on every system, so a name that is a path on Windows is refused on Linux too.
+    /// </summary>
     private static bool IsPlainName(string name)
     {
-        return name is not ("." or "..") && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
+        return name is not ("." or "..") && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny([.. Path.GetInvalidFileNameChars(), '\\']) < 0;
     }
 
     /// <summary>Writes the entry, or reports why its name was refused and returns null.</summary>

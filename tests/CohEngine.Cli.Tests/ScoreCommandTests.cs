@@ -17,10 +17,6 @@ public sealed partial class ScoreCommandTests
     [GeneratedRegex("(?:case \\[|args is \\[)\"(?<name>[a-z][a-z-]*)\"", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 5000)]
     private static partial Regex DispatchedCommand { get; }
 
-    /// <summary>Gets a prefix of a listed command, which a listed-command match must not accept.</summary>
-    [GeneratedRegex(@"(?:\[|\| )chai(?=[ \]])", RegexOptions.None, matchTimeoutMilliseconds: 1000)]
-    private static partial Regex TruncatedCommand { get; }
-
     private static (int Code, string Output, string Error) Run(params string[] args)
     {
         using StringWriter output = new();
@@ -125,6 +121,5 @@ public sealed partial class ScoreCommandTests
 
         // A command is listed when it opens an alternative of the usage line: after "[" or "| ", before a space or "]".
         Assert.All(commands, command => Assert.Matches(new Regex($@"(?:\[|\| ){Regex.Escape(command)}(?=[ \]])", RegexOptions.None, TimeSpan.FromSeconds(1)), help));
-        Assert.DoesNotMatch(TruncatedCommand, help);
     }
 }

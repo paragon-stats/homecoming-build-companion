@@ -159,6 +159,7 @@ public sealed class HtmlTextTests
             error.ToString());
     }
 
+    // System.Uri turns backslashes into slashes in an http(s) path on every system, so this holds on Linux too.
     [Fact]
     public void Robots_rules_judge_the_path_that_is_sent_not_the_text_of_the_link()
     {
