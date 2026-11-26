@@ -40,8 +40,8 @@
     {
       "name": "check-commit-message",
       "group": "commit-msg",
-      "command": "sh",
-      "args": ["scripts/dev/hook-python.sh", "scripts/testing/hooks/check_commit_message.py", "${args}"]
+      "command": "bash",
+      "args": ["-c", "MESSAGE_FILE=\"$1\" CHANGED_PATHS=\"$(git diff --cached --name-only)\" bash scripts/git/check-commit-message.sh", "check-commit-message", "${args}"]
     },
     {
       "name": "build",
