@@ -16,9 +16,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
-      # pull-requests:read is required so report-status-context can fetch the PR merge/head SHA.
       contents: read
-      pull-requests: read
       # statuses:write is required so the report-status-context composite action
       # can publish the commit status for this job on the pull request.
       statuses: write
@@ -69,7 +67,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
       statuses: write
     steps:
       - name: Checkout
@@ -110,7 +107,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
       statuses: write
     steps:
       - name: Checkout

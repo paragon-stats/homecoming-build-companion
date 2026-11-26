@@ -28,7 +28,6 @@ jobs:
       contents: read
       actions: read
       checks: write
-      pull-requests: read
       statuses: write
     strategy:
       fail-fast: false
@@ -132,7 +131,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
       statuses: write
     steps:
       # Checkout must precede the gate step: the report step below runs on
