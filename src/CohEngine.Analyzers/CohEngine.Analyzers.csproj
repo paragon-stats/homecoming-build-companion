@@ -12,6 +12,6 @@
   </ItemGroup>
 
   <!-- RS2008: every rule this analyzer ships is tracked in AnalyzerReleases.*.md, which
-       Microsoft.CodeAnalysis.Analyzers adds as AdditionalFiles itself; listing them here duplicates them. -->
+    Microsoft.CodeAnalysis.Analyzers adds as AdditionalFiles itself; listing them here duplicates them. -->
 
 </Project>
