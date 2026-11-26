@@ -118,7 +118,7 @@ public sealed partial class DevScriptTests
         };
         string script = Path.Join(DevScripts.RepositoryRoot, "scripts", "dev", "run-super-linter.cs");
 
-        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", docker, null, "run", script);
+        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", docker, input: null, "run", script);
 
         Assert.True(exit == 0, output);
         Assert.Contains("[INFO] running Super-Linter locally", standardOutput, StringComparison.Ordinal);
@@ -156,7 +156,7 @@ public sealed partial class DevScriptTests
 
     private static (int Exit, string Output, string StandardOutput, string StandardError) RunHook(TempTree tree, string hook)
     {
-        return DevScripts.RunSeparately(tree.Root, DevScripts.Bash(), ShellEnvironment(tree), null, $".husky/{hook}");
+        return DevScripts.RunSeparately(tree.Root, DevScripts.Bash(), ShellEnvironment(tree), input: null, $".husky/{hook}");
     }
 
     // No operator name and no CI: the banned-words check takes its skip path, which must still print one line.

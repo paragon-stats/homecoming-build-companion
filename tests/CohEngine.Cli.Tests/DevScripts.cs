@@ -37,7 +37,7 @@ internal static class DevScripts
     /// <returns>The exit code and the combined output.</returns>
     internal static (int Exit, string Output) RunWithEnvironment(string workingDirectory, string program, IReadOnlyDictionary<string, string?> environment, params string[] args)
     {
-        (int exit, string output, _, _) = RunSeparately(workingDirectory, program, environment, null, args);
+        (int exit, string output, _, _) = RunSeparately(workingDirectory, program, environment, input: null, args);
         return (exit, output);
     }
 

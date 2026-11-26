@@ -205,7 +205,7 @@ public sealed partial class DevScriptTests
 
         string script = Path.Join(DevScripts.RepositoryRoot, "scripts", "dev", "run-super-linter.cs");
 
-        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", noDocker, null, "run", script);
+        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", noDocker, input: null, "run", script);
 
         Assert.True(exit == 0, output);
         Assert.StartsWith("[SKIP] Docker is not installed", standardOutput, StringComparison.Ordinal);
