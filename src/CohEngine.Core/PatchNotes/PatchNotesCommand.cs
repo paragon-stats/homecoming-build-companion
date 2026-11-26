@@ -24,6 +24,15 @@ internal sealed class PatchNotesCommand
 
     private const string IndexFile = "index.jsonl";
 
+    // The keys of index rows and record files.
+    private const string ChangesKey = "changes";
+
+    private const string PublishedKey = "published";
+
+    private const string SourceKey = "source";
+
+    private const string IssueKey = "issue";
+
     /// <summary>The most pages of one beta listing that are read; the real sections hold a handful.</summary>
     private const int MaxListingPages = 100;
 
@@ -230,9 +239,11 @@ internal sealed class PatchNotesCommand
 
         // Names compare as the file system does, so an old row differing only in case never removes the record just written.
         HashSet<string> produced = new(OperatingSystem.IsWindows() || OperatingSystem.IsMacOS() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
-        foreach (PyObject row in Index(fresh).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file"))))
+        IEnumerable<string> names = Index(fresh)
+            .Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")))
+            .Select(row => PyText.Str(row["file"]));
+        foreach (string name in names)
         {
-            string name = PyText.Str(row["file"]);
             produced.Add(name);
             string text = PyText.ReadText(Path.Join(fresh, name));
             string target = Path.Join(outDir, name);
@@ -282,27 +293,22 @@ internal sealed class PatchNotesCommand
 
         HashSet<Change> seen = [];
         int rewritten = 0;
-        IEnumerable<PyObject> held = Index(outDir)
+        IEnumerable<string> paths = Index(outDir)
             .Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")) && IsPlainName(FileOf(row)))
-            .OrderBy(row => PyText.Str(row.Get("published", string.Empty)), StringComparer.Ordinal)
-            .ThenBy(row => PyText.Str(row["url"]), StringComparer.Ordinal);
-        foreach (PyObject row in held)
+            .OrderBy(row => PyText.Str(row.Get(PublishedKey, string.Empty)), StringComparer.Ordinal)
+            .ThenBy(row => PyText.Str(row["url"]), StringComparer.Ordinal)
+            .Select(row => Path.Join(outDir, PyText.Str(row["file"])));
+        foreach (string path in paths)
         {
-            string path = Path.Join(outDir, PyText.Str(row["file"]));
             PyObject document = Record(path);
-            List<object?> changes = (List<object?>)document["changes"]!;
-            List<object?> kept = [];
-            foreach (object? change in changes)
-            {
-                if (seen.Add(LineOf((PyObject)change!)))
-                {
-                    kept.Add(change);
-                }
-            }
+            List<object?> changes = (List<object?>)document[ChangesKey]!;
+
+            // A line goes when an earlier record, or an earlier line of this one, already holds it.
+            List<object?> kept = [.. changes.Where(change => seen.Add(LineOf((PyObject)change!)))];
 
             if (kept.Count > 0 && kept.Count < changes.Count)
             {
-                document.Set("changes", kept);
+                document.Set(ChangesKey, kept);
                 PyText.WriteText(path, PyJson.Dumps(document, indented: true, ensureAscii: false) + "\n");
                 rewritten++;
             }
@@ -426,10 +432,10 @@ internal sealed class PatchNotesCommand
         return new PyObject
         {
             { "url", entry.Url },
-            { "published", entry.Published },
+            { PublishedKey, entry.Published },
             { "revision", entry.Revision },
-            { "source", entry.Source },
-            { "issue", entry.Issue },
+            { SourceKey, entry.Source },
+            { IssueKey, entry.Issue },
             { "page", entry.Page },
             { "file", file },
         };
@@ -458,7 +464,7 @@ internal sealed class PatchNotesCommand
     /// <summary>A row's source; rows written before the column existed are release notes.</summary>
     private static string SourceOf(PyObject row)
     {
-        return PyText.Str(row.Get("source", PatchParser.ReleaseNotes));
+        return PyText.Str(row.Get(SourceKey, PatchParser.ReleaseNotes));
     }
 
     private static string FileOf(PyObject row)
@@ -469,14 +475,14 @@ internal sealed class PatchNotesCommand
 
     private static bool HasChanges(PyObject document)
     {
-        return PyObject.Truthy(document["changes"]);
+        return PyObject.Truthy(document[ChangesKey]);
     }
 
     /// <summary>A record file: a JSON object whose <c>changes</c> list holds change objects of six strings.</summary>
     /// <exception cref="EngineException">E225: the file is not such a record.</exception>
     private static PyObject Record(string path)
     {
-        return Parsed(Readable(path)) is PyObject document && document.Get("changes") is List<object?> changes && changes.TrueForAll(change => change is PyObject line && ChangeKeys.All(key => line.Get(key) is string))
+        return Parsed(Readable(path)) is PyObject document && document.Get(ChangesKey) is List<object?> changes && changes.TrueForAll(change => change is PyObject line && ChangeKeys.All(key => line.Get(key) is string))
             ? document
             : throw new EngineException($"{ErrorCodes.E225}: {path} is not a patch-notes record (a JSON object whose changes list holds objects with category, subsection, archetype, powerset, power and text strings); restore it from git, or delete it with its index row and run --reparse");
     }
@@ -516,9 +522,9 @@ internal sealed class PatchNotesCommand
     /// <summary>The issue and page a live row covers; rows written before those columns existed carry them in the URL.</summary>
     private static (string Issue, string Page) LiveSeries(PyObject row)
     {
-        if (PyObject.Truthy(row.Get("issue")) || PyObject.Truthy(row.Get("page")))
+        if (PyObject.Truthy(row.Get(IssueKey)) || PyObject.Truthy(row.Get("page")))
         {
-            return (PyText.Str(row.Get("issue", string.Empty)), PyText.Str(row.Get("page", string.Empty)));
+            return (PyText.Str(row.Get(IssueKey, string.Empty)), PyText.Str(row.Get("page", string.Empty)));
         }
 
         Match match = PatchParser.Entry.Match($"\"{PyText.Str(row["url"])}\"");
@@ -529,15 +535,15 @@ internal sealed class PatchNotesCommand
     {
         Dictionary<Change, (string File, string Published)> seen = [];
         IEnumerable<PyObject> held = rows
-            .Where(row => row.Get("source") is string rowSource && string.Equals(rowSource, source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")))
-            .OrderBy(row => PyText.Str(row.Get("published", string.Empty)), StringComparer.Ordinal);
+            .Where(row => row.Get(SourceKey) is string rowSource && string.Equals(rowSource, source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")))
+            .OrderBy(row => PyText.Str(row.Get(PublishedKey, string.Empty)), StringComparer.Ordinal);
         foreach (PyObject row in held)
         {
             string name = PyText.Str(row["file"]);
             PyObject document = Record(Path.Join(outDir, name));
-            foreach (object? change in (List<object?>)document["changes"]!)
+            foreach (object? change in (List<object?>)document[ChangesKey]!)
             {
-                seen.TryAdd(LineOf((PyObject)change!), (name, PyText.Str(row.Get("published", string.Empty))));
+                seen.TryAdd(LineOf((PyObject)change!), (name, PyText.Str(row.Get(PublishedKey, string.Empty))));
             }
         }
 
@@ -681,9 +687,9 @@ internal sealed class PatchNotesCommand
     /// <summary>Beta threads the live application does not cover; returns the entries written and whether every listing page was read.</summary>
     private (int Count, bool Complete) CollectForumBeta(PageFetcher fetcher, HashSet<string> written, string outDir, IReadOnlyList<PyObject> rows)
     {
-        List<PyObject> live = [.. rows.Where(row => row.Get("source", PatchParser.ReleaseNotes) is PatchParser.ReleaseNotes)];
+        List<PyObject> live = [.. rows.Where(row => row.Get(SourceKey, PatchParser.ReleaseNotes) is PatchParser.ReleaseNotes)];
         HashSet<(string, string)> liveSeries = [.. live.Select(LiveSeries)];
-        string liveFrom = live.Count > 0 ? live.Select(row => PyText.Str(row["published"])).Min(StringComparer.Ordinal)! : "9999";
+        string liveFrom = live.Count > 0 ? live.Select(row => PyText.Str(row[PublishedKey])).Min(StringComparer.Ordinal)! : "9999";
         List<string> listing = [];
         List<string> gaps = [];
         bool allNamed = true;

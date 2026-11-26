@@ -28,6 +28,9 @@ internal static class SourceManifest
 
     private const string OutOption = "--out";
 
+    /// <summary>The folder the Arachnos archetypes, Widows and Soldiers alike, file under.</summary>
+    private const string Arachnos = "arachnos";
+
     /// <summary>The archetype words a folder or title names, in match order, with the folder each one files under.</summary>
     private static readonly (string Word, string Folder)[] Archetypes =
     [
@@ -45,9 +48,9 @@ internal static class SourceManifest
         ("kheldian", "kheldian"),
         ("peacebringer", "peacebringer"),
         ("warshade", "warshade"),
-        ("arachnos", "arachnos"),
-        ("veat", "arachnos"),
-        ("widow", "arachnos"),
+        (Arachnos, Arachnos),
+        ("veat", Arachnos),
+        ("widow", Arachnos),
     ];
 
     /// <summary>Gets the archetype words, which also begin the names of the canonical role folders that hold player powersets.</summary>
