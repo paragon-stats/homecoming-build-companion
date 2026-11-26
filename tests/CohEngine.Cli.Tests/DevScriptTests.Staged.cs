@@ -109,8 +109,12 @@ public sealed partial class DevScriptTests
         File.Delete(tree.FullPath("target"));
         DevScripts.Git(tree.Root, "update-index", "--add", "--cacheinfo", $"120000,{blob},link.txt");
         DevScripts.Git(tree.Root, "-c", "user.name=scratch", "-c", "user.email=scratch@example.invalid", "commit", "--quiet", "-m", "scratch");
+
+        // Without core.symlinks, git add keeps an index entry's symlink mode; dropping the entry first makes it a regular file.
+        DevScripts.Git(tree.Root, "rm", "--cached", "--quiet", "--", "link.txt");
         tree.Write("link.txt", "trailing  \n");
         DevScripts.Git(tree.Root, "add", "--", "link.txt");
+        Assert.Contains("T\0link.txt", DevScripts.Git(tree.Root, "diff", "--cached", "--name-status", "-z"), StringComparison.Ordinal);
 
         (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root);
 

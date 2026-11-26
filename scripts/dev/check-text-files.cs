@@ -47,7 +47,7 @@ if (filesAt >= 0)
 else
 {
     string[] listing = staged
-        ? ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--diff-filter=ACM", "-z"]
+        ? ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--diff-filter=ACMT", "-z"]
         : ["ls-files", "-z"];
     (int code, byte[] output, string error) = Git(listing);
     if (code != 0)
