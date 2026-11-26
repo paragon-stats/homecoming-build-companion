@@ -208,7 +208,7 @@ public sealed class HtmlTextTests
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/moved"));
         Assert.Equal(0, site.Count(FakeSite.Forum + "/search/x"));
-        Assert.Contains($"E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains($"error: E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x", error.ToString(), StringComparison.Ordinal);
     }
 
     [Theory]
@@ -242,8 +242,8 @@ public sealed class HtmlTextTests
         Assert.Null(fetcher.Get("http://forums.homecomingservers.com/topic/1-a/"));
         Assert.Null(fetcher.Get(FakeSite.Forum + "/away"));
         Assert.DoesNotContain(site.Calls, call => call.Contains("elsewhere", StringComparison.Ordinal) || call.StartsWith("http:", StringComparison.Ordinal));
-        Assert.Contains("E222: https://elsewhere.example/topic/1-a/ is not on https://forums.homecomingservers.com; it was not fetched; check the link on the page that named it, which points off the site", error.ToString(), StringComparison.Ordinal);
-        Assert.Contains("E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("error: E222: https://elsewhere.example/topic/1-a/ is not on https://forums.homecomingservers.com; it was not fetched; check the link on the page that named it, which points off the site", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("error: E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand", error.ToString(), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -272,7 +272,7 @@ public sealed class HtmlTextTests
         Assert.StartsWith(expected, error.ToString(), StringComparison.Ordinal);
         Assert.Equal(1, site.Count(FakeSite.Forum + "/robots.txt"));
         Assert.Equal(0, site.Count(FakeSite.Forum + "/ok"));
-        Assert.Contains($"E221: {FakeSite.Forum}/ok was not fetched because {FakeSite.Forum}/robots.txt could not be read (see above); re-run when the site answers", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains($"error: E221: {FakeSite.Forum}/ok was not fetched because {FakeSite.Forum}/robots.txt could not be read (see above); re-run when the site answers", error.ToString(), StringComparison.Ordinal);
     }
 
     [Theory]
@@ -288,7 +288,7 @@ public sealed class HtmlTextTests
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/ok"));
         Assert.StartsWith($"error: E202: robots.txt unreadable (redirected to {target}) at {FakeSite.Forum}/robots.txt", error.ToString(), StringComparison.Ordinal);
-        Assert.Contains("E221", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("error: E221", error.ToString(), StringComparison.Ordinal);
         Assert.Equal(0, site.Count(FakeSite.Forum + "/ok"));
     }
 

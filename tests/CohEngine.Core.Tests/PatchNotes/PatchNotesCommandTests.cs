@@ -77,9 +77,9 @@ public sealed class PatchNotesCommandTests
         (int code, string output, string error) = Run(site, args);
 
         Assert.Equal(1, code);
-        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: release-notes was not read completely", error, StringComparison.Ordinal);
         Assert.Contains("3 entries written", output, StringComparison.Ordinal);
-        Assert.Contains($"E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
+        Assert.Contains($"warning: E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
         Assert.Equal(["2026-10-20-issue-28-page-4-r47.json", "2026-10-20-october-20-update-r48.json", "undated-placeholder-r1.json"], Json(tree.Root));
         int fetched = site.Count(PatchParserTests.EntryUrl);
         Assert.Contains("0 entries written", Run(site, args).Output, StringComparison.Ordinal);
@@ -96,8 +96,8 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--canonical", tree.Root);
 
         Assert.Equal(1, code);
-        Assert.Contains("E203: could not read the patch-notes category browser", error, StringComparison.Ordinal);
-        Assert.Contains($"E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
+        Assert.Contains("error: E203: could not read the patch-notes category browser", error, StringComparison.Ordinal);
+        Assert.Contains($"warning: E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
         Assert.Contains("; no release notes were read; re-run when the forum answers", error, StringComparison.Ordinal);
     }
 
@@ -113,7 +113,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.Contains("2 entries written", output, StringComparison.Ordinal);
-        Assert.Contains($"E205: beta listing page unavailable: {Beta}page/3/", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E205: beta listing page unavailable: {Beta}page/3/", error, StringComparison.Ordinal);
         const string Rc2File = "2021-11-24-beta-beta-patch-notes-for-november-24th-2021-issue-27-second-chances-page-3-release-candidate-2.json";
         Assert.Contains(Rc2File, Json(tree.Root), StringComparer.Ordinal);
         Assert.Contains("2019-08-11-beta-patch-notes-for-august-11th-2019.json", Json(tree.Root), StringComparer.Ordinal);
@@ -130,7 +130,7 @@ public sealed class PatchNotesCommandTests
         (code, output, error) = Run(site, args);
         Assert.Equal(1, code);
         Assert.Contains("0 entries written", output, StringComparison.Ordinal);
-        Assert.Contains($"E205: beta listing page unavailable: {Staging}", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E205: beta listing page unavailable: {Staging}", error, StringComparison.Ordinal);
         Assert.Equal("2019-08-11-beta-patch-notes-for-august-11th-2019.json", Index(tree.Root).Single(row => Equals(row["url"], late))["repeat_of"]);
 
         site.Routes[Staging] = Row(Repost, "2021-11-25T00:00:00Z");
@@ -158,7 +158,7 @@ public sealed class PatchNotesCommandTests
         site.Routes[Wiki + "/wiki/Patch_Notes"] = new HttpRequestException("down");
         (int code, _, string error) = Run(site, args);
         Assert.Equal(1, code);
-        Assert.Contains("E204: could not read the wiki patch-notes index at https://archive.paragonwiki.com/wiki/Patch_Notes; no wiki pages were read; re-run when the wiki answers", error, StringComparison.Ordinal);
+        Assert.Contains("error: E204: could not read the wiki patch-notes index at https://archive.paragonwiki.com/wiki/Patch_Notes; no wiki pages were read; re-run when the wiki answers", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -211,7 +211,7 @@ public sealed class PatchNotesCommandTests
         (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "paragonwiki", "--reparse");
 
         Assert.Equal(1, code);
-        Assert.Contains("E208: paragonwiki was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: paragonwiki was not read completely", error, StringComparison.Ordinal);
         Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
         Assert.Equal(index, File.ReadAllText(Path.Join(outDir, "index.jsonl")));
         Assert.Equal(records, Json(outDir));
@@ -229,7 +229,7 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--reparse");
 
         Assert.Equal(1, code);
-        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: release-notes was not read completely", error, StringComparison.Ordinal);
         Assert.True(File.Exists(tree.FullPath("a.json")));
         Assert.Single(Index(tree.Root));
     }
@@ -250,8 +250,8 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", source, "--reparse");
 
         Assert.Equal(1, code);
-        Assert.Contains($"E227: {listing} answered but names no", error, StringComparison.Ordinal);
-        Assert.Contains($"E208: {source} was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E227: {listing} answered but names no", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E208: {source} was not read completely", error, StringComparison.Ordinal);
         Assert.True(File.Exists(tree.FullPath("a.json")));
         Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
     }
@@ -268,7 +268,7 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta");
 
         Assert.Equal(1, code);
-        Assert.Contains($"E226: {Beta} declares 100000 listing pages, more than the 100 read", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E226: {Beta} declares 100000 listing pages, more than the 100 read", error, StringComparison.Ordinal);
         Assert.Contains(site.Calls, call => call.EndsWith("/page/100/", StringComparison.Ordinal));
         Assert.DoesNotContain(site.Calls, call => call.EndsWith("/page/101/", StringComparison.Ordinal));
     }
@@ -284,8 +284,8 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta");
 
         Assert.Equal(1, code);
-        Assert.Contains($"E227: {Beta} answered but names no", error, StringComparison.Ordinal);
-        Assert.Contains("E208: forum-beta was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E227: {Beta} answered but names no", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: forum-beta was not read completely", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -305,7 +305,7 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta", "--reparse");
 
         Assert.Equal(1, code);
-        Assert.Contains("E208: forum-beta was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: forum-beta was not read completely", error, StringComparison.Ordinal);
         Assert.True(File.Exists(tree.FullPath("b.json")));
         Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
     }
@@ -327,7 +327,7 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "paragonwiki", "--source", "release-notes", "--reparse");
 
         Assert.Equal(1, code);
-        Assert.Contains("E224", error, StringComparison.Ordinal);
+        Assert.Contains("error: E224", error, StringComparison.Ordinal);
         Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
         Assert.True(File.Exists(stray));
     }
@@ -344,7 +344,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.Contains("0 entries written", output, StringComparison.Ordinal);
-        Assert.Contains("E208: release-notes was not read completely", error, StringComparison.Ordinal);
+        Assert.Contains("error: E208: release-notes was not read completely", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -372,7 +372,7 @@ public sealed class PatchNotesCommandTests
         (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "forum-beta");
 
         Assert.Equal(1, code);
-        Assert.Contains("E209: entry " + InterimOld, error, StringComparison.Ordinal);
+        Assert.Contains("error: E209: entry " + InterimOld, error, StringComparison.Ordinal);
         Assert.Contains("1 entries written", output, StringComparison.Ordinal);
         Assert.Equal(["2020-03-03-beta-open-beta-patch-notes-for-march-3rd-2026.json"], Json(outDir));
         Assert.Empty(Directory.GetFiles(tree.Root, "*.json"));
@@ -391,7 +391,7 @@ public sealed class PatchNotesCommandTests
         (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "release-notes");
 
         Assert.Equal(1, code);
-        Assert.Contains("E209: entry " + PatchParserTests.EntryUrl, error, StringComparison.Ordinal);
+        Assert.Contains("error: E209: entry " + PatchParserTests.EntryUrl, error, StringComparison.Ordinal);
         Assert.Contains("0 entries written", output, StringComparison.Ordinal);
         Assert.Empty(Directory.GetFiles(tree.Root, "*.json", SearchOption.AllDirectories));
     }
@@ -409,7 +409,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(0, code);
         Assert.True(File.Exists(keep));
-        Assert.Contains("E209: index row gone names '..\\keep.json'", error, StringComparison.Ordinal);
+        Assert.Contains("warning: E209: index row gone names '..\\keep.json'", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -425,8 +425,8 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes", "--source", "paragonwiki");
 
         Assert.Equal(1, code);
-        Assert.Contains("E223: a page from release-notes took too long to parse", error, StringComparison.Ordinal);
-        Assert.Contains("E204", error, StringComparison.Ordinal);
+        Assert.Contains("error: E223: a page from release-notes took too long to parse", error, StringComparison.Ordinal);
+        Assert.Contains("error: E204", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -439,7 +439,7 @@ public sealed class PatchNotesCommandTests
         (int code, _, string error) = Run(site, "--out", file, "--delay", "0", "--source", "release-notes");
 
         Assert.Equal(1, code);
-        Assert.Contains($"E224: cannot read or write under {file}: ", error, StringComparison.Ordinal);
+        Assert.Contains($"error: E224: cannot read or write under {file}: ", error, StringComparison.Ordinal);
         Assert.Contains("; check that the folder and its cache can be written and the disk has room", error, StringComparison.Ordinal);
     }
 
@@ -600,7 +600,7 @@ public sealed class PatchNotesCommandTests
         Assert.Equal((1, true), PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
         Assert.Equal((0, true), PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
         Assert.Empty(Changes(Directory.GetFiles(tree.Root, "2021-01-01-*.json").Single()));
-        Assert.Contains("E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("warning: E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
     }
 
     [Theory]
@@ -639,7 +639,7 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.DoesNotContain("usage:", error, StringComparison.Ordinal);
-        Assert.Contains("E201: robots.txt refused (403)", error, StringComparison.Ordinal);
+        Assert.Contains("error: E201: robots.txt refused (403)", error, StringComparison.Ordinal);
         Assert.Single(site.Calls);
     }
 
@@ -655,8 +655,8 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.Equal($"0 entries written to {tree.Root}" + Environment.NewLine, output);
-        Assert.Contains("E203", error, StringComparison.Ordinal);
-        Assert.Contains("E204", error, StringComparison.Ordinal);
+        Assert.Contains("error: E203", error, StringComparison.Ordinal);
+        Assert.Contains("error: E204", error, StringComparison.Ordinal);
         Assert.StartsWith("coh-build-companion/", PatchNotesCommand.DefaultAgent, StringComparison.Ordinal);
     }
 
