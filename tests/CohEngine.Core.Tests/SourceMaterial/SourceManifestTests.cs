@@ -10,9 +10,36 @@ public sealed class SourceManifestTests
 {
     private static readonly string Captures = Path.Join(Fixtures.Store.Root, "source-material");
 
+    /// <summary>Runs the command; with no variables given, <c>COH_BANNED_NAMES</c> holds an invented name that no fixture carries.</summary>
     private static (int Code, string Output, string Error) Run(Dictionary<string, string>? variables, params string[] args)
     {
-        return RunAs(gitUserName: null, variables, args);
+        return RunAs(gitUserName: null, variables ?? new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = "Nobody Example" }, args);
+    }
+
+    [Theory]
+    [InlineData(null, null, "COH_BANNED_NAMES is unset and git has no user name")]
+    [InlineData(" , ,", null, "COH_BANNED_NAMES holds only commas or spaces and git has no user name")]
+    [InlineData(null, "true", "COH_BANNED_NAMES is unset and in CI (GITHUB_ACTIONS is set) the git user name is not used")]
+    public void With_no_name_to_withhold_nothing_is_written(string? names, string? githubActions, string reason)
+    {
+        using TempTree tree = new();
+        string written = tree.FullPath("manifest.json");
+        Dictionary<string, string> variables = new(StringComparer.Ordinal);
+        if (names is not null)
+        {
+            variables["COH_BANNED_NAMES"] = names;
+        }
+
+        if (githubActions is not null)
+        {
+            variables["GITHUB_ACTIONS"] = githubActions;
+        }
+
+        (int code, _, string error) = RunAs(githubActions is null ? null : "Runner Name", variables, "--source-root", Path.Join(Captures, "source"), "--out", written);
+
+        Assert.Equal(1, code);
+        Assert.StartsWith($"E215: {reason}, so there is no name to keep out of the manifest and nothing was written; set COH_BANNED_NAMES", error, StringComparison.Ordinal);
+        Assert.False(File.Exists(written));
     }
 
     private static (int Code, string Output, string Error) RunAs(string? gitUserName, Dictionary<string, string>? variables, params string[] args)
@@ -34,7 +61,7 @@ public sealed class SourceManifestTests
         (int code, string output, string error) = Run(variables: null, "--source-root", Path.Join(Captures, root), "--out=" + written);
 
         Assert.Equal((0, string.Empty), (code, error));
-        Assert.Contains("name filter off: COH_BANNED_NAMES is unset and git config user.name is empty, no row withheld", output, StringComparison.Ordinal);
+        Assert.Contains("0 row(s) withheld by the name filter", output, StringComparison.Ordinal);
         Assert.Equal(File.ReadAllBytes(Path.Join(Captures, $"expected-{root}-manifest.json")), File.ReadAllBytes(written));
     }
 

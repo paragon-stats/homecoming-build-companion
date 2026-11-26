@@ -34,16 +34,17 @@ public static class BannedNames
     }
 
     /// <summary>
-    /// The names to withhold: those in <c>COH_BANNED_NAMES</c>, else, as the banned-word check does locally, the git user
-    /// name and its first word, so a local run cannot write the operator's name into a committed file.
+    /// The names to withhold: those in <c>COH_BANNED_NAMES</c>, else, outside CI as the banned-word check does, the git
+    /// user name and its first word, so a local run cannot write the operator's name into a committed file.
     /// </summary>
     /// <param name="value">The variable's value, or null when it is unset.</param>
-    /// <param name="gitUserName">Reads <c>git config user.name</c>; null when git has none.</param>
-    /// <returns>The names; none when both are empty.</returns>
-    internal static IReadOnlyList<string> Names(string? value, Func<string?> gitUserName)
+    /// <param name="gitUserName">Reads the git user name; null when git has none.</param>
+    /// <param name="inCi">True under CI (<c>GITHUB_ACTIONS</c> set), where the runner's git name is not the operator's.</param>
+    /// <returns>The names; none when there is nothing to withhold.</returns>
+    internal static IReadOnlyList<string> Names(string? value, Func<string?> gitUserName, bool inCi)
     {
         IReadOnlyList<string> names = Parse(value);
-        if (names.Count > 0 || gitUserName() is not { } full)
+        if (names.Count > 0 || inCi || gitUserName() is not { } full)
         {
             return names;
         }
@@ -53,27 +54,19 @@ public static class BannedNames
 
     /// <summary>The rows that name no banned name, judged on each row's one-line JSON, and how many were left out.</summary>
     /// <param name="rows">The rows.</param>
-    /// <param name="pattern">The pattern, or null to keep every row.</param>
+    /// <param name="pattern">The pattern.</param>
     /// <returns>The kept rows and the count withheld.</returns>
-    internal static (IReadOnlyList<PyObject> Kept, int Withheld) Withhold(IReadOnlyList<PyObject> rows, Regex? pattern)
+    internal static (IReadOnlyList<PyObject> Kept, int Withheld) Withhold(IReadOnlyList<PyObject> rows, Regex pattern)
     {
-        if (pattern is null)
-        {
-            return (rows, 0);
-        }
-
         List<PyObject> kept = [.. rows.Where(row => !pattern.IsMatch(PyJson.Dumps(row, indented: false, ensureAscii: false)))];
         return (kept, rows.Count - kept.Count);
     }
 
     /// <summary>The one status line of a run.</summary>
-    /// <param name="pattern">The pattern, or null when the filter is off.</param>
     /// <param name="withheld">The rows withheld.</param>
     /// <returns>The line.</returns>
-    internal static string Report(Regex? pattern, int withheld)
+    internal static string Report(int withheld)
     {
-        return pattern is null
-            ? $"name filter off: {EnvironmentVariable} is unset and git config user.name is empty, no row withheld"
-            : string.Create(CultureInfo.InvariantCulture, $"{withheld} row(s) withheld by the name filter");
+        return string.Create(CultureInfo.InvariantCulture, $"{withheld} row(s) withheld by the name filter");
     }
 }

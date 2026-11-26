@@ -73,7 +73,16 @@ internal static class SourceManifest
         string? flag = options.GetValueOrDefault(SourceRootOption)?[^1];
         string outPath = options.GetValueOrDefault(OutOption)?[^1] ?? "data/source-material/manifest.json";
         string community = Path.Join(SourceRoot.Resolve(flag, variable(SourceRoot.EnvironmentVariable), Directory.GetCurrentDirectory()), "community");
-        Regex? pattern = BannedNames.Pattern(BannedNames.Names(variable(BannedNames.EnvironmentVariable), gitUserName));
+        string? value = variable(BannedNames.EnvironmentVariable);
+        bool inCi = variable("GITHUB_ACTIONS") is not null;
+        if (BannedNames.Pattern(BannedNames.Names(value, gitUserName, inCi)) is not { } pattern)
+        {
+            string unset = string.IsNullOrEmpty(value) ? "is unset" : "holds only commas or spaces";
+            string fallback = inCi ? "in CI (GITHUB_ACTIONS is set) the git user name is not used" : "git has no user name";
+            error.WriteLine($"{ErrorCodes.E215}: {BannedNames.EnvironmentVariable} {unset} and {fallback}, so there is no name to keep out of the manifest and nothing was written; set {BannedNames.EnvironmentVariable} to the comma-separated names the public repository must not carry");
+            return 1;
+        }
+
         (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(Build(community, error), pattern);
         if (rows.Count == 0 && withheld > 0)
         {
@@ -98,7 +107,7 @@ internal static class SourceManifest
             return 1;
         }
 
-        output.WriteLine(BannedNames.Report(pattern, withheld));
+        output.WriteLine(BannedNames.Report(withheld));
         output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{rows.Count} capture(s) listed in {outPath}"));
         return 0;
     }

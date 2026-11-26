@@ -307,6 +307,9 @@ public static class ErrorCodes
     /// <summary>The manifest file could not be written.</summary>
     public const string E214 = "E214";
 
+    /// <summary>The name filter has no name to withhold (<c>COH_BANNED_NAMES</c> unset or empty, and no usable git user name), so no manifest is written.</summary>
+    public const string E215 = "E215";
+
     // E220-E229: patch-notes, second block.
 
     /// <summary>The site's robots.txt disallows a URL, so it is not fetched.</summary>
