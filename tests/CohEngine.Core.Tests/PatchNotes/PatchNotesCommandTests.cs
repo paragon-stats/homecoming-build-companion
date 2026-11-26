@@ -122,7 +122,7 @@ public sealed class PatchNotesCommandTests
         Assert.Equal((string.Empty, Rc2File), (repost["file"], repost["repeat_of"]));
 
         string late = Base + "/topic/9-patch-notes-for-january-4th-2020/";
-        site.Routes[Beta + "page/3/"] = string.Empty;
+        site.Routes[Beta + "page/3/"] = Row(InterimOld, "2019-08-11T00:00:00Z");
         site.Routes.Remove(Staging);
         site.Routes[Beta] = pagination + Row(Rc2, "2021-11-24T00:00:00Z") + Row(late, "2020-01-04T00:00:00Z");
         site.Routes[late] = Thread("Jan 2020", "2020-01-04T10:00:00Z", Smite);
@@ -132,7 +132,7 @@ public sealed class PatchNotesCommandTests
         Assert.Contains($"E205: beta listing page unavailable: {Staging}", error, StringComparison.Ordinal);
         Assert.Equal("2019-08-11-beta-patch-notes-for-august-11th-2019.json", Index(tree.Root).Single(row => Equals(row["url"], late))["repeat_of"]);
 
-        site.Routes[Staging] = string.Empty;
+        site.Routes[Staging] = Row(Repost, "2021-11-25T00:00:00Z");
         int fetched = site.Count(Rc2);
         Assert.Equal(0, Run(site, args).Code);
         Assert.Equal(fetched, site.Count(Rc2));
@@ -233,6 +233,65 @@ public sealed class PatchNotesCommandTests
         Assert.Single(Index(tree.Root));
     }
 
+    [Theory]
+    [InlineData("release-notes", Base + "/patch-notes/?show=categories")]
+    [InlineData("paragonwiki", Wiki + "/wiki/Patch_Notes")]
+    public void Reparse_keeps_a_source_whose_listing_answers_with_no_links(string source, string listing)
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Wiki + "/robots.txt"] = "User-agent: *\nAllow: /\n";
+        site.Routes[listing] = "<html><body>Down for maintenance</body></html>";
+        string index = $"{{\"url\": \"u\", \"published\": \"2024-01-01\", \"source\": \"{source}\", \"file\": \"a.json\"}}\n";
+        tree.Write("index.jsonl", index);
+        tree.Write("a.json", "{\"changes\": []}\n");
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", source, "--reparse");
+
+        Assert.Equal(1, code);
+        Assert.Contains($"E227: {listing} answered but names no", error, StringComparison.Ordinal);
+        Assert.Contains($"E208: {source} was not read completely", error, StringComparison.Ordinal);
+        Assert.True(File.Exists(tree.FullPath("a.json")));
+        Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
+    }
+
+    [Fact]
+    public void Beta_sections_that_list_no_threads_fail_the_run()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Beta] = "<html><body>Down for maintenance</body></html>";
+        site.Routes[Staging] = "<html><body>Down for maintenance</body></html>";
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta");
+
+        Assert.Equal(1, code);
+        Assert.Contains($"E227: {Beta} answered but names no", error, StringComparison.Ordinal);
+        Assert.Contains("E208: forum-beta was not read completely", error, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void Reparse_keeps_a_source_whose_fresh_records_are_empty_while_the_folder_holds_some()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Beta] = Row(Rc2, "2021-11-24T00:00:00Z");
+        site.Routes[Staging] = Row(Rc2, "2021-11-24T00:00:00Z");
+        site.Routes[Rc2] = Thread("RC2", "2021-11-24T10:00:00Z", Smite);
+        string index = "{\"url\": \"live\", \"published\": \"2020-01-01\", \"source\": \"release-notes\", \"issue\": \"issue-27\", \"page\": \"page-3\", \"file\": \"live.json\"}\n"
+            + "{\"url\": \"old\", \"published\": \"2019-01-01\", \"source\": \"forum-beta\", \"file\": \"b.json\"}\n";
+        tree.Write("index.jsonl", index);
+        tree.Write("live.json", "{\"changes\": []}\n");
+        tree.Write("b.json", "{\"changes\": []}\n");
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta", "--reparse");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E208: forum-beta was not read completely", error, StringComparison.Ordinal);
+        Assert.True(File.Exists(tree.FullPath("b.json")));
+        Assert.Equal(index, File.ReadAllText(tree.FullPath("index.jsonl")));
+    }
+
     [Fact]
     public void A_listing_or_entry_page_that_cannot_be_read_fails_the_run()
     {
@@ -266,7 +325,7 @@ public sealed class PatchNotesCommandTests
         using FakeSite site = new();
         string outDir = Directory.CreateDirectory(tree.FullPath("patches")).FullName;
         site.Routes[Beta] = Row(InterimOld, "2019-08-11T00:00:00Z") + Row(InterimNew, "2020-03-03T00:00:00Z");
-        site.Routes[Staging] = string.Empty;
+        site.Routes[Staging] = Row(InterimNew, "2020-03-03T00:00:00Z");
         site.Routes[InterimOld] = Thread("Aug 2019", "../../escape", Smite);
         site.Routes[InterimNew] = Thread("Mar 2020", "2020-03-03T10:00:00Z", Smite);
 

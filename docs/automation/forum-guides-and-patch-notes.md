@@ -120,6 +120,8 @@ until the Python is removed. Its errors carry their own numbers: a failed fetch 
 `robots.txt` `E201` or `E202`, an unreadable category browser or wiki index `E203` or `E204`, a missing beta
 listing page `E205`, an entry with no change lines `E206`, a canonical tree with no powerset names `E207`, and a source not read completely `E208`.
 A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
+A listing that answers but names no link, such as a maintenance page, is `E227` and leaves its source not read completely.
+So does a re-parse that yields no records for a source whose records the folder holds.
 An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`.
 A link or a redirect to a host other than the forum or the wiki is not fetched (`E222`).
 A page that takes a parsing pattern past its time limit stops its source with `E223`; that source counts as not read completely.

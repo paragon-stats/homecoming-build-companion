@@ -408,6 +408,11 @@ internal sealed class PatchNotesCommand
         }
     }
 
+    private static bool IsOf(PyObject row, string source)
+    {
+        return string.Equals(SourceOf(row), source, StringComparison.Ordinal);
+    }
+
     /// <summary>A row's source; rows written before the column existed are release notes.</summary>
     private static string SourceOf(PyObject row)
     {
@@ -461,24 +466,27 @@ internal sealed class PatchNotesCommand
         return seen;
     }
 
-    /// <summary>The topics of a forum section, and the listing pages that could not be read.</summary>
-    private static (IReadOnlyList<string> Topics, IReadOnlyList<string> Failed) WalkListing(PageFetcher fetcher, string forumUrl)
+    /// <summary>The topics of a forum section, the listing pages that could not be read, and whether every page read named a thread.</summary>
+    private static (IReadOnlyList<string> Topics, IReadOnlyList<string> Failed, bool AllNamed) WalkListing(PageFetcher fetcher, string forumUrl, TextWriter error)
     {
         string? first = fetcher.Get(forumUrl);
         if (first is null)
         {
-            return ([], [forumUrl]);
+            return ([], [forumUrl], true);
         }
 
         string listingBase = HtmlText.ListingBase(first, forumUrl);
         List<string> topics = [.. HtmlText.TopicUrls(first)];
+        bool allNamed = NamesLinks(forumUrl, topics.Count, "beta thread", error);
         List<string> failed = [];
         for (long number = 2; number <= HtmlText.LastPageNumber(first); number++)
         {
             string url = string.Create(CultureInfo.InvariantCulture, $"{listingBase}/page/{number}/");
             if (fetcher.Get(url) is { } listing)
             {
-                topics.AddRange(HtmlText.TopicUrls(listing).Where(topic => !topics.Contains(topic)));
+                List<string> found = [.. HtmlText.TopicUrls(listing)];
+                allNamed &= NamesLinks(url, found.Count, "beta thread", error);
+                topics.AddRange(found.Where(topic => !topics.Contains(topic)));
             }
             else
             {
@@ -486,7 +494,19 @@ internal sealed class PatchNotesCommand
             }
         }
 
-        return (topics, failed);
+        return (topics, failed, allNamed);
+    }
+
+    /// <summary>Whether a listing that answered named any link; one that named none, such as a maintenance page, is reported.</summary>
+    private static bool NamesLinks(string url, int links, string what, TextWriter error)
+    {
+        if (links > 0)
+        {
+            return true;
+        }
+
+        error.WriteLine($"{ErrorCodes.E227}: {url} answered but names no {what}, so its source counts as not read completely; open it in a browser to check the site is up, then re-run");
+        return false;
     }
 
     /// <summary>Collects the requested sources into <paramref name="outDir"/>; returns the entries written and the sources not read completely.</summary>
@@ -537,12 +557,14 @@ internal sealed class PatchNotesCommand
         }
 
         int count = 0;
-        bool complete = true;
-        foreach (string categoryUrl in PatchParser.ListCategories(categories))
+        IReadOnlyList<string> categoryUrls = PatchParser.ListCategories(categories);
+        bool complete = NamesLinks(CategoriesUrl, categoryUrls.Count, "patch-notes category", error);
+        foreach (string categoryUrl in categoryUrls)
         {
             string? listing = fetcher.Get(categoryUrl);
-            complete &= listing is not null;
-            foreach (string entryUrl in PatchParser.ListEntries(listing ?? string.Empty).Where(url => !written.Contains(url)))
+            IReadOnlyList<string> entryUrls = PatchParser.ListEntries(listing ?? string.Empty);
+            complete &= listing is not null && NamesLinks(categoryUrl, entryUrls.Count, "patch-notes entry", error);
+            foreach (string entryUrl in entryUrls.Where(url => !written.Contains(url)))
             {
                 if (Cached(fetcher, entryUrl) is not { } page)
                 {
@@ -579,10 +601,12 @@ internal sealed class PatchNotesCommand
         string liveFrom = live.Count > 0 ? live.Select(row => PyText.Str(row["published"])).Min(StringComparer.Ordinal)! : "9999";
         List<string> listing = [];
         List<string> gaps = [];
+        bool allNamed = true;
         foreach (string section in BetaSections)
         {
-            (IReadOnlyList<string> topics, IReadOnlyList<string> failed) = WalkListing(fetcher, section);
+            (IReadOnlyList<string> topics, IReadOnlyList<string> failed, bool named) = WalkListing(fetcher, section, error);
             gaps.AddRange(failed);
+            allNamed &= named;
             listing.AddRange(topics.Where(topic => !listing.Contains(topic)));
         }
 
@@ -611,7 +635,7 @@ internal sealed class PatchNotesCommand
         }
 
         (int count, bool complete) = WriteDated(entries, outDir, rows, written, output, error);
-        return (count, complete && gaps.Count == 0);
+        return (count, complete && allNamed && gaps.Count == 0);
     }
 
     private (int Count, bool Complete) CollectWiki(PageFetcher fetcher, HashSet<string> written, string outDir, IReadOnlyList<PyObject> rows)
@@ -624,8 +648,9 @@ internal sealed class PatchNotesCommand
         }
 
         List<PatchEntry> entries = [];
-        bool complete = true;
-        foreach (string pageUrl in PatchParser.WikiPages(index).Where(url => !written.Contains(url)))
+        IReadOnlyList<string> pageUrls = PatchParser.WikiPages(index);
+        bool complete = NamesLinks(WikiIndexUrl, pageUrls.Count, "dated patch-notes page", error);
+        foreach (string pageUrl in pageUrls.Where(url => !written.Contains(url)))
         {
             string? page = Cached(fetcher, pageUrl);
             complete &= page is not null;
@@ -664,19 +689,28 @@ internal sealed class PatchNotesCommand
         List<PyObject> oldRows = Index(outDir);
         Dictionary<string, (int Changed, int Unchanged, int Removed, int Kept)> counts = new(StringComparer.Ordinal);
         DirectoryInfo scratch = Directory.CreateTempSubdirectory("coh-patch-notes-");
-        IReadOnlySet<string> incomplete;
+        bool failed;
         try
         {
             // Other sources' rows stay in view: the beta collector needs the live coverage.
             WriteIndex(scratch.FullName, oldRows.Where(row => !sources.Contains(SourceOf(row), StringComparer.Ordinal)));
-            (_, incomplete) = Collect(sources, scratch.FullName);
+            (_, IReadOnlySet<string> incomplete) = Collect(sources, scratch.FullName);
+            failed = incomplete.Count > 0;
+            List<PyObject> newRows = Index(scratch.FullName);
             foreach (string source in sources.Where(source => !incomplete.Contains(source)))
             {
+                // A source that now yields nothing while the folder holds its records was not really read.
+                if (!newRows.Exists(row => IsOf(row, source)) && oldRows.Exists(row => IsOf(row, source)))
+                {
+                    error.WriteLine($"{ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; it gave no records while the folder holds some; re-run when its pages list entries again");
+                    failed = true;
+                    continue;
+                }
+
                 counts[source] = Sync(scratch.FullName, outDir, source, error);
             }
 
-            List<PyObject> newRows = Index(scratch.FullName);
-            WriteIndex(outDir, Sources.SelectMany(source => (counts.ContainsKey(source) ? newRows : oldRows).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal))));
+            WriteIndex(outDir, Sources.SelectMany(source => (counts.ContainsKey(source) ? newRows : oldRows).Where(row => IsOf(row, source))));
         }
         finally
         {
@@ -689,6 +723,6 @@ internal sealed class PatchNotesCommand
             output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{source}: {changed} changed, {unchanged} unchanged, {removed} removed, {kept} kept, {Redate(outDir, source)} re-dated"));
         }
 
-        return incomplete.Count > 0;
+        return failed;
     }
 }
