@@ -20,6 +20,8 @@ Detail in [`docs/repository-standards/`](../repository-standards/) and [`docs/au
     `feat`, `fix`, `perf`, `security`, `revert`, `docs`, `chore`, `ci`, `refactor`, `test`, `style`, `build`.
   - `feat`, `fix`, `perf`, `security` and `revert` cut a release, so they must change a file under `src/`.
     Tooling, tests, CI and docs use `chore`, `ci`, `test`, `docs` and the other types.
+    The `commitlint` workflow enforces this rule; the `commit-msg` hook does not, because it cannot tell an amend from a new commit.
+  - A breaking marker (`!` or a `BREAKING CHANGE:` footer) cuts a release for any type, including one that changes no file under `src/`.
   - A scope holds letters, digits, `.`, `_`, `/`, space and `-` only: `refactor(core,mcp):` is rejected; write one scope.
   - Subjects that start with the word `Merge` or `Revert`, or with `fixup!` or `squash!`, are exempt.
 - **Heredoc commit messages.** Use single-quoted heredoc when committing from a tool to avoid expansion. See [`docs/git/heredoc-commit-messages.md`](../git/heredoc-commit-messages.md).

@@ -39,7 +39,7 @@ during hub-spoke sync. The merge deduplicates by hook ID (spoke wins).
 
 | Hook                                 | Scope | Config location                                           | kloehnwars-homelab | docker-swarm-homelab | repo-template |
 | ------------------------------------ | ----- | --------------------------------------------------------- | ------------------ | -------------------- | ------------- |
-| check-commit-message                 | hub   | `scripts/testing/hooks/check_commit_message.py`           | ✓                  |                      |               |
+| check-commit-message                 | hub   | `scripts/git/check-commit-message.sh`                     | ✓                  |                      |               |
 | check-commit-grouping                | hub   | `scripts/testing/hooks/check_commit_grouping.py`          | ✓                  |                      |               |
 | check-repo-location                  | hub   | `scripts/testing/hooks/check_repo_location.py`            | ✓                  |                      |               |
 | prevent-unintended-deletions-pre     | hub   | `scripts/testing/hooks/prevent_unintended_deletions.py`   | ✓                  |                      |               |

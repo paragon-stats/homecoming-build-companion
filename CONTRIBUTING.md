@@ -6,6 +6,8 @@ Requires the .NET 10 SDK on Windows x64, the only platform CI verifies, Node.js 
 Signed commits are required.
 Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks, and fails until commit signing is set up.
 The Git hooks need no Python; the `commit-msg` hook runs through the bash that Git for Windows ships.
+A worktree or branch cut before the hook moved to bash runs the Python check through `scripts/dev/hook-python.sh` until it is rebased onto `main`.
+That script stays until the remaining Python is removed.
 The remaining Python tooling is tracked in [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108).
 
 ## Build and test
@@ -36,7 +38,7 @@ A worktree or branch cut before the hooks were merged has no `.husky/pre-commit`
 | Stage | What runs |
 | --- | --- |
 | `pre-commit` | `dotnet format --verify-no-changes`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files, the commit-signing check, and the text-file check |
-| `commit-msg` | `scripts/git/check-commit-message.sh` on the message and the staged paths, the check the commitlint workflow runs |
+| `commit-msg` | `scripts/git/check-commit-message.sh` on the message, the check the commitlint workflow runs; the rule that release types change `src/` is left to CI, since the hook cannot tell an amend from a new commit |
 | `pre-push` | `dotnet build`, `dotnet test --no-build`, the banned-words check, and Super-Linter in Docker |
 
 The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged and checks:
