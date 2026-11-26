@@ -4,19 +4,9 @@
 
 Requires the .NET 10 SDK on Windows x64, the only platform CI verifies, Node.js (the pre-commit markdownlint check runs through `npx`) and, for the pre-push Super-Linter run, Docker.
 Signed commits are required.
-Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks, and fails until commit signing is set up and the Python below exists.
-
-The `commit-msg` hook still runs Python (`scripts/dev/hook-python.sh`, the Conventional Commit check) until the commit-message check is ported to .NET.
-Until then a fresh clone needs a Python with `pre-commit` installed, or its commits are refused:
-
-```text
-python -m venv .venv
-.venv/Scripts/python.exe -m pip install -e ".[dev]"
-```
-
-On Linux and macOS use `.venv/bin/python` for the second line.
-`make bootstrap` and `make hooks-check` check for it and print these commands when it is missing.
-The other Python tooling is tracked in [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108).
+Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks, and fails until commit signing is set up.
+The Git hooks need no Python; the `commit-msg` hook runs through the bash that Git for Windows ships.
+The remaining Python tooling is tracked in [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108).
 
 ## Build and test
 
@@ -46,7 +36,7 @@ A worktree or branch cut before the hooks were merged has no `.husky/pre-commit`
 | Stage | What runs |
 | --- | --- |
 | `pre-commit` | `dotnet format --verify-no-changes`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files, the commit-signing check, and the text-file check |
-| `commit-msg` | the Conventional Commit check that the commitlint workflow runs (Python, see Setup) |
+| `commit-msg` | `scripts/git/check-commit-message.sh` on the message and the staged paths, the check the commitlint workflow runs |
 | `pre-push` | `dotnet build`, `dotnet test --no-build`, the banned-words check, and Super-Linter in Docker |
 
 The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged and checks:
@@ -84,6 +74,7 @@ The pre-commit `check-git-signing` task signs a test file with the key and fails
 
 - Branch from `main`; open pull requests against `main`.
 - Use [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`, `chore:`, `docs:`.
+  `feat`, `fix`, `perf`, `security` and `revert` must change a file under `src/`; the full rules are in [repository-conventions.md](docs/style-guides/repository-conventions.md#gitops-conventions--branches-commits-prs).
 - Every commit references its issue (`Refs #N` or `Closes #N`).
 - All status checks must pass before merge.
 

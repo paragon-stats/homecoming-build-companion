@@ -15,10 +15,13 @@ Detail in [`docs/repository-standards/`](../repository-standards/) and [`docs/au
 ### Baseline
 
 - **Branch from `main`.** Short-lived feature/fix branches; no long-lived integration branches.
-- **Conventional Commits.** `<type>(<scope>): <subject>`. The `commitlint` workflow enforces the format on PR.
-  Allowed types are the cross-repo SSOT (`ci-templates/commit-types.yml`) plus the local `build`:
-  `feat`, `fix`, `perf`, `security`, `revert`, `docs`, `test`, `ci`, `chore`, `style`, `refactor`, `build`.
-  Write a revert by hand as `revert(<scope>): <what and why>`; the default `Revert "…"` message `git revert` produces is rejected.
+- **Conventional Commits.** `<type>(<scope>): <subject>`. The `commit-msg` hook and the `commitlint` workflow (every PR commit and the PR title) run the org's validator, vendored unchanged in [`scripts/git/`](../../scripts/git/check-commit-message.sh).
+  - Types are the rows of [`scripts/git/commit-types.txt`](../../scripts/git/commit-types.txt):
+    `feat`, `fix`, `perf`, `security`, `revert`, `docs`, `chore`, `ci`, `refactor`, `test`, `style`, `build`.
+  - `feat`, `fix`, `perf`, `security` and `revert` cut a release, so they must change a file under `src/`.
+    Tooling, tests, CI and docs use `chore`, `ci`, `test`, `docs` and the other types.
+  - A scope holds letters, digits, `.`, `_`, `/`, space and `-` only: `refactor(core,mcp):` is rejected; write one scope.
+  - Subjects that start with the word `Merge` or `Revert`, or with `fixup!` or `squash!`, are exempt.
 - **Heredoc commit messages.** Use single-quoted heredoc when committing from a tool to avoid expansion. See [`docs/git/heredoc-commit-messages.md`](../git/heredoc-commit-messages.md).
 - **Signed commits.** Every commit signed (SSH or GPG). Recovery procedure: [`docs/automation/runbooks/fix-unsigned-commits-in-pr.md`](../automation/runbooks/fix-unsigned-commits-in-pr.md).
 - **No hook bypass.** `--no-verify`, `--no-gpg-sign`, `-c commit.gpgsign=false` forbidden without explicit user direction.
