@@ -82,7 +82,7 @@ using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path));
 ## Generated code
 
 Findings under `obj/` (JSON source-generator output, the xUnit entry point) are not ours to edit.
-CodeQL ignores `paths-ignore` for a language analysed with a build, so `scripts/ci/filter_sarif.py` removes results whose path has an `obj` segment from the C# results before upload.
+CodeQL ignores `paths-ignore` for a language analysed with a build, so `scripts/ci/filter-sarif.cs` removes results whose path has an `obj` segment from the C# results before upload.
 
 ## Deliberate exceptions
 

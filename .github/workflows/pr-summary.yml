@@ -41,10 +41,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
+      - name: Set up .NET
+        uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73  # v6.1.0
         with:
-          python-version: '3.14'
+          global-json-file: global.json
 
       # Event data reaches the shell through env, never `${{ }}` inside `run`,
       # because a branch name is attacker-controlled text. The dispatch input is
@@ -59,7 +59,7 @@ jobs:
               exit 1
               ;;
             *)
-              python -m scripts.github.pr_summary --pr "$PR_NUMBER"
+              dotnet run tools/pr-summary.cs -- --pr "$PR_NUMBER"
               ;;
           esac
         env:
