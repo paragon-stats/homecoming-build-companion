@@ -260,6 +260,28 @@ public sealed partial class DevScriptTests
         Assert.True(exit == 0, output);
     }
 
+    [Theory]
+    [InlineData("yes")]
+    [InlineData("on")]
+    [InlineData("1")]
+    public void The_signing_check_and_bootstrap_read_commit_gpgsign_as_git_does(string enabled)
+    {
+        using TempTree tree = new();
+        DevScripts.Git(tree.Root, "init", "--quiet");
+        DevScripts.Git(tree.Root, "config", "commit.gpgsign", enabled);
+        DevScripts.Git(tree.Root, "config", "gpg.format", "ssh");
+        DevScripts.Git(tree.Root, "config", "user.signingkey", SigningKeyLiteral);
+        tree.Write(OperatingSystem.IsWindows() ? "bin/signer.cmd" : "bin/signer", "exit 0\n");
+        DevScripts.Git(tree.Root, "config", "gpg.ssh.program", "signer");
+        Dictionary<string, string?> path = new(StringComparer.Ordinal) { ["PATH"] = tree.FullPath("bin") + Path.PathSeparator + DevScripts.PathHolding("git", "dotnet") };
+
+        (int hookExit, string hookOutput) = DevScripts.RunScriptWithEnvironment("check-git-signing.cs", tree.Root, path);
+        (_, string verifyOutput) = DevScripts.RunScript("bootstrap.cs", tree.Root, "--verify");
+
+        Assert.True(hookExit == 0, hookOutput);
+        Assert.DoesNotContain("commit.gpgsign", verifyOutput, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void The_signing_check_signs_with_a_literal_key_through_the_agent_and_reports_an_agent_without_it()
     {

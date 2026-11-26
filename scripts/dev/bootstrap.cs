@@ -62,8 +62,9 @@ static string Capture(string file, string fileArgs)
     }
 }
 
+// --type=bool prints yes, on, 1 and any case of true as "true", as git itself reads them.
 static bool SigningConfigured() =>
-    Capture("git", "config --get commit.gpgsign").Equals("true", StringComparison.OrdinalIgnoreCase);
+    Capture("git", "config --type=bool --get commit.gpgsign") == "true";
 
 // The commit-msg hook still runs Python (scripts/dev/hook-python.sh) until the commit-message check is ported.
 // Same search as the hook: this checkout's venv, the main checkout's venv, then python on PATH.

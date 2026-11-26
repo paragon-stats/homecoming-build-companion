@@ -28,7 +28,8 @@ return 1;
 
 static string? Problem()
 {
-    if (!Config("commit.gpgsign").Equals("true", StringComparison.OrdinalIgnoreCase))
+    // --type=bool prints yes, on, 1 and any case of true as "true", as git itself reads them.
+    if (Config("--type=bool commit.gpgsign") != "true")
     {
         return "commit.gpgsign is not set to 'true'";
     }
