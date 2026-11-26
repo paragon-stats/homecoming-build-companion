@@ -76,7 +76,7 @@ public sealed class PyTextStringTests
             refused = Assert.Throws<IOException>(() => PyText.WriteText(path, "new\n", waits.Add));
         }
 
-        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times; the system said: {refused.InnerException!.Message}", refused.Message);
         Assert.Equal(2, waits.Count);
         Assert.Equal("old\n", File.ReadAllText(path));
         Assert.Equal([path], Directory.GetFiles(tree.Root));
@@ -177,7 +177,7 @@ public sealed class PyTextStringTests
             refused = Assert.Throws<IOException>(() => PyText.AppendText(path, "b\n", waits.Add));
         }
 
-        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal($"{path} is in use by another process (or access to it is denied); it was tried 3 times; the system said: {refused.InnerException!.Message}", refused.Message);
         Assert.Equal(2, waits.Count);
         Assert.Equal("a\n", File.ReadAllText(path));
         Assert.Equal([path], Directory.GetFiles(tree.Root));

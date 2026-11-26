@@ -348,7 +348,7 @@ public static class PyText
         }
         catch (Exception exception) when (IsHeld(exception))
         {
-            throw new IOException(string.Create(CultureInfo.InvariantCulture, $"{path} is in use by another process (or access to it is denied); it was tried {FileAttempts} times"), exception);
+            throw new IOException(string.Create(CultureInfo.InvariantCulture, $"{path} is in use by another process (or access to it is denied); it was tried {FileAttempts} times; the system said: {exception.Message}"), exception);
         }
     }
 

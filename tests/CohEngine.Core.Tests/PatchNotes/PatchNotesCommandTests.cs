@@ -617,7 +617,7 @@ public sealed class PatchNotesCommandTests
             refused = Assert.Throws<IOException>(() => PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, TextWriter.Null));
         }
 
-        Assert.Equal($"{index} is in use by another process (or access to it is denied); it was tried 3 times", refused.Message);
+        Assert.Equal($"{index} is in use by another process (or access to it is denied); it was tried 3 times; the system said: {refused.InnerException!.Message}", refused.Message);
         Assert.Equal("{\"url\": \"u0\"}\n", File.ReadAllText(index));
     }
 

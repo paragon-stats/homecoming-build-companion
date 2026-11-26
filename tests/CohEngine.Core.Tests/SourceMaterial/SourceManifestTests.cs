@@ -220,7 +220,7 @@ public sealed class SourceManifestTests
 
         Assert.Equal(1, code);
         Assert.StartsWith($"error: E214: cannot write {folder}: ", error, StringComparison.Ordinal);
-        Assert.Contains("; check that the path names a file in a folder you can write to", error, StringComparison.Ordinal);
+        Assert.Matches("; the system said: [^;]+; check that the path names a file in a folder you can write to", error);
     }
 
     [Fact]
@@ -237,7 +237,7 @@ public sealed class SourceManifestTests
         }
 
         Assert.Equal(1, result.Code);
-        Assert.StartsWith($"error: E214: cannot write {written}: {written} is in use by another process (or access to it is denied); it was tried 3 times; ", result.Error, StringComparison.Ordinal);
+        Assert.StartsWith($"error: E214: cannot write {written}: {written} is in use by another process (or access to it is denied); it was tried 3 times; the system said: ", result.Error, StringComparison.Ordinal);
         Assert.Equal("old\n", File.ReadAllText(written));
     }
 
