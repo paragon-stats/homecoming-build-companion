@@ -287,6 +287,9 @@ public static class ErrorCodes
     /// <summary>A source was not read completely, so its records on disk and its index rows are left as they are.</summary>
     public const string E208 = "E208";
 
+    /// <summary>An entry's file name, from its page date and URL, or an index row's file name is not a plain name inside the output folder.</summary>
+    public const string E209 = "E209";
+
     // E210-E219: source-manifest.
 
     /// <summary>The source-material root is missing or is not a directory.</summary>

@@ -122,11 +122,17 @@ internal sealed class PatchNotesCommand
     /// <param name="entry">The entry.</param>
     /// <param name="outDir">The folder.</param>
     /// <returns>The file name.</returns>
+    /// <exception cref="EngineException">E209: the date or slug, taken from the page and its URL, would not make a plain file name inside the folder.</exception>
     public static string WriteEntry(PatchEntry entry, string outDir)
     {
         Directory.CreateDirectory(outDir);
         string date = entry.Published[..Math.Min(10, entry.Published.Length)];
         string name = $"{(date.Length > 0 ? date : "undated")}-{PatchParser.Slug(entry)}.json";
+        if (!IsPlainName(name))
+        {
+            throw new EngineException($"{ErrorCodes.E209}: entry {entry.Url} would be written as '{name}', which is not a plain file name inside {outDir}; it was skipped; check the date in the page and the last segment of its URL");
+        }
+
         PyText.WriteText(Path.Join(outDir, name), PyJson.Dumps(entry.ToObject(), indented: true, ensureAscii: false) + "\n");
         AppendRow(outDir, Row(entry, name));
         return name;
@@ -174,8 +180,9 @@ internal sealed class PatchNotesCommand
     /// <param name="fresh">The rebuilt records.</param>
     /// <param name="outDir">The records on disk.</param>
     /// <param name="source">The source.</param>
+    /// <param name="error">Where an index row that names a file outside the folder is reported.</param>
     /// <returns>The changed, unchanged, removed and kept counts.</returns>
-    public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source)
+    public static (int Changed, int Unchanged, int Removed, int Kept) Sync(string fresh, string outDir, string source, TextWriter error)
     {
         (int changed, int unchanged, int removed, int kept) = (0, 0, 0, 0);
         HashSet<string> produced = new(StringComparer.Ordinal);
@@ -202,8 +209,15 @@ internal sealed class PatchNotesCommand
             }
         }
 
-        foreach (string name in Index(outDir).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal)).Select(FileOf).Where(name => name.Length > 0 && !produced.Contains(name)))
+        foreach (PyObject row in Index(outDir).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && FileOf(row).Length > 0 && !produced.Contains(FileOf(row))))
         {
+            string name = FileOf(row);
+            if (!IsPlainName(name))
+            {
+                error.WriteLine($"{ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the file was left alone; correct the row's file name");
+                continue;
+            }
+
             File.Delete(Path.Join(outDir, name));
             removed++;
         }
@@ -225,7 +239,7 @@ internal sealed class PatchNotesCommand
         HashSet<Change> seen = [];
         int rewritten = 0;
         IEnumerable<PyObject> held = Index(outDir)
-            .Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")))
+            .Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && PyObject.Truthy(row.Get("file")) && IsPlainName(FileOf(row)))
             .OrderBy(row => PyText.Str(row.Get("published", string.Empty)), StringComparer.Ordinal)
             .ThenBy(row => PyText.Str(row["url"]), StringComparer.Ordinal);
         foreach (PyObject row in held)
@@ -260,16 +274,17 @@ internal sealed class PatchNotesCommand
     /// <param name="written">The URLs indexed so far; the entries' are added.</param>
     /// <param name="output">Where each file written is named.</param>
     /// <param name="error">Where an entry with no lines is reported.</param>
-    /// <returns>The files written.</returns>
-    public static int WriteDated(IReadOnlyList<PatchEntry> entries, string outDir, IReadOnlyList<PyObject> rows, ISet<string> written, TextWriter output, TextWriter error)
+    /// <returns>The files written, and false when an entry was refused.</returns>
+    public static (int Count, bool Complete) WriteDated(IReadOnlyList<PatchEntry> entries, string outDir, IReadOnlyList<PyObject> rows, ISet<string> written, TextWriter output, TextWriter error)
     {
         if (entries.Count == 0)
         {
-            return 0;
+            return (0, true);
         }
 
         Dictionary<Change, (string File, string Published)> seen = SeenLines(outDir, rows, entries[0].Source);
         int count = 0;
+        bool complete = true;
         foreach (PatchEntry entry in entries.OrderBy(entry => entry.Published, StringComparer.Ordinal).ThenBy(entry => entry.Url, StringComparer.Ordinal))
         {
             if (entry.Changes.Count == 0)
@@ -280,7 +295,12 @@ internal sealed class PatchNotesCommand
             string origin = DedupeLines(entry, seen);
             if (entry.Changes.Count > 0 || origin.Length == 0)
             {
-                string name = WriteEntry(entry, outDir);
+                if (TryWrite(entry, outDir, error) is not { } name)
+                {
+                    complete = false;
+                    continue;
+                }
+
                 foreach (Change change in entry.Changes)
                 {
                     seen.TryAdd(change, (name, entry.Published));
@@ -300,7 +320,27 @@ internal sealed class PatchNotesCommand
             written.Add(entry.Url);
         }
 
-        return count;
+        return (count, complete);
+    }
+
+    /// <summary>Whether a name from an index row or a page is one plain file name, so joining it to the folder stays inside the folder.</summary>
+    private static bool IsPlainName(string name)
+    {
+        return name is not ("." or "..") && string.Equals(Path.GetFileName(name), name, StringComparison.Ordinal) && name.IndexOfAny(Path.GetInvalidFileNameChars()) < 0;
+    }
+
+    /// <summary>Writes the entry, or reports why its name was refused and returns null.</summary>
+    private static string? TryWrite(PatchEntry entry, string outDir, TextWriter error)
+    {
+        try
+        {
+            return WriteEntry(entry, outDir);
+        }
+        catch (EngineException refused)
+        {
+            error.WriteLine(refused.Message);
+            return null;
+        }
     }
 
     private static string? Last(Dictionary<string, List<string>> options, string name)
@@ -498,7 +538,13 @@ internal sealed class PatchNotesCommand
                     error.WriteLine($"{ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
                 }
 
-                output.WriteLine("wrote " + WriteEntry(entry, outDir));
+                if (TryWrite(entry, outDir, error) is not { } name)
+                {
+                    complete = false;
+                    continue;
+                }
+
+                output.WriteLine("wrote " + name);
                 written.Add(entryUrl);
                 count++;
             }
@@ -546,7 +592,8 @@ internal sealed class PatchNotesCommand
             entries.Add(entry);
         }
 
-        return (WriteDated(entries, outDir, rows, written, output, error), gaps.Count == 0);
+        (int count, bool complete) = WriteDated(entries, outDir, rows, written, output, error);
+        return (count, complete && gaps.Count == 0);
     }
 
     private (int Count, bool Complete) CollectWiki(PageFetcher fetcher, HashSet<string> written, string outDir, IReadOnlyList<PyObject> rows)
@@ -570,7 +617,8 @@ internal sealed class PatchNotesCommand
             }
         }
 
-        return (WriteDated(entries, outDir, rows, written, output, error), complete);
+        (int count, bool allWritten) = WriteDated(entries, outDir, rows, written, output, error);
+        return (count, complete && allWritten);
     }
 
     /// <summary>The cached page for <paramref name="url"/>, else the fetched one, cached for next time. Listing and index pages never go through it.</summary>
@@ -606,7 +654,7 @@ internal sealed class PatchNotesCommand
             (_, incomplete) = Collect(sources, scratch.FullName);
             foreach (string source in sources.Where(source => !incomplete.Contains(source)))
             {
-                counts[source] = Sync(scratch.FullName, outDir, source);
+                counts[source] = Sync(scratch.FullName, outDir, source, error);
             }
 
             List<PyObject> newRows = Index(scratch.FullName);

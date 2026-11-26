@@ -248,6 +248,53 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void An_entry_whose_name_would_leave_the_output_folder_is_refused()
+    {
+        using TempTree tree = new();
+        string outDir = Directory.CreateDirectory(tree.FullPath("patches")).FullName;
+        PatchEntry entry = Entry(Base + "/topic/7-x/", "..\\..\\escape");
+
+        Assert.StartsWith("E209: entry", Assert.Throws<CohEngine.Core.Diagnostics.EngineException>(() => PatchNotesCommand.WriteEntry(entry, outDir)).Message, StringComparison.Ordinal);
+        Assert.Empty(Directory.GetFiles(tree.Root, "*", SearchOption.AllDirectories));
+    }
+
+    [Fact]
+    public void A_beta_thread_dated_with_a_path_is_skipped_and_the_rest_is_written()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        string outDir = Directory.CreateDirectory(tree.FullPath("patches")).FullName;
+        site.Routes[Beta] = Row(InterimOld, "2019-08-11T00:00:00Z") + Row(InterimNew, "2020-03-03T00:00:00Z");
+        site.Routes[Staging] = string.Empty;
+        site.Routes[InterimOld] = Thread("Aug 2019", "../../escape", Smite);
+        site.Routes[InterimNew] = Thread("Mar 2020", "2020-03-03T10:00:00Z", Smite);
+
+        (int code, string output, string error) = Run(site, "--out", outDir, "--delay", "0", "--source", "forum-beta");
+
+        Assert.Equal(1, code);
+        Assert.Contains("E209: entry " + InterimOld, error, StringComparison.Ordinal);
+        Assert.Contains("1 entries written", output, StringComparison.Ordinal);
+        Assert.Equal(["2020-03-03-beta-open-beta-patch-notes-for-march-3rd-2026.json"], Json(outDir));
+        Assert.Empty(Directory.GetFiles(tree.Root, "*.json"));
+    }
+
+    [Fact]
+    public void Reparse_removes_no_file_an_index_row_names_outside_the_output_folder()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        WikiRoutes(site);
+        string keep = tree.Write("keep.json", "{}\n");
+        tree.Write("patches/index.jsonl", "{\"url\": \"gone\", \"published\": \"2003-01-01\", \"source\": \"paragonwiki\", \"file\": \"..\\\\keep.json\"}\n");
+
+        (int code, _, string error) = Run(site, "--out", tree.FullPath("patches"), "--delay", "0", "--source", "paragonwiki", "--reparse");
+
+        Assert.Equal(0, code);
+        Assert.True(File.Exists(keep));
+        Assert.Contains("E209: index row gone names '..\\keep.json'", error, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void Re_dating_leaves_live_release_notes_whole()
     {
         using TempTree tree = new();
@@ -305,8 +352,8 @@ public sealed class PatchNotesCommandTests
         using TempTree tree = new();
         using StringWriter error = new();
 
-        Assert.Equal(1, PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
-        Assert.Equal(0, PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
+        Assert.Equal((1, true), PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
+        Assert.Equal((0, true), PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
         Assert.Empty(Changes(Directory.GetFiles(tree.Root, "2021-01-01-*.json").Single()));
         Assert.Contains("E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
     }
