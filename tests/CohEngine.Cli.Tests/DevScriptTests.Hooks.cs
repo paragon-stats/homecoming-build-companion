@@ -201,12 +201,15 @@ public sealed partial class DevScriptTests
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
-        Dictionary<string, string?> noDocker = new(StringComparer.Ordinal) { ["PATH"] = DevScripts.PathHolding("git", "dotnet") };
+        Dictionary<string, string?> noDocker = new(StringComparer.Ordinal) { ["PATH"] = DevScripts.PathHolding("git", "dotnet"), ["SUPER_LINTER_VALIDATE_ALL_CODEBASE"] = "false" };
 
-        (int exit, string output) = DevScripts.RunScriptWithEnvironment("run-super-linter.cs", tree.Root, noDocker);
+        string script = Path.Join(DevScripts.RepositoryRoot, "scripts", "dev", "run-super-linter.cs");
+
+        (int exit, string output, string standardOutput, string standardError) = DevScripts.RunSeparately(tree.Root, "dotnet", noDocker, null, "run", script);
 
         Assert.True(exit == 0, output);
-        Assert.Contains("[SKIP]", output, StringComparison.Ordinal);
+        Assert.StartsWith("[SKIP] Docker is not installed", standardOutput, StringComparison.Ordinal);
+        Assert.Equal(string.Empty, standardError);
     }
 
     [Fact]
