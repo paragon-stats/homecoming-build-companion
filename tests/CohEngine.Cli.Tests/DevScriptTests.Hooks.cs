@@ -222,10 +222,30 @@ public sealed partial class DevScriptTests
         DevScripts.Git(tree.Root, "config", "commit.gpgsign", "TRUE");
         DevScripts.Git(tree.Root, "config", "gpg.format", "ssh");
         DevScripts.Git(tree.Root, "config", "user.signingkey", signingKey);
-        DevScripts.Git(tree.Root, "config", "gpg.ssh.program", "npx");
 
-        (int exit, string output) = DevScripts.RunScript("check-git-signing.cs", tree.Root);
+        // The signer exists only with an extension PATHEXT adds, as the 1Password op-ssh-sign.exe does.
+        tree.Write(OperatingSystem.IsWindows() ? "bin/signer.cmd" : "bin/signer", "exit 0\n");
+        DevScripts.Git(tree.Root, "config", "gpg.ssh.program", "signer");
+        Dictionary<string, string?> path = new(StringComparer.Ordinal) { ["PATH"] = tree.FullPath("bin") + Path.PathSeparator + DevScripts.PathHolding("git", "dotnet") };
+
+        (int exit, string output) = DevScripts.RunScriptWithEnvironment("check-git-signing.cs", tree.Root, path);
 
         Assert.True(exit == 0, output);
+    }
+
+    [Fact]
+    public void The_signing_check_signs_with_a_literal_key_through_the_agent_and_reports_an_agent_without_it()
+    {
+        using TempTree tree = new();
+        DevScripts.Git(tree.Root, "init", "--quiet");
+        DevScripts.Git(tree.Root, "config", "commit.gpgsign", "true");
+        DevScripts.Git(tree.Root, "config", "gpg.format", "ssh");
+        DevScripts.Git(tree.Root, "config", "user.signingkey", "key::" + SigningKeyLiteral);
+        Dictionary<string, string?> noAgent = new(StringComparer.Ordinal) { ["SSH_AUTH_SOCK"] = tree.FullPath("no-agent") };
+
+        (int exit, string output) = DevScripts.RunScriptWithEnvironment("check-git-signing.cs", tree.Root, noAgent);
+
+        Assert.Equal(1, exit);
+        Assert.Contains("signing check failed", output, StringComparison.Ordinal);
     }
 }

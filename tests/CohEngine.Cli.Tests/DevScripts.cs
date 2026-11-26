@@ -49,8 +49,8 @@ internal static class DevScripts
             start.Environment.Remove(variable);
         }
 
-        // The developer's own overrides must not change what a script does.
-        foreach (string variable in start.Environment.Keys.Where(key => key.StartsWith("SUPER_LINTER_", StringComparison.Ordinal) || key is "FILTER_REGEX_EXCLUDE" or "JSCPD_LINTER_RULES" or "JSCPD_CONFIG_FILE").ToList())
+        // The developer's own overrides must not change what a script does; GIT_CONFIG_COUNT and its pairs outrank the repository's config.
+        foreach (string variable in start.Environment.Keys.Where(key => key.StartsWith("SUPER_LINTER_", StringComparison.Ordinal) || key.StartsWith("GIT_CONFIG_", StringComparison.Ordinal) || key is "FILTER_REGEX_EXCLUDE" or "JSCPD_LINTER_RULES" or "JSCPD_CONFIG_FILE").ToList())
         {
             start.Environment.Remove(variable);
         }
