@@ -113,13 +113,7 @@ internal static class DevScripts
     /// <returns>The PATH value.</returns>
     internal static string PathHolding(params string[] programs)
     {
-        List<string> folders = [.. programs.Select(program => Path.GetDirectoryName(Locate(program))!)];
-        if (OperatingSystem.IsWindows())
-        {
-            folders.Add(Path.Join(Environment.GetEnvironmentVariable("SystemRoot"), "System32"));
-        }
-
-        return string.Join(Path.PathSeparator, folders.Distinct(StringComparer.OrdinalIgnoreCase));
+        return string.Join(Path.PathSeparator, programs.Select(program => Path.GetDirectoryName(Locate(program))!).Distinct(StringComparer.OrdinalIgnoreCase));
     }
 
     /// <summary>Finds a program on the current PATH.</summary>

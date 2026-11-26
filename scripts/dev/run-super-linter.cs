@@ -154,7 +154,7 @@ if (args.Contains("--print-plan"))
     return 0;
 }
 
-int probe = Docker(capture: true, "version");
+int probe = dockerOverride.Length > 0 || OnPath("docker") ? Docker(capture: true, "version") : 127;
 if (probe == 127 && dockerOverride.Length == 0)
 {
     Console.Error.WriteLine(
@@ -202,6 +202,17 @@ return result;
 // Split a command line on spaces, keeping a double-quoted part (a path with spaces) whole.
 static string[] SplitCommand(string command) =>
     [.. System.Text.RegularExpressions.Regex.Matches(command, @"""([^""]*)""|(\S+)").Select(m => m.Groups[1].Success ? m.Groups[1].Value : m.Groups[2].Value)];
+
+// Installed means on PATH (with the PATHEXT extensions): Windows also starts a System32 program that PATH leaves out.
+static bool OnPath(string program)
+{
+    string[] extensions = OperatingSystem.IsWindows()
+        ? [.. (Environment.GetEnvironmentVariable("PATHEXT") ?? ".EXE;.CMD;.BAT").Split(';', StringSplitOptions.RemoveEmptyEntries)]
+        : [string.Empty];
+    return (Environment.GetEnvironmentVariable("PATH") ?? string.Empty)
+        .Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries)
+        .Any(folder => extensions.Any(extension => File.Exists(Path.Join(folder, program + extension))));
+}
 
 static string Env(string name) => (Environment.GetEnvironmentVariable(name) ?? string.Empty).Trim();
 
