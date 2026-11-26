@@ -63,17 +63,21 @@ A script compiles once after it changes, and once in a new worktree, in 3.5-5 s.
 
 The `pre-commit` and `pre-push` hooks run their group with Husky's `--quiet` switch, which leaves out Husky's banner and separator lines.
 Each script check prints one line on standard output: `[OK] ...`, or `[SKIP] ...` with the reason.
+When the banned-words check finds no operator name to look for, it still checks the banned words and says so in its one line:
+`[OK] no banned words found; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty.`
+In CI an unset `COH_BANNED_NAMES` fails the check instead.
 Findings go to standard error.
 `dotnet format`, `dotnet build`, `dotnet test` and Super-Linter print their own output.
 To see Husky's banner and per-check lines, run the group by hand without the switch, for example `dotnet husky run --group pre-commit`.
 
-The hooks do not restore the .NET tools; `make bootstrap` does that once per clone.
-Without them, the hook fails with `Run "dotnet tool restore" to make the "husky" command available.`, and `make hooks-check` reports it.
+The hooks do not restore the .NET tools.
+Run `dotnet tool restore` once per clone (`make bootstrap` does it), and again whenever `.config/dotnet-tools.json` changes, for example after a Husky version bump is merged.
+Until then the hook stops before any check runs, with `Run "dotnet tool restore" to make the "husky" command available.`, and `make hooks-check` reports it.
 
 Husky has none of the following, and the hooks do not imitate them:
 
 - a summary table of the checks at the end of a run
-- the time each check took, while `--quiet` is on
+- the time each passing check took, while `--quiet` is on; only the failure line gives a time, the failed check's
 - running the remaining checks after one fails
 - running checks side by side
 - a plain-ASCII failure line: Husky's `Task '<name>' failed in <n>ms` line starts with a non-ASCII cross mark, with or without `--quiet`
