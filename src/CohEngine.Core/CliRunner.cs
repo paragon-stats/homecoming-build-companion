@@ -13,7 +13,7 @@ namespace CohEngine.Core;
 /// </summary>
 public static class CliRunner
 {
-    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | extract-canonical [--zip ZIP] [--out-dir DIR] [--force] | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
+    private const string Usage = "usage: coh-engine [--version | --help | rules | mcp | chain BUILD_DIR [options] | score BUILD_DIR [--mids-dir DIR] [--attribmod PATH] [--maths PATH] | ask --build BUILD --model NAME [--provider anthropic|openai|mistral|local] [--base-url URL] [--api-key-env NAME] [--] <question> | extract-canonical [--zip ZIP] [--out-dir DIR] [--force] | validate <build> [--mids-dir DIR] [--format text|json] [--slotting] [--expect NAME=VALUE]...] (a claim holds when the number, rounded half away from zero to the claim's own decimal places, equals it)";
 
     /// <summary>Runs the CLI and returns the process exit code.</summary>
     /// <param name="args">The command-line arguments.</param>
@@ -48,6 +48,8 @@ public static class CliRunner
                 return CanonicalExtractCommand.Run(args[1..], output, error);
             case ["validate", ..]:
                 return RunValidate(args, output, error, mbdSource);
+            case ["score", ..]:
+                return RunScore(args, output, error);
             default:
                 error.WriteLine(Usage);
                 return 2;
@@ -89,6 +91,24 @@ public static class CliRunner
                 IReadOnlyList<Diagnostic> diagnostics = [.. Validate(parsed, mbdSource), .. Verify(parsed)];
                 output.WriteLine(ValidationText(parsed.Json, diagnostics));
                 return DiagnosticFormatter.ExitCode(diagnostics);
+            },
+            error);
+    }
+
+    private static int RunScore(string[] args, TextWriter output, TextWriter error)
+    {
+        if (!ScoreCommand.TryParse(args[1..], out ScoreCommand? parsed, out string problem))
+        {
+            error.WriteLine(Usage);
+            error.WriteLine("coh-engine score: error: " + problem);
+            return 2;
+        }
+
+        return Guarded(
+            () =>
+            {
+                output.WriteLine(parsed.Run());
+                return 0;
             },
             error);
     }
