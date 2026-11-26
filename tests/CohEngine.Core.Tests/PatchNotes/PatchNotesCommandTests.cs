@@ -96,7 +96,8 @@ public sealed class PatchNotesCommandTests
 
         Assert.Equal(1, code);
         Assert.Contains("E203: could not read the patch-notes category browser", error, StringComparison.Ordinal);
-        Assert.Contains($"E207: no powerset names under {tree.Root}", error, StringComparison.Ordinal);
+        Assert.Contains($"E207: no powerset names under {tree.Root}; headings will not fill powerset; pass --canonical with the folder that holds powers/", error, StringComparison.Ordinal);
+        Assert.Contains("; no release notes were read; re-run when the forum answers", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -156,7 +157,7 @@ public sealed class PatchNotesCommandTests
         site.Routes[Wiki + "/wiki/Patch_Notes"] = new HttpRequestException("down");
         (int code, _, string error) = Run(site, args);
         Assert.Equal(1, code);
-        Assert.Contains("E204", error, StringComparison.Ordinal);
+        Assert.Contains("E204: could not read the wiki patch-notes index at https://archive.paragonwiki.com/wiki/Patch_Notes; no wiki pages were read; re-run when the wiki answers", error, StringComparison.Ordinal);
     }
 
     [Fact]
@@ -309,6 +310,20 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(1, code);
         Assert.Contains("E223: a page from release-notes took too long to parse", error, StringComparison.Ordinal);
         Assert.Contains("E204", error, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void An_output_folder_that_cannot_be_written_is_a_write_error()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        string file = tree.Write("taken", "x");
+
+        (int code, _, string error) = Run(site, "--out", file, "--delay", "0", "--source", "release-notes");
+
+        Assert.Equal(1, code);
+        Assert.Contains($"E224: cannot read or write under {file}: ", error, StringComparison.Ordinal);
+        Assert.Contains("; check that the folder and its cache can be written and the disk has room", error, StringComparison.Ordinal);
     }
 
     [Fact]

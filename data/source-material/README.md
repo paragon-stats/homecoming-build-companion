@@ -17,3 +17,4 @@ From a source checkout, `dotnet run --project src/CohEngine.Cli -- source-manife
 It writes the bytes `python -m scripts.forum_scrape.manifest` writes, and leaves out rows that name a person in `COH_BANNED_NAMES`.
 With the variable unset it falls back to the git user name and its first word, as the banned-word check does.
 No captures under the root is `E211`; a capture whose front matter has no title is skipped with `E212`.
+A root whose every capture the name filter withholds is `E213`, and a manifest that cannot be written is `E214`.

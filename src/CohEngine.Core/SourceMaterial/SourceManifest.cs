@@ -75,14 +75,29 @@ internal static class SourceManifest
         string community = Path.Join(SourceRoot.Resolve(flag, variable(SourceRoot.EnvironmentVariable), Directory.GetCurrentDirectory()), "community");
         Regex? pattern = BannedNames.Pattern(BannedNames.Names(variable(BannedNames.EnvironmentVariable), gitUserName));
         (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(Build(community, error), pattern);
+        if (rows.Count == 0 && withheld > 0)
+        {
+            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E213}: every capture under {community} was withheld by the name filter ({withheld} rows), so nothing was written; check the names in {BannedNames.EnvironmentVariable}, or the git user name when it is unset"));
+            return 1;
+        }
+
         if (rows.Count == 0)
         {
             error.WriteLine($"{ErrorCodes.E211}: no captures under {community}; expected community/**/*.md with front matter; check the checkout is current, or pass --source-root");
             return 1;
         }
 
-        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath))!);
-        PyText.WriteText(outPath, Render(rows));
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath))!);
+            PyText.WriteText(outPath, Render(rows));
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            error.WriteLine($"{ErrorCodes.E214}: cannot write {outPath}: {exception.Message}; check that the path names a file in a folder you can write to");
+            return 1;
+        }
+
         output.WriteLine(BannedNames.Report(pattern, withheld));
         output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{rows.Count} capture(s) listed in {outPath}"));
         return 0;
@@ -116,7 +131,7 @@ internal static class SourceManifest
 
             if (!keys.TryGetValue("title", out string? rawTitle))
             {
-                error.WriteLine($"{ErrorCodes.E212}: {relative}: front matter has no title; capture skipped");
+                error.WriteLine($"{ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
                 continue;
             }
 

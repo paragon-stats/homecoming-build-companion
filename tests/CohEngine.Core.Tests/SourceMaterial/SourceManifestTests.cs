@@ -77,7 +77,7 @@ public sealed class SourceManifestTests
 
         IReadOnlyList<PyObject> rows = SourceManifest.Build(tree.FullPath("community"), error);
 
-        Assert.Equal("E212: untitled.md: front matter has no title; capture skipped" + Environment.NewLine, error.ToString());
+        Assert.Equal("E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
         PyObject odd = Assert.Single(rows);
         Assert.Equal("Fire/Kin Controllers \u2013 a guide", odd["title"]);
         Assert.Equal("2024", odd["date_posted"]);
@@ -124,6 +124,32 @@ public sealed class SourceManifestTests
         Assert.Equal(0, code);
         Assert.Contains("2 row(s) withheld by the name filter", output, StringComparison.Ordinal);
         Assert.DoesNotContain("claws", File.ReadAllText(written), StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void A_root_whose_every_row_is_withheld_says_so_and_writes_nothing()
+    {
+        using TempTree tree = new();
+        string written = tree.FullPath("manifest.json");
+
+        (int code, _, string error) = Run(new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = "claws,bio" }, "--source-root", Path.Join(Captures, "source"), "--out", written);
+
+        Assert.Equal(1, code);
+        Assert.StartsWith($"E213: every capture under {Path.Join(Captures, "source", "community")} was withheld by the name filter (3 rows), so nothing was written;", error, StringComparison.Ordinal);
+        Assert.False(File.Exists(written));
+    }
+
+    [Fact]
+    public void A_manifest_that_cannot_be_written_is_a_write_error()
+    {
+        using TempTree tree = new();
+        string folder = Directory.CreateDirectory(tree.FullPath("taken")).FullName;
+
+        (int code, _, string error) = Run(variables: null, "--source-root", Path.Join(Captures, "source"), "--out", folder);
+
+        Assert.Equal(1, code);
+        Assert.StartsWith($"E214: cannot write {folder}: ", error, StringComparison.Ordinal);
+        Assert.Contains("; check that the path names a file in a folder you can write to", error, StringComparison.Ordinal);
     }
 
     [Theory]

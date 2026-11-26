@@ -301,11 +301,26 @@ public static class ErrorCodes
     /// <summary>A capture's front matter has no title; the capture is skipped.</summary>
     public const string E212 = "E212";
 
+    /// <summary>Every capture under the root was withheld by the name filter, so no manifest is written.</summary>
+    public const string E213 = "E213";
+
+    /// <summary>The manifest file could not be written.</summary>
+    public const string E214 = "E214";
+
     // E220-E229: patch-notes, second block.
+
+    /// <summary>The site's robots.txt disallows a URL, so it is not fetched.</summary>
+    public const string E220 = "E220";
+
+    /// <summary>A URL is not fetched because the site's robots.txt was refused or could not be read.</summary>
+    public const string E221 = "E221";
 
     /// <summary>A link or a redirect names a host other than the site being read, so it is not fetched.</summary>
     public const string E222 = "E222";
 
     /// <summary>A page took a parsing pattern past its time limit, so its source stops there and counts as not read completely.</summary>
     public const string E223 = "E223";
+
+    /// <summary>A file under the patch-notes output folder or its cache could not be read or written.</summary>
+    public const string E224 = "E224";
 }

@@ -155,7 +155,7 @@ public sealed class HtmlTextTests
         Assert.Null(fetcher.Get(FakeSite.Forum + "/down"));
         Assert.Null(fetcher.Get(FakeSite.Forum + "/search/x"));
         Assert.Equal(
-            string.Join(Environment.NewLine, $"E200: fetch failed for {FakeSite.Forum}/gone: HTTP Error 410", $"E200: fetch failed for {FakeSite.Forum}/down: boom", $"skip (robots.txt disallows): {FakeSite.Forum}/search/x", string.Empty),
+            string.Join(Environment.NewLine, $"E200: fetch failed for {FakeSite.Forum}/gone: HTTP Error 410; re-run when the site answers, or check the link on the page that named it", $"E200: fetch failed for {FakeSite.Forum}/down: boom; re-run when the site answers, or check the link on the page that named it", $"E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x; it was not fetched; leave the page out, or ask the site's operator to allow it", string.Empty),
             error.ToString());
     }
 
@@ -217,6 +217,7 @@ public sealed class HtmlTextTests
         Assert.StartsWith(expected, error.ToString(), StringComparison.Ordinal);
         Assert.Equal(1, site.Count(FakeSite.Forum + "/robots.txt"));
         Assert.Equal(0, site.Count(FakeSite.Forum + "/ok"));
+        Assert.Contains($"E221: {FakeSite.Forum}/ok was not fetched because {FakeSite.Forum}/robots.txt could not be read (see above); re-run when the site answers", error.ToString(), StringComparison.Ordinal);
     }
 
     [Fact]

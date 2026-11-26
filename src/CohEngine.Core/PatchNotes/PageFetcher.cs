@@ -45,7 +45,7 @@ internal sealed class PageFetcher
             if (status is 401 or 403)
             {
                 blocked = true;
-                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched"));
+                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched; ask the site's operator for access, or leave this source out with --source"));
             }
             else if (status >= 500)
             {
@@ -74,7 +74,7 @@ internal sealed class PageFetcher
         // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the path it will send.
         if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? target))
         {
-            error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; it was skipped");
+            error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; check the link on the page that named it");
             return null;
         }
 
@@ -84,9 +84,16 @@ internal sealed class PageFetcher
             return null;
         }
 
-        if (blocked || !rules.CanFetch(agent, target.PathAndQuery))
+        string robots = site.GetLeftPart(UriPartial.Authority) + "/robots.txt";
+        if (blocked)
         {
-            error.WriteLine("skip (robots.txt disallows): " + url);
+            error.WriteLine($"{ErrorCodes.E221}: {url} was not fetched because {robots} could not be read (see above); re-run when the site answers");
+            return null;
+        }
+
+        if (!rules.CanFetch(agent, target.PathAndQuery))
+        {
+            error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
             return null;
         }
 
@@ -112,7 +119,7 @@ internal sealed class PageFetcher
             reason = exception.Message;
         }
 
-        error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: {reason}");
+        error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: {reason}; re-run when the site answers, or check the link on the page that named it");
         return null;
     }
 

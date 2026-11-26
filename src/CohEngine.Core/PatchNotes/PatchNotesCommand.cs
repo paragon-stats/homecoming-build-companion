@@ -73,20 +73,28 @@ internal sealed class PatchNotesCommand
         IReadOnlySet<string> names = Powersets(canonical);
         if (names.Count == 0)
         {
-            error.WriteLine($"{ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset");
+            error.WriteLine($"{ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
         }
 
-        Directory.CreateDirectory(outDir);
         using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }, disposeHandler: handler is null) { Timeout = TimeSpan.FromSeconds(30) };
         PatchNotesCommand command = new(client, Last(options, "--user-agent") ?? DefaultAgent, delay, names, Last(options, "--cache") ?? Path.Join(outDir, ".cache"), output, error);
-        if (options.ContainsKey("--reparse"))
+        try
         {
-            return command.Reparse(sources, outDir) ? 1 : 0;
-        }
+            Directory.CreateDirectory(outDir);
+            if (options.ContainsKey("--reparse"))
+            {
+                return command.Reparse(sources, outDir) ? 1 : 0;
+            }
 
-        (int total, IReadOnlySet<string> incomplete) = command.Collect(sources, outDir);
-        output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{total} entries written to {outDir}"));
-        return incomplete.Count > 0 ? 1 : 0;
+            (int total, IReadOnlySet<string> incomplete) = command.Collect(sources, outDir);
+            output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{total} entries written to {outDir}"));
+            return incomplete.Count > 0 ? 1 : 0;
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            error.WriteLine($"{ErrorCodes.E224}: cannot read or write under {outDir}: {exception.Message}; check that the folder and its cache can be written and the disk has room");
+            return 1;
+        }
     }
 
     /// <summary>The lower-case names of the player powersets the canonical tree has a folder for.</summary>
@@ -524,7 +532,7 @@ internal sealed class PatchNotesCommand
         string? categories = fetcher.Get(CategoriesUrl);
         if (categories is null)
         {
-            error.WriteLine($"{ErrorCodes.E203}: could not read the patch-notes category browser at {CategoriesUrl}");
+            error.WriteLine($"{ErrorCodes.E203}: could not read the patch-notes category browser at {CategoriesUrl}; no release notes were read; re-run when the forum answers");
             return (0, false);
         }
 
@@ -611,7 +619,7 @@ internal sealed class PatchNotesCommand
         string? index = fetcher.Get(WikiIndexUrl);
         if (index is null)
         {
-            error.WriteLine($"{ErrorCodes.E204}: could not read the wiki patch-notes index at {WikiIndexUrl}");
+            error.WriteLine($"{ErrorCodes.E204}: could not read the wiki patch-notes index at {WikiIndexUrl}; no wiki pages were read; re-run when the wiki answers");
             return (0, false);
         }
 
