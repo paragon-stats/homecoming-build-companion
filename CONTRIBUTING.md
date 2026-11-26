@@ -37,9 +37,46 @@ A worktree or branch cut before the hooks were merged has no `.husky/pre-commit`
 
 | Stage | What runs |
 | --- | --- |
-| `pre-commit` | `dotnet format --verify-no-changes`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files, the commit-signing check, and the text-file check |
+| `pre-commit` | the text-file check, the encoding check, the coverage-exclusion check on the staged files, the commit-signing check, the banned-words check, and `dotnet format --verify-no-changes` |
 | `commit-msg` | `scripts/git/check-commit-message.sh` on the message, the check the commitlint workflow runs; the rule that release types change `src/` is left to CI, since the hook cannot tell an amend from a new commit |
-| `pre-push` | `dotnet build`, `dotnet test --no-build`, the banned-words check, and Super-Linter in Docker |
+| `pre-push` | the banned-words check, `dotnet build`, Super-Linter in Docker, and `dotnet test --no-build` |
+
+Husky runs a group's checks one after another and stops at the first failure.
+Each group therefore runs its quickest checks first, so a quick check that fails is reported in seconds.
+Measured warm times, in run order:
+
+| Stage | Check | Time |
+| --- | --- | --- |
+| `pre-commit` | text files | 0.5-0.6 s (2.2-2.5 s with a Markdown file staged) |
+| `pre-commit` | encoding | 0.7 s |
+| `pre-commit` | coverage exclusions | 0.8 s |
+| `pre-commit` | commit signing | 0.8 s |
+| `pre-commit` | banned words | 1.0-1.2 s |
+| `pre-commit` | `dotnet format` | 30-36 s |
+| `pre-push` | banned words | 1.0-1.2 s |
+| `pre-push` | `dotnet build` | 8 s with nothing to rebuild |
+| `pre-push` | Super-Linter | 58-67 s (0.6 s when it skips without Docker) |
+| `pre-push` | `dotnet test --no-build` | 120 s; it needs the build, so it stays after it |
+
+Husky adds about 0.3 s per check.
+A script compiles once after it changes, and once in a new worktree, in 3.5-5 s.
+
+The `pre-commit` and `pre-push` hooks run their group with Husky's `--quiet` switch, which leaves out Husky's banner and separator lines.
+Each script check prints one line on standard output: `[OK] ...`, or `[SKIP] ...` with the reason.
+Findings go to standard error.
+`dotnet format`, `dotnet build`, `dotnet test` and Super-Linter print their own output.
+To see Husky's banner and per-check lines, run the group by hand without the switch, for example `dotnet husky run --group pre-commit`.
+
+The hooks do not restore the .NET tools; `make bootstrap` does that once per clone.
+Without them, the hook fails with `Run "dotnet tool restore" to make the "husky" command available.`, and `make hooks-check` reports it.
+
+Husky has none of the following, and the hooks do not imitate them:
+
+- a summary table of the checks at the end of a run
+- the time each check took, while `--quiet` is on
+- running the remaining checks after one fails
+- running checks side by side
+- a plain-ASCII failure line: Husky's `Task '<name>' failed in <n>ms` line starts with a non-ASCII cross mark, with or without `--quiet`
 
 The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged and checks:
 trailing whitespace, final newline, extra blank lines at the end and line endings as `.editorconfig` sets them; JSON syntax of every staged `.json` file; files over 15 MB; and markdownlint.
