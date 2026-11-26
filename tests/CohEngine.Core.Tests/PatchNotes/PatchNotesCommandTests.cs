@@ -610,6 +610,7 @@ public sealed class PatchNotesCommandTests
     [InlineData("--delay", "1e300", "argument --delay: not a number of seconds from 0 to 3600: '1e300'")]
     [InlineData("--delay", "3e6", "argument --delay: not a number of seconds from 0 to 3600: '3e6'")]
     [InlineData("--delay", "-1", "argument --delay: not a number of seconds from 0 to 3600: '-1'")]
+    [InlineData("--delay", "3600.0001", "argument --delay: not a number of seconds from 0 to 3600: '3600.0001'")]
     [InlineData("--reparse=yes", "", "unrecognized arguments: --reparse=yes")]
     public void Bad_arguments_print_the_usage_and_exit_2(string name, string value, string problem)
     {
@@ -620,6 +621,25 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(2, code);
         Assert.Equal(PatchNotesCommand.Usage + Environment.NewLine + "coh-engine patch-notes: error: " + problem + Environment.NewLine, error);
         Assert.Empty(site.Calls);
+    }
+
+    [Theory]
+    [InlineData("0")]
+    [InlineData("3600")]
+    public void A_delay_from_0_to_3600_seconds_is_accepted(string delay)
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+
+        // One request only, robots.txt refused, so no gap is ever waited out.
+        site.Routes[Wiki + "/robots.txt"] = HttpStatusCode.Forbidden;
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", delay, "--source", "paragonwiki");
+
+        Assert.Equal(1, code);
+        Assert.DoesNotContain("usage:", error, StringComparison.Ordinal);
+        Assert.Contains("E201: robots.txt refused (403)", error, StringComparison.Ordinal);
+        Assert.Single(site.Calls);
     }
 
     [Fact]
