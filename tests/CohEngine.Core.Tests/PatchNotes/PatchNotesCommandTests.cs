@@ -256,6 +256,23 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void A_listing_that_declares_too_many_pages_is_read_to_the_cap_only()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        site.Routes[Beta] = $"<ul class='ipsPagination' data-pages='100000'><li><a href='{Beta}page/2/'>2</a></li></ul>" + Row(InterimOld, "2019-08-11T00:00:00Z");
+        site.Routes[Staging] = Row(InterimOld, "2019-08-11T00:00:00Z");
+        site.Routes[InterimOld] = Thread("Aug 2019", "2019-08-11T10:00:00Z", Smite);
+
+        (int code, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--source", "forum-beta");
+
+        Assert.Equal(1, code);
+        Assert.Contains($"E226: {Beta} declares 100000 listing pages, more than the 100 read", error, StringComparison.Ordinal);
+        Assert.Contains(site.Calls, call => call.EndsWith("/page/100/", StringComparison.Ordinal));
+        Assert.DoesNotContain(site.Calls, call => call.EndsWith("/page/101/", StringComparison.Ordinal));
+    }
+
+    [Fact]
     public void Beta_sections_that_list_no_threads_fail_the_run()
     {
         using TempTree tree = new();

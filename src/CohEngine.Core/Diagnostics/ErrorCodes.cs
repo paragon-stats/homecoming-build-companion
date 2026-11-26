@@ -324,6 +324,9 @@ public static class ErrorCodes
     /// <summary>A file under the patch-notes output folder or its cache could not be read or written.</summary>
     public const string E224 = "E224";
 
+    /// <summary>A beta listing declares more pages than are read, so its source counts as not read completely.</summary>
+    public const string E226 = "E226";
+
     /// <summary>A listing page answered but named no link, as a maintenance page does, so its source counts as not read completely.</summary>
     public const string E227 = "E227";
 }

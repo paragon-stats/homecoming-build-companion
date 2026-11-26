@@ -22,6 +22,9 @@ internal sealed class PatchNotesCommand
 
     private const string IndexFile = "index.jsonl";
 
+    /// <summary>The most pages of one beta listing that are read; the real sections hold a handful.</summary>
+    private const int MaxListingPages = 100;
+
     private static readonly string[] Sources = [PatchParser.ReleaseNotes, PatchParser.ForumBeta, PatchParser.ParagonWiki];
 
     private static readonly string[] BetaSections = [PatchParser.Forum + "/forum/73-open-beta-patch-notes/", PatchParser.Forum + "/forum/100-staging-patch-notes/"];
@@ -480,7 +483,14 @@ internal sealed class PatchNotesCommand
         List<string> topics = [.. HtmlText.TopicUrls(first)];
         bool allNamed = NamesLinks(forumUrl, topics.Count, "beta thread", error);
         List<string> failed = [];
-        for (long number = 2; number <= HtmlText.LastPageNumber(first); number++)
+        long declared = HtmlText.LastPageNumber(first);
+        if (declared > MaxListingPages)
+        {
+            allNamed = false;
+            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E226}: {forumUrl} declares {declared} listing pages, more than the {MaxListingPages} read, so its threads past page {MaxListingPages} were not read and its source counts as not read completely; check the listing in a browser, and raise MaxListingPages in PatchNotesCommand if the section really is that long"));
+        }
+
+        for (long number = 2; number <= Math.Min(declared, MaxListingPages); number++)
         {
             string url = string.Create(CultureInfo.InvariantCulture, $"{listingBase}/page/{number}/");
             if (fetcher.Get(url) is { } listing)
