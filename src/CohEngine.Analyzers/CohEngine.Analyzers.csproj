@@ -11,10 +11,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" PrivateAssets="all" ExcludeAssets="runtime" />
   </ItemGroup>
 
-  <!-- RS2008: every rule this analyzer ships is tracked here. -->
-  <ItemGroup>
-    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
-    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
-  </ItemGroup>
+  <!-- RS2008: every rule this analyzer ships is tracked in AnalyzerReleases.*.md, which
+       Microsoft.CodeAnalysis.Analyzers adds as AdditionalFiles itself; listing them here duplicates them. -->
 
 </Project>
