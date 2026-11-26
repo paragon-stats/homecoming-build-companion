@@ -119,8 +119,8 @@ Store it in 1Password at `op://Homelab/mcp-github-local/credential`, matching th
 
 The MCP server replaces the **agent-facing** GitHub helpers. It does not replace the
 **CI-facing** ones: GitHub Actions cannot call an MCP server. The CI-facing helpers today are
-`scripts/ci/report_status_context.py` and `scripts/github/pr_summary.py`, which share the
-`gh_cli` and `cli_utils` modules. (`create_tag.py` left with the CalVer workflow it served;
+the `report-status-context` composite action (bash and `gh`) and `tools/pr-summary.cs`; no
+workflow calls the Python modules in `scripts/github/` any more. (`create_tag.py` left with the CalVer workflow it served;
 release tags are cut by `paragon-stats/github-actions/release`.)
 
 Note that `.github/instructions/devsecops_workflow.instructions.md` and

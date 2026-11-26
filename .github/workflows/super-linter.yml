@@ -25,7 +25,6 @@ permissions: {}
 
 jobs:
   lint:
-    name: Lint Code Base
     runs-on: ubuntu-latest
     # Backstop: scanners crawling the large game-data trees must fail fast,
     # not consume a 6-hour runner slot.
@@ -66,11 +65,10 @@ jobs:
 
       # --- Spoke-specific: report status for ruleset required checks ---
       - name: Report required status context
-        if: ${{ github.event_name == 'pull_request' && always() }}
+        if: ${{ (github.event_name == 'pull_request' || github.event_name == 'merge_group') && always() }}
         uses: $/.github/actions/report-status-context
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number }}
           job-status: ${{ job.status }}
           status-context: Super-Linter / Lint Code Base
           target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

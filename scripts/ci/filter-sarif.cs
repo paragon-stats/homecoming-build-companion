@@ -1,0 +1,208 @@
+// filter-sarif.cs - drop results in generated build output from CodeQL SARIF files before upload.
+//
+//   dotnet run scripts/ci/filter-sarif.cs -- <directory>                rewrite every *.sarif in the directory
+//   dotnet run scripts/ci/filter-sarif.cs -- --list-only <directory>    print only, rewrite nothing
+//   dotnet run scripts/ci/filter-sarif.cs -- --selftest
+//
+// CodeQL ignores paths-ignore for a language analysed with a build, so the C# job writes its SARIF to a
+// directory, runs this script over it and uploads the result. The Python job, which uploads from analyze,
+// uses --list-only to print what remains. Either way, one line per remaining result (rule id, path, start
+// line) is printed.
+// A result is removed when the path of its primary location has an obj segment (src/Foo/obj/...);
+// Objects.cs and objects/ stay. Rules, artifacts and every other part of the file are left as written.
+// Exit codes: 0 done, 1 no SARIF file in the directory, 2 no directory given.
+// CI tooling, not shipped product code: exempt from the solution-wide analyzers.
+#:property TreatWarningsAsErrors=false
+#:property EnforceCodeStyleInBuild=false
+#:property RunAnalyzers=false
+
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
+
+if (args.Contains("--selftest"))
+{
+    return SelfTest();
+}
+
+return Filter(args, Console.Out, Console.Error);
+
+static int Filter(string[] args, TextWriter output, TextWriter error)
+{
+    bool rewrite = !args.Contains("--list-only");
+    string? directory = args.FirstOrDefault(arg => arg != "--list-only");
+    if (directory is null)
+    {
+        error.WriteLine("usage: [--list-only] <directory> | --selftest");
+        return 2;
+    }
+
+    string[] files = Directory.Exists(directory)
+        ? [.. Directory.GetFiles(directory, "*.sarif").Order(StringComparer.Ordinal)]
+        : [];
+    if (files.Length == 0)
+    {
+        error.WriteLine($"no SARIF file in {directory}");
+        return 1;
+    }
+
+    foreach (string path in files)
+    {
+        (int removed, List<string> remaining) = FilterFile(path, rewrite);
+        string verb = rewrite ? "removed" : "would remove";
+        output.WriteLine($"{Path.GetFileName(path)}: {verb} {removed} generated-file results, {remaining.Count} remain");
+        foreach (string line in remaining)
+        {
+            output.WriteLine($"  {line}");
+        }
+    }
+
+    return 0;
+}
+
+static (int Removed, List<string> Remaining) FilterFile(string path, bool rewrite)
+{
+    JsonNode sarif = JsonNode.Parse(File.ReadAllText(path))!;
+    int removed = 0;
+    List<string> remaining = [];
+    foreach (JsonNode? run in sarif["runs"]?.AsArray() ?? [])
+    {
+        JsonNode[] results = [.. (run!["results"]?.AsArray() ?? []).Select(result => result!)];
+        JsonArray kept = [];
+        foreach (JsonNode result in results)
+        {
+            if (Regex.IsMatch(Uri(result), "(^|/)obj/"))
+            {
+                removed++;
+                continue;
+            }
+
+            remaining.Add($"{(string?)result["ruleId"] ?? ""} {Uri(result)}:{Line(result)}");
+            kept.Add(result.DeepClone());
+        }
+
+        run["results"] = kept;
+    }
+
+    if (rewrite)
+    {
+        File.WriteAllText(path, sarif.ToJsonString());
+    }
+
+    remaining.Sort(StringComparer.Ordinal);
+    return (removed, remaining);
+}
+
+static JsonNode? PrimaryLocation(JsonNode result) =>
+    result["locations"] is JsonArray { Count: > 0 } locations ? locations[0]?["physicalLocation"] : null;
+
+static string Uri(JsonNode result) => (string?)PrimaryLocation(result)?["artifactLocation"]?["uri"] ?? "";
+
+static int Line(JsonNode result) => (int?)PrimaryLocation(result)?["region"]?["startLine"] ?? 0;
+
+static int SelfTest()
+{
+    List<string> failures = [];
+    void Check(bool passed, string name)
+    {
+        if (!passed)
+        {
+            failures.Add(name);
+        }
+    }
+
+    static JsonObject Result(string uri, int line = 0) => new()
+    {
+        ["ruleId"] = "cs/x",
+        ["locations"] = new JsonArray(new JsonObject
+        {
+            ["physicalLocation"] = new JsonObject
+            {
+                ["artifactLocation"] = new JsonObject { ["uri"] = uri },
+                ["region"] = new JsonObject { ["startLine"] = line },
+            },
+        }),
+    };
+
+    static (int Code, string[] Output) Capture(params string[] arguments)
+    {
+        StringWriter output = new();
+        int code = Filter(arguments, output, TextWriter.Null);
+        return (code, output.ToString().Split('\n', StringSplitOptions.RemoveEmptyEntries).Select(line => line.TrimEnd('\r')).ToArray());
+    }
+
+    string root = Path.Join(Path.GetTempPath(), $"filter-sarif-{Guid.NewGuid():N}");
+    try
+    {
+        // Generated results are removed and the rest kept, in order, with the run's other parts untouched.
+        string rewriteDir = Directory.CreateDirectory(Path.Join(root, "rewrite")).FullName;
+        string[] uris =
+        [
+            "src/Foo/obj/Debug/net10.0/generated/Ctx.g.cs",
+            "tests/Foo/obj/Debug/net10.0/XunitAutoGeneratedEntryPoint.cs",
+            "obj/top.cs",
+            "src/Foo/Objects.cs",
+            "src/objects/Thing.cs",
+            "src/Foo/Bar.cs",
+        ];
+        Dictionary<string, int> lines = new() { ["src/Foo/Bar.cs"] = 7, ["src/Foo/Objects.cs"] = 3, ["src/objects/Thing.cs"] = 5 };
+        JsonArray results = [.. uris.Select(uri => (JsonNode)Result(uri, lines.GetValueOrDefault(uri)))];
+        results.Add(new JsonObject { ["ruleId"] = "no-location" });
+        JsonObject document = new()
+        {
+            ["runs"] = new JsonArray(new JsonObject
+            {
+                ["tool"] = new JsonObject { ["driver"] = new JsonObject { ["name"] = "CodeQL" } },
+                ["artifacts"] = new JsonArray(new JsonObject { ["location"] = new JsonObject { ["uri"] = "a" } }),
+                ["results"] = results,
+            }),
+        };
+        string csharp = Path.Join(rewriteDir, "csharp.sarif");
+        File.WriteAllText(csharp, document.ToJsonString());
+        (int code, string[] printed) = Capture(rewriteDir);
+        JsonNode written = JsonNode.Parse(File.ReadAllText(csharp))!["runs"]![0]!;
+        string?[] kept = [.. written["results"]!.AsArray().Select(result => (string?)PrimaryLocation(result!)?["artifactLocation"]?["uri"])];
+        Check(code == 0, "rewrite: exit 0");
+        Check(kept.SequenceEqual(["src/Foo/Objects.cs", "src/objects/Thing.cs", "src/Foo/Bar.cs", null]), "rewrite: kept results");
+        Check(JsonNode.DeepEquals(written["tool"], JsonNode.Parse("""{"driver":{"name":"CodeQL"}}""")), "rewrite: tool untouched");
+        Check(JsonNode.DeepEquals(written["artifacts"], JsonNode.Parse("""[{"location":{"uri":"a"}}]""")), "rewrite: artifacts untouched");
+        Check(
+            printed.SequenceEqual(
+            [
+                "csharp.sarif: removed 3 generated-file results, 4 remain",
+                "  cs/x src/Foo/Bar.cs:7",
+                "  cs/x src/Foo/Objects.cs:3",
+                "  cs/x src/objects/Thing.cs:5",
+                "  no-location :0",
+            ]),
+            "rewrite: printed lines");
+
+        // --list-only prints without rewriting.
+        string listDir = Directory.CreateDirectory(Path.Join(root, "list")).FullName;
+        string python = Path.Join(listDir, "python.sarif");
+        string original = new JsonObject { ["runs"] = new JsonArray(new JsonObject { ["results"] = new JsonArray(Result("src/A.cs", 2), Result("src/obj/B.cs", 4)) }) }.ToJsonString();
+        File.WriteAllText(python, original);
+        (code, printed) = Capture("--list-only", listDir);
+        Check(code == 0, "list-only: exit 0");
+        Check(File.ReadAllText(python) == original, "list-only: file unchanged");
+        Check(printed.SequenceEqual(["python.sarif: would remove 1 generated-file results, 1 remain", "  cs/x src/A.cs:2"]), "list-only: printed lines");
+
+        // A directory without SARIF fails.
+        string emptyDir = Directory.CreateDirectory(Path.Join(root, "empty")).FullName;
+        Check(Capture(emptyDir).Code == 1, "no SARIF: exit 1");
+        Check(Capture().Code == 2, "no directory: exit 2");
+    }
+    finally
+    {
+        Directory.Delete(root, recursive: true);
+    }
+
+    if (failures.Count > 0)
+    {
+        Console.Error.WriteLine("SELFTEST FAILED: " + string.Join(" | ", failures));
+        return 1;
+    }
+
+    Console.WriteLine("selftest ok");
+    return 0;
+}

@@ -14,7 +14,7 @@
     One-two sentence outcome description.
 
     This section is regenerated from the PR's commits by the PR Summary workflow
-    (`python -m scripts.github.pr_summary --pr N`) on every push and on dispatch.
+    (`dotnet run tools/pr-summary.cs -- --pr N`) on every push and on dispatch.
     Manual edits between the markers are overwritten on the next run; text outside
     the markers is kept. -->
 - Briefly explain the change and why it's needed

@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  merge_group:
+    branches: [main]
+    types: [checks_requested]
   schedule:
     - cron: "27 3 * * 1"  # weekly baseline scan
 
@@ -36,8 +39,8 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0  # MinVer derives the version from git history + tags
+      # Both legs: the C# build needs it, and both run the SARIF filter script.
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73  # v6.1.0
-        if: matrix.language == 'csharp'
         with:
           global-json-file: global.json
       - uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066  # v4.39.3
@@ -62,7 +65,7 @@ jobs:
         shell: bash
         env:
           SARIF_DIR: ${{ runner.temp }}/codeql-sarif
-        run: python3 -m scripts.ci.filter_sarif --list-only "$SARIF_DIR"
+        run: dotnet run scripts/ci/filter-sarif.cs -- --list-only "$SARIF_DIR"
       # paths-ignore is ignored for a language analysed with a build, so the C# results are
       # written to disk, stripped of generated obj/ findings, then uploaded under the same
       # category and tool name.
@@ -77,7 +80,7 @@ jobs:
         shell: bash
         env:
           SARIF_DIR: ${{ runner.temp }}/codeql-sarif
-        run: python -m scripts.ci.filter_sarif "$SARIF_DIR"
+        run: dotnet run scripts/ci/filter-sarif.cs -- "$SARIF_DIR"
       - uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066  # v4.39.3
         if: matrix.language == 'csharp'
         with:
