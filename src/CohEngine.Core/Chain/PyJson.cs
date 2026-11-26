@@ -89,12 +89,8 @@ public static class PyJson
             return BigInteger.Parse(text, CultureInfo.InvariantCulture);
         }
 
-        if (element.TryGetDouble(out double real))
-        {
-            return real;
-        }
-
-        return text[0] == '-' ? double.NegativeInfinity : double.PositiveInfinity;
+        // Past the double range this is an infinity of the number's sign, as Python's float() gives.
+        return element.GetDouble();
     }
 
     private static void Write(StringBuilder builder, object? value, int depth, Style style)
