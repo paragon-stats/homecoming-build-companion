@@ -20,9 +20,17 @@ internal sealed class FakeSite : HttpMessageHandler
 
     public List<string> Calls { get; } = [];
 
+    public bool Disposed { get; private set; }
+
     public int Count(string url)
     {
         return Calls.Count(call => string.Equals(call, url, StringComparison.Ordinal));
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        Disposed = true;
+        base.Dispose(disposing);
     }
 
     protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)

@@ -312,6 +312,17 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void A_network_layer_the_caller_passes_in_is_not_disposed()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+
+        Run(site, "--out", tree.Root, "--delay", "0", "--source", "release-notes");
+
+        Assert.False(site.Disposed);
+    }
+
+    [Fact]
     public void Re_dating_leaves_live_release_notes_whole()
     {
         using TempTree tree = new();

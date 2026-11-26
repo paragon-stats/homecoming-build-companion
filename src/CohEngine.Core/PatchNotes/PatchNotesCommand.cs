@@ -77,7 +77,7 @@ internal sealed class PatchNotesCommand
         }
 
         Directory.CreateDirectory(outDir);
-        using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }) { Timeout = TimeSpan.FromSeconds(30) };
+        using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }, disposeHandler: handler is null) { Timeout = TimeSpan.FromSeconds(30) };
         PatchNotesCommand command = new(client, Last(options, "--user-agent") ?? DefaultAgent, delay, names, Last(options, "--cache") ?? Path.Join(outDir, ".cache"), output, error);
         if (options.ContainsKey("--reparse"))
         {
