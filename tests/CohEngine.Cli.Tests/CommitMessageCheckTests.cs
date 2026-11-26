@@ -90,7 +90,7 @@ public sealed class CommitMessageCheckTests
         environment["MESSAGE_FILE"] = file.Replace('\\', '/');
         environment["CHANGED_PATHS"] = changedPaths;
 
-        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, DevScripts.Bash(), environment, Path.Join(DevScripts.RepositoryRoot, "scripts", "git", "check-commit-message.sh").Replace('\\', '/'));
+        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, DevScripts.Bash(), environment, Script("git", "check-commit-message.sh"));
 
         Assert.True(accepted ? exit == 0 : exit == 1, string.Create(CultureInfo.InvariantCulture, $"exit {exit}: {output}"));
     }
@@ -114,20 +114,74 @@ public sealed class CommitMessageCheckTests
         Assert.Contains("not a Conventional Commit", badOutput, StringComparison.Ordinal);
     }
 
+    // An amend stages only the new files, and the hook cannot tell an amend from a new commit, so the src/ rule is CI's alone.
     [Fact]
-    public void The_husky_commit_msg_group_rejects_a_release_type_that_stages_nothing_under_src()
+    public void The_husky_commit_msg_group_leaves_the_src_rule_to_ci()
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
-        tree.Write("docs/a.md", "# A\n");
-        DevScripts.Git(tree.Root, "add", "docs/a.md");
-        tree.Write("message.txt", "fix(dev): touches only docs\n");
-        Dictionary<string, string?> hookPath = HookPath();
+        tree.Write("tests/a.cs", "// a test\n");
+        DevScripts.Git(tree.Root, "add", "tests/a.cs");
+        tree.Write("message.txt", "feat(engine): amended with a staged test only\n");
 
-        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, "dotnet", hookPath, "husky", "run", "--group", "commit-msg", "--args", "message.txt");
+        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, "dotnet", HookPath(), "husky", "run", "--group", "commit-msg", "--args", "message.txt");
+
+        Assert.True(exit == 0, output);
+    }
+
+    // Thousands of changed files must not reach the environment, where Linux refuses a variable over 128 KB.
+    [Theory]
+    [InlineData(true, 0)]
+    [InlineData(false, 1)]
+    public void The_changed_path_picker_passes_one_path_from_a_list_over_200_kb(bool touchesSrc, int validatorExit)
+    {
+        using TempTree tree = new();
+        DevScripts.Git(tree.Root, "init", "--quiet");
+        string[] commit = ["-c", "user.name=t", "-c", "user.email=t@example.invalid", "-c", "commit.gpgsign=false", "commit", "--quiet", "--allow-empty", "-m"];
+        DevScripts.Git(tree.Root, [.. commit, "chore: start"]);
+        string folder = "data/" + new string('x', 90);
+        for (int file = 0; file < 2500; file++)
+        {
+            tree.Write(string.Create(CultureInfo.InvariantCulture, $"{folder}/{file:D5}.json"), "{}\n");
+        }
+
+        if (touchesSrc)
+        {
+            tree.Write("src/a.cs", "// a\n");
+        }
+
+        DevScripts.Git(tree.Root, "add", "--all");
+        DevScripts.Git(tree.Root, [.. commit, "feat: regenerate the data"]);
+        string list = DevScripts.Git(tree.Root, "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD");
+        Assert.True(list.Length > 200 * 1024, string.Create(CultureInfo.InvariantCulture, $"list is {list.Length} bytes"));
+
+        (int pickExit, string picked) = DevScripts.RunWithEnvironment(tree.Root, DevScripts.Bash(), HookPath(), Script("ci", "changed-path.sh"), "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD");
+        string message = tree.Write("message.txt", "feat: regenerate the data\n");
+        Dictionary<string, string?> environment = HookPath();
+        environment["MESSAGE_FILE"] = message.Replace('\\', '/');
+        environment["CHANGED_PATHS"] = picked.Trim();
+        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, DevScripts.Bash(), environment, Script("git", "check-commit-message.sh"));
+
+        Assert.True(pickExit == 0, picked);
+        Assert.Equal(touchesSrc ? "src/a.cs" : $"{folder}/00000.json", picked.Trim());
+        Assert.True(exit == validatorExit, output);
+    }
+
+    [Fact]
+    public void The_changed_path_picker_fails_when_git_fails()
+    {
+        using TempTree tree = new();
+        DevScripts.Git(tree.Root, "init", "--quiet");
+
+        (int exit, string output) = DevScripts.RunWithEnvironment(tree.Root, DevScripts.Bash(), HookPath(), Script("ci", "changed-path.sh"), "diff-tree", "--no-commit-id", "--name-only", "-r", "no-such-commit");
 
         Assert.NotEqual(0, exit);
-        Assert.Contains("changes nothing under src/", output, StringComparison.Ordinal);
+        Assert.Contains("no-such-commit", output, StringComparison.Ordinal);
+    }
+
+    private static string Script(string folder, string name)
+    {
+        return Path.Join(DevScripts.RepositoryRoot, "scripts", folder, name).Replace('\\', '/');
     }
 
     // Git puts its own bash first on PATH when it runs a hook; so do these tests.

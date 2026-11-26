@@ -41,7 +41,7 @@
       "name": "check-commit-message",
       "group": "commit-msg",
       "command": "bash",
-      "args": ["-c", "MESSAGE_FILE=\"$1\" CHANGED_PATHS=\"$(git diff --cached --name-only)\" bash scripts/git/check-commit-message.sh", "check-commit-message", "${args}"]
+      "args": ["-c", "MESSAGE_FILE=\"$1\" bash scripts/git/check-commit-message.sh", "check-commit-message", "${args}"]
     },
     {
       "name": "build",
