@@ -15,6 +15,8 @@
     <PackageReference Include="xunit.v3.mtp-v2" />
     <!-- The tests drive a real compilation, so they need the compiler at runtime. -->
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <!-- The required-check tests read the workflow files. -->
+    <PackageReference Include="YamlDotNet" />
   </ItemGroup>
 
   <!--

@@ -39,6 +39,34 @@ Apply the ruleset only after the first green `sonar` run (see [`../sonar.md`](..
 The required status check list still names `All Tests Passed`.
 Swap it for the dotnet checks when issue #108 lands.
 
+## Required check names
+
+Each required context is reported by exactly one job, on `pull_request` and on `merge_group`.
+`RequiredCheckTests` in `tests/CohEngine.Analyzers.Tests/Ci` reads the rulesets and the workflows and fails when that stops being true.
+
+`main-ruleset.json` requires commit statuses, which the `report-status-context` action posts with `gh`:
+
+| Context | Workflow / job |
+| --- | --- |
+| `Super-Linter / Lint Code Base` | `super-linter.yml` / `lint` |
+| `Commit Message Lint / commitlint` | `commitlint.yml` / `commitlint`; `merge-group` in the merge queue |
+| `Commit Message Lint / pr-title` | `commitlint.yml` / `pr-title`; `merge-group` in the merge queue |
+| `Commit Message Lint / release-policy` | `commitlint.yml` / `release-policy` |
+| `Pre-commit Hooks / Run pre-commit` | `pre-commit.yml` / `pre-commit` |
+| `All Tests Passed` | `pytest-coverage.yml` / `all-tests-passed` |
+| `sonar` | `sonar.yml` / `sonar` (the job's own check) |
+
+The commits and the title belong to a pull request.
+In the merge queue the `merge-group` job reports those two contexts on the merge group's commit instead of linting again.
+
+`main-ruleset.proposed.json` requires the jobs' own checks instead, so no workflow has to post a status:
+`lint`, `commitlint`, `pr-title`, `release-policy`, `build (windows-latest)`, `binary`, `analyze (csharp)` and `sonar`.
+It drops the two Python checks, `Pre-commit Hooks / Run pre-commit` and `All Tests Passed`.
+A job skipped by its `if:` still reports its check as skipped, which satisfies the ruleset, so `commitlint` and `pr-title` need nothing extra in the merge queue.
+Every one of these checks already reports on pull requests.
+The operator applies it with the command under "Apply the ruleset", using `--input docs/ci/github-rulesets/main-ruleset.proposed.json`.
+After that, the status steps and the `merge-group` job can be removed.
+
 ## Enable secret scanning
 
 Secret scanning, non-provider patterns and push protection are free on public repositories.

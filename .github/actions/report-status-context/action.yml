@@ -1,14 +1,13 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-action.json
 ---
 name: Report Status Context
-description: Report a required status check context on the PR merge commit SHA.
+description: >-
+  Report a required status check context on the head commit of the pull request
+  or merge group that triggered the run.
 
 inputs:
   github-token:
     description: GitHub token used to call the GitHub API.
-    required: true
-  pr-number:
-    description: Pull request number.
     required: true
   job-status:
     description: GitHub Actions job status (e.g. success, failure).
@@ -23,26 +22,46 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Validate script exists
-      shell: bash
-      run: |
-        test -f scripts/ci/report_status_context.py
-
     - name: Report required status context
       shell: bash
       env:
+        # Token is consumed from the GH_TOKEN env var so the secret never
+        # appears in the runner's process argv.
         GH_TOKEN: ${{ inputs.github-token }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
-        PR_NUMBER: ${{ inputs.pr-number }}
+        REPOSITORY: ${{ github.repository }}
+        # The commit the run checked: the pull request head, or the merge group
+        # head in the merge queue.
+        HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
         JOB_STATUS: ${{ inputs.job-status }}
         STATUS_CONTEXT: ${{ inputs.status-context }}
         TARGET_URL: ${{ inputs.target-url }}
       run: |
-        # Token is consumed from the GH_TOKEN env var (exported above) so the
-        # secret never appears in the runner's process argv.
-        python3 -m scripts.ci.report_status_context \
-          --pr-number "$PR_NUMBER" \
-          --job-status "$JOB_STATUS" \
-          --status-context "$STATUS_CONTEXT" \
-          --target-url "$TARGET_URL"
+        set -euo pipefail
+        if [[ -z "$HEAD_SHA" ]]; then
+          echo "::error::No pull request or merge group head commit in this event; the status '$STATUS_CONTEXT' has nowhere to go."
+          exit 2
+        fi
+        case "$JOB_STATUS" in
+          success | failure) state="$JOB_STATUS" ;;
+          *) state=error ;;
+        esac
+        echo "Posting status context '$STATUS_CONTEXT' (state=$state) to $REPOSITORY@${HEAD_SHA:0:12}" >&2
+        # One bad API reply must not fail a job whose own work passed; a lasting
+        # failure still fails after the third try.
+        for delay in 2 4 last; do
+          if gh api --silent -X POST "repos/$REPOSITORY/statuses/$HEAD_SHA" \
+            -f state="$state" \
+            -f context="$STATUS_CONTEXT" \
+            -f description="Reported by GitHub Actions ($JOB_STATUS)" \
+            -f target_url="$TARGET_URL"; then
+            exit 0
+          fi
+          if [[ "$delay" == last ]]; then
+            break
+          fi
+          echo "Posting failed, retrying in $delay s" >&2
+          sleep "$delay"
+        done
+        echo "::error::Failed to post status context '$STATUS_CONTEXT' to $REPOSITORY@${HEAD_SHA:0:12}"
+        exit 1
 ...

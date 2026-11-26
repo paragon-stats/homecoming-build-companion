@@ -64,6 +64,22 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
         return true;
     }
 
+    /// <summary>Reads an option's value, from <c>--opt=value</c> or from the next argument, which it then consumes.</summary>
+    internal static bool TryTakeValue(IReadOnlyList<string> args, ref int index, out string name, out string value)
+    {
+        string arg = args[index];
+        name = arg.Split('=')[0];
+        if (arg.Contains('=', StringComparison.Ordinal))
+        {
+            value = arg[(name.Length + 1)..];
+            return true;
+        }
+
+        index++;
+        value = index < args.Count ? args[index] : string.Empty;
+        return index < args.Count;
+    }
+
     private static bool IsValuedOption(string arg)
     {
         return arg is "--mids-dir" or "--format" or "--expect"
@@ -93,22 +109,6 @@ internal sealed record ValidateArguments(string BuildPath, string? MidsDirectory
         }
 
         return $"argument --format: invalid choice: '{value}' (choose from 'text', 'json')";
-    }
-
-    /// <summary>Reads an option's value, from <c>--opt=value</c> or from the next argument, which it then consumes.</summary>
-    private static bool TryTakeValue(IReadOnlyList<string> args, ref int index, out string name, out string value)
-    {
-        string arg = args[index];
-        name = arg.Split('=')[0];
-        if (arg.Contains('=', StringComparison.Ordinal))
-        {
-            value = arg[(name.Length + 1)..];
-            return true;
-        }
-
-        index++;
-        value = index < args.Count ? args[index] : string.Empty;
-        return index < args.Count;
     }
 
     /// <summary>Adds a <c>metric=value</c> claim; returns the reason it is malformed, or an empty string.</summary>

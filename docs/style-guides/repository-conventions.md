@@ -61,7 +61,7 @@ PRs that close more than one issue group commits by issue. The PR template at [`
 - Multi-issue PR: per-issue bold headings (`**Issue #NNN — Short title:**`) followed by 1–2 sentence outcome descriptions.
 
 The `<!-- auto-summary:start --><!-- auto-summary:end -->` markers in the PR template are owned by the PR Summary workflow
-([`.github/workflows/pr-summary.yml`](../../.github/workflows/pr-summary.yml), running `python -m scripts.github.pr_summary --pr N`).
+([`.github/workflows/pr-summary.yml`](../../.github/workflows/pr-summary.yml), running `dotnet run tools/pr-summary.cs -- --pr N`).
 It regenerates the text between the markers from the PR's own commits on every push, grouping by the issues the commits reference;
 text outside the markers is kept. Run it by hand with `--dry-run` to preview, or dispatch the workflow to refresh a PR after its linked issue changes.
 

@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  merge_group:
+    branches: [main]
+    types: [checks_requested]
   workflow_dispatch:
 
 permissions:
@@ -66,6 +69,13 @@ jobs:
           }
           if ($failed) { exit 1 }
           exit 0
+      # The CI scripts run outside the solution, so their tests are built in: --selftest.
+      - name: Self-test the CI scripts
+        run: |
+          foreach ($script in 'scripts/ci/filter-sarif.cs', 'scripts/ci/sonar-gate.cs', 'tools/pr-summary.cs') {
+            dotnet run $script -- --selftest
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
       - run: dotnet format --verify-no-changes --severity error --no-restore
       - run: dotnet build --no-restore
       # Visual Studio XML coverage: dotnet-coverage supports the Microsoft.Testing.Platform

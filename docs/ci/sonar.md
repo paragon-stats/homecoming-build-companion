@@ -41,7 +41,9 @@ Dependabot pull requests are skipped the same way; the push to `main` analyses a
 ## The rule gate
 
 SonarQube Cloud's pull-request analysis reports only issues a pull request introduces, so a pull request that leaves an old finding in place still shows zero.
-The `Sonar rule gate` step, after the end step, runs `python -m scripts.ci.sonar_gate` and fails the job while a gated rule has open findings.
+The `Sonar rule gate` step, after the end step, runs `dotnet run scripts/ci/sonar-gate.cs` and fails the job while a gated rule has open findings.
+The script's tests run in the `build` workflow with `--selftest`.
+It sets `SonarQubeExclude`, so its own build, which runs after the end step in the same workspace, adds no project to `.sonarqube/out` that the gate would then expect results for.
 The `SonarAnalyzer.CSharp` package is not added to the build instead.
 Its SONAR Source-Available License v1.0 limits use to a "Non-competitive Purpose", which does not allow distribution under GPL-3.0.
 
