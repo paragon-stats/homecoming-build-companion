@@ -148,6 +148,21 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
+    public void Super_linter_prints_only_what_did_not_pass_in_ci_and_locally_alike()
+    {
+        string[] shared = File.ReadAllLines(Path.Join(DevScripts.RepositoryRoot, ".github", "super-linter.env"));
+        string workflow = File.ReadAllText(Path.Join(DevScripts.RepositoryRoot, ".github", "workflows", "super-linter.yml"));
+        string[] checkov = File.ReadAllLines(Path.Join(DevScripts.RepositoryRoot, ".github", "linters", ".checkov.yaml"));
+
+        // The workflow and the local runner both read the shared file, so the settings live there and nowhere else.
+        Assert.Contains("LOG_LEVEL=NOTICE", shared, StringComparer.Ordinal);
+        Assert.Contains("SUPPRESS_POSSUM=true", shared, StringComparer.Ordinal);
+        Assert.DoesNotContain("LOG_LEVEL", workflow, StringComparison.Ordinal);
+        Assert.DoesNotContain("SUPPRESS_POSSUM", workflow, StringComparison.Ordinal);
+        Assert.Contains("quiet: true", checkov, StringComparer.Ordinal);
+    }
+
+    [Fact]
     public void The_super_linter_runner_prints_no_outcome_line_of_success_when_the_container_run_fails()
     {
         using TempTree tree = new();
