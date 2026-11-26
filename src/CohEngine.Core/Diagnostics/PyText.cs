@@ -309,7 +309,20 @@ public static class PyText
         }
         finally
         {
+            RemoveTemporary(temporary);
+        }
+    }
+
+    /// <summary>Deletes the temporary file when it can; a file someone else holds, or a folder gone, leaves it behind rather than replace the error already in flight.</summary>
+    private static void RemoveTemporary(string temporary)
+    {
+        try
+        {
             File.Delete(temporary);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            // Best effort: a stray .tmp file costs nothing, losing the caller's real error costs the diagnosis.
         }
     }
 

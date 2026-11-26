@@ -82,6 +82,26 @@ public sealed class PyTextStringTests
         Assert.Equal([path], Directory.GetFiles(tree.Root));
     }
 
+    [Fact]
+    public void A_temporary_file_that_cannot_be_cleaned_up_does_not_hide_the_error_about_the_target()
+    {
+        Assert.SkipUnless(OperatingSystem.IsWindows(), "Only Windows refuses to replace a file another handle holds open.");
+        using TempTree tree = new();
+        string path = tree.Write("a.txt", "old\n");
+        FileStream? temporaryHolder = null;
+
+        IOException refused;
+        using (new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.None))
+        {
+            // After the first failed move, hold the temporary file too, so its cleanup fails as well.
+            refused = Assert.Throws<IOException>(() => PyText.WriteText(path, "new\n", _ => temporaryHolder ??= new FileStream(Directory.GetFiles(tree.Root, ".*.tmp").Single(), FileMode.Open, FileAccess.Read, FileShare.None)));
+            temporaryHolder?.Dispose();
+        }
+
+        Assert.StartsWith($"{path} is in use by another process", refused.Message, StringComparison.Ordinal);
+        Assert.Equal("old\n", File.ReadAllText(path));
+    }
+
     [Theory]
     [InlineData(1)]
     [InlineData(2)]
