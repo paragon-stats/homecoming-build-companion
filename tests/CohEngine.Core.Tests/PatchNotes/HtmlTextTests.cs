@@ -155,7 +155,7 @@ public sealed class HtmlTextTests
         Assert.Null(fetcher.Get(FakeSite.Forum + "/down"));
         Assert.Null(fetcher.Get(FakeSite.Forum + "/search/x"));
         Assert.Equal(
-            string.Join(Environment.NewLine, $"E200: fetch failed for {FakeSite.Forum}/gone: HTTP Error 410; re-run when the site answers, or check the link on the page that named it", $"E200: fetch failed for {FakeSite.Forum}/down: boom; re-run when the site answers, or check the link on the page that named it", $"E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x; it was not fetched; leave the page out, or ask the site's operator to allow it", string.Empty),
+            string.Join(Environment.NewLine, $"error: E200: fetch failed for {FakeSite.Forum}/gone: HTTP Error 410; re-run when the site answers, or check the link on the page that named it", $"error: E200: fetch failed for {FakeSite.Forum}/down: boom; re-run when the site answers, or check the link on the page that named it", $"error: E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x; it was not fetched; leave the page out, or ask the site's operator to allow it", string.Empty),
             error.ToString());
     }
 
@@ -223,7 +223,7 @@ public sealed class HtmlTextTests
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(url));
         Assert.Equal(0, site.Count(url));
-        Assert.StartsWith("E222: " + url, error.ToString(), StringComparison.Ordinal);
+        Assert.StartsWith("error: E222: " + url, error.ToString(), StringComparison.Ordinal);
     }
 
     [Fact]
@@ -254,12 +254,12 @@ public sealed class HtmlTextTests
         using StringWriter error = new();
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get("https://a..b/topic/1-a/"));
-        Assert.StartsWith("E200: fetch failed for https://a..b/topic/1-a/: ", error.ToString(), StringComparison.Ordinal);
+        Assert.StartsWith("error: E200: fetch failed for https://a..b/topic/1-a/: ", error.ToString(), StringComparison.Ordinal);
     }
 
     [Theory]
-    [InlineData(HttpStatusCode.Forbidden, "E201: robots.txt refused (403) at https://forums.homecomingservers.com/robots.txt; nothing will be fetched")]
-    [InlineData(HttpStatusCode.BadGateway, "E202: robots.txt unreadable (502) at https://forums.homecomingservers.com/robots.txt; re-run when the site recovers")]
+    [InlineData(HttpStatusCode.Forbidden, "error: E201: robots.txt refused (403) at https://forums.homecomingservers.com/robots.txt; nothing will be fetched")]
+    [InlineData(HttpStatusCode.BadGateway, "error: E202: robots.txt unreadable (502) at https://forums.homecomingservers.com/robots.txt; re-run when the site recovers")]
     public void A_refused_or_broken_robots_file_blocks_the_site(HttpStatusCode code, string expected)
     {
         using FakeSite site = new();
@@ -287,7 +287,7 @@ public sealed class HtmlTextTests
         using StringWriter error = new();
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/ok"));
-        Assert.StartsWith($"E202: robots.txt unreadable (redirected to {target}) at {FakeSite.Forum}/robots.txt", error.ToString(), StringComparison.Ordinal);
+        Assert.StartsWith($"error: E202: robots.txt unreadable (redirected to {target}) at {FakeSite.Forum}/robots.txt", error.ToString(), StringComparison.Ordinal);
         Assert.Contains("E221", error.ToString(), StringComparison.Ordinal);
         Assert.Equal(0, site.Count(FakeSite.Forum + "/ok"));
     }
@@ -303,6 +303,6 @@ public sealed class HtmlTextTests
 
         Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/ok"));
         Assert.Equal("x", new PageFetcher(http, Agent, 0, FakeSite.Wiki, error).Get(FakeSite.Wiki + "/ok"));
-        Assert.StartsWith($"E202: robots.txt unreadable at {FakeSite.Forum}/robots.txt: timed out; re-run when the site recovers", error.ToString(), StringComparison.Ordinal);
+        Assert.StartsWith($"error: E202: robots.txt unreadable at {FakeSite.Forum}/robots.txt: timed out; re-run when the site recovers", error.ToString(), StringComparison.Ordinal);
     }
 }

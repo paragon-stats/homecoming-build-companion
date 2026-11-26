@@ -1,5 +1,6 @@
 using CohEngine.Core.Chain;
 using CohEngine.Core.SourceMaterial;
+using CohEngine.Core.Tests.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.SourceMaterial;
@@ -38,7 +39,7 @@ public sealed class SourceManifestTests
         (int code, _, string error) = RunAs(githubActions is null ? null : "Runner Name", variables, "--source-root", Path.Join(Captures, "source"), "--out", written);
 
         Assert.Equal(1, code);
-        Assert.StartsWith($"E215: {reason}, so there is no name to keep out of the manifest and nothing was written; set COH_BANNED_NAMES", error, StringComparison.Ordinal);
+        Assert.StartsWith($"error: E215: {reason}, so there is no name to keep out of the manifest and nothing was written; set COH_BANNED_NAMES", error, StringComparison.Ordinal);
         Assert.False(File.Exists(written));
     }
 
@@ -104,7 +105,7 @@ public sealed class SourceManifestTests
 
         IReadOnlyList<PyObject> rows = SourceManifest.Build(tree.FullPath("community"), error);
 
-        Assert.Equal("E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
+        Assert.Equal("warning: E212: untitled.md: front matter has no title; capture skipped; add a title: line to its front matter" + Environment.NewLine, error.ToString());
         PyObject odd = Assert.Single(rows);
         Assert.Equal("Fire/Kin Controllers \u2013 a guide", odd["title"]);
         Assert.Equal("2024", odd["date_posted"]);
@@ -140,6 +141,23 @@ public sealed class SourceManifestTests
     }
 
     [Fact]
+    public void Every_coded_line_opens_with_its_severity()
+    {
+        using TempTree tree = new();
+        string empty = Directory.CreateDirectory(tree.FullPath("empty")).FullName;
+        tree.Write("titles/community/a.md", "---\ntitle: \"A\"\n---\nbody\n");
+        tree.Write("titles/community/untitled.md", "---\nurl: \"x\"\n---\nbody\n");
+        string[] runs =
+        [
+            RunAs(gitUserName: null, new(StringComparer.Ordinal), "--source-root", empty).Error,
+            Run(variables: null, "--source-root", empty, "--out", tree.FullPath("m.json")).Error,
+            Run(variables: null, "--source-root", tree.FullPath("titles"), "--out", tree.FullPath("m.json")).Error,
+        ];
+
+        Assert.All(runs, error => Assert.Single(CodedOutput.AssertLabelled(error)));
+    }
+
+    [Fact]
     public void An_empty_root_is_reported_and_writes_nothing()
     {
         using TempTree tree = new();
@@ -147,7 +165,7 @@ public sealed class SourceManifestTests
         (int code, _, string error) = Run(variables: null, "--source-root", tree.Root, "--out", tree.FullPath("m.json"));
 
         Assert.Equal(1, code);
-        Assert.StartsWith($"E211: no captures under {Path.Join(tree.Root, "community")}; expected community/**/*.md with front matter", error, StringComparison.Ordinal);
+        Assert.StartsWith($"error: E211: no captures under {Path.Join(tree.Root, "community")}; expected community/**/*.md with front matter", error, StringComparison.Ordinal);
         Assert.EndsWith("or pass --source-root" + Environment.NewLine, error, StringComparison.Ordinal);
         Assert.False(File.Exists(tree.FullPath("m.json")));
     }
@@ -188,7 +206,7 @@ public sealed class SourceManifestTests
         (int code, _, string error) = Run(new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = "claws,bio" }, "--source-root", Path.Join(Captures, "source"), "--out", written);
 
         Assert.Equal(1, code);
-        Assert.StartsWith($"E213: every capture under {Path.Join(Captures, "source", "community")} was withheld by the name filter (3 rows), so nothing was written;", error, StringComparison.Ordinal);
+        Assert.StartsWith($"error: E213: every capture under {Path.Join(Captures, "source", "community")} was withheld by the name filter (3 rows), so nothing was written;", error, StringComparison.Ordinal);
         Assert.False(File.Exists(written));
     }
 
@@ -201,7 +219,7 @@ public sealed class SourceManifestTests
         (int code, _, string error) = Run(variables: null, "--source-root", Path.Join(Captures, "source"), "--out", folder);
 
         Assert.Equal(1, code);
-        Assert.StartsWith($"E214: cannot write {folder}: ", error, StringComparison.Ordinal);
+        Assert.StartsWith($"error: E214: cannot write {folder}: ", error, StringComparison.Ordinal);
         Assert.Contains("; check that the path names a file in a folder you can write to", error, StringComparison.Ordinal);
     }
 

@@ -98,7 +98,7 @@ internal sealed class PatchNotesCommand
         IReadOnlySet<string> names = Powersets(canonical);
         if (names.Count == 0)
         {
-            error.WriteLine($"{ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
+            error.WriteLine($"warning: {ErrorCodes.E207}: no powerset names under {canonical}; headings will not fill powerset; pass --canonical with the folder that holds powers/");
         }
 
         using HttpClient client = new(handler ?? new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip, AllowAutoRedirect = false }, disposeHandler: handler is null) { Timeout = TimeSpan.FromSeconds(30) };
@@ -117,7 +117,7 @@ internal sealed class PatchNotesCommand
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            error.WriteLine($"{ErrorCodes.E224}: cannot read or write under {outDir}: {exception.Message}; check that the folder and its cache can be written and the disk has room");
+            error.WriteLine($"error: {ErrorCodes.E224}: cannot read or write under {outDir}: {exception.Message}; check that the folder and its cache can be written and the disk has room");
             return 1;
         }
     }
@@ -269,7 +269,7 @@ internal sealed class PatchNotesCommand
             string name = FileOf(row);
             if (!IsPlainName(name))
             {
-                error.WriteLine($"{ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the file was left alone; correct the row's file name");
+                error.WriteLine($"warning: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{name}', which is not a plain file name inside {outDir}; the file was left alone; correct the row's file name");
                 continue;
             }
 
@@ -339,7 +339,7 @@ internal sealed class PatchNotesCommand
         {
             if (entry.Changes.Count == 0)
             {
-                error.WriteLine($"{ErrorCodes.E206}: no change lines parsed from {entry.Url}; check the post's layout");
+                error.WriteLine($"warning: {ErrorCodes.E206}: no change lines parsed from {entry.Url}; check the post's layout");
             }
 
             string origin = DedupeLines(entry, seen);
@@ -391,7 +391,7 @@ internal sealed class PatchNotesCommand
         }
         catch (EngineException refused)
         {
-            error.WriteLine(refused.Message);
+            error.WriteLine("error: " + refused.Message);
             return null;
         }
     }
@@ -567,7 +567,7 @@ internal sealed class PatchNotesCommand
         if (declared > MaxListingPages)
         {
             allNamed = false;
-            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E226}: {forumUrl} declares {declared} listing pages, more than the {MaxListingPages} read, so its threads past page {MaxListingPages} were not read and its source counts as not read completely; check the listing in a browser, and raise MaxListingPages in PatchNotesCommand if the section really is that long"));
+            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E226}: {forumUrl} declares {declared} listing pages, more than the {MaxListingPages} read, so its threads past page {MaxListingPages} were not read and its source counts as not read completely; check the listing in a browser, and raise MaxListingPages in PatchNotesCommand if the section really is that long"));
         }
 
         for (long number = 2; number <= Math.Min(declared, MaxListingPages); number++)
@@ -596,7 +596,7 @@ internal sealed class PatchNotesCommand
             return true;
         }
 
-        error.WriteLine($"{ErrorCodes.E227}: {url} answered but names no {what}, so its source counts as not read completely; open it in a browser to check the site is up, then re-run");
+        error.WriteLine($"error: {ErrorCodes.E227}: {url} answered but names no {what}, so its source counts as not read completely; open it in a browser to check the site is up, then re-run");
         return false;
     }
 
@@ -622,14 +622,14 @@ internal sealed class PatchNotesCommand
             }
             catch (RegexMatchTimeoutException)
             {
-                error.WriteLine($"{ErrorCodes.E223}: a page from {source} took too long to parse (over 1 s for one pattern), so {source} stopped there; entries written before it stay; look for a very large or broken page among those fetched last");
+                error.WriteLine($"error: {ErrorCodes.E223}: a page from {source} took too long to parse (over 1 s for one pattern), so {source} stopped there; entries written before it stay; look for a very large or broken page among those fetched last");
             }
 
             total += count;
             if (!complete)
             {
                 incomplete.Add(source);
-                error.WriteLine($"{ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; re-run when every page named above can be read");
+                error.WriteLine($"error: {ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; re-run when every page named above can be read");
             }
 
             rows = Index(outDir);
@@ -643,7 +643,7 @@ internal sealed class PatchNotesCommand
         string? categories = fetcher.Get(CategoriesUrl);
         if (categories is null)
         {
-            error.WriteLine($"{ErrorCodes.E203}: could not read the patch-notes category browser at {CategoriesUrl}; no release notes were read; re-run when the forum answers");
+            error.WriteLine($"error: {ErrorCodes.E203}: could not read the patch-notes category browser at {CategoriesUrl}; no release notes were read; re-run when the forum answers");
             return (0, false);
         }
 
@@ -666,7 +666,7 @@ internal sealed class PatchNotesCommand
                 PatchEntry entry = PatchParser.ParseEntry(page, entryUrl, powersets);
                 if (entry.Changes.Count == 0)
                 {
-                    error.WriteLine($"{ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
+                    error.WriteLine($"warning: {ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
                 }
 
                 if (TryWrite(entry, outDir, error) is not { } name)
@@ -703,7 +703,7 @@ internal sealed class PatchNotesCommand
 
         foreach (string url in gaps)
         {
-            error.WriteLine($"{ErrorCodes.E205}: beta listing page unavailable: {url}; re-run to pick up its threads");
+            error.WriteLine($"error: {ErrorCodes.E205}: beta listing page unavailable: {url}; re-run to pick up its threads");
         }
 
         List<PatchEntry> entries = [];
@@ -734,7 +734,7 @@ internal sealed class PatchNotesCommand
         string? index = fetcher.Get(WikiIndexUrl);
         if (index is null)
         {
-            error.WriteLine($"{ErrorCodes.E204}: could not read the wiki patch-notes index at {WikiIndexUrl}; no wiki pages were read; re-run when the wiki answers");
+            error.WriteLine($"error: {ErrorCodes.E204}: could not read the wiki patch-notes index at {WikiIndexUrl}; no wiki pages were read; re-run when the wiki answers");
             return (0, false);
         }
 
@@ -794,7 +794,7 @@ internal sealed class PatchNotesCommand
                 // A source that now yields nothing while the folder holds its records was not really read.
                 if (!newRows.Exists(row => IsOf(row, source)) && oldRows.Exists(row => IsOf(row, source)))
                 {
-                    error.WriteLine($"{ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; it gave no records while the folder holds some; re-run when its pages list entries again");
+                    error.WriteLine($"error: {ErrorCodes.E208}: {source} was not read completely, so its records on disk were left as they are; it gave no records while the folder holds some; re-run when its pages list entries again");
                     failed = true;
                     continue;
                 }

@@ -46,17 +46,17 @@ internal sealed class PageFetcher
             {
                 // A redirect off the site, or one past the hop limit, gives no rules to trust.
                 blocked = true;
-                error.WriteLine($"{ErrorCodes.E202}: robots.txt unreadable (redirected to {answered}) at {robots}; re-run when the site recovers, or check where its robots.txt now lives");
+                error.WriteLine($"error: {ErrorCodes.E202}: robots.txt unreadable (redirected to {answered}) at {robots}; re-run when the site recovers, or check where its robots.txt now lives");
             }
             else if (status is 401 or 403)
             {
                 blocked = true;
-                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched; ask the site's operator for access, or leave this source out with --source"));
+                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched; ask the site's operator for access, or leave this source out with --source"));
             }
             else if (status >= 500)
             {
                 blocked = true;
-                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E202}: robots.txt unreadable ({status}) at {robots}; re-run when the site recovers"));
+                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E202}: robots.txt unreadable ({status}) at {robots}; re-run when the site recovers"));
             }
             else if (status < 300)
             {
@@ -66,7 +66,7 @@ internal sealed class PageFetcher
         catch (Exception exception) when (exception is HttpRequestException or TaskCanceledException)
         {
             blocked = true;
-            error.WriteLine($"{ErrorCodes.E202}: robots.txt unreadable at {robots}: {exception.Message}; re-run when the site recovers");
+            error.WriteLine($"error: {ErrorCodes.E202}: robots.txt unreadable at {robots}: {exception.Message}; re-run when the site recovers");
         }
 
         rules = new RobotsRules(lines);
@@ -80,26 +80,26 @@ internal sealed class PageFetcher
         // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the URI it will send.
         if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? target))
         {
-            error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; check the link on the page that named it");
+            error.WriteLine($"error: {ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; check the link on the page that named it");
             return null;
         }
 
         if (!OnSite(target))
         {
-            error.WriteLine($"{ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; check the link on the page that named it, which points off the site");
+            error.WriteLine($"error: {ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; check the link on the page that named it, which points off the site");
             return null;
         }
 
         string robots = site.GetLeftPart(UriPartial.Authority) + "/robots.txt";
         if (blocked)
         {
-            error.WriteLine($"{ErrorCodes.E221}: {url} was not fetched because {robots} could not be read (see above); re-run when the site answers");
+            error.WriteLine($"error: {ErrorCodes.E221}: {url} was not fetched because {robots} could not be read (see above); re-run when the site answers");
             return null;
         }
 
         if (!Allowed(target))
         {
-            error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
+            error.WriteLine($"error: {ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
             return null;
         }
 
@@ -114,13 +114,13 @@ internal sealed class PageFetcher
 
             if (!OnSite(answered))
             {
-                error.WriteLine($"{ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand");
+                error.WriteLine($"error: {ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand");
                 return null;
             }
 
             if (!Allowed(answered))
             {
-                error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {answered}, where {url} redirects; it was not fetched; leave the page out, or ask the site's operator to allow it");
+                error.WriteLine($"error: {ErrorCodes.E220}: {robots} disallows {answered}, where {url} redirects; it was not fetched; leave the page out, or ask the site's operator to allow it");
                 return null;
             }
 
@@ -131,7 +131,7 @@ internal sealed class PageFetcher
             reason = exception.Message;
         }
 
-        error.WriteLine($"{ErrorCodes.E200}: fetch failed for {url}: {reason}; re-run when the site answers, or check the link on the page that named it");
+        error.WriteLine($"error: {ErrorCodes.E200}: fetch failed for {url}: {reason}; re-run when the site answers, or check the link on the page that named it");
         return null;
     }
 

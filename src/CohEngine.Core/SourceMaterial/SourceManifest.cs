@@ -82,20 +82,20 @@ internal static class SourceManifest
         {
             string unset = string.IsNullOrEmpty(value) ? "is unset" : "holds only commas or spaces";
             string fallback = inCi ? "in CI (GITHUB_ACTIONS is set) the git user name is not used" : "git has no user name";
-            error.WriteLine($"{ErrorCodes.E215}: {BannedNames.EnvironmentVariable} {unset} and {fallback}, so there is no name to keep out of the manifest and nothing was written; set {BannedNames.EnvironmentVariable} to the comma-separated names the public repository must not carry");
+            error.WriteLine($"error: {ErrorCodes.E215}: {BannedNames.EnvironmentVariable} {unset} and {fallback}, so there is no name to keep out of the manifest and nothing was written; set {BannedNames.EnvironmentVariable} to the comma-separated names the public repository must not carry");
             return 1;
         }
 
         (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(Build(community, error), pattern);
         if (rows.Count == 0 && withheld > 0)
         {
-            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E213}: every capture under {community} was withheld by the name filter ({withheld} rows), so nothing was written; check the names in {BannedNames.EnvironmentVariable}, or the git user name when it is unset"));
+            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E213}: every capture under {community} was withheld by the name filter ({withheld} rows), so nothing was written; check the names in {BannedNames.EnvironmentVariable}, or the git user name when it is unset"));
             return 1;
         }
 
         if (rows.Count == 0)
         {
-            error.WriteLine($"{ErrorCodes.E211}: no captures under {community}; expected community/**/*.md with front matter; check the checkout is current, or pass --source-root");
+            error.WriteLine($"error: {ErrorCodes.E211}: no captures under {community}; expected community/**/*.md with front matter; check the checkout is current, or pass --source-root");
             return 1;
         }
 
@@ -106,7 +106,7 @@ internal static class SourceManifest
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
         {
-            error.WriteLine($"{ErrorCodes.E214}: cannot write {outPath}: {exception.Message}; check that the path names a file in a folder you can write to");
+            error.WriteLine($"error: {ErrorCodes.E214}: cannot write {outPath}: {exception.Message}; check that the path names a file in a folder you can write to");
             return 1;
         }
 
@@ -143,7 +143,7 @@ internal static class SourceManifest
 
             if (!keys.TryGetValue("title", out string? rawTitle))
             {
-                error.WriteLine($"{ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
+                error.WriteLine($"warning: {ErrorCodes.E212}: {relative}: front matter has no title; capture skipped; add a title: line to its front matter");
                 continue;
             }
 

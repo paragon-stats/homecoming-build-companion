@@ -2,6 +2,7 @@ using System.Net;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.PatchNotes;
+using CohEngine.Core.Tests.Diagnostics;
 using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.PatchNotes;
@@ -657,6 +658,24 @@ public sealed class PatchNotesCommandTests
         Assert.Contains("E203", error, StringComparison.Ordinal);
         Assert.Contains("E204", error, StringComparison.Ordinal);
         Assert.StartsWith("coh-build-companion/", PatchNotesCommand.DefaultAgent, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void Every_coded_line_opens_with_its_severity(bool robotsRefused)
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        if (robotsRefused)
+        {
+            site.Routes[Base + "/robots.txt"] = HttpStatusCode.Forbidden;
+            site.Routes[Wiki + "/robots.txt"] = HttpStatusCode.Forbidden;
+        }
+
+        (_, _, string error) = Run(site, "--out", tree.Root, "--delay", "0", "--canonical", tree.FullPath("none"));
+
+        Assert.True(CodedOutput.AssertLabelled(error).Length >= 5, error);
     }
 
     private static (int Code, string Output, string Error) Run(FakeSite site, params string[] args)
