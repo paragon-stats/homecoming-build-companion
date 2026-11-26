@@ -7,6 +7,7 @@ using CohEngine.TestSupport;
 namespace CohEngine.Cli.Tests;
 
 // Invented names only: a real name must never be committed.
+[Collection(DevScripts.Collection)]
 public sealed partial class BannedNamesScriptTests
 {
     private const string Names = " Zorvex Quill , ,Brannoc ";

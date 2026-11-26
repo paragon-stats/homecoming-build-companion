@@ -6,6 +6,7 @@ using CohEngine.TestSupport;
 namespace CohEngine.Cli.Tests;
 
 /// <summary>Holds the developer scripts and the Husky hook groups to what the repository promises.</summary>
+[Collection(DevScripts.Collection)]
 public sealed partial class DevScriptTests
 {
     private const string CleanMarkdown = "# Title\n\nA clean line.\n";
