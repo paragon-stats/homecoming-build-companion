@@ -20,18 +20,8 @@ internal sealed partial class RobotsRules
     {
         Group entry = new();
         int state = 0;
-        foreach (string raw in lines)
+        foreach ((string key, string value) in Fields(lines))
         {
-            int hash = raw.IndexOf('#', StringComparison.Ordinal);
-            string line = PyText.Strip(hash >= 0 ? raw[..hash] : raw);
-            int colon = line.IndexOf(':', StringComparison.Ordinal);
-            if (colon < 0)
-            {
-                continue;
-            }
-
-            string key = PyText.Strip(line[..colon]).ToLowerInvariant();
-            string value = PyText.Strip(line[(colon + 1)..]);
             if (key is "user-agent")
             {
                 if (state == 2)
@@ -46,7 +36,7 @@ internal sealed partial class RobotsRules
             else if (key is "disallow" or "allow" or "crawl-delay" or "request-rate" && state != 0)
             {
                 state = 2;
-                if (key is "disallow" or "allow" && Rule.TryCreate(value, key is "allow") is { } rule)
+                if (Rule.TryCreate(key, value) is { } rule)
                 {
                     entry.Rules.Add(rule);
                 }
@@ -95,23 +85,41 @@ internal sealed partial class RobotsRules
         return group is null || group.Allows(target);
     }
 
+    /// <summary>Each <c>key: value</c> line, comment dropped, key in lower case; a line with no colon is skipped.</summary>
+    private static IEnumerable<(string Key, string Value)> Fields(IEnumerable<string> lines)
+    {
+        foreach (string raw in lines)
+        {
+            int hash = raw.IndexOf('#', StringComparison.Ordinal);
+            string line = PyText.Strip(hash >= 0 ? raw[..hash] : raw);
+            int colon = line.IndexOf(':', StringComparison.Ordinal);
+            if (colon >= 0)
+            {
+                yield return (PyText.Strip(line[..colon]).ToLowerInvariant(), PyText.Strip(line[(colon + 1)..]));
+            }
+        }
+    }
+
     /// <summary>Percent-decodes then percent-encodes, so equal paths compare equal: letters, digits, <c>_.-~</c> and <c>/</c> stay as they are.</summary>
     private static string Normalize(string text)
     {
         List<byte> bytes = [];
-        for (int index = 0; index < text.Length; index++)
+        int index = 0;
+        while (index < text.Length)
         {
+            int width;
             if (text[index] == '%' && index + 2 < text.Length && byte.TryParse(text.AsSpan(index + 1, 2), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out byte value))
             {
                 bytes.Add(value);
-                index += 2;
+                width = 3;
             }
             else
             {
-                int width = char.IsSurrogatePair(text, index) ? 2 : 1;
+                width = char.IsSurrogatePair(text, index) ? 2 : 1;
                 bytes.AddRange(Encoding.UTF8.GetBytes(text.Substring(index, width)));
-                index += width - 1;
             }
+
+            index += width;
         }
 
         StringBuilder builder = new();
@@ -222,9 +230,15 @@ internal sealed partial class RobotsRules
     /// <summary>One allow or disallow line.</summary>
     private sealed record Rule(string Path, bool Allowance, bool FullMatch, Regex? Pattern)
     {
-        /// <summary>The rule for a line's value, or null when a <c>$</c> sits before its end.</summary>
-        public static Rule? TryCreate(string value, bool allowance)
+        /// <summary>The rule for a line, or null when the line is not an allow or disallow line or a <c>$</c> sits before its value's end.</summary>
+        public static Rule? TryCreate(string key, string value)
         {
+            if (key is not ("allow" or "disallow"))
+            {
+                return null;
+            }
+
+            bool allowance = key is "allow";
             string path = NormalizePattern(Dollars.Replace(Stars.Replace(value, "*"), "$"));
             bool full = path.EndsWith('$');
             path = path.TrimEnd('$');

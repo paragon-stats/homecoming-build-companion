@@ -178,19 +178,20 @@ public static class PyText
         ArgumentNullException.ThrowIfNull(value);
         List<string> lines = [];
         int start = 0;
-        for (int index = 0; index < value.Length; index++)
+        int index = 0;
+        while (index < value.Length)
         {
             char letter = value[index];
+
+            // \r\n is one boundary, two characters wide.
+            int next = letter == '\r' && index + 1 < value.Length && value[index + 1] == '\n' ? index + 2 : index + 1;
             if (letter is '\n' or '\r' or '\v' or '\f' or '\u0085' or '\u2028' or '\u2029' or (>= '\u001c' and <= '\u001e'))
             {
                 lines.Add(value[start..index]);
-                if (letter == '\r' && index + 1 < value.Length && value[index + 1] == '\n')
-                {
-                    index++;
-                }
-
-                start = index + 1;
+                start = next;
             }
+
+            index = next;
         }
 
         if (start < value.Length)

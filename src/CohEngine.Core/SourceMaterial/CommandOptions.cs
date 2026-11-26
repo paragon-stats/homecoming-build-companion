@@ -19,35 +19,42 @@ internal static class CommandOptions
     {
         values = new(StringComparer.Ordinal);
         problem = string.Empty;
-        for (int index = 0; index < args.Count; index++)
+        Queue<string> pending = new(args);
+        while (pending.TryDequeue(out string? arg))
         {
-            string arg = args[index];
-            int equals = arg.IndexOf('=', StringComparison.Ordinal);
-            string name = arg.StartsWith("--", StringComparison.Ordinal) && equals > 0 ? arg[..equals] : arg;
-            List<string> given = values.TryGetValue(name, out List<string>? known) ? known : [];
-            if (flags.Contains(name, StringComparer.Ordinal) && equals < 0)
+            (string name, string? inline) = Split(arg);
+            List<string> given = values.GetValueOrDefault(name) ?? [];
+            if (flags.Contains(name, StringComparer.Ordinal) && inline is null)
             {
                 values[name] = given;
+                continue;
             }
-            else if (!valued.Contains(name, StringComparer.Ordinal))
+
+            if (!valued.Contains(name, StringComparer.Ordinal))
             {
                 problem = "unrecognized arguments: " + arg;
                 values = null;
                 return false;
             }
-            else if (equals > 0 || index + 1 < args.Count)
-            {
-                given.Add(equals > 0 ? arg[(equals + 1)..] : args[++index]);
-                values[name] = given;
-            }
-            else
+
+            if (inline is null && !pending.TryDequeue(out inline))
             {
                 problem = $"argument {name}: expected one argument";
                 values = null;
                 return false;
             }
+
+            given.Add(inline);
+            values[name] = given;
         }
 
         return true;
+    }
+
+    /// <summary>An argument's option name and the value written after <c>=</c>, or null when it has none.</summary>
+    private static (string Name, string? Inline) Split(string arg)
+    {
+        int equals = arg.IndexOf('=', StringComparison.Ordinal);
+        return arg.StartsWith("--", StringComparison.Ordinal) && equals > 0 ? (arg[..equals], arg[(equals + 1)..]) : (arg, null);
     }
 }

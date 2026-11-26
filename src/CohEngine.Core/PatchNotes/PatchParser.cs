@@ -106,48 +106,20 @@ internal static partial class PatchParser
     public static List<Change> ParseChanges(string html, IReadOnlySet<string> powersets)
     {
         List<Change> changes = [];
-        string category = string.Empty;
-        string subsection = string.Empty;
-        string powerset = string.Empty;
-        string power = string.Empty;
+        Headings headings = new(string.Empty, string.Empty, string.Empty, string.Empty);
         for (Match token = Token.Match(html); token.Success; token = token.NextMatch())
         {
             Group paragraph = token.Groups["para"];
-            if (!paragraph.Success)
+            if (paragraph.Success)
             {
-                string text = ItemText(html, token);
-                if (text.Length > 0)
-                {
-                    changes.Add(ChangeOf(text, category.Length > 0 ? category : General, subsection, powerset, power));
-                }
-
+                headings = NextHeadings(headings, paragraph.Value, powersets);
                 continue;
             }
 
-            string label = Heading(paragraph.Value);
-            if (label.Length == 0)
+            string text = ItemText(html, token);
+            if (text.Length > 0)
             {
-                continue;
-            }
-
-            Match size = FontSize.Match(paragraph.Value);
-            long fontPx = size.Success ? PyText.Number(size.Groups["px"].Value) : 0;
-            string bare = label.TrimEnd(',', ':');
-            if (fontPx >= CategoryFontPx || category.Length == 0)
-            {
-                (category, subsection, powerset, power) = (label, string.Empty, string.Empty, string.Empty);
-            }
-            else if (fontPx == 0 && powerset.Length > 0)
-            {
-                power = bare;
-            }
-            else if (category.Contains("power", StringComparison.OrdinalIgnoreCase) && powersets.Contains(bare.ToLowerInvariant()))
-            {
-                (powerset, power) = (bare, string.Empty);
-            }
-            else
-            {
-                (subsection, powerset, power) = (label, string.Empty, string.Empty);
+                changes.Add(ChangeOf(text, headings.Category.Length > 0 ? headings.Category : General, headings.Subsection, headings.Powerset, headings.Power));
             }
         }
 
@@ -366,6 +338,36 @@ internal static partial class PatchParser
         return level == 2 || headings.Category.Length == 0 ? (label, string.Empty) : (headings.Category, label);
     }
 
+    /// <summary>The headings in force after a forum paragraph; a paragraph that is not a bold-only heading leaves them as they are.</summary>
+    private static Headings NextHeadings(Headings headings, string paragraph, IReadOnlySet<string> powersets)
+    {
+        string label = Heading(paragraph);
+        if (label.Length == 0)
+        {
+            return headings;
+        }
+
+        Match size = FontSize.Match(paragraph);
+        long fontPx = size.Success ? PyText.Number(size.Groups["px"].Value) : 0;
+        string bare = label.TrimEnd(',', ':');
+        if (fontPx >= CategoryFontPx || headings.Category.Length == 0)
+        {
+            return new Headings(label, string.Empty, string.Empty, string.Empty);
+        }
+
+        if (fontPx == 0 && headings.Powerset.Length > 0)
+        {
+            return headings with { Power = bare };
+        }
+
+        if (headings.Category.Contains("power", StringComparison.OrdinalIgnoreCase) && powersets.Contains(bare.ToLowerInvariant()))
+        {
+            return headings with { Powerset = bare, Power = string.Empty };
+        }
+
+        return headings with { Subsection = label, Powerset = string.Empty, Power = string.Empty };
+    }
+
     /// <summary>Plain text with zero-width marks dropped and every run of white space folded to one space.</summary>
     private static string Clean(string fragment)
     {
@@ -405,4 +407,7 @@ internal static partial class PatchParser
     {
         return url.TrimEnd('/').Split('/')[^1];
     }
+
+    /// <summary>The forum headings a change line files under.</summary>
+    private readonly record struct Headings(string Category, string Subsection, string Powerset, string Power);
 }

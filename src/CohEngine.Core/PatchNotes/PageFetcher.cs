@@ -159,29 +159,43 @@ internal sealed class PageFetcher
     private (int Status, byte[] Body, Uri At) Raw(Uri url, Func<Uri, bool> allowed)
     {
         Uri answered = url;
-        for (int hop = 0; ; hop++)
+        for (int hop = 0; hop < MaxRedirects; hop++)
         {
-            Pace();
-            using HttpRequestMessage request = new(HttpMethod.Get, answered);
-            request.Headers.TryAddWithoutValidation("User-Agent", agent);
-            using HttpResponseMessage response = http.Send(request);
+            using HttpResponseMessage response = Send(answered);
             int status = (int)response.StatusCode;
-            if (hop < MaxRedirects && IsRedirect(status) && response.Headers.Location is { } location)
+            if (!IsRedirect(status) || response.Headers.Location is not { } location)
             {
-                answered = new Uri(answered, location);
-                if (OnSite(answered) && allowed(answered))
-                {
-                    continue;
-                }
-
-                return (status, [], answered);
+                return Answer(response, answered);
             }
 
-            using MemoryStream body = new();
-            response.Content.ReadAsStream().CopyTo(body);
-            last = Stopwatch.GetTimestamp();
-            return (status, body.ToArray(), answered);
+            answered = new Uri(answered, location);
+            if (!OnSite(answered) || !allowed(answered))
+            {
+                return (status, [], answered);
+            }
         }
+
+        // Past the hop limit the last answer stands, a redirect included.
+        using HttpResponseMessage final = Send(answered);
+        return Answer(final, answered);
+    }
+
+    /// <summary>One paced GET, not following a redirect.</summary>
+    private HttpResponseMessage Send(Uri url)
+    {
+        Pace();
+        using HttpRequestMessage request = new(HttpMethod.Get, url);
+        request.Headers.TryAddWithoutValidation("User-Agent", agent);
+        return http.Send(request);
+    }
+
+    /// <summary>A response's status, its body read in full, and the URL it answered for; the read's end stamps the pace.</summary>
+    private (int Status, byte[] Body, Uri At) Answer(HttpResponseMessage response, Uri answered)
+    {
+        using MemoryStream body = new();
+        response.Content.ReadAsStream().CopyTo(body);
+        last = Stopwatch.GetTimestamp();
+        return ((int)response.StatusCode, body.ToArray(), answered);
     }
 
     /// <summary>Waits until <c>delay</c> has passed since the last request, then stamps this one.</summary>

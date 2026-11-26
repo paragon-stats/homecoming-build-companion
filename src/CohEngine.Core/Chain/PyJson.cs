@@ -89,7 +89,12 @@ public static class PyJson
             return BigInteger.Parse(text, CultureInfo.InvariantCulture);
         }
 
-        return element.TryGetDouble(out double real) ? real : (text[0] == '-' ? double.NegativeInfinity : double.PositiveInfinity);
+        if (element.TryGetDouble(out double real))
+        {
+            return real;
+        }
+
+        return text[0] == '-' ? double.NegativeInfinity : double.PositiveInfinity;
     }
 
     private static void Write(StringBuilder builder, object? value, int depth, Style style)
