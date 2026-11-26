@@ -8,7 +8,7 @@ REFS="$(cat)"
 PUSHES_COMMITS=""
 while read -r _ LOCAL_ID _ _; do
   case "$LOCAL_ID" in
-    *[!0]*) PUSHES_COMMITS=1 ;;
+  *[!0]*) PUSHES_COMMITS=1 ;;
   esac
 done <<EOF
 $REFS
