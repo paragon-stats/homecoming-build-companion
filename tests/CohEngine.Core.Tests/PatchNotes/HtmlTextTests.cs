@@ -184,6 +184,35 @@ public sealed class HtmlTextTests
     }
 
     [Fact]
+    public void A_redirect_to_a_disallowed_path_on_the_site_is_not_followed()
+    {
+        using FakeSite site = new();
+        site.Routes[FakeSite.Forum + "/moved"] = new Uri(FakeSite.Forum + "/search/x");
+        site.Routes[FakeSite.Forum + "/search/x"] = "secret";
+        using HttpClient http = new(site, disposeHandler: false);
+        using StringWriter error = new();
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(FakeSite.Forum + "/moved"));
+        Assert.Equal(0, site.Count(FakeSite.Forum + "/search/x"));
+        Assert.Contains($"E220: {FakeSite.Forum}/robots.txt disallows {FakeSite.Forum}/search/x", error.ToString(), StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("https://forums.homecomingservers.com:8443/topic/1-a/")]
+    [InlineData("https://someone@forums.homecomingservers.com/topic/1-a/")]
+    public void Another_port_or_a_user_name_in_the_url_is_not_the_site(string url)
+    {
+        using FakeSite site = new();
+        site.Routes[url] = "elsewhere";
+        using HttpClient http = new(site, disposeHandler: false);
+        using StringWriter error = new();
+
+        Assert.Null(new PageFetcher(http, Agent, 0, FakeSite.Forum, error).Get(url));
+        Assert.Equal(0, site.Count(url));
+        Assert.StartsWith("E222: " + url, error.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void Only_the_site_s_own_host_is_fetched_and_a_redirect_elsewhere_is_not_followed()
     {
         using FakeSite site = new();

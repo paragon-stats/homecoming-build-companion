@@ -41,7 +41,7 @@ internal sealed class PageFetcher
         IReadOnlyList<string> lines = [];
         try
         {
-            (int status, byte[] body, _) = Raw(new Uri(robots));
+            (int status, byte[] body, _) = Raw(new Uri(robots), _ => true);
             if (status is 401 or 403)
             {
                 blocked = true;
@@ -100,7 +100,7 @@ internal sealed class PageFetcher
         string reason;
         try
         {
-            (int status, byte[] body, Uri answered) = Raw(target);
+            (int status, byte[] body, Uri answered) = Raw(target, hop => rules.CanFetch(agent, hop.AbsoluteUri));
             if (status < 300)
             {
                 return Encoding.UTF8.GetString(body);
@@ -109,6 +109,12 @@ internal sealed class PageFetcher
             if (!OnSite(answered))
             {
                 error.WriteLine($"{ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed");
+                return null;
+            }
+
+            if (!rules.CanFetch(agent, answered.AbsoluteUri))
+            {
+                error.WriteLine($"{ErrorCodes.E220}: {robots} disallows {answered}, where {url} redirects; it was not fetched; leave the page out, or ask the site's operator to allow it");
                 return null;
             }
 
@@ -128,13 +134,17 @@ internal sealed class PageFetcher
         return status is 301 or 302 or 303 or 307 or 308;
     }
 
+    /// <summary>Whether a URL is on the site: same scheme, host and port, and no user name or password in it.</summary>
     private bool OnSite(Uri url)
     {
-        return string.Equals(url.Scheme, site.Scheme, StringComparison.OrdinalIgnoreCase) && string.Equals(url.Host, site.Host, StringComparison.OrdinalIgnoreCase);
+        return string.Equals(url.Scheme, site.Scheme, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(url.Host, site.Host, StringComparison.OrdinalIgnoreCase)
+            && url.Port == site.Port
+            && url.UserInfo.Length == 0;
     }
 
-    /// <summary>One request, following redirects that stay on the site: the last status, its body, and the URL it answered for or redirects to.</summary>
-    private (int Status, byte[] Body, Uri At) Raw(Uri url)
+    /// <summary>One request, following redirects that stay on the site and that <paramref name="allowed"/> admits: the last status, its body, and the URL it answered for or redirects to.</summary>
+    private (int Status, byte[] Body, Uri At) Raw(Uri url, Func<Uri, bool> allowed)
     {
         Uri answered = url;
         for (int hop = 0; ; hop++)
@@ -147,7 +157,7 @@ internal sealed class PageFetcher
             if (hop < MaxRedirects && IsRedirect(status) && response.Headers.Location is { } location)
             {
                 answered = new Uri(answered, location);
-                if (OnSite(answered))
+                if (OnSite(answered) && allowed(answered))
                 {
                     continue;
                 }
