@@ -121,6 +121,7 @@ until the Python is removed. Its errors carry their own numbers: a failed fetch 
 listing page `E205`, an entry with no change lines `E206`, a canonical tree with no powerset names `E207`, and a source not read completely `E208`.
 A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
 An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`.
+A link or a redirect to a host other than the forum or the wiki is not fetched (`E222`).
 
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:

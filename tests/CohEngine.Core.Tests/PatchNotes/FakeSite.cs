@@ -15,7 +15,7 @@ internal sealed class FakeSite : HttpMessageHandler
         Routes[Forum + "/robots.txt"] = "User-agent: *\nAllow: /\nDisallow: /search/\n";
     }
 
-    /// <summary>Gets the answers: a body, a status code, or an exception to throw. An unrouted URL is a 404.</summary>
+    /// <summary>Gets the answers: a body, a status code, a redirect target, or an exception to throw. An unrouted URL is a 404.</summary>
     public Dictionary<string, object> Routes { get; } = new(StringComparer.Ordinal);
 
     public List<string> Calls { get; } = [];
@@ -43,6 +43,7 @@ internal sealed class FakeSite : HttpMessageHandler
         {
             string body => new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(Encoding.UTF8.GetBytes(body)) },
             HttpStatusCode code => new HttpResponseMessage(code) { Content = new ByteArrayContent([]) },
+            Uri location => new HttpResponseMessage(HttpStatusCode.Found) { Headers = { Location = location }, Content = new ByteArrayContent([]) },
             Exception exception => throw exception,
             _ => new HttpResponseMessage(HttpStatusCode.NotFound) { Content = new ByteArrayContent([]) },
         };

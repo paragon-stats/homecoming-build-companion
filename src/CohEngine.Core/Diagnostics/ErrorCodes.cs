@@ -300,4 +300,9 @@ public static class ErrorCodes
 
     /// <summary>A capture's front matter has no title; the capture is skipped.</summary>
     public const string E212 = "E212";
+
+    // E220-E229: patch-notes, second block.
+
+    /// <summary>A link or a redirect names a host other than the site being read, so it is not fetched.</summary>
+    public const string E222 = "E222";
 }

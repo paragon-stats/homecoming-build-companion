@@ -170,6 +170,26 @@ public sealed class HtmlTextTests
         Assert.Equal(0, site.Count(sneaky));
     }
 
+    [Fact]
+    public void Only_the_site_s_own_host_is_fetched_and_a_redirect_elsewhere_is_not_followed()
+    {
+        using FakeSite site = new();
+        site.Routes[FakeSite.Forum + "/moved"] = new Uri(FakeSite.Forum + "/here");
+        site.Routes[FakeSite.Forum + "/here"] = "arrived";
+        site.Routes[FakeSite.Forum + "/away"] = new Uri("https://elsewhere.example/x");
+        using HttpClient http = new(site, disposeHandler: false);
+        using StringWriter error = new();
+        PageFetcher fetcher = new(http, Agent, 0, FakeSite.Forum, error);
+
+        Assert.Equal("arrived", fetcher.Get(FakeSite.Forum + "/moved"));
+        Assert.Null(fetcher.Get("https://elsewhere.example/topic/1-a/"));
+        Assert.Null(fetcher.Get("http://forums.homecomingservers.com/topic/1-a/"));
+        Assert.Null(fetcher.Get(FakeSite.Forum + "/away"));
+        Assert.DoesNotContain(site.Calls, call => call.Contains("elsewhere", StringComparison.Ordinal) || call.StartsWith("http:", StringComparison.Ordinal));
+        Assert.Contains("E222: https://elsewhere.example/topic/1-a/ is not on https://forums.homecomingservers.com", error.ToString(), StringComparison.Ordinal);
+        Assert.Contains("E222: https://forums.homecomingservers.com/away redirects to https://elsewhere.example/x, which is not on https://forums.homecomingservers.com", error.ToString(), StringComparison.Ordinal);
+    }
+
     [Theory]
     [InlineData(HttpStatusCode.Forbidden, "E201: robots.txt refused (403) at https://forums.homecomingservers.com/robots.txt; nothing will be fetched")]
     [InlineData(HttpStatusCode.BadGateway, "E202: robots.txt unreadable (502) at https://forums.homecomingservers.com/robots.txt; re-run when the site recovers")]
