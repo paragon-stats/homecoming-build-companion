@@ -174,11 +174,11 @@ The regression test for a ranged-defense claim runs against the committed refere
 | `E161` | An `--expect` names neither a registered metric nor a `defense.<type>` or `resistance.<type>` total. Input error, exit 1. |
 | `E162` | An `--expect` value does not fit the number it names (not a number, or not `true` or `false` for a flag). Input error, exit 1. |
 | `E163` | `--expect` was given a `.mbd` file. Input error, exit 1. |
-| `E164` | A path given to an MCP tool does not exist. |
+| `E164` | A path given to an MCP tool or to the CLI `score` command does not exist. |
 | `E166` | `set_bonus_lookup` found no set with that name; the result's `unknown` field carries it. |
 | `E167` | `power_lookup` found no power with that full name in the dump; the result's `unknown` field carries it. |
 | `E168` | The shared `enums.json` does not cover an index in the build's totals. |
-| `E180` | A tool that computes from power effects was given a `.mbd` file. Tool error. |
+| `E180` | A tool, or the CLI `score` command, that computes from power effects was given a `.mbd` file. Tool error. |
 
 `E165` (the `chain` tool was not available) is retired: the tool works.
 

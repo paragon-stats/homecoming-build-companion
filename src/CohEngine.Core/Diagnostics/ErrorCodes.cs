@@ -233,7 +233,7 @@ public static class ErrorCodes
     /// <summary>A <c>validate --expect</c> was given a <c>.mbd</c> file, which this build cannot compute.</summary>
     public const string E163 = "E163";
 
-    /// <summary>A path an MCP tool was given does not exist.</summary>
+    /// <summary>A path an MCP tool or the CLI <c>score</c> command was given does not exist.</summary>
     public const string E164 = "E164";
 
     /// <summary>An MCP set lookup names a set the loaded data does not hold; the tool answers with an unknown result.</summary>
@@ -247,7 +247,7 @@ public static class ErrorCodes
 
     // E180-E189: the MCP surface second pass.
 
-    /// <summary>An MCP tool that computes from a Mids dump was given a <c>.mbd</c> file, which carries no effect data.</summary>
+    /// <summary>An MCP tool or the CLI <c>score</c> command, which compute from a Mids dump, was given a <c>.mbd</c> file, which carries no effect data.</summary>
     public const string E180 = "E180";
 
     // E190-E199: extract-canonical.
