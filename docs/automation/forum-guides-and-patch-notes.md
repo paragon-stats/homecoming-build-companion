@@ -118,7 +118,7 @@ From a source checkout, `dotnet run --project src/CohEngine.Cli -- patch-notes .
 It takes the options and writes the bytes of `python -m scripts.forum_scrape.patch_notes`, which stays in the tree
 until the Python is removed. Its errors carry their own numbers: a failed fetch is `E200`, a refused or unreadable
 `robots.txt` `E201` or `E202`, an unreadable category browser or wiki index `E203` or `E204`, a missing beta
-listing page `E205`, an entry with no change lines `E206`, a canonical tree with no powerset names `E207`, which stops the run before anything is fetched or written, and a source not read completely `E208`.
+listing page `E205`, a canonical tree with no powerset names `E207`, which stops the run before anything is fetched or written, and a source not read completely `E208`.
 A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
 A listing that answers but names no link, such as a maintenance page, is `E227` and leaves its source not read completely.
 A beta listing that declares more than 100 pages is read to page 100 only (`E226`), and its source counts as not read completely.
@@ -131,9 +131,10 @@ A page that takes a parsing pattern past its time limit stops its source with `E
 A page robots.txt disallows is skipped with `E220`, and every page of a site whose robots.txt was refused or unreadable with `E221`.
 A file under the output folder or its cache that cannot be read or written stops the run with `E224`; a record or index file another process holds is tried three times first, and the message names it.
 An index line or a record file that is not what the command writes (not JSON, the wrong shape, or not UTF-8) stops the run with `E225`, naming the file.
-Every coded line goes to standard error and opens with `error:`.
-`E206` alone is reported but does not stop the run or change the exit code.
-Every other code makes the run exit 1.
+Every coded error line goes to standard error and opens with `error:`.
+An entry with no change lines is not an error: it is recorded with no changes, and an information line on standard output reports it.
+The line reads `info: E206: no change lines parsed from <url>; the entry is recorded with no changes`.
+Every error code makes the run exit 1; `E206` leaves the exit code as it is.
 
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:
