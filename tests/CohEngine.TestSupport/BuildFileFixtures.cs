@@ -101,7 +101,7 @@ public static class BuildFileFixtures
     }
 
     /// <summary>
-    /// Gets the name a build's reference files, captures and Mids dumps are kept under: for a sample build its path under
+    /// Gets the name a build's CLI captures and Mids dumps are kept under: for a sample build its path under
     /// <c>samples/builds</c> without the extension, each <c>/</c> written <c>__</c>; for a fixture build its file name without the extension.
     /// </summary>
     /// <param name="path">The build file.</param>
@@ -111,14 +111,6 @@ public static class BuildFileFixtures
         return path.StartsWith(Samples, StringComparison.Ordinal)
             ? Path.ChangeExtension(SamplePath(path), extension: null).Replace("/", "__", StringComparison.Ordinal)
             : Path.GetFileNameWithoutExtension(path);
-    }
-
-    /// <summary>Gets the path of the Python writer's output for a build file.</summary>
-    /// <param name="path">The build file.</param>
-    /// <returns>The reference file under <c>roundtrip</c>, named by <see cref="FixtureName"/>.</returns>
-    public static string RoundTripPath(string path)
-    {
-        return Path.Join(Root, "roundtrip", FixtureName(path) + ".mbd");
     }
 
     /// <summary>Lists the fixture <c>.mbd</c> builds the writer tests keep.</summary>

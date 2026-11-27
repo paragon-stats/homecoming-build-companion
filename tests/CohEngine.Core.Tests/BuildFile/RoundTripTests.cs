@@ -5,8 +5,8 @@ namespace CohEngine.Core.Tests.BuildFile;
 
 /// <summary>
 /// The parsing half of <c>test_sample_builds.py</c> plus the writer round trip: every sample and fixture <c>.mbd</c> reads,
-/// writes and reads back to an equal model, and its written bytes equal the Python writer's output kept under
-/// <c>tests/fixtures/buildfile/roundtrip</c>.
+/// writes and reads back to an equal model that holds the format invariants. The writer's exact bytes are pinned in
+/// <see cref="MbdWriterTests"/>.
 /// </summary>
 public sealed class RoundTripTests
 {
@@ -43,15 +43,6 @@ public sealed class RoundTripTests
 
     [Theory]
     [MemberData(nameof(Builds))]
-    public void The_written_bytes_equal_the_python_writers(string path)
-    {
-        byte[] written = Mbd.Serialize(Mbd.DumpMbd(Mbd.LoadMbd(path)));
-
-        Assert.Equal(File.ReadAllBytes(BuildFileFixtures.RoundTripPath(path)), written);
-    }
-
-    [Theory]
-    [MemberData(nameof(Builds))]
     public void The_rewritten_build_holds_the_format_invariants(string path)
     {
         MbdDocument document = Mbd.DumpMbd(Mbd.LoadMbd(path));
@@ -69,14 +60,5 @@ public sealed class RoundTripTests
 
         Assert.Equal(ExpectedClasses, classes, StringComparer.Ordinal);
         Assert.Equal(ExpectedClasses.Length, curated.Count);
-    }
-
-    [Fact]
-    public void Every_build_has_a_python_reference_file()
-    {
-        Assert.Equal(
-            BuildFileFixtures.AllMbd().Select(BuildFileFixtures.RoundTripPath).Select(Path.GetFileName).Order(StringComparer.Ordinal),
-            BuildFileFixtures.Files(Path.Join(BuildFileFixtures.Root, "roundtrip"), "*.mbd").Select(Path.GetFileName).Order(StringComparer.Ordinal),
-            StringComparer.Ordinal);
     }
 }
