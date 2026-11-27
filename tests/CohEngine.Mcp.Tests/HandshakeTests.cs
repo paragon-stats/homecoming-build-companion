@@ -36,11 +36,11 @@ public sealed class HandshakeTests
         IList<McpClientTool> tools = await harness.Client.ListToolsAsync(cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(true);
         string buildDir = McpHarness.BuildDir("shield_scrapper_set_bonuses");
 
-        JsonNode plan = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("stance", "melee")).ConfigureAwait(true);
+        JsonNode plan = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", new JsonObject { ["stance"] = "melee" })).ConfigureAwait(true);
         JsonNode unknown = await harness.CallJsonAsync("power_lookup", ("fullName", "No.Such.Power"), ("buildDir", buildDir)).ConfigureAwait(true);
 
         string[] arguments = [.. tools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal)).JsonSchema.GetProperty("properties").EnumerateObject().Select(property => property.Name).Order(StringComparer.Ordinal)];
-        Assert.Equal(["buildDir", "form", "midsDb", "midsDir", "move", "stance", "standoff", "target"], arguments, StringComparer.Ordinal);
+        Assert.Equal(["buildDir", "midsDb", "midsDir", "options"], arguments, StringComparer.Ordinal);
         Assert.Equal("melee", plan["stances"]![0]!["stance"]!.GetValue<string>());
         Assert.StartsWith("E167", unknown["unknown"]!.GetValue<string>(), StringComparison.Ordinal);
     }

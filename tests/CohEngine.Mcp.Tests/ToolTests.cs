@@ -8,6 +8,8 @@ using CohEngine.Core.Maths;
 using CohEngine.Core.Registry;
 using CohEngine.TestSupport;
 
+using ModelContextProtocol.Client;
+
 namespace CohEngine.Mcp.Tests;
 
 public sealed class ToolTests
@@ -79,7 +81,7 @@ public sealed class ToolTests
             ("set_bonus_lookup", [("setName", "Thunderstrike"), ("buildDir", buildDir)]),
             ("set_bonus_lookup", [("setName", "No Such Set"), ("buildDir", buildDir)]),
             ("power_lookup", [("fullName", "No.Such.Power"), ("buildDir", buildDir)]),
-            ("chain", [("buildDir", buildDir), ("stance", "melee")]),
+            ("chain", [("buildDir", buildDir), ("options", new JsonObject { ["stance"] = "melee" })]),
         ];
 
         JsonNode rules = await harness.CallJsonAsync("rules").ConfigureAwait(true);
@@ -341,19 +343,65 @@ public sealed class ToolTests
     }
 
     [Fact]
-    public async Task Chain_gives_the_plan_the_cli_prints()
+    public async Task The_chain_tool_publishes_its_planning_options_as_one_object()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        IList<McpClientTool> tools = await harness.Client.ListToolsAsync(cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(true);
+        JsonNode schema = JsonNode.Parse(tools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal)).JsonSchema.GetRawText())!;
+
+        Assert.Equal(["buildDir", "midsDb", "midsDir", "options"], Names(schema["properties"]!));
+        Assert.Equal(["buildDir"], schema["required"]!.AsArray().Select(name => name!.GetValue<string>()), StringComparer.Ordinal);
+        JsonNode options = schema["properties"]!["options"]!;
+        Assert.Contains("object", options["type"]!.ToJsonString(), StringComparison.Ordinal);
+        Assert.Equal(["form", "move", "stance", "standoff", "target"], Names(options["properties"]!));
+        Dictionary<string, (string? Default, string Description)> members = new(StringComparer.Ordinal)
+        {
+            ["stance"] = ("all", "The stance to plan: melee, ranged, hybrid or all."),
+            ["form"] = (null, "The form to plan for; omit for the build's own."),
+            ["target"] = ("single", "The scenario: single, or spawn:N for a spawn of N."),
+            ["move"] = ("run", "How the character moves between attacks: run, jump or fly."),
+            ["standoff"] = (null, "The ranged standoff in feet; omit for the default."),
+        };
+        foreach ((string name, (string? expected, string description)) in members)
+        {
+            JsonNode member = options["properties"]![name]!;
+            Assert.Equal(description, member["description"]!.GetValue<string>());
+            Assert.Equal(expected, member["default"]?.GetValue<string>());
+        }
+    }
+
+    [Fact]
+    public async Task Chain_with_no_options_plans_as_the_cli_does_by_default()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
         string buildDir = McpHarness.BuildDir(Slotted);
 
-        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("stance", "ranged"), ("target", "spawn:3"), ("move", "jump"), ("standoff", 30.5)).ConfigureAwait(true);
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir)).ConfigureAwait(true);
 
-        using StringWriter output = new();
-        using StringWriter error = new();
-        int code = ChainCommand.Run([buildDir, "--stance", "ranged", "--target", "spawn:3", "--move", "jump", "--standoff", "30.5", "--format", "json"], output, error);
-        Assert.Equal(string.Empty, error.ToString());
-        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output.ToString()), result["stances"]));
-        Assert.Equal(code, result["exit_code"]!.GetValue<int>());
+        AssertSamePlan(result, [buildDir, "--stance", "all", "--target", "single", "--move", "run", "--format", "json"]);
+    }
+
+    [Fact]
+    public async Task Chain_with_some_options_keeps_the_defaults_for_the_rest()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", new JsonObject { ["stance"] = "melee", ["move"] = "fly" })).ConfigureAwait(true);
+
+        AssertSamePlan(result, [buildDir, "--stance", "melee", "--target", "single", "--move", "fly", "--format", "json"]);
+    }
+
+    [Fact]
+    public async Task Chain_gives_the_plan_the_cli_prints()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+        JsonObject options = new() { ["stance"] = "ranged", ["form"] = string.Empty, ["target"] = "spawn:3", ["move"] = "jump", ["standoff"] = 30.5 };
+
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", options)).ConfigureAwait(true);
+
+        AssertSamePlan(result, [buildDir, "--stance", "ranged", "--target", "spawn:3", "--move", "jump", "--format", "json", "--form", string.Empty, "--standoff", "30.5"]);
     }
 
     [Fact]
@@ -365,8 +413,7 @@ public sealed class ToolTests
             "chain",
             ("buildDir", McpHarness.BuildDir(Slotted)),
             ("midsDir", McpHarness.Store.MidsDirectory),
-            ("stance", "melee"),
-            ("form", string.Empty),
+            ("options", new JsonObject { ["stance"] = "melee", ["form"] = string.Empty }),
             ("midsDb", Path.Join(McpHarness.Store.Root, "attribmod"))).ConfigureAwait(true);
 
         Assert.Equal("melee", result["stances"]![0]!["stance"]!.GetValue<string>());
@@ -377,7 +424,7 @@ public sealed class ToolTests
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
 
-        string error = await harness.CallErrorAsync("chain", ("buildDir", McpHarness.BuildDir(Slotted)), ("stance", "side")).ConfigureAwait(true);
+        string error = await harness.CallErrorAsync("chain", ("buildDir", McpHarness.BuildDir(Slotted)), ("options", new JsonObject { ["stance"] = "side" })).ConfigureAwait(true);
 
         Assert.Equal("argument --stance: invalid choice: 'side'", error);
     }
@@ -514,6 +561,22 @@ public sealed class ToolTests
         {
             Directory.Delete(empty);
         }
+    }
+
+    private static string[] Names(JsonNode properties)
+    {
+        return [.. properties.AsObject().Select(property => property.Key).Order(StringComparer.Ordinal)];
+    }
+
+    // The tool must give the plan, exit code included, that the CLI prints for the same values.
+    private static void AssertSamePlan(JsonNode result, string[] cliArguments)
+    {
+        using StringWriter output = new();
+        using StringWriter error = new();
+        int code = ChainCommand.Run(cliArguments, output, error);
+        Assert.Equal(string.Empty, error.ToString());
+        Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output.ToString()), result["stances"]));
+        Assert.Equal(code, result["exit_code"]!.GetValue<int>());
     }
 
     private static async Task<string> VersionAsync(string tool, params (string Name, object Value)[] arguments)

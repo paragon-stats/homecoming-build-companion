@@ -50,7 +50,7 @@ public sealed class AnalyzerProjectTests
             Assert.Contains($"dotnet_diagnostic.{known}.severity = warning", warnings, StringComparer.Ordinal);
         }
 
-        // Outside the block, only the two per-file entries that mirror the server's recorded decisions.
+        // Outside the block, only the per-file entry that mirrors the server's recorded decision for Exact.cs.
         List<string> outside = [];
         string section = string.Empty;
         for (int i = 0; i < editorConfig.Length; i++)
@@ -62,7 +62,7 @@ public sealed class AnalyzerProjectTests
             }
         }
 
-        Assert.Equal(["[src/CohEngine.Mcp/EngineTools.cs] dotnet_diagnostic.S107.severity = none", "[src/CohEngine.Core/Maths/Exact.cs] dotnet_diagnostic.S1244.severity = none"], outside);
+        Assert.Equal(["[src/CohEngine.Core/Maths/Exact.cs] dotnet_diagnostic.S1244.severity = none"], outside);
 
         // No nested .editorconfig changes a Sonar rule.
         string[] nested = [.. DevScripts.Git(DevScripts.RepositoryRoot, "ls-files", "-z", "--", ":(glob)**/.editorconfig").Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => path.Contains('/'))];
