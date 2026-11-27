@@ -9,7 +9,8 @@ static class StagedFiles
     // The staged regular files (added, copied, modified or type-changed) with their blob ids, or git's error.
     public static (List<(string Path, string Id)> Files, string? Error) List()
     {
-        string[] listing = ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--diff-filter=ACMT", "-z"];
+        // --no-relative: top-level paths from any folder, whatever diff.relative says.
+        string[] listing = ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--no-relative", "--diff-filter=ACMT", "-z"];
         ProcessStartInfo info = new("git") { RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false };
         foreach (string argument in listing)
         {

@@ -23,6 +23,7 @@ string[] extensions = [".cs", ".py", ".sh", ".ps1"];
 bool InScope(string path) => roots.Any(root => path.StartsWith(root, StringComparison.Ordinal)) && extensions.Contains(Path.GetExtension(path));
 
 List<(string Path, string? Id)> files;
+string top = string.Empty;
 if (args.Contains("--staged"))
 {
     (List<(string Path, string Id)> entries, string? error) = StagedFiles.List();
@@ -36,29 +37,24 @@ if (args.Contains("--staged"))
 }
 else
 {
-    ProcessStartInfo info = new("git") { RedirectStandardOutput = true, UseShellExecute = false, StandardOutputEncoding = new UTF8Encoding(false) };
-    foreach (string argument in new[] { "ls-files", "-z", "--", "scripts/dev", "src/CohEngine.Cli" })
+    // Top-level pathspecs and names, so a run from a subfolder sees the same files; read through the way up.
+    (int listCode, string listing) = Git("ls-files", "-z", "--full-name", "--", ":/scripts/dev", ":/src/CohEngine.Cli");
+    (int upCode, string up) = Git("rev-parse", "--show-cdup");
+    if (listCode != 0 || upCode != 0)
     {
-        info.ArgumentList.Add(argument);
-    }
-
-    using Process git = Process.Start(info)!;
-    string listing = git.StandardOutput.ReadToEnd();
-    git.WaitForExit();
-    if (git.ExitCode != 0)
-    {
-        Console.Error.WriteLine($"[FAIL] git ls-files exited {git.ExitCode}; the file list is unknown.");
+        Console.Error.WriteLine($"[FAIL] git ls-files exited {listCode}; the file list is unknown.");
         return 2;
     }
 
-    files = [.. listing.Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => InScope(path) && File.Exists(path)).Select(path => (path, (string?)null))];
+    top = up.Trim();
+    files = [.. listing.Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => InScope(path) && File.Exists(Path.Join(top, path))).Select(path => (path, (string?)null))];
 }
 
 using Process? blobs = files.Any(file => file.Id is not null) ? StagedFiles.StartReader(files.Select(file => file.Id!)) : null;
 List<string> offences = [];
 foreach ((string path, string? id) in files)
 {
-    byte[]? bytes = id is null ? File.ReadAllBytes(path) : StagedFiles.Next(blobs!);
+    byte[]? bytes = id is null ? File.ReadAllBytes(Path.Join(top, path)) : StagedFiles.Next(blobs!);
     if (bytes is null)
     {
         offences.Add($"{path}:1:1: git cannot read the staged content of this file");
@@ -97,3 +93,17 @@ if (offences.Count > 0)
 
 Console.WriteLine("[OK] script/CLI output source is ASCII-clean.");
 return 0;
+
+static (int Code, string Output) Git(params string[] arguments)
+{
+    ProcessStartInfo info = new("git") { RedirectStandardOutput = true, UseShellExecute = false, StandardOutputEncoding = new UTF8Encoding(false) };
+    foreach (string argument in arguments)
+    {
+        info.ArgumentList.Add(argument);
+    }
+
+    using Process git = Process.Start(info)!;
+    string output = git.StandardOutput.ReadToEnd();
+    git.WaitForExit();
+    return (git.ExitCode, output);
+}
