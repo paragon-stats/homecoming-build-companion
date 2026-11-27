@@ -9,6 +9,7 @@ using CohEngine.Core.Registry;
 using CohEngine.TestSupport;
 
 using ModelContextProtocol.Client;
+using ModelContextProtocol.Protocol;
 
 namespace CohEngine.Mcp.Tests;
 
@@ -379,6 +380,34 @@ public sealed class ToolTests
         JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir)).ConfigureAwait(true);
 
         AssertSamePlan(result, [buildDir, "--stance", "all", "--target", "single", "--move", "run", "--format", "json"]);
+    }
+
+    [Theory]
+    [InlineData("stance")]
+    [InlineData("form")]
+    [InlineData("target")]
+    [InlineData("move")]
+    [InlineData("standoff")]
+    public async Task A_planning_option_sent_as_null_keeps_its_default(string member)
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string buildDir = McpHarness.BuildDir(Slotted);
+
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", new JsonObject { [member] = null })).ConfigureAwait(true);
+
+        AssertSamePlan(result, [buildDir, "--stance", "all", "--target", "single", "--move", "run", "--format", "json"]);
+    }
+
+    [Theory]
+    [InlineData("Stance")]
+    [InlineData("stanse")]
+    public async Task A_miscased_or_unknown_planning_option_is_a_tool_error(string member)
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+
+        CallToolResult result = await harness.CallAsync("chain", ("buildDir", McpHarness.BuildDir(Slotted)), ("options", new JsonObject { [member] = "melee" })).ConfigureAwait(true);
+
+        Assert.True(result.IsError);
     }
 
     [Fact]
