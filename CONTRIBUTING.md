@@ -18,6 +18,8 @@ dotnet test
 ```
 
 CI runs the same checks plus the coverage gate.
+Every project, tests included, builds with `SonarAnalyzer.CSharp` and the SonarQube Cloud profile's rules as errors (listed in `.editorconfig`).
+A Sonar finding therefore fails the local build before it reaches the server.
 
 ## Git hooks
 
