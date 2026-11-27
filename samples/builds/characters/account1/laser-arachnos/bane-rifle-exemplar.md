@@ -86,8 +86,9 @@ and its dump is byte-identical to the delivered `.mids-totals.json`.
 
 **Against the previous delivery (22 November): one swap.** Kismet: Accuracy +6% (crafted 10) moves from Combat Training: Defensive
 (pick 47, usable from 42) into Maneuvers (pick 4), and Shield Wall: +Res (Teleportation), +5% Res (All) moves the other way. Kismet is
-a proc by the data, so its +6% to-hit works whenever its power is usable: now from exemplar 1. Shield Wall's +5% resistance is a PvP
-global and works wherever it sits. The level 1 primary pick now comes first and the pools are in first-pick order (no effect on totals).
+a proc by the data, so its +6% to-hit works whenever its power is usable: now from exemplar 1.
+Shield Wall's +5% resistance is a PvP-set piece: its everyday global, which works on every map, ignores the exemplar level rule, so it works wherever it sits.
+The level 1 primary pick now comes first and the pools are in first-pick order (no effect on totals).
 
 | Measure | Previous delivery | **This build** |
 | --- | --- | --- |
@@ -516,12 +517,12 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 
 | Power | Pieces | Kind (in game; the file's where it differs) | Why |
 | --- | --- | --- | --- |
-| Bane Spider Armor | Gladiator's Armor +3% Def | crafted 10 | PvP global: never lost |
+| Bane Spider Armor | Gladiator's Armor +3% Def | crafted 10 | PvP-set piece: its everyday global ignores the exemplar level rule |
 | | Steadfast Protection Res/+3% Def, Knockback Protection | crafted 10 | Set 10-30: crafted at 10 keeps them to 7, as attuned would |
-| | Gladiator's Armor Res, Res/Rech, Res/End/Rech | crafted 50; only Res/End/Rech +5 | PvP: bonuses never lost (4 pieces: knockback 3, toxic/psionic resistance) |
+| | Gladiator's Armor Res, Res/Rech, Res/End/Rech | crafted 50; only Res/End/Rech +5 | PvP-set pieces: their everyday bonuses ignore the exemplar level rule (4 pieces: knockback 3, toxic/psionic resistance) |
 | Single Shot | Superior Spider's Bite, 6 | attuned (only form) | Archetype set: bonuses at every level |
 | Burst | Superior Winter's Bite, 6 | attuned (only form) | Winter set: ranged, E/N, F/C and AoE defense at every level |
-| Maneuvers | Shield Wall Def/End, Def/Rech, Def/End/Rech, End/Rech | crafted 50, +5 | PvP: bonuses at every level; End/Rech in place of pure Defense for endurance |
+| Maneuvers | Shield Wall Def/End, Def/Rech, Def/End/Rech, End/Rech | crafted 50, +5 | PvP-set pieces: their everyday bonuses ignore the exemplar level rule; End/Rech in place of pure Defense for endurance |
 | | Kismet +ToHit (moved here) | crafted 10 | Proc by the data: +6% to-hit whenever Maneuvers is usable, so from exemplar 1 |
 | Combat Jumping | Luck of the Gambler +Recharge, Def/End | attuned; file: crafted 50 | Global and 2-piece bonus from 22 |
 | Heavy Burst | Superior Frozen Blast, 6 | attuned (only form) | AoE and F/C defense at every level |
@@ -541,7 +542,7 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 | Poisonous Ray | Apocalypse Acc/Dmg/Rech, Acc/Rech, Dmg/Rech, Dmg/End, Dmg | crafted 50; only Acc/Rech and Dmg/End +5 | Purple: bonuses at every level |
 | | Apocalypse −Energy proc | crafted 50 | Proc |
 | Build Up | Gaussian's ToHit, Rech/ToHit, End/Rech/ToHit, Build Up proc | attuned; file: crafted 50 | Bonuses from 18. In Build Up so Mids does not count the proc as always on |
-| Combat Training: Defensive | Shield Wall +5% Res (all) (moved here) | crafted 50 | PvP global: works at every level wherever it sits |
+| Combat Training: Defensive | Shield Wall +5% Res (all) (moved here) | crafted 50 | PvP-set piece: its everyday global ignores the exemplar level rule, wherever it sits |
 | | (Karma Knockback Protection, removed) | — | Its slot went to Surveillance's Accuracy IO; knockback protection 15 → 11 |
 | Wide Area Web Grenade | Accuracy | crafted 50, +5 | One slot (on the ALT row, not the key row) |
 | Health | Panacea +HP/End, Numina's +Regen/Recovery (30), Miracle +Recovery (20) | crafted | Procs by the game data (`is_proc: true`): any level works; lowest craftable |
@@ -557,9 +558,14 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 
 **Rules behind the kinds:**
 
-- **Sets that ignore exemplaring** (purple, PvP, archetype, Winter, Overwhelming Force) come first. Their bonuses are never lost, so purple and PvP pieces are crafted at 50 and boosted.
+- **Sets that ignore exemplaring** (purple, PvP, archetype, Winter, Overwhelming Force) come first.
+  Their everyday bonuses ignore the exemplar level rule, so purple and PvP-set pieces are crafted at 50 and boosted.
 - **Regular sets are attuned**, keeping bonuses to the set minimum − 3. Crafted at 50 they stop below 47.
   The Mids file cannot hold an attuned regular-set piece, so it holds the crafted piece at the level in the table's "file:" note.
+- **PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set in `data/canonical/boost_sets/<set>.json` has two bonuses:
+  one with `is_pvp_bonus: false`, which works on every map, and one with `is_pvp_bonus: true` and `requires: isPVPMap?`, which works only on PvP maps.
+  The unique globals (Shield Wall +5% resistance, Gladiator's Armor +3% defense) are `is_pvp_bonus: false`.
+  No PvP-only bonus is counted in any figure here (the engine computes in PvE mode), and none is a reason for a pick.
 - **Globals crafted at the set minimum** equal attuned.
 - **Procs** ignore the minus-3 rule.
 - **Single-aspect IOs boosted to +5** gain nothing at 45 and below, because the cap is 41.5% [A].
@@ -628,7 +634,7 @@ last threshold (100% on schedule A, 60% on schedule B); every other aspect of ev
 
 | Power | Aspect | Pre | Post | What holds the slots |
 | --- | --- | --- | --- | --- |
-| Bane Spider Armor Upgrade | Resistance | 61.8% | 56.3% | Gladiator's Armor (PvP): knockback protection (3), Toxic/Psionic resistance (4) |
+| Bane Spider Armor Upgrade | Resistance | 61.8% | 56.3% | Gladiator's Armor (PvP set, everyday bonuses): knockback protection (3), Toxic/Psionic resistance (4) |
 | Single Shot | Damage / Recharge | 142.4 / 132.5% | 101.4 / 99.9% | Superior Spider's Bite (archetype set) |
 | Burst | Accuracy / Damage / Recharge | 109.3 / 142.4 / 106.0% | 96.4 / 101.4 / 95.9% | Superior Winter's Bite (Winter set) |
 | Heavy Burst | Accuracy / Damage | 109.3 / 142.4% | 96.4 / 101.4% | Superior Frozen Blast (Winter set) |

@@ -175,7 +175,7 @@ inherent powers, and Mids offers no build entry for prestige powers. In game a R
 The lowest exemplar level at which a piece's own bonus works follows the wiki's rules, piece by piece, as the exemplar script applies them:
 
 - **A power** is usable while its pick level is at most the exemplar level + 5. Every slot in a usable power works.
-- **Purple, PvP, archetype and Winter pieces** (the data's `bonuses_ignore_exemplar`) work at every level.
+- **Purple, PvP-set, archetype and Winter pieces** (the data's `bonuses_ignore_exemplar`) keep their everyday bonuses at every level.
 - **An attuned piece** works from its set's minimum level − 3.
 - **A crafted piece** works from its own level − 3. Boosting does not change that level.
 - **A proc** works whenever its power is usable.
@@ -201,6 +201,11 @@ The four Luck of the Gambler +7.5% recharge globals are crafted at 50 and work f
 Panacea, Regenerative Tissue, Miracle, Numina's Convalescence and Performance Shifter's Chance for +End have `is_proc: true` and
 carry their effect in the piece. The other pieces in the table have `is_proc: false` and carry it in a `global_bonuses` power, which
 follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor, Shield Wall).
+
+**PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set in `data/canonical/boost_sets/<set>.json` has two bonuses:
+one with `is_pvp_bonus: false`, which works on every map, and one with `is_pvp_bonus: true` and `requires: isPVPMap?`, which works only on PvP maps.
+The unique globals (Shield Wall +5% resistance, Gladiator's Armor +3% defense) are `is_pvp_bonus: false`.
+No PvP-only bonus is counted in any figure here (the engine computes in PvE mode), and none is a reason for a pick.
 
 **Preventive Medicine's absorb is crafted 50 in the file.** By the game data it is a global, not a proc: `is_proc: false`, and the
 absorb comes from its `global_bonuses` power `set_bonus.set_bonus.preventive_medicine`, which fires by chance. An `.mbd` marks a piece
