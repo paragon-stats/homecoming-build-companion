@@ -22,6 +22,14 @@ public sealed partial class DevScriptTests
 
         Assert.Equal(["check-text-files", "check-encoding", "check-coverage-exclusions", "check-git-signing", "check-banned-words", "dotnet-format"], Group("pre-commit"));
         Assert.Equal(["check-banned-words-push", "build", "super-linter", "test"], Group("pre-push"));
+
+        // The commit hook judges what is staged; the push hook judges the tracked files.
+        string LastArgument(string name) => runner.RootElement.GetProperty("tasks").EnumerateArray()
+            .Single(task => string.Equals(task.GetProperty("name").GetString(), name, StringComparison.Ordinal))
+            .GetProperty("args").EnumerateArray().Last().GetString()!;
+        Assert.Equal("--staged", LastArgument("check-encoding"));
+        Assert.Equal("--staged", LastArgument("check-banned-words"));
+        Assert.False(string.Equals("--staged", LastArgument("check-banned-words-push"), StringComparison.Ordinal), "the push hook must judge the tracked files");
         foreach (string hook in new[] { "pre-commit", "pre-push" })
         {
             string text = File.ReadAllText(Path.Join(DevScripts.RepositoryRoot, ".husky", hook));

@@ -47,6 +47,60 @@ public sealed partial class DevScriptTests
     }
 
     [Fact]
+    public void The_banned_words_check_fails_when_git_cannot_read_a_staged_file()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+
+        // An index entry naming an object the repository does not have: cat-file answers "missing".
+        DevScripts.Git(tree.Root, "update-index", "--add", "--cacheinfo", $"100644,{new string('1', 40)},ghost.txt");
+        Dictionary<string, string?> environment = new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = "Somebody Else", ["GITHUB_ACTIONS"] = null };
+
+        (int exit, string output) = DevScripts.RunScriptWithEnvironment("check-banned-words.cs", tree.Root, environment, "--staged");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("ghost.txt:1: git cannot read the staged content of this file", output, StringComparison.Ordinal);
+        Assert.DoesNotContain("[OK]", output, StringComparison.Ordinal);
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void The_encoding_check_finds_a_hit_when_run_from_a_subfolder(bool staged)
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("scripts/dev/hit.cs", "// café\n");
+        DevScripts.Git(tree.Root, "add", "--", "scripts/dev/hit.cs");
+        Directory.CreateDirectory(tree.FullPath("docs"));
+
+        // A user's diff.relative=true makes git diff list only the current folder unless told otherwise.
+        DevScripts.Git(tree.Root, "config", "diff.relative", "true");
+
+        (int exit, string output) = DevScripts.RunScript("check-encoding.cs", tree.FullPath("docs"), staged ? ["--staged"] : []);
+
+        Assert.Equal(1, exit);
+        Assert.Contains("scripts/dev/hit.cs:1:7: non-ASCII U+00E9", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_banned_words_check_finds_a_staged_hit_when_run_from_a_subfolder()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("notes.txt", $"the {BannedWord}\n");
+        DevScripts.Git(tree.Root, "add", "--", "notes.txt");
+        Directory.CreateDirectory(tree.FullPath("docs"));
+        DevScripts.Git(tree.Root, "config", "diff.relative", "true");
+        Dictionary<string, string?> environment = new(StringComparer.Ordinal) { ["COH_BANNED_NAMES"] = "Somebody Else", ["GITHUB_ACTIONS"] = null };
+
+        (int exit, string output) = DevScripts.RunScriptWithEnvironment("check-banned-words.cs", tree.FullPath("docs"), environment, "--staged");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("notes.txt:1: banned word", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void The_banned_words_check_fails_on_its_seed_file()
     {
         using TempTree tree = new();
@@ -145,6 +199,7 @@ public sealed partial class DevScriptTests
         else
         {
             Assert.True(exit != 0, output);
+            Assert.Contains("no-such-command", output, StringComparison.Ordinal);
         }
     }
 
