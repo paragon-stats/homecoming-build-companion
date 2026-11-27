@@ -128,9 +128,17 @@ int hits = 0;
 foreach (string path in files)
 {
     byte[]? bytes = staged ? StagedFiles.Next(blobs!) : File.Exists(path) ? File.ReadAllBytes(path) : null;
+    if (bytes is null && staged)
+    {
+        // A missing blob, or git stopping partway: what is staged here was not checked.
+        Console.Error.WriteLine($"{path}:1: git cannot read the staged content of this file");
+        hits++;
+        continue;
+    }
+
     if (bytes is null)
     {
-        continue; // tracked but deleted in the working tree, or a blob git does not have
+        continue; // tracked but deleted in the working tree
     }
 
     // A NUL byte in the first 8 KB marks a binary file.
