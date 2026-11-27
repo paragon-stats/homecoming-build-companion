@@ -86,21 +86,38 @@ Each entry in `PowerEntries[]`:
   "Enhancement": {
     /* EnhancementData or null */
   },
-  "FlippedEnhancement": null, // alternate-form (Attuned vs Crafted toggle)
+  "FlippedEnhancement": null, // the slot's piece in Mids' alternate slotting, or null
 }
 ```
+
+`FlippedEnhancement` is not an attuned-or-crafted toggle. Mids keeps a second, alternate slotting of the whole build and flips between
+the two; this field holds the slot's piece in that alternate slotting. For example,
+`samples/builds/community/stalker/general/unknown-fiery-invulnerability.mbd` holds Aegis pieces in Tough with Unbreakable Guard pieces
+as their flipped alternates. The reader in `src/CohEngine.Core/BuildFile/` reads it, checks its level on writing, and writes it back; no total counts it.
 
 ### EnhancementData shape
 
 ```jsonc
 {
-  "Uid": "Attuned_Luck_of_the_Gambler_E", // see Enhancement.json
+  "Uid": "Crafted_Luck_of_the_Gambler_F", // see enhancements.json
   "Grade": "None", // for set IOs; TO/DO/SO/HO/IO have specific grades
-  "IoLevel": 50, // crafted IO level (10-50); ignored for TO/DO/SO/HO/Attuned
+  "IoLevel": 49, // 0-based level: 49 is level 50; kept within the set's level range
   "RelativeLevel": "Even", // MinusThree..PlusFive; boosters move toward PlusFive
   "Obtained": false, // true = actually owned, false = planning
 }
 ```
+
+### Attuned pieces
+
+An `.mbd` marks a piece attuned only through its `Uid`: an attuned piece has its own identifier, `Attuned_...` or
+`Superior_Attuned_...`. There is no separate attuned flag.
+
+The Mids 3.8.6 database (`tests/fixtures/mids`, 2026.5.1337) has attuned identifiers only for archetype sets, Winter sets and
+attuned-only sets such as Overwhelming Force. No regular set has one: there is no `Attuned_Luck_of_the_Gambler_*`, so a 3.8.6 file
+cannot mark a Luck of the Gambler, Unbreakable Guard or Preventive Medicine piece attuned. A build that needs such a piece attuned holds
+the crafted piece in the file, and its write-up must say which pieces to buy attuned in game.
+The Mids 4.0 database (`tests/fixtures/mids4/enhancements.json`) adds attuned identifiers for the regular sets, for example
+`Attuned_Luck_of_the_Gambler_F`.
 
 ---
 

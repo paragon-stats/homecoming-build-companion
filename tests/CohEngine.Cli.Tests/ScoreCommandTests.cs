@@ -117,7 +117,9 @@ public sealed partial class ScoreCommandTests
 
         (_, string help, _) = Run("--help");
 
-        Assert.Equal(["ask", "chain", "extract-canonical", "mcp", "rules", "score", "validate"], commands.Order(StringComparer.Ordinal), StringComparer.Ordinal);
-        Assert.All(commands, command => Assert.Contains(command, help, StringComparison.Ordinal));
+        Assert.Equal(["ask", "chain", "extract-canonical", "mcp", "patch-notes", "rules", "score", "source-manifest", "validate"], commands.Order(StringComparer.Ordinal), StringComparer.Ordinal);
+
+        // A command is listed when it opens an alternative of the usage line: after "[" or "| ", before a space or "]".
+        Assert.All(commands, command => Assert.Matches(new Regex($@"(?:\[|\| ){Regex.Escape(command)}(?=[ \]])", RegexOptions.None, TimeSpan.FromSeconds(1)), help));
     }
 }

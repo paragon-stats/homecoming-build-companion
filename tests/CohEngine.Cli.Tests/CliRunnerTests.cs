@@ -45,6 +45,33 @@ public sealed class CliRunnerTests
         Assert.StartsWith("usage: coh-engine extract-canonical", error.ToString(), StringComparison.Ordinal);
     }
 
+    [Theory]
+    [InlineData("patch-notes")]
+    [InlineData("source-manifest")]
+    public void Patch_notes_and_source_manifest_dispatch_to_their_commands(string command)
+    {
+        using StringWriter output = new();
+        using StringWriter error = new();
+
+        int code = CliRunner.Run([command, "--bogus"], output, error);
+
+        Assert.Equal(2, code);
+        Assert.StartsWith("usage: coh-engine " + command, error.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void A_missing_source_root_is_one_error_line()
+    {
+        using StringWriter output = new();
+        using StringWriter error = new();
+        string absent = Path.Join(AppContext.BaseDirectory, "no-such-source-root");
+
+        int code = CliRunner.Run(["source-manifest", "--source-root", absent], output, error);
+
+        Assert.Equal(1, code);
+        Assert.Equal($"error: E210: expected a directory at {absent}, which was not found; set --source-root or COH_SOURCE_ROOT" + Environment.NewLine, error.ToString());
+    }
+
     [Fact]
     public void Unknown_arguments_print_usage_to_error_and_fail()
     {

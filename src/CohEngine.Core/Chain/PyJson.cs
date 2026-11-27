@@ -2,10 +2,11 @@ using System.Collections;
 using System.Globalization;
 using System.Numerics;
 using System.Text;
+using System.Text.Json;
 
 namespace CohEngine.Core.Chain;
 
-/// <summary>A writer for <c>json.dumps(value, indent=2)</c>.</summary>
+/// <summary>A writer for <c>json.dumps</c> and a reader for <c>json.loads</c>, keeping Python's key order and number kinds.</summary>
 public static class PyJson
 {
     /// <summary>Serializes a value tree the way Python's <c>json.dumps(indent=2)</c> does.</summary>
@@ -18,12 +19,81 @@ public static class PyJson
     /// <exception cref="ArgumentException">The value has no JSON form.</exception>
     public static string Dumps(object? value, bool pythonReprNonFinite = false)
     {
+        return Dumps(value, new Style(Indented: true, EnsureAscii: true, pythonReprNonFinite));
+    }
+
+    /// <summary>Serializes a value tree the way <c>json.dumps(value, ensure_ascii=..., indent=2 or None)</c> does.</summary>
+    /// <param name="value">As for <see cref="Dumps(object?, bool)"/>.</param>
+    /// <param name="indented">True for <c>indent=2</c>; false for one line with <c>", "</c> and <c>": "</c> separators.</param>
+    /// <param name="ensureAscii">True escapes every character past <c>~</c>; false writes them as they are.</param>
+    /// <returns>The JSON text.</returns>
+    /// <exception cref="ArgumentException">The value has no JSON form.</exception>
+    public static string Dumps(object? value, bool indented, bool ensureAscii)
+    {
+        return Dumps(value, new Style(indented, ensureAscii, ReprNonFinite: false));
+    }
+
+    /// <summary>Parses JSON the way <c>json.loads</c> does: an object is a <see cref="PyObject"/> in key order, a whole number a <see cref="long"/>, an array a list.</summary>
+    /// <param name="text">The JSON text.</param>
+    /// <returns>The value tree.</returns>
+    /// <exception cref="JsonException">The text is not JSON.</exception>
+    public static object? Loads(string text)
+    {
+        using JsonDocument document = JsonDocument.Parse(text);
+        return Value(document.RootElement);
+    }
+
+    private static string Dumps(object? value, Style style)
+    {
         StringBuilder builder = new();
-        Write(builder, value, 0, pythonReprNonFinite);
+        Write(builder, value, 0, style);
         return builder.ToString();
     }
 
-    private static void Write(StringBuilder builder, object? value, int depth, bool pythonReprNonFinite)
+    private static object? Value(JsonElement element)
+    {
+        switch (element.ValueKind)
+        {
+            case JsonValueKind.Object:
+                PyObject map = [];
+                foreach (JsonProperty property in element.EnumerateObject())
+                {
+                    map.Set(property.Name, Value(property.Value));
+                }
+
+                return map;
+            case JsonValueKind.Array:
+                return element.EnumerateArray().Select(Value).ToList();
+            case JsonValueKind.String:
+                return element.GetString();
+            case JsonValueKind.Number:
+                return Number(element);
+            case JsonValueKind.True or JsonValueKind.False:
+                return element.GetBoolean();
+            default:
+                return null;
+        }
+    }
+
+    /// <summary>A JSON number as Python reads it: an integer of any size, else a float, infinite past the double range.</summary>
+    private static object Number(JsonElement element)
+    {
+        string text = element.GetRawText();
+        if (element.TryGetInt64(out long whole))
+        {
+            return whole;
+        }
+
+        if (text.IndexOfAny(['.', 'e', 'E']) < 0)
+        {
+            return BigInteger.Parse(text, CultureInfo.InvariantCulture);
+        }
+
+        // Past the double range this is an infinity of the number's sign, as Python's float() gives.
+        return element.GetDouble();
+    }
+
+    private static void Write(StringBuilder builder, object? value, int depth, Style style)
     {
         switch (value)
         {
@@ -37,62 +107,46 @@ public static class PyJson
                 builder.Append(Convert.ToString(value, CultureInfo.InvariantCulture));
                 break;
             case double real:
-                builder.Append(double.IsFinite(real) || pythonReprNonFinite ? PyFloat.Repr(real) : JsonNonFinite(real));
+                builder.Append(double.IsFinite(real) || style.ReprNonFinite ? PyFloat.Repr(real) : JsonNonFinite(real));
                 break;
             case string text:
-                WriteString(builder, text);
+                WriteString(builder, text, style.EnsureAscii);
                 break;
             case PyObject map:
-                WriteObject(builder, map, depth, pythonReprNonFinite);
+                WriteItems(builder, map.Count, '{', '}', depth, style, (i, inner) =>
+                {
+                    WriteString(builder, map[i].Key, style.EnsureAscii);
+                    builder.Append(": ");
+                    Write(builder, map[i].Value, inner, style);
+                });
                 break;
             case IEnumerable<object?> or IEnumerable<int> or IEnumerable<string>:
-                WriteList(builder, [.. ((IEnumerable)value).Cast<object?>()], depth, pythonReprNonFinite);
+                List<object?> list = [.. ((IEnumerable)value).Cast<object?>()];
+                WriteItems(builder, list.Count, '[', ']', depth, style, (i, inner) => Write(builder, list[i], inner, style));
                 break;
             default:
                 throw new ArgumentException($"no JSON form for {value.GetType().Name}", nameof(value));
         }
     }
 
-    private static void WriteObject(StringBuilder builder, PyObject map, int depth, bool pythonReprNonFinite)
+    private static void WriteItems(StringBuilder builder, int count, char open, char close, int depth, Style style, Action<int, int> item)
     {
-        if (map.Count == 0)
+        if (count == 0)
         {
-            builder.Append("{}");
+            builder.Append(open).Append(close);
             return;
         }
 
-        string pad = new(' ', (depth + 1) * 2);
-        builder.Append("{\n");
-        for (int i = 0; i < map.Count; i++)
+        string pad = style.Indented ? "\n" + new string(' ', (depth + 1) * 2) : string.Empty;
+        builder.Append(open);
+        for (int i = 0; i < count; i++)
         {
-            builder.Append(pad);
-            WriteString(builder, map[i].Key);
-            builder.Append(": ");
-            Write(builder, map[i].Value, depth + 1, pythonReprNonFinite);
-            builder.Append(i < map.Count - 1 ? ",\n" : "\n");
+            builder.Append(i == 0 || style.Indented ? string.Empty : " ").Append(pad);
+            item(i, depth + 1);
+            builder.Append(i < count - 1 ? "," : string.Empty);
         }
 
-        builder.Append(' ', depth * 2).Append('}');
-    }
-
-    private static void WriteList(StringBuilder builder, List<object?> list, int depth, bool pythonReprNonFinite)
-    {
-        if (list.Count == 0)
-        {
-            builder.Append("[]");
-            return;
-        }
-
-        string pad = new(' ', (depth + 1) * 2);
-        builder.Append("[\n");
-        for (int i = 0; i < list.Count; i++)
-        {
-            builder.Append(pad);
-            Write(builder, list[i], depth + 1, pythonReprNonFinite);
-            builder.Append(i < list.Count - 1 ? ",\n" : "\n");
-        }
-
-        builder.Append(' ', depth * 2).Append(']');
+        builder.Append(style.Indented ? "\n" + new string(' ', depth * 2) : string.Empty).Append(close);
     }
 
     private static string JsonNonFinite(double value)
@@ -105,7 +159,7 @@ public static class PyJson
         return value > 0 ? "Infinity" : "-Infinity";
     }
 
-    private static void WriteString(StringBuilder builder, string text)
+    private static void WriteString(StringBuilder builder, string text, bool ensureAscii)
     {
         builder.Append('"');
         foreach (char letter in text)
@@ -134,7 +188,7 @@ public static class PyJson
                     builder.Append("\\f");
                     break;
                 default:
-                    if (letter < ' ' || letter > '~')
+                    if (letter < ' ' || (ensureAscii && letter > '~'))
                     {
                         builder.Append("\\u").Append(((int)letter).ToString("x4", CultureInfo.InvariantCulture));
                     }
@@ -149,4 +203,9 @@ public static class PyJson
 
         builder.Append('"');
     }
+
+    /// <param name="Indented">True for <c>indent=2</c>.</param>
+    /// <param name="EnsureAscii">True for <c>ensure_ascii=True</c>.</param>
+    /// <param name="ReprNonFinite">True writes non-finite floats as Python's <c>repr</c>.</param>
+    private readonly record struct Style(bool Indented, bool EnsureAscii, bool ReprNonFinite);
 }

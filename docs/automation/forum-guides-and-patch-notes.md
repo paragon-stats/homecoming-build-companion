@@ -101,7 +101,7 @@ python -m scripts.forum_scrape.guides --base https://forumarchive.cityofheroes.d
 ## Patch timeline
 
 ```bash
-python -m scripts.forum_scrape.patch_notes --out data/patches
+coh-engine patch-notes --out data/patches
 ```
 
 Reads three sources into one dated JSON file per entry, the shape and coverage in
@@ -114,11 +114,32 @@ later entry keeps only what no earlier one recorded and a word-for-word repost i
 without a file. `--source` selects one; the default is all three. Re-runs write only entries
 not yet in the index, so the two archive sources cost nothing after their first run.
 
+From a source checkout, `dotnet run --project src/CohEngine.Cli -- patch-notes ...` runs the same command.
+It takes the options and writes the bytes of `python -m scripts.forum_scrape.patch_notes`, which stays in the tree
+until the Python is removed. Its errors carry their own numbers: a failed fetch is `E200`, a refused or unreadable
+`robots.txt` `E201` or `E202`, an unreadable category browser or wiki index `E203` or `E204`, a missing beta
+listing page `E205`, an entry with no change lines `E206`, a canonical tree with no powerset names `E207`, which stops the run before anything is fetched or written, and a source not read completely `E208`.
+A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
+A listing that answers but names no link, such as a maintenance page, is `E227` and leaves its source not read completely.
+A beta listing that declares more than 100 pages is read to page 100 only (`E226`), and its source counts as not read completely.
+So does a re-parse that yields no records for a source whose records the folder holds.
+An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`, and the run exits 1.
+Under `--reparse`, an old index row whose file name is not a plain name inside the output folder is `E209`, and the run exits 1.
+No record of its source is written or removed, and its index rows are kept.
+A link or a redirect to a host other than the forum or the wiki is not fetched (`E222`).
+A page that takes a parsing pattern past its time limit stops its source with `E223`; that source counts as not read completely.
+A page robots.txt disallows is skipped with `E220`, and every page of a site whose robots.txt was refused or unreadable with `E221`.
+A file under the output folder or its cache that cannot be read or written stops the run with `E224`; a record or index file another process holds is tried three times first, and the message names it.
+An index line or a record file that is not what the command writes (not JSON, the wrong shape, or not UTF-8) stops the run with `E225`, naming the file.
+Every coded line goes to standard error and opens with `error:`.
+`E206` alone is reported but does not stop the run or change the exit code.
+Every other code makes the run exit 1.
+
 Every entry page fetched is kept in `data/patches/.cache/` (gitignored; `--cache` moves it).
 After a parser change, rebuild the records from it instead of deleting them:
 
 ```bash
-python -m scripts.forum_scrape.patch_notes --source paragonwiki --reparse
+coh-engine patch-notes --source paragonwiki --reparse
 ```
 
 The sources are regenerated in a scratch folder, fetching only pages the cache lacks; then only

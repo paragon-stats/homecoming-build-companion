@@ -129,8 +129,9 @@ attack it would break the six-key limit.
   (crafted 25). Placement table below.
 - **Tough earns its pick.** Unbreakable Guard Resistance, Resistance/Endurance, RechargeTime/Resistance and Resistance/Endurance/RechargeTime,
   the set's +Max HP unique and Aegis. Its bonuses: +3.13% melee defense (4) and +3.75% Toxic/Psionic resistance (5).
-- **Health survivability pieces.** Numina's Convalescence (crafted 30), Preventive Medicine Chance for +Absorb (attuned), Panacea +Hit
-  Points/Endurance (crafted 50), Regenerative Tissue +Regeneration (crafted 10) and Miracle (crafted 20).
+- **Health survivability pieces.** Numina's Convalescence (crafted 30), Preventive Medicine Chance for +Absorb (attuned in game, crafted 50
+  in the file; see "Unique placement"), Panacea +Hit Points/Endurance (crafted 50), Regenerative Tissue +Regeneration (crafted 10) and
+  Miracle (crafted 20).
 - **Exemplar pick order.** Mental Training at 22 (where it opens) and Maneuvers at 8. The pick order is unchanged.
 - **Pools listed in pick order:** Leaping (Combat Jumping, 6), Leadership (Maneuvers, 8), Speed (Hasten, 14), Fighting (Boxing, 28).
 - **Rarer sets.** Superior Dominion of Arachnos in Frag Grenade, Ragnarok in Venom Grenade, Superior Frozen Blast in Bile Spray, Annihilation
@@ -188,13 +189,25 @@ The lowest exemplar level at which a piece's own bonus works follows the wiki's 
 | Unbreakable Guard: +Max HP | Tough | crafted 50 | 47 | Hit points; sits with its own set |
 | Aegis: Psionic/Status Resistance | Tough | crafted 25 | 22 | Psionic and status resistance |
 | Reactive Defenses: Scaling Resist Damage | Weave | crafted 50 | 47 | Defense-set unique |
-| Preventive Medicine: Chance for +Absorb | Health | attuned | 17 | Set minimum 20 − 3 |
+| Preventive Medicine: Chance for +Absorb | Health | crafted 50 in the file; attuned in game | 47 as the file holds it; 17 attuned | Crafted 50 − 3; attuned: set minimum 20 − 3 |
 | Panacea: +Hit Points/Endurance | Health | crafted 50 | every level | PvP set, and a proc |
 | Regenerative Tissue: +Regeneration | Health | crafted 10 | every level | A proc in always-usable Health |
 | Miracle: +Recovery | Health | crafted 20 | every level | As above |
 | Numina's Convalescence: +Regeneration/+Recovery | Health | crafted 30 | every level | As above |
 
 The four Luck of the Gambler +7.5% recharge globals are crafted at 50 and work from exemplar 47.
+
+**Proc or global** is the game data's: `boost_info.is_proc` in `data/canonical/powers/boosts/crafted_<piece>/crafted_<piece>.json`.
+Panacea, Regenerative Tissue, Miracle, Numina's Convalescence and Performance Shifter's Chance for +End have `is_proc: true` and
+carry their effect in the piece. The other pieces in the table have `is_proc: false` and carry it in a `global_bonuses` power, which
+follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor, Shield Wall).
+
+**Preventive Medicine's absorb is crafted 50 in the file.** By the game data it is a global, not a proc: `is_proc: false`, and the
+absorb comes from its `global_bonuses` power `set_bonus.set_bonus.preventive_medicine`, which fires by chance. An `.mbd` marks a piece
+attuned only by an `Attuned_...` identifier, and the
+Mids 3.8.6 database the file is written against has none for Preventive Medicine. Slotted as the file holds it, the absorb is off below
+exemplar 47. To have it from 17, buy it attuned in game (or crafted 20, which also works from 17). The absorb counts in no total here, so
+no figure changes.
 
 **Impervium Armor: Psionic Resistance is not a unique.** The earlier table listed it as one. In
 `data/canonical/boost_sets/impervium_armor.json` its `is_unique` is false. Its boost data also carries no one-per-character
@@ -205,7 +218,8 @@ More copies could be slotted, each adding the same psionic resistance bonus; thi
 
 - **Preventive Medicine absorb.** It checks every 5 s: a 10% chance at 31 to 75% health, 100% below 31%. Each trigger grants absorb equal
   to 20% of max HP for 30 s, **at most once every 120 s** (the earlier text said 90 s). That is about 398 absorb at 1,989 HP with Serum up,
-  273 with Serum down, and at most 398 / 120 = 3.3 HP/s (arithmetic; the earlier 90 s implied 4.4).
+  273 with Serum down, and at most 398 / 120 = 3.3 HP/s (arithmetic; the earlier 90 s implied 4.4). By the data it is a chance-based
+  global, not a proc (`is_proc: false`; see "Unique placement").
 - **Panacea.** 3 PPM in an auto power, checked every 10 s: 3 × 10 / 60 = a 50% chance per check, about three triggers a minute. Each heals
   (scale 0.67 on the heal table) and restores 7.5% endurance: 0.5 × 7.87 / 10 = **0.39 end/s** (estimate).
 - **Performance Shifter: Chance for +End** (crafted 21). 1.5 PPM, checked every 10 s: a 25% chance, +10% endurance: 0.25 × 10.5 / 10 =
@@ -403,7 +417,7 @@ The other global and unique pieces keep the levels the character holds them at, 
 
 - the armor's Steadfast Protection at 10, Gladiator's Armor at 10 and Impervium Armor at 15;
 - Aegis in Tough at 25;
-- in Health, Numina's Convalescence at 30, the Preventive Medicine absorb attuned, Panacea at 50, Regenerative Tissue at 10 and Miracle at 20;
+- in Health, Numina's Convalescence at 30, the Preventive Medicine absorb attuned (crafted 50 in the file), Panacea at 50, Regenerative Tissue at 10 and Miracle at 20;
 - the Performance Shifter proc at 21;
 - level 50 IOs in Swift (Run Speed), Hurdle (Jump) and Boxing (Accuracy), as the operator confirmed.
 
@@ -612,7 +626,7 @@ Unchanged from the previous file.
 Each piece is named with its real kind and level:
 
 - **Superior, attuned:** Superior Spider's Bite, Superior Winter's Bite, Superior Dominion of Arachnos, Superior Frozen Blast. No level.
-- **Attuned:** the Preventive Medicine absorb proc.
+- **Attuned:** the Preventive Medicine absorb global, in game. The file holds it crafted 50 (see "Unique placement").
 - **Crafted, with its level:** every other piece. "Invention" pieces are common IOs, crafted at 50.
 
 `(A)` is the free slot; numbers in brackets are the levels the added slots are placed at. "+5" marks a planned boost.
@@ -660,7 +674,7 @@ Each piece is named with its real kind and level:
 - **Swift:** Invention: Run Speed, crafted 50 (A). **Hurdle:** Invention: Jump, crafted 50 (A).
 - **Brawl:** Invention: Accuracy, crafted 50 (A). **Sprint:** Invention: Run Speed, crafted 50 (A). **Rest:** Invention: Endurance
   Modification, crafted 50 (A).
-- **Health:** Numina's Convalescence: +Regeneration/+Recovery, crafted 30 (A); Preventive Medicine: Chance for +Absorb, attuned (9);
+- **Health:** Numina's Convalescence: +Regeneration/+Recovery, crafted 30 (A); Preventive Medicine: Chance for +Absorb, attuned in game, crafted 50 in the file (9);
   Panacea: +Hit Points/Endurance, crafted 50 (13); Regenerative Tissue: +Regeneration, crafted 10 (15); Miracle: +Recovery, crafted 20 (17).
 - **Stamina:** Performance Shifter: Chance for +End, crafted 21 (A).
 

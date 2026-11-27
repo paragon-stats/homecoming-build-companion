@@ -10,6 +10,13 @@ namespace CohEngine.Cli.Tests;
 /// <summary>Runs the file-based scripts in <c>scripts/dev</c> and the Husky wiring that calls them, as a developer's machine does.</summary>
 internal static class DevScripts
 {
+    /// <summary>
+    /// The test collection of every class that runs a script with <see cref="RunScript"/>. Each script build also builds
+    /// src/CohEngine.Analyzers into that project's own obj and bin, so two script builds at once can collide on its
+    /// output (CS2012); classes in one collection never run at the same time.
+    /// </summary>
+    internal const string Collection = "dev scripts";
+
     internal static readonly string RepositoryRoot = FixtureStore.Locate(AppContext.BaseDirectory).RepositoryRoot;
 
     /// <summary>Runs a program and returns its exit code and both output streams joined.</summary>
@@ -105,7 +112,11 @@ internal static class DevScripts
     internal static (int Exit, string Output) RunScriptWithEnvironment(string script, string workingDirectory, IReadOnlyDictionary<string, string?> environment, params string[] args)
     {
         string path = Path.Join(RepositoryRoot, "scripts", "dev", script);
-        return RunWithEnvironment(workingDirectory, "dotnet", environment, ["run", path, "--", .. args]);
+        (int exit, string output) = RunWithEnvironment(workingDirectory, "dotnet", environment, ["run", path, "--", .. args]);
+
+        // A script that did not compile printed compiler errors and exited 1, which a test must not read as the check's verdict.
+        Assert.False(output.Contains("The build failed. Fix the build errors and run again.", StringComparison.Ordinal), $"{script} did not build, so it gave no result: {output}");
+        return (exit, output);
     }
 
     /// <summary>Builds a PATH that holds only the folders of the named programs, so a missing tool is missing.</summary>
@@ -128,6 +139,20 @@ internal static class DevScripts
             .First(File.Exists);
     }
 
+    /// <summary>Finds the bash git itself runs hooks with; on Windows that is Git for Windows' bash, never the WSL launcher.</summary>
+    /// <returns>The full path of bash.</returns>
+    internal static string Bash()
+    {
+        if (!OperatingSystem.IsWindows())
+        {
+            return Locate("bash");
+        }
+
+        // git --exec-path is <Git>/<mingw64 or ucrt64>/libexec/git-core.
+        string execPath = Git(RepositoryRoot, "--exec-path").Trim();
+        return Path.GetFullPath(Path.Join(execPath, "..", "..", "..", "usr", "bin", "bash.exe"));
+    }
+
     /// <summary>Runs git in a directory and fails the test when git fails.</summary>
     /// <param name="workingDirectory">The repository.</param>
     /// <param name="args">The git arguments.</param>
@@ -145,7 +170,7 @@ internal static class DevScripts
     {
         Git(tree.Root, "init", "--quiet");
         Git(tree.Root, "config", "core.hooksPath", ".husky");
-        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs" })
+        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
         {
             Directory.CreateDirectory(Path.GetDirectoryName(tree.FullPath(file))!);
             File.Copy(Path.Join(RepositoryRoot, file), tree.FullPath(file));

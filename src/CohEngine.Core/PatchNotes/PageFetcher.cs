@@ -1,0 +1,212 @@
+using System.Diagnostics;
+using System.Globalization;
+using System.Text;
+
+using CohEngine.Core.Diagnostics;
+
+namespace CohEngine.Core.PatchNotes;
+
+/// <summary>
+/// A paced GET of one site's pages that honours its robots.txt. <c>delay</c> seconds separate the start of one request
+/// from the start and from the end of the last; a site whose rules could not be read is not fetched from at all, and a
+/// link or a redirect to another host is not followed.
+/// </summary>
+internal sealed class PageFetcher
+{
+    private const int MaxRedirects = 10;
+
+    private readonly HttpClient http;
+    private readonly string agent;
+    private readonly TimeSpan delay;
+    private readonly TextWriter error;
+    private readonly Uri site;
+    private readonly RobotsRules rules;
+    private readonly bool blocked;
+    private long? last;
+
+    /// <summary>Initializes a new instance of the <see cref="PageFetcher"/> class and reads the site's robots.txt.</summary>
+    /// <param name="http">The HTTP client; it must not follow redirects itself.</param>
+    /// <param name="agent">The user agent.</param>
+    /// <param name="delay">The least gap between requests, in seconds.</param>
+    /// <param name="site">The site's base URL, with no trailing slash.</param>
+    /// <param name="error">Where failures are reported.</param>
+    public PageFetcher(HttpClient http, string agent, double delay, string site, TextWriter error)
+    {
+        this.http = http;
+        this.agent = agent;
+        this.delay = delay > 0 ? TimeSpan.FromSeconds(delay) : TimeSpan.Zero;
+        this.error = error;
+        this.site = new Uri(site);
+        string robots = site + "/robots.txt";
+        IReadOnlyList<string> lines = [];
+        try
+        {
+            (int status, byte[] body, Uri answered) = Raw(new Uri(robots), _ => true);
+            if (status is >= 300 and < 400)
+            {
+                // A redirect off the site, or one past the hop limit, gives no rules to trust.
+                blocked = true;
+                error.WriteLine($"error: {ErrorCodes.E202}: robots.txt unreadable (redirected to {answered}) at {robots}; re-run when the site recovers, or check where its robots.txt now lives");
+            }
+            else if (status is 401 or 403)
+            {
+                blocked = true;
+                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E201}: robots.txt refused ({status}) at {robots}; nothing will be fetched; ask the site's operator for access, or leave this source out with --source"));
+            }
+            else if (status >= 500)
+            {
+                blocked = true;
+                error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E202}: robots.txt unreadable ({status}) at {robots}; re-run when the site recovers"));
+            }
+            else if (status < 300)
+            {
+                lines = PyText.SplitLines(Encoding.UTF8.GetString(body));
+            }
+        }
+        catch (Exception exception) when (exception is HttpRequestException or TaskCanceledException)
+        {
+            blocked = true;
+            error.WriteLine($"error: {ErrorCodes.E202}: robots.txt unreadable at {robots}: {exception.Message}; re-run when the site recovers");
+        }
+
+        rules = new RobotsRules(lines);
+    }
+
+    /// <summary>The page at <paramref name="url"/>, decoded as UTF-8 with bad bytes replaced, or null when it is not on the site, robots.txt disallows it, or the fetch fails.</summary>
+    /// <param name="url">The URL.</param>
+    /// <returns>The page text, or null.</returns>
+    public string? Get(string url)
+    {
+        // System.Uri resolves backslashes and dot segments before sending, so robots.txt judges the URI it will send.
+        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? target))
+        {
+            error.WriteLine($"error: {ErrorCodes.E200}: fetch failed for {url}: not a valid absolute URL; check the link on the page that named it");
+            return null;
+        }
+
+        if (!OnSite(target))
+        {
+            error.WriteLine($"error: {ErrorCodes.E222}: {url} is not on {site.GetLeftPart(UriPartial.Authority)}; it was not fetched; check the link on the page that named it, which points off the site");
+            return null;
+        }
+
+        string robots = site.GetLeftPart(UriPartial.Authority) + "/robots.txt";
+        if (blocked)
+        {
+            error.WriteLine($"error: {ErrorCodes.E221}: {url} was not fetched because {robots} could not be read (see above); re-run when the site answers");
+            return null;
+        }
+
+        if (!Allowed(target))
+        {
+            error.WriteLine($"error: {ErrorCodes.E220}: {robots} disallows {url}; it was not fetched; leave the page out, or ask the site's operator to allow it");
+            return null;
+        }
+
+        string reason;
+        try
+        {
+            (int status, byte[] body, Uri answered) = Raw(target, Allowed);
+            if (status < 300)
+            {
+                return Encoding.UTF8.GetString(body);
+            }
+
+            if (!OnSite(answered))
+            {
+                error.WriteLine($"error: {ErrorCodes.E222}: {url} redirects to {answered}, which is not on {site.GetLeftPart(UriPartial.Authority)}; it was not followed; check whether the page has moved off the site and, if it has, read it there by hand");
+                return null;
+            }
+
+            if (!Allowed(answered))
+            {
+                error.WriteLine($"error: {ErrorCodes.E220}: {robots} disallows {answered}, where {url} redirects; it was not fetched; leave the page out, or ask the site's operator to allow it");
+                return null;
+            }
+
+            reason = string.Create(CultureInfo.InvariantCulture, $"HTTP Error {status}");
+        }
+        catch (Exception exception) when (exception is HttpRequestException or TaskCanceledException)
+        {
+            reason = exception.Message;
+        }
+
+        error.WriteLine($"error: {ErrorCodes.E200}: fetch failed for {url}: {reason}; re-run when the site answers, or check the link on the page that named it");
+        return null;
+    }
+
+    private static bool IsRedirect(int status)
+    {
+        return status is 301 or 302 or 303 or 307 or 308;
+    }
+
+    /// <summary>Whether robots.txt lets the agent fetch a URL, judged without its fragment, which is never sent.</summary>
+    private bool Allowed(Uri url)
+    {
+        return rules.CanFetch(agent, url.GetLeftPart(UriPartial.Query));
+    }
+
+    /// <summary>Whether a URL is on the site: same scheme, host and port, and no user name or password in it.</summary>
+    private bool OnSite(Uri url)
+    {
+        return string.Equals(url.Scheme, site.Scheme, StringComparison.OrdinalIgnoreCase)
+            && string.Equals(url.Host, site.Host, StringComparison.OrdinalIgnoreCase)
+            && url.Port == site.Port
+            && url.UserInfo.Length == 0;
+    }
+
+    /// <summary>One request, following redirects that stay on the site and that <paramref name="allowed"/> admits: the last status, its body, and the URL it answered for or redirects to.</summary>
+    private (int Status, byte[] Body, Uri At) Raw(Uri url, Func<Uri, bool> allowed)
+    {
+        Uri answered = url;
+        for (int hop = 0; hop < MaxRedirects; hop++)
+        {
+            using HttpResponseMessage response = Send(answered);
+            int status = (int)response.StatusCode;
+            if (!IsRedirect(status) || response.Headers.Location is not { } location)
+            {
+                return Answer(response, answered);
+            }
+
+            answered = new Uri(answered, location);
+            if (!OnSite(answered) || !allowed(answered))
+            {
+                return (status, [], answered);
+            }
+        }
+
+        // Past the hop limit the last answer stands, a redirect included.
+        using HttpResponseMessage final = Send(answered);
+        return Answer(final, answered);
+    }
+
+    /// <summary>One paced GET, not following a redirect.</summary>
+    private HttpResponseMessage Send(Uri url)
+    {
+        Pace();
+        using HttpRequestMessage request = new(HttpMethod.Get, url);
+        request.Headers.TryAddWithoutValidation("User-Agent", agent);
+        return http.Send(request);
+    }
+
+    /// <summary>A response's status, its body read in full, and the URL it answered for; the read's end stamps the pace.</summary>
+    private (int Status, byte[] Body, Uri At) Answer(HttpResponseMessage response, Uri answered)
+    {
+        using MemoryStream body = new();
+        response.Content.ReadAsStream().CopyTo(body);
+        last = Stopwatch.GetTimestamp();
+        return ((int)response.StatusCode, body.ToArray(), answered);
+    }
+
+    /// <summary>Waits until <c>delay</c> has passed since the last request, then stamps this one.</summary>
+    private void Pace()
+    {
+        TimeSpan wait = last is long previous ? delay - Stopwatch.GetElapsedTime(previous) : TimeSpan.Zero;
+        if (wait > TimeSpan.Zero)
+        {
+            Thread.Sleep(wait);
+        }
+
+        last = Stopwatch.GetTimestamp();
+    }
+}
