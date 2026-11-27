@@ -1,26 +1,5 @@
 # homecoming-build-companion - project shortcuts
-# Usage: make lint | make fix | make test | make cov
-
-# ---------------------------------------------------------------------------
-# Environment detection
-# ---------------------------------------------------------------------------
-
-# Auto-detect venv bin path and executable suffix (Linux/macOS vs Windows)
-ifneq ($(wildcard .venv/bin/python),)
-	VENV_BIN ?= .venv/bin
-	EXE :=
-else
-	VENV_BIN ?= .venv/Scripts
-	EXE := .exe
-endif
-
-PYTHON  := $(VENV_BIN)/python$(EXE)
-RUFF    := $(VENV_BIN)/ruff$(EXE)
-MYPY    := $(VENV_BIN)/mypy$(EXE)
-PYTEST  := $(PYTHON) -m pytest
-
-# Bare --cov defers to [tool.coverage.run] source in pyproject.toml (scripts + src).
-COV_PACKAGE ?=
+# Usage: make help
 
 # ---------------------------------------------------------------------------
 # Bootstrap (cross-platform .NET tools + Husky hooks)
@@ -31,19 +10,8 @@ bootstrap: ## Restore .NET tools and install the Husky hooks (cross-platform)
 	dotnet run scripts/dev/bootstrap.cs
 
 # ---------------------------------------------------------------------------
-# Lint / Format / Type
+# Lint
 # ---------------------------------------------------------------------------
-
-.PHONY: lint
-lint: ## Run ruff check + format --check + mypy
-	$(RUFF) check .
-	$(RUFF) format --check .
-	$(MYPY) scripts src
-
-.PHONY: fix
-fix: ## Auto-fix ruff lint issues and reformat
-	$(RUFF) check --fix .
-	$(RUFF) format .
 
 .PHONY: super-linter
 super-linter: ## Run full Super-Linter in Docker (same image + config as CI)
@@ -53,32 +21,6 @@ super-linter: ## Run full Super-Linter in Docker (same image + config as CI)
 .PHONY: hooks-check
 hooks-check: ## Fail with the fix unless git will run the Husky hooks in this checkout
 	@dotnet run scripts/dev/bootstrap.cs -- --verify
-
-# ---------------------------------------------------------------------------
-# Test / Coverage
-# ---------------------------------------------------------------------------
-
-.PHONY: test
-test: ## Run all tests (fast, no coverage)
-	$(PYTEST)
-
-.PHONY: cov
-cov: ## Run tests with coverage gate (--cov-fail-under=100)
-	$(PYTEST) --cov$(if $(COV_PACKAGE),=$(COV_PACKAGE)) --cov-report=term-missing
-
-.PHONY: cov-html
-cov-html: ## Run tests with HTML coverage report
-	$(PYTEST) --cov$(if $(COV_PACKAGE),=$(COV_PACKAGE)) --cov-report=html
-	@echo "Open htmlcov/index.html"
-
-# ---------------------------------------------------------------------------
-# Validator (Phase 6)
-# ---------------------------------------------------------------------------
-
-.PHONY: validate
-validate: ## Validate a build JSON (validator not yet implemented). Usage: make validate BUILD=path/to/build.json
-	@if [ -z "$(BUILD)" ]; then echo "Usage: make validate BUILD=path/to/build.json"; exit 1; fi
-	@echo "error: E01: build validator not yet implemented (Phase 6); no scripts.build_validator module exists — track progress in docs/engine/mids-port-spec.md (CP6 legality)"; exit 1
 
 # ---------------------------------------------------------------------------
 # .NET solution (CohEngine.slnx)
