@@ -348,27 +348,11 @@ public sealed class ToolTests
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
         IList<McpClientTool> tools = await harness.Client.ListToolsAsync(cancellationToken: TestContext.Current.CancellationToken).ConfigureAwait(true);
-        JsonNode schema = JsonNode.Parse(tools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal)).JsonSchema.GetRawText())!;
+        JsonNode published = JsonNode.Parse(tools.Single(tool => string.Equals(tool.Name, "chain", StringComparison.Ordinal)).JsonSchema.GetRawText())!;
+        JsonNode expected = JsonNode.Parse(await File.ReadAllTextAsync(Path.Join(McpHarness.Store.RepositoryRoot, "tests", "fixtures", "mcp", "chain-input-schema.json"), TestContext.Current.CancellationToken).ConfigureAwait(true))!;
 
-        Assert.Equal(["buildDir", "midsDb", "midsDir", "options"], Names(schema["properties"]!));
-        Assert.Equal(["buildDir"], schema["required"]!.AsArray().Select(name => name!.GetValue<string>()), StringComparer.Ordinal);
-        JsonNode options = schema["properties"]!["options"]!;
-        Assert.Contains("object", options["type"]!.ToJsonString(), StringComparison.Ordinal);
-        Assert.Equal(["form", "move", "stance", "standoff", "target"], Names(options["properties"]!));
-        Dictionary<string, (string? Default, string Description)> members = new(StringComparer.Ordinal)
-        {
-            ["stance"] = ("all", "The stance to plan: melee, ranged, hybrid or all."),
-            ["form"] = (null, "The form to plan for; omit for the build's own."),
-            ["target"] = ("single", "The scenario: single, or spawn:N for a spawn of N."),
-            ["move"] = ("run", "How the character moves between attacks: run, jump or fly."),
-            ["standoff"] = (null, "The ranged standoff in feet; omit for the default."),
-        };
-        foreach ((string name, (string? expected, string description)) in members)
-        {
-            JsonNode member = options["properties"]![name]!;
-            Assert.Equal(description, member["description"]!.GetValue<string>());
-            Assert.Equal(expected, member["default"]?.GetValue<string>());
-        }
+        // The whole schema: a member made required, a type, nullability, a default or a description changed fails it.
+        Assert.True(JsonNode.DeepEquals(expected, published), published.ToJsonString());
     }
 
     [Fact]
@@ -590,11 +574,6 @@ public sealed class ToolTests
         {
             Directory.Delete(empty);
         }
-    }
-
-    private static string[] Names(JsonNode properties)
-    {
-        return [.. properties.AsObject().Select(property => property.Key).Order(StringComparer.Ordinal)];
     }
 
     // The tool must give the plan, exit code included, that the CLI prints for the same values.
