@@ -103,15 +103,16 @@ public sealed class PatchNotesCommandTests
     }
 
     [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
-    public void A_canonical_tree_with_no_powerset_names_fails_the_run_before_anything_is_fetched_or_written(bool reparse)
+    [InlineData(false, false)]
+    [InlineData(true, false)]
+    [InlineData(false, true)]
+    public void A_canonical_tree_with_no_powerset_names_fails_the_run_before_anything_is_fetched_or_written(bool reparse, bool equalsForm)
     {
         using TempTree tree = new();
         using FakeSite site = new();
         string outDir = tree.FullPath("patches");
         string empty = Directory.CreateDirectory(tree.FullPath("canonical")).FullName;
-        string[] args = ["--out", outDir, "--delay", "0", "--canonical", empty];
+        string[] args = equalsForm ? ["--out", outDir, "--delay", "0", "--canonical=" + empty] : ["--out", outDir, "--delay", "0", "--canonical", empty];
 
         (int code, string output, string error) = Run(site, reparse ? [.. args, "--reparse"] : args);
 
@@ -581,6 +582,43 @@ public sealed class PatchNotesCommandTests
     }
 
     [Fact]
+    public void Reparse_refuses_one_source_and_still_reparses_the_other()
+    {
+        using TempTree tree = new();
+        using FakeSite site = new();
+        WikiRoutes(site);
+        site.Routes[Base + "/patch-notes/?show=categories"] = $"<a href=\"{Base}/patch-notes/issue-28/page-4/\">x</a>";
+        site.Routes[Base + "/patch-notes/issue-28/page-4/"] = $"<a href='{PatchParserTests.EntryUrl}'>a</a>";
+        site.Routes[PatchParserTests.EntryUrl] = PatchParserTests.Sample;
+        string outDir = tree.FullPath("patches");
+        string[] args = ["--out", outDir, "--delay", "0", "--source", "release-notes", "--source", "paragonwiki"];
+        Assert.Equal(0, Run(site, args).Code);
+        string index = Path.Join(outDir, "index.jsonl");
+        string[] liveLines = [.. File.ReadAllLines(index).Where(line => line.Contains("\"source\": \"release-notes\"", StringComparison.Ordinal))];
+        string keep = tree.Write("keep.json", "{}\n");
+        string stray = tree.Write("patches/stray.json", "{\"changes\": []}\n");
+        File.AppendAllText(index, "{\"url\": \"stray\", \"published\": \"2020-01-01\", \"source\": \"release-notes\", \"file\": \"stray.json\"}\n{\"url\": \"gone\", \"published\": \"2003-01-01\", \"source\": \"paragonwiki\", \"file\": \"..\\\\keep.json\"}\n");
+        string[] wikiLines = [.. File.ReadAllLines(index).Where(line => line.Contains("\"source\": \"paragonwiki\"", StringComparison.Ordinal))];
+        Dictionary<string, byte[]> wikiRecords = Index(outDir)
+            .Where(row => string.Equals((string?)row["source"], "paragonwiki", StringComparison.Ordinal) && !string.Equals((string?)row["file"], "..\\keep.json", StringComparison.Ordinal))
+            .ToDictionary(row => (string)row["file"]!, row => File.ReadAllBytes(Path.Join(outDir, (string)row["file"]!)), StringComparer.Ordinal);
+
+        (int code, string output, string error) = Run(site, [.. args, "--reparse"]);
+
+        Assert.Equal(1, code);
+        string refused = Assert.Single(error.Split(Environment.NewLine), line => line.Contains("E209", StringComparison.Ordinal));
+        Assert.StartsWith("error: E209: index row gone names '..\\keep.json'", refused, StringComparison.Ordinal);
+        Assert.Contains("; paragonwiki ", refused, StringComparison.Ordinal);
+        Assert.Contains("release-notes: 0 changed, 1 unchanged, 1 removed, 0 kept", output, StringComparison.Ordinal);
+        Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
+        Assert.False(File.Exists(stray));
+        Assert.Equal("{}\n", File.ReadAllText(keep));
+        Assert.NotEmpty(wikiRecords);
+        Assert.All(wikiRecords, record => Assert.Equal(record.Value, File.ReadAllBytes(Path.Join(outDir, record.Key))));
+        Assert.Equal([.. liveLines, .. wikiLines], File.ReadAllLines(index));
+    }
+
+    [Fact]
     public void Reparse_of_one_source_leaves_the_others_and_their_index_rows()
     {
         using TempTree tree = new();
@@ -729,7 +767,8 @@ public sealed class PatchNotesCommandTests
         using StringWriter error = new();
 
         // A canonical tree with one placeholder set, so a missing --canonical does not fail the run with E207.
-        string[] given = args.Contains("--canonical", StringComparer.Ordinal) ? [.. args] : [.. args, "--canonical", CanonicalFixture];
+        bool named = args.Any(arg => arg is "--canonical" || arg.StartsWith("--canonical=", StringComparison.Ordinal));
+        string[] given = named ? [.. args] : [.. args, "--canonical", CanonicalFixture];
         int code = PatchNotesCommand.Run(given, output, error, site);
         return (code, output.ToString(), error.ToString());
     }
