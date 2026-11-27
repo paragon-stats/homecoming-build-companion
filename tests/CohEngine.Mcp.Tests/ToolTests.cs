@@ -154,7 +154,20 @@ public sealed class ToolTests
         JsonArray together = [.. hardLimits["diagnostics"]!.AsArray().Concat(legality["diagnostics"]!.AsArray()).Select(item => item!.DeepClone())];
         Assert.True(JsonNode.DeepEquals(JsonNode.Parse(output), together));
         int[] codes = [hardLimits["exit_code"]!.GetValue<int>(), legality["exit_code"]!.GetValue<int>()];
-        Assert.Equal(exitCode, codes.Contains(1) ? 1 : codes.Contains(2) ? 2 : 0);
+
+        // An error (1) outranks a warning (2), which outranks a clean run (0).
+        int expected = 0;
+        if (codes.Contains(2))
+        {
+            expected = 2;
+        }
+
+        if (codes.Contains(1))
+        {
+            expected = 1;
+        }
+
+        Assert.Equal(exitCode, expected);
     }
 
     [Fact]

@@ -24,15 +24,15 @@ public sealed class AttackChainsTests
         return new PowerStats(name, recharge, end, 0.0, 0.0, cast, attack);
     }
 
-    private static ChainAttack Atk(string name, double damage = 100.0, double cast = 1.0, double recharge = 2.0, double end = 5.0, bool melee = true, Shape shape = Shape.SingleTarget, int maxTargets = 1, Role role = Role.Chain)
+    private static ChainAttack Atk(string name, double damage = 100.0, double cast = 1.0, double recharge = 2.0, double end = 5.0, bool melee = true, Shape shape = Shape.SingleTarget)
     {
-        AttackProfile profile = new(name, melee ? Delivery.Melee : Delivery.Ranged, shape, role, melee ? 7.0 : 80.0, 0.0, 0.0, maxTargets, [], []);
+        AttackProfile profile = new(name, melee ? Delivery.Melee : Delivery.Ranged, shape, Role.Chain, melee ? 7.0 : 80.0, 0.0, 0.0, 1, [], []);
         return new ChainAttack { FullName = name, Damage = damage, CastTime = cast, RechargeTime = recharge, EndCost = end, Profile = profile };
     }
 
-    private static ChainPlan Plan(IEnumerable<ChainAttack> attacks, Stance stance = Stance.Melee, Movement? movement = null, EnduranceBudget? budget = null, Scenario? scenario = null, double timeline = 1.0, double otherDrain = 0.0, double minCycles = 4.0, int maxAttacks = 12)
+    private static ChainPlan Plan(IEnumerable<ChainAttack> attacks, Stance stance = Stance.Melee, Movement? movement = null, EnduranceBudget? budget = null, Scenario? scenario = null, PlanLimits? limits = null)
     {
-        return AttackChains.Plan(attacks, stance, movement ?? Move, scenario ?? new Scenario(1), budget ?? Rich, new PlanLimits(timeline, otherDrain, minCycles, maxAttacks));
+        return AttackChains.Plan(attacks, stance, movement ?? Move, scenario ?? new Scenario(1), budget ?? Rich, limits ?? new PlanLimits());
     }
 
     private static string Names(ChainOption option)
@@ -115,8 +115,8 @@ public sealed class AttackChainsTests
     {
         ChainPlan plan = Plan([Atk("X", 500, end: 40.0), Atk("Y", 50, end: 2.0)], budget: new EnduranceBudget(100.0, 2.0, 0.0));
 
-        Assert.Equal("X,Y False True Y True True", $"{Names(plan.BestOverall!)} {plan.BestOverall!.Sustainable} {plan.BestOverall!.NetEndPerSec < 0.0} {Names(plan.BestSustainable!)} {plan.BestSustainable!.Sustainable} {double.IsPositiveInfinity(plan.BestSustainable!.TimeToEmpty)}");
-        Assert.InRange(plan.BestOverall!.TimeToEmpty, (100.0 / 11.17) * 0.99, (100.0 / 11.17) * 1.01);
+        Assert.Equal("X,Y False True Y True True", $"{Names(plan.BestOverall!)} {plan.BestOverall!.Sustainable} {plan.BestOverall.NetEndPerSec < 0.0} {Names(plan.BestSustainable!)} {plan.BestSustainable!.Sustainable} {double.IsPositiveInfinity(plan.BestSustainable.TimeToEmpty)}");
+        Assert.InRange(plan.BestOverall.TimeToEmpty, (100.0 / 11.17) * 0.99, (100.0 / 11.17) * 1.01);
         Assert.Same(plan.BestSustainable, plan.Ranked[0]);
     }
 
@@ -164,7 +164,7 @@ public sealed class AttackChainsTests
         EnduranceBudget budget = new(100.0, 0.0, 0.0);
         ChainAttack attack = Atk("A", end: 10.0);
 
-        Assert.Equal("True True", $"{Plan([attack], budget: budget, minCycles: 4.0).BestAffordable is not null} {Plan([attack], budget: budget, minCycles: 12.0).BestAffordable is null}");
+        Assert.Equal("True True", $"{Plan([attack], budget: budget, limits: new(MinCycles: 4.0)).BestAffordable is not null} {Plan([attack], budget: budget, limits: new(MinCycles: 12.0)).BestAffordable is null}");
     }
 
     [Fact]
@@ -172,7 +172,7 @@ public sealed class AttackChainsTests
     {
         EnduranceBudget budget = new(100.0, 3.0, 0.0);
 
-        Assert.Equal("True True", $"{Plan([Atk("A")], budget: budget).BestSustainable is not null} {Plan([Atk("A")], budget: budget, otherDrain: 5.0).BestSustainable is null}");
+        Assert.Equal("True True", $"{Plan([Atk("A")], budget: budget).BestSustainable is not null} {Plan([Atk("A")], budget: budget, limits: new(OtherDrainPerSec: 5.0)).BestSustainable is null}");
     }
 
     [Fact]
@@ -211,7 +211,8 @@ public sealed class AttackChainsTests
     [Fact]
     public void Area_damage_scales_with_targets_hit_up_to_the_cap()
     {
-        ChainAttack aoe = Atk("Nova", 100.0, shape: Shape.TargetedAoe, maxTargets: 10);
+        ChainAttack nova = Atk("Nova", 100.0, shape: Shape.TargetedAoe);
+        ChainAttack aoe = nova with { Profile = nova.Profile with { MaxTargets = 10 } };
 
         Assert.Equal("100 500", string.Create(CultureInfo.InvariantCulture, $"{Plan([aoe], scenario: new Scenario(1)).BestOverall!.DamagePerCycle} {Plan([aoe], scenario: new Scenario(5)).BestOverall!.DamagePerCycle}"));
     }
@@ -220,7 +221,7 @@ public sealed class AttackChainsTests
     public void Half_the_timeline_halves_dps_and_drain()
     {
         ChainOption full = Plan([Atk("A")]).BestOverall!;
-        ChainOption half = Plan([Atk("A")], timeline: 0.5).BestOverall!;
+        ChainOption half = Plan([Atk("A")], limits: new(TimelineAvailable: 0.5)).BestOverall!;
 
         Assert.Equal([full.Dps / 2.0, full.EndPerSec / 2.0, full.CycleTime], [half.Dps, half.EndPerSec, half.CycleTime], Tolerant);
     }
@@ -229,13 +230,13 @@ public sealed class AttackChainsTests
     [MemberData(nameof(BadTimelines))]
     public void A_timeline_out_of_range_is_e45(double timeline)
     {
-        Assert.StartsWith(ErrorCodes.E45, Assert.Throws<EngineException>(() => Plan([Atk("A")], timeline: timeline)).Message, StringComparison.Ordinal);
+        Assert.StartsWith(ErrorCodes.E45, Assert.Throws<EngineException>(() => Plan([Atk("A")], limits: new(TimelineAvailable: timeline))).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void Above_max_attacks_the_lowest_damage_per_cast_are_dropped()
     {
-        ChainPlan plan = Plan([Atk("Lo", 10), Atk("Hi", 90), Atk("Mid", 50)], maxAttacks: 2);
+        ChainPlan plan = Plan([Atk("Lo", 10), Atk("Hi", 90), Atk("Mid", 50)], limits: new(MaxAttacks: 2));
 
         Assert.Equal("Lo Hi,Mid 3", $"{string.Join(',', plan.Dropped)} {string.Join(',', plan.Ranked.SelectMany(option => option.Rotation).Distinct(StringComparer.Ordinal).Order(StringComparer.Ordinal))} {plan.Ranked.Count}");
     }
@@ -243,7 +244,8 @@ public sealed class AttackChainsTests
     [Fact]
     public void Non_chain_roles_leave_an_empty_plan()
     {
-        ChainPlan plan = Plan([Atk("Aura", role: Role.Aura)], Stance.Hybrid);
+        ChainAttack chain = Atk("Aura");
+        ChainPlan plan = Plan([chain with { Profile = chain.Profile with { Role = Role.Aura } }], Stance.Hybrid);
 
         Assert.Equal("True True 0 0 Hybrid", $"{plan.BestSustainable is null} {plan.BestOverall is null} {plan.Ranked.Count} {plan.Dropped.Count} {plan.Stance}");
     }
@@ -267,7 +269,7 @@ public sealed class AttackChainsTests
     {
         ChainAttack attack = Atk("A") with { TargetResDebuff = 0.5, TargetResDebuffDuration = 3.0 };
         ChainOption full = Plan([attack]).BestOverall!;
-        ChainOption half = Plan([attack], timeline: 0.5).BestOverall!;
+        ChainOption half = Plan([attack], limits: new(TimelineAvailable: 0.5)).BestOverall!;
 
         Assert.Equal(full.ResDebuff / 2.0, half.ResDebuff, 5);
     }
@@ -278,7 +280,7 @@ public sealed class AttackChainsTests
         EnduranceBudget budget = new(100.0, 0.0, 0.0);
         ChainAttack attack = Atk("A", end: 10.0);
 
-        Assert.Equal("True True", $"{Plan([attack], budget: budget, otherDrain: 1.0, minCycles: 7.0).BestAffordable is not null} {Plan([attack], budget: budget, otherDrain: 1.0, minCycles: 7.0, timeline: 0.5).BestAffordable is null}");
+        Assert.Equal("True True", $"{Plan([attack], budget: budget, limits: new(OtherDrainPerSec: 1.0, MinCycles: 7.0)).BestAffordable is not null} {Plan([attack], budget: budget, limits: new(0.5, 1.0, 7.0)).BestAffordable is null}");
     }
 
     [Theory]

@@ -49,7 +49,7 @@ public sealed class PetCanonicalTests
         return Effect(template).ToJsonString();
     }
 
-    private static JsonObject Template(string[] attribs, string aspect = "Current", string target = "AnyAffected", string table = "Ranged_Ones", double scale = 1.0, double magnitude = 1.0, string duration = "UntilKilled", double period = 0.0, bool entity = true)
+    private static JsonObject Template(string[] attribs, string aspect = "Current", string target = "AnyAffected", string table = "Ranged_Ones", double scale = 1.0, double magnitude = 1.0, string duration = "UntilKilled")
     {
         JsonObject template = new()
         {
@@ -60,9 +60,16 @@ public sealed class PetCanonicalTests
             ["scale"] = scale,
             ["magnitude"] = magnitude,
             ["duration"] = duration,
-            ["application_period"] = period,
-            ["params"] = entity ? new JsonObject { ["entity_def"] = "Tst_Pet" } : null,
+            ["application_period"] = 0.0,
+            ["params"] = new JsonObject { ["entity_def"] = "Tst_Pet" },
         };
+        return template;
+    }
+
+    // A template that summons no entity: params is null, as the dump writes it.
+    private static JsonObject NoEntity(JsonObject template)
+    {
+        template["params"] = null;
         return template;
     }
 
@@ -81,7 +88,9 @@ public sealed class PetCanonicalTests
 
     private static JsonObject Damage(string duration = "UntilKilled", double period = 0.0, double scale = 1.0, double magnitude = 1.0, string target = "AnyAffected", string table = "Ranged_Damage")
     {
-        return Template(["Smashing_Dmg"], "Absolute", target, table, scale, magnitude, duration, period, entity: false);
+        JsonObject damage = NoEntity(Template(["Smashing_Dmg"], "Absolute", target, table, scale, magnitude, duration));
+        damage["application_period"] = period;
+        return damage;
     }
 
     private static JsonObject PowerJson(string name, IEnumerable<JsonObject> effects, string type = "Click", string area = "SingleTarget", double range = 7.0)
@@ -143,7 +152,7 @@ public sealed class PetCanonicalTests
                 Effect(Damage(), pvp: "PVP_ONLY"),
                 Effect(Damage("UntilKilled", 0.5)),
                 Effect(Damage(), children: [Effect(Damage(), pvp: "PVP_ONLY")]),
-                Effect(Template(["Smashing_Dmg"], "Absolute", "Self", entity: false)),
+                Effect(NoEntity(Template(["Smashing_Dmg"], "Absolute", "Self"))),
             ];
             WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", zap));
             WritePower(tree, "Tst.Set.Aura", PowerJson("Tst.Set.Aura", [Effect(Damage())], "Toggle"));
@@ -305,7 +314,7 @@ public sealed class PetCanonicalTests
         PetSummon weak = Pet(double.PositiveInfinity, 1);
         PetSummon strong = new() { SummonName = "S2", PetName = "Q", PetAttacks = [PetAttack("Q.Hit", 300.0, 1.0, 1.0)], PetCount = 1, Duration = double.PositiveInfinity, SummonCastTime = 0.0, SummonRecharge = 5.0, SummonEndCost = 0.0, DamageBuffBaseline = 1.0 };
 
-        SourceResult result = PetDamage.PetSource(Context(pets: [weak, strong]))!;
+        SourceResult result = PetDamage.PetSource(Context(scenario: null, weak, strong))!;
         double weakDps = result.Detail[0].Dps;
         double strongDps = result.Detail[1].Dps;
 
@@ -349,7 +358,7 @@ public sealed class PetCanonicalTests
     {
         IReadOnlyList<PetSummon> pets = Build(Soldiers);
 
-        SourceResult result = PetDamage.PetSource(Context(pets: [pets[0], pets[1]]))!;
+        SourceResult result = PetDamage.PetSource(Context(scenario: null, pets[0], pets[1]))!;
 
         Assert.True(result.Dps > 0 && Exact.Same(result.TimelineShare, 0.0));
         Assert.Equal("Soldier,Medic", string.Join(',', result.Detail.Select(item => item.Name)));
@@ -400,7 +409,7 @@ public sealed class PetCanonicalTests
             Effect(Damage()),
             Effect(Damage(scale: -0.5), requires: "target>enttype eq 'critter'"),
             Effect(Damage(), requires: "Source.Mode?(x)"),
-            Effect(Template(["Heal_Dmg"], "Absolute", table: "Ranged_Damage", entity: false)),
+            Effect(NoEntity(Template(["Heal_Dmg"], "Absolute", table: "Ranged_Damage"))),
         ];
         WritePower(tree, "Tst.Set.Zap", PowerJson("Tst.Set.Zap", zap));
 

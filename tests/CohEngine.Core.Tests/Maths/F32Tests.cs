@@ -2,8 +2,7 @@ using CohEngine.Core.Maths;
 
 namespace CohEngine.Core.Tests.Maths;
 
-// The expected column was produced once by the Python port, printing repr(x) and repr(f32(x)) for each input:
-//   PYTHONPATH=src .venv/Scripts/python.exe -c "from coh_engine.maths import f32; print(repr(x), repr(f32(x)))"
+// The expected column was produced once by the Python port (coh_engine.maths.f32), printing repr(x) and repr(f32(x)) for each input.
 // Both columns are the shortest round-trip spelling of an IEEE-754 double, so the literals here are exact.
 public sealed class F32Tests
 {

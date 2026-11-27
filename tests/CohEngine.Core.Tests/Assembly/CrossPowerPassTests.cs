@@ -53,7 +53,7 @@ public sealed class CrossPowerPassTests
     [Fact]
     public void Absorbed_effect_takes_the_grant_probability_it_falls_under()
     {
-        AssemblyPower granted = Power([Base with { EffectType = "Recovery", BaseProbability = 0.5 }], nid: 700, powerType: "GlobalBoost", enhancements: [2]);
+        AssemblyPower granted = Power([Base with { EffectType = "Recovery", BaseProbability = 0.5 }], nid: 700, powerType: "GlobalBoost", extras: new() { Enhancements = [2] });
         BuildPowerAssembly source = Global([PowerAssemblerTests.Grant() with { BaseProbability = 0.8 }], hasGrant: true);
         Effect absorbed = BuildAll(new() { [0] = Target(), [1] = source }, [granted])[0][1];
         Assert.Equal("Recovery", absorbed.EffectType);
@@ -88,7 +88,7 @@ public sealed class CrossPowerPassTests
     [Fact]
     public void Non_global_source_crosses_only_global_absorbed_effects()
     {
-        AssemblyPower owner = Power([], nid: 30, enhancements: [1]);
+        AssemblyPower owner = Power([], nid: 30, extras: new() { Enhancements = [1] });
         BuildPowerAssembly source = Global(
             [
                 Base with { EffectType = "Recovery" },
@@ -224,9 +224,9 @@ public sealed class CrossPowerPassTests
     [Fact]
     public void Pet_attributes_reach_the_assembled_power()
     {
-        AssemblyPower pet = Power([], nid: 300, ignoreEnh: ["RechargeTime"]);
+        AssemblyPower pet = Power([], nid: 300, extras: new() { IgnoreEnh = ["RechargeTime"] });
         AssemblyEntities entities = Entities(Entity(40, [30]), Powerset(30, 300));
-        BuildPowerAssembly absorber = Build(Power([Base with { EffectType = "EntCreate", NSummon = 40, Duration = 30.0, Probability = 1.0 }], absorbAttributes: true));
+        BuildPowerAssembly absorber = Build(Power([Base with { EffectType = "EntCreate", NSummon = 40, Duration = 30.0, Probability = 1.0 }], extras: new() { AbsorbAttributes = true }));
         AssembledEffects assembled = PowerAssembler.AssemblePower(absorber, [], new AssemblyDatabase(EnhDb, SetDb, new Dictionary<int, AssemblyPower> { [300] = pet }, entities), Class, Never);
         Assert.True(assembled.IgnoreEnh.SetEquals(["RechargeTime"]));
     }
@@ -236,7 +236,7 @@ public sealed class CrossPowerPassTests
     public void Apply_assembly_hands_the_powers_their_assembled_state(string[] own, string[] absorbed, string[] want)
     {
         Power power = Make.Power(Base with { EffectType = "Defense" }) with { BuildIndex = 2, IgnoreEnh = own };
-        BuildPowerAssembly entry = Build(Power([], aoeModifier: 1.5, baseRechargeTime: 8.0), buildIndex: 2);
+        BuildPowerAssembly entry = Build(Power([], extras: new() { AoeModifier = 1.5, BaseRechargeTime = 8.0 }), buildIndex: 2);
         Effect[] effects = [Base with { EffectType = "Heal" }];
         AssembledEffects result = new(effects, absorbed.ToHashSet(StringComparer.Ordinal));
         Power output = Assert.Single(PowerAssembler.ApplyAssembly([power], new Dictionary<int, BuildPowerAssembly> { [2] = entry }, new Dictionary<int, AssembledEffects> { [2] = result }));
@@ -264,11 +264,11 @@ public sealed class CrossPowerPassTests
 
     private static BuildPowerAssembly Target(int buildIndex = 0, int nid = 10, int[]? enhancements = null, string powerSetType = "Primary")
     {
-        return Build(Power([Base with { EffectType = "Defense" }], nid: nid, enhancements: enhancements ?? [1, 2], powerSetType: powerSetType), buildIndex: buildIndex);
+        return Build(Power([Base with { EffectType = "Defense" }], nid: nid, extras: new() { Enhancements = enhancements ?? [1, 2], PowerSetType = powerSetType }), buildIndex: buildIndex);
     }
 
     private static BuildPowerAssembly Global(Effect[] effects, string powerType = "GlobalBoost", string powerSetType = "Boost", int[]? enhancements = null, bool hasGrant = false)
     {
-        return Build(Power(effects, nid: 20, powerType: powerType, powerSetType: powerSetType, enhancements: enhancements ?? [2], autoHit: ["Friend"], hasGrant: hasGrant), buildIndex: 1);
+        return Build(Power(effects, nid: 20, powerType: powerType, hasGrant: hasGrant, extras: new() { PowerSetType = powerSetType, Enhancements = enhancements ?? [2], AutoHit = ["Friend"] }), buildIndex: 1);
     }
 }

@@ -11,7 +11,7 @@ public sealed class CombatLogReaderTests
         CombatLogLine line = Assert.Single(Read("2024-04-24 00:00:58 Hasten is recharged."));
 
         Assert.Equal(1, line.Number);
-        Assert.Equal(new DateTime(2024, 4, 24, 0, 0, 58), line.Timestamp);
+        Assert.Equal(new DateTime(2024, 4, 24, 0, 0, 58, DateTimeKind.Unspecified), line.Timestamp);
         Assert.Equal("Hasten is recharged.", line.Text);
         Assert.Null(line.Channel);
         Assert.Equal("2024-04-24 00:00:58 Hasten is recharged.", line.Raw);

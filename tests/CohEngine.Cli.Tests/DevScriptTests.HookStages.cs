@@ -262,7 +262,7 @@ public sealed partial class DevScriptTests
 
         JsonNode runner = JsonNode.Parse(File.ReadAllText(tree.FullPath(".husky/task-runner.json")))!;
         JsonArray tasks = runner["tasks"]!.AsArray();
-        foreach (JsonNode? task in tasks.Where(task => !string.Equals((string?)task!["group"], "pre-commit", StringComparison.Ordinal) || string.Equals((string?)task!["name"], "dotnet-format", StringComparison.Ordinal)).ToList())
+        foreach (JsonNode? task in tasks.Where(task => !string.Equals((string?)task!["group"], "pre-commit", StringComparison.Ordinal) || string.Equals((string?)task["name"], "dotnet-format", StringComparison.Ordinal)).ToList())
         {
             tasks.Remove(task);
         }

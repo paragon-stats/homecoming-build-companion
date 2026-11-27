@@ -71,7 +71,7 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Met_override_refuses()
     {
-        BuildPowerAssembly build = Build(Power([Base with { EffectType = "PowerRedirect" }], hasOverride: true));
+        BuildPowerAssembly build = Build(Power([Base with { EffectType = "PowerRedirect" }], extras: new() { HasOverride = true }));
         Assert.Contains("E88", Assert.Throws<InvalidDataException>(() => Assemble(build)).Message, StringComparison.Ordinal);
     }
 
@@ -80,7 +80,7 @@ public sealed class PowerAssemblerTests
     public void Unmet_override_is_ignored(bool flag, string change)
     {
         Effect effect = Changes[change](Base with { EffectType = "PowerRedirect" });
-        Assert.Single(Assemble(Build(Power([effect], hasOverride: flag))));
+        Assert.Single(Assemble(Build(Power([effect], extras: new() { HasOverride = flag }))));
     }
 
     [Fact]
@@ -183,7 +183,7 @@ public sealed class PowerAssemblerTests
     {
         AssemblyPower[] pets =
         [
-            Power([Base with { EffectType = "Damage", ToWho = "Target" }, Base with { EffectType = "Heal", DelayedTime = 0.5 }], nid: 600, powerType: "Auto_", activatePeriod: 2.0, affected: ["Foe"], autoHit: ["Foe"]),
+            Power([Base with { EffectType = "Damage", ToWho = "Target" }, Base with { EffectType = "Heal", DelayedTime = 0.5 }], nid: 600, powerType: "Auto_", affected: ["Foe"], extras: new() { ActivatePeriod = 2.0, AutoHit = ["Foe"] }),
             Power([Base with { EffectType = "Resistance" }], nid: 601),
             Power([Base with { EffectType = "Endurance" }], nid: 602, affected: ["Foe"]),
         ];
@@ -228,7 +228,7 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Entity_without_powersets_adds_nothing()
     {
-        BuildPowerAssembly build = Build(Power([Create()], absorbEffects: true, absorbAttributes: true));
+        BuildPowerAssembly build = Build(Power([Create()], absorbEffects: true, extras: new() { AbsorbAttributes = true }));
         Assert.Single(Assemble(build, entities: Entities(Entity(40, []))));
     }
 
@@ -248,11 +248,11 @@ public sealed class PowerAssemblerTests
     {
         AssemblyPower[] pets =
         [
-            Power([], nid: 600, affected: ["Caster", "Friend", "Foe"], ignoreEnh: ["Range"]),
+            Power([], nid: 600, affected: ["Caster", "Friend", "Foe"], extras: new() { IgnoreEnh = ["Range"] }),
             Power([], nid: 601, affected: ["Foe"]),
             Power([Base with { EffectType = "Heal", ToWho = "Target" }], nid: 700),
         ];
-        BuildPowerAssembly build = Build(Power([Create(), AllGrant()], absorbAttributes: true, hasGrant: true, autoHit: autoHit));
+        BuildPowerAssembly build = Build(Power([Create(), AllGrant()], hasGrant: true, extras: new() { AbsorbAttributes = true, AutoHit = autoHit }));
         IReadOnlyList<Effect> output = Assemble(build, pets, entities: Entities(Entity(40, [70]), Powerset(70, 600, 601)));
         Assert.Equal(toWho, output[^1].ToWho);
     }
@@ -261,7 +261,7 @@ public sealed class PowerAssemblerTests
     public void Attributes_skip_an_empty_first_powerset()
     {
         AssemblyPower[] pets = [Power([Base with { EffectType = "Heal", ToWho = "Target" }], nid: 700)];
-        BuildPowerAssembly build = Build(Power([Create(), AllGrant()], absorbAttributes: true, hasGrant: true));
+        BuildPowerAssembly build = Build(Power([Create(), AllGrant()], hasGrant: true, extras: new() { AbsorbAttributes = true }));
         Assert.Equal("Target", Assemble(build, pets, entities: Entities(Entity(40, [-1])))[^1].ToWho);
     }
 
@@ -270,7 +270,7 @@ public sealed class PowerAssemblerTests
     {
         AssemblyPower[] pets =
         [
-            Power([Base with { EffectType = "Heal", NDuration = 99.0 }], nid: 600, powerSetType: "Pet", affected: []),
+            Power([Base with { EffectType = "Heal", NDuration = 99.0 }], nid: 600, affected: [], extras: new() { PowerSetType = "Pet" }),
             Power(
                 [
                     Base with { EffectType = "SilentKill", ToWho = "Self", DelayedTime = 20.0 },
@@ -279,8 +279,8 @@ public sealed class PowerAssemblerTests
                     Base with { EffectType = "Defense", ToWho = "Self", DelayedTime = 60.0 },
                 ],
                 nid: 601,
-                powerSetType: "Pet",
-                affected: []),
+                affected: [],
+                extras: new() { PowerSetType = "Pet" }),
         ];
         AssemblyEntities entities = Entities(Entity(40, [70]), Powerset(70, -1, 600, 601));
 
@@ -296,7 +296,7 @@ public sealed class PowerAssemblerTests
     {
         AssemblyPower[] pets =
         [
-            Power([Base with { EffectType = "Heal", NDuration = 99.0 }, Base with { EffectType = "SilentKill", ToWho = "Self", DelayedTime = 20.0 }], nid: 600, powerSetType: "Pet", affected: []),
+            Power([Base with { EffectType = "Heal", NDuration = 99.0 }, Base with { EffectType = "SilentKill", ToWho = "Self", DelayedTime = 20.0 }], nid: 600, affected: [], extras: new() { PowerSetType = "Pet" }),
         ];
         AssemblyEntities entities = Entities(Entity(40, [70]), Powerset(70, 600));
         BuildPowerAssembly build = Build(Power([Create() with { Duration = createDuration }], absorbEffects: true));
@@ -337,7 +337,7 @@ public sealed class PowerAssemblerTests
     [MemberData(nameof(GrantedTargets))]
     public void Granted_power_target_and_ticks(string[] autoHit, string powerType, string toWho, int ticks)
     {
-        AssemblyPower granted = Power([Base with { EffectType = "Heal" }, Base with { EffectType = "Heal" }], nid: 700, autoHit: autoHit, powerType: powerType, activatePeriod: 2.0);
+        AssemblyPower granted = Power([Base with { EffectType = "Heal" }, Base with { EffectType = "Heal" }], nid: 700, powerType: powerType, extras: new() { AutoHit = autoHit, ActivatePeriod = 2.0 });
         IReadOnlyList<Effect> output = Assemble(Build(Power([Grant()], hasGrant: true)), [granted]);
         Assert.Equal((toWho, ticks), (output[1].ToWho, output[1].Ticks));
     }
@@ -446,14 +446,14 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Pet_power_without_its_powerset_refuses()
     {
-        AssemblyPower granted = Power([Base], nid: 700, powerSetType: "Pet");
+        AssemblyPower granted = Power([Base], nid: 700, extras: new() { PowerSetType = "Pet" });
         Assert.Contains("E89", Assert.Throws<NotSupportedException>(() => Assemble(Build(Power([Grant()], hasGrant: true)), [granted])).Message, StringComparison.Ordinal);
     }
 
     [Fact]
     public void Execute_is_replaced_in_place()
     {
-        AssemblyPower executed = Power([Base with { EffectType = "Heal" }, Base with { EffectType = "Endurance" }], nid: 800, fullName: "Executed");
+        AssemblyPower executed = Power([Base with { EffectType = "Heal" }, Base with { EffectType = "Endurance" }], nid: 800, extras: new() { FullName = "Executed" });
         BuildPowerAssembly build = Build(Base with { EffectType = "Defense" }, Execute(), Base with { EffectType = "Recovery" });
         Assert.Equal(["Defense", "Heal", "Endurance", "Recovery"], Types(Assemble(build, [executed])));
     }
@@ -475,7 +475,7 @@ public sealed class PowerAssemblerTests
                 Base with { EffectType = "Heal", BaseProbability = 0.3, Ticks = 2 },
             ],
             nid: 800,
-            fullName: "Executed");
+            extras: new() { FullName = "Executed" });
         Effect caller = Execute() with { NDuration = 10.0, DelayedTime = 0.5, BaseProbability = 0.6, Conditionals = [Make.Condition("Active:B", "True")], ActiveConditionalsCount = 1, Ticks = 7 };
         IReadOnlyList<Effect> output = Assemble(Build(caller), [executed]);
         (Effect first, Effect second) = (output[0], output[1]);
@@ -491,7 +491,7 @@ public sealed class PowerAssemblerTests
     [InlineData(1.0)]
     public void Executed_probability_kept_for_a_certain_or_zero_caller(double callerProbability)
     {
-        AssemblyPower executed = Power([Base with { EffectType = "Heal", NDuration = 3.0, BaseProbability = 0.4 }], nid: 800, fullName: "Executed");
+        AssemblyPower executed = Power([Base with { EffectType = "Heal", NDuration = 3.0, BaseProbability = 0.4 }], nid: 800, extras: new() { FullName = "Executed" });
         Effect output = Assert.Single(Assemble(Build(Execute() with { BaseProbability = callerProbability }), [executed]));
         Assert.Equal((0.4, 3.0), (output.Probability, output.NDuration));
     }
@@ -499,7 +499,7 @@ public sealed class PowerAssemblerTests
     [Fact]
     public void Execute_cycle_stops_at_depth_five()
     {
-        AssemblyPower loop = Power([Base with { EffectType = "Heal" }, Execute()], nid: 800, fullName: "Executed");
+        AssemblyPower loop = Power([Base with { EffectType = "Heal" }, Execute()], nid: 800, extras: new() { FullName = "Executed" });
         Assert.Equal([.. Enumerable.Repeat("Heal", 5)], Types(Assemble(Build(Execute()), [loop])));
     }
 
@@ -556,7 +556,7 @@ public sealed class PowerAssemblerTests
                     Base with { EffectType = "Regeneration", ModifierTable = "Melee_Ones" },
                 ],
                 nid: 500,
-                fullName: "Boosts.Test.Test"),
+                extras: new() { FullName = "Boosts.Test.Test" }),
             Power([Base with { EffectType = "GrantPower", NSummon = 700 }], nid: 501),
             Power([Base with { EffectType = "Heal" }], nid: 700, powerType: "Click"),
         ];

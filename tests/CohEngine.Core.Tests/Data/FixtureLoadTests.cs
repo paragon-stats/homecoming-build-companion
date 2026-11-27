@@ -11,29 +11,9 @@ public sealed class FixtureLoadTests
     // Printed once by the Python loaders: per build, powers, effects, slots, powers not Chosen, requirement names
     // after dropping blanks, incarnates and incarnate sub-power effects; the sum of f32(Scale) over every effect;
     // then, for the assembly-era dumps, joined powers, conditionals, ProcInclude powers, assembled powers and
-    // assembled effects. Regenerate by saving this script and running, from the repository root,
-    // PYTHONPATH=src .venv/Scripts/python.exe <script>:
-    //   from pathlib import Path
-    //
-    //   from coh_engine.assembly_data import load_assembled_powers, load_build_power_assembly
-    //   from coh_engine.effect import load_powers_effects
-    //   from coh_engine.enhancement import load_build_slots
-    //   from coh_engine.incarnate import load_incarnates
-    //
-    //   for d in sorted(Path("tests/fixtures/mids/builds").iterdir(), key=lambda p: p.name):
-    //       powers = load_powers_effects(d / "powers_effects.json")
-    //       fx = [e for p in powers for e in p.effects]
-    //       inc = load_incarnates(d / "incarnates.json")
-    //       row = [len(powers), len(fx), sum(map(len, load_build_slots(d / "slots.json").values())),
-    //              sum(not p.chosen for p in powers), sum(len(g) for p in powers for g in p.requires_powers),
-    //              len(inc), sum(len(s.effects) for i in inc for s in i.sub_powers)]
-    //       asm = []
-    //       if (d / "power_assembly.json").exists():
-    //           pa = load_build_power_assembly(d / "power_assembly.json", d / "slots.json", powers)
-    //           ap = load_assembled_powers(d / "assembled_powers.json")
-    //           asm = [len(pa), sum(len(e.conditionals) for b in pa.values() for e in b.power.effects),
-    //                  sum(b.proc_include for b in pa.values()), len(ap), sum(map(len, ap.values()))]
-    //       print(d.name, row, repr(sum(e.scale for e in fx)), asm)
+    // assembled effects. They came from the src/coh_engine loaders (load_powers_effects, load_build_slots,
+    // load_incarnates, load_build_power_assembly when power_assembly.json exists, load_assembled_powers), run
+    // over the build folders under tests/fixtures/mids/builds in name order, with the scale sum printed by repr.
     private static readonly Dictionary<string, (int[] Counts, double ScaleSum, int[] Assembly)> Python = new(StringComparer.Ordinal)
     {
         ["characters__account2__hollowmind__main"] = ([34, 280, 98, 10, 58, 0, 0], -6508.73099225387, [34, 61, 0, 28, 206]),
