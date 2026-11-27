@@ -948,11 +948,7 @@ dotnet_diagnostic.S9999-testMethodDeclaration.severity = none
 dotnet_diagnostic.S9999-token-type.severity = none
 dotnet_diagnostic.S9999-warning.severity = none
 
-# The two findings SonarQube Cloud carries a recorded decision for, mirrored here for that one rule and file.
-# S107: the chain MCP tool's 8 parameters are its published input schema; marked won't-fix on the server.
-[src/CohEngine.Mcp/EngineTools.cs]
-dotnet_diagnostic.S107.severity = none
-
+# The one finding SonarQube Cloud carries a recorded decision for, mirrored here for that rule and file.
 # S1244: Exact.Same is the one place that means IEEE-754 equality; sonar.yml ignores it (sonar.issue.ignore.multicriteria e1).
 [src/CohEngine.Core/Maths/Exact.cs]
 dotnet_diagnostic.S1244.severity = none

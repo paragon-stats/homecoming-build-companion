@@ -27,7 +27,7 @@ public static class EngineToolCatalog
         new("totals", "Compute the build's base totals (defense, resistance, recovery, recharge and the rest), uncapped and capped, with defense and resistance as percentages.", NoArguments, (build, _) => JsonSerializer.Serialize(EngineTools.Totals(build), McpJsonContext.Default.TotalsResult)),
         new("set_bonus_lookup", "Look up an enhancement set's bonuses by set name (UID), with every magnitude resolved.", SetNameSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.SetBonusLookup(Required(arguments, "setName"), build), McpJsonContext.Default.SetBonusResult)),
         new("power_lookup", "Look up a power by full name in the build's powers data. Levels are game levels (1-based).", FullNameSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.PowerLookup(Required(arguments, "fullName"), build), McpJsonContext.Default.PowerResult)),
-        new("chain", "Plan the build's attack chains with the chain planner: one plan per stance. Every argument is optional.", ChainSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.Chain(build, midsDir: null, Optional(arguments, "stance") ?? "all", Optional(arguments, "form"), Optional(arguments, "target") ?? "single", Optional(arguments, "move") ?? "run", Standoff(arguments)), McpJsonContext.Default.ChainResult)),
+        new("chain", "Plan the build's attack chains with the chain planner: one plan per stance. Every argument is optional.", ChainSchema, (build, arguments) => JsonSerializer.Serialize(EngineTools.Chain(build, options: ChainOptionsOf(arguments)), McpJsonContext.Default.ChainResult)),
     ];
 
     /// <summary>Runs a tool; an engine failure comes back as text for the model instead of an exception.</summary>
@@ -51,6 +51,18 @@ public static class EngineToolCatalog
     private static string? Optional(IReadOnlyDictionary<string, string> arguments, string name)
     {
         return arguments.GetValueOrDefault(name);
+    }
+
+    // The model gives the planning options as flat text arguments; one left out keeps the tool's default.
+    private static ChainOptions ChainOptionsOf(IReadOnlyDictionary<string, string> arguments)
+    {
+        ChainOptions defaults = new();
+        return new ChainOptions(
+            Optional(arguments, "stance") ?? defaults.Stance,
+            Optional(arguments, "form"),
+            Optional(arguments, "target") ?? defaults.Target,
+            Optional(arguments, "move") ?? defaults.Move,
+            Standoff(arguments));
     }
 
     private static double? Standoff(IReadOnlyDictionary<string, string> arguments)

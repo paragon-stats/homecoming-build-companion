@@ -387,9 +387,9 @@ public sealed class ToolTests
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
         string buildDir = McpHarness.BuildDir(Slotted);
 
-        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", new JsonObject { ["stance"] = "melee", ["move"] = "fly" })).ConfigureAwait(true);
+        JsonNode result = await harness.CallJsonAsync("chain", ("buildDir", buildDir), ("options", new JsonObject { ["stance"] = "melee", ["move"] = "jump" })).ConfigureAwait(true);
 
-        AssertSamePlan(result, [buildDir, "--stance", "melee", "--target", "single", "--move", "fly", "--format", "json"]);
+        AssertSamePlan(result, [buildDir, "--stance", "melee", "--target", "single", "--move", "jump", "--format", "json"]);
     }
 
     [Fact]

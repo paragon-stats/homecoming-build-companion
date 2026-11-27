@@ -204,33 +204,26 @@ public sealed class EngineTools
     /// <summary>Plans a build dump's attack chains: the same plan <c>coh-engine chain --format json</c> prints.</summary>
     /// <param name="buildDir">The build's Mids dump directory.</param>
     /// <param name="midsDir">The shared-dump directory; defaults to the build directory's grandparent.</param>
-    /// <param name="stance">Which stance to plan: melee, ranged, hybrid or all.</param>
-    /// <param name="form">The form to plan for; omitted for the build's own.</param>
-    /// <param name="target">The scenario: single, or a spawn as spawn:N.</param>
-    /// <param name="move">How the character moves between attacks: run, jump or fly.</param>
-    /// <param name="standoff">The ranged standoff in feet; omitted for the default.</param>
     /// <param name="midsDb">The directory holding AttribMod.json, which prices pets; omitted to skip pets.</param>
+    /// <param name="options">The planning options; omitted, every stance at a single target, running.</param>
     /// <returns>One plan per stance.</returns>
     [McpServerTool(Name = "chain", ReadOnly = true)]
     [Description("Plan the build's attack chains (rotation, cycle time, damage per second, alternatives) with the engine's chain planner. Returns one plan per stance, as chain --format json prints them.")]
     public static ChainResult Chain(
         [Description("Path to the build's Mids dump directory.")] string buildDir,
         [Description("Path to the shared dump directory; defaults to the build directory's grandparent.")] string? midsDir = null,
-        [Description("The stance to plan: melee, ranged, hybrid or all.")] string stance = "all",
-        [Description("The form to plan for; omit for the build's own.")] string? form = null,
-        [Description("The scenario: single, or spawn:N for a spawn of N.")] string target = "single",
-        [Description("How the character moves between attacks: run, jump or fly.")] string move = "run",
-        [Description("The ranged standoff in feet; omit for the default.")] double? standoff = null,
-        [Description("Path to the directory holding AttribMod.json, which prices pets; omit to leave pets out.")] string? midsDb = null)
+        [Description("Path to the directory holding AttribMod.json, which prices pets; omit to leave pets out.")] string? midsDb = null,
+        [Description("The planning options: stance, form, target, move and standoff; omit any for its default.")] ChainOptions? options = null)
     {
+        ChainOptions chosen = options ?? new ChainOptions();
         return Guard(
             () =>
             {
                 RequireDump(buildDir);
-                List<string> args = [buildDir, "--stance", stance, "--target", target, "--move", move, "--format", "json"];
+                List<string> args = [buildDir, "--stance", chosen.Stance, "--target", chosen.Target, "--move", chosen.Move, "--format", "json"];
                 AddOption(args, "--mids-dir", midsDir);
-                AddOption(args, "--form", form);
-                AddOption(args, "--standoff", standoff?.ToString("R", CultureInfo.InvariantCulture));
+                AddOption(args, "--form", chosen.Form);
+                AddOption(args, "--standoff", chosen.Standoff?.ToString("R", CultureInfo.InvariantCulture));
                 AddOption(args, "--mids-db", midsDb);
                 using StringWriter output = new();
                 using StringWriter error = new();
