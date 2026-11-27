@@ -91,6 +91,8 @@ It is never suppressed with a comment or a query filter in code.
 
 - `src/CohEngine.Core/Maths/Exact.cs:16` (CodeQL alert 356, dismissed; Sonar `S1244`, ignored for this file): the one exact float comparison.
   The Sonar exclusion is a `sonar.issue.ignore.multicriteria` entry in `.github/workflows/sonar.yml`; [the Sonar page](../ci/sonar.md) lists it.
+  The local build carries the same one-file entry, `S1244 = none` under `[src/CohEngine.Core/Maths/Exact.cs]`, in the root `.editorconfig`.
+  It sits in the root file with every other Sonar severity, so the one list `AnalyzerProjectTests` holds covers it.
   Its callers, listed under Float comparison, need exact IEEE equality; every other comparison states its meaning without it.
 - `src/CohEngine.Core/Assembly/CrossPowerPass.cs:167`: a complex condition kept as the literal port of the Mids branch order.
 - `src/CohEngine.Core/Totals/ActorTotalsCalculator.cs:101`: the loop calls `Mag` for every Fly effect, and `Mag` can throw for an unported expression.
