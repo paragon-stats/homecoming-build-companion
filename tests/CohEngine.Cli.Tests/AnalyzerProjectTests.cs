@@ -36,8 +36,42 @@ public sealed class AnalyzerProjectTests
         Assert.Contains("<PackageVersion Include=\"SonarAnalyzer.CSharp\" Version=\"", packages, StringComparison.Ordinal);
 
         // One list, mirroring the SonarQube Cloud profile: its active rules are warnings, the build makes them errors.
-        Assert.Contains(editorConfig, line => line.Contains("\"Sonar way comprehensive\"", StringComparison.Ordinal));
-        Assert.Equal(348, editorConfig.Count(line => line.StartsWith("dotnet_diagnostic.S", StringComparison.Ordinal) && line.EndsWith(".severity = warning", StringComparison.Ordinal)));
-        Assert.Equal(2, editorConfig.Count(line => line.StartsWith("dotnet_diagnostic.S", StringComparison.Ordinal) && line.EndsWith(".severity = none", StringComparison.Ordinal) && (line.Contains("S107.", StringComparison.Ordinal) || line.Contains("S1244.", StringComparison.Ordinal))));
+        int comment = Array.FindIndex(editorConfig, line => line.Contains("\"Sonar way comprehensive\"", StringComparison.Ordinal));
+        Assert.True(comment >= 0, "the Sonar block names the profile it mirrors");
+        int start = Array.FindIndex(editorConfig, comment, line => line.StartsWith('['));
+        Assert.Equal("[*.cs]", editorConfig[start]);
+        int end = Array.FindIndex(editorConfig, start + 1, line => line.StartsWith('['));
+        string[] block = [.. editorConfig[(start + 1)..(end < 0 ? editorConfig.Length : end)].Where(IsSonarLine)];
+        Assert.All(block, line => Assert.True(line.EndsWith(" = warning", StringComparison.Ordinal) || line.EndsWith(" = none", StringComparison.Ordinal), line));
+        string[] warnings = [.. block.Where(line => line.EndsWith(" = warning", StringComparison.Ordinal))];
+        Assert.Equal(348, warnings.Length);
+        foreach (string known in new[] { "S3776", "S1994", "S127", "S3358", "S1192", "S3267" })
+        {
+            Assert.Contains($"dotnet_diagnostic.{known}.severity = warning", warnings, StringComparer.Ordinal);
+        }
+
+        // Outside the block, only the two per-file entries that mirror the server's recorded decisions.
+        List<string> outside = [];
+        string section = string.Empty;
+        for (int i = 0; i < editorConfig.Length; i++)
+        {
+            section = editorConfig[i].StartsWith('[') ? editorConfig[i] : section;
+            if ((i <= start || (end >= 0 && i >= end)) && IsSonarLine(editorConfig[i]))
+            {
+                outside.Add($"{section} {editorConfig[i]}");
+            }
+        }
+
+        Assert.Equal(["[src/CohEngine.Mcp/EngineTools.cs] dotnet_diagnostic.S107.severity = none", "[src/CohEngine.Core/Maths/Exact.cs] dotnet_diagnostic.S1244.severity = none"], outside);
+
+        // No nested .editorconfig changes a Sonar rule.
+        string[] nested = [.. DevScripts.Git(DevScripts.RepositoryRoot, "ls-files", "-z", "--", ":(glob)**/.editorconfig").Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => path.Contains('/'))];
+        Assert.NotEmpty(nested);
+        Assert.All(nested, path => Assert.DoesNotContain(File.ReadAllLines(Path.Join(DevScripts.RepositoryRoot, path)), IsSonarLine));
+    }
+
+    private static bool IsSonarLine(string line)
+    {
+        return line.StartsWith("dotnet_diagnostic.S", StringComparison.Ordinal) && line.Length > 19 && char.IsAsciiDigit(line[19]);
     }
 }
