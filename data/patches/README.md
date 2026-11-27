@@ -1,6 +1,6 @@
 # Patch timeline
 
-One JSON file per patch-notes entry, written by `python -m scripts.forum_scrape.patch_notes`, from three sources that together span the game's history.
+One JSON file per patch-notes entry, written by `coh-engine patch-notes`, from three sources that together span the game's history.
 A claim in a `community/` capture is dated by its `date_posted`; any change to the same power or powerset with a later `published` date supersedes or qualifies it.
 
 ## Sources and coverage

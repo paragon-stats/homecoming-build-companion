@@ -1,4 +1,5 @@
 using CohEngine.Core.CombatLog;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.CombatLog;
 
@@ -111,7 +112,9 @@ public sealed class CombatLogReaderTests
     [Fact]
     public void A_file_is_read_in_full_and_then_closed()
     {
-        string path = Path.Join(Fixtures.Store.Root, "combatlog", "sample-trimmed.log");
+        using TempTree tree = new();
+        string path = tree.FullPath("sample-trimmed.log");
+        File.Copy(Path.Join(Fixtures.Store.Root, "combatlog", "sample-trimmed.log"), path);
 
         CombatLogLine[] lines = [.. CombatLogReader.ReadFile(path)];
 

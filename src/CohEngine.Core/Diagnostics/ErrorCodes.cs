@@ -233,7 +233,7 @@ public static class ErrorCodes
     /// <summary>A <c>validate --expect</c> was given a <c>.mbd</c> file, which this build cannot compute.</summary>
     public const string E163 = "E163";
 
-    /// <summary>A path an MCP tool was given does not exist.</summary>
+    /// <summary>A path an MCP tool or the CLI <c>score</c> command was given does not exist.</summary>
     public const string E164 = "E164";
 
     /// <summary>An MCP set lookup names a set the loaded data does not hold; the tool answers with an unknown result.</summary>
@@ -247,7 +247,7 @@ public static class ErrorCodes
 
     // E180-E189: the MCP surface second pass.
 
-    /// <summary>An MCP tool that computes from a Mids dump was given a <c>.mbd</c> file, which carries no effect data.</summary>
+    /// <summary>An MCP tool or the CLI <c>score</c> command, which compute from a Mids dump, was given a <c>.mbd</c> file, which carries no effect data.</summary>
     public const string E180 = "E180";
 
     // E190-E199: extract-canonical.
@@ -257,4 +257,88 @@ public static class ErrorCodes
 
     /// <summary>An entry of the City of Data raw-data zip resolves outside the target folder.</summary>
     public const string E191 = "E191";
+
+    // E200-E209: patch-notes.
+
+    /// <summary>A page fetch failed: a network error, a timeout or an HTTP error status.</summary>
+    public const string E200 = "E200";
+
+    /// <summary>A site's robots.txt answered 401 or 403, so nothing on that site is fetched.</summary>
+    public const string E201 = "E201";
+
+    /// <summary>A site's robots.txt could not be read (a 5xx status or a network error), so nothing on that site is fetched.</summary>
+    public const string E202 = "E202";
+
+    /// <summary>The Release Notes category browser could not be read.</summary>
+    public const string E203 = "E203";
+
+    /// <summary>The Paragon Wiki Archive's patch-notes index could not be read.</summary>
+    public const string E204 = "E204";
+
+    /// <summary>A page of a beta patch-notes listing could not be read, so its threads are missing from the run.</summary>
+    public const string E205 = "E205";
+
+    /// <summary>An entry parsed to no change lines; it is still recorded.</summary>
+    public const string E206 = "E206";
+
+    /// <summary>The canonical tree names no powerset, so no heading could fill <c>powerset</c>; the run stops before anything is fetched or written.</summary>
+    public const string E207 = "E207";
+
+    /// <summary>A source was not read completely, so its records on disk and its index rows are left as they are.</summary>
+    public const string E208 = "E208";
+
+    /// <summary>An entry's file name, from its page date and URL, or an index row's file name is not a plain name inside the output folder.</summary>
+    public const string E209 = "E209";
+
+    // E210-E219: source-manifest.
+
+    /// <summary>The source-material root is missing or is not a directory.</summary>
+    public const string E210 = "E210";
+
+    /// <summary>The source-material root holds no capture with front matter.</summary>
+    public const string E211 = "E211";
+
+    /// <summary>A capture's front matter has no title; every such capture is named and no manifest is written.</summary>
+    public const string E212 = "E212";
+
+    /// <summary>Every capture under the root was withheld by the name filter, so no manifest is written.</summary>
+    public const string E213 = "E213";
+
+    /// <summary>The manifest file could not be written.</summary>
+    public const string E214 = "E214";
+
+    /// <summary>The name filter has no name to withhold (<c>COH_BANNED_NAMES</c> unset or empty, and no usable git user name), so no manifest is written.</summary>
+    public const string E215 = "E215";
+
+    /// <summary>A line of a <c>guides.jsonl</c> ledger is not a ledger row, or the ledger is not valid UTF-8.</summary>
+    public const string E216 = "E216";
+
+    /// <summary>A capture file is not valid UTF-8.</summary>
+    public const string E217 = "E217";
+
+    // E220-E229: patch-notes, second block.
+
+    /// <summary>The site's robots.txt disallows a URL, so it is not fetched.</summary>
+    public const string E220 = "E220";
+
+    /// <summary>A URL is not fetched because the site's robots.txt was refused or could not be read.</summary>
+    public const string E221 = "E221";
+
+    /// <summary>A link or a redirect names a host other than the site being read, so it is not fetched.</summary>
+    public const string E222 = "E222";
+
+    /// <summary>A page took a parsing pattern past its time limit, so its source stops there and counts as not read completely.</summary>
+    public const string E223 = "E223";
+
+    /// <summary>A file under the patch-notes output folder or its cache could not be read or written.</summary>
+    public const string E224 = "E224";
+
+    /// <summary>An index line or a record file of the patch-notes folder is not what the command wrote: not JSON, the wrong shape, or not UTF-8.</summary>
+    public const string E225 = "E225";
+
+    /// <summary>A beta listing declares more pages than are read, so its source counts as not read completely.</summary>
+    public const string E226 = "E226";
+
+    /// <summary>A listing page answered but named no link, as a maintenance page does, so its source counts as not read completely.</summary>
+    public const string E227 = "E227";
 }

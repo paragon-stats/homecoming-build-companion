@@ -151,6 +151,12 @@ The CLI prints such a message as `error: <message>` on stderr and exits 1; a mis
 | E100-E109 | P3b |
 | E110-E119 | P3c |
 | E120 and up | CP work |
+| E200-E209 | `patch-notes` |
+| E210-E219 | `source-manifest` |
+| E220-E229 | `patch-notes` |
+
+`patch-notes` and `source-manifest` port `scripts/forum_scrape/patch_notes.py` and `manifest.py`.
+The Python numbers for the same errors (E01 to E05, E24, E60 to E68) are taken by engine codes, so the ports number them anew.
 
 ## Chain planner
 
@@ -211,7 +217,7 @@ The header `Level` is the character level minus one, stored as text, and a JSON 
 A `.mbd` has no `Chosen` flag, so `Mbd.PowersFromBuild` leaves `Chosen` true on every entry.
 A pool sub-power that Mids grants without a pick (Translocation from Mystic Flight, Double Jump) therefore counts as one of the 24 picks, and a pick-count check can over-count a build that holds one.
 
-The writer's byte contract, which `RoundTripTests` pins to the Python writer's output for every sample and fixture build:
+The writer's byte contract, which `MbdWriterTests` pins: the committed tanker fixture build written back byte for byte, and hand-made documents written to exact text:
 
 - Two-space indent, LF line endings, one final newline.
 - UTF-8 without a BOM.

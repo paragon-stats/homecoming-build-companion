@@ -1,0 +1,313 @@
+using System.Globalization;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+
+using CohEngine.Core.Chain;
+using CohEngine.Core.Diagnostics;
+
+namespace CohEngine.Core.SourceMaterial;
+
+/// <summary>
+/// The <c>source-manifest</c> command: one row per capture under the source root's <c>community/</c> folder (URL, title,
+/// date, archetype, content hash, path, era), no post text, sorted by path so a re-run writes the same bytes.
+/// </summary>
+internal static class SourceManifest
+{
+    /// <summary>The usage line.</summary>
+    public const string Usage = "usage: coh-engine source-manifest [--source-root PATH] [--out OUT]";
+
+    private const string PreSunset = "pre-sunset";
+
+    private const string Live = "live";
+
+    private const string Empty = "\"\"";
+
+    private const string SourceRootOption = "--source-root";
+
+    private const string OutOption = "--out";
+
+    /// <summary>The folder the Arachnos archetypes, Widows and Soldiers alike, file under.</summary>
+    private const string Arachnos = "arachnos";
+
+    /// <summary>The archetype words a folder or title names, in match order, with the folder each one files under.</summary>
+    private static readonly (string Word, string Folder)[] Archetypes =
+    [
+        ("blaster", "blaster"),
+        ("brute", "brute"),
+        ("controller", "controller"),
+        ("corruptor", "corruptor"),
+        ("defender", "defender"),
+        ("dominator", "dominator"),
+        ("mastermind", "mastermind"),
+        ("scrapper", "scrapper"),
+        ("sentinel", "sentinel"),
+        ("stalker", "stalker"),
+        ("tanker", "tanker"),
+        ("kheldian", "kheldian"),
+        ("peacebringer", "peacebringer"),
+        ("warshade", "warshade"),
+        (Arachnos, Arachnos),
+        ("veat", Arachnos),
+        ("widow", Arachnos),
+    ];
+
+    /// <summary>Gets the archetype words, which also begin the names of the canonical role folders that hold player powersets.</summary>
+    public static IEnumerable<string> ArchetypeWords => Archetypes.Select(pair => pair.Word);
+
+    /// <summary>Runs the command.</summary>
+    /// <param name="args">The arguments after the command name.</param>
+    /// <param name="output">Where the status lines go.</param>
+    /// <param name="error">Where errors go.</param>
+    /// <param name="variable">Reads an environment variable.</param>
+    /// <param name="gitUserName">Reads the git user name, the name filter's fallback; null when git has none.</param>
+    /// <returns>0 when the manifest was written; 1 on an error; 2 on bad arguments.</returns>
+    /// <exception cref="EngineException">E210: the source root is not a directory.</exception>
+    public static int Run(IReadOnlyList<string> args, TextWriter output, TextWriter error, Func<string, string?> variable, Func<string?> gitUserName)
+    {
+        if (!CommandOptions.TryParse(args, [SourceRootOption, OutOption], [], out Dictionary<string, List<string>>? options, out string problem))
+        {
+            error.WriteLine(Usage);
+            error.WriteLine("coh-engine source-manifest: error: " + problem);
+            return 2;
+        }
+
+        string? flag = options.GetValueOrDefault(SourceRootOption)?[^1];
+        string outPath = options.GetValueOrDefault(OutOption)?[^1] ?? "data/source-material/manifest.json";
+        string community = Path.Join(SourceRoot.Resolve(flag, variable(SourceRoot.EnvironmentVariable), Directory.GetCurrentDirectory()), "community");
+        string? value = variable(BannedNames.EnvironmentVariable);
+        bool inCi = variable("GITHUB_ACTIONS") is not null;
+        if (BannedNames.Pattern(BannedNames.Names(value, gitUserName, inCi)) is not { } pattern)
+        {
+            string unset = string.IsNullOrEmpty(value) ? "is unset" : "holds only commas or spaces";
+            string fallback = inCi ? "in CI (GITHUB_ACTIONS is set) the git user name is not used" : "git has no user name";
+            error.WriteLine($"error: {ErrorCodes.E215}: {BannedNames.EnvironmentVariable} {unset} and {fallback}, so there is no name to keep out of the manifest and nothing was written; set {BannedNames.EnvironmentVariable} to the comma-separated names the public repository must not carry");
+            return 1;
+        }
+
+        (IReadOnlyList<PyObject> built, int untitled) = Build(community, error);
+        if (untitled > 0)
+        {
+            // Every untitled capture is named above; a manifest written without them would look complete.
+            return 1;
+        }
+
+        (IReadOnlyList<PyObject> rows, int withheld) = BannedNames.Withhold(built, pattern);
+        if (rows.Count == 0 && withheld > 0)
+        {
+            error.WriteLine(string.Create(CultureInfo.InvariantCulture, $"error: {ErrorCodes.E213}: every capture under {community} was withheld by the name filter ({withheld} rows), so nothing was written; check the names in {BannedNames.EnvironmentVariable}, or the git user name when it is unset"));
+            return 1;
+        }
+
+        if (rows.Count == 0)
+        {
+            error.WriteLine($"error: {ErrorCodes.E211}: no captures under {community}; expected community/**/*.md with front matter; check the checkout is current, or pass --source-root");
+            return 1;
+        }
+
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath))!);
+            PyText.WriteText(outPath, Render(rows));
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            error.WriteLine($"error: {ErrorCodes.E214}: cannot write {outPath}: {exception.Message}; check that the path names a file in a folder you can write to");
+            return 1;
+        }
+
+        output.WriteLine(BannedNames.Report(withheld));
+        output.WriteLine(string.Create(CultureInfo.InvariantCulture, $"{rows.Count} capture(s) listed in {outPath}"));
+        return 0;
+    }
+
+    /// <summary>One row per capture under <paramref name="community"/>, sorted by path, keys in the order the rows are built.</summary>
+    /// <param name="community">The <c>community/</c> folder.</param>
+    /// <param name="error">Where a skipped capture is reported.</param>
+    /// <returns>The rows, and how many captures were left out for having no title.</returns>
+    public static (IReadOnlyList<PyObject> Rows, int Untitled) Build(string community, TextWriter error)
+    {
+        if (!Directory.Exists(community))
+        {
+            return ([], 0);
+        }
+
+        Dictionary<string, Dictionary<string, string>> ledgers = new(StringComparer.Ordinal)
+        {
+            [Live] = LedgerUrls(community),
+            [PreSunset] = LedgerUrls(Path.Join(community, PreSunset)),
+        };
+        List<PyObject> rows = [];
+        int untitled = 0;
+        foreach (string file in Directory.EnumerateFiles(community, "*.md", SearchOption.AllDirectories))
+        {
+            string relative = Path.GetRelativePath(community, file).Replace('\\', '/');
+            (Dictionary<string, string> keys, string body) = Split(Text(file, relative, ErrorCodes.E217));
+            if (keys.Count == 0)
+            {
+                continue;
+            }
+
+            if (!keys.TryGetValue("title", out string? rawTitle))
+            {
+                error.WriteLine($"error: {ErrorCodes.E212}: {relative}: front matter has no title, so no manifest is written; add a title: line to its front matter");
+                untitled++;
+                continue;
+            }
+
+            string era = relative.StartsWith(PreSunset + "/", StringComparison.Ordinal) ? PreSunset : Live;
+            string inner = era is PreSunset ? relative[(PreSunset.Length + 1)..] : relative;
+            string title = Unquote(rawTitle);
+            string url = Unquote(keys.GetValueOrDefault("url", Empty));
+            string hash = Unquote(keys.GetValueOrDefault("content_hash", Empty));
+            rows.Add(new PyObject
+            {
+                { "url", url.Length > 0 ? url : ledgers[era].GetValueOrDefault(inner, string.Empty) },
+                { "title", title },
+                { "date_posted", Unquote(keys.GetValueOrDefault("date_posted", Empty)) },
+                { "archetype", ArchetypeOf(inner, title) },
+                { "content_hash", hash.Length > 0 ? hash : ContentHash(body) },
+                { "path", "community/" + relative },
+                { "era", era },
+            });
+        }
+
+        return ([.. rows.OrderBy(row => (string)row["path"]!, StringComparer.Ordinal)], untitled);
+    }
+
+    /// <summary>The manifest file's text: keys sorted, two-space indent, every non-ASCII character escaped.</summary>
+    /// <param name="rows">The rows.</param>
+    /// <returns>The text, ending in a newline.</returns>
+    public static string Render(IReadOnlyList<PyObject> rows)
+    {
+        List<PyObject> sorted = [.. rows.Select<PyObject, PyObject>(row => [.. row.OrderBy(pair => pair.Key, StringComparer.Ordinal)])];
+        return PyJson.Dumps(sorted, indented: true, ensureAscii: true) + "\n";
+    }
+
+    /// <summary>The front matter's keys and raw values, and the body; a file without front matter is all body.</summary>
+    /// <param name="capture">The capture text.</param>
+    /// <returns>The keys and the body.</returns>
+    public static (Dictionary<string, string> Keys, string Body) Split(string capture)
+    {
+        Dictionary<string, string> keys = new(StringComparer.Ordinal);
+        int end = capture.StartsWith("---\n", StringComparison.Ordinal) ? capture.IndexOf("\n---", 4, StringComparison.Ordinal) : -1;
+        if (end < 0)
+        {
+            return (keys, capture);
+        }
+
+        foreach (string line in PyText.SplitLines(capture[4..end]))
+        {
+            int colon = line.IndexOf(':', StringComparison.Ordinal);
+            if (colon >= 0)
+            {
+                keys[PyText.Strip(line[..colon])] = PyText.Strip(line[(colon + 1)..]);
+            }
+        }
+
+        return (keys, capture[(end + 4)..].TrimStart('\n'));
+    }
+
+    /// <summary>A front-matter value: Python's text of the JSON value it holds, else the raw text without quotes and spaces at its ends.</summary>
+    /// <param name="raw">The raw value.</param>
+    /// <returns>The value.</returns>
+    public static string Unquote(string raw)
+    {
+        try
+        {
+            return PyText.Str(PyJson.Loads(raw));
+        }
+        catch (Exception exception) when (exception is JsonException or ArgumentException)
+        {
+            return raw.Trim('"', '\'', ' ');
+        }
+    }
+
+    /// <summary>The first 16 hex digits of the SHA-256 of the text's UTF-8 bytes.</summary>
+    /// <param name="text">The text.</param>
+    /// <returns>The digest.</returns>
+    public static string ContentHash(string text)
+    {
+        return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(text)))[..16];
+    }
+
+    /// <summary>The archetype a capture files under: its <c>archetypes/&lt;name&gt;/</c> folder, else the first archetype word its title names.</summary>
+    /// <param name="inner">The capture's path below its era's root.</param>
+    /// <param name="title">The capture's title.</param>
+    /// <returns>The archetype folder, or empty.</returns>
+    public static string ArchetypeOf(string inner, string title)
+    {
+        string[] folders = inner.Split('/')[..^1];
+        if (folders.Length > 1 && folders[0] is "archetypes")
+        {
+            return folders[1];
+        }
+
+        string lowered = title.ToLowerInvariant();
+        foreach ((string word, string folder) in Archetypes)
+        {
+            if (Regex.IsMatch(lowered, $@"\b{word}s?\b", RegexOptions.CultureInvariant, TimeSpan.FromSeconds(1)))
+            {
+                return folder;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    /// <summary>Per capture file, the topic URL the folder's <c>guides.jsonl</c> ledger recorded; the last row of a topic wins.</summary>
+    private static Dictionary<string, string> LedgerUrls(string root)
+    {
+        string path = Path.Join(root, "guides.jsonl");
+        PyObject topics = [];
+        if (File.Exists(path))
+        {
+            IReadOnlyList<string> lines = PyText.SplitLines(Text(path, path, ErrorCodes.E216));
+            for (int number = 1; number <= lines.Count; number++)
+            {
+                if (PyText.Strip(lines[number - 1]).Length > 0)
+                {
+                    PyObject row = LedgerRow(lines[number - 1])
+                        ?? throw new EngineException(string.Create(CultureInfo.InvariantCulture, $"{ErrorCodes.E216}: line {number} of {path} is not a ledger row (a JSON object with a topic_url string, and a file string when it names one); correct or remove that line in the source checkout"));
+                    topics.Set((string)row["topic_url"]!, row);
+                }
+            }
+        }
+
+        Dictionary<string, string> urls = new(StringComparer.Ordinal);
+        foreach ((string topic, object? row) in topics.Where(pair => PyObject.Truthy(((PyObject)pair.Value!).Get("file"))))
+        {
+            urls[PyText.Str(((PyObject)row!)["file"])] = topic;
+        }
+
+        return urls;
+    }
+
+    /// <summary>A ledger line as a row, or null when it is not a JSON object with a <c>topic_url</c> string and, if it has one, a <c>file</c> string.</summary>
+    private static PyObject? LedgerRow(string line)
+    {
+        try
+        {
+            return PyJson.Loads(line) is PyObject row && row.Get("topic_url") is string && row.Get("file") is null or string ? row : null;
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
+
+    /// <summary>A source-material file as text.</summary>
+    /// <exception cref="EngineException">The file is not valid UTF-8, under the given code.</exception>
+    private static string Text(string path, string shown, string code)
+    {
+        try
+        {
+            return PyText.ReadText(path);
+        }
+        catch (DecoderFallbackException invalid)
+        {
+            throw new EngineException($"{code}: {shown} is not valid UTF-8; re-save it as UTF-8 in the source checkout", invalid);
+        }
+    }
+}
