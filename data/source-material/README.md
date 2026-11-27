@@ -14,7 +14,8 @@ coh-engine source-manifest --source-root ../homecoming-source-material
 ```
 
 From a source checkout, `dotnet run --project src/CohEngine.Cli -- source-manifest ...` runs the same command.
-It writes the bytes `python -m scripts.forum_scrape.manifest` writes, and leaves out rows that name a person in `COH_BANNED_NAMES`.
+It writes the same manifest file as `python -m scripts.forum_scrape.manifest`, and leaves out rows that name a person in `COH_BANNED_NAMES`.
+Its messages and exit codes are its own.
 With the variable unset it falls back to the git user name and its first word, outside CI only, as the banned-word check does.
 With no name from either it writes nothing (`E215`): set `COH_BANNED_NAMES`.
 A `guides.jsonl` line that is not a ledger row is `E216`, and a capture that is not UTF-8 is `E217`; both name the file.

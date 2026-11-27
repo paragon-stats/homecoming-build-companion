@@ -115,8 +115,8 @@ without a file. `--source` selects one; the default is all three. Re-runs write 
 not yet in the index, so the two archive sources cost nothing after their first run.
 
 From a source checkout, `dotnet run --project src/CohEngine.Cli -- patch-notes ...` runs the same command.
-It takes the options and writes the bytes of `python -m scripts.forum_scrape.patch_notes`, which stays in the tree
-until the Python is removed. Its errors carry their own numbers: a failed fetch is `E200`, a refused or unreadable
+It takes the same options and writes the same record and index files as `python -m scripts.forum_scrape.patch_notes`, which stays in the tree
+until the Python is removed; its messages and exit codes are its own. Its errors carry their own numbers: a failed fetch is `E200`, a refused or unreadable
 `robots.txt` `E201` or `E202`, an unreadable category browser or wiki index `E203` or `E204`, a missing beta
 listing page `E205`, a canonical tree with no powerset names `E207`, which stops the run before anything is fetched or written, and a source not read completely `E208`.
 A source not read completely keeps its records and index rows as they are, even under `--reparse`, and the run exits 1.
