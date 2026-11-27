@@ -176,7 +176,7 @@ The lowest exemplar level at which a piece's own bonus works follows the wiki's 
 
 - **A power** is usable while its pick level is at most the exemplar level + 5. Every slot in a usable power works.
 - **Purple, PvP-set, archetype and Winter pieces** (the data's `bonuses_ignore_exemplar`) keep their everyday bonuses at every level.
-- **An attuned piece** works from its set's minimum level − 3.
+- **An attuned piece** works from its data floor, `min_bonus_level` in its `boost_info` (the wiki states the set minimum − 3; neither has been checked in game).
 - **A crafted piece** works from its own level − 3. Boosting does not change that level.
 - **A proc** works whenever its power is usable.
 - **Set bonuses and globals** stay on even while their power is greyed out.
@@ -189,7 +189,7 @@ The lowest exemplar level at which a piece's own bonus works follows the wiki's 
 | Unbreakable Guard: +Max HP | Tough | crafted 50 | 47 | Hit points; sits with its own set |
 | Aegis: Psionic/Status Resistance | Tough | crafted 25 | 22 | Psionic and status resistance |
 | Reactive Defenses: Scaling Resist Damage | Weave | crafted 50 | 47 | Defense-set unique |
-| Preventive Medicine: Chance for +Absorb | Health | crafted 50 in the file; attuned in game | 47 as the file holds it; 17 attuned | Crafted 50 − 3; attuned: set minimum 20 − 3 |
+| Preventive Medicine: Chance for +Absorb | Health | crafted 50 in the file; attuned in game | 47 as the file holds it; 14 attuned | Crafted 50 − 3; attuned: the data floor, `min_bonus_level` 13 stored as level − 1 (the wiki's set minimum 20 − 3 gives 17) |
 | Panacea: +Hit Points/Endurance | Health | crafted 50 | every level | PvP set, and a proc |
 | Regenerative Tissue: +Regeneration | Health | crafted 10 | every level | A proc in always-usable Health |
 | Miracle: +Recovery | Health | crafted 20 | every level | As above |
@@ -211,7 +211,7 @@ No PvP-only bonus is counted in any figure here (the engine computes in PvE mode
 absorb comes from its `global_bonuses` power `set_bonus.set_bonus.preventive_medicine`, which fires by chance. An `.mbd` marks a piece
 attuned only by an `Attuned_...` identifier, and the
 Mids 3.8.6 database the file is written against has none for Preventive Medicine. Slotted as the file holds it, the absorb is off below
-exemplar 47. To have it from 17, buy it attuned in game (or crafted 20, which also works from 17). The absorb counts in no total here, so
+exemplar 47. To have it from 14, buy it attuned in game (the data floor; crafted 20 works from 17). The absorb counts in no total here, so
 no figure changes.
 
 **Impervium Armor: Psionic Resistance is not a unique.** The earlier table listed it as one. In

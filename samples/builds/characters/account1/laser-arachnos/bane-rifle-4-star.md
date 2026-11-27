@@ -256,8 +256,9 @@ the rest at +5. Every freed slot costs a set bonus; the best use found for one (
 
 The exemplar script starts from the engine's level 50 recompute (`compute_base_totals`) on this build's harness dumps and applies the
 wiki's rules for exemplar level N: powers usable while their pick level ≤ N + 5 (every slot in a usable power works); set bonuses and
-globals piece by piece with the rule of five (purple, PvP-set, archetype and Winter pieces always; attuned pieces from the set's minimum level
-− 3; crafted pieces from their own level − 3; procs whenever their power is usable); each enhancement value scaled by the wiki's table;
+globals piece by piece with the rule of five (purple, PvP-set, archetype and Winter pieces always; attuned pieces from the data floor, `min_bonus_level`
+(the wiki states the set minimum − 3; the only attuned piece here, Panacea, is a proc, so no figure depends on it);
+crafted pieces from their own level − 3; procs whenever their power is usable); each enhancement value scaled by the wiki's table;
 base hit points and magnitudes from the level N tables; incarnates from 45.
 
 **Parity at 50.** The script matches the harness on every defense, resistance and mez field, and on regeneration, recovery, endurance,

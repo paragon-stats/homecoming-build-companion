@@ -24,9 +24,18 @@ level shown. Buy them attuned, except Regenerative Tissue: it is a proc, and the
 pieces attuned. At level 50 an attuned piece and a crafted 50 piece have the same values, so the level 50 row, the Mids totals
 (`.mids-totals.json`), the survival score, the boost evidence and the Enhancement Diversification audit describe the file exactly.
 
+**Attuned floors are the game data's.** Each piece's `boost_info.min_bonus_level` in
+`data/canonical/powers/boosts/attuned_<piece>/attuned_<piece>.json` holds the lowest exemplar level at which its set bonus and global work, stored as the level minus one.
+The evidence for that reading: `min_slot_level` is stored the same way, and the Superior archetype and Winter pieces, which can be slotted only at 50, store 49.
+The data floors in this build are 19 for Luck of the Gambler and Aegis, 14 for Unbreakable Guard, Gaussian's and Preventive Medicine, and 4 for Achilles' Heel and Steadfast Protection.
+The wiki and `docs/survivability-planning.md` state the set minimum − 3 instead: 22, 17 (Unbreakable Guard, Preventive Medicine), 18 (Gaussian's) and 7. Neither figure has been checked in game.
+Pieces that ignore the exemplar rule (`bonuses_ignore_exemplar: true`: the Superior archetype and Winter sets, Overwhelming Force) and procs are unaffected.
+**The per-level tables and the cost table below were computed with the wiki's floors** and have not been recomputed:
+under the data floors the exemplar 15 rows gain the Unbreakable Guard, Gaussian's and Preventive Medicine bonuses, and the 20 and 21 rows gain Luck of the Gambler's and Aegis'.
+
 **What the file costs if slotted as written** (crafted, at the levels above), against the per-level tables [A]. A crafted piece keeps its
-set bonus and global down to three levels below its own level; an attuned piece down to three below the set's minimum level
-(`docs/survivability-planning.md`). Values are the set-bonus and global figures in the Mids data; hit points are a share of the
+set bonus and global down to three levels below its own level (the wiki's rule; the data has no field for it); an attuned piece down to its data floor.
+Values are the set-bonus and global figures in the Mids data; hit points are a share of the
 class's base hit points at that level. The rule of five was not re-run for these differences.
 
 | Exemplar | Defense | Resistance | Hit points | Recharge (Mids-style) | Accuracy | Also lost |
@@ -35,7 +44,7 @@ class's base hit points at that level. The rule of five was not re-run for these
 | 20 | melee −3.1 (S/L −1.6): Unbreakable Guard four-piece | E/N −2.25, Toxic and Psionic −3.75 (Unbreakable Guard) | −9.4% of base, 639 → about 597: the +Max HP global and Gaussian's three-piece | — | — | endurance cost −2.5%, recovery −2.5%, the Preventive Medicine absorb |
 | 25-45 | melee −3.1 (S/L −1.6) | E/N −2.25, Toxic −3.75, Psionic −8.75 (with Aegis' 5) | −12.75% of base, adding Luck of the Gambler's three-piece ×3: 854 → about 779 at 25, 1,061 → 968 at 30, 1,255 → 1,145 at 35, 1,414 → 1,290 at 40, 1,518 → 1,385 at 45 | −30%: the four +7.5% globals | −27% (+42% → +15%): Luck of the Gambler's four-piece ×3 | as at 20, plus regeneration −40% (Luck of the Gambler's two-piece ×4) and mez resistance −20% (Aegis) |
 
-- **Where the losses start:** at 17 (Unbreakable Guard, Preventive Medicine), 18 (Gaussian's) and 22 (Luck of the Gambler, Aegis);
+- **Where the losses start:** at the data floors, 14 (Unbreakable Guard, Preventive Medicine, Gaussian's) and 19 (Luck of the Gambler, Aegis);
   Achilles' Heel's bonuses are lost below 17. From 47 the file and the design agree.
 - **Recharge** is Mids' figure, Hasten not counted. The "Recharge" columns below are time-averages with Hasten at its real uptime;
   30% less recharge also shortens Hasten's uptime, so the time-average falls by more. The hit-chance tables at 25-45 use the +42%
@@ -47,7 +56,7 @@ class's base hit points at that level. The rule of five was not re-run for these
     is a lone piece, so crafted 30 costs nothing: 28 of the 29 pieces cost something, it does not. The Achilles' Heel and Gaussian's
     procs stay on the list because they count toward their sets' bonuses, which follow the level rule.
   - **Preventive Medicine's Chance for +Absorb is a global** (`is_proc: false`; its absorb comes from the `global_bonuses` power
-    `set_bonus.set_bonus.preventive_medicine`, which fires by chance). It follows the level rule: from 17 attuned, from 47 as the file
+    `set_bonus.set_bonus.preventive_medicine`, which fires by chance). It follows the level rule: from 14 attuned (the data floor), from 47 as the file
     holds it. It counts in no total here.
 
 ## Checks run on this file
@@ -65,7 +74,7 @@ Every check below was run on this build itself (the file in this folder). No fig
 6. **Enhancement Diversification audit:** every power, every aspect, measured on this build.
 7. **Exemplar:** the full table at 10, 15, 20, 25, 30, 35, 40, 45 and 50, re-measured on this file with the pieces in "Buy these pieces
    attuned" treated as attuned, not as the file's crafted stand-ins. Parity at 50 against the harness matches every field but hit points
-   (0.10 apart). The hand-worked check passes: +30.0% recharge at exactly exemplar 22 (19 under the data floors).
+   (0.10 apart). The hand-worked check passes: +30.0% recharge at exactly exemplar 22 under the wiki floor the tables use (19 under the data floor).
 8. **Survival score:** both tiers, both damage mixes, at 50, against the previous delivery (22 November) and against the final
    Bane 4-star build, with the hand check.
 9. **Boost evidence:** each boosted piece's value before and after (all ×1.25). Set bonuses and globals are byte-identical. 95 boosters.
@@ -327,7 +336,7 @@ Each keyed attack and Surveillance, at each exemplar level from the level it is 
 - base chance from Arcanaville's "Guide to ToHit and Defense" (the purple-patch section, quoting a developer post), the guide that
   `docs/survivability-planning.md` cites: +0 75%, +1 65%, +2 56%, +3 48%, +4 39%;
 - to-hit and accuracy as live at each level: Kismet +6% from 1, Tactical Training: Leadership +10% from 15, Tactics +10% from 39;
-  global accuracy +15%, then +42% from 22 (the attuned Luck of the Gambler four-piece bonuses); slotted accuracy scaled and capped.
+  global accuracy +15%, then +42% from 22 in these tables (the attuned Luck of the Gambler four-piece bonuses; 19 by the data floor); slotted accuracy scaled and capped.
 
 **Two formulas are in use across these write-ups.** These tables use the guide's level-difference figures. The level 50 hit-chance
 line and the table above use the stricter four-star check, accuracy × (0.75 + to-hit − 0.25) × 0.65. At +4 the two differ by about a
@@ -518,36 +527,36 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 | Power | Pieces | Kind (in game; the file's where it differs) | Why |
 | --- | --- | --- | --- |
 | Bane Spider Armor | Gladiator's Armor +3% Def | crafted 10 | PvP-set piece: its everyday global ignores the exemplar level rule |
-| | Steadfast Protection Res/+3% Def, Knockback Protection | crafted 10 | Set 10-30: crafted at 10 keeps them to 7, as attuned would |
+| | Steadfast Protection Res/+3% Def, Knockback Protection | crafted 10 | Set 10-30: crafted at 10 keeps them to 7; attuned would keep them to 4, the data floor |
 | | Gladiator's Armor Res, Res/Rech, Res/End/Rech | crafted 50; only Res/End/Rech +5 | PvP-set pieces: their everyday bonuses ignore the exemplar level rule (4 pieces: knockback 3, toxic/psionic resistance) |
 | Single Shot | Superior Spider's Bite, 6 | attuned (only form) | Archetype set: bonuses at every level |
 | Burst | Superior Winter's Bite, 6 | attuned (only form) | Winter set: ranged, E/N, F/C and AoE defense at every level |
 | Maneuvers | Shield Wall Def/End, Def/Rech, Def/End/Rech, End/Rech | crafted 50, +5 | PvP-set pieces: their everyday bonuses ignore the exemplar level rule; End/Rech in place of pure Defense for endurance |
 | | Kismet +ToHit (moved here) | crafted 10 | Proc by the data: +6% to-hit whenever Maneuvers is usable, so from exemplar 1 |
-| Combat Jumping | Luck of the Gambler +Recharge, Def/End | attuned; file: crafted 50 | Global and 2-piece bonus from 22 |
+| Combat Jumping | Luck of the Gambler +Recharge, Def/End | attuned; file: crafted 50 | Global and 2-piece bonus from 19 (data floor) |
 | Heavy Burst | Superior Frozen Blast, 6 | attuned (only form) | AoE and F/C defense at every level |
-| Tactical Training: Maneuvers | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
+| Tactical Training: Maneuvers | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 19 (data floor) |
 | Venom Grenade | Superior Dominion of Arachnos, 6 | attuned (only form) | Archetype set; −damage/fear proc |
 | Assault, Tactical Training: Assault and Leadership, Tactics | Endurance Reduction | crafted 50, +5 | No set pays for slots there |
 | Frag Grenade | Overwhelming Force, 6 | attuned (only form) | Knockback to knockdown; knockback protection 4 at every level |
 | Mental Training | Run Speed | crafted 50, +5 | |
-| Cloaking Device | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
-| Surveillance | Achilles' Heel −Res proc, Def Debuff, Def Debuff/Rech | attuned; file: crafted 20 | Proc whenever Surveillance is usable; bonuses from 7 |
+| Cloaking Device | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 19 (data floor) |
+| Surveillance | Achilles' Heel −Res proc, Def Debuff, Def Debuff/Rech | attuned; file: crafted 20 | Proc whenever Surveillance is usable; bonuses from 4 (data floor) |
 | | Accuracy (new, fourth slot, level 48) | crafted 50, +5 | 95% against +4 at 50; the +5 is needed (91.1% at +0) |
 | Hasten | Recharge Reduction x2 | crafted 50, +5 | The norm |
 | Boxing | Accuracy | crafted 50, +5 | One slot: a prerequisite, not on a key |
-| Tough | Unbreakable Guard Res, Res/End, Res/Rech, Res/End/Rech, +Max HP | attuned; file: crafted 50 | Set 20-50: bonuses and the +HP global from 17 (crafted 50 would stop below 47) |
-| | Aegis +Res Mez/Psionic | attuned; file: crafted 50 | Global from 22 |
-| Weave | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 22 |
+| Tough | Unbreakable Guard Res, Res/End, Res/Rech, Res/End/Rech, +Max HP | attuned; file: crafted 50 | Set 20-50: bonuses and the +HP global from 14, the data floor (crafted 50 would stop below 47) |
+| | Aegis +Res Mez/Psionic | attuned; file: crafted 50 | Global from 19 (data floor) |
+| Weave | Luck of the Gambler +Recharge, Def/End, Def/End/Rech, End/Rech | attuned; file: crafted 50 | Bonuses from 19 (data floor) |
 | Poisonous Ray | Apocalypse Acc/Dmg/Rech, Acc/Rech, Dmg/Rech, Dmg/End, Dmg | crafted 50; only Acc/Rech and Dmg/End +5 | Purple: bonuses at every level |
 | | Apocalypse −Energy proc | crafted 50 | Proc |
-| Build Up | Gaussian's ToHit, Rech/ToHit, End/Rech/ToHit, Build Up proc | attuned; file: crafted 50 | Bonuses from 18. In Build Up so Mids does not count the proc as always on |
+| Build Up | Gaussian's ToHit, Rech/ToHit, End/Rech/ToHit, Build Up proc | attuned; file: crafted 50 | Bonuses from 14 (data floor). In Build Up so Mids does not count the proc as always on |
 | Combat Training: Defensive | Shield Wall +5% Res (all) (moved here) | crafted 50 | PvP-set piece: its everyday global ignores the exemplar level rule, wherever it sits |
 | | (Karma Knockback Protection, removed) | — | Its slot went to Surveillance's Accuracy IO; knockback protection 15 → 11 |
 | Wide Area Web Grenade | Accuracy | crafted 50, +5 | One slot (on the ALT row, not the key row) |
 | Health | Panacea +HP/End, Numina's +Regen/Recovery (30), Miracle +Recovery (20) | crafted | Procs by the game data (`is_proc: true`): any level works; lowest craftable |
 | | Regenerative Tissue +Regen | attuned; file: crafted 30, which works the same | Proc by the game data (`is_proc: true`): any level works |
-| | Preventive Medicine +Absorb | attuned; file: crafted 50 | Global by the game data (`is_proc: false`, `global_bonuses`): from 17 attuned, from 47 crafted 50 |
+| | Preventive Medicine +Absorb | attuned; file: crafted 50 | Global by the game data (`is_proc: false`, `global_bonuses`): from 14 attuned (data floor), from 47 crafted 50 |
 | Stamina | Performance Shifter +End proc | crafted 21 | Proc; lowest craftable |
 | | Performance Shifter EndMod, EndMod/Rech | crafted 50, +5 | The dual-aspect piece keeps its boost at every level. Attuned would add only the 3-piece +1.88% HP at 18-46 |
 | **Brawl** (new) | Accuracy | crafted 50 | Takes Accuracy, Damage or Recharge; never pressed; empty it hit +4 at 70.1%, now 91.1% at 50 [H] |
@@ -560,33 +569,35 @@ The swap moved no piece. Mids placed some added slots at different levels; that 
 
 - **Sets that ignore exemplaring** (purple, PvP, archetype, Winter, Overwhelming Force) come first.
   Their everyday bonuses ignore the exemplar level rule, so purple and PvP-set pieces are crafted at 50 and boosted.
-- **Regular sets are attuned**, keeping bonuses to the set minimum − 3. Crafted at 50 they stop below 47.
+- **Regular sets are attuned**, keeping bonuses down to the data floor (`min_bonus_level`; the floors are listed under "Buy these pieces attuned"). Crafted at 50 they stop below 47.
   The Mids file cannot hold an attuned regular-set piece, so it holds the crafted piece at the level in the table's "file:" note.
 - **PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set from two pieces up in `data/canonical/boost_sets/<set>.json` has two bonuses:
   one with `is_pvp_bonus: false`, which works on every map, and one with `is_pvp_bonus: true` and `requires: isPVPMap?`, which works only on PvP maps.
   The unique globals (Shield Wall +5% resistance, Gladiator's Armor +3% defense) are `is_pvp_bonus: false`.
   No PvP-only bonus is counted in any figure here (the engine computes in PvE mode), and none is a reason for a pick.
-- **Globals crafted at the set minimum** equal attuned.
-- **Procs** ignore the minus-3 rule.
+- **Globals crafted at the set minimum** equal attuned under the wiki's rule; under the data floors an attuned piece works three or more levels lower.
+- **Procs** ignore the exemplar floors.
 - **Single-aspect IOs boosted to +5** gain nothing at 45 and below, because the cap is 41.5% [A].
 
 **The levels from his in-game builds**, as measured on the first version (the same pieces are kept here):
 
 | Piece at his level | Verdict |
 | --- | --- |
-| Luck of the Gambler at 25 | Same as attuned |
+| Luck of the Gambler at 25 | Works from 22; attuned works from 19 by the data floor |
 | Steadfast at 10 | Best |
 | Steadfast at 30 | Costs −3.1 defense and −4 knockback protection at 10-25 |
 | Impervium at 15 | Best |
 | Gladiator's Armor | Any level works |
 | Health procs, Performance Shifter at 21, Achilles' Heel at 20 | Any level works |
 | Regenerative Tissue | Any level works: a proc in the game data (`is_proc: true`). The first version's verdict, "use 10 or attuned, not 30", treated it as a global |
-| Preventive Medicine | Use 20 or attuned, not 40 |
+| Preventive Medicine | Attuned (from 14 by the data floor) or crafted 20 (from 17), not 40 |
 | Kismet at 30 | Fine by the data, which flags it as a proc; 10 is safe either way |
-| A unique in Tough at 25 | Same as attuned if it is Aegis; Unbreakable Guard +HP is better at 20 or attuned |
+| A unique in Tough at 25 | Works from 22: Aegis attuned works from 19 and Unbreakable Guard +HP attuned from 14, by the data floors |
 
-**Data floors:** with the data's `min_bonus_level` (set minimum − 7) in place of the wiki's minus 3, the attuned Luck of the Gambler +Recharge works from 19 instead of 22.
-The hand-worked check shows the +30% recharge jump moving from 22 to 19.
+**Data floors in use:** the attuned Luck of the Gambler +Recharge global (piece F) and the set's two- to six-piece bonuses work from 19.
+The floor is `boost_info.min_bonus_level` (18) in `data/canonical/powers/boosts/attuned_luck_of_the_gambler_f/attuned_luck_of_the_gambler_f.json`.
+Every Luck of the Gambler piece stores the same value.
+The hand-worked check shows the +30% recharge jump at 19 under the data floor and at 22 under the wiki's rule, which the per-level tables still use.
 
 ### Slot accounting and granted slots
 
@@ -641,7 +652,7 @@ last threshold (100% on schedule A, 60% on schedule B); every other aspect of ev
 | Venom Grenade | Damage / Recharge | 142.4 / 132.5% | 101.4 / 99.9% | Superior Dominion of Arachnos (archetype set) |
 | Frag Grenade | Damage | 114.0% | 97.1% | Overwhelming Force: knockdown, knockback protection 4 |
 | Hasten | Recharge | 106.0% | 95.9% | Two +5 Recharge IOs, the operator's norm (a plain IO past ED) |
-| Tough | Resistance | 70.1% | 57.5% | Unbreakable Guard, attuned in game (bonuses from 17); crafted 50 in the file, the same values at 50 |
+| Tough | Resistance | 70.1% | 57.5% | Unbreakable Guard, attuned in game (bonuses from 14 by the data floor); crafted 50 in the file, the same values at 50 |
 | Poisonous Ray | Damage / Recharge | 182.2 / 115.9% | 107.3 / 97.4% | Apocalypse (purple, six pieces) |
 
 ## His call
@@ -747,7 +758,8 @@ This is the recipe of the repository's sample-build parity test, and it adds the
 1. **Usable powers:** those picked at N + 5 or lower. All their slots count.
 2. **Set bonuses and globals:** taken from every power, usable or not.
    - Pieces that ignore exemplaring always count.
-   - Attuned pieces count down to the set minimum − 3; crafted pieces down to their level − 3.
+   - Attuned pieces count down to the set minimum − 3 in these tables, the wiki's rule; the build now uses the data floors (see "Buy these pieces attuned"), which the tables do not yet reflect.
+     Crafted pieces count down to their level − 3.
    - The pieces in "Buy these pieces attuned" are taken as attuned, as designed, although the file holds them crafted.
    - Regenerative Tissue's +Regeneration was described as an attuned global (from 7). The game data makes it a proc (`is_proc: true`),
      which counts at every level Health is usable; either way it counts at every tabulated level (10 and up), so no figure moves.
@@ -762,8 +774,8 @@ This is the recipe of the repository's sample-build parity test, and it adds the
 **Checks:**
 
 - **Parity at 50:** the script matches the harness on every compared field. Hit points differ by 0.1 because of the previous-recompute term.
-- **Hand-worked case:** the build's four Luck of the Gambler +Recharge globals, taken as attuned, switch on at 22, a jump of exactly 30.0
-  recharge, and at 19 under the data floors. Hasten is left out of that check: from 23 it adds its own step.
+- **Hand-worked case:** the build's four Luck of the Gambler +Recharge globals, taken as attuned, switch on at 19 by the data floor (22 by the wiki's rule, which the tables use),
+  a jump of exactly 30.0 recharge. Hasten is left out of that check: from 23 it adds its own step.
   The file's crafted 50 stand-ins switch on only at 47.
 
 ## Where the repository docs disagree with the wiki
@@ -772,4 +784,4 @@ This is the recipe of the repository's sample-build parity test, and it adds the
 - **Bonuses in greyed-out powers:** the docs do not say that set bonuses and globals stay on there.
 - **Attuned values:** the slotting guide says attuned values avoid the exemplar penalty. The wiki scales every enhancement.
 - **Superior archetype and Winter pieces:** the data gives them a minimum slot level of 50, not 10.
-- **Attuned floors in the data:** `min_bonus_level` is the set minimum − 7 against the wiki's − 3.
+- **Attuned floors:** the wiki states the set minimum − 3; the data's `min_bonus_level` gives a lower floor, which this build uses. Neither has been checked in game.
