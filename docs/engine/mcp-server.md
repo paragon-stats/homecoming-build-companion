@@ -104,7 +104,15 @@ In it, `stance` is `melee`, `ranged`, `hybrid` or `all` (the default); `target` 
 A call reads `{"buildDir": "...", "options": {"stance": "ranged", "target": "spawn:3"}}`.
 `midsDb` names the directory holding `AttribMod.json`, which prices pets; without it pets are left out.
 The CLI's `--assume` and `--clicksoff-dir` are not offered.
-A bad option or an unreadable input is a tool error carrying the command's own message.
+An option sent as `null` keeps its default, as one left out does.
+A bad input is a tool error, and what it says depends on its kind:
+
+- a value the command refuses, such as `"stance": "side"`, or an unreadable input: the command's own message, for example `argument --stance: invalid choice: 'side'`;
+- a member of the wrong JSON type, such as `"standoff": "30"` or `"options": "ranged"`: the SDK's generic `An error occurred invoking 'chain'.`;
+- a member `options` does not have, such as `"Stance"` or a misspelling: the same generic error.
+
+Unknown top-level arguments are ignored by the server, for every tool.
+A client still sending the old flat `stance`, `form`, `target`, `move` or `standoff` beside `buildDir` therefore gets the default plan, not an error.
 `coh-engine ask` offers `chain` too, with `stance`, `form`, `target`, `move` and `standoff` as flat text arguments of its own; it passes them to the tool as its options.
 
 `set_bonus_lookup` matches `setName` against the set UID, ignoring case.
