@@ -163,6 +163,10 @@ Every figure carries one of these marks:
 Both builds are identical from exemplar 23 up: both picks are usable there, so every figure from 25 to 50 is the same [S, P].
 At 10-20 this build has Heavy Burst and no Hasten; the Hasten-at-8 build had Hasten and no Heavy Burst.
 
+**The next table is not to be relied on.** Its header promises pairs of "this build / Hasten at 8" figures, but the cells hold one set of figures in the damage table's layout:
+Hasten recharge / uptime, global recharge, single-target DPS with cycle / idle, and spawn DPS with cycle / idle.
+They do not equal the damage table's figures for this build, and the Hasten-at-8 figures are not in the file.
+
 | Exemplar | Single target DPS [P]: this / Hasten at 8 | Spawn of 10 DPS [P]: this / Hasten at 8 | Idle per cycle, single [P]: this / Hasten at 8 | Full bar, single / spawn [P]: this / Hasten at 8 |
 | --- | --- | --- | --- | --- |
 | 10 | not usable | +20% | 15.9, 6.66 / 4.42 s | 67.2, 17.58 / 10.84 s |
@@ -215,6 +219,10 @@ Hasten's recharge and uptime at each level come from its own recharge with the r
 | 50 | 169 s / 71% | +119% | 217.7, 4.71 / 0.62 s | 1,021.0, 9.37 / 0.00 s |
 
 **What Hasten is worth once it is usable** [P]: +13% to +16% damage at 25-50 against the same build without Hasten. That is measured on the Hasten-at-8 build, which is identical from 23 up.
+
+**The next table is broken in rows 10 to 45.** There, four columns hold other data: Recovery holds defense, Toggles holds resistance, Chain holds hit points and Full bar holds mez protection.
+Other clicks, Net, Full bar with procs and Refilled look genuine, and the level 50 row is correct.
+The true recovery, toggle and chain figures for 10 to 45 are not in the file.
 
 **Endurance per level**, single-target chain / spawn chain, in end/s [P]:
 
@@ -749,6 +757,8 @@ Keys live by exemplar level:
 - **Proc endurance is an estimate:** expected values from the data's per-minute rates.
 - **Cloaking Device's defense is counted as always on.** Whether it holds in combat is not checked.
 - **Enemy mez magnitudes** in low task forces are not in the data.
+- **The per-level figures came from a script that is not in the repository.**
+  The swap table, the endurance table and the exemplar 15, 20 and 21 rows under the data floors need regenerating by the evaluate command (#231).
 
 ## How the exemplar figures were computed
 
