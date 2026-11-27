@@ -53,16 +53,10 @@ public static class EngineToolCatalog
         return arguments.GetValueOrDefault(name);
     }
 
-    // The model gives the planning options as flat text arguments; one left out keeps the tool's default.
+    // The model gives the planning options as flat text arguments; one left out is null, which keeps the tool's default.
     private static ChainOptions ChainOptionsOf(IReadOnlyDictionary<string, string> arguments)
     {
-        ChainOptions defaults = new();
-        return new ChainOptions(
-            Optional(arguments, "stance") ?? defaults.Stance,
-            Optional(arguments, "form"),
-            Optional(arguments, "target") ?? defaults.Target,
-            Optional(arguments, "move") ?? defaults.Move,
-            Standoff(arguments));
+        return new ChainOptions(Optional(arguments, "stance"), Optional(arguments, "form"), Optional(arguments, "target"), Optional(arguments, "move"), Standoff(arguments));
     }
 
     private static double? Standoff(IReadOnlyDictionary<string, string> arguments)
