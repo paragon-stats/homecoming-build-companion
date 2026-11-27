@@ -314,7 +314,7 @@ The "(proc)" rows have `is_proc: true` and carry their effect in the piece. The 
 `global_bonuses` power, which follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor,
 Shield Wall). Preventive Medicine's chance-based absorb is one of these globals.
 
-**PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set in `data/canonical/boost_sets/<set>.json` has two bonuses:
+**PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set from two pieces up in `data/canonical/boost_sets/<set>.json` has two bonuses:
 one with `is_pvp_bonus: false`, which works on every map, and one with `is_pvp_bonus: true` and `requires: isPVPMap?`, which works only on PvP maps.
 The two globals above are `is_pvp_bonus: false`. No PvP-only bonus is counted in any figure here (the engine computes in PvE mode), and none is a reason for a pick.
 
