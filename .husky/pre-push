@@ -3,8 +3,17 @@
 # build and tests then.
 REFS="$(cat)"
 [ -n "$REFS" ] || exit 0
-restored="$(dotnet tool restore 2>&1)" || {
-  echo "$restored" >&2
-  exit 1
-}
-dotnet husky run --group pre-push
+# Each line is "<local ref> <local id> <remote ref> <remote id>"; a deletion's local id is all zeros.
+# A push that only deletes remote branches sends no commits to check.
+PUSHES_COMMITS=""
+while read -r _ LOCAL_ID _ _; do
+  case "$LOCAL_ID" in
+  *[!0]*) PUSHES_COMMITS=1 ;;
+  esac
+done <<EOF
+$REFS
+EOF
+[ -n "$PUSHES_COMMITS" ] || exit 0
+# The hook restores no tools; without them dotnet husky fails and names the restore command.
+# --quiet drops Husky's banner and separator lines; run the same line without it to see them.
+dotnet husky run --quiet --group pre-push

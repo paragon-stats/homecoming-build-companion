@@ -38,14 +38,14 @@ if (seedAt >= 0)
 }
 else if (args.Contains("--staged"))
 {
-    foreach (string path in Git("diff --cached --name-only --diff-filter=ACMR -z -- *.cs"))
+    foreach (string path in Git(["diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z", "--", "*.cs"]))
     {
-        files.Add((path, string.Concat(Git($"show :{path}", split: false))));
+        files.Add((path, string.Concat(Git(["show", $":{path}"], split: false))));
     }
 }
 else
 {
-    foreach (string path in Git("ls-files -z -- *.cs").Where(File.Exists))
+    foreach (string path in Git(["ls-files", "-z", "--", "*.cs"]).Where(File.Exists))
     {
         files.Add((path, File.ReadAllText(path)));
     }
@@ -81,18 +81,26 @@ if (hits > 0)
 Console.WriteLine("[OK] no coverage exclusion outside the JSON contexts.");
 return 0;
 
-static string[] Git(string arguments, bool split = true)
+// Arguments as a list, so a path with a space stays one argument; git writes paths and contents as UTF-8.
+static string[] Git(string[] arguments, bool split = true)
 {
-    using Process git = Process.Start(new ProcessStartInfo("git", arguments)
+    ProcessStartInfo info = new("git")
     {
         RedirectStandardOutput = true,
         UseShellExecute = false,
-    }) ?? throw new InvalidOperationException("could not start git.");
+        StandardOutputEncoding = new System.Text.UTF8Encoding(false),
+    };
+    foreach (string argument in arguments)
+    {
+        info.ArgumentList.Add(argument);
+    }
+
+    using Process git = Process.Start(info) ?? throw new InvalidOperationException("could not start git.");
     string output = git.StandardOutput.ReadToEnd();
     git.WaitForExit();
     if (git.ExitCode != 0)
     {
-        throw new InvalidOperationException($"git {arguments} exited {git.ExitCode}; the file list is unknown.");
+        throw new InvalidOperationException($"git {string.Join(' ', arguments)} exited {git.ExitCode}; the file list is unknown.");
     }
 
     return split ? output.Split('\0', StringSplitOptions.RemoveEmptyEntries) : [output];

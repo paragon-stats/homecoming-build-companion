@@ -345,7 +345,7 @@ internal sealed class PatchNotesCommand
         {
             if (entry.Changes.Count == 0)
             {
-                error.WriteLine($"error: {ErrorCodes.E206}: no change lines parsed from {entry.Url}; check the post's layout");
+                output.WriteLine($"info: {ErrorCodes.E206}: no change lines parsed from {entry.Url}; the entry is recorded with no changes");
             }
 
             string origin = DedupeLines(entry, seen);
@@ -672,7 +672,7 @@ internal sealed class PatchNotesCommand
                 PatchEntry entry = PatchParser.ParseEntry(page, entryUrl, powersets);
                 if (entry.Changes.Count == 0)
                 {
-                    error.WriteLine($"error: {ErrorCodes.E206}: no change lines parsed from {entryUrl}; check the post's layout");
+                    output.WriteLine($"info: {ErrorCodes.E206}: no change lines parsed from {entryUrl}; the entry is recorded with no changes");
                 }
 
                 if (TryWrite(entry, outDir, error) is not { } name)

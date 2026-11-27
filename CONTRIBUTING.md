@@ -18,6 +18,8 @@ dotnet test
 ```
 
 CI runs the same checks plus the coverage gate.
+Every project in the solution, tests included, builds with `SonarAnalyzer.CSharp` and the SonarQube Cloud profile's rules as errors (listed in `.editorconfig`).
+A Sonar finding therefore fails the local build before it reaches the server.
 
 ## Git hooks
 
@@ -37,9 +39,58 @@ A worktree or branch cut before the hooks were merged has no `.husky/pre-commit`
 
 | Stage | What runs |
 | --- | --- |
-| `pre-commit` | `dotnet format --verify-no-changes`, the encoding check, the banned-words check, the coverage-exclusion check on the staged files, the commit-signing check, and the text-file check |
+| `pre-commit` | the text-file check, the encoding check, the coverage-exclusion check on the staged files, the commit-signing check, the banned-words check, and `dotnet format --verify-no-changes` |
 | `commit-msg` | `scripts/git/check-commit-message.sh` on the message, the check the commitlint workflow runs; the rule that release types change `src/` is left to CI, since the hook cannot tell an amend from a new commit |
-| `pre-push` | `dotnet build`, `dotnet test --no-build`, the banned-words check, and Super-Linter in Docker |
+| `pre-push` | the banned-words check, `dotnet build`, Super-Linter in Docker, and `dotnet test --no-build` |
+
+Husky runs a group's checks one after another and stops at the first failure.
+Each group therefore runs its quickest checks first, so a quick check that fails is reported in seconds.
+Measured warm times, in run order:
+
+| Stage | Check | Time |
+| --- | --- | --- |
+| `pre-commit` | text files | 0.5-0.6 s (2.2-2.5 s with a Markdown file staged) |
+| `pre-commit` | encoding | 0.7 s |
+| `pre-commit` | coverage exclusions | 0.8 s |
+| `pre-commit` | commit signing | 0.8 s |
+| `pre-commit` | banned words | 1.0-1.2 s |
+| `pre-commit` | `dotnet format` | 30-36 s |
+| `pre-push` | banned words | 1.0-1.2 s |
+| `pre-push` | `dotnet build` | 8 s with nothing to rebuild |
+| `pre-push` | Super-Linter | 58-67 s (0.6 s when it skips without Docker) |
+| `pre-push` | `dotnet test --no-build` | 120 s; it needs the build, so it stays after it |
+
+Husky adds about 0.3 s per check.
+A script compiles once after it changes, and once in a new worktree, in 3.5-5 s.
+
+The `pre-commit` and `pre-push` hooks run their group with Husky's `--quiet` switch, which leaves out Husky's banner and separator lines.
+Each script check prints one line on standard output: `[OK] ...`, or `[SKIP] ...` with the reason.
+When the banned-words check finds no operator name to look for, it still checks the banned words and says so in its one line:
+`[OK] no banned words found; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty.`
+In CI an unset `COH_BANNED_NAMES` fails the check instead.
+Findings go to standard error.
+`dotnet format`, `dotnet build` and `dotnet test` print their own output.
+Super-Linter prints one `Successfully linted <linter>` line for each linter that passes, and a failing linter's full output.
+It reads `LOG_LEVEL=NOTICE` and `SUPPRESS_POSSUM=true` from `.github/super-linter.env`, which CI reads too, and Checkov lists failed checks only (`quiet: true` in `.github/linters/.checkov.yaml`).
+The final `All files and directories linted successfully` or `Super-linter detected linting errors` line, and any `[WARN]` line, still print.
+A NOTICE log does not say which linter is running, so a run that hangs or times out shows only the lines printed before the linters started.
+Warnings from a linter that passes are not shown either, so a yamllint warning fails the YAML check instead (`YAML_ERROR_ON_WARNING=true`, rules in `.github/linters/.yaml-lint.yml`, copied from paragon-stats).
+JSCPD passes while the duplicated share stays under the threshold set in `.github/linters/.jscpd.json`, so clone reports under it are a pass by configuration.
+For the full log locally, set `SUPER_LINTER_LOG_LEVEL=INFO` (or `DEBUG`) for the run; the runner passes it as `LOG_LEVEL`, over the shared file.
+For the full log in CI, re-run the job with debug logging enabled; Super-Linter then logs at debug level, with no change to the repository.
+To see Husky's banner and per-check lines, run the group by hand without the switch, for example `dotnet husky run --group pre-commit`.
+
+The hooks do not restore the .NET tools.
+Run `dotnet tool restore` once per clone (`make bootstrap` does it), and again whenever `.config/dotnet-tools.json` changes, for example after a Husky version bump is merged.
+Until then the hook stops before any check runs, with `Run "dotnet tool restore" to make the "husky" command available.`, and `make hooks-check` reports it.
+
+Husky has none of the following, and the hooks do not imitate them:
+
+- a summary table of the checks at the end of a run
+- the time each passing check took, while `--quiet` is on; only the failure line gives a time, the failed check's
+- running the remaining checks after one fails
+- running checks side by side
+- a plain-ASCII failure line: Husky's `Task '<name>' failed in <n>ms` line starts with a non-ASCII cross mark, with or without `--quiet`
 
 The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged and checks:
 trailing whitespace, final newline, extra blank lines at the end and line endings as `.editorconfig` sets them; JSON syntax of every staged `.json` file; files over 15 MB; and markdownlint.

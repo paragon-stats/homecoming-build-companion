@@ -1,6 +1,7 @@
 // check-banned-words.cs - fail on banned words and the operator's name in tracked text files.
 //
-// Run by the Husky pre-commit hook and CI:  dotnet run scripts/dev/check-banned-words.cs
+// Run by CI and the pre-push hook:          dotnet run scripts/dev/check-banned-words.cs              (tracked files)
+// Run by the pre-commit hook:               dotnet run scripts/dev/check-banned-words.cs -- --staged  (staged content)
 // Self-test on one file:                    dotnet run scripts/dev/check-banned-words.cs -- --seed tests/fixtures/banned-words-seed.txt
 //
 // The rules are in docs/style-guides/naming-and-words.md. Names come only from the
@@ -13,6 +14,7 @@
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
 #:property RunAnalyzers=false
+#:include staged-files.cs
 
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -32,6 +34,7 @@ string[] binaryExtensions =
 string[] names = (Environment.GetEnvironmentVariable("COH_BANNED_NAMES") ?? string.Empty)
     .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 string nameSource = "COH_BANNED_NAMES";
+string nameCheck = string.Empty;
 if (names.Length == 0 && Environment.GetEnvironmentVariable("GITHUB_ACTIONS") is null)
 {
     names = OperatorNames();
@@ -46,7 +49,7 @@ if (names.Length == 0)
         return 1;
     }
 
-    Console.WriteLine("[SKIP] COH_BANNED_NAMES is unset and git config user.name is empty: the operator-name check was not run.");
+    nameCheck = "; the operator-name check was not run: COH_BANNED_NAMES is unset and git config user.name is empty";
 }
 
 (Regex Pattern, string Label)[] rules =
@@ -56,6 +59,8 @@ if (names.Length == 0)
 ];
 
 IEnumerable<string> files;
+List<string> ids = [];
+bool staged = args.Contains("--staged");
 int seedAt = Array.IndexOf(args, "--seed");
 if (seedAt >= 0)
 {
@@ -66,40 +71,83 @@ if (seedAt >= 0)
     }
 
     files = [args[seedAt + 1]];
+    staged = false;
 }
 else
 {
-    string[] tracked;
-    try
+    List<string> listed;
+    if (staged)
     {
-        tracked = TrackedFiles();
+        (List<(string Path, string Id)> entries, string? error) = StagedFiles.List();
+        if (error is not null)
+        {
+            Console.Error.WriteLine($"[FAIL] {error}; the file list is unknown.");
+            return 2;
+        }
+
+        listed = [.. entries.Select(entry => entry.Path)];
+        ids = [.. entries.Select(entry => entry.Id)];
     }
-    catch (InvalidOperationException ex)
+    else
     {
-        Console.Error.WriteLine($"[FAIL] {ex.Message}");
-        return 2;
+        try
+        {
+            listed = [.. TrackedFiles()];
+        }
+        catch (InvalidOperationException ex)
+        {
+            Console.Error.WriteLine($"[FAIL] {ex.Message}");
+            return 2;
+        }
     }
 
-    files = tracked.Where(p =>
-        !skipPrefixes.Any(s => p.StartsWith(s, StringComparison.Ordinal)) &&
-        !skipFiles.Contains(p, StringComparer.Ordinal) &&
-        !binaryExtensions.Contains(Path.GetExtension(p), StringComparer.OrdinalIgnoreCase));
+    // The staged blobs are read in listing order, so a skipped file drops its id too.
+    List<string> kept = [];
+    List<string> keptIds = [];
+    for (int i = 0; i < listed.Count; i++)
+    {
+        string p = listed[i];
+        if (!skipPrefixes.Any(s => p.StartsWith(s, StringComparison.Ordinal)) &&
+            !skipFiles.Contains(p, StringComparer.Ordinal) &&
+            !binaryExtensions.Contains(Path.GetExtension(p), StringComparer.OrdinalIgnoreCase))
+        {
+            kept.Add(p);
+            if (staged)
+            {
+                keptIds.Add(ids[i]);
+            }
+        }
+    }
+
+    files = kept;
+    ids = keptIds;
 }
 
+using Process? blobs = staged ? StagedFiles.StartReader(ids) : null;
 int hits = 0;
 foreach (string path in files)
 {
-    if (!File.Exists(path))
+    byte[]? bytes = staged ? StagedFiles.Next(blobs!) : File.Exists(path) ? File.ReadAllBytes(path) : null;
+    if (bytes is null && staged)
+    {
+        // A missing blob, or git stopping partway: what is staged here was not checked.
+        Console.Error.WriteLine($"{path}:1: git cannot read the staged content of this file");
+        hits++;
+        continue;
+    }
+
+    if (bytes is null)
     {
         continue; // tracked but deleted in the working tree
     }
 
-    if (LooksBinary(path))
+    // A NUL byte in the first 8 KB marks a binary file.
+    if (Array.IndexOf(bytes, (byte)0, 0, Math.Min(bytes.Length, 8192)) >= 0)
     {
         continue;
     }
 
-    string[] lines = File.ReadAllLines(path);
+    string[] lines = new System.Text.UTF8Encoding(false).GetString(bytes).ReplaceLineEndings("\n").Split('\n');
     for (int i = 0; i < lines.Length; i++)
     {
         foreach ((Regex pattern, string label) in rules)
@@ -115,11 +163,11 @@ foreach (string path in files)
 
 if (hits > 0)
 {
-    Console.Error.WriteLine($"[FAIL] {hits} banned-word hit(s). See docs/style-guides/naming-and-words.md.");
+    Console.Error.WriteLine($"[FAIL] {hits} banned-word hit(s){nameCheck}. See docs/style-guides/naming-and-words.md.");
     return 1;
 }
 
-Console.WriteLine("[OK] no banned words found.");
+Console.WriteLine($"[OK] no banned words found{nameCheck}.");
 return 0;
 
 static string[] OperatorNames()
@@ -154,13 +202,4 @@ static string[] TrackedFiles()
     }
 
     return output.Split('\0', StringSplitOptions.RemoveEmptyEntries);
-}
-
-// A NUL byte in the first 8 KB marks a binary file.
-static bool LooksBinary(string path)
-{
-    using FileStream stream = File.OpenRead(path);
-    byte[] head = new byte[8192];
-    int read = stream.Read(head, 0, head.Length);
-    return Array.IndexOf(head, (byte)0, 0, read) >= 0;
 }

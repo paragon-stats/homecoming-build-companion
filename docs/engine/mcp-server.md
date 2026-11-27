@@ -90,7 +90,7 @@ A dump file of the wrong shape is also `E72`, without the file's path.
 | `totals` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `totals` and `totals_capped`. Defense and resistance are percentages per damage type; mez, mez resistance, debuff resistance and elusivity are named by type; `scalars` holds the single-value totals. |
 | `set_bonus_lookup` | `setName`, `buildDir`, optional `midsDir`, `attribModPath` | The set's `tiers` by piece count and its `special` per-piece bonuses. Each effect has its resolved `magnitude` and, where the game shows a percentage, `percent`. |
 | `power_lookup` | `fullName`, `buildDir` | The power's record: `available_level` and `pick_level` as game levels (1-based), base recharge, cast time, endurance cost, `stat_include`, the effect types it carries, and `requires_powers` and `chosen`. |
-| `chain` | `buildDir`, optional `midsDir`, `stance`, `form`, `target`, `move`, `standoff`, `midsDb` | `exit_code` and `stances`: the plans `coh-engine chain <buildDir> --format json` prints, one per stance. |
+| `chain` | `buildDir`, optional `midsDir`, `midsDb`, and an optional `options` object holding `stance`, `form`, `target`, `move` and `standoff` | `exit_code` and `stances`: the plans `coh-engine chain <buildDir> --format json` prints, one per stance. |
 
 `check_legality` plus `check_hard_limits` give exactly the diagnostics `validate <build> --format json` prints, hard limits first.
 Their `exit_code` follows the same rule as the CLI: 1 on any error, 2 on warnings only, otherwise 0.
@@ -99,11 +99,21 @@ Their `exit_code` follows the same rule as the CLI: 1 on any error, 2 on warning
 They need `totals.json` in the build directory for the class name.
 
 `chain` runs the same command as the CLI, so a plan is the one the CLI computes, with the same exit code rule (1 on an error finding, 2 on warnings only).
-`stance` is `melee`, `ranged`, `hybrid` or `all` (the default); `target` is `single` or `spawn:N`; `move` is `run`, `jump` or `fly`; `standoff` is feet.
+The planning options sit in one object, `options`, which may be left out as a whole or member by member; each member left out keeps the CLI's default.
+In it, `stance` is `melee`, `ranged`, `hybrid` or `all` (the default); `target` is `single` (the default) or `spawn:N`; `move` is `run` (the default), `jump` or `fly`; `standoff` is feet.
+A call reads `{"buildDir": "...", "options": {"stance": "ranged", "target": "spawn:3"}}`.
 `midsDb` names the directory holding `AttribMod.json`, which prices pets; without it pets are left out.
 The CLI's `--assume` and `--clicksoff-dir` are not offered.
-A bad option or an unreadable input is a tool error carrying the command's own message.
-`coh-engine ask` offers `chain` too, with `stance`, `form`, `target`, `move` and `standoff`.
+An option sent as `null` keeps its default, as one left out does.
+A bad input is a tool error, and what it says depends on its kind:
+
+- a value the command refuses, such as `"stance": "side"`, or an unreadable input: the command's own message, for example `argument --stance: invalid choice: 'side'`;
+- a member of the wrong JSON type, such as `"standoff": "30"` or `"options": "ranged"`: the SDK's generic `An error occurred invoking 'chain'.`;
+- a member `options` does not have, such as `"Stance"` or a misspelling: the same generic error.
+
+Unknown top-level arguments are ignored by the server, for every tool.
+A client still sending the old flat `stance`, `form`, `target`, `move` or `standoff` beside `buildDir` therefore gets the default plan, not an error.
+`coh-engine ask` offers `chain` too, with `stance`, `form`, `target`, `move` and `standoff` as flat text arguments of its own; it passes them to the tool as its options.
 
 `set_bonus_lookup` matches `setName` against the set UID, ignoring case.
 `buildDir` supplies the class that picks the modifier column.

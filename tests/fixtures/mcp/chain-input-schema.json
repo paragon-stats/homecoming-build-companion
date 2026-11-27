@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "properties": {
+    "buildDir": {
+      "description": "Path to the build's Mids dump directory.",
+      "type": "string"
+    },
+    "midsDir": {
+      "description": "Path to the shared dump directory; defaults to the build directory's grandparent.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "midsDb": {
+      "description": "Path to the directory holding AttribMod.json, which prices pets; omit to leave pets out.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    },
+    "options": {
+      "description": "The planning options: stance, form, target, move and standoff; omit any for its default.",
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "stance": {
+          "description": "The stance to plan: melee, ranged, hybrid or all.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "all"
+        },
+        "form": {
+          "description": "The form to plan for; omit for the build's own.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "target": {
+          "description": "The scenario: single, or spawn:N for a spawn of N.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "single"
+        },
+        "move": {
+          "description": "How the character moves between attacks: run, jump or fly.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": "run"
+        },
+        "standoff": {
+          "description": "The ranged standoff in feet; omit for the default.",
+          "type": [
+            "number",
+            "null"
+          ],
+          "default": null
+        }
+      },
+      "additionalProperties": false,
+      "default": null
+    }
+  },
+  "required": [
+    "buildDir"
+  ]
+}

@@ -81,7 +81,8 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(1, code);
         Assert.Contains("error: E208: release-notes was not read completely", error, StringComparison.Ordinal);
         Assert.Contains("3 entries written", output, StringComparison.Ordinal);
-        Assert.Contains($"error: E206: no change lines parsed from {blank}", error, StringComparison.Ordinal);
+        Assert.Contains($"info: E206: no change lines parsed from {blank}; the entry is recorded with no changes", output, StringComparison.Ordinal);
+        Assert.DoesNotContain("E206", error, StringComparison.Ordinal);
         Assert.Equal(["2026-10-20-issue-28-page-4-r47.json", "2026-10-20-october-20-update-r48.json", "undated-placeholder-r1.json"], Json(tree.Root));
         int fetched = site.Count(PatchParserTests.EntryUrl);
         Assert.Contains("0 entries written", Run(site, args).Output, StringComparison.Ordinal);
@@ -661,12 +662,16 @@ public sealed class PatchNotesCommandTests
     public void An_entry_that_parsed_to_nothing_is_recorded_and_reported()
     {
         using TempTree tree = new();
+        using StringWriter output = new();
         using StringWriter error = new();
 
-        Assert.Equal((1, true), PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
-        Assert.Equal((0, true), PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), TextWriter.Null, error));
+        Assert.Equal((1, true), PatchNotesCommand.WriteDated([Entry("u", "2021-01-01")], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), output, error));
+        Assert.Equal((0, true), PatchNotesCommand.WriteDated([], tree.Root, [], new HashSet<string>(StringComparer.Ordinal), output, error));
         Assert.Empty(Changes(Directory.GetFiles(tree.Root, "2021-01-01-*.json").Single()));
-        Assert.Contains("error: E206: no change lines parsed from u", error.ToString(), StringComparison.Ordinal);
+
+        // A no-op report, not an error: an information line on standard output, nothing on standard error.
+        Assert.Contains("info: E206: no change lines parsed from u; the entry is recorded with no changes", output.ToString(), StringComparison.Ordinal);
+        Assert.Equal(string.Empty, error.ToString());
     }
 
     [Fact]

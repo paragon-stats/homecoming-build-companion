@@ -128,7 +128,7 @@ public sealed class ValidateCommandTests
     [Fact]
     public void An_argument_exception_without_a_parameter_prints_whole()
     {
-        Assert.Equal("error: E11: nothing\n", RunThrowing(new ArgumentException("E11: nothing", (string?)null)).Error);
+        Assert.Equal("error: E11: nothing\n", RunThrowing(new NamelessArgumentException("E11: nothing")).Error);
     }
 
     [Fact]
@@ -289,4 +289,7 @@ public sealed class ValidateCommandTests
             return build;
         }
     }
+
+    // An argument exception that names no parameter, as some library code throws; the runner reads it through ArgumentException.
+    private sealed class NamelessArgumentException(string message) : ArgumentException(message);
 }

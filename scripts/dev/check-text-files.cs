@@ -16,6 +16,7 @@
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
 #:property RunAnalyzers=false
+#:include staged-files.cs
 
 using System.Diagnostics;
 using System.Text;
@@ -44,38 +45,31 @@ if (filesAt >= 0)
 {
     files = [.. args.Skip(filesAt + 1)];
 }
+else if (staged)
+{
+    (List<(string Path, string Id)> entries, string? error) = StagedFiles.List();
+    if (error is not null)
+    {
+        Console.Error.WriteLine($".git:1:1: error: H-TEXT-010: {error}");
+        return 1;
+    }
+
+    files = [.. entries.Select(entry => entry.Path)];
+    ids = [.. entries.Select(entry => entry.Id)];
+}
 else
 {
-    string[] listing = staged
-        ? ["diff", "--cached", "--raw", "--no-abbrev", "--no-renames", "--diff-filter=ACM", "-z"]
-        : ["ls-files", "-z"];
-    (int code, byte[] output, string error) = Git(listing);
+    (int code, byte[] output, string error) = Git("ls-files", "-z");
     if (code != 0)
     {
-        Console.Error.WriteLine($".git:1:1: error: H-TEXT-010: git {string.Join(' ', listing)} failed ({code}): {error}");
+        Console.Error.WriteLine($".git:1:1: error: H-TEXT-010: git ls-files -z failed ({code}): {error}");
         return 1;
     }
 
     files = [.. Encoding.UTF8.GetString(output).Split('\0', StringSplitOptions.RemoveEmptyEntries)];
-    if (staged)
-    {
-        // Raw records alternate ":<old mode> <new mode> <old id> <new id> <status>" and the path.
-        // A symlink (120000) holds a target and a submodule (160000) a commit: neither is text to judge.
-        string[] records = [.. files];
-        files = [];
-        for (int i = 0; i + 1 < records.Length; i += 2)
-        {
-            string[] meta = records[i].Split(' ');
-            if (meta[1] is "100644" or "100755")
-            {
-                files.Add(records[i + 1]);
-                ids.Add(meta[3]);
-            }
-        }
-    }
 }
 
-using Process? blobs = staged ? StartBlobReader(ids) : null;
+using Process? blobs = staged ? StagedFiles.StartReader(ids) : null;
 List<string> findings = [];
 List<string> markdown = [];
 foreach (string file in files)
@@ -139,49 +133,13 @@ return 0;
 // The next blob from the batch reader, which answers in the order the ids were listed.
 byte[]? StagedBytes(string path)
 {
-    Stream stream = blobs!.StandardOutput.BaseStream;
-    StringBuilder header = new();
-    for (int next = stream.ReadByte(); next is not ('\n' or -1); next = stream.ReadByte())
-    {
-        header.Append((char)next);
-    }
-
-    // "<id> blob <size>", or "<id> missing" when the object is not in the repository.
-    if (header.ToString().Split(' ') is not [_, "blob", string size])
+    byte[]? blob = StagedFiles.Next(blobs!);
+    if (blob is null)
     {
         findings.Add($"{path}:1:1: error: H-TEXT-010: git cannot read the staged content of this file");
-        return null;
     }
 
-    byte[] blob = new byte[int.Parse(size, System.Globalization.CultureInfo.InvariantCulture)];
-    stream.ReadExactly(blob);
-    _ = stream.ReadByte();
     return blob;
-}
-
-// One git process serves every staged blob, so a commit of thousands of files starts git once, not per file.
-static Process StartBlobReader(List<string> ids)
-{
-    ProcessStartInfo info = new("git", "cat-file --batch")
-    {
-        RedirectStandardInput = true,
-        RedirectStandardOutput = true,
-        UseShellExecute = false,
-        StandardInputEncoding = new UTF8Encoding(false),
-    };
-    Process process = Process.Start(info)!;
-
-    // Written from another thread: git stops reading ids while its answers wait to be read.
-    _ = Task.Run(() =>
-    {
-        foreach (string id in ids)
-        {
-            process.StandardInput.Write(id + "\n");
-        }
-
-        process.StandardInput.Close();
-    });
-    return process;
 }
 
 void CheckJson(string path, string text)

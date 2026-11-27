@@ -57,40 +57,32 @@ internal static class AssemblyMake
     public static AssemblyPower Power(
         Effect[] effects,
         int nid = 1,
-        string fullName = "Test.Test_Set.Test_Power",
         string powerType = "Toggle",
-        string powerSetType = "Primary",
         string[]? affected = null,
-        string[]? autoHit = null,
-        double activatePeriod = 0.0,
-        int[]? enhancements = null,
         bool hasGrant = false,
-        bool hasOverride = false,
         bool absorbEffects = false,
-        bool absorbAttributes = false,
-        string[]? ignoreEnh = null,
-        double aoeModifier = 1.0,
-        double baseRechargeTime = 0.0)
+        PowerExtras? extras = null)
     {
+        PowerExtras more = extras ?? new PowerExtras();
         return new AssemblyPower(
             new HashSet<string>(affected ?? ["Caster"], StringComparer.Ordinal),
-            new HashSet<string>(autoHit ?? ["Caster"], StringComparer.Ordinal),
-            new HashSet<int>(enhancements ?? []),
-            new HashSet<string>(ignoreEnh ?? [], StringComparer.Ordinal))
+            new HashSet<string>(more.AutoHit ?? ["Caster"], StringComparer.Ordinal),
+            new HashSet<int>(more.Enhancements ?? []),
+            new HashSet<string>(more.IgnoreEnh ?? [], StringComparer.Ordinal))
         {
             Nid = nid,
-            FullName = fullName,
+            FullName = more.FullName,
             PowerType = powerType,
-            PowerSetType = powerSetType,
-            ActivatePeriod = activatePeriod,
+            PowerSetType = more.PowerSetType,
+            ActivatePeriod = more.ActivatePeriod,
             RechargeTime = 0.0,
-            BaseRechargeTime = baseRechargeTime,
+            BaseRechargeTime = more.BaseRechargeTime,
             CastTime = 0.0,
-            AoeModifier = aoeModifier,
+            AoeModifier = more.AoeModifier,
             HasGrantPowerEffect = hasGrant,
-            HasPowerOverrideEffect = hasOverride,
+            HasPowerOverrideEffect = more.HasOverride,
             AbsorbSummonEffects = absorbEffects,
-            AbsorbSummonAttributes = absorbAttributes,
+            AbsorbSummonAttributes = more.AbsorbAttributes,
             Effects = effects,
         };
     }

@@ -8,6 +8,8 @@
 # 30-minute timeout.
 framework:
   - github_actions
+# Print failed checks only; a clean run would otherwise list every passed check.
+quiet: true
 skip-check:
   # CKV_GHA_7 forbids workflow_dispatch inputs. super-linter.yml's full_scan
   # input is a boolean scope toggle for a read-only lint job - it cannot

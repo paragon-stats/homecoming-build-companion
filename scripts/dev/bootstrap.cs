@@ -10,6 +10,7 @@
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
 #:property RunAnalyzers=false
+#:include git-signing.cs
 
 using System.Diagnostics;
 
@@ -51,10 +52,6 @@ static string Capture(string file, string fileArgs)
     }
 }
 
-// --type=bool prints yes, on, 1 and any case of true as "true", as git itself reads them.
-static bool SigningConfigured() =>
-    Capture("git", "config --type=bool --get commit.gpgsign") == "true";
-
 // Git runs a hook only when core.hooksPath resolves to this checkout's .husky and the hook file exists.
 static string? HooksProblem()
 {
@@ -92,9 +89,21 @@ if (verify)
         problems.Add(hooks);
     }
 
-    if (!SigningConfigured())
+    // The same rules the pre-commit signing task applies.
+    if (GitSigning.Problem() is { } signing)
     {
-        problems.Add("commit.gpgsign != true - signed commits are required (CONTRIBUTING.md, \"Sign your commits\").");
+        problems.Add($"{signing} - signed commits are required (CONTRIBUTING.md, \"Sign your commits\").");
+    }
+
+    // The hooks restore no tools; they need Husky restored once per clone.
+    if (string.IsNullOrWhiteSpace(Capture("dotnet", "husky --version")))
+    {
+        problems.Add("local .NET tools are not restored - run: dotnet tool restore");
+    }
+
+    if (string.IsNullOrWhiteSpace(Capture("node", "--version")))
+    {
+        problems.Add("Node.js not found - the pre-commit markdownlint check fails on any staged .md file. Install Node.js.");
     }
 
     if (problems.Count > 0)
@@ -115,11 +124,6 @@ if (verify)
             "Install Docker for local lint parity with CI.");
     }
 
-    if (string.IsNullOrWhiteSpace(Capture("node", "--version")))
-    {
-        Console.WriteLine("[NOTE] Node.js not found - the pre-commit markdownlint check cannot run. Install Node.js.");
-    }
-
     Console.WriteLine("[OK] dev environment is correct and up to date.");
     return 0;
 }
@@ -137,10 +141,10 @@ if (Run("dotnet", "husky install") != 0)
 }
 
 // Signed commits are required by the repo ruleset - block until configured.
-if (!SigningConfigured())
+if (GitSigning.Problem() is { } signingProblem)
 {
     Console.Error.WriteLine(
-        "[FAIL] commit.gpgsign != true - signed commits are required. Configure signing (CONTRIBUTING.md, \"Sign your commits\"), then re-run.");
+        $"[FAIL] {signingProblem} - signed commits are required. Configure signing (CONTRIBUTING.md, \"Sign your commits\"), then re-run.");
     return 1;
 }
 

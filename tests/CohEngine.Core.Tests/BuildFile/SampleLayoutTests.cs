@@ -9,6 +9,8 @@ public sealed partial class SampleLayoutTests
 {
     private const int BuildsPerCharacter = 3;
 
+    private static readonly char[] WordSeparators = ['-', '.'];
+
     // What a community build is tuned for; general is a sound build not tuned to a goal. A new use type is one more entry.
     private static readonly string[] UseTypes = ["general", "hard-mode", "exemplar", "pylon"];
 
@@ -58,7 +60,7 @@ public sealed partial class SampleLayoutTests
             }
 
             problems.AddRange(parts.Where(part => !LowerCaseName.IsMatch(part)).Select(part => $"{path}: '{part}' is not lower-case words joined by hyphens"));
-            problems.AddRange(parts.Where(part => part.Split('-', '.').Any(VersionWord.IsMatch)).Select(part => $"{path}: '{part}' holds version text"));
+            problems.AddRange(parts.Where(part => part.Split(WordSeparators).Any(VersionWord.IsMatch)).Select(part => $"{path}: '{part}' holds version text"));
         }
 
         problems.AddRange(paths

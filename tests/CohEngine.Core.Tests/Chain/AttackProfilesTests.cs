@@ -156,7 +156,7 @@ public sealed class AttackProfilesTests
         JsonElement entity = CanonicalPowers.Parse("{\"defaults\":{\"power_full_names\":[\"Test.Set.Zap\"]}}");
         JsonElement zap = CanonicalPowers.Parse(CanonicalPowers.Text(name: "Test.Set.Zap", effects: [CanonicalPowers.Effect([FoeDamage])]));
         JsonElement power = CanonicalPowers.Parse(CanonicalPowers.Text(effects: [CanonicalPowers.Effect([Summon])]));
-        JsonElement? Resolve(string name) => string.Equals(name, "Thing", StringComparison.Ordinal) ? entity : string.Equals(name, "Test.Set.Zap", StringComparison.Ordinal) ? zap : null;
+        JsonElement? Resolve(string name) => name switch { "Thing" => entity, "Test.Set.Zap" => zap, _ => null };
 
         Assert.Equal(Role.Patch, AttackProfiles.Classify(power, resolve: Resolve).Role);
     }

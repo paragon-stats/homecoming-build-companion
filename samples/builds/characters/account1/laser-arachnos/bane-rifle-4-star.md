@@ -150,7 +150,7 @@ Allowed enhancement types and set types are from `boosts_allowed` in `data/canon
 
 | Power | Slotted | Why it is the most useful choice |
 | --- | --- | --- |
-| Combat Training: Defensive | Shield Wall: +Res (Teleportation), +5% Res (All), crafted 50 | The PvP global: +5% resistance to every type at every level |
+| Combat Training: Defensive | Shield Wall: +Res (Teleportation), +5% Res (All), crafted 50 | PvP-set piece: its everyday global, +5% resistance to every type, ignores the exemplar level rule |
 | Tactical Training: Assault, Assault, Tactics | Endurance Reduction IO, crafted 50, +5 | They take only Endurance Reduction or Recharge; recharge does nothing on a toggle |
 | Mental Training | Run Speed IO, crafted 50, +5 | Takes only Run Speed or Fly Speed; no sets; this build has no flight |
 | Boxing | Accuracy IO, crafted 50, +5 | Never pressed; as delivered |
@@ -256,8 +256,9 @@ the rest at +5. Every freed slot costs a set bonus; the best use found for one (
 
 The exemplar script starts from the engine's level 50 recompute (`compute_base_totals`) on this build's harness dumps and applies the
 wiki's rules for exemplar level N: powers usable while their pick level ≤ N + 5 (every slot in a usable power works); set bonuses and
-globals piece by piece with the rule of five (purple, PvP, archetype and Winter pieces always; attuned pieces from the set's minimum level
-− 3; crafted pieces from their own level − 3; procs whenever their power is usable); each enhancement value scaled by the wiki's table;
+globals piece by piece with the rule of five (purple, PvP-set, archetype and Winter pieces always; attuned pieces from the data floor, `min_bonus_level`
+(the wiki states the set minimum − 3; the only attuned piece here, Panacea, is a proc, so no figure depends on it);
+crafted pieces from their own level − 3; procs whenever their power is usable); each enhancement value scaled by the wiki's table;
 base hit points and magnitudes from the level N tables; incarnates from 45.
 
 **Parity at 50.** The script matches the harness on every defense, resistance and mez field, and on regeneration, recovery, endurance,
@@ -293,8 +294,8 @@ The lowest exemplar level at which each piece's own bonus works, by the rules ab
 | Piece | Power | As slotted | Unique | Works from exemplar | In game |
 | --- | --- | --- | --- | --- | --- |
 | Steadfast Protection: Resistance/+Def 3% | Bane Spider Armor Upgrade | crafted 10, +5 | yes | 7 | crafted 30 (works from 27) |
-| Gladiator's Armor: TP Protection +3% Def (All) | Bane Spider Armor Upgrade | crafted 50 | yes | every level (PvP) | crafted 50 |
-| Shield Wall: +Res (Teleportation), +5% Res (All) | Combat Training: Defensive | crafted 50 | yes | every level (PvP) | — |
+| Gladiator's Armor: TP Protection +3% Def (All) | Bane Spider Armor Upgrade | crafted 50 | yes | every level (PvP set; everyday global) | crafted 50 |
+| Shield Wall: +Res (Teleportation), +5% Res (All) | Combat Training: Defensive | crafted 50 | yes | every level (PvP set; everyday global) | — |
 | Luck of the Gambler: Defense/Increased Global Recharge Speed | five toggles | crafted 50 | **no** | 47 | crafted 50 in Combat Jumping |
 | Blessing of the Zephyr: Knockback Reduction (4 points) | Combat Jumping | crafted 10 | no | 7 | Kismet, crafted 30 |
 | Unbreakable Guard: +Max HP | Tough | crafted 20 | yes | 17 | — |
@@ -313,6 +314,10 @@ The lowest exemplar level at which each piece's own bonus works, by the rules ab
 The "(proc)" rows have `is_proc: true` and carry their effect in the piece. The others have `is_proc: false` and carry it in a
 `global_bonuses` power, which follows the level rule unless the piece has `bonuses_ignore_exemplar: true` (Gladiator's Armor,
 Shield Wall). Preventive Medicine's chance-based absorb is one of these globals.
+
+**PvP-set pieces count only their everyday bonuses.** Each tier of a PvP set from two pieces up in `data/canonical/boost_sets/<set>.json` has two bonuses:
+one with `is_pvp_bonus: false`, which works on every map, and one with `is_pvp_bonus: true` and `requires: isPVPMap?`, which works only on PvP maps.
+The two globals above are `is_pvp_bonus: false`. No PvP-only bonus is counted in any figure here (the engine computes in PvE mode), and none is a reason for a pick.
 
 "—" means the screenshots did not show that piece's level. **Against the game, measured:** Steadfast Protection at 10 (+5) in place of 30
 costs 0.41 points of S/L and 0.57 of the other resistances at 50 and gains +3% defense in every position from 7 to 26.

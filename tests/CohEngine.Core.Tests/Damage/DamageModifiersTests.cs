@@ -33,11 +33,11 @@ public sealed class DamageModifiersTests
         return Attack("Melt", Role.Support, debuff: 0.3, debuffDuration: 40.0) with { Damage = 0.0, CastTime = 1.5, RechargeTime = 100.0, EndCost = 10.0 };
     }
 
-    private static DamageContext Context(Stance stance = Stance.Melee, IReadOnlyDictionary<string, double>? assumptions = null, double timeline = 1.0, params ChainAttack[] attacks)
+    private static DamageContext Context(Stance stance = Stance.Melee, IReadOnlyDictionary<string, double>? assumptions = null, double timeline = 1.0, ChainAttack[]? attacks = null)
     {
         return new DamageContext
         {
-            Attacks = attacks,
+            Attacks = attacks ?? [],
             Budget = new EnduranceBudget(100.0, 10.0, 0.0),
             Stance = stance,
             Scenario = new Scenario(),

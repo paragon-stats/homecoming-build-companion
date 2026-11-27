@@ -19,11 +19,6 @@ public sealed class PetDamageTests
         return PetDamage.BuildPetSummons([summon ?? Spawn], tree.Root, PetWorld.Mods(level), PetWorld.Classes(), damageEnhancement: enhancement);
     }
 
-    private static string Message(TempTree tree, double level = 49.0, ChainAttack? summon = null)
-    {
-        return Assert.Throws<EngineException>(() => Build(tree, level, enhancement: null, summon)).Message;
-    }
-
     private static void Seed(TempTree tree, string table = "Pet_Levelminus1", string duration = "60 seconds", string effectExtra = "")
     {
         PetWorld.Write(tree, table, duration, effectExtra);

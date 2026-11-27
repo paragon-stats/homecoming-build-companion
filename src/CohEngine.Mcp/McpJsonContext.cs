@@ -5,7 +5,7 @@ using CohEngine.Core.Registry;
 
 namespace CohEngine.Mcp;
 
-/// <summary>Source-generated JSON metadata for every tool result, so serialization never reflects.</summary>
+/// <summary>Source-generated JSON metadata for every tool result and record input, so serialization never reflects.</summary>
 [JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.SnakeCaseLower, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]
 [JsonSerializable(typeof(RulesResult))]
 [JsonSerializable(typeof(DiagnosticsResult))]
@@ -14,6 +14,7 @@ namespace CohEngine.Mcp;
 [JsonSerializable(typeof(SetBonusResult))]
 [JsonSerializable(typeof(PowerResult))]
 [JsonSerializable(typeof(ChainResult))]
+[JsonSerializable(typeof(ChainOptions))]
 [JsonSerializable(typeof(double?))]
 [JsonSerializable(typeof(SetBonusView))]
 [ExcludeFromCodeCoverage(Justification = "Source-generated serializer metadata; every tool that uses it is covered.")]

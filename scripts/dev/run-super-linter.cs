@@ -10,7 +10,8 @@
 //
 // Environment: SUPER_LINTER_DOCKER_CMD (default "docker", for example "sudo -n docker"), SUPER_LINTER_IMAGE,
 // SUPER_LINTER_PULL_POLICY ("always" checks the registry digest, "missing" pulls only when absent),
-// SUPER_LINTER_DEFAULT_BRANCH, SUPER_LINTER_VALIDATE_ALL_CODEBASE, FILTER_REGEX_EXCLUDE.
+// SUPER_LINTER_DEFAULT_BRANCH, SUPER_LINTER_VALIDATE_ALL_CODEBASE, SUPER_LINTER_LOG_LEVEL (for example INFO, passed
+// as LOG_LEVEL over the shared file's NOTICE), FILTER_REGEX_EXCLUDE.
 // CI tooling, not shipped product code: exempt from the solution-wide analyzers.
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
@@ -122,6 +123,13 @@ if (image == defaultImage
     envPairs.Add($"JSCPD_LINTER_RULES={Workspace}/.github/linters/.jscpd.json");
 }
 
+// A level asked for here outranks the shared file's LOG_LEVEL, for a full log without editing a tracked file.
+string logLevel = Env("SUPER_LINTER_LOG_LEVEL");
+if (logLevel.Length > 0)
+{
+    envPairs.Add($"LOG_LEVEL={logLevel}");
+}
+
 string dockerOverride = Env("SUPER_LINTER_DOCKER_CMD");
 string[] dockerCommand = SplitCommand(dockerOverride.Length > 0 ? dockerOverride : "docker");
 if (dockerCommand.Length == 0)
@@ -157,7 +165,7 @@ if (args.Contains("--print-plan"))
 int probe = dockerOverride.Length > 0 || OnPath("docker") ? Docker(capture: true, "version") : 127;
 if (probe == 127 && dockerOverride.Length == 0)
 {
-    Console.Error.WriteLine(
+    Console.WriteLine(
         "[SKIP] Docker is not installed - skipping the local Super-Linter pass; CI will still lint. " +
         "Install Docker for local parity.");
     return 0;
@@ -190,14 +198,16 @@ if (fresh != 0)
     return fresh;
 }
 
-Console.Error.WriteLine("[INFO] running Super-Linter locally (RUN_LOCAL) ...");
+Console.WriteLine("[INFO] running Super-Linter locally (RUN_LOCAL) ...");
 int result = Docker(capture: false, [.. run]);
 if (result != 0)
 {
     Console.Error.WriteLine("[FAIL] Super-Linter reported findings - fix them before pushing.");
+    return result;
 }
 
-return result;
+Console.WriteLine("[OK] Super-Linter found nothing to fix.");
+return 0;
 
 // Split a command line on spaces, keeping a double-quoted part (a path with spaces) whole.
 static string[] SplitCommand(string command) =>

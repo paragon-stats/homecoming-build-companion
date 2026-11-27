@@ -37,12 +37,33 @@ internal static class DevScripts
     /// <returns>The exit code and the combined output.</returns>
     internal static (int Exit, string Output) RunWithEnvironment(string workingDirectory, string program, IReadOnlyDictionary<string, string?> environment, params string[] args)
     {
+        (int exit, string output, _, _) = RunSeparately(workingDirectory, program, environment, input: null, args);
+        return (exit, output);
+    }
+
+    /// <summary>Runs a program and returns its exit code, both streams joined, and each stream on its own.</summary>
+    /// <param name="workingDirectory">Where the program runs.</param>
+    /// <param name="program">The executable.</param>
+    /// <param name="environment">The variables to set or remove.</param>
+    /// <param name="input">What the program reads on standard input, or null to leave standard input alone.</param>
+    /// <param name="args">The arguments.</param>
+    /// <returns>The exit code, the combined output, standard output and standard error.</returns>
+    internal static (int Exit, string Output, string StandardOutput, string StandardError) RunSeparately(string workingDirectory, string program, IReadOnlyDictionary<string, string?> environment, string? input, params string[] args)
+    {
+        // Without the checkout's global.json a scratch tree runs dotnet under the newest SDK installed, not the one the hooks get.
+        string pin = Path.Join(workingDirectory, "global.json");
+        if (Directory.Exists(workingDirectory) && !File.Exists(pin))
+        {
+            File.Copy(Path.Join(RepositoryRoot, "global.json"), pin);
+        }
+
         ProcessStartInfo start = new(program)
         {
             WorkingDirectory = workingDirectory,
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
+            RedirectStandardInput = input is not null,
             CreateNoWindow = true,
         };
         foreach (string argument in args)
@@ -50,6 +71,13 @@ internal static class DevScripts
             start.ArgumentList.Add(argument);
         }
 
+        SetEnvironment(start, environment);
+        using Process process = new() { StartInfo = start };
+        return Collect(process, program, input);
+    }
+
+    private static void SetEnvironment(ProcessStartInfo start, IReadOnlyDictionary<string, string?> environment)
+    {
         // A hook that runs the tests sets these to its own repository; the working directory must decide.
         foreach (string variable in new[] { "GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE" })
         {
@@ -67,17 +95,21 @@ internal static class DevScripts
             start.Environment[name] = value;
         }
 
-        start.Environment["GIT_CONFIG_GLOBAL"] = Path.Join(workingDirectory, ".test-global-gitconfig");
+        start.Environment["GIT_CONFIG_GLOBAL"] = Path.Join(start.WorkingDirectory, ".test-global-gitconfig");
         start.Environment["GIT_CONFIG_NOSYSTEM"] = "1";
 
         // The coverage collector profiles child .NET processes too; the scripts and the Husky tool are not the code under test.
         start.Environment["CORECLR_ENABLE_PROFILING"] = "0";
+    }
 
-        using Process process = new() { StartInfo = start };
+    private static (int Exit, string Output, string StandardOutput, string StandardError) Collect(Process process, string program, string? input)
+    {
         StringBuilder output = new();
+        StringBuilder standardOutput = new();
+        StringBuilder standardError = new();
         object gate = new();
-        process.OutputDataReceived += (_, received) => Append(output, gate, received.Data);
-        process.ErrorDataReceived += (_, received) => Append(output, gate, received.Data);
+        process.OutputDataReceived += (_, received) => Append(output, standardOutput, gate, received.Data);
+        process.ErrorDataReceived += (_, received) => Append(output, standardError, gate, received.Data);
         try
         {
             process.Start();
@@ -87,10 +119,16 @@ internal static class DevScripts
             throw new InvalidOperationException($"cannot start {program}: it is not on PATH", exception);
         }
 
+        if (input is not null)
+        {
+            process.StandardInput.Write(input);
+            process.StandardInput.Close();
+        }
+
         process.BeginOutputReadLine();
         process.BeginErrorReadLine();
         process.WaitForExit();
-        return (process.ExitCode, output.ToString());
+        return (process.ExitCode, output.ToString(), standardOutput.ToString(), standardError.ToString());
     }
 
     /// <summary>Runs a script from the repository against a scratch directory.</summary>
@@ -170,14 +208,14 @@ internal static class DevScripts
     {
         Git(tree.Root, "init", "--quiet");
         Git(tree.Root, "config", "core.hooksPath", ".husky");
-        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "global.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
+        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/dev/git-signing.cs", "scripts/dev/staged-files.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
         {
             Directory.CreateDirectory(Path.GetDirectoryName(tree.FullPath(file))!);
             File.Copy(Path.Join(RepositoryRoot, file), tree.FullPath(file));
         }
     }
 
-    private static void Append(StringBuilder output, object gate, string? line)
+    private static void Append(StringBuilder output, StringBuilder stream, object gate, string? line)
     {
         if (line is null)
         {
@@ -187,6 +225,7 @@ internal static class DevScripts
         lock (gate)
         {
             output.AppendLine(line);
+            stream.AppendLine(line);
         }
     }
 }

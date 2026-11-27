@@ -10,17 +10,18 @@ public sealed class DamageSourcesTests
 {
     private const double AuraFull = 10.0 * 3 / 2.0;
 
-    private static ChainAttack Attack(string name, Role role = Role.Chain, Delivery delivery = Delivery.Ranged, Shape shape = Shape.SingleTarget, double damage = 100.0, double cast = 1.0, double recharge = 1.0, double end = 5.0, double period = 0.0, double debuff = 0.0, double buff = 0.0, double buffDuration = 0.0)
+    // EndCost, ActivatePeriod, TargetResDebuff and the self buff are set with a with-expression where a test needs them.
+    private static ChainAttack Attack(string name, Role role = Role.Chain, Delivery delivery = Delivery.Ranged, Shape shape = Shape.SingleTarget, double damage = 100.0, double cast = 1.0, double recharge = 1.0)
     {
         AttackProfile profile = new(name, delivery, shape, role, 80.0, 0.0, 0.0, 0, [], []);
-        return new ChainAttack { FullName = name, Damage = damage, CastTime = cast, RechargeTime = recharge, EndCost = end, Profile = profile, ActivatePeriod = period, TargetResDebuff = debuff, SelfDamageBuff = buff, SelfDamageBuffDuration = buffDuration };
+        return new ChainAttack { FullName = name, Damage = damage, CastTime = cast, RechargeTime = recharge, EndCost = 5.0, Profile = profile };
     }
 
-    private static DamageContext Context(Stance stance = Stance.Melee, IReadOnlyDictionary<string, double>? assumptions = null, double timeline = 1.0, string form = "", Scenario? scenario = null, EnduranceBudget? budget = null, params ChainAttack[] attacks)
+    private static DamageContext Context(Stance stance = Stance.Melee, IReadOnlyDictionary<string, double>? assumptions = null, double timeline = 1.0, string form = "", Scenario? scenario = null, EnduranceBudget? budget = null, ChainAttack[]? attacks = null)
     {
         return new DamageContext
         {
-            Attacks = attacks,
+            Attacks = attacks ?? [],
             Budget = budget ?? new EnduranceBudget(100.0, 10.0, 0.0),
             Stance = stance,
             Scenario = scenario ?? new Scenario(3),
@@ -39,7 +40,7 @@ public sealed class DamageSourcesTests
 
     private static ChainAttack Aura(double period = 2.0)
     {
-        return Attack("Aura", Role.Aura, Delivery.Melee, Shape.Pbaoe, damage: 10.0, period: period);
+        return Attack("Aura", Role.Aura, Delivery.Melee, Shape.Pbaoe, damage: 10.0) with { ActivatePeriod = period };
     }
 
     private static ChainAttack MeleeHit(string name = "M")
@@ -54,7 +55,7 @@ public sealed class DamageSourcesTests
 
     private static ChainAttack Patch(double damage = 50.0, string name = "Patch")
     {
-        return Attack(name, Role.Patch, Delivery.Ranged, Shape.Location, damage, 1.0, 10.0, 12.0);
+        return Attack(name, Role.Patch, Delivery.Ranged, Shape.Location, damage, 1.0, 10.0) with { EndCost = 12.0 };
     }
 
     private static ChainAttack Form(string name, double damage, params string[] modes)
@@ -93,7 +94,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void When_no_option_lasts_its_minimum_cycles_the_pick_is_the_best_overall()
     {
-        DamageContext context = Context(budget: new EnduranceBudget(100.0, 1.0, 0.0), attacks: Attack("Heavy", end: 500.0));
+        DamageContext context = Context(budget: new EnduranceBudget(100.0, 1.0, 0.0), attacks: [Attack("Heavy") with { EndCost = 500.0 }]);
 
         Assert.False(DamageSources.ChosenChain(context)!.Sustainable);
         Assert.Contains("not affordable (best overall)", DamageSources.ChainSource(context)!.Label, StringComparison.Ordinal);
@@ -102,7 +103,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void A_draining_pick_that_lasts_its_minimum_cycles_is_labelled_affordable_with_its_cycle_count()
     {
-        DamageContext context = Context(budget: new EnduranceBudget(100.0, 2.0, 0.0), attacks: Attack("A"));
+        DamageContext context = Context(budget: new EnduranceBudget(100.0, 2.0, 0.0), attacks: [Attack("A")]);
 
         string label = DamageSources.ChainSource(context)!.Label;
 
@@ -163,7 +164,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void A_zero_tick_period_is_e55_and_a_melee_share_outside_zero_to_one_is_e56()
     {
-        DamageContext bad = Context(Stance.Hybrid, new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 1.5 }, attacks: Aura());
+        DamageContext bad = Context(Stance.Hybrid, new Dictionary<string, double>(StringComparer.Ordinal) { ["hybrid.melee_share"] = 1.5 }, attacks: [Aura()]);
 
         Assert.StartsWith("E55", Assert.Throws<EngineException>(() => DamageSources.AuraSource(Of(attacks: Aura(0.0)))).Message, StringComparison.Ordinal);
         Assert.StartsWith("E56", Assert.Throws<EngineException>(() => DamageSources.AuraSource(bad)).Message, StringComparison.Ordinal);
@@ -188,7 +189,7 @@ public sealed class DamageSourcesTests
         ChainAttack decoy = Patch(0.0, "Decoy");
         ChainAttack real = Patch();
 
-        SourceResult both = DamageSources.PatchSource(Of(attacks: [decoy, real]))!;
+        SourceResult both = DamageSources.PatchSource(Of(Stance.Melee, decoy, real))!;
         SourceResult alone = DamageSources.PatchSource(Of(attacks: real))!;
 
         Assert.Null(DamageSources.PatchSource(Of(attacks: decoy)));
@@ -199,7 +200,7 @@ public sealed class DamageSourcesTests
     [Fact]
     public void A_buff_click_deals_no_damage_but_takes_its_cast_share_and_endurance()
     {
-        SourceResult result = DamageSources.BuffCastSource(Of(attacks: Attack("Buff", Role.BuffClick, end: 8.0, cast: 1.0, recharge: 10.0)))!;
+        SourceResult result = DamageSources.BuffCastSource(Of(attacks: Attack("Buff", Role.BuffClick, cast: 1.0, recharge: 10.0) with { EndCost = 8.0 }))!;
         double cast = AttackChains.ArcanaCastTime(1.0);
 
         Assert.Equal(("buff_cast", 0.0), (result.Source, result.Dps));
@@ -213,7 +214,7 @@ public sealed class DamageSourcesTests
         double cast = AttackChains.ArcanaCastTime(1.5);
         double fastCast = AttackChains.ArcanaCastTime(1.0);
 
-        SourceResult result = DamageSources.BuffCastSource(Of(attacks: [Attack("Melt", Role.Support, cast: 1.5, recharge: 100.0, end: 10.0), Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0, end: 8.0)]))!;
+        SourceResult result = DamageSources.BuffCastSource(Of(Stance.Melee, Attack("Melt", Role.Support, cast: 1.5, recharge: 100.0) with { EndCost = 10.0 }, Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0) with { EndCost = 8.0 }))!;
 
         Assert.Equal("buff_cast", result.Source);
         Near.Rel((cast / (cast + 100.0)) + (fastCast / (fastCast + 10.0)), result.TimelineShare, 1e-5);
@@ -226,13 +227,13 @@ public sealed class DamageSourcesTests
         ChainAttack human = Form("Blast", 100.0);
         ChainAttack nova = Form("Nova Bolt", 100.0, "Nova");
 
-        Assert.Equal("Blast|Nova Bolt", string.Join('|', DamageSources.AttacksForForm(Of(attacks: [human, nova])).Select(attack => attack.FullName)) + "|" + string.Join(',', DamageSources.AttacksForForm(Context(form: "Nova", attacks: [human, nova])).Select(attack => attack.FullName)));
+        Assert.Equal("Blast|Nova Bolt", string.Join('|', DamageSources.AttacksForForm(Of(Stance.Melee, human, nova)).Select(attack => attack.FullName)) + "|" + string.Join(',', DamageSources.AttacksForForm(Context(form: "Nova", attacks: [human, nova])).Select(attack => attack.FullName)));
     }
 
     [Fact]
     public void Each_forms_chain_picks_only_its_own_attacks_though_the_other_forms_hit_harder()
     {
-        DamageContext context = Of(attacks: [Form("Blast", 100.0), Form("Nova Bolt", 500.0, "Nova")]);
+        DamageContext context = Of(Stance.Melee, Form("Blast", 100.0), Form("Nova Bolt", 500.0, "Nova"));
         DamageContext nova = context with { Form = "Nova" };
 
         Assert.Equal("Blast Nova Bolt True", $"{string.Join(',', DamageSources.ChosenChain(context)!.Rotation)} {string.Join(',', DamageSources.ChosenChain(nova)!.Rotation)} {DamageSources.ChainSource(nova) is not null}");
@@ -247,8 +248,8 @@ public sealed class DamageSourcesTests
     [Fact]
     public void The_end_to_end_fold_gives_the_chain_the_timeline_left_by_patch_and_buff()
     {
-        ChainAttack chain = Attack("Smite", damage: 120.0, debuff: 0.2) with { TargetResDebuffDuration = 4.0 };
-        ChainAttack buff = Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0, end: 8.0, buff: 0.5, buffDuration: 5.5);
+        ChainAttack chain = Attack("Smite", damage: 120.0) with { TargetResDebuff = 0.2, TargetResDebuffDuration = 4.0 };
+        ChainAttack buff = Attack("Fury", Role.BuffClick, cast: 1.0, recharge: 10.0) with { EndCost = 8.0, SelfDamageBuff = 0.5, SelfDamageBuffDuration = 5.5 };
         DamageContext context = Context(scenario: new Scenario(1), attacks: [chain, Patch(), buff]);
         SourceRegistration[] sources =
         [

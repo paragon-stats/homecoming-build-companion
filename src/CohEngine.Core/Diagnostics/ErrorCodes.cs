@@ -278,7 +278,7 @@ public static class ErrorCodes
     /// <summary>A page of a beta patch-notes listing could not be read, so its threads are missing from the run.</summary>
     public const string E205 = "E205";
 
-    /// <summary>An entry parsed to no change lines; it is still recorded.</summary>
+    /// <summary>Information, not an error: an entry parsed to no change lines; it is still recorded and the exit code is unchanged.</summary>
     public const string E206 = "E206";
 
     /// <summary>The canonical tree names no powerset, so no heading could fill <c>powerset</c>; the run stops before anything is fetched or written.</summary>

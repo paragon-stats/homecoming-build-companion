@@ -29,6 +29,8 @@
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
     <PackageReference Include="Meziantou.Analyzer" PrivateAssets="all" />
+    <!-- The rules SonarQube Cloud applies, so they fail the local build first; severities in .editorconfig. -->
+    <PackageReference Include="SonarAnalyzer.CSharp" PrivateAssets="all" />
     <PackageReference Include="MinVer" PrivateAssets="all" />
     <!-- StyleCop settings (usings outside namespaces). -->
     <AdditionalFiles Include="$(MSBuildThisFileDirectory)stylecop.json" Link="stylecop.json" />
