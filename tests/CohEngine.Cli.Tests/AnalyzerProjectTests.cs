@@ -65,7 +65,7 @@ public sealed class AnalyzerProjectTests
         Assert.Equal(["[src/CohEngine.Core/Maths/Exact.cs] dotnet_diagnostic.S1244.severity = none"], outside);
 
         // No nested .editorconfig changes a Sonar rule.
-        string[] nested = [.. DevScripts.Git(DevScripts.RepositoryRoot, "ls-files", "-z", "--", ":(glob)**/.editorconfig").Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => path.Contains('/'))];
+        string[] nested = [.. DevScripts.Git(DevScripts.RepositoryRoot, "ls-files", "-z", "--", ":(glob)**/.editorconfig").Split('\0', StringSplitOptions.RemoveEmptyEntries).Where(path => path.Contains('/', StringComparison.Ordinal))];
         Assert.NotEmpty(nested);
         Assert.All(nested, path => Assert.DoesNotContain(File.ReadAllLines(Path.Join(DevScripts.RepositoryRoot, path)), IsSonarLine));
     }
