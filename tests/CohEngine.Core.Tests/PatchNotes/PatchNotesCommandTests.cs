@@ -431,9 +431,9 @@ public sealed class PatchNotesCommandTests
 
         (int code, string output, string error) = Run(site, "--out", tree.FullPath("patches"), "--delay", "0", "--source", "paragonwiki", "--reparse");
 
-        // The source is left exactly as it was: no record written or removed, the index untouched.
+        // No record of the source is written or removed; with no other source, the index is unchanged too.
         Assert.Equal(1, code);
-        Assert.Contains($"error: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; paragonwiki was left as it is on disk, its records and index rows unchanged; correct or remove that row, then re-run" + Environment.NewLine, error, StringComparison.Ordinal);
+        Assert.Contains($"error: E209: index row gone names '..\\keep.json', which is not a plain file name inside {tree.FullPath("patches")}; no record of paragonwiki was written or removed, and its index rows are kept; correct or remove that row, then re-run" + Environment.NewLine, error, StringComparison.Ordinal);
         Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
         Assert.True(File.Exists(keep));
         Assert.True(File.Exists(old));
@@ -608,7 +608,7 @@ public sealed class PatchNotesCommandTests
         Assert.Equal(1, code);
         string refused = Assert.Single(error.Split(Environment.NewLine), line => line.Contains("E209", StringComparison.Ordinal));
         Assert.StartsWith("error: E209: index row gone names '..\\keep.json'", refused, StringComparison.Ordinal);
-        Assert.Contains("; paragonwiki ", refused, StringComparison.Ordinal);
+        Assert.Contains("; no record of paragonwiki was written or removed", refused, StringComparison.Ordinal);
         Assert.Contains("release-notes: 0 changed, 1 unchanged, 1 removed, 0 kept", output, StringComparison.Ordinal);
         Assert.DoesNotContain("paragonwiki:", output, StringComparison.Ordinal);
         Assert.False(File.Exists(stray));

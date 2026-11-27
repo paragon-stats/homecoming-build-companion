@@ -248,9 +248,9 @@ internal sealed class PatchNotesCommand
         produced.UnionWith(names);
         List<PyObject> gone = [.. Index(outDir).Where(row => string.Equals(SourceOf(row), source, StringComparison.Ordinal) && FileOf(row).Length > 0 && !produced.Contains(FileOf(row)))];
 
-        // Checked before anything is written, so a refused row leaves the source's records and index rows as they were.
+        // Checked before anything is written, so a refused row writes and removes no record of the source and keeps its index rows.
         List<PyObject> refused = gone.FindAll(row => !IsPlainName(FileOf(row)));
-        refused.ForEach(row => error.WriteLine($"error: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{FileOf(row)}', which is not a plain file name inside {outDir}; {source} was left as it is on disk, its records and index rows unchanged; correct or remove that row, then re-run"));
+        refused.ForEach(row => error.WriteLine($"error: {ErrorCodes.E209}: index row {PyText.Str(row.Get("url", string.Empty))} names '{FileOf(row)}', which is not a plain file name inside {outDir}; no record of {source} was written or removed, and its index rows are kept; correct or remove that row, then re-run"));
         if (refused.Count > 0)
         {
             return null;

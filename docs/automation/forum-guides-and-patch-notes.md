@@ -125,7 +125,7 @@ A beta listing that declares more than 100 pages is read to page 100 only (`E226
 So does a re-parse that yields no records for a source whose records the folder holds.
 An entry whose date or URL would not make a plain file name inside the output folder is skipped with `E209`, and the run exits 1.
 Under `--reparse`, an old index row whose file name is not a plain name inside the output folder is `E209`, and the run exits 1.
-Its source is left as it is on disk: no record is written or removed, and its index rows stay as they are.
+No record of its source is written or removed, and its index rows are kept.
 A link or a redirect to a host other than the forum or the wiki is not fetched (`E222`).
 A page that takes a parsing pattern past its time limit stops its source with `E223`; that source counts as not read completely.
 A page robots.txt disallows is skipped with `E220`, and every page of a site whose robots.txt was refused or unreadable with `E221`.
