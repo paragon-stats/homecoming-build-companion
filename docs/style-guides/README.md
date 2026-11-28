@@ -17,10 +17,9 @@ Committed, tool-neutral guides for this repository. Mechanical rules also run as
 - [engine-architecture.md](engine-architecture.md): check registries, classify-once, and the fidelity boundary.
 - [error-output.md](error-output.md): the diagnostic and error-output contract every check emits.
 - [naming-and-words.md](naming-and-words.md): generic placeholders, banned words, plain words.
-- [repository-conventions.md](repository-conventions.md): git, DevSecOps, Python and Markdown conventions specific to this repository.
+- [repository-conventions.md](repository-conventions.md): git, DevSecOps and Markdown conventions specific to this repository.
 - [dependencies.md](dependencies.md): dependency policy.
 - [../repository-standards/style-guides/markdown-style-guide.md](../repository-standards/style-guides/markdown-style-guide.md): Markdown style.
-- [../repository-standards/style-guides/python-style-guide.md](../repository-standards/style-guides/python-style-guide.md): Python style, until Python is removed.
 - [../repository-standards/style-guides/error-output-style-guide.md](../repository-standards/style-guides/error-output-style-guide.md): the error-output SSOT.
 - [../repository-standards/git-standards.md](../repository-standards/git-standards.md), [git-branching.md](../repository-standards/git-branching.md),
   [devsecops-workflow.md](../repository-standards/devsecops-workflow.md): git, branching and DevSecOps standards.

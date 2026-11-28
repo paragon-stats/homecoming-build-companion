@@ -30,7 +30,7 @@ build.json:18:1: warning: P-SLOT-001: attack "Crushing Blow" slot 2 has Dmg/Rchg
 build.json:91:1: warning: P-IO-002: Steadfast Protection: Resistance/+Defense unique not slotted; expected in any resistance toggle
 ```
 
-The validator's `__main__.py` accepts `--format=json` to emit structured violations:
+`coh-engine validate` accepts `--format json` to emit structured violations:
 
 ```json
 {
@@ -82,5 +82,4 @@ The reason is **required** after `--`. A bare `noqa: P-SLOT-001` is rejected.
 
 - [`docs/repository-standards/style-guides/error-output-style-guide.md`](../repository-standards/style-guides/error-output-style-guide.md) — full canonical error-output style guide imported from kloehnwars-homelab.
   This rule is the auto-loaded summary; that doc is the SSOT.
-- [`python.md`](../repository-standards/style-guides/python-style-guide.md) — Python conventions for tools that emit diagnostics.
 - The anti-sycophancy posture this rule mirrors.

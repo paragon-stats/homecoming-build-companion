@@ -28,7 +28,7 @@ REQUIRE:
 
 Validation:
 
-- `scripts/linting/validate_heading_numbers.py` (wired via `pre-commit`).
+- No check in this repository validates the numbering; review does.
 
 ### Prose Quality
 
@@ -103,7 +103,7 @@ NEVER (inside Mermaid *node labels* like `nodeId[Label text]`):
 
 Enforcement:
 
-- `scripts/linting/check_mermaid_diagrams.py` is enforced via `pre-commit`.
+- No check in this repository validates the labels; review does.
 
 ### Links
 
@@ -120,7 +120,7 @@ PREFER:
 
 REQUIRE:
 
-- Markdown MUST pass repo linting (via `pre-commit` and/or Super-Linter).
+- Markdown MUST pass repo linting (markdownlint in the pre-commit text-file check, and Super-Linter).
 - If disabling a rule is unavoidable, keep the disable block as small as possible and add justification.
 
 ### Line Length (MD013)
