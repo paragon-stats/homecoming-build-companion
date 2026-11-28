@@ -37,9 +37,13 @@ Tools pinned in [`.config/dotnet-tools.json`](../../.config/dotnet-tools.json) n
 | --- | --- | --- | --- |
 | dotnet-sonarscanner | 12.0.0 | LGPL-3.0 | <https://github.com/SonarSource/sonar-scanner-msbuild> |
 | husky (Husky.Net) | 0.9.1 | MIT | <https://github.com/alirezanet/Husky.Net> |
+| CycloneDX (cyclonedx-dotnet) | 6.3.1 | Apache-2.0 | <https://github.com/CycloneDX/cyclonedx-dotnet> |
 
 dotnet-sonarscanner runs only in the `sonar` workflow.
 Nothing links to it and nothing it produces ships, so its LGPL-3.0 terms do not reach the Apache-2.0 product.
+
+CycloneDX writes the SBOM each release carries, in the `build` and `release` workflows; its licence was read from its repository on 2026-11-27.
+Nothing links to it and nothing it produces ships in the binary.
 
 husky runs the Git hooks in `.husky/` on a developer machine and never in CI.
 Nothing links to it and nothing it produces ships.
