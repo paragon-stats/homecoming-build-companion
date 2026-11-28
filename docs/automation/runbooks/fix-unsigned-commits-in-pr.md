@@ -13,24 +13,9 @@ This runbook provides a procedure for fixing unsigned commits in an existing pul
 
 ## 3. Quick Reference
 
-**Automated approach (recommended):**
-
-```bash
-# 1. Checkout the PR branch
-git checkout <branch-name>
-
-# 2. Dry-run to see what would be fixed
-python -m scripts.github.fix_unsigned_commits --pr <NUMBER>
-
-# 3. Apply fixes (rebase and force-push)
-python -m scripts.github.fix_unsigned_commits --pr <NUMBER> --apply
-```
-
-**Manual approach:**
-
 ```bash
 # 1. Verify unsigned commits
-python -m scripts.github.list_pr_commit_verifications --repo owner/name --pr <NUMBER> --only-failing
+gh api repos/<owner>/<name>/pulls/<NUMBER>/commits --jq '.[] | select(.commit.verification.verified | not) | "\(.sha) \(.commit.verification.reason)"'
 
 # 2. Check current git signing config
 git config --get commit.gpgsign
@@ -53,13 +38,10 @@ git push --force-with-lease origin <branch-name>
 List all unsigned commits in the PR:
 
 ```bash
-python -m scripts.github.list_pr_commit_verifications \
-  --repo owner/name \
-  --pr <PR_NUMBER> \
-  --only-failing
+gh api repos/<owner>/<name>/pulls/<PR_NUMBER>/commits --jq '.[] | select(.commit.verification.verified | not) | "\(.sha) \(.commit.verification.reason)"'
 ```
 
-Expected output shows commits with `"reason": "unsigned"` and `"verified": false`.
+Each line is an unverified commit and its reason, for example `unsigned`.
 
 ### 4.2 Step 2: Verify Git Signing Configuration
 
@@ -131,7 +113,8 @@ git rebase --exec 'git commit --amend --no-edit --no-verify' -i origin/<base-bra
 
 This automatically amends each commit (which triggers re-signing) without opening an editor for each one.
 
-**Important**: `--no-verify` skips hooks during rebase to prevent failures while rewriting history. Run pre-commit once after the rebase finishes to re-validate before pushing.
+**Important**: `--no-verify` skips hooks during rebase to prevent failures while rewriting history.
+Run the hooks once after the rebase finishes (`dotnet husky run --group pre-commit`) to re-validate before pushing.
 
 ### 4.6 Step 6: Verify Signatures
 
@@ -161,14 +144,9 @@ git push --force-with-lease origin <branch-name>
 
 After pushing, verify the PR commits are now signed:
 
-```bash
-python -m scripts.github.list_pr_commit_verifications \
-  --repo owner/name \
-  --pr <PR_NUMBER> \
-  --only-failing
-```
+Run the command from Step 1 again.
 
-Expected: Empty list (no failing commits) or all commits show `"verified": true`.
+Expected: no output (no unverified commits).
 
 ## 5. SSH Commit Signing Setup
 
@@ -298,7 +276,5 @@ git push --force-with-lease origin <branch-name>
 
 ## 9. Related Documentation
 
-- **Automated fix script**: `scripts/github/fix_unsigned_commits.py` (recommended for programmatic use)
-- List PR commit verifications: `scripts/github/list_pr_commit_verifications.py`
-- List SSH signing keys: `scripts/github/list_ssh_signing_keys.py`
+- Signing setup: [CONTRIBUTING.md](../../../CONTRIBUTING.md#sign-your-commits)
 - GitHub platform standards: `docs/repository-standards/github-platform-standards.md`

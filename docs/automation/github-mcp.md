@@ -115,17 +115,9 @@ with the repository permissions the enabled toolsets need:
 Store it in 1Password at `op://Homelab/mcp-github-local/credential`, matching the
 `mcp-gitlab-local` naming convention.
 
-## Relationship to `scripts/github/`
+## Relationship to the CI-facing helpers
 
 The MCP server replaces the **agent-facing** GitHub helpers. It does not replace the
-**CI-facing** ones: GitHub Actions cannot call an MCP server. The CI-facing helpers today are
-the `report-status-context` composite action (bash and `gh`) and `tools/pr-summary.cs`; no
-workflow calls the Python modules in `scripts/github/` any more. (`create_tag.py` left with the CalVer workflow it served;
-release tags are cut by `paragon-stats/github-actions/release`.)
-
-Note that `.github/instructions/devsecops_workflow.instructions.md` and
-`docs/automation/runbooks/fix-unsigned-commits-in-pr.md` reference several `scripts.github.*`
-modules that were never imported into this repository (`pr_upsert`, `pr_auto_summary`,
-`fix_unsigned_commits`, `list_pr_commit_verifications`, `list_ssh_signing_keys`,
-`triage_review_comments`, `triage_ci_failures`). Those references should point at MCP tools or
-be removed; tracked separately.
+**CI-facing** ones: GitHub Actions cannot call an MCP server. The CI-facing helpers are
+the `report-status-context` composite action (bash and `gh`) and `tools/pr-summary.cs`;
+release tags are cut by `paragon-stats/github-actions/release`.

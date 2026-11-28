@@ -38,10 +38,10 @@ This runbook documents the step-by-step Git workflow for LLM-assisted developmen
   - E2E test: Full workflow validation
 - [ ] Create test file (if doesn't exist):
   - PowerShell: `tests/<component>/<feature>.Tests.ps1`
-  - Python: `tests/<component>/test_<feature>.py`
+  - C#: `tests/<Project>.Tests/<Area>/<Feature>Tests.cs`
   - Ansible: `tests/ansible/<role>/molecule/`
 - [ ] Write failing test with clear assertion
-- [ ] Run test manually: `pytest <test-file>` or `Invoke-Pester <test-file>`
+- [ ] Run test manually: `dotnet test --project tests/<Project>.Tests --filter-method "*<TestName>"` or `Invoke-Pester <test-file>`
 - [ ] Verify failure with expected error message
 - [ ] Document expected behavior in test name/docstring
 
@@ -64,13 +64,13 @@ This runbook documents the step-by-step Git workflow for LLM-assisted developmen
 
 - [ ] Run targeted test suite:
   - PowerShell: `Invoke-Pester -Path tests/<component>/`
-  - Python: `pytest tests/<component>/`
+  - C#: `dotnet test --project tests/<Project>.Tests`
   - Ansible: `molecule test`
-- [ ] Run pre-commit hooks: `pre-commit run --all-files`
+- [ ] Run the commit hook's checks on the staged files: `dotnet husky run --group pre-commit`
 - [ ] Check test coverage:
   - PowerShell: Review Pester CodeCoverage output
-  - Python: `pytest --cov=<module> --cov-report=term-missing`
-  - Target: >80% coverage for new code
+  - C#: `dotnet tool run dotnet-coverage collect "dotnet test" -f xml -o coverage.xml`
+  - Target: 100% line coverage (the build job's gate)
 - [ ] Check CI test coverage:
   - Review `.github/workflows/` for relevant test jobs
   - If no CI test exists for new code, add test case to CI workflow
@@ -123,7 +123,7 @@ This runbook documents the step-by-step Git workflow for LLM-assisted developmen
 - [ ] Monitor CI runs (GitHub Actions):
   - [ ] All jobs pass (tests, linters, security scans)
   - [ ] No errors or warnings above INFO level
-  - [ ] Test coverage meets threshold (>80%)
+  - [ ] Test coverage meets the 100% line-coverage gate
   - [ ] No new security vulnerabilities detected
 - [ ] On CI failures:
   - [ ] Review CI logs for root cause
@@ -257,7 +257,7 @@ This runbook documents the step-by-step Git workflow for LLM-assisted developmen
 ## See Also
 
 - [TDD Strategy and Tactics](../../testing/tdd-strategy-and-tactics.md)
-- [Pre-Commit Configuration](../../../.pre-commit-config.yaml)
+- [Husky hook tasks](../../../.husky/task-runner.json)
 - [CI/CD Workflows](../../../.github/workflows/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
 - [Pull Request Template](../../../.github/pull_request_template.md)
