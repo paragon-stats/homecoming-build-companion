@@ -3,6 +3,9 @@
 //   dotnet run scripts/dev/check-text-files.cs                  staged files, judged as staged (the hook)
 //   dotnet run scripts/dev/check-text-files.cs -- --all         every tracked file, from the working tree
 //   dotnet run scripts/dev/check-text-files.cs -- --files a b   the named files, from the working tree
+//   dotnet run scripts/dev/check-text-files.cs -- --files-from list   the files listed one per line (CI's changed files)
+//
+// A named or listed file that does not exist, such as one the change deletes, is skipped.
 //
 // Checks: trailing whitespace, final newline, extra blank lines at the end and line endings as .editorconfig
 // sets them, JSON syntax (every .json file, filter or not), files over 15 MB, and markdownlint (through npx,
@@ -38,10 +41,22 @@ Regex excluded = new(filterLine.Groups[1].Value);
 List<(Regex Glob, string Key, string Value)> editorRules = ReadEditorConfig(".editorconfig");
 
 int filesAt = Array.IndexOf(args, "--files");
-bool staged = filesAt < 0 && !args.Contains("--all");
+int listAt = Array.IndexOf(args, "--files-from");
+bool staged = filesAt < 0 && listAt < 0 && !args.Contains("--all");
 List<string> files;
 List<string> ids = [];
-if (filesAt >= 0)
+if (listAt >= 0)
+{
+    string? list = listAt + 1 < args.Length ? args[listAt + 1] : null;
+    if (list is null || !File.Exists(list))
+    {
+        Console.Error.WriteLine($"{list ?? "--files-from"}:1:1: error: H-TEXT-012: the file list to check was not found; pass --files-from <file with one path per line>");
+        return 1;
+    }
+
+    files = [.. File.ReadAllLines(list).Where(line => line.Length > 0)];
+}
+else if (filesAt >= 0)
 {
     files = [.. args.Skip(filesAt + 1)];
 }

@@ -48,6 +48,18 @@ jobs:
         env:
           COH_BANNED_NAMES: ${{ secrets.COH_BANNED_NAMES }}
         run: dotnet run scripts/dev/check-banned-words.cs
+      # Whitespace, line endings, final newline, JSON syntax, markdownlint and the 15 MB limit on the files the change
+      # touches. The list goes through a file, so a diff of thousands of paths cannot overflow the command line.
+      - name: Check the changed text files
+        if: github.event_name == 'pull_request' || github.event_name == 'merge_group'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
+        run: |
+          $list = Join-Path $env:RUNNER_TEMP 'changed-files.txt'
+          git -c core.quotepath=off diff --name-only "$env:BASE_SHA...$env:HEAD_SHA" > $list
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet run scripts/dev/check-text-files.cs -- --files-from $list
       - name: Check coverage exclusions
         run: dotnet run scripts/dev/check-coverage-exclusions.cs
       # The rule must still fail where it should and pass where it should: expected exit codes in order.

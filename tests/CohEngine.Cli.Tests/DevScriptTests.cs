@@ -101,6 +101,29 @@ public sealed partial class DevScriptTests
         Assert.Contains(expected, output, StringComparison.Ordinal);
     }
 
+    // CI hands the pull request's changed files over in a file, which a diff of thousands of paths cannot overflow.
+    [Fact]
+    public void The_text_check_reads_the_files_to_check_from_a_list_and_skips_deleted_ones()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("clean.txt", "a\n");
+        tree.Write("dirty.txt", "a  \n");
+        tree.Write("changed.txt", "clean.txt\n\ngone.txt\n");
+
+        (int cleanExit, string cleanOutput) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.txt");
+        tree.Write("changed.txt", "clean.txt\ndirty.txt\n");
+        (int dirtyExit, string dirtyOutput) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.txt");
+        (int missingExit, string missingOutput) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "no-such-list.txt");
+
+        Assert.True(cleanExit == 0, cleanOutput);
+        Assert.Equal(1, dirtyExit);
+        Assert.Contains("dirty.txt:1:", dirtyOutput, StringComparison.Ordinal);
+        Assert.DoesNotContain("clean.txt:", dirtyOutput, StringComparison.Ordinal);
+        Assert.Equal(1, missingExit);
+        Assert.Contains("H-TEXT-012", missingOutput, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void The_text_check_follows_the_editorconfig_for_markdown_whitespace_and_the_tool_manifest()
     {
