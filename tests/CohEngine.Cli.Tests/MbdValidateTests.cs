@@ -55,6 +55,17 @@ public sealed class MbdValidateTests : IDisposable
     }
 
     [Fact]
+    public void A_file_with_its_level_1_picks_swapped_fails_validate_naming_both_powers()
+    {
+        string swapped = BuildFileFixtures.SwappedLevelOneCopy("reference/arachnos-soldier/bane-melee/4-star.mbd", scratch);
+
+        (string output, int code) = CliCapture.Run(Source, "validate", swapped);
+
+        Assert.Equal(1, code);
+        Assert.Contains("error: H-POWER-006: 'Training_Gadgets.Bane_Spider_Training.Bane_Spider_Armor', the secondary pick, comes before 'Arachnos_Soldiers.Bane_Spider_Soldier.BS_Bash'", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void A_bare_mbd_validates_without_a_harness_dump()
     {
         (string json, int jsonCode) = CliCapture.Run(Source, "validate", Bane, "--format", "json");
