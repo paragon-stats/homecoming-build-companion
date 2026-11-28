@@ -30,7 +30,8 @@ A build lists its power picks in the order the game's level-up view offers them.
 
 - Each pick sits on the level the schedule grants its position among the 24. (H-POWER-003)
 - The two level 1 picks are a primary pick and then a secondary pick. (H-POWER-006)
-  A pair the other way round fails, and so does a pair drawn from one set.
+  A pair the other way round fails, and so does any other pair whose first pick is not in the primary's category or whose second is not in the secondary's:
+  two picks from one category, even from two of its sets, or a pick from neither category.
 
 The check compares the text before the first dot of each level 1 pick's power name with the text before the first dot of `PowerSets[0]` (primary) and `PowerSets[1]` (secondary).
 `Blaster_Ranged.Fire_Blast.Flares` is a primary pick in a file whose `PowerSets[0]` is `Blaster_Ranged.Fire_Blast`.
@@ -42,7 +43,7 @@ so a level 1 pick from the base sets counts as primary or secondary in a file th
 
 The respec view lets a player place picks and slots in any order and does not show the level a slot was gained at; it is not the reference order.
 A Mids dump directory has no `PowerSets`, so `validate` and `check_hard_limits` on a dump do not check the level 1 pair; on a `.mbd` file both do.
-The `.mbd` writer puts the primary pick first at level 1 and refuses a pair drawn from one set (E46).
+The `.mbd` writer puts the primary pick first at level 1 and refuses, with E46, any pair the check would fail; both read one decision (`LevelOnePair` in `Registry/HardLimitRules/`).
 
 ## Slot rules
 

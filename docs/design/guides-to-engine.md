@@ -187,10 +187,12 @@ Computes, checked against Mids reference dumps:
 - Build totals and AT caps (`base_totals.py`), enhancement values after Enhancement Diversification (`enhancement.py`, `ed.py`).
 - Set bonuses and the Rule of Five (`set_bonuses.py`), incarnates (`incarnate.py`).
 - Legality (`src/CohEngine.Core/Registry/LegalityRules/`, run by `LegalityRunner`, rules H-ENH-001 to 007)
-  and hard limits (`src/CohEngine.Core/Registry/HardLimitRules/`, run by `HardLimitRunner`, H-SLOT-001 to 005, H-POWER-001 to 006, H-POOL-001 and 002), both registered in `RuleRegistry`.
+  and hard limits (`src/CohEngine.Core/Registry/HardLimitRules/`, run by `HardLimitRunner`, H-SLOT-001 to 005, H-POWER-001 to 006, H-POOL-001 and 002, H-FMT-001 to 003),
+  both registered in `RuleRegistry`.
 - Goal scoring against `strategy/build_profiles.json` (`scoring.py`): positional defense, minimum resistance, perma-Hasten, perma-Domination; cap adherence (P-CAP-001) and endurance (P-END-001).
 - Attack chains, an endurance budget and a classifier that labels each power's delivery, shape and role from canonical data (`attack_chain.py`, `chain_report.py`, `docs/engine/chain-planner.md`).
-- A level-by-level `.mbd` writer (`buildfile/mbd.py`) that already refuses bad input: E46 for a pick off its schedule level, E47 to E49 for slots it cannot place.
+- A level-by-level `.mbd` writer (`src/CohEngine.Core/BuildFile/Mbd.Writer.cs`) that already refuses bad input:
+  E46 for a pick off its schedule level or a level 1 pair that is not a primary and then a secondary pick, E47 to E49 for slots it cannot place.
 - The Mids dump harness (`tools/mids-dump`), which reloads builds in Mids headless and dumps their totals.
 - Archetype scaling, two layers. `attribmod.py` ports Mids' modifier tables and `GetModifier` lookup: every effect scale (damage, buffs, debuffs, heals, control)
   resolves through the archetype's table column at level 50, so the same power yields each archetype's own numbers. This is the Mids-faithful layer.
