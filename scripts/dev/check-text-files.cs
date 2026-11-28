@@ -3,9 +3,10 @@
 //   dotnet run scripts/dev/check-text-files.cs                  staged files, judged as staged (the hook)
 //   dotnet run scripts/dev/check-text-files.cs -- --all         every tracked file, from the working tree
 //   dotnet run scripts/dev/check-text-files.cs -- --files a b   the named files, from the working tree
-//   dotnet run scripts/dev/check-text-files.cs -- --files-from list   the files listed one per line (CI's changed files)
+//   dotnet run scripts/dev/check-text-files.cs -- --files-from list   the NUL-separated paths of git diff -z (CI's changed files)
 //
-// A named or listed file that does not exist, such as one the change deletes, is skipped.
+// A named file that does not exist is skipped. A listed one is an error (H-TEXT-013): CI lists the change without
+// deletions, so a listed path that is not a file means the list did not survive the trip.
 //
 // Checks: trailing whitespace, final newline, extra blank lines at the end and line endings as .editorconfig
 // sets them, JSON syntax (every .json file, filter or not), files over 15 MB, and markdownlint (through npx,
@@ -50,11 +51,11 @@ if (listAt >= 0)
     string? list = listAt + 1 < args.Length ? args[listAt + 1] : null;
     if (list is null || !File.Exists(list))
     {
-        Console.Error.WriteLine($"{list ?? "--files-from"}:1:1: error: H-TEXT-012: the file list to check was not found; pass --files-from <file with one path per line>");
+        Console.Error.WriteLine($"{list ?? "--files-from"}:1:1: error: H-TEXT-012: the file list to check was not found; pass --files-from <file of NUL-separated paths, as git diff -z writes>");
         return 1;
     }
 
-    files = [.. File.ReadAllLines(list).Where(line => line.Length > 0)];
+    files = [.. File.ReadAllText(list, new UTF8Encoding(false)).Split('\0', StringSplitOptions.RemoveEmptyEntries)];
 }
 else if (filesAt >= 0)
 {
@@ -91,6 +92,13 @@ foreach (string file in files)
 {
     string path = file.Replace('\\', '/');
     byte[]? bytes = staged ? StagedBytes(path) : File.Exists(path) ? File.ReadAllBytes(path) : null;
+    if (bytes is null && listAt >= 0)
+    {
+        // The list leaves deletions out, so a path that is not a file means the list and the tree disagree.
+        findings.Add($"{path}:1:1: error: H-TEXT-013: listed path is not a file in the working tree; list the change with git diff --name-only -z --diff-filter=d");
+        continue;
+    }
+
     if (bytes is null)
     {
         continue;
@@ -142,7 +150,7 @@ if (findings.Count > 0)
     return 1;
 }
 
-Console.WriteLine("[OK] text files are clean.");
+Console.WriteLine(listAt >= 0 ? $"[OK] text files are clean ({files.Count} listed file{(files.Count == 1 ? "" : "s")} checked)." : "[OK] text files are clean.");
 return 0;
 
 // The next blob from the batch reader, which answers in the order the ids were listed.

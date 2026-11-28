@@ -49,7 +49,8 @@ jobs:
           COH_BANNED_NAMES: ${{ secrets.COH_BANNED_NAMES }}
         run: dotnet run scripts/dev/check-banned-words.cs
       # Whitespace, line endings, final newline, JSON syntax, markdownlint and the 15 MB limit on the files the change
-      # touches. The list goes through a file, so a diff of thousands of paths cannot overflow the command line.
+      # touches. git writes the NUL-separated list straight to a file, deletions left out, so a diff of thousands of paths
+      # cannot overflow the command line and no shell re-encodes a path.
       - name: Check the changed text files
         if: github.event_name == 'pull_request' || github.event_name == 'merge_group'
         env:
@@ -57,7 +58,7 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha }}
         run: |
           $list = Join-Path $env:RUNNER_TEMP 'changed-files.txt'
-          git -c core.quotepath=off diff --name-only "$env:BASE_SHA...$env:HEAD_SHA" > $list
+          git diff --name-only -z --diff-filter=d "--output=$list" "$env:BASE_SHA...$env:HEAD_SHA"
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           dotnet run scripts/dev/check-text-files.cs -- --files-from $list
       - name: Check coverage exclusions

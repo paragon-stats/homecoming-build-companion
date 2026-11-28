@@ -23,7 +23,7 @@ public sealed class BuildWorkflowTests
         string run = Workflows.Scalar(step, "run")!;
         YamlNode env = Workflows.Child(step, "env")!;
 
-        Assert.Contains("git -c core.quotepath=off diff --name-only \"$env:BASE_SHA...$env:HEAD_SHA\" > $list", run, StringComparison.Ordinal);
+        Assert.Contains("git diff --name-only -z --diff-filter=d \"--output=$list\" \"$env:BASE_SHA...$env:HEAD_SHA\"", run, StringComparison.Ordinal);
         Assert.Contains("if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }", run, StringComparison.Ordinal);
         Assert.Contains("dotnet run scripts/dev/check-text-files.cs -- --files-from $list", run, StringComparison.Ordinal);
         Assert.DoesNotContain("${{", run, StringComparison.Ordinal);
