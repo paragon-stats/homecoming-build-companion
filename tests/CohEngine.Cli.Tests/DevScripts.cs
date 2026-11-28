@@ -179,16 +179,21 @@ internal static class DevScripts
 
     /// <summary>Finds the bash git itself runs hooks with; on Windows that is Git for Windows' bash, never the WSL launcher.</summary>
     /// <returns>The full path of bash.</returns>
-    internal static string Bash()
+    internal static string Bash() => Shell("bash");
+
+    /// <summary>The POSIX sh that runs a <c>#!/bin/sh</c> hook: Git for Windows' own on Windows.</summary>
+    internal static string Sh() => Shell("sh");
+
+    private static string Shell(string name)
     {
         if (!OperatingSystem.IsWindows())
         {
-            return Locate("bash");
+            return Locate(name);
         }
 
         // git --exec-path is <Git>/<mingw64 or ucrt64>/libexec/git-core.
         string execPath = Git(RepositoryRoot, "--exec-path").Trim();
-        return Path.GetFullPath(Path.Join(execPath, "..", "..", "..", "usr", "bin", "bash.exe"));
+        return Path.GetFullPath(Path.Join(execPath, "..", "..", "..", "usr", "bin", $"{name}.exe"));
     }
 
     /// <summary>Runs git in a directory and fails the test when git fails.</summary>

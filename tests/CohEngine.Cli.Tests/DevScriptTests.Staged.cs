@@ -8,24 +8,40 @@ public sealed partial class DevScriptTests
     private static readonly string BannedWord = "orac" + "le";
 
     // Only a push whose every line is a well-formed deletion skips the checks; a line the hook cannot read runs them.
-    public static TheoryData<string, bool> PushRefs()
+    // Each case runs under sh, which runs the #!/bin/sh hook for git, and under bash.
+    public static TheoryData<string, string, bool> PushRefs()
     {
         string zeros = new('0', 40);
         string some = new('1', 40);
         string deletion = $"(delete) {zeros} refs/heads/gone {some}\n";
-        return new()
+        (string Refs, bool DeletionsOnly)[] cases =
+        [
+            (string.Empty, true),
+            (deletion, true),
+            (deletion.TrimEnd('\n'), true),
+            (deletion.Replace("\n", "\r\n", StringComparison.Ordinal), true),
+            (deletion + $"(delete) {zeros} refs/heads/also-gone {some}\n", true),
+            ($"(delete) {new string('0', 64)} refs/heads/gone {new string('1', 64)}\n", true),
+            (deletion + $"refs/heads/work {some} refs/heads/work {zeros}\n", false),
+            ("(delete)\n", false),
+            ($"(delete) {zeros}\n", false),
+            ($"(delete) {zeros} refs/heads/gone\n", false),
+            ($"(delete) {zeros} refs/heads/gone {some} extra\n", false),
+            ("\n" + deletion, false),
+            ($"(delete) 0000 refs/heads/gone {some}\n", false),
+            ($"(delete) {new string('0', 41)} refs/heads/gone {some}\n", false),
+            ($"(delete) {new string('0', 63)} refs/heads/gone {new string('1', 64)}\n", false),
+        ];
+        TheoryData<string, string, bool> data = [];
+        foreach (string shell in new[] { "sh", "bash" })
         {
-            { deletion, true },
-            { deletion + $"(delete) {zeros} refs/heads/also-gone {some}\n", true },
-            { $"(delete) {new string('0', 64)} refs/heads/gone {new string('1', 64)}\n", true },
-            { deletion + $"refs/heads/work {some} refs/heads/work {zeros}\n", false },
-            { "(delete)\n", false },
-            { $"(delete) {zeros}\n", false },
-            { $"(delete) {zeros} refs/heads/gone\n", false },
-            { $"(delete) {zeros} refs/heads/gone {some} extra\n", false },
-            { "\n" + deletion, false },
-            { $"(delete) 0000 refs/heads/gone {some}\n", false },
-        };
+            foreach ((string refs, bool deletionsOnly) in cases)
+            {
+                data.Add(shell, refs, deletionsOnly);
+            }
+        }
+
+        return data;
     }
 
     [Theory]
@@ -199,14 +215,15 @@ public sealed partial class DevScriptTests
 
     [Theory]
     [MemberData(nameof(PushRefs))]
-    public void The_push_hook_skips_its_checks_only_when_every_ref_is_a_deletion(string refs, bool deletionsOnly)
+    public void The_push_hook_skips_its_checks_only_when_every_ref_is_a_deletion(string shell, string refs, bool deletionsOnly)
     {
         using TempTree tree = new();
         DevScripts.SeedRepository(tree);
         File.Copy(Path.Join(DevScripts.RepositoryRoot, ".husky", "pre-push"), tree.FullPath(".husky/pre-push"));
         tree.Write(".husky/task-runner.json", "{\"tasks\":[{\"name\":\"fails\",\"group\":\"pre-push\",\"command\":\"git\",\"args\":[\"no-such-command\"]}]}");
 
-        (int exit, string output, _, _) = DevScripts.RunSeparately(tree.Root, DevScripts.Bash(), ShellEnvironment(), refs, ".husky/pre-push");
+        string program = string.Equals(shell, "sh", StringComparison.Ordinal) ? DevScripts.Sh() : DevScripts.Bash();
+        (int exit, string output, _, _) = DevScripts.RunSeparately(tree.Root, program, ShellEnvironment(), refs, ".husky/pre-push");
 
         if (deletionsOnly)
         {
