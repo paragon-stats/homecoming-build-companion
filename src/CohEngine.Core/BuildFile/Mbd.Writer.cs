@@ -3,6 +3,7 @@ using System.Text;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.Data;
+using CohEngine.Core.Registry.HardLimitRules;
 
 namespace CohEngine.Core.BuildFile;
 
@@ -136,7 +137,7 @@ public static partial class Mbd
         ArgumentNullException.ThrowIfNull(spec);
         ArgumentNullException.ThrowIfNull(schedule);
         ArgumentNullException.ThrowIfNull(database);
-        List<PickSpec> picks = OrderedPicks(spec.Picks, Category(spec.PowerSets.Count > 0 ? spec.PowerSets[0] : string.Empty), schedule);
+        List<PickSpec> picks = OrderedPicks(spec.Picks, PowerGroups.Group(spec.PowerSets.Count > 0 ? spec.PowerSets[0] : string.Empty), schedule);
         List<PickSpec> powers = [.. picks, .. spec.Inherents, .. OmittedInherents(spec, database)];
         Dictionary<int, List<int>> placed = PlaceSlots(powers, schedule);
         List<MbdPowerEntryDoc> entries = [.. powers.Select((pick, index) => Entry(pick, placed.GetValueOrDefault(index, []), database))];
@@ -198,12 +199,6 @@ public static partial class Mbd
         }
     }
 
-    // A power set's category, the first segment of its name, which an epic archetype's base and branch sets share.
-    private static string Category(string name)
-    {
-        return name.Split('.')[0];
-    }
-
     // The four pool entries, PowerSets[3] to [6], in the order the picks first draw on them; a pool never picked keeps its place after them.
     private static List<string> PoolsInPickOrder(IReadOnlyList<string> powerSets, List<PickSpec> picks)
     {
@@ -211,14 +206,15 @@ public static partial class Mbd
         return [.. powerSets.Take(3), .. powerSets.Skip(3).Take(4).OrderBy(FirstPick), .. powerSets.Skip(7)];
     }
 
-    // The sort puts a primary pick first at level 1, so a pair it cannot make primary then secondary holds two picks from one category.
+    // H-POWER-006's verdict, so the writer never emits a level 1 pair the rule rejects.
     private static void CheckLevelOnePair(List<PickSpec> picks, IReadOnlyList<string> powerSets)
     {
-        bool primaryThenSecondary = picks.Count < 2 || powerSets.Count < 2
-            || (string.Equals(Category(picks[0].Power), Category(powerSets[0]), StringComparison.Ordinal) && string.Equals(Category(picks[1].Power), Category(powerSets[1]), StringComparison.Ordinal));
-        if (!primaryThenSecondary)
+        string[] levelOne = [.. picks.Where(pick => pick.Level == 1).Select(pick => pick.Power)];
+        LevelOnePairVerdict verdict = LevelOnePair.Classify(powerSets, levelOne);
+        if (verdict is not (LevelOnePairVerdict.InOrder or LevelOnePairVerdict.CannotTell))
         {
-            throw new InvalidDataException($"E46: the level 1 picks are {picks[0].Power} and {picks[1].Power}; the level-up view offers a primary pick and then a secondary pick at level 1");
+            throw new InvalidDataException(
+                $"E46: the level 1 picks are {levelOne[0]} and {levelOne[1]}; the level-up view offers a primary pick and then a secondary pick at level 1; {LevelOnePair.Action(verdict, powerSets, levelOne)}");
         }
     }
 
@@ -231,7 +227,7 @@ public static partial class Mbd
         }
 
         // The level-up view's order: by level, and at level 1 the primary pick before the secondary.
-        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level).ThenBy(pick => !string.Equals(Category(pick.Power), primaryCategory, StringComparison.Ordinal))];
+        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level).ThenBy(pick => !string.Equals(PowerGroups.Group(pick.Power), primaryCategory, StringComparison.Ordinal))];
         for (int position = 0; position < ordered.Count; position++)
         {
             int granted = order[position] + 1;

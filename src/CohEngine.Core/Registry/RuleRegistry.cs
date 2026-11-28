@@ -76,7 +76,7 @@ public static class RuleRegistry
         new(new("_rule_power_pick_count", "H-POWER-001: a build may pick at most 24 powers (inherents excluded)."), PowerPickCountRule.Run),
         new(new("_rule_first_available_level", "H-POWER-002: a power is picked at or after its earliest level (DB ``Level``)."), FirstAvailableLevelRule.Run),
         new(new("_rule_pick_at_grant_level", "H-POWER-003: each pick sits on the schedule level of its own position among the 24."), PickAtGrantLevelRule.Run),
-        new(new("_rule_level_one_pick_order", "H-POWER-006: at level 1 the primary pick comes before the secondary pick, as the level-up view offers them."), LevelOnePickOrderRule.Run),
+        new(new("_rule_level_one_pick_order", "H-POWER-006: the level 1 picks are one primary pick and then one secondary pick, as the level-up view offers them."), LevelOnePickOrderRule.Run),
         new(new("_rule_pool_count", "H-POOL-001: a build may draw from at most 4 power pools (Ancillary/Patron excluded)."), PoolCountRule.Run),
         new(new("_rule_prerequisites", "Power prerequisites (``Build.MeetsRequirement`` steps C/D): required and forbidden picks."), PrerequisitesRule.Run),
         new(new("_rule_single_ancillary_pool", "H-POOL-002: at most one Ancillary/Patron (Epic) pool may be selected."), SingleAncillaryPoolRule.Run),

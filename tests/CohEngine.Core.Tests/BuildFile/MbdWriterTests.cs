@@ -80,23 +80,43 @@ public sealed class MbdWriterTests
         List<PickSpec> picks = Full(added: null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.Jab", 1, ["Crafted_Accuracy"])), (1, primary), (2, TankerSpec.Pick("Pool.Leaping.Combat_Jumping", 2, ["Crafted_Accuracy"])), (3, TankerSpec.Pick("Pool.Speed.Hasten", 4, ["Crafted_Accuracy"])));
         BuildSpec spec = Spec(picks) with
         {
-            PowerSets = ["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Flight", "Pool.Speed", "Pool.Leaping", string.Empty, string.Empty],
+            PowerSets = ["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Flight", "Pool.Speed", "Pool.Leaping", string.Empty, "Epic.Tanker_Soul_Mastery"],
         };
 
         MbdBuild build = Written(spec);
 
         Assert.Equal([primary.Power, picks[0].Power], build.PowerEntries.Take(2).Select(entry => entry.PowerName), StringComparer.Ordinal);
-        Assert.Equal(["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Leaping", "Pool.Speed", "Pool.Flight", string.Empty, string.Empty], build.PowerSets, StringComparer.Ordinal);
+        Assert.Equal(["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Leaping", "Pool.Speed", "Pool.Flight", string.Empty, "Epic.Tanker_Soul_Mastery"], build.PowerSets, StringComparer.Ordinal);
     }
 
     [Theory]
-    [InlineData("Tanker_Defense.Willpower.Mind_Over_Body", "Tanker_Defense.Willpower.High_Pain_Tolerance")]
-    [InlineData("Tanker_Melee.Super_Strength.Haymaker", "Tanker_Melee.Super_Strength.Jab")]
-    public void Two_level_1_picks_from_one_set_are_E46(string first, string second)
+    [InlineData("Tanker_Defense.Willpower.Mind_Over_Body", "Tanker_Defense.Willpower.High_Pain_Tolerance", "replace 'Tanker_Defense.Willpower.High_Pain_Tolerance' with a power from 'Tanker_Melee.Super_Strength'")]
+    [InlineData("Tanker_Melee.Super_Strength.Haymaker", "Tanker_Melee.Super_Strength.Jab", "replace 'Tanker_Melee.Super_Strength.Haymaker' with a power from 'Tanker_Defense.Willpower'")]
+    public void Two_level_1_picks_from_one_set_are_E46_naming_the_pick_to_replace(string first, string second, string action)
     {
         List<PickSpec> picks = Full(added: null, (0, TankerSpec.Pick(first, 1, ["Crafted_Accuracy"])), (1, TankerSpec.Pick(second, 1, ["Crafted_Accuracy"])));
 
-        Assert.Equal($"E46: the level 1 picks are {first} and {second}; the level-up view offers a primary pick and then a secondary pick at level 1", Message(Spec(picks)));
+        Assert.Equal($"E46: the level 1 picks are {first} and {second}; the level-up view offers a primary pick and then a secondary pick at level 1; {action}", Message(Spec(picks)));
+    }
+
+    [Fact]
+    public void An_empty_secondary_entry_leaves_the_level_1_pair_unchecked_as_the_rule_does()
+    {
+        List<PickSpec> picks = Full(added: null, (1, TankerSpec.Pick("Tanker_Defense.Willpower.High_Pain_Tolerance", 1, ["Crafted_Accuracy"])));
+        BuildSpec spec = Spec(picks) with { PowerSets = ["Tanker_Defense.Willpower", string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty] };
+
+        Assert.Equal(["Tanker_Defense.Willpower.P0", "Tanker_Defense.Willpower.High_Pain_Tolerance"], Written(spec).PowerEntries.Take(2).Select(entry => entry.PowerName), StringComparer.Ordinal);
+    }
+
+    [Fact]
+    public void An_arachnos_base_set_primary_pick_is_written_first_under_the_branch_sets()
+    {
+        const string Armor = "Training_Gadgets.Training_and_Gadgets.Wolf_Spider_Armor";
+        const string Shot = "Arachnos_Soldiers.Arachnos_Soldier.Single_Shot";
+        List<PickSpec> picks = Full(added: null, (0, TankerSpec.Pick(Armor, 1, ["Crafted_Accuracy"])), (1, TankerSpec.Pick(Shot, 1, ["Crafted_Accuracy"])));
+        BuildSpec spec = Spec(picks) with { PowerSets = ["Arachnos_Soldiers.Bane_Spider_Soldier", "Training_Gadgets.Bane_Spider_Training", string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty] };
+
+        Assert.Equal([Shot, Armor], Written(spec).PowerEntries.Take(2).Select(entry => entry.PowerName), StringComparer.Ordinal);
     }
 
     [Fact]
