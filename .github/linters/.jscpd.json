@@ -13,7 +13,8 @@
     "**/data/patches/**",
     "**/data/diff/**",
     "**/samples/**",
-    "**/tests/fixtures/**"
+    "**/tests/fixtures/**",
+    "**/packages.lock.json"
   ],
   "reporters": ["console"],
   "threshold": 3

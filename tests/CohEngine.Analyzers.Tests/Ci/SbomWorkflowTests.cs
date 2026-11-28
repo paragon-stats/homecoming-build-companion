@@ -5,7 +5,7 @@ namespace CohEngine.Analyzers.Tests.Ci;
 /// <summary>The SBOM the build job proves on every pull request and the release workflow attaches to each release.</summary>
 public sealed class SbomWorkflowTests
 {
-    private const string Generate = "dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj --output-format Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version";
+    private const string Generate = "dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj -F Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version";
     private const string ShippedCheck = "if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol'))";
 
     [Fact]

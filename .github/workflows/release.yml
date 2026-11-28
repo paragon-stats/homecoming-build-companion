@@ -93,9 +93,9 @@ jobs:
           TAG: ${{ needs.release.outputs.tag }}
         run: |
           $version = $env:TAG -replace '^v', ''
-          dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj --output-format Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version
+          dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj -F Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $shipped = @((Get-Content (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') -Raw | ConvertFrom-Json).components | Where-Object scope -eq 'required')
-          if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol')) { Write-Error "The SBOM lists $($shipped.Count) shipped packages and not ModelContextProtocol."; exit 1 }
+          if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol')) { Write-Error "SBOM: no ModelContextProtocol among $($shipped.Count) shipped packages."; exit 1 }
           gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
