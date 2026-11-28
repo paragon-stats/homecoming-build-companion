@@ -59,7 +59,7 @@ internal static partial class Workflows
     public static List<string> PythonSteps(YamlMappingNode root)
     {
         IEnumerable<(YamlMappingNode Step, string? Shell)> steps = Child(root, "jobs") is null
-            ? Steps((YamlMappingNode)root["runs"]).Select(step => (step, (string?)null))
+            ? Steps((YamlMappingNode)root["runs"]).Select<YamlMappingNode, (YamlMappingNode Step, string? Shell)>(step => (step, null))
             : Jobs(root).SelectMany(job => Steps(job.Value).Select(step => (step, DefaultShell(job.Value) ?? DefaultShell(root))));
         return [.. steps.Where(item => IsPython(item.Step, item.Shell)).Select(item => Scalar(item.Step, "name") ?? Scalar(item.Step, "uses") ?? Scalar(item.Step, "run")!)];
     }
