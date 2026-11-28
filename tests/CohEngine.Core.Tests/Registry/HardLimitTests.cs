@@ -272,6 +272,7 @@ public sealed class HardLimitTests
         Assert.Empty(LevelOneOrder(format: null, "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
         Assert.Empty(LevelOneOrder(Format(1), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
         Assert.Empty(LevelOneOrder(PowerSetsFormat(string.Empty, "Blaster_Support.Fire_Manipulation"), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+        Assert.Empty(LevelOneOrder(PowerSetsFormat("Blaster_Ranged.Fire_Blast", string.Empty), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
     }
 
     [Fact]
@@ -292,7 +293,7 @@ public sealed class HardLimitTests
         const string Armor = "Training_Gadgets.Training_and_Gadgets.Wolf_Spider_Armor";
         const string Shot = "Arachnos_Soldiers.Arachnos_Soldier.Single_Shot";
 
-        Assert.Contains(Armor, Assert.Single(LevelOneOrder(format, Armor, Shot)).Fix, StringComparison.Ordinal);
+        Assert.Equal($"swap '{Armor}' and '{Shot}' so the primary pick comes first", Assert.Single(LevelOneOrder(format, Armor, Shot)).Fix);
         Assert.Empty(LevelOneOrder(format, Shot, Armor));
     }
 
