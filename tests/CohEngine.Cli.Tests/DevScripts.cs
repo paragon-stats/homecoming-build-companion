@@ -213,7 +213,7 @@ internal static class DevScripts
     {
         Git(tree.Root, "init", "--quiet");
         Git(tree.Root, "config", "core.hooksPath", ".husky");
-        foreach (string file in new[] { ".editorconfig", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/dev/git-signing.cs", "scripts/dev/staged-files.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
+        foreach (string file in new[] { ".editorconfig", "Directory.Packages.props", ".markdownlint.yaml", ".github/linters/.markdownlint.yml", ".github/workflows/super-linter.yml", ".github/super-linter.env", ".config/dotnet-tools.json", ".husky/task-runner.json", "scripts/dev/check-text-files.cs", "scripts/dev/check-git-signing.cs", "scripts/dev/git-signing.cs", "scripts/dev/staged-files.cs", "scripts/git/check-commit-message.sh", "scripts/git/commit-types.txt" })
         {
             Directory.CreateDirectory(Path.GetDirectoryName(tree.FullPath(file))!);
             File.Copy(Path.Join(RepositoryRoot, file), tree.FullPath(file));
