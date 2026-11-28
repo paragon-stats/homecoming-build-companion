@@ -25,10 +25,7 @@ using System.Text.Json;
 
 string[] positional = args.Where(a => !a.StartsWith("--", StringComparison.Ordinal)).ToArray();
 bool summary = args.Contains("--summary");
-string dir3x = positional.Length > 0
-    ? positional[0]
-    : new[] { Path.Combine("tests", "fixtures", "mids"), Path.Combine("src", "coh_engine", "tests", "fixtures", "mids") }
-        .FirstOrDefault(d => Directory.Exists(Path.Combine(d, "builds"))) ?? Path.Combine("tests", "fixtures", "mids");
+string dir3x = positional.Length > 0 ? positional[0] : Path.Combine("tests", "fixtures", "mids");
 string dir4 = positional.Length > 1 ? positional[1] : Path.Combine("tests", "fixtures", "mids4");
 
 string builds3 = Path.Combine(dir3x, "builds");
