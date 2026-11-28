@@ -8,8 +8,6 @@ It follows the workflow in paragon-stats/paragon-stats.
 - The .NET solution, through the MSBuild scanner: begin, build, tests with coverage, end.
 - Coverage comes from `coverage.xml`, the Visual Studio XML report `dotnet-coverage` writes for the `build` workflow's 100% coverage gate.
   The scanner reads it through `sonar.cs.vscoveragexml.reportsPaths`.
-- The remaining Python (`scripts/**`, `src/coh_engine`) is analysed with `sonar.python.version=3.14`.
-  It has no coverage in this job: the Python coverage workflow writes no coverage XML, and re-running its matrix here would double the cost.
 
 ## What is excluded
 
@@ -19,7 +17,7 @@ It follows the workflow in paragon-stats/paragon-stats.
 | same | `**/obj/**`, `**/bin/**` | Build output. |
 | same | `tools/mids-dump*/**` | The Mids dump harness is outside the solution, so this job does not build it. |
 | `sonar.coverage.exclusions` | `**/*JsonContext.cs` | Source-generated JSON contexts, marked `[ExcludeFromCodeCoverage]`, which the 100% gate leaves out too. |
-| same | `scripts/**`, `src/coh_engine/**` | Python with no coverage report in this job; left in, it would count as uncovered. |
+| same | `scripts/**` | File-based apps that run outside the solution, with no coverage report in this job; left in, they would count as uncovered. |
 
 Sonar's coverage figure and the repository's gate therefore measure the same .NET code.
 
@@ -28,7 +26,6 @@ One rule is ignored for one file, through `sonar.issue.ignore.multicriteria` in 
 | Rule | File | Why |
 | --- | --- | --- |
 | `csharpsquid:S1244` | `src/CohEngine.Core/Maths/Exact.cs` | `Exact.Same` is the one exact float comparison; its callers, listed in [the C# style guide](../style-guides/csharp.md#float-comparison), need exact IEEE equality. |
-| `githubactions:S7677` | `.github/workflows/pre-commit.yml` | The flagged line is the `::error` workflow command for a failed hook, not an error message; GitHub reads workflow commands only from stdout. A plain copy of the message goes to stderr beside it. |
 
 The local build mirrors the C# entry: the root `.editorconfig` sets `S1244 = none` under `[src/CohEngine.Core/Maths/Exact.cs]`, beside the list of the profile's rules.
 It sits in the root file so every Sonar severity is in one place, which `AnalyzerProjectTests` holds to that list and this one exception.

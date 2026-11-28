@@ -7,7 +7,7 @@ Windows match the configured behavior and align with CI expectations.
 
 ## Scope
 
-- Local pre-commit hooks (Linux and Windows)
+- Local Husky hooks (`pre-commit`, `commit-msg`, `pre-push`; Linux and Windows)
 - Local runner scripts (for CI parity)
 - GitHub Actions checks (reference point)
 
@@ -83,5 +83,5 @@ Notes:
 - If a check relies on Docker, confirm sudo token is fresh on Linux.
 - When an allowlist suppresses an issue, record it explicitly and treat as
   aligned.
-- Super-Linter now runs in the local pre-commit chain (Docker required).
-- Structured error codes (`PRECOMMIT-LOCK-001`, `PRECOMMIT-TIMEOUT-001`, `PRECOMMIT-EXEC-001`, `PRECOMMIT-VENV-001`) are emitted by `run_in_repo_venv.py` to assist diagnosis.
+- Super-Linter runs in the local pre-push hook (Docker required).
+- The Husky hooks and the checks each runs are listed in [CONTRIBUTING.md](../../CONTRIBUTING.md#git-hooks).

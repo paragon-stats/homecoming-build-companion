@@ -18,14 +18,11 @@ This document is the single source of truth (SSOT) for workflow behavior. It is 
 - Keep changes small and incremental.
 - Never commit secrets.
 - Prefer configuration over hardcoded environment-specific values.
-- Commit `.pre-commit-config.yaml` separately (its own commit) before committing other files so hooks are updated before subsequent commits run.
-  Still observe the one-file-per-commit rule.
-  **Python exception**: implementation files and their corresponding test files MUST be committed together to maintain 100% test coverage.
 - **Never bypass control tools without human approval.**
-  Do not use `--no-verify`, `SKIP=<hook>`, inline suppressions (`# noqa`, `# nosec`, `# type: ignore`), or any mechanism that disables a linter, security scanner, or pre-commit hook.
+  Do not use `--no-verify`, `SKIP=<hook>`, inline suppressions (`#pragma warning disable`, `[SuppressMessage]`, `// NOSONAR`), or any mechanism that disables a linter, security scanner, or git hook.
   When a control tool fails repeatedly (>2 attempts), escalate to the user with error details instead of bypassing.
 - Treat merges as squash merges.
-- **All commits must be signed** (enforced by pre-commit hooks; CI skips signing checks).
+- **All commits must be signed** (the pre-commit hook checks the signing setup; the `main` ruleset requires signed commits).
 - **Commit hygiene**: if a commit fails (pre-commit hook failure), immediately unstage the file (`git reset HEAD <file>`) before attempting fixes.
   Never leave files staged after a failed commit — it prevents accidental bundling of unrelated changes.
 
@@ -86,10 +83,10 @@ Fix the alert, or dismiss it on the Security tab with a reason when the construc
 
 | Step | Phase            | Trigger                     | Agent responsibilities                                                                                                                                                                                                                           | User responsibilities                                                          | Evidence / artifacts                     | Gate (pass/fail)                                               |
 | ---: | ---------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------- |
-|    0 | Setup            | First-time setup            | Verify repo venv is bootstrapped and Git signing is configured (pre-commit hook will check).                                                                                                                                                     | Run the bootstrap and Git signing setup commands (see "Setup commands" below). | Venv ready; Git signing config verified. | Signing is configured.                                         |
-|    1 | Intake           | User requests work on issue | Fetch issue details via repo GitHub helpers. Restate acceptance criteria and scope.                                                                                                                                                              | Confirm scope, target role (edge/internal), and operational constraints.       | Issue JSON summary, short checklist.     | Scope is unambiguous.                                          |
-|    2 | Branch           | Issue accepted              | Create branch using `scripts.devops.start_issue_work`. Do not manually construct branch names. Do not push.                                                                                                                                      | None.                                                                          | Local branch name and base.              | Branch exists, clean working tree.                             |
-|    3 | PR bootstrap     | User has pushed             | Create PR (ready-for-review) via `scripts.github.pr_upsert` as soon as the user has pushed the branch. Do not defer to end of implementation — early PRs trigger CI checks (SonarQube, Super-Linter) that the IDE cannot reliably catch locally. | Push branch to remote.                                                         | PR URL.                                  | PR targets correct base/head; required contexts start running. |
+|    0 | Setup            | First-time setup            | Verify `make bootstrap` has run and Git signing is configured (pre-commit hook will check).                                                                                                                                                      | Run the bootstrap and Git signing setup commands (see "Setup commands" below). | Hooks installed; signing verified.       | Signing is configured.                                         |
+|    1 | Intake           | User requests work on issue | Fetch issue details with `gh issue view`. Restate acceptance criteria and scope.                                                                                                                                                                 | Confirm scope, target role (edge/internal), and operational constraints.       | Issue JSON summary, short checklist.     | Scope is unambiguous.                                          |
+|    2 | Branch           | Issue accepted              | Create the branch from `main`, named per [git-branching.md](git-branching.md). Do not push.                                                                                                                                                      | None.                                                                          | Local branch name and base.              | Branch exists, clean working tree.                             |
+|    3 | PR bootstrap     | User has pushed             | Create PR (ready-for-review) with `gh pr create` as soon as the user has pushed the branch. Do not defer to end of implementation — early PRs trigger CI checks (SonarQube, Super-Linter) that the IDE cannot reliably catch locally.            | Push branch to remote.                                                         | PR URL.                                  | PR targets correct base/head; required contexts start running. |
 |    4 | Plan             | Before edits                | Write a short plan with files + validation steps. Keep it testable.                                                                                                                                                                              | Confirm plan if scope is medium/high.                                          | Plan bullets.                            | Plan matches acceptance criteria.                              |
 |    5 | Implement        | Plan approved               | Make smallest changes that satisfy the issue. Follow repo style guides.                                                                                                                                                                          | Provide environment values via env files/secrets at deploy time.               | Focused diffs.                           | No secrets; minimal scope.                                     |
 |    6 | Tests            | Any non-trivial logic       | Add/extend unit tests for non-trivial logic.                                                                                                                                                                                                     | None.                                                                          | Test output.                             | Tests pass.                                                    |
@@ -120,11 +117,8 @@ Use this checklist when relevant to the change type.
 ## Setup commands
 
 - Bootstrap tools and hooks: `dotnet run scripts/dev/bootstrap.cs` (`make bootstrap`)
-- Setup Git commit signing:
-  - If venv is available: `python -m scripts.devops.setup_git_signing`
-  - If venv is unavailable: `python3 -m scripts.devops.setup_git_signing`
-- Ruff formatting (match Super-Linter config):
-  - `ruff format --config .github/linters/.ruff.toml <paths>`
+- Setup Git commit signing: see [Sign your commits](../../CONTRIBUTING.md#sign-your-commits) in CONTRIBUTING.
+- Check formatting the way CI does: `dotnet format --verify-no-changes --severity error`
 
 ## PR review comment handling
 
@@ -219,13 +213,7 @@ After the user selects options:
 2. Reply to each review comment with the fix commit SHA and a brief description.
 3. Resolve the review thread.
 
-Use the `triage_review_comments` flow script to reply and resolve in bulk:
-
-```bash
-python -m scripts.github.triage_review_comments \
-  --repo <owner/name> --pr <NUMBER> --author-substring <author> \
-  --replies-json '[{"comment_id": <ID>, "body": "Fixed in <SHA>. <description>"}]'
-```
+Reply and resolve with `gh`: `gh api` posts the reply to each review comment, and the GraphQL `resolveReviewThread` mutation resolves its thread.
 
 ## CI failure triage
 
@@ -238,8 +226,6 @@ Prescribed flow:
 3. Select fix options per finding
 4. Agent implements fixes and verifies locally
 
-The compound script `scripts.github.triage_ci_failures` writes findings to `tmp/triage-findings.json`. Idempotent (overwritten each run), schema `triage-findings-v1`.
-
 ## PR checklist handling (SSOT)
 
 - When drafting PR bodies, mark checklist items as complete only when verified.
@@ -248,7 +234,7 @@ The compound script `scripts.github.triage_ci_failures` writes findings to `tmp/
 
 ## PR body standards for multi-issue PRs
 
-When a PR closes 2+ issues, use the structured format below. Prefer the helper: `scripts.github.pr_upsert --auto-summary --issue N --issue M` generates it automatically.
+When a PR closes 2+ issues, use the structured format below. The PR Summary workflow (`dotnet run tools/pr-summary.cs -- --pr N`) generates it from the commits.
 
 ### Summary
 
@@ -299,56 +285,30 @@ Single-issue PRs retain the existing flat format (`### 🚀 Features` at H3 with
 - Data management (config, secrets, persistence): .github/instructions/data_management.instructions.md
 - GitHub automation constraints (helpers, no git push): .github/copilot-instructions.md
 - GitHub platform standards (reviews, required contexts): docs/repository-standards/github-platform-standards.md
-- Checks parity matrix (local vs CI): docs/ci/checks-parity-matrix.md
-- CI runs pre-commit hooks in `.github/workflows/pre-commit.yml` with `SKIP` derived from `.github/precommit-hook-classification.yml` `ci_skip` and `SKIP_GIT_SIGNING_CHECK=1`.
+- Local hooks and CI checks: [CONTRIBUTING.md](../../CONTRIBUTING.md#git-hooks)
 - Release tagging: .github/workflows/release.yml
 
-Bootstrap helpers:
+Bootstrap helper:
 
 ```bash
 # Bootstrap tools and hooks (cross-platform)
 dotnet run scripts/dev/bootstrap.cs
-
-# Setup Git commit signing (one-time, cross-platform)
-python -m scripts.devops.setup_git_signing
-
-# Start work on an issue (required for issue-driven branches)
-python -m scripts.devops.start_issue_work --repo owner/name --issue 123
 ```
 
 ## Git Commit Signing
 
-This repository requires all commits to be signed. The pre-commit hooks will verify signing configuration before allowing commits.
+This repository requires all commits to be signed. The pre-commit hook verifies the signing configuration before allowing commits.
 
-**One-time setup (cross-platform):**
-
-```bash
-python -m scripts.devops.setup_git_signing
-```
-
-This script will:
-
-- Create an SSH signing key if needed
-- Configure Git for SSH commit signing
-- Set up allowed signers file for local verification
-- Provide instructions for registering the key on GitHub
+**One-time setup:** follow [Sign your commits](../../CONTRIBUTING.md#sign-your-commits) in CONTRIBUTING.
 
 **Verification:**
 
 ```bash
 # Check current configuration
-python -m scripts.devops.setup_git_signing --check-only
+dotnet run scripts/dev/check-git-signing.cs
 
 # Verify a commit is signed
 git log --show-signature -n 1
 ```
 
-**Troubleshooting:**
-
-If commits are unsigned in a PR, use the automated fix script:
-
-```bash
-python -m scripts.github.fix_unsigned_commits --pr <NUMBER> --apply
-```
-
-See `docs/automation/runbooks/fix-unsigned-commits-in-pr.md` for detailed procedures.
+**Troubleshooting:** if commits are unsigned in a PR, see `docs/automation/runbooks/fix-unsigned-commits-in-pr.md`.

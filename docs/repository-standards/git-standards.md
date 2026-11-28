@@ -116,36 +116,16 @@ find . -type f -exec grep -l $'\r' {} \; 2>/dev/null | wc -l
 
 ```bash
 # Convert CRLF to LF for all text files
-find . -type f \( -name "*.md" -o -name "*.yml" -o -name "*.yaml" -o -name "*.json" -o -name "*.sh" -o -name "*.py" -o -name "*.tf" \) -exec dos2unix {} \;
+find . -type f \( -name "*.md" -o -name "*.yml" -o -name "*.yaml" -o -name "*.json" -o -name "*.sh" -o -name "*.cs" -o -name "*.tf" \) -exec dos2unix {} \;
 
 # Verify conversion
 git status
 ```
 
-### Pre-commit Hook (Recommended)
+### Pre-commit Hook
 
-Create `.git/hooks/pre-commit`:
-
-```bash
-#!/bin/bash
-# Pre-commit hook to prevent CRLF line endings
-
-# Check for CRLF line endings in staged files
-if git diff --cached --name-only | xargs grep -l $'\r' 2>/dev/null; then
-    echo "Error: Files with CRLF line endings detected!"
-    echo "All files must use Unix (LF) line endings."
-    echo "Run 'dos2unix <filename>' to fix."
-    exit 1
-fi
-
-exit 0
-```
-
-Make it executable:
-
-```bash
-chmod +x .git/hooks/pre-commit
-```
+The Husky `pre-commit` hook runs `scripts/dev/check-text-files.cs`, which refuses a staged file whose line endings differ from what `.editorconfig` sets.
+Git runs the hooks in `.husky/` (`core.hooksPath`), so a hook written to `.git/hooks/` never runs; `make bootstrap` installs them.
 
 ## Editor Configuration
 
@@ -184,7 +164,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Check for CRLF line endings
         run: |
-          if find . -type f \( -name "*.md" -o -name "*.yml" -o -name "*.yaml" -o -name "*.json" -o -name "*.sh" -o -name "*.py" -o -name "*.tf" \) -exec grep -l $'\r' {} \; 2>/dev/null | grep .; then
+          if find . -type f \( -name "*.md" -o -name "*.yml" -o -name "*.yaml" -o -name "*.json" -o -name "*.sh" -o -name "*.cs" -o -name "*.tf" \) -exec grep -l $'\r' {} \; 2>/dev/null | grep .; then
             echo "❌ Files with CRLF line endings found!"
             exit 1
           else
@@ -237,7 +217,7 @@ Before committing:
 - [ ] Git configured with `core.autocrlf=false`
 - [ ] Git configured with `core.eol=lf`
 - [ ] Editor configured for Unix line endings
-- [ ] Pre-commit hook installed and working
+- [ ] Git hooks installed and working (`make hooks-check`)
 - [ ] Files validated with `file` command
 
 ---

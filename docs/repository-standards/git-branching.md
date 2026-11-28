@@ -44,7 +44,7 @@ Guidance:
   - `test` -> `type/test`
   - `security` -> `type/security`
 
-- `scope` SHOULD reflect the impacted area (for example: `ci`, `docs`, `docker`, `python`, `security`, `network`, `traefik`).
+- `scope` SHOULD reflect the impacted area (for example: `ci`, `docs`, `docker`, `dotnet`, `security`, `network`, `traefik`).
 
 Examples:
 
@@ -58,11 +58,7 @@ Use the repo templates when creating issues and pull requests:
 - Issues (work-package + incident-rca): [../../.github/ISSUE_TEMPLATE/work-package.yml](../../.github/ISSUE_TEMPLATE/work-package.yml)
 - Pull requests: [../../.github/pull_request_template.md](../../.github/pull_request_template.md)
 
-PR issue links (`Closes #...` / `Relates to #...`) can be kept deterministic with:
-
-```bash
-python -m scripts.github.pr_sync_issue_links --close 123
-```
+PR issue links (`Closes #...` / `Relates to #...`) go in the template's **Linked issues** section.
 
 ## When to create a branch
 
