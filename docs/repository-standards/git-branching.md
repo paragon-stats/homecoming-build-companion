@@ -79,8 +79,10 @@ tag, pushes a signed annotated tag on the merge commit when one is due, and crea
 GitHub Release. Nothing is committed back.
 
 When that run cut a release, the workflow's `sbom` job attaches `coh-engine.cdx.json` to it: a CycloneDX SBOM of the CLI's
-packages with their exact resolved versions, indirect ones included. Packages that ship have scope `required`; analyzers and
-build-only packages are listed with scope `excluded`. Every CI restore is locked to the committed `packages.lock.json` files.
+NuGet packages with their exact resolved versions, indirect ones included. Scope `required` marks the packages the program
+references; scope `excluded` marks build-time packages: the analyzers, MinVer, and the AOT compiler and linker packages.
+The .NET runtime linked into the executable comes from the SDK `global.json` names and appears in the file only as those
+excluded compiler packages. Every CI restore is locked to the committed `packages.lock.json` files.
 
 REQUIRE:
 
