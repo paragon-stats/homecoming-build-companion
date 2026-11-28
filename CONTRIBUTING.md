@@ -16,6 +16,7 @@ dotnet test
 ```
 
 CI runs the same checks plus the coverage gate.
+Each project restores from its committed `packages.lock.json`, and CI restores in locked mode, so a package change commits the lock files `dotnet restore` rewrites with it.
 Every project in the solution, tests included, builds with `SonarAnalyzer.CSharp` and the SonarQube Cloud profile's rules as errors (listed in `.editorconfig`).
 A Sonar finding therefore fails the local build before it reaches the server.
 

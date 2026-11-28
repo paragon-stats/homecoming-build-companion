@@ -78,6 +78,10 @@ through `paragon-stats/github-actions/release`: it reads the commits since the l
 tag, pushes a signed annotated tag on the merge commit when one is due, and creates the
 GitHub Release. Nothing is committed back.
 
+When that run cut a release, the workflow's `sbom` job attaches `coh-engine.cdx.json` to it: a CycloneDX SBOM of the CLI's
+packages with their exact resolved versions, indirect ones included. Packages that ship have scope `required`; analyzers and
+build-only packages are listed with scope `excluded`. Every CI restore is locked to the committed `packages.lock.json` files.
+
 REQUIRE:
 
 - Tags apply to `main` only, after the merge.
