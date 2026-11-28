@@ -64,6 +64,8 @@ Nothing links to it and nothing it produces ships.
 
 ## SDK pin
 
-`global.json` pins SDK 10.0.400 with `latestPatch`.
+`global.json` pins SDK 10.0.404 exactly (`rollForward: disable`).
+The SDK adds the AOT compiler and linker packages at the runtime version it bundles, and the CLI's lock file records them.
+A newer SDK patch would therefore fail every locked restore with NU1004.
 The 10.0.3xx band resolves Microsoft.DotNet.ILCompiler 10.0.11, which carries GHSA-p3jp-9v83-76w9 (NU1903, fixed in 10.0.14) and fails restore under TreatWarningsAsErrors.
-The 10.0.4xx band resolves a patched ILCompiler.
+The 10.0.4xx band resolves a patched ILCompiler (10.0.15 with SDK 10.0.404).

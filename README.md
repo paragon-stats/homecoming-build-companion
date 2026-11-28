@@ -8,7 +8,8 @@ The binding rules for builds, naming and the engine are the guides in [docs/styl
 
 ## Getting started - build from source
 
-The engine is built from source with the .NET SDK pinned in [global.json](global.json) (10.0.400; later patch releases are accepted).
+The engine is built from source with .NET SDK 10.0.404 exactly, as [global.json](global.json) pins it (`rollForward: disable`).
+With any other SDK, `dotnet` stops before running anything with "Requested SDK version: 10.0.404" and the SDK to install.
 The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
 
 ```bash

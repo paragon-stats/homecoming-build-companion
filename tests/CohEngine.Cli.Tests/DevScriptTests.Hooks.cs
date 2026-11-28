@@ -178,9 +178,9 @@ public sealed partial class DevScriptTests
 
         (int exit, string output) = DevScripts.Run(tree.Root, "dotnet", "--version");
 
-        // latestPatch keeps the feature band: 10.0.400 allows 10.0.4xx and nothing newer, as the hooks get from the checkout.
+        // rollForward is disable: the pinned SDK exactly, as the hooks and CI get from the checkout, or nothing runs.
         Assert.True(exit == 0, output);
-        Assert.StartsWith(pinned[..(pinned.LastIndexOf('.') + 2)], output.Trim(), StringComparison.Ordinal);
+        Assert.Equal(pinned, output.Trim());
         Assert.True(File.Exists(tree.FullPath("global.json")), "the scratch tree has no global.json, so dotnet picks the newest SDK");
     }
 

@@ -2,7 +2,8 @@
 
 ## Setup
 
-Requires the .NET 10 SDK on Windows x64, the only platform CI verifies, Node.js (the pre-commit markdownlint check runs through `npx`) and, for the pre-push Super-Linter run, Docker.
+Requires .NET SDK 10.0.404 exactly (pinned in `global.json`) on Windows x64, the only platform CI verifies.
+It also needs Node.js (the pre-commit markdownlint check runs through `npx`) and, for the pre-push Super-Linter run, Docker.
 Signed commits are required.
 Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks, and fails until commit signing is set up.
 The `commit-msg` hook runs through the bash that Git for Windows ships.
@@ -17,6 +18,9 @@ dotnet test
 
 CI runs the same checks plus the coverage gate.
 Each project restores from its committed `packages.lock.json`, and CI restores in locked mode, so a package change commits the lock files `dotnet restore` rewrites with it.
+An SDK bump in `global.json` and the CLI's lock file change in the same commit, because the SDK supplies the AOT compiler packages that lock file records.
+Regenerate it under the new SDK with `dotnet restore --force-evaluate src/CohEngine.Cli`.
+On macOS, Linux on ARM or Windows on ARM, an ordinary restore adds that machine's runtime to the CLI's lock file and leaves it modified; do not commit that change.
 Every project in the solution, tests included, builds with `SonarAnalyzer.CSharp` and the SonarQube Cloud profile's rules as errors (listed in `.editorconfig`).
 A Sonar finding therefore fails the local build before it reaches the server.
 
