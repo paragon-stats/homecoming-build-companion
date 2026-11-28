@@ -50,7 +50,7 @@ body:
     attributes:
       label: Affected services/paths
       description: List impacted services, folders, and key files
-      placeholder: "- scripts/github/pr_upsert.py\n- .github/ISSUE_TEMPLATE/work-package.yml"
+      placeholder: "- src/CohEngine.Core/Registry/LegalityRunner.cs\n- .github/ISSUE_TEMPLATE/work-package.yml"
     validations:
       required: true
 

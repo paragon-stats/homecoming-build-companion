@@ -32,3 +32,4 @@ The test rewrites only the `tests\fixtures\mids\builds\` prefix (and its JSON-es
 
 Do not regenerate these files to make a test pass.
 A difference is a divergence between the two ports.
+After a deliberate change to the C# output, regenerate the captures from the C# CLI (`dotnet run --project src/CohEngine.Cli -- chain ...`) and review the diff.

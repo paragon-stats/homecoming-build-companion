@@ -53,7 +53,7 @@
 # Areas — Purple (#6f42c1)
 - name: "area::engine"
   color: "6f42c1"
-  description: "src/coh_engine — build math, registries, build-file I/O"
+  description: "src/CohEngine.Core — build math, registries, build-file I/O"
 - name: "area::data"
   color: "6f42c1"
   description: "data/canonical and data/diff — harvested game data"
