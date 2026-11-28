@@ -24,6 +24,10 @@ jobs:
     permissions:
       # The tag push and the GitHub Release need write access on this job only.
       contents: write
+    # The release action's own outputs: released is "true" only when this run cut a new tag.
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+      tag: ${{ steps.release.outputs.tag }}
     steps:
       # The one checkout in this repository that keeps its credentials: the
       # release action pushes the signed tag over git with them. Every other
@@ -58,3 +62,40 @@ jobs:
           else
             echo "no release-triggering commit since $TAG; nothing cut"
           fi
+
+  # The SBOM of the packages coh-engine ships, attached to the release this run cut. A run that cut nothing skips the
+  # job, which leaves the run green. Windows, as in the build job, so the SBOM comes from the same locked restore.
+  sbom:
+    name: Attach the SBOM to the release
+    needs: release
+    if: needs.release.outputs.released == 'true'
+    runs-on: windows-latest
+    timeout-minutes: 15
+    permissions:
+      # gh release upload adds an asset to the release.
+      contents: write
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+          ref: ${{ needs.release.outputs.tag }}
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73  # v6.1.0
+        with:
+          global-json-file: global.json
+      - run: dotnet tool restore
+      - name: Attach the SBOM to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release.outputs.tag }}
+        run: |
+          $version = $env:TAG -replace '^v', ''
+          dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj --output-format Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $shipped = @((Get-Content (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') -Raw | ConvertFrom-Json).components | Where-Object scope -eq 'required')
+          if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol')) { Write-Error "The SBOM lists $($shipped.Count) shipped packages and not ModelContextProtocol."; exit 1 }
+          gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

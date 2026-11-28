@@ -125,6 +125,16 @@ jobs:
             Write-Error "Coverage $cov% is below the $min% gate."
             exit 1
           }
+      # The SBOM each release carries (release.yml), generated here so its command is proven on every pull request
+      # and not first at release time. Packages the CLI ships are scope "required"; analyzers and build tools "excluded".
+      - name: Generate the SBOM
+        run: |
+          $version = '0.0.0'
+          dotnet tool run dotnet-CycloneDX src/CohEngine.Cli/CohEngine.Cli.csproj --output-format Json --output $env:RUNNER_TEMP --filename coh-engine.cdx.json --set-name coh-engine --set-version $version
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $shipped = @((Get-Content (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') -Raw | ConvertFrom-Json).components | Where-Object scope -eq 'required')
+          if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol')) { Write-Error "The SBOM lists $($shipped.Count) shipped packages and not ModelContextProtocol."; exit 1 }
+          Write-Host "The SBOM lists $($shipped.Count) shipped packages."
 
   # The only check that exercises what users download: every test above runs
   # in-process, so Native AOT trimming failures are invisible to them. Gated
