@@ -1,8 +1,10 @@
 using System.Globalization;
 
+using CohEngine.Core.BuildFile;
 using CohEngine.Core.Data;
 using CohEngine.Core.Diagnostics;
 using CohEngine.Core.Registry;
+using CohEngine.TestSupport;
 
 namespace CohEngine.Core.Tests.Registry;
 
@@ -11,6 +13,11 @@ public sealed class HardLimitTests
     private const int MaxSlots = 67;
 
     private static LevelSchedule Schedule => Fixtures.Store.Levels;
+
+    public static TheoryData<string> SampleBuilds()
+    {
+        return [.. BuildFileFixtures.SampleMbd().Select(BuildFileFixtures.SamplePath)];
+    }
 
     private static Power Pick(
         int buildIndex,
@@ -57,13 +64,14 @@ public sealed class HardLimitTests
     }
 
     [Fact]
-    public void The_registry_lists_the_fourteen_rules_without_duplicates()
+    public void The_registry_lists_the_fifteen_rules_without_duplicates()
     {
         string[] names = [.. RuleRegistry.HardLimits.Select(rule => rule.Id)];
 
-        Assert.Equal(14, names.Distinct(StringComparer.Ordinal).Count());
+        Assert.Equal(15, names.Distinct(StringComparer.Ordinal).Count());
         Assert.Contains("_rule_mbd_level_text", names, StringComparer.Ordinal);
         Assert.Contains("_rule_pool_count", names, StringComparer.Ordinal);
+        Assert.Contains("_rule_level_one_pick_order", names, StringComparer.Ordinal);
     }
 
     [Fact]
@@ -205,6 +213,75 @@ public sealed class HardLimitTests
         Power[] powers = [.. Schedule.PowerPickLevels.Select((level, index) => Pick(index, string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"), pickLevel: level))];
 
         Assert.DoesNotContain("H-POWER-003", Ids(Check(powers)));
+    }
+
+    private static MbdFormat PowerSetsFormat(string primary, string secondary)
+    {
+        return new MbdFormat([primary, secondary, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty], "49", new Dictionary<int, (int Min, int Max)>());
+    }
+
+    private static Diagnostic[] LevelOneOrder(MbdFormat? format, params string[] levelOnePicks)
+    {
+        return LevelOneOrder([.. levelOnePicks.Select((name, index) => Pick(index, name))], format);
+    }
+
+    private static Diagnostic[] LevelOneOrder(IReadOnlyList<Power> powers, MbdFormat? format)
+    {
+        return [.. Check(powers, slots: null, format).Where(diagnostic => string.Equals(diagnostic.RuleId, "H-POWER-006", StringComparison.Ordinal))];
+    }
+
+    [Fact]
+    public void A_level_one_secondary_pick_before_the_primary_is_h_power_006_naming_both()
+    {
+        MbdFormat format = PowerSetsFormat("Blaster_Ranged.Fire_Blast", "Blaster_Support.Fire_Manipulation");
+
+        Diagnostic found = Assert.Single(LevelOneOrder(format, "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+
+        Assert.Equal(
+            ("'Blaster_Support.Fire_Manipulation.Ring_of_Fire', the secondary pick, comes before 'Blaster_Ranged.Fire_Blast.Flares', the primary pick, at level 1; "
+                + "the level-up view offers the primary pick first",
+            "swap 'Blaster_Support.Fire_Manipulation.Ring_of_Fire' and 'Blaster_Ranged.Fire_Blast.Flares' so the primary pick comes first", "error"),
+            (found.Message, found.Fix, found.Severity));
+    }
+
+    [Fact]
+    public void Level_one_picks_with_the_primary_first_are_legal()
+    {
+        MbdFormat format = PowerSetsFormat("Blaster_Ranged.Fire_Blast", "Blaster_Support.Fire_Manipulation");
+
+        Assert.Empty(LevelOneOrder(format, "Blaster_Ranged.Fire_Blast.Flares", "Blaster_Support.Fire_Manipulation.Ring_of_Fire"));
+    }
+
+    [Fact]
+    public void The_level_one_order_is_not_checked_without_the_power_sets()
+    {
+        Assert.Empty(LevelOneOrder(format: null, "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+        Assert.Empty(LevelOneOrder(Format(1), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+    }
+
+    [Fact]
+    public void An_arachnos_soldiers_base_sets_are_its_primary_and_secondary_at_level_one()
+    {
+        // A Bane Spider build lists the branch sets; the level 1 picks come from the base sets, which share their categories.
+        MbdFormat format = PowerSetsFormat("Arachnos_Soldiers.Bane_Spider_Soldier", "Training_Gadgets.Bane_Spider_Training");
+        const string Armor = "Training_Gadgets.Training_and_Gadgets.Wolf_Spider_Armor";
+        const string Shot = "Arachnos_Soldiers.Arachnos_Soldier.Single_Shot";
+
+        Assert.Contains(Armor, Assert.Single(LevelOneOrder(format, Armor, Shot)).Fix, StringComparison.Ordinal);
+        Assert.Empty(LevelOneOrder(format, Shot, Armor));
+    }
+
+    [Theory]
+    [MemberData(nameof(SampleBuilds))]
+    public void Every_committed_sample_build_passes_the_level_one_pick_order(string sample)
+    {
+        MbdBuild build = Mbd.LoadMbd(BuildFileFixtures.Sample(sample));
+        MbdBuild swapped = build with { PowerEntries = [build.PowerEntries[1], build.PowerEntries[0], .. build.PowerEntries.Skip(2)] };
+        MbdFormat format = new(build.PowerSets, "49", new Dictionary<int, (int Min, int Max)>());
+
+        // The swapped copy shows the rule reads this sample's level 1 picks, so the pass is not vacuous.
+        Assert.Empty(LevelOneOrder(Mbd.PowersFromBuild(build, BuildFileFixtures.Database), format));
+        Assert.Single(LevelOneOrder(Mbd.PowersFromBuild(swapped, BuildFileFixtures.Database), format));
     }
 
     [Fact]

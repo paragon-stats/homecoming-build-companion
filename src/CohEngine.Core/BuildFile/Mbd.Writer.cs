@@ -136,7 +136,7 @@ public static partial class Mbd
         ArgumentNullException.ThrowIfNull(spec);
         ArgumentNullException.ThrowIfNull(schedule);
         ArgumentNullException.ThrowIfNull(database);
-        List<PickSpec> picks = OrderedPicks(spec.Picks, schedule);
+        List<PickSpec> picks = OrderedPicks(spec.Picks, Category(spec.PowerSets.Count > 0 ? spec.PowerSets[0] : string.Empty), schedule);
         List<PickSpec> powers = [.. picks, .. spec.Inherents, .. OmittedInherents(spec, database)];
         Dictionary<int, List<int>> placed = PlaceSlots(powers, schedule);
         List<MbdPowerEntryDoc> entries = [.. powers.Select((pick, index) => Entry(pick, placed.GetValueOrDefault(index, []), database))];
@@ -150,7 +150,7 @@ public static partial class Mbd
             Alignment = spec.Alignment,
             Name = spec.Name,
             Comment = spec.Comment,
-            PowerSets = spec.PowerSets,
+            PowerSets = PoolsInPickOrder(spec.PowerSets, picks),
             LastPower = picks.Count,
             PowerEntries = entries,
         };
@@ -197,7 +197,20 @@ public static partial class Mbd
         }
     }
 
-    private static List<PickSpec> OrderedPicks(IReadOnlyList<PickSpec> picks, LevelSchedule schedule)
+    // A power set's category, the first segment of its name, which an epic archetype's base and branch sets share.
+    private static string Category(string name)
+    {
+        return name.Split('.')[0];
+    }
+
+    // The four pool entries, PowerSets[3] to [6], in the order the picks first draw on them; a pool never picked keeps its place after them.
+    private static List<string> PoolsInPickOrder(IReadOnlyList<string> powerSets, List<PickSpec> picks)
+    {
+        int FirstPick(string pool) => picks.FindIndex(pick => pick.Power.StartsWith(pool + ".", StringComparison.Ordinal)) is int index and >= 0 ? index : int.MaxValue;
+        return [.. powerSets.Take(3), .. powerSets.Skip(3).Take(4).OrderBy(FirstPick), .. powerSets.Skip(7)];
+    }
+
+    private static List<PickSpec> OrderedPicks(IReadOnlyList<PickSpec> picks, string primaryCategory, LevelSchedule schedule)
     {
         IReadOnlyList<int> order = schedule.PowerPickLevels;
         if (picks.Count > order.Count)
@@ -205,7 +218,8 @@ public static partial class Mbd
             throw new InvalidDataException($"E46: {picks.Count} picks; the schedule grants {order.Count}");
         }
 
-        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level)];
+        // The level-up view's order: by level, and at level 1 the primary pick before the secondary.
+        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level).ThenBy(pick => !string.Equals(Category(pick.Power), primaryCategory, StringComparison.Ordinal))];
         for (int position = 0; position < ordered.Count; position++)
         {
             int granted = order[position] + 1;

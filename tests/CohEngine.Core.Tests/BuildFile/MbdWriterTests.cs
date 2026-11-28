@@ -74,6 +74,22 @@ public sealed class MbdWriterTests
     }
 
     [Fact]
+    public void The_primary_pick_is_written_first_at_level_1_and_the_pools_in_first_pick_order()
+    {
+        PickSpec primary = TankerSpec.Pick("Tanker_Defense.Willpower.High_Pain_Tolerance", 1, ["Crafted_Accuracy"]);
+        List<PickSpec> picks = Full(added: null, (1, primary), (2, TankerSpec.Pick("Pool.Leaping.Combat_Jumping", 2, ["Crafted_Accuracy"])), (3, TankerSpec.Pick("Pool.Speed.Hasten", 4, ["Crafted_Accuracy"])));
+        BuildSpec spec = Spec(picks) with
+        {
+            PowerSets = ["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Flight", "Pool.Speed", "Pool.Leaping", string.Empty, string.Empty],
+        };
+
+        MbdBuild build = Written(spec);
+
+        Assert.Equal([primary.Power, picks[0].Power], build.PowerEntries.Take(2).Select(entry => entry.PowerName), StringComparer.Ordinal);
+        Assert.Equal(["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Leaping", "Pool.Speed", "Pool.Flight", string.Empty, string.Empty], build.PowerSets, StringComparer.Ordinal);
+    }
+
+    [Fact]
     public void A_spec_with_a_plus_five_recharge_io_writes_plus_five()
     {
         PickSpec boosted = TankerSpec.Pick("Tanker_Melee.Super_Strength.Taunt", 47, ["Crafted_Recharge", "Crafted_Recharge"]) with { RelativeLevels = ["PlusFive", null] };
