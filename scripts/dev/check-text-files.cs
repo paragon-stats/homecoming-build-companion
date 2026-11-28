@@ -9,8 +9,8 @@
 // deletions, so a listed path that is not a file means the list did not survive the trip.
 //
 // Checks: trailing whitespace, final newline, extra blank lines at the end and line endings as .editorconfig
-// sets them, JSON syntax (every .json file, filter or not), files over 15 MB, and markdownlint (through npx,
-// with the config Super-Linter reads). Apart from JSON syntax and size, files the CI Super-Linter job
+// sets them, JSON and TOML syntax (every .json and .toml file, filter or not; TOML through Tomlyn), files over
+// 15 MB, and markdownlint (through npx, with the config Super-Linter reads). Apart from JSON and TOML syntax and size, files the CI Super-Linter job
 // excludes are skipped: the pattern is read from FILTER_REGEX_EXCLUDE in .github/workflows/super-linter.yml,
 // so there is no second list. A .patch file is skipped because the whitespace in a unified diff is content.
 // YAML syntax is left to the pre-push Super-Linter run.
@@ -20,6 +20,7 @@
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
 #:property RunAnalyzers=false
+#:package Tomlyn
 #:include staged-files.cs
 
 using System.Diagnostics;
@@ -121,6 +122,11 @@ foreach (string file in files)
         CheckJson(path, text);
     }
 
+    if (path.EndsWith(".toml", StringComparison.Ordinal))
+    {
+        CheckToml(path, text);
+    }
+
     // Super-Linter sees absolute paths, so test the pattern against a rooted one.
     if (excluded.IsMatch("/" + path) || path.EndsWith(".patch", StringComparison.Ordinal))
     {
@@ -174,6 +180,15 @@ void CheckJson(string path, string text)
     catch (JsonException exception)
     {
         findings.Add($"{path}:{(exception.LineNumber ?? 0) + 1}:1: error: H-TEXT-004: invalid JSON: {exception.Message}");
+    }
+}
+
+void CheckToml(string path, string text)
+{
+    Tomlyn.Syntax.DocumentSyntax document = Tomlyn.Parsing.SyntaxParser.Parse(text, path, validate: true);
+    foreach (Tomlyn.Syntax.DiagnosticMessage message in document.Diagnostics.Where(message => message.Kind == Tomlyn.Syntax.DiagnosticMessageKind.Error))
+    {
+        findings.Add($"{path}:{message.Span.Start.Line + 1}:{message.Span.Start.Column + 1}: error: H-TEXT-014: invalid TOML: {message.Message}");
     }
 }
 

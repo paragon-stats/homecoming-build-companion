@@ -91,8 +91,9 @@ Husky has none of the following, and the hooks do not imitate them:
 - a plain-ASCII failure line: Husky's `Task '<name>' failed in <n>ms` line starts with a non-ASCII cross mark, with or without `--quiet`
 
 The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged (or the files `--files`/`--files-from` name, from the working tree) and checks:
-trailing whitespace, final newline, extra blank lines at the end and line endings as `.editorconfig` sets them; JSON syntax of every staged `.json` file; files over 15 MB; and markdownlint.
-It skips the files the CI Super-Linter job excludes, except for JSON syntax and size.
+trailing whitespace, final newline, extra blank lines at the end and line endings as `.editorconfig` sets them; JSON syntax of every staged `.json` file;
+TOML syntax of every staged `.toml` file (Tomlyn, error `H-TEXT-014`); files over 15 MB; and markdownlint.
+It skips the files the CI Super-Linter job excludes, except for JSON and TOML syntax and size.
 markdownlint reads the file in the working tree, and a Markdown file name with a shell character (`& | ^ % < > " !`) is refused.
 The signing check (`scripts/dev/check-git-signing.cs`) needs `commit.gpgsign=true`, `gpg.format=ssh` and a `user.signingkey` that is a key file or a literal key.
 It also needs either a `gpg.ssh.program` that exists or a successful `ssh-keygen` signature of a scratch file.
@@ -103,7 +104,6 @@ Not run at commit time any more:
   Without Docker the step prints a notice and passes; with Docker installed but not running it fails and says to start Docker.
 
 CI's build job runs the text-file check again on the files the pull request changes (`check-text-files.cs -- --files-from <list>`), so a commit made without the hooks is still checked.
-No check reads TOML syntax: a syntax error in `pyproject.toml` is caught by the release workflow on `main`, not by a pull request check.
 
 `scripts/dev/run-super-linter.cs` reads the image version and `FILTER_REGEX_EXCLUDE` from `.github/workflows/super-linter.yml`, so the workflow is the only exclusion list.
 Run it by hand with `make super-linter`.

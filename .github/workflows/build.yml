@@ -48,7 +48,7 @@ jobs:
         env:
           COH_BANNED_NAMES: ${{ secrets.COH_BANNED_NAMES }}
         run: dotnet run scripts/dev/check-banned-words.cs
-      # Whitespace, line endings, final newline, JSON syntax, markdownlint and the 15 MB limit on the files the change
+      # Whitespace, line endings, final newline, JSON and TOML syntax, markdownlint and the 15 MB limit on the files the change
       # touches. git writes the NUL-separated list straight to a file, deletions left out, so a diff of thousands of paths
       # cannot overflow the command line and no shell re-encodes a path.
       - name: Check the changed text files
