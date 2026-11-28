@@ -103,6 +103,7 @@ Not run at commit time any more:
   Without Docker the step prints a notice and passes; with Docker installed but not running it fails and says to start Docker.
 
 CI's build job runs the text-file check again on the files the pull request changes (`check-text-files.cs -- --files-from <list>`), so a commit made without the hooks is still checked.
+No check reads TOML syntax: a syntax error in `pyproject.toml` is caught by the release workflow on `main`, not by a pull request check.
 
 `scripts/dev/run-super-linter.cs` reads the image version and `FILTER_REGEX_EXCLUDE` from `.github/workflows/super-linter.yml`, so the workflow is the only exclusion list.
 Run it by hand with `make super-linter`.
