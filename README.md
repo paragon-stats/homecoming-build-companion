@@ -6,9 +6,10 @@ The binding rules for builds, naming and the engine are the guides in [docs/styl
 
 ---
 
-## Getting started - bootstrap the dev environment
+## Getting started - build from source
 
-The .NET 10 SDK is required. The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
+The engine is built from source with the .NET SDK pinned in [global.json](global.json) (10.0.400; later patch releases are accepted).
+The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
 
 ```bash
 make bootstrap
@@ -17,14 +18,17 @@ make bootstrap
 `make hooks-check` (`dotnet run scripts/dev/bootstrap.cs -- --verify`) checks the same without changing anything.
 The bootstrap is idempotent. See [CONTRIBUTING.md](CONTRIBUTING.md#git-hooks).
 
-The remaining Python (`scripts/`, `src/coh_engine`) has its own venv until it is removed:
+Build, test and run the command-line tool:
 
 ```bash
-python -m venv .venv
-.venv/bin/python -m pip install -e ".[dev]"   # Windows: .venv\Scripts\python.exe -m pip install -e ".[dev]"
+dotnet build
+dotnet test
+dotnet run --project src/CohEngine.Cli -- --help
 ```
 
-Verify with `make help` — should list `lint`, `fix`, `test`, `cov`, `cov-html`, `validate`.
+`dotnet publish src/CohEngine.Cli -c Release -r win-x64` builds the Native AOT executable.
+It needs the Native AOT prerequisites, the Visual Studio "Desktop development with C++" workload among them.
+`make help` lists the shortcuts.
 
 ---
 

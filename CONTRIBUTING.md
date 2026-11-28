@@ -5,10 +5,8 @@
 Requires the .NET 10 SDK on Windows x64, the only platform CI verifies, Node.js (the pre-commit markdownlint check runs through `npx`) and, for the pre-push Super-Linter run, Docker.
 Signed commits are required.
 Run `make bootstrap` once per clone: it restores the .NET tools, installs the Git hooks, and fails until commit signing is set up.
-The Git hooks need no Python; the `commit-msg` hook runs through the bash that Git for Windows ships.
-A worktree or branch cut before the hook moved to bash runs the Python check through `scripts/dev/hook-python.sh` until it is rebased onto `main`.
-That script stays until the remaining Python is removed.
-The remaining Python tooling is tracked in [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108).
+The `commit-msg` hook runs through the bash that Git for Windows ships.
+The repository holds no Python. The release workflow's organisation action runs python-semantic-release on its own runner and reads its settings from `pyproject.toml`.
 
 ## Build and test
 
@@ -92,7 +90,7 @@ Husky has none of the following, and the hooks do not imitate them:
 - running checks side by side
 - a plain-ASCII failure line: Husky's `Task '<name>' failed in <n>ms` line starts with a non-ASCII cross mark, with or without `--quiet`
 
-The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged and checks:
+The text-file check (`scripts/dev/check-text-files.cs`) reads each staged file as staged (or the files `--files`/`--files-from` name, from the working tree) and checks:
 trailing whitespace, final newline, extra blank lines at the end and line endings as `.editorconfig` sets them; JSON syntax of every staged `.json` file; files over 15 MB; and markdownlint.
 It skips the files the CI Super-Linter job excludes, except for JSON syntax and size.
 markdownlint reads the file in the working tree, and a Markdown file name with a shell character (`& | ^ % < > " !`) is refused.
@@ -101,9 +99,10 @@ It also needs either a `gpg.ssh.program` that exists or a successful `ssh-keygen
 
 Not run at commit time any more:
 
-- **Pre-push, when Docker is installed:** Super-Linter checks YAML syntax, EditorConfig (indentation and the rest), ruff and the other linters CI runs, on the changes against `origin/main`.
+- **Pre-push, when Docker is installed:** Super-Linter checks YAML syntax, EditorConfig (indentation and the rest) and the other linters CI runs, on the changes against `origin/main`.
   Without Docker the step prints a notice and passes; with Docker installed but not running it fails and says to start Docker.
-- **CI only:** mypy, the TOML syntax check and the Python `pre-commit` workflow.
+
+CI's build job runs the text-file check again on the files the pull request changes (`check-text-files.cs -- --files-from <list>`), so a commit made without the hooks is still checked.
 
 `scripts/dev/run-super-linter.cs` reads the image version and `FILTER_REGEX_EXCLUDE` from `.github/workflows/super-linter.yml`, so the workflow is the only exclusion list.
 Run it by hand with `make super-linter`.
