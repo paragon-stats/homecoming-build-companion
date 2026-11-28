@@ -7,6 +7,8 @@ namespace CohEngine.Analyzers.Tests.Ci;
 /// <summary>The repository's GitHub workflow files, read as YAML, and the check contexts their jobs report.</summary>
 internal static partial class Workflows
 {
+    private static readonly string[] ActionFileNames = ["action.yml", "action.yaml"];
+
     public static string RepositoryRoot { get; } = FindRoot();
 
     public static string WorkflowDirectory => Path.Join(RepositoryRoot, ".github", "workflows");
@@ -17,12 +19,70 @@ internal static partial class Workflows
     [GeneratedRegex(@"\$\{\{\s*matrix\.(?<key>[\w-]+)\s*\}\}", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 5000)]
     private static partial Regex MatrixValue { get; }
 
+    // A command word, bare or as a path: python, python3, python3.14, /usr/bin/python3, python.exe, py -3, pip, pip3, pipx, uv.
+    [GeneratedRegex(@"(^|[\s;&|(])(\S*[/\\])?(python[\d.]*(\.exe)?|pip3?|pipx|uv|py\s+-3[\d.]*)(?=\s|$)", RegexOptions.ExplicitCapture | RegexOptions.Multiline, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex PythonCommand { get; }
+
+    [GeneratedRegex(@"^python[\d.]*(\s|$)", RegexOptions.ExplicitCapture, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex PythonShell { get; }
+
+    // A shell comment, from a # that starts a word to the end of the line.
+    [GeneratedRegex(@"(^|\s)#.*$", RegexOptions.ExplicitCapture | RegexOptions.Multiline, matchTimeoutMilliseconds: 5000)]
+    private static partial Regex ShellComment { get; }
+
+    /// <summary>Every workflow file, <c>.yml</c> and <c>.yaml</c>, in name order.</summary>
+    public static IEnumerable<string> WorkflowFiles() =>
+        Directory.EnumerateFiles(WorkflowDirectory).Where(path => path.EndsWith(".yml", StringComparison.Ordinal) || path.EndsWith(".yaml", StringComparison.Ordinal)).Order(StringComparer.Ordinal);
+
+    /// <summary>Every composite action's <c>action.yml</c> or <c>action.yaml</c> under <c>.github/actions</c>.</summary>
+    public static IEnumerable<string> ActionFiles()
+    {
+        string actions = Path.Join(RepositoryRoot, ".github", "actions");
+        return Directory.Exists(actions)
+            ? Directory.EnumerateDirectories(actions).SelectMany(directory => ActionFileNames.Select(name => Path.Join(directory, name))).Where(File.Exists).Order(StringComparer.Ordinal)
+            : [];
+    }
+
     public static YamlMappingNode Load(string path)
     {
-        YamlStream stream = [];
         using StreamReader reader = new(path);
+        return Parse(reader);
+    }
+
+    public static YamlMappingNode Parse(string text)
+    {
+        using StringReader reader = new(text);
+        return Parse(reader);
+    }
+
+    /// <summary>The steps of a workflow or composite action that set up or run Python, by name, else uses, else run.</summary>
+    public static List<string> PythonSteps(YamlMappingNode root)
+    {
+        IEnumerable<(YamlMappingNode Step, string? Shell)> steps = Child(root, "jobs") is null
+            ? Steps((YamlMappingNode)root["runs"]).Select(step => (step, (string?)null))
+            : Jobs(root).SelectMany(job => Steps(job.Value).Select(step => (step, DefaultShell(job.Value) ?? DefaultShell(root))));
+        return [.. steps.Where(item => IsPython(item.Step, item.Shell)).Select(item => Scalar(item.Step, "name") ?? Scalar(item.Step, "uses") ?? Scalar(item.Step, "run")!)];
+    }
+
+    private static YamlMappingNode Parse(TextReader reader)
+    {
+        YamlStream stream = [];
         stream.Load(reader);
         return (YamlMappingNode)stream.Documents[0].RootNode;
+    }
+
+    private static string? DefaultShell(YamlNode node) =>
+        Child(node, "defaults") is { } defaults && Child(defaults, "run") is { } run ? Scalar(run, "shell") : null;
+
+    private static bool IsPython(YamlMappingNode step, string? defaultShell)
+    {
+        string uses = Scalar(step, "uses") ?? string.Empty;
+        string? run = Scalar(step, "run");
+        string shell = Scalar(step, "shell") ?? (run is null ? null : defaultShell) ?? string.Empty;
+        return uses.StartsWith("actions/setup-python@", StringComparison.Ordinal)
+            || uses.StartsWith("astral-sh/setup-uv@", StringComparison.Ordinal)
+            || PythonShell.IsMatch(shell)
+            || PythonCommand.IsMatch(ShellComment.Replace(run ?? string.Empty, string.Empty));
     }
 
     public static YamlMappingNode LoadWorkflow(string fileName) => Load(Path.Join(WorkflowDirectory, fileName));
@@ -77,8 +137,7 @@ internal static partial class Workflows
     public static List<(string Context, string Job)> Contexts(string eventName)
     {
         List<(string Context, string Job)> found = [];
-        IEnumerable<(string Path, YamlMappingNode Workflow)> triggered = Directory.EnumerateFiles(WorkflowDirectory, "*.yml")
-            .Order(StringComparer.Ordinal)
+        IEnumerable<(string Path, YamlMappingNode Workflow)> triggered = WorkflowFiles()
             .Select(path => (path, Load(path)))
             .Where(pair => Events(pair.Item2).Contains(eventName));
         foreach ((string path, YamlMappingNode workflow) in triggered)

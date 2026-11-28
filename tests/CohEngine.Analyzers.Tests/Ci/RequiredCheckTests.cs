@@ -11,9 +11,6 @@ public sealed partial class RequiredCheckTests
     private const string PullRequest = "pull_request";
     private const string MergeGroup = "merge_group";
 
-    [GeneratedRegex(@"(^|[\s;&|(])python3?(\s|$)", RegexOptions.ExplicitCapture | RegexOptions.Multiline, matchTimeoutMilliseconds: 5000)]
-    private static partial Regex PythonCommand { get; }
-
     [GeneratedRegex(@"\bfor\s+\w+\s+in\s+[^;\n]*\$\(", RegexOptions.None, matchTimeoutMilliseconds: 5000)]
     private static partial Regex LoopOverSubstitution { get; }
 
@@ -23,10 +20,10 @@ public sealed partial class RequiredCheckTests
         { MainRuleset, MergeGroup },
     };
 
-    // Every workflow, read from the directory so a new one cannot be missed.
+    // Every workflow and composite action, read from the directories so a new one cannot be missed.
     public static TheoryData<string> FilesWithSteps() =>
     [
-        .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal).Select(path => $".github/workflows/{Path.GetFileName(path)}"),
+        .. Workflows.WorkflowFiles().Concat(Workflows.ActionFiles()).Select(path => Path.GetRelativePath(Workflows.RepositoryRoot, path).Replace('\\', '/')),
     ];
 
     [Theory]
@@ -53,18 +50,7 @@ public sealed partial class RequiredCheckTests
     [MemberData(nameof(FilesWithSteps))]
     public void The_file_runs_no_python(string file)
     {
-        YamlMappingNode root = Workflows.Load(Path.Join(Workflows.RepositoryRoot, file));
-        IEnumerable<YamlMappingNode> steps = Workflows.Child(root, "jobs") is null
-            ? Workflows.Steps((YamlMappingNode)root["runs"])
-            : Workflows.Jobs(root).SelectMany(job => Workflows.Steps(job.Value));
-        List<string> python =
-        [
-            .. steps
-                .Where(step => PythonCommand.IsMatch(Workflows.Scalar(step, "run") ?? string.Empty) || (Workflows.Scalar(step, "uses") ?? string.Empty).StartsWith("actions/setup-python@", StringComparison.Ordinal))
-                .Select(step => Workflows.Scalar(step, "name") ?? Workflows.Scalar(step, "uses") ?? Workflows.Scalar(step, "run")!),
-        ];
-
-        Assert.Empty(python);
+        Assert.Empty(Workflows.PythonSteps(Workflows.Load(Path.Join(Workflows.RepositoryRoot, file))));
     }
 
     [Theory]
@@ -97,7 +83,7 @@ public sealed partial class RequiredCheckTests
     {
         List<string> swallowing =
         [
-            .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal)
+            .. Workflows.WorkflowFiles()
                 .SelectMany(path => Workflows.Jobs(Workflows.Load(path)).SelectMany(job => Workflows.Steps(job.Value).Select(step => (Where: $"{Path.GetFileName(path)} / {job.Key} / {Workflows.Scalar(step, "name")}", Run: Workflows.Scalar(step, "run") ?? string.Empty))))
                 .Where(step => LoopOverSubstitution.IsMatch(step.Run))
                 .Select(step => step.Where),
