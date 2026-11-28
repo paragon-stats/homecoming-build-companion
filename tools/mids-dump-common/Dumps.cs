@@ -25,7 +25,7 @@ private static readonly JsonSerializerOptions JsonOpts = new()
 private static void DumpEnums(string outDir)
     {
         // Name -> ordinal for every enum the engine indexes arrays by (Totals.Def
-        // by eDamage, _selfBuffs.Effect by eEffectType/eStatType, ...). The Python
+        // by eDamage, _selfBuffs.Effect by eEffectType/eStatType, ...). The engine
         // port must never guess these orderings.
         var enums = new Dictionary<string, Dictionary<string, int>>();
         var enumTypes = new[]
@@ -86,7 +86,7 @@ private static void DumpLevels(string outDir)
 
 private static void DumpConfig(string outDir)
     {
-        // The config state the totals were computed under. The Python port pins
+        // The config state the totals were computed under. The engine pins
         // its assumptions (PvE mode, no suppression, level-50 build) to this dump.
         var cfg = MidsContext.Config;
         WriteJson(outDir, "config.json", new
@@ -1085,7 +1085,7 @@ private static void DumpPowerIndex(string outDir)
     private static void DumpBuildPowersEffects(string buildDir, ToonX toon)
     {
         // The build's resolved DB powers with the full magnitude-driving effect
-        // field set. The Python port computes base totals from THESE records; the
+        // field set. The engine computes base totals from THESE records; the
         // enum-valued fields are dumped as names (enums.json maps them to ordinals).
         //
         // Limitation: this dumps the raw master-DB power (db.Power[NIDPower]),
@@ -1192,8 +1192,8 @@ private static void DumpPowerIndex(string outDir)
         WriteJson(buildDir, "powers_effects.json", powers);
     }
 
-    // Shared effect serializer: the full magnitude-driving field set the Python
-    // port's effect model reads. Used for build powers (powers_effects.json) and
+    // Shared effect serializer: the full magnitude-driving field set the engine's
+    // effect model reads. Used for build powers (powers_effects.json) and
     // the referenced set_bonus_powers the virtual power clones effects from.
     private static object SerializeEffect(IEffect fx, int idx)
     {
@@ -1613,7 +1613,7 @@ private static void DumpPowerIndex(string outDir)
         DumpAssemblyPowers(outDir);
 
         // Optional third arg: a directory of .mbd sample builds. Each is loaded
-        // through Mids and re-saved as a .mxd share block, giving the Python port
+        // through Mids and re-saved as a .mxd share block, giving the engine
         // real Mids-produced .mxd fixtures to validate its reader against.
         // Pass "-" to skip.
         if (args.Length >= 3 && args[2] != "-")
@@ -1624,13 +1624,13 @@ private static void DumpPowerIndex(string outDir)
         // Optional fourth arg: a directory of parity-build .mbd files. Each is
         // loaded through Mids, recomputed via GenerateBuffedPowerArray, and dumped
         // as builds/<name>/{powers_effects,totals}.json — the reference fixtures
-        // the Python base-totals math is validated against.
+        // the engine's base-totals math is validated against.
         if (args.Length >= 4)
         {
             var failures = DumpParityBuilds(Path.GetFullPath(args[3]), outDir);
             if (failures > 0)
             {
-                // Fail loudly: a silent OK on a bad re-baseline leaves the Python
+                // Fail loudly: a silent OK on a bad re-baseline leaves the
                 // parity suite validating against stale or missing fixtures.
                 Console.Error.WriteLine($"E14: {failures} parity build(s) failed; dumps are incomplete");
                 return 1;

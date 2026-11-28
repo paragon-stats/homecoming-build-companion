@@ -54,7 +54,7 @@ internal static partial class Program
         foreach (var (name, mbdPath) in byName)
         {
             // Clear any previous run's output first so a failure below can never leave
-            // stale data for the Python side to pick up.
+            // stale data for the parity tests to pick up.
             var variantDir = Path.Combine(outDir, "builds", $"{name}_clicksoff");
             if (Directory.Exists(variantDir))
             {
