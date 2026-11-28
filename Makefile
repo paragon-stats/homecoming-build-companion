@@ -40,7 +40,8 @@ dotnet-format: ## Verify .NET formatting (dotnet format --verify-no-changes)
 
 .PHONY: dotnet-publish
 dotnet-publish: ## Publish the Native AOT win-x64 CLI
-	dotnet publish src/CohEngine.Cli -c Release -r win-x64
+	dotnet restore src/CohEngine.Cli
+	dotnet publish src/CohEngine.Cli -c Release -r win-x64 --no-restore
 
 # ---------------------------------------------------------------------------
 # Help

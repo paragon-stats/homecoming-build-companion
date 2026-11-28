@@ -26,7 +26,8 @@ dotnet test
 dotnet run --project src/CohEngine.Cli -- --help
 ```
 
-`dotnet publish src/CohEngine.Cli -c Release -r win-x64` builds the Native AOT executable.
+`make dotnet-publish` builds the Native AOT executable: `dotnet restore src/CohEngine.Cli`, then `dotnet publish src/CohEngine.Cli -c Release -r win-x64 --no-restore`.
+A publish that restores for itself with `-r` rewrites the CLI's lock file down to that one runtime.
 It needs the Native AOT prerequisites, the Visual Studio "Desktop development with C++" workload among them.
 `make help` lists the shortcuts.
 

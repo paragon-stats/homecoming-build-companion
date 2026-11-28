@@ -31,6 +31,20 @@ public sealed class BuildWorkflowTests
         Assert.Equal("${{ github.event.pull_request.head.sha || github.event.merge_group.head_sha }}", Workflows.Scalar(env, "HEAD_SHA"));
     }
 
+    // A publish that restores for itself with -r keeps one runtime, which the lock file's two do not match in locked mode.
+    [Fact]
+    public void The_binary_job_restores_from_the_lock_file_before_it_publishes()
+    {
+        string[] runs = [.. Workflows.Steps(Job("binary")).Select(step => Workflows.Scalar(step, "run")).OfType<string>()];
+
+        int restore = Array.IndexOf(runs, "dotnet restore src/CohEngine.Cli");
+        int publish = Array.IndexOf(runs, "dotnet publish src/CohEngine.Cli -c Release -r win-x64 --no-restore");
+        Assert.True(restore >= 0 && publish > restore, string.Join(" | ", runs));
+    }
+
+    private static YamlMappingNode Job(string name) =>
+        Workflows.Jobs(Workflows.LoadWorkflow("build.yml")).Single(pair => string.Equals(pair.Key, name, StringComparison.Ordinal)).Value;
+
     private static YamlMappingNode TextStep() =>
         Workflows.Steps(Workflows.Jobs(Workflows.LoadWorkflow("build.yml")).Single(pair => string.Equals(pair.Key, "build", StringComparison.Ordinal)).Value)
             .Single(step => string.Equals(Workflows.Scalar(step, "name"), Step, StringComparison.Ordinal));

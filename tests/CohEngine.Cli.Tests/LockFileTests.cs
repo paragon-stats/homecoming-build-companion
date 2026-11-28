@@ -17,6 +17,16 @@ public sealed partial class LockFileTests
         Assert.Contains("<RestoreLockedMode Condition=\"'$(CI)' == 'true' And '$(FileBasedProgram)' != 'true'\">true</RestoreLockedMode>", build, StringComparison.Ordinal);
     }
 
+    // A Native AOT restore adds the host runtime, so a lock file written on Windows or on Linux must already list both.
+    [Fact]
+    public void The_cli_lock_file_covers_the_published_and_the_host_runtimes()
+    {
+        string lockFile = File.ReadAllText(Path.Join(DevScripts.RepositoryRoot, "src", "CohEngine.Cli", "packages.lock.json"));
+
+        Assert.Contains("\"net10.0/win-x64\": {", lockFile, StringComparison.Ordinal);
+        Assert.Contains("\"net10.0/linux-x64\": {", lockFile, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void Every_project_in_the_solution_has_a_committed_lock_file()
     {
