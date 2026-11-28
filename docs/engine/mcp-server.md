@@ -84,7 +84,7 @@ A dump file of the wrong shape is also `E72`, without the file's path.
 | --- | --- | --- |
 | `rules` | none | `legality`, `hard_limits`, `enhancement_aspects` and `metrics`, each a list of `rule_id` and `summary`, in the order `coh-engine rules` prints them. |
 | `check_legality` | `buildDir`, optional `midsDir` | `exit_code` and `diagnostics`: the enhancement legality rules' findings, in the JSON `validate --format json` prints. |
-| `check_hard_limits` | `buildDir`, optional `midsDir` | The same shape for the hard-limit rules (slots, picks, pools, levels). |
+| `check_hard_limits` | `buildDir`, optional `midsDir` | The same shape for the hard-limit rules (slots, picks, pools, levels); a dump directory has no `PowerSets`, so the level 1 pick order (H-POWER-006) is checked only by `validate` on a `.mbd`. |
 | `check_slotting` | `buildDir`, optional `midsDir` | The same shape for the opt-in slotting rules (over-slotting past Enhancement Diversification, Luck of the Gambler, resistance and survivability uniques, late quality-of-life picks, rarer sets), as `validate --slotting` prints them. |
 | `score` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `class_name` and `metrics`: each registered metric with a `number` or a `flag`. |
 | `totals` | `buildDir`, optional `midsDir`, `attribModPath`, `mathsPath` | `totals` and `totals_capped`. Defense and resistance are percentages per damage type; mez, mez resistance, debuff resistance and elusivity are named by type; `scalars` holds the single-value totals. |

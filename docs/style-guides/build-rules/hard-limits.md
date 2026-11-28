@@ -24,6 +24,19 @@ Track these as continuous constraints during draft, not as at-end checks.
 - Pool tier prerequisites: T1/T2 before T3 before T4 within a pool.
 - 4 power pools per build max.
 
+## Pick order
+
+A build lists its power picks in the order the game's level-up view offers them.
+
+- Each pick sits on the level the schedule grants its position among the 24. (H-POWER-003)
+- At level 1 the primary pick comes before the secondary pick. (H-POWER-006)
+  A power counts as primary or secondary by its category, the first part of its name, which the archetype's `primary_category` and `secondary_category` name.
+  An Arachnos Soldier's or Widow's base sets and its branch sets share those categories,
+  so a level 1 pick from the base sets counts as primary or secondary under a file that lists the branch sets.
+
+The respec view lets a player place picks and slots in any order and does not show the level a slot was gained at; it is not the reference order.
+The check reads the categories from a `.mbd` file's `PowerSets`; a Mids dump directory has none, so `validate` on a dump does not check the level 1 order.
+
 ## Slot rules
 
 A slot placed at level X satisfies all three:
@@ -65,10 +78,11 @@ Run all checks before emitting:
 2. Per-power added slots ≤ 5. (H-SLOT-002)
 3. Power picks = 24 (excluding inherents). (H-POWER-001)
 4. Each power picked at or after its `Level` field. (H-POWER-002)
-5. Each picked powerset is in the AT's allowed list (Primary[], Secondary[], Ancillary[], or universal pools). (author guidance, no registered check)
-6. Pool sets ≤ 4. (H-POOL-001)
-7. Tier prerequisites respected within pool sets. (H-POWER-004, H-POWER-005)
-8. Slot placements ascending and at real grant levels. (H-SLOT-003, H-SLOT-004, H-SLOT-005)
-9. Stat estimates land at or under AT caps. (author guidance, no registered check)
+5. Picks in the level-up view's order: each on its position's schedule level, and the primary before the secondary at level 1. (H-POWER-003, H-POWER-006)
+6. Each picked powerset is in the AT's allowed list (Primary[], Secondary[], Ancillary[], or universal pools). (author guidance, no registered check)
+7. Pool sets ≤ 4. (H-POOL-001)
+8. Tier prerequisites respected within pool sets. (H-POWER-004, H-POWER-005)
+9. Slot placements ascending and at real grant levels. (H-SLOT-003, H-SLOT-004, H-SLOT-005)
+10. Stat estimates land at or under AT caps. (author guidance, no registered check)
 
-A build that passes all 9 is valid. When a draft fails one, surface the failure and propose the closest valid alternative before emitting.
+A build that passes all 10 is valid. When a draft fails one, surface the failure and propose the closest valid alternative before emitting.

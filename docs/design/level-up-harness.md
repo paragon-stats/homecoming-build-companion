@@ -33,7 +33,7 @@ Today a client writes a whole build and has it checked afterwards.
 
 | Piece | Where | What it gives the harness |
 | --- | --- | --- |
-| The level schedule as rules | `RuleRegistry.HardLimitRules`: H-POWER-001 to 003, H-SLOT-001 to 005, H-POOL-001 and 002, prerequisites | What a level offers, already encoded as checks on a finished build |
+| The level schedule as rules | `RuleRegistry.HardLimitRules`: H-POWER-001 to 003 and 006, H-SLOT-001 to 005, H-POOL-001 and 002, prerequisites | What a level offers, already encoded as checks on a finished build |
 | Enhancement legality | `RuleRegistry.LegalityRules`: placement, H-ENH-004 to 007 | Which enhancements a slot accepts |
 | Slotting rules | `RuleRegistry.SlottingRules`: P-ED, P-SET, P-IO, P-POWER | Warnings a client sees as it slots |
 | The build file writer | `src/CohEngine.Core/BuildFile/` | The only thing that writes a `.mbd` |

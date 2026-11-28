@@ -186,7 +186,7 @@ Computes, checked against Mids reference dumps:
 
 - Build totals and AT caps (`base_totals.py`), enhancement values after Enhancement Diversification (`enhancement.py`, `ed.py`).
 - Set bonuses and the Rule of Five (`set_bonuses.py`), incarnates (`incarnate.py`).
-- Legality (`legality.py`, rules H-ENH-001 to 007) and hard limits (`hard_limits.py`, H-SLOT-001 to 005, H-POWER-001 to 005, H-POOL-001 and 002), both registries.
+- Legality (`legality.py`, rules H-ENH-001 to 007) and hard limits (`hard_limits.py`, H-SLOT-001 to 005, H-POWER-001 to 006, H-POOL-001 and 002), both registries.
 - Goal scoring against `strategy/build_profiles.json` (`scoring.py`): positional defense, minimum resistance, perma-Hasten, perma-Domination; cap adherence (P-CAP-001) and endurance (P-END-001).
 - Attack chains, an endurance budget and a classifier that labels each power's delivery, shape and role from canonical data (`attack_chain.py`, `chain_report.py`, `docs/engine/chain-planner.md`).
 - A level-by-level `.mbd` writer (`buildfile/mbd.py`) that already refuses bad input: E46 for a pick off its schedule level, E47 to E49 for slots it cannot place.
