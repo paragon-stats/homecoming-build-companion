@@ -1,13 +1,11 @@
 // filter-sarif.cs - drop results in generated build output from CodeQL SARIF files before upload.
 //
-//   dotnet run scripts/ci/filter-sarif.cs -- <directory>                rewrite every *.sarif in the directory
-//   dotnet run scripts/ci/filter-sarif.cs -- --list-only <directory>    print only, rewrite nothing
+//   dotnet run scripts/ci/filter-sarif.cs -- <directory>    rewrite every *.sarif in the directory
 //   dotnet run scripts/ci/filter-sarif.cs -- --selftest
 //
 // CodeQL ignores paths-ignore for a language analysed with a build, so the C# job writes its SARIF to a
-// directory, runs this script over it and uploads the result. The Python job, which uploads from analyze,
-// uses --list-only to print what remains. Either way, one line per remaining result (rule id, path, start
-// line) is printed.
+// directory, runs this script over it and uploads the result. One line per remaining result (rule id, path,
+// start line) is printed.
 // A result is removed when the path of its primary location has an obj segment (src/Foo/obj/...);
 // Objects.cs and objects/ stay. Rules, artifacts and every other part of the file are left as written.
 // Exit codes: 0 done, 1 no SARIF file in the directory, 2 no directory given.
@@ -29,11 +27,10 @@ return Filter(args, Console.Out, Console.Error);
 
 static int Filter(string[] args, TextWriter output, TextWriter error)
 {
-    bool rewrite = !args.Contains("--list-only");
-    string? directory = args.FirstOrDefault(arg => arg != "--list-only");
+    string? directory = args.FirstOrDefault();
     if (directory is null)
     {
-        error.WriteLine("usage: [--list-only] <directory> | --selftest");
+        error.WriteLine("usage: <directory> | --selftest");
         return 2;
     }
 
@@ -48,9 +45,8 @@ static int Filter(string[] args, TextWriter output, TextWriter error)
 
     foreach (string path in files)
     {
-        (int removed, List<string> remaining) = FilterFile(path, rewrite);
-        string verb = rewrite ? "removed" : "would remove";
-        output.WriteLine($"{Path.GetFileName(path)}: {verb} {removed} generated-file results, {remaining.Count} remain");
+        (int removed, List<string> remaining) = FilterFile(path);
+        output.WriteLine($"{Path.GetFileName(path)}: removed {removed} generated-file results, {remaining.Count} remain");
         foreach (string line in remaining)
         {
             output.WriteLine($"  {line}");
@@ -60,7 +56,7 @@ static int Filter(string[] args, TextWriter output, TextWriter error)
     return 0;
 }
 
-static (int Removed, List<string> Remaining) FilterFile(string path, bool rewrite)
+static (int Removed, List<string> Remaining) FilterFile(string path)
 {
     JsonNode sarif = JsonNode.Parse(File.ReadAllText(path))!;
     int removed = 0;
@@ -84,11 +80,7 @@ static (int Removed, List<string> Remaining) FilterFile(string path, bool rewrit
         run["results"] = kept;
     }
 
-    if (rewrite)
-    {
-        File.WriteAllText(path, sarif.ToJsonString());
-    }
-
+    File.WriteAllText(path, sarif.ToJsonString());
     remaining.Sort(StringComparer.Ordinal);
     return (removed, remaining);
 }
@@ -176,16 +168,6 @@ static int SelfTest()
                 "  no-location :0",
             ]),
             "rewrite: printed lines");
-
-        // --list-only prints without rewriting.
-        string listDir = Directory.CreateDirectory(Path.Join(root, "list")).FullName;
-        string python = Path.Join(listDir, "python.sarif");
-        string original = new JsonObject { ["runs"] = new JsonArray(new JsonObject { ["results"] = new JsonArray(Result("src/A.cs", 2), Result("src/obj/B.cs", 4)) }) }.ToJsonString();
-        File.WriteAllText(python, original);
-        (code, printed) = Capture("--list-only", listDir);
-        Check(code == 0, "list-only: exit 0");
-        Check(File.ReadAllText(python) == original, "list-only: file unchanged");
-        Check(printed.SequenceEqual(["python.sarif: would remove 1 generated-file results, 1 remain", "  cs/x src/A.cs:2"]), "list-only: printed lines");
 
         // A directory without SARIF fails.
         string emptyDir = Directory.CreateDirectory(Path.Join(root, "empty")).FullName;
