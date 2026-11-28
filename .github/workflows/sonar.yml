@@ -51,8 +51,8 @@ jobs:
       # build between begin/end and ingests coverage via vscoveragexml, the same
       # coverage.xml the build workflow's coverage gate reads.
       # The coverage exclusions mirror what that gate leaves out: the
-      # [ExcludeFromCodeCoverage] source-generated JSON contexts, plus the Python
-      # (scripts, src/coh_engine), which has no coverage report in this job.
+      # [ExcludeFromCodeCoverage] source-generated JSON contexts, plus scripts/, whose
+      # file-based apps run outside the solution and have no coverage report in this job.
       - name: SonarScanner begin
         run: >
           dotnet tool run dotnet-sonarscanner begin
@@ -60,15 +60,12 @@ jobs:
           /o:"paragon-stats"
           /d:sonar.host.url="https://sonarcloud.io"
           /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-          /d:sonar.python.version=3.14
           /d:sonar.exclusions="data/**,**/tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
           /d:sonar.cpd.exclusions="data/**,**/tests/fixtures/**,samples/**,knowledge/**,**/obj/**,**/bin/**,tools/mids-dump*/**"
-          /d:sonar.coverage.exclusions="scripts/**,src/coh_engine/**,**/*JsonContext.cs"
-          /d:sonar.issue.ignore.multicriteria=e1,e2
+          /d:sonar.coverage.exclusions="scripts/**,**/*JsonContext.cs"
+          /d:sonar.issue.ignore.multicriteria=e1
           /d:sonar.issue.ignore.multicriteria.e1.ruleKey=csharpsquid:S1244
           /d:sonar.issue.ignore.multicriteria.e1.resourceKey=src/CohEngine.Core/Maths/Exact.cs
-          /d:sonar.issue.ignore.multicriteria.e2.ruleKey=githubactions:S7677
-          /d:sonar.issue.ignore.multicriteria.e2.resourceKey=.github/workflows/pre-commit.yml
           /d:sonar.qualitygate.wait=true
       - run: dotnet build --no-incremental --no-restore
       - name: Test with coverage
