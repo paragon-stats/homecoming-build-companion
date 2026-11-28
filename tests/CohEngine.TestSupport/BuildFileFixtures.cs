@@ -1,3 +1,5 @@
+using System.Text.Json.Nodes;
+
 using CohEngine.Core.BuildFile;
 using CohEngine.Core.Data;
 
@@ -111,6 +113,21 @@ public static class BuildFileFixtures
         return path.StartsWith(Samples, StringComparison.Ordinal)
             ? Path.ChangeExtension(SamplePath(path), extension: null).Replace("/", "__", StringComparison.Ordinal)
             : Path.GetFileNameWithoutExtension(path);
+    }
+
+    /// <summary>Writes a copy of a sample build with its first two power entries swapped, so its level 1 picks come secondary first.</summary>
+    /// <param name="relativePath">The sample's path relative to <c>samples/builds</c>, with forward slashes.</param>
+    /// <param name="directory">The directory the copy is written to.</param>
+    /// <returns>The copy's full path.</returns>
+    public static string SwappedLevelOneCopy(string relativePath, string directory)
+    {
+        JsonNode document = JsonNode.Parse(File.ReadAllText(Sample(relativePath)))!;
+        JsonArray entries = document["PowerEntries"]!.AsArray();
+        (JsonNode first, JsonNode second) = (entries[0]!.DeepClone(), entries[1]!.DeepClone());
+        (entries[0], entries[1]) = (second, first);
+        string path = Path.Join(directory, Path.GetFileName(relativePath));
+        File.WriteAllText(path, document.ToJsonString());
+        return path;
     }
 
     /// <summary>Lists the fixture <c>.mbd</c> builds the writer tests keep.</summary>

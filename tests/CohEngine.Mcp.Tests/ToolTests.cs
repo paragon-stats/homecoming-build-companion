@@ -468,6 +468,27 @@ public sealed class ToolTests
     }
 
     [Fact]
+    public async Task Check_hard_limits_reports_a_mbd_whose_level_1_picks_are_swapped()
+    {
+        await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);
+        string scratch = Directory.CreateTempSubdirectory("coh-mcp-swapped").FullName;
+        try
+        {
+            string swapped = BuildFileFixtures.SwappedLevelOneCopy(Bane, scratch);
+
+            JsonNode result = await harness.CallJsonAsync("check_hard_limits", ("buildDir", swapped), ("midsDir", McpHarness.Store.MidsDirectory)).ConfigureAwait(true);
+
+            JsonNode found = Assert.Single(result["diagnostics"]!.AsArray(), item => string.Equals(item!["rule_id"]!.GetValue<string>(), "H-POWER-006", StringComparison.Ordinal))!;
+            Assert.Equal(1, result["exit_code"]!.GetValue<int>());
+            Assert.StartsWith("swap 'Training_Gadgets.", found["fix"]!.GetValue<string>(), StringComparison.Ordinal);
+        }
+        finally
+        {
+            Directory.Delete(scratch, recursive: true);
+        }
+    }
+
+    [Fact]
     public async Task A_mbd_file_needs_the_shared_directory_named_and_existing()
     {
         await using McpHarness harness = await McpHarness.StartAsync().ConfigureAwait(true);

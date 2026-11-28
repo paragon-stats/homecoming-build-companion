@@ -13,6 +13,7 @@ hard-limit rules (a new limit is a new @hard_limit_rule):
   _rule_power_pick_count
   _rule_first_available_level
   _rule_pick_at_grant_level
+  _rule_level_one_pick_order
   _rule_pool_count
   _rule_prerequisites
   _rule_single_ancillary_pool

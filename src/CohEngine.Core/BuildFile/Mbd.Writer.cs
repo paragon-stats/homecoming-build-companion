@@ -3,6 +3,7 @@ using System.Text;
 
 using CohEngine.Core.Chain;
 using CohEngine.Core.Data;
+using CohEngine.Core.Registry.HardLimitRules;
 
 namespace CohEngine.Core.BuildFile;
 
@@ -127,7 +128,7 @@ public static partial class Mbd
     /// <param name="database">The reference tables.</param>
     /// <returns>The document, checked against <see cref="CheckMbdInvariants"/>.</returns>
     /// <exception cref="InvalidDataException">
-    /// E46 for a pick off its schedule level, E47 for a pinned slot before its power, E48 for a pinned slot off a grant level
+    /// E46 for a pick off its schedule level or a level 1 pair that is not a primary and then a secondary pick, E47 for a pinned slot before its power, E48 for a pinned slot off a grant level
     /// or a short pin list, E49 for added slots the schedule cannot place, E77 for an inherent power the powers table lacks,
     /// E78 for an enhancement the table lacks, E117 for a relative level that is not an <see cref="EnhRelative"/> name, and E73 to E76 from the invariants.
     /// </exception>
@@ -136,7 +137,7 @@ public static partial class Mbd
         ArgumentNullException.ThrowIfNull(spec);
         ArgumentNullException.ThrowIfNull(schedule);
         ArgumentNullException.ThrowIfNull(database);
-        List<PickSpec> picks = OrderedPicks(spec.Picks, schedule);
+        List<PickSpec> picks = OrderedPicks(spec.Picks, PowerGroups.Group(spec.PowerSets.Count > 0 ? spec.PowerSets[0] : string.Empty), schedule);
         List<PickSpec> powers = [.. picks, .. spec.Inherents, .. OmittedInherents(spec, database)];
         Dictionary<int, List<int>> placed = PlaceSlots(powers, schedule);
         List<MbdPowerEntryDoc> entries = [.. powers.Select((pick, index) => Entry(pick, placed.GetValueOrDefault(index, []), database))];
@@ -150,11 +151,12 @@ public static partial class Mbd
             Alignment = spec.Alignment,
             Name = spec.Name,
             Comment = spec.Comment,
-            PowerSets = spec.PowerSets,
+            PowerSets = PoolsInPickOrder(spec.PowerSets, picks),
             LastPower = picks.Count,
             PowerEntries = entries,
         };
         CheckMbdInvariants(document, database);
+        CheckLevelOnePair(picks, spec.PowerSets);
         return document;
     }
 
@@ -197,7 +199,26 @@ public static partial class Mbd
         }
     }
 
-    private static List<PickSpec> OrderedPicks(IReadOnlyList<PickSpec> picks, LevelSchedule schedule)
+    // The four pool entries, PowerSets[3] to [6], in the order the picks first draw on them; a pool never picked keeps its place after them.
+    private static List<string> PoolsInPickOrder(IReadOnlyList<string> powerSets, List<PickSpec> picks)
+    {
+        int FirstPick(string pool) => picks.FindIndex(pick => pick.Power.StartsWith(pool + ".", StringComparison.Ordinal)) is int index and >= 0 ? index : int.MaxValue;
+        return [.. powerSets.Take(3), .. powerSets.Skip(3).Take(4).OrderBy(FirstPick), .. powerSets.Skip(7)];
+    }
+
+    // H-POWER-006's verdict, so the writer never emits a level 1 pair the rule rejects.
+    private static void CheckLevelOnePair(List<PickSpec> picks, IReadOnlyList<string> powerSets)
+    {
+        string[] levelOne = [.. picks.Where(pick => pick.Level == 1).Select(pick => pick.Power)];
+        LevelOnePairVerdict verdict = LevelOnePair.Classify(powerSets, levelOne);
+        if (verdict is not (LevelOnePairVerdict.InOrder or LevelOnePairVerdict.CannotTell))
+        {
+            throw new InvalidDataException(
+                $"E46: the level 1 picks are {levelOne[0]} and {levelOne[1]}; the level-up view offers a primary pick and then a secondary pick at level 1; {LevelOnePair.Action(verdict, powerSets, levelOne)}");
+        }
+    }
+
+    private static List<PickSpec> OrderedPicks(IReadOnlyList<PickSpec> picks, string primaryCategory, LevelSchedule schedule)
     {
         IReadOnlyList<int> order = schedule.PowerPickLevels;
         if (picks.Count > order.Count)
@@ -205,7 +226,8 @@ public static partial class Mbd
             throw new InvalidDataException($"E46: {picks.Count} picks; the schedule grants {order.Count}");
         }
 
-        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level)];
+        // The level-up view's order: by level, and at level 1 the primary pick before the secondary.
+        List<PickSpec> ordered = [.. picks.OrderBy(pick => pick.Level).ThenBy(pick => !string.Equals(PowerGroups.Group(pick.Power), primaryCategory, StringComparison.Ordinal))];
         for (int position = 0; position < ordered.Count; position++)
         {
             int granted = order[position] + 1;

@@ -25,8 +25,16 @@ internal static class PowerGroups
     /// <returns>The group.</returns>
     public static string Group(Power power)
     {
-        int dot = power.FullName.IndexOf('.', StringComparison.Ordinal);
-        return dot < 0 ? power.FullName : power.FullName[..dot];
+        return Group(power.FullName);
+    }
+
+    /// <summary>The first dotted segment of a power or power set name.</summary>
+    /// <param name="fullName">The name.</param>
+    /// <returns>The group.</returns>
+    public static string Group(string fullName)
+    {
+        int dot = fullName.IndexOf('.', StringComparison.Ordinal);
+        return dot < 0 ? fullName : fullName[..dot];
     }
 
     /// <summary>The <c>Group.PowerSet</c> prefix of a power's full name.</summary>

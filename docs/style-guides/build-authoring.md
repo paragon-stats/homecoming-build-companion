@@ -29,6 +29,9 @@ They agree on every power, slot and enhancement.
 - **Respect the hard limits during the draft, not after.** The limits are 50 levels, 24 power picks, 67 added slots, and 6 slots per power (1 inherent plus 5 added).
   Also 4 power pools, pool tier prerequisites, pick and slot levels, Enhancement Diversification, the Rule of Five, and archetype caps.
   Keep a running slot tally and per-power count, and re-budget early. See [hard-limits.md](build-rules/hard-limits.md).
+- **List the picks in the level-up view's order.** Each pick sits on the level the schedule grants it, and the two level 1 picks are a primary pick and then a secondary pick.
+  The respec view's order is not the reference. The `.mbd` writer emits this order itself, and `validate` fails a file that departs from it (H-POWER-003, H-POWER-006).
+  See [hard-limits.md](build-rules/hard-limits.md#pick-order).
 - **Cite canonical data; treat training memory as approximate.** For specific numbers the order is `data/canonical/`, then `data/diff/current_overrides.json`.
   Next come the captures in the source root (see the [source material manifest](../../data/source-material/README.md), lands with #91).
   Last is training memory, labelled "approximate; verify in MidsReborn".
