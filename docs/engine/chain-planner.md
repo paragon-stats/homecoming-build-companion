@@ -9,7 +9,7 @@ Raw damage alone doesn't settle that. Three more things constrain a chain:
 
 The planner is the engine's own model, not a port. MidsReborn's DPS calculator (`frmDPSCalc.cs`) fires one greedy chain.
 It reports damage and endurance per second, but never reads recovery, toggle drain, max endurance or position.
-Run it with `python -m coh_engine chain <build_dump>`. Tracked in #67, #68 and #69.
+Run it with `coh-engine chain <build_dump>`. Tracked in #67, #68 and #69.
 
 ## The endurance budget
 

@@ -3,6 +3,8 @@
 Status: design, not yet started. Measured on 2026-10-27 while the pre-sunset crawl was still writing.
 Every count below is a snapshot; the crawl adds files until it finishes, so re-run the counts then.
 The source material has since moved to a private checkout (#91); paths below read `<source root>/community/` unless noted.
+The engine was Python when this was written: the `.py` modules and `python -m coh_engine` below are that engine, which the C# port under `src/CohEngine.Core/` has replaced.
+The modules the plan proposes (`coh_engine/knowledge.py`, `coh_engine/intent.py`) become C# classes there when the work starts.
 
 The counts came from throwaway measuring scripts that were not kept; Phase 0's tested guide index reproduces them.
 
@@ -55,7 +57,7 @@ That is why Brutes (527 now) and Blasters (328) dwarf every other archetype. Exp
 
 ### 2.2 What kind of document a capture is
 
-The guide gate (`scripts/forum_scrape/guides.py`) keeps opening posts of 500 or more words with enough bold runs, lists and tables.
+The guide gate (the forum-scrape tooling, now in `paragon-stats/homecoming-source-material`) keeps opening posts of 500 or more words with enough bold runs, lists and tables.
 A pasted Mids forum export passes that gate, so in the archetype forums most captures are build-help posts, not guides:
 
 | Archetype folder | Pre-sunset files | With a Mids export | Tagged discussion |
@@ -163,7 +165,7 @@ Regeneration's counts are inflated by the word's ordinary use, so its pairs need
 
 ### 2.7 Patch history in the repo
 
-`data/patches/` (written by `python -m scripts.forum_scrape.patch_notes`, documented in `data/patches/README.md`) holds 350 dated records and 23,292 change lines:
+`data/patches/` (written by `coh-engine patch-notes`, documented in `data/patches/README.md`) holds 350 dated records and 23,292 change lines:
 
 | Source | Records | Lines | Lines with a powerset field |
 | --- | ---: | ---: | ---: |
@@ -383,7 +385,7 @@ Every later stage cites `(file, content_hash)`, so a refreshed capture shows whi
   Powers come from canonical display names, scoped to the subject sets; the #48 resolver keeps NPC copies of player powers out.
 - **Era.** `date_posted` mapped to the live issue by the dated records in `data/patches/`; an Issue marker in the title overrides it.
 - **Power snippets.** Guides with a bold heading per power name are split into per-power snippets, so the model reads a snippet rather than a whole guide.
-- **Pick counts.** Parse each Mids forum export (`find_forum_export` already locates them in `scripts/forum_scrape/scrape.py`) into `(power, pick level, added slots)`.
+- **Pick counts.** Parse each Mids forum export (the forum-scrape tooling in `paragon-stats/homecoming-source-material` already locates them) into `(power, pick level, added slots)`.
   Do the same for the build archive's `.mxd`/`.mbd` files with the engine's parsers (#43 covers the single-line share blocks).
   The archive's `Mids Builds Archives 1905 FX` folder repeats Parts 1 and 2, so builds are folded by content hash before counting: 3,923 distinct builds, not 7,922.
   Count, per (AT, powerset, power), how often it is taken and at what level, by era. If 9 of 10 i25 builds take a power, it is load-bearing, with no model involved.
@@ -657,7 +659,7 @@ The objective follows the order of authority in section 1. Whatever the search r
 ### 7.6 Verification in MidsReborn
 
 1. The writer emits the build level by level (#44) after its gate passes.
-2. The Mids dump harness (`tools/mids-dump`) reloads it and dumps totals; the engine's totals must match within the parity tolerance (`test_mids_parity.py`).
+2. The Mids dump harness (`tools/mids-dump`) reloads it and dumps totals; the engine's totals must match within the parity tolerance (`MidsParityTests`).
 3. `score` runs on the Mids totals as well as the port's: the build "performs" when Mids' own numbers meet the goal targets.
 4. Later, combat logs (#62, #63) confirm claims about real play and can raise or lower a claim's trust.
 

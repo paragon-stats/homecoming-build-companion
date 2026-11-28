@@ -1,7 +1,7 @@
 # mids-dump — MidsReborn reference-dump harness
 
 Test-only C# console harness that loads the MidsReborn Homecoming database **headless**
-(no UI) and dumps JSON reference data the Python engine (`src/coh_engine/`) baselines its
+(no UI) and dumps JSON reference data the engine's parity tests baseline their
 golden fixtures against. Mids is the reference implementation: every numeric claim in the
 port is validated against these dumps, per
 [`docs/engine/mids-port-spec.md`](../../docs/engine/mids-port-spec.md).
@@ -110,12 +110,12 @@ ordinals the power accepts) so the port can map which IO sets are slottable wher
 ## Re-baselining
 
 After any Homecoming DB update in the fork: re-run the dump, refresh
-`tests/fixtures/mids/`, and re-run `pytest src/coh_engine/tests`.
-`test_mids_parity.py` fails loudly if the port and the Mids reference dumps drift.
+`tests/fixtures/mids/`, and re-run `dotnet test`.
+`MidsParityTests` (`tests/CohEngine.Core.Tests/Parity/`) fails loudly if the port and the Mids reference dumps drift.
 
 Float caveat: .NET serializes `float` with shortest-round-trip strings ("0.7"), which
-Python parses as float64. Comparisons must quantize both sides through
-`coh_engine.maths.f32` — see `test_mids_parity.py`.
+the parity tests read as `double`. Comparisons must quantize both sides through
+`F32.Round` (`src/CohEngine.Core/Maths/F32.cs`) — see `tests/CohEngine.Core.Tests/Parity/`.
 
-`bin/`, `obj/`, and `out/` are gitignored; the committed baseline lives in the Python
-test fixtures, not here.
+`bin/`, `obj/`, and `out/` are gitignored; the committed baseline lives in `tests/fixtures/mids/`,
+not here.

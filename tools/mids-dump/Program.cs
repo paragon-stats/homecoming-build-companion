@@ -1,6 +1,6 @@
 // MidsDump — test-only harness that loads the MidsReborn Homecoming database
-// headless (no UI) and dumps the reference data the Python port (src/coh_engine)
-// baselines its golden fixtures against.
+// headless (no UI) and dumps the reference data the engine's parity tests
+// (tests/fixtures/mids) are baselined against.
 //
 // Usage: MidsDump <databases-dir> <output-dir>
 //   <databases-dir>  e.g. <midsreborn-fork>/MidsReborn/Databases/Homecoming

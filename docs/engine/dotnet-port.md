@@ -1,6 +1,6 @@
 # .NET port of the build engine
 
-The C# engine in `CohEngine.slnx` is a port of the Python engine in `src/coh_engine/`.
+The C# engine in `CohEngine.slnx` is a port of the Python engine that lived in `src/coh_engine/` until #108 removed it.
 It is checked against the same Mids reference dumps, value for value.
 This page covers its layout, the single-precision contract, how fixtures are found, how a parity test is written, and which error codes each stage owns.
 
@@ -16,7 +16,7 @@ This page covers its layout, the single-precision contract, how fixtures are fou
 | `tests/CohEngine.TestSupport/` | `FixtureStore` and `BuildFixture`. They are test-only, so they never ship in the CLI. |
 | `tests/CohEngine.Core.Tests/` | `Maths/`, `Data/` (`[Trait("Category", "Fixtures")]`) and `Parity/` (`[Trait("Category", "Parity")]`). |
 | `tests/CohEngine.Cli.Tests/` | CLI tests, including the `rules` golden comparison. |
-| `tests/fixtures/` | The Mids reference dumps (`mids/`), `attribmod/AttribMod.json`, `Maths.mhd`, and `rules-golden.txt`. Both the Python and the C# suites read them. |
+| `tests/fixtures/` | The Mids reference dumps (`mids/`), `attribmod/AttribMod.json`, `Maths.mhd`, and `rules-golden.txt`. The C# suites read them, as the Python suites did. |
 
 Records keep the Python field names in PascalCase (`n_magnitude` becomes `NMagnitude`) and the Python types.
 They are immutable, because the test fixture store shares them across tests.
@@ -36,7 +36,7 @@ It throws `OverflowException` for a finite value that would round past the singl
 On load, a field gets `[JsonConverter(typeof(F32JsonConverter))]` exactly when the Python loader wraps it in `f32()`.
 A list the Python quantizes cell by cell, such as the totals vectors, gets `F32ListJsonConverter`.
 A field the Python loader reads raw, such as the archetype caps or the `enhanced_powers.json` values, stays a plain `double`.
-P2 code quantizes at the same points the Python does, and the Python code is the reference for where those points are.
+P2 code quantizes at the same points the Python does, and the Python code, in the history before #108, is the reference for where those points are.
 
 ## Finding fixtures
 
@@ -56,7 +56,7 @@ A parity class follows `tests/CohEngine.Core.Tests/Parity/ParityScaffoldTests.cs
 4. Compute the actual side with the engine.
 5. Compare every field with `ParityAssert.Equal(expected, actual, path)`, where `path` names the build and the field, for example `"{name}.Totals.Def"`.
 
-`ParityAssert` quantizes only the dumped side with `F32.Round` and compares it to the actual value with `==`, the `f32(want) == got` idiom in `src/coh_engine/tests/test_base_totals_parity.py`.
+`ParityAssert` quantizes only the dumped side with `F32.Round` and compares it to the actual value with `==`, the `f32(want) == got` idiom of the Python suite's `test_base_totals_parity.py`.
 Engine output must therefore already be single precision, and a missing final quantization fails the test.
 `0.0` equals `-0.0`, and NaN equals nothing.
 A failure reports the field path and both values, as does a count mismatch (`ParityAssert.Count`) and a dumped value past the single range.
@@ -155,7 +155,7 @@ The CLI prints such a message as `error: <message>` on stderr and exits 1; a mis
 | E210-E219 | `source-manifest` |
 | E220-E229 | `patch-notes` |
 
-`patch-notes` and `source-manifest` port `scripts/forum_scrape/patch_notes.py` and `manifest.py`.
+`patch-notes` and `source-manifest` are ports of the Python `scripts/forum_scrape/patch_notes.py` and `manifest.py`.
 The Python numbers for the same errors (E01 to E05, E24, E60 to E68) are taken by engine codes, so the ports number them anew.
 
 ## Chain planner
@@ -199,7 +199,7 @@ Pet AI, form-locked auras and incarnate summons stay unmodelled, as in the Pytho
 ## Build files
 
 `src/CohEngine.Core/BuildFile/` reads the two build formats and writes the modern one.
-The Python it ports is `src/coh_engine/buildfile/`.
+The Python it ports was `src/coh_engine/buildfile/`.
 
 | Format | Reader | Notes |
 | --- | --- | --- |

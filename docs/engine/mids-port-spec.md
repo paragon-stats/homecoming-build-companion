@@ -1,7 +1,8 @@
 # MidsReborn Engine Port Spec
 
-> Generated 2026-07-02 from the MidsReborn fork at `<repos>/MidsReborn/MidsReborn` by the `mids-port-spec` extraction workflow (run `wf_04edd3dd-bb9`). Language-neutral SSOT the Python port implements
+> Generated 2026-07-02 from the MidsReborn fork at `<repos>/MidsReborn/MidsReborn` by the `mids-port-spec` extraction workflow (run `wf_04edd3dd-bb9`). Language-neutral SSOT the port implements
 > against. Mids is the reference implementation: every numeric claim is validated against MidsReborn's own output via golden fixtures. Regenerate and re-baseline after any Homecoming DB update.
+> The port was Python when this was generated, so its implementation notes say "Python"; the C# engine under `src/` follows the same spec.
 
 ## Synthesis
 
