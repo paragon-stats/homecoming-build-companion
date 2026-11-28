@@ -33,20 +33,29 @@ public sealed class SbomWorkflowTests
     public void The_sbom_is_attached_only_when_this_run_cut_a_release()
     {
         YamlMappingNode job = Job("sbom");
-        YamlMappingNode step = Step("release.yml", "sbom", "Attach the SBOM to the release");
-        string run = Workflows.Scalar(step, "run")!;
-        YamlNode env = Workflows.Child(step, "env")!;
+        YamlMappingNode generate = Step("release.yml", "sbom", "Generate the SBOM");
+        YamlMappingNode upload = Step("release.yml", "sbom", "Attach the SBOM to the release");
+        string generateRun = Workflows.Scalar(generate, "run")!;
+        string uploadRun = Workflows.Scalar(upload, "run")!;
 
         Assert.Equal("release", Workflows.Scalar(job, "needs"));
         Assert.Equal("needs.release.outputs.released == 'true'", Workflows.Scalar(job, "if"));
         Assert.Equal("write", Workflows.Scalar(Workflows.Child(job, "permissions")!, "contents"));
-        Assert.Equal("${{ needs.release.outputs.tag }}", Workflows.Scalar(env, "TAG"));
-        Assert.Equal("${{ github.token }}", Workflows.Scalar(env, "GH_TOKEN"));
-        Assert.Contains("$version = $env:TAG -replace '^v', ''", run, StringComparison.Ordinal);
-        Assert.Contains(Generate, run, StringComparison.Ordinal);
-        Assert.Contains(ShippedCheck, run, StringComparison.Ordinal);
-        Assert.Contains("gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY", run, StringComparison.Ordinal);
-        Assert.DoesNotContain("${{", run, StringComparison.Ordinal);
+
+        // The generating step restores packages, whose MSBuild files run: it gets the tag and nothing that can write.
+        Assert.Equal("${{ needs.release.outputs.tag }}", Workflows.Scalar(Workflows.Child(generate, "env")!, "TAG"));
+        Assert.Null(Workflows.Scalar(Workflows.Child(generate, "env")!, "GH_TOKEN"));
+        Assert.Contains("$version = $env:TAG -replace '^v', ''", generateRun, StringComparison.Ordinal);
+        Assert.Contains(Generate, generateRun, StringComparison.Ordinal);
+        Assert.Contains(ShippedCheck, generateRun, StringComparison.Ordinal);
+        Assert.DoesNotContain("gh ", generateRun, StringComparison.Ordinal);
+
+        Assert.Equal("${{ github.token }}", Workflows.Scalar(Workflows.Child(upload, "env")!, "GH_TOKEN"));
+        Assert.Equal("${{ needs.release.outputs.tag }}", Workflows.Scalar(Workflows.Child(upload, "env")!, "TAG"));
+        Assert.Equal(
+            "gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY --clobber\nif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }\n",
+            uploadRun);
+        Assert.DoesNotContain("${{", generateRun + uploadRun, StringComparison.Ordinal);
     }
 
     private static YamlMappingNode Job(string name) =>

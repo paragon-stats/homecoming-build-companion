@@ -87,9 +87,9 @@ jobs:
         with:
           global-json-file: global.json
       - run: dotnet tool restore
-      - name: Attach the SBOM to the release
+      # No token here: the tool's restore runs MSBuild files that packages ship.
+      - name: Generate the SBOM
         env:
-          GH_TOKEN: ${{ github.token }}
           TAG: ${{ needs.release.outputs.tag }}
         run: |
           $version = $env:TAG -replace '^v', ''
@@ -97,5 +97,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $shipped = @((Get-Content (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') -Raw | ConvertFrom-Json).components | Where-Object scope -eq 'required')
           if (-not ($shipped | Where-Object name -eq 'ModelContextProtocol')) { Write-Error "SBOM: no ModelContextProtocol among $($shipped.Count) shipped packages."; exit 1 }
-          gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY
+      # The token only here, for the upload; --clobber lets a re-run of the job replace the asset.
+      - name: Attach the SBOM to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.release.outputs.tag }}
+        run: |
+          gh release upload $env:TAG (Join-Path $env:RUNNER_TEMP 'coh-engine.cdx.json') --repo $env:GITHUB_REPOSITORY --clobber
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
