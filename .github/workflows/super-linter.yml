@@ -32,7 +32,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      statuses: write
 
     steps:
       - name: Checkout Code
@@ -67,14 +66,4 @@ jobs:
           # .github/linters/.checkov.yaml (auto-discovered via LINTER_RULES_PATH).
           SAVE_SUPER_LINTER_SUMMARY: true
           ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
-
-      # --- Spoke-specific: report status for ruleset required checks ---
-      - name: Report required status context
-        if: ${{ (github.event_name == 'pull_request' || github.event_name == 'merge_group') && always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Super-Linter / Lint Code Base
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 ...

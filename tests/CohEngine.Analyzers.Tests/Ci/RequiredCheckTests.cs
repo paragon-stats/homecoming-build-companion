@@ -23,11 +23,10 @@ public sealed partial class RequiredCheckTests
         { MainRuleset, MergeGroup },
     };
 
-    // Every workflow, read from the directory so a new one cannot be missed, and the composite action.
+    // Every workflow, read from the directory so a new one cannot be missed.
     public static TheoryData<string> FilesWithSteps() =>
     [
         .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal).Select(path => $".github/workflows/{Path.GetFileName(path)}"),
-        ".github/actions/report-status-context/action.yml",
     ];
 
     [Theory]
@@ -90,20 +89,6 @@ public sealed partial class RequiredCheckTests
     public void An_event_test_it_cannot_read_fails(string condition)
     {
         Assert.Throws<NotSupportedException>(() => Workflows.Admits(condition, PullRequest));
-    }
-
-    [Fact]
-    public void Every_status_step_reports_when_its_job_fails()
-    {
-        List<string> unguarded =
-        [
-            .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal)
-                .SelectMany(path => Workflows.Jobs(Workflows.Load(path)).SelectMany(job => Workflows.StatusSteps(job.Value).Select(step => (Where: $"{Path.GetFileName(path)} / {job.Key}", If: Workflows.Scalar(step, "if") ?? string.Empty))))
-                .Where(step => !step.If.Contains("always()", StringComparison.Ordinal) && !step.If.Contains("!cancelled()", StringComparison.Ordinal))
-                .Select(step => step.Where),
-        ];
-
-        Assert.Empty(unguarded);
     }
 
     // Bash ignores a failed command substitution in a for list: the loop runs zero times and the step passes having checked nothing.

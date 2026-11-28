@@ -7,8 +7,6 @@ namespace CohEngine.Analyzers.Tests.Ci;
 /// <summary>The repository's GitHub workflow files, read as YAML, and the check contexts their jobs report.</summary>
 internal static partial class Workflows
 {
-    private const string StatusAction = "/.github/actions/report-status-context";
-
     public static string RepositoryRoot { get; } = FindRoot();
 
     public static string WorkflowDirectory => Path.Join(RepositoryRoot, ".github", "workflows");
@@ -71,15 +69,10 @@ internal static partial class Workflows
         return named.Count == 0 || named.Contains(eventName, StringComparer.Ordinal);
     }
 
-    /// <summary>The steps of a job that run the report-status-context action.</summary>
-    public static IEnumerable<YamlMappingNode> StatusSteps(YamlMappingNode job) =>
-        Steps(job).Where(step => (Scalar(step, "uses") ?? string.Empty).EndsWith(StatusAction, StringComparison.Ordinal));
-
-    /// <summary>Every context the workflows report on one event, with the job that reports it.</summary>
+    /// <summary>Every check the workflows report on one event, with the job that reports it.</summary>
     /// <remarks>
     /// A job reports its check run under its name whenever its workflow runs, even when its <c>if:</c> skips it,
-    /// and a skipped check satisfies a ruleset. A commit status is reported only when the job and the
-    /// report-status-context step both run.
+    /// and a skipped check satisfies a ruleset.
     /// </remarks>
     public static List<(string Context, string Job)> Contexts(string eventName)
     {
@@ -94,17 +87,9 @@ internal static partial class Workflows
             {
                 string where = $"{Path.GetFileName(path)} / {jobId}";
                 string? name = Scalar(job, "name");
-
-                // The job's condition matters only for the statuses it posts; its own check reports either way.
-                List<YamlMappingNode> reporting = [.. StatusSteps(job).Where(step => Admits(Scalar(step, "if"), eventName))];
-                bool runs = reporting.Count > 0 && Admits(Scalar(job, "if"), eventName);
                 foreach (Dictionary<string, string> combination in Combinations(job))
                 {
                     found.Add((name is null ? DefaultName(jobId, combination) : Expand(name, combination), where));
-                    if (runs)
-                    {
-                        found.AddRange(reporting.Select(step => (Expand(Scalar(Child(step, "with")!, "status-context")!, combination), where)));
-                    }
                 }
             }
         }

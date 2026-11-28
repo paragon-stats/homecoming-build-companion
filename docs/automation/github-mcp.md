@@ -118,6 +118,5 @@ Store it in 1Password at `op://Homelab/mcp-github-local/credential`, matching th
 ## Relationship to the CI-facing helpers
 
 The MCP server replaces the **agent-facing** GitHub helpers. It does not replace the
-**CI-facing** ones: GitHub Actions cannot call an MCP server. The CI-facing helpers are
-the `report-status-context` composite action (bash and `gh`) and `tools/pr-summary.cs`;
-release tags are cut by `paragon-stats/github-actions/release`.
+**CI-facing** ones: GitHub Actions cannot call an MCP server. The CI-facing helper is
+`tools/pr-summary.cs`; release tags are cut by `paragon-stats/github-actions/release`.

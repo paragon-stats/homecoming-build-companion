@@ -55,8 +55,7 @@ Each required check is reported by exactly one job, on `pull_request` and on `me
 | `sonar` | `sonar.yml` / `sonar` |
 
 A job skipped by its `if:` still reports its check as skipped, which satisfies the ruleset, so `commitlint` and `pr-title` need nothing extra in the merge queue.
-The workflows still post the commit statuses the earlier ruleset required (`Super-Linter / Lint Code Base` and the three `Commit Message Lint / ...` contexts).
-No ruleset requires them any more, so the status steps and the `merge-group` job can be removed.
+No workflow posts a commit status: the checks are the jobs' own.
 
 ## Enable secret scanning
 
