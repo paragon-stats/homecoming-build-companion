@@ -46,27 +46,31 @@
         "do_not_enforce_on_create": false,
         "required_status_checks": [
           {
-            "context": "Super-Linter / Lint Code Base",
+            "context": "lint",
             "integration_id": 15368
           },
           {
-            "context": "Commit Message Lint / commitlint",
+            "context": "commitlint",
             "integration_id": 15368
           },
           {
-            "context": "Pre-commit Hooks / Run pre-commit",
+            "context": "pr-title",
             "integration_id": 15368
           },
           {
-            "context": "All Tests Passed",
+            "context": "release-policy",
             "integration_id": 15368
           },
           {
-            "context": "Commit Message Lint / pr-title",
+            "context": "build (windows-latest)",
             "integration_id": 15368
           },
           {
-            "context": "Commit Message Lint / release-policy",
+            "context": "binary",
+            "integration_id": 15368
+          },
+          {
+            "context": "analyze (csharp)",
             "integration_id": 15368
           },
           {

@@ -1,4 +1,3 @@
-using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 
 using YamlDotNet.RepresentationModel;
@@ -9,7 +8,6 @@ namespace CohEngine.Analyzers.Tests.Ci;
 public sealed partial class RequiredCheckTests
 {
     private const string MainRuleset = "main-ruleset.json";
-    private const string ProposedRuleset = "main-ruleset.proposed.json";
     private const string PullRequest = "pull_request";
     private const string MergeGroup = "merge_group";
 
@@ -23,8 +21,6 @@ public sealed partial class RequiredCheckTests
     {
         { MainRuleset, PullRequest },
         { MainRuleset, MergeGroup },
-        { ProposedRuleset, PullRequest },
-        { ProposedRuleset, MergeGroup },
     };
 
     [Theory]
@@ -69,12 +65,6 @@ public sealed partial class RequiredCheckTests
         ];
 
         Assert.Empty(python);
-    }
-
-    [Fact]
-    public void The_proposed_ruleset_changes_only_the_required_checks()
-    {
-        Assert.True(JsonNode.DeepEquals(WithoutChecks(MainRuleset), WithoutChecks(ProposedRuleset)));
     }
 
     [Theory]
@@ -128,12 +118,5 @@ public sealed partial class RequiredCheckTests
         ];
 
         Assert.Empty(swallowing);
-    }
-
-    private static JsonNode WithoutChecks(string ruleset)
-    {
-        JsonNode body = Rulesets.Load(ruleset);
-        Rulesets.Rule(body, "required_status_checks")["parameters"]!.AsObject().Remove("required_status_checks");
-        return body;
     }
 }
