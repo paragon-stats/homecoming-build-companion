@@ -123,6 +123,21 @@ public sealed partial class DevScriptTests
         Assert.DoesNotContain("café.txt:", dirtyOutput, StringComparison.Ordinal);
     }
 
+    // markdownlint takes a path that starts with "-" for an option unless "--" ends the options first.
+    [Fact]
+    public void The_text_check_lints_a_markdown_file_whose_name_starts_with_a_dash()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("-dash.md", "# Title\n\n- one\n* two\n");
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files", "-dash.md");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("-dash.md:4", output, StringComparison.Ordinal);
+        Assert.Contains("MD004", output, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void The_text_check_passes_an_empty_list_and_says_it_checked_nothing()
     {

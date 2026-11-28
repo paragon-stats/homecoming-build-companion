@@ -274,7 +274,8 @@ void RunMarkdownlint(List<string> paths)
         info.ArgumentList.Add("npx");
     }
 
-    foreach (string argument in new[] { "--yes", MarkdownlintPackage, "--config", ".github/linters/.markdownlint.yml" }.Concat(safe))
+    // "--" ends markdownlint's options, so a file name that starts with "-" is read as a file.
+    foreach (string argument in new[] { "--yes", MarkdownlintPackage, "--config", ".github/linters/.markdownlint.yml", "--" }.Concat(safe))
     {
         info.ArgumentList.Add(argument);
     }
