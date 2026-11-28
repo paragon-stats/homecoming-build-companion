@@ -31,7 +31,4 @@ Every change, AI-assisted or hand-written, clears the same review and CI gate. O
 
 ## What differs in this repository
 
-- Python is still present until [#108](https://github.com/paragon-stats/homecoming-build-companion/issues/108) removes it, so the Python and pre-commit conventions in
-  [repository-standards](../repository-standards/style-guides/python-style-guide.md) still apply to that code.
-- `scripts/forum_scrape` stays: it builds the source-material manifest from the private source-material repository.
 - The mechanical naming rules are enforced by `scripts/dev/check-banned-words.cs` (see [naming-and-words.md](naming-and-words.md)).

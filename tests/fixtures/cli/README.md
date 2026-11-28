@@ -32,4 +32,5 @@ Exit codes follow the severity contract: 1 for an error finding, 2 for warnings 
 ## Refreshing
 
 Do not edit these by hand.
-If the Python output changes on purpose, regenerate every file the same way and review the diff.
+The Python engine is gone, so the captures are frozen. After a deliberate change to the C# output, regenerate the files from the C# CLI
+(`dotnet run --project src/CohEngine.Cli -- <the same arguments>`) and review the diff.

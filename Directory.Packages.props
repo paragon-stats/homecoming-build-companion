@@ -19,5 +19,7 @@
     <PackageVersion Include="ModelContextProtocol.Core" Version="2.4.0" />
     <!-- Workflow files, read by the required-check tests. -->
     <PackageVersion Include="YamlDotNet" Version="18.1.0" />
+    <!-- TOML syntax, read by scripts/dev/check-text-files.cs (#:package Tomlyn). -->
+    <PackageVersion Include="Tomlyn" Version="2.11.1" />
   </ItemGroup>
 </Project>

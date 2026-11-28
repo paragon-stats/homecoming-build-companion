@@ -1,7 +1,7 @@
 # Combat log: how the engine reads the client's own record of a fight
 
 The Homecoming client writes a text log of every fight to the player's own disk when the player runs `/chatlog`.
-The engine reads that file as a third source of truth beside the Python port and the MidsReborn reference dumps.
+The engine reads that file as a third source of truth beside its own model and the MidsReborn reference dumps.
 The two existing sources are models. The log holds what the server computed.
 
 Reading the log is the only sanctioned route to this data.

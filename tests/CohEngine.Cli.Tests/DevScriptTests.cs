@@ -101,6 +101,101 @@ public sealed partial class DevScriptTests
         Assert.Contains(expected, output, StringComparison.Ordinal);
     }
 
+    // CI hands the pull request's changed files over as the NUL-separated output of git diff -z, which a diff of thousands of paths
+    // cannot overflow and no quoting or encoding can garble.
+    [Fact]
+    public void The_text_check_reads_a_nul_separated_list_and_counts_what_it_checked()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("my dir/café.txt", "a\n");
+        tree.Write("dirty.txt", "a  \n");
+        tree.Write("changed.list", "my dir/café.txt\0");
+
+        (int cleanExit, string cleanOutput) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.list");
+        tree.Write("changed.list", "my dir/café.txt\0dirty.txt\0");
+        (int dirtyExit, string dirtyOutput) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.list");
+
+        Assert.True(cleanExit == 0, cleanOutput);
+        Assert.Contains("[OK] text files are clean (1 listed file checked).", cleanOutput, StringComparison.Ordinal);
+        Assert.Equal(1, dirtyExit);
+        Assert.Contains("dirty.txt:1:", dirtyOutput, StringComparison.Ordinal);
+        Assert.DoesNotContain("café.txt:", dirtyOutput, StringComparison.Ordinal);
+    }
+
+    // markdownlint takes a path that starts with "-" for an option unless "--" ends the options first.
+    [Fact]
+    public void The_text_check_lints_a_markdown_file_whose_name_starts_with_a_dash()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("-dash.md", "# Title\n\n- one\n* two\n");
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files", "-dash.md");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("-dash.md:4", output, StringComparison.Ordinal);
+        Assert.Contains("MD004", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_text_check_passes_an_empty_list_and_says_it_checked_nothing()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("changed.list", string.Empty);
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.list");
+
+        Assert.True(exit == 0, output);
+        Assert.Contains("[OK] text files are clean (0 listed files checked).", output, StringComparison.Ordinal);
+    }
+
+    // The list leaves deletions out (--diff-filter=d), so a listed path that is not a file means the list and the tree disagree.
+    [Theory]
+    [InlineData("gone.txt\0")]
+    [InlineData("a-dir\0")]
+    public void The_text_check_refuses_a_listed_path_that_is_not_a_file(string list)
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("a-dir/inner.txt", "a\n");
+        tree.Write("changed.list", list);
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.list");
+
+        Assert.Equal(1, exit);
+        Assert.Contains($"{list.TrimEnd('\0')}:1:1: error: H-TEXT-013:", output, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void The_text_check_refuses_a_missing_list()
+    {
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "no-such-list.txt");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("H-TEXT-012", output, StringComparison.Ordinal);
+    }
+
+    // Windows refuses a double quote in a file name; elsewhere git and the list carry it verbatim.
+    [Fact]
+    public void The_text_check_reads_a_listed_path_with_a_double_quote()
+    {
+        Assert.SkipWhen(OperatingSystem.IsWindows(), "Windows does not allow a double quote in a file name.");
+        using TempTree tree = new();
+        DevScripts.SeedRepository(tree);
+        tree.Write("say \"hi\".txt", "a  \n");
+        tree.Write("changed.list", "say \"hi\".txt\0");
+
+        (int exit, string output) = DevScripts.RunScript("check-text-files.cs", tree.Root, "--files-from", "changed.list");
+
+        Assert.Equal(1, exit);
+        Assert.Contains("say \"hi\".txt:1:", output, StringComparison.Ordinal);
+    }
+
     [Fact]
     public void The_text_check_follows_the_editorconfig_for_markdown_whitespace_and_the_tool_manifest()
     {

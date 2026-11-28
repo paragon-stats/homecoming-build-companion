@@ -1,6 +1,6 @@
 // MidsDump — test-only harness that loads the MidsReborn Homecoming database
-// headless (no UI) and dumps the reference data the Python port (src/coh_engine)
-// baselines its golden fixtures against.
+// headless (no UI) and dumps the reference data the engine's parity tests
+// (tests/fixtures/mids) are baselined against.
 //
 // Usage: MidsDump <databases-dir> <output-dir>
 //   <databases-dir>  e.g. <midsreborn-fork>/MidsReborn/Databases/Homecoming
@@ -54,7 +54,7 @@ internal static partial class Program
         foreach (var (name, mbdPath) in byName)
         {
             // Clear any previous run's output first so a failure below can never leave
-            // stale data for the Python side to pick up.
+            // stale data for the parity tests to pick up.
             var variantDir = Path.Combine(outDir, "builds", $"{name}_clicksoff");
             if (Directory.Exists(variantDir))
             {

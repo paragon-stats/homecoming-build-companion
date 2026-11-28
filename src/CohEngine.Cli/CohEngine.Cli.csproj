@@ -5,7 +5,10 @@
     <TargetFramework>net10.0</TargetFramework>
     <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+    <!-- win-x64 is the one published runtime. A Native AOT project also restores for the host runtime, so linux-x64
+      is listed too: without it a restore on Linux (Dependabot, the release job) and one on Windows write
+      different lock files, and locked mode fails on whichever did not write it. -->
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

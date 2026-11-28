@@ -14,7 +14,7 @@ For example, `Training_Gadgets.Training_and_Gadgets.Tactical_Training:_Assault` 
 
 The zip distribution names these files with a literal `:`.
 On NTFS, `name:stream` is an alternate data stream, so extracting them left empty files and the real JSON never reached the repository.
-The exporter now renames them on extraction, and `src/coh_engine/tests/test_canonical_files.py` fails on any zero-byte canonical file.
+The exporter now renames them on extraction, and `CanonicalTreeTests` (`tests/CohEngine.Core.Tests/Chain/`) fails on any zero-byte canonical file.
 
 ## Supplementary powersets
 
@@ -28,7 +28,7 @@ Sidekick's bin-crawler decoded the same client bins this copy was checked agains
 | Sonic Aura | `powers/{brute,scrapper,sentinel,stalker,tanker}_defense/sonic_aura/` | `powers/redirects/sonic_aura/`, `powers/pets/sonic_aura/` |
 
 Each category `index.json`, `all_power_search.json` and `at_power_search.json` list them like any other set.
-`src/coh_engine/tests/test_canonical_files.py` fails if a supplemented set drops out of the player powersets or links to a power with no file.
+`CanonicalTreeTests` fails if a supplemented set drops out of the player powersets or links to a power with no file.
 
 ### What the conversion changed
 

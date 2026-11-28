@@ -18,8 +18,8 @@
     <MidsFork4 Condition="'$(MidsFork4)' == ''">..\..\..\MidsReborn-4.0</MidsFork4>
     <!-- Test-only harness: references the MidsReborn fork checked out as a sibling
       of this repo. The fork's Core namespace holds the authoritative build math;
-      this harness loads the Homecoming DB headless and dumps JSON the Python
-      port's golden fixtures are baselined against. -->
+      this harness loads the Homecoming DB headless and dumps JSON the engine's
+      parity fixtures (tests/fixtures/mids) are baselined against. -->
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);MIDS4</DefineConstants>

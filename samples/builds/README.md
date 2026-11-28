@@ -51,7 +51,7 @@ A build is one `.mbd` or `.mxd`; files beside it that share its name, such as a 
 | Stalker | `community/stalker/general/unknown-fiery-invulnerability.mbd` | Mids archive |
 | Tanker | `characters/account1/laser-quantum/main.mbd` | own character, local capture |
 
-The curated builds are the twelve above, listed by path in `BuildFileFixtures` and `test_sample_builds.py`; each has a Mids dump.
+The curated builds are the twelve above, listed by path in `BuildFileFixtures`; each has a Mids dump.
 Defender, Peacebringer and Warshade have no sample: the archive holds only `.mxd` files for them.
 
 ## What was left out, and why
@@ -62,10 +62,10 @@ Defender, Peacebringer and Warshade have no sample: the archive holds only `.mxd
 
 ## How they are exercised
 
-- `test_mbd.py` parses every `.mbd` under this folder and resolves the Arachnos Soldier build to powers and slots.
-- `test_mbd_writer.py` round-trips every build through `dump_mbd` and the format invariants.
-- `test_sample_builds.py` runs, for each curated build, the round trip, both validator registries, and the unenhanced totals against the archetype caps.
-- `python -m coh_engine validate "<file>.mbd"` validates one file against the committed dump tables.
+- `MbdTests` (`tests/CohEngine.Core.Tests/BuildFile/`) parses every `.mbd` under this folder and resolves the Arachnos Soldier build to powers and slots.
+- `RoundTripTests` round-trips every build through the `.mbd` writer and checks the format invariants.
+- `SampleBuildCapsTests` (`tests/CohEngine.Core.Tests/Totals/`) holds each curated build's capped totals to its archetype caps, and `MbdValidateTests` (`tests/CohEngine.Cli.Tests/`) runs both validator registries on every build that has a CLI capture.
+- `coh-engine validate "<file>.mbd"` (from a source checkout, `dotnet run --project src/CohEngine.Cli -- validate "<file>.mbd"`) validates one file against the committed dump tables.
 
 Each build's reference files, CLI captures and Mids dump are named by its path here without `.mbd`, each `/` written `__`:
 `characters/account1/laser-nuke/main.mbd` has its Mids dump under `tests/fixtures/mids/builds/characters__account1__laser-nuke__main/`.

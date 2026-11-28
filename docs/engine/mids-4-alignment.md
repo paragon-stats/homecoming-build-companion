@@ -20,7 +20,7 @@ The calculation core is rewritten. `clsToonX.cs` is deleted.
 `Toon.GenerateBuffedPowerArray` (`Toon.cs:352-397`) now runs a `PlannerPowerPipeline` whose phases keep the `GBPA_*` pass names (`PlannerPowerPipeline.cs:206-1387`).
 Totals come from `ActorTotalsCalculator.Calculate` (`ActorTotalsCalculator.cs:20`) instead of the `GBD_*` methods.
 The .NET port's classes are mapped onto these phases in [dotnet-port.md § Numeric core](./dotnet-port.md#numeric-core).
-The engine's literal port in `base_totals.py` mirrors 3.x; when 4.0 ships, parity goldens re-baseline against this pipeline.
+The engine's literal port (the totals phases under `src/CohEngine.Core/Totals/`) mirrors 3.x; when 4.0 ships, parity goldens re-baseline against this pipeline.
 
 ## The export is a City of Data v3 raw export
 
@@ -76,7 +76,7 @@ The engine carries equivalents as named constants with these citations, so a div
 - Archetype inherents: a 27-entry catalog keyed by provider, class and power (`Omni/ArchetypeInherentCatalog.cs:66-354`).
   It covers Fury, Containment, Scourge, Defiance, Domination, Gauntlet, Vigilance, Opportunity, Assassination, Critical Hit, Cosmic Balance, Dark Sustenance, Supremacy and Conditioning.
   It rewrites game expressions such as `source>kMeter`, `target>kHeld` and `Mode?(Domination)` into planner controls, because the data has the expressions but not combat state.
-  This is the compatibility reference for `at_modifiers.py`.
+  This is the compatibility reference for `src/CohEngine.Core/Damage/AtModifiers.cs`.
 - Enhancement math fallbacks when the imported tables are absent (`PlannerRulesets/EnhancementMathPolicy.cs:111-116, 362-444`).
   These are Superior ×1.25, the legacy ED curve (0.9, 0.7, 0.15), and the legacy effectiveness of +5% or −10% per level.
 - Mez protection versus mez resistance is a heuristic on the power's description text (`Omni/OmniMidsMapper.cs:1212-1223`). Known, not copied.

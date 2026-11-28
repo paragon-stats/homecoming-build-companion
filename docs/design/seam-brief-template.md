@@ -1,6 +1,7 @@
 # Contract: power assembly, split into four seams
 
 This is the template for splitting an issue across agents by file ownership.
+The example contract is issue #42, written against the Python engine that has since been removed; its file names are that issue's, not current paths.
 Copy it, replace the issue-specific contract, and give each agent only the files its seam owns.
 
 Issue #42. Goal: every one of the 12 sample builds computes totals that match Mids' own `totals.json`,

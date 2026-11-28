@@ -35,14 +35,13 @@ indent_size = 2
 [Makefile]
 indent_style = tab
 
-# Python files - per python-style-guide.md
-# Line length enforced by ruff (line-length = 120 in pyproject.toml)
-[*.py]
-indent_size = 4
-
 # Dependabot NuGet updater rewrites this manifest without a final newline on every
 # tool bump; the producer dictates that byte, so relax the one property here.
 [.config/dotnet-tools.json]
+insert_final_newline = unset
+
+# NuGet writes each lock file without a final newline on every restore that changes it, and so does Dependabot.
+[**/packages.lock.json]
 insert_final_newline = unset
 
 # Xml project and config files

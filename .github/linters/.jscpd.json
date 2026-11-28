@@ -5,11 +5,6 @@
     "**/*.yml",
     "**/*.yaml",
     "**/*.md",
-    "**/.venv/**",
-    "**/.tox/**",
-    "**/.pytest_cache/**",
-    "**/.mypy_cache/**",
-    "**/.ruff_cache/**",
     "**/build/**",
     "**/scripts/**/tests/**",
     "**/src/**/tests/**",
@@ -18,8 +13,8 @@
     "**/data/patches/**",
     "**/data/diff/**",
     "**/samples/**",
-    "**/src/coh_engine/tests/fixtures/**",
-    "**/tests/fixtures/**"
+    "**/tests/fixtures/**",
+    "**/packages.lock.json"
   ],
   "reporters": ["console"],
   "threshold": 3

@@ -112,7 +112,8 @@ if (operatorFilter.Length > 0)
 }
 else if (image == defaultImage)
 {
-    envPairs.Add($@"FILTER_REGEX_EXCLUDE=(^|/)(\.venv|\.tox|\.pytest_cache|\.mypy_cache|\.ruff_cache|htmlcov)/|{filter.Groups[1].Value}");
+    // The venv and caches are what clones made before the Python removal still hold.
+    envPairs.Add($@"FILTER_REGEX_EXCLUDE=(^|/)(\.venv|\.pytest_cache|\.mypy_cache|\.ruff_cache)/|{filter.Groups[1].Value}");
 }
 
 if (image == defaultImage

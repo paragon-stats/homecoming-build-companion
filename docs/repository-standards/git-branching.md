@@ -44,7 +44,7 @@ Guidance:
   - `test` -> `type/test`
   - `security` -> `type/security`
 
-- `scope` SHOULD reflect the impacted area (for example: `ci`, `docs`, `docker`, `python`, `security`, `network`, `traefik`).
+- `scope` SHOULD reflect the impacted area (for example: `ci`, `docs`, `docker`, `dotnet`, `security`, `network`, `traefik`).
 
 Examples:
 
@@ -58,11 +58,7 @@ Use the repo templates when creating issues and pull requests:
 - Issues (work-package + incident-rca): [../../.github/ISSUE_TEMPLATE/work-package.yml](../../.github/ISSUE_TEMPLATE/work-package.yml)
 - Pull requests: [../../.github/pull_request_template.md](../../.github/pull_request_template.md)
 
-PR issue links (`Closes #...` / `Relates to #...`) can be kept deterministic with:
-
-```bash
-python -m scripts.github.pr_sync_issue_links --close 123
-```
+PR issue links (`Closes #...` / `Relates to #...`) go in the template's **Linked issues** section.
 
 ## When to create a branch
 
@@ -81,6 +77,12 @@ On every push to `main`, `.github/workflows/release.yml` runs python-semantic-re
 through `paragon-stats/github-actions/release`: it reads the commits since the last `vX.Y.Z`
 tag, pushes a signed annotated tag on the merge commit when one is due, and creates the
 GitHub Release. Nothing is committed back.
+
+When that run cut a release, the workflow's `sbom` job attaches `coh-engine.cdx.json` to it: a CycloneDX SBOM of the CLI's
+NuGet packages with their exact resolved versions, indirect ones included. Scope `required` marks the packages the program
+references; scope `excluded` marks build-time packages: the analyzers, MinVer, and the AOT compiler and linker packages.
+The .NET runtime linked into the executable comes from the SDK `global.json` names and appears in the file only as those
+excluded compiler packages. Every CI restore is locked to the committed `packages.lock.json` files.
 
 REQUIRE:
 

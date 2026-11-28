@@ -10,6 +10,16 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+  <!--
+    Every project restores from its committed packages.lock.json, which pins the indirect package versions too.
+    CI sets CI=true, so every job that restores refuses a lock file that would change, with nothing to add per job.
+    File-based scripts (dotnet run scripts/...) are left out: they would all share one lock file per folder.
+  -->
+  <PropertyGroup>
+    <RestorePackagesWithLockFile Condition="'$(FileBasedProgram)' != 'true'">true</RestorePackagesWithLockFile>
+    <RestoreLockedMode Condition="'$(CI)' == 'true' And '$(FileBasedProgram)' != 'true'">true</RestoreLockedMode>
+  </PropertyGroup>
+
   <PropertyGroup>
     <Authors>paragon-stats contributors</Authors>
     <Copyright>Copyright (c) 2026 paragon-stats contributors</Copyright>

@@ -6,9 +6,11 @@ The binding rules for builds, naming and the engine are the guides in [docs/styl
 
 ---
 
-## Getting started - bootstrap the dev environment
+## Getting started - build from source
 
-The .NET 10 SDK is required. The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
+The engine is built from source with .NET SDK 10.0.404 exactly, as [global.json](global.json) pins it (`rollForward: disable`).
+With any other SDK, `dotnet` stops before running anything with "Requested SDK version: 10.0.404" and the SDK to install.
+The bootstrap restores the .NET local tools, installs the Git hooks (`core.hooksPath=.husky`) and fails until commit signing is set up:
 
 ```bash
 make bootstrap
@@ -17,14 +19,18 @@ make bootstrap
 `make hooks-check` (`dotnet run scripts/dev/bootstrap.cs -- --verify`) checks the same without changing anything.
 The bootstrap is idempotent. See [CONTRIBUTING.md](CONTRIBUTING.md#git-hooks).
 
-The remaining Python (`scripts/`, `src/coh_engine`) has its own venv until it is removed:
+Build, test and run the command-line tool:
 
 ```bash
-python -m venv .venv
-.venv/bin/python -m pip install -e ".[dev]"   # Windows: .venv\Scripts\python.exe -m pip install -e ".[dev]"
+dotnet build
+dotnet test
+dotnet run --project src/CohEngine.Cli -- --help
 ```
 
-Verify with `make help` — should list `lint`, `fix`, `test`, `cov`, `cov-html`, `validate`.
+`make dotnet-publish` builds the Native AOT executable: `dotnet restore src/CohEngine.Cli`, then `dotnet publish src/CohEngine.Cli -c Release -r win-x64 --no-restore`.
+A publish that restores for itself with `-r` rewrites the CLI's lock file down to that one runtime.
+It needs the Native AOT prerequisites, the Visual Studio "Desktop development with C++" workload among them.
+`make help` lists the shortcuts.
 
 ---
 

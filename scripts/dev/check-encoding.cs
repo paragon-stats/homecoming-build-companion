@@ -19,7 +19,7 @@ using System.Diagnostics;
 using System.Text;
 
 string[] roots = ["scripts/dev/", "src/CohEngine.Cli/"];
-string[] extensions = [".cs", ".py", ".sh", ".ps1"];
+string[] extensions = [".cs", ".sh", ".ps1"];
 bool InScope(string path) => roots.Any(root => path.StartsWith(root, StringComparison.Ordinal)) && extensions.Contains(Path.GetExtension(path));
 
 List<(string Path, string? Id)> files;

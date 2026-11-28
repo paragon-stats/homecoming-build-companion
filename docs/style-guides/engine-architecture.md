@@ -21,6 +21,8 @@ forces an edit to the dispatcher or to a sibling rule, the layer is built wrong.
 ## The pattern
 
 Three parts. Every registry-backed layer has the same shape.
+The sketches below are in Python, the language the pattern was first written in; the C# registries under `src/CohEngine.Core/Registry/`
+(`LegalityRunner`, `HardLimitRunner`, `SlottingRunner` and the `ScoringMetrics/` metrics) follow the same shape.
 
 ### 1. A pre-built context
 
@@ -100,8 +102,8 @@ applies anywhere a layer would restate a number the engine produces.
 ## The fidelity boundary — what stays a literal port
 
 The Mids-faithful numeric port is **out of scope** and must not be registry-ized:
-`base_totals` buff/enhancement routing (`_route_buff_effect`, `_route_enhance_main`), the
-effect-to-aspect map (`_enhance_aspect`), and the comparison/branch switches that mirror
+the totals phases' enhancement routing (`EnhancementBucketPhase.RouteEnhanceEffect`, `RouteEnhanceMain`), the
+effect-to-aspect map (`PerPowerEnhancementMathPhase.EnhanceAspect`), and the comparison/branch switches that mirror
 C# `switch` **order**. Their entire value is being a byte-faithful transcription of
 MidsReborn; generalizing them trades the fidelity guarantee (the whole point of the port)
 for modularity the numeric core does not need. Keep them literal.
@@ -110,9 +112,9 @@ for modularity the numeric core does not need. Keep them literal.
 
 | Layer | Registry keyed on | Status |
 | --- | --- | --- |
-| Legality (`legality.py`) | placement + build-wide rules | adopted (the reference implementation) |
-| Goal-scoring metrics (`scoring.py`) | metric name (from `build_profiles.json`) | adopted |
-| Cap / endurance adherence (`scoring.py`) | adherence check | adopted (cap check diffs Totals vs TotalsCapped) |
+| Legality (`Registry/LegalityRules/`) | placement + build-wide rules | adopted (the reference implementation) |
+| Goal-scoring metrics (`Registry/ScoringMetrics/`) | metric name (from `build_profiles.json`) | adopted |
+| Cap / endurance adherence (`Registry/ScoringMetrics/`) | adherence check | adopted (cap check diffs Totals vs TotalsCapped) |
 | Hard-limits validator (`P8` pre-flight: slots, picks, pools, tiers) | limit rule | **adopt at birth** — do not grow an `if/elif` |
 | Slotting preferences (`SlottingRunner`) | slotting rule | opt-in, `validate --slotting` |
 | Per-aspect enhancement handlers (recharge, end, acc, range, interrupt, damage) | `eEnhance` aspect | planned central module; `GlobalEnhance` reserves the slots |
@@ -121,11 +123,11 @@ for modularity the numeric core does not need. Keep them literal.
 ## Execution during build (skills / CLI)
 
 The registries are code (testable, 100% covered); the **orchestration** is the surface a
-build run touches. Expose them through `python -m coh_engine`:
+build run touches. Expose them through the `coh-engine` CLI:
 
 - `validate <build>` — runs the legality + hard-limits rule registries → diagnostics
   (text by default, `--format=json` per [`error-output.md`](error-output.md)).
-- `score <build> --profile <name>` — runs the metric + adherence registries → the profile
+- `score <build>` — runs the metric + adherence registries → the profile
   score + warnings.
 
 A Claude Code skill (e.g. `/validate-build`) is a thin wrapper over those subcommands for
@@ -138,4 +140,3 @@ it in.
 - [`error-output.md`](error-output.md) — the `Diagnostic` contract every rule emits.
 - [`hard-limits.md`](build-rules/hard-limits.md) — the invariants the hard-limits validator registers.
 - [`build-creation.md`](build-rules/build-creation.md) — the P8 pre-flight checklist the validator mechanizes.
-- [`python.md`](../repository-standards/style-guides/python-style-guide.md) — pure check functions `(build, context) -> list[Violation]`.

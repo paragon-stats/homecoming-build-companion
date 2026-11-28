@@ -3,10 +3,14 @@
 //   dotnet run scripts/dev/check-text-files.cs                  staged files, judged as staged (the hook)
 //   dotnet run scripts/dev/check-text-files.cs -- --all         every tracked file, from the working tree
 //   dotnet run scripts/dev/check-text-files.cs -- --files a b   the named files, from the working tree
+//   dotnet run scripts/dev/check-text-files.cs -- --files-from list   the NUL-separated paths of git diff -z (CI's changed files)
+//
+// A named file that does not exist is skipped. A listed one is an error (H-TEXT-013): CI lists the change without
+// deletions, so a listed path that is not a file means the list did not survive the trip.
 //
 // Checks: trailing whitespace, final newline, extra blank lines at the end and line endings as .editorconfig
-// sets them, JSON syntax (every .json file, filter or not), files over 15 MB, and markdownlint (through npx,
-// with the config Super-Linter reads). Apart from JSON syntax and size, files the CI Super-Linter job
+// sets them, JSON and TOML syntax (every .json and .toml file, filter or not; TOML through Tomlyn), files over
+// 15 MB, and markdownlint (through npx, with the config Super-Linter reads). Apart from JSON and TOML syntax and size, files the CI Super-Linter job
 // excludes are skipped: the pattern is read from FILTER_REGEX_EXCLUDE in .github/workflows/super-linter.yml,
 // so there is no second list. A .patch file is skipped because the whitespace in a unified diff is content.
 // YAML syntax is left to the pre-push Super-Linter run.
@@ -16,6 +20,7 @@
 #:property TreatWarningsAsErrors=false
 #:property EnforceCodeStyleInBuild=false
 #:property RunAnalyzers=false
+#:package Tomlyn
 #:include staged-files.cs
 
 using System.Diagnostics;
@@ -38,10 +43,22 @@ Regex excluded = new(filterLine.Groups[1].Value);
 List<(Regex Glob, string Key, string Value)> editorRules = ReadEditorConfig(".editorconfig");
 
 int filesAt = Array.IndexOf(args, "--files");
-bool staged = filesAt < 0 && !args.Contains("--all");
+int listAt = Array.IndexOf(args, "--files-from");
+bool staged = filesAt < 0 && listAt < 0 && !args.Contains("--all");
 List<string> files;
 List<string> ids = [];
-if (filesAt >= 0)
+if (listAt >= 0)
+{
+    string? list = listAt + 1 < args.Length ? args[listAt + 1] : null;
+    if (list is null || !File.Exists(list))
+    {
+        Console.Error.WriteLine($"{list ?? "--files-from"}:1:1: error: H-TEXT-012: the file list to check was not found; pass --files-from <file of NUL-separated paths, as git diff -z writes>");
+        return 1;
+    }
+
+    files = [.. File.ReadAllText(list, new UTF8Encoding(false)).Split('\0', StringSplitOptions.RemoveEmptyEntries)];
+}
+else if (filesAt >= 0)
 {
     files = [.. args.Skip(filesAt + 1)];
 }
@@ -76,6 +93,13 @@ foreach (string file in files)
 {
     string path = file.Replace('\\', '/');
     byte[]? bytes = staged ? StagedBytes(path) : File.Exists(path) ? File.ReadAllBytes(path) : null;
+    if (bytes is null && listAt >= 0)
+    {
+        // The list leaves deletions out, so a path that is not a file means the list and the tree disagree.
+        findings.Add($"{path}:1:1: error: H-TEXT-013: listed path is not a file in the working tree; list the change with git diff --name-only -z --diff-filter=d");
+        continue;
+    }
+
     if (bytes is null)
     {
         continue;
@@ -96,6 +120,11 @@ foreach (string file in files)
     if (path.EndsWith(".json", StringComparison.Ordinal))
     {
         CheckJson(path, text);
+    }
+
+    if (path.EndsWith(".toml", StringComparison.Ordinal))
+    {
+        CheckToml(path, text);
     }
 
     // Super-Linter sees absolute paths, so test the pattern against a rooted one.
@@ -127,7 +156,7 @@ if (findings.Count > 0)
     return 1;
 }
 
-Console.WriteLine("[OK] text files are clean.");
+Console.WriteLine(listAt >= 0 ? $"[OK] text files are clean ({files.Count} listed file{(files.Count == 1 ? "" : "s")} checked)." : "[OK] text files are clean.");
 return 0;
 
 // The next blob from the batch reader, which answers in the order the ids were listed.
@@ -151,6 +180,15 @@ void CheckJson(string path, string text)
     catch (JsonException exception)
     {
         findings.Add($"{path}:{(exception.LineNumber ?? 0) + 1}:1: error: H-TEXT-004: invalid JSON: {exception.Message}");
+    }
+}
+
+void CheckToml(string path, string text)
+{
+    Tomlyn.Syntax.DocumentSyntax document = Tomlyn.Parsing.SyntaxParser.Parse(text, path, validate: true);
+    foreach (Tomlyn.Syntax.DiagnosticMessage message in document.Diagnostics.Where(message => message.Kind == Tomlyn.Syntax.DiagnosticMessageKind.Error))
+    {
+        findings.Add($"{path}:{message.Span.Start.Line + 1}:{message.Span.Start.Column + 1}: error: H-TEXT-014: invalid TOML: {message.Message}");
     }
 }
 
@@ -236,7 +274,8 @@ void RunMarkdownlint(List<string> paths)
         info.ArgumentList.Add("npx");
     }
 
-    foreach (string argument in new[] { "--yes", MarkdownlintPackage, "--config", ".github/linters/.markdownlint.yml" }.Concat(safe))
+    // "--" ends markdownlint's options, so a file name that starts with "-" is read as a file.
+    foreach (string argument in new[] { "--yes", MarkdownlintPackage, "--config", ".github/linters/.markdownlint.yml", "--" }.Concat(safe))
     {
         info.ArgumentList.Add(argument);
     }

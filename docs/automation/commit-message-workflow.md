@@ -111,12 +111,11 @@ release tool. The ruleset on the default branch is active with no bypass actors 
 | --- | --- |
 | `required_signatures` | Every commit reaching the default branch must be signed |
 | `pull_request` | No direct pushes; merges restricted to the merge-commit method |
-| `required_status_checks` | The five contexts below must pass, and the branch must be current |
+| `required_status_checks` | The checks below must pass, and the branch must be current |
 | `deletion`, `non_fast_forward` | The branch cannot be deleted or force-pushed |
 | `code_quality` | Code-quality gate |
 
-Required status checks: Super-Linter, `commitlint`, `pr-title`, pre-commit, and the aggregate
-test gate.
+Required status checks: `lint`, `commitlint`, `pr-title`, `release-policy`, `build (windows-latest)`, `binary`, `analyze (csharp)` and `sonar` (see [the ruleset README](../ci/github-rulesets/README.md)).
 
 `required_linear_history` was deliberately removed. It forbids merge commits, and merge commits
 are the only merge method that preserves both per-commit messages and their signatures — squash

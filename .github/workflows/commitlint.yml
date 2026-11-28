@@ -12,14 +12,13 @@ permissions:
 
 
 jobs:
+  # In the merge queue this job and pr-title are skipped: the commits and the title were linted on the
+  # pull request, and a skipped check satisfies the ruleset.
   commitlint:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # statuses:write is required so the report-status-context composite action
-      # can publish the commit status for this job on the pull request.
-      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -51,26 +50,16 @@ jobs:
           done
           exit "$fail"
 
-      - name: Report required status context
-        if: ${{ github.event_name == 'pull_request' && always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Commit Message Lint / commitlint
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
   # scripts/git holds the org's validator and commit-types.txt, vendored from
   # paragon-stats/github-actions at the SHA the release action is pinned to, and
   # commit-types.txt stays the source of truth. pyproject.toml restates the bump
   # mapping for the release tooling. An edited copy or a drifted mapping fails this
-  # job, which reports the required context `Commit Message Lint / release-policy`;
+  # job, which reports the required check `release-policy`;
   # it runs in the merge queue too, so neither can reach main.
   release-policy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -98,15 +87,6 @@ jobs:
       - name: Compare pyproject.toml with commit-types.txt
         run: dotnet run scripts/ci/check-release-policy.cs -- scripts/git/commit-types.txt pyproject.toml
 
-      - name: Report required status context
-        if: ${{ always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Commit Message Lint / release-policy
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
   # The PR title is load-bearing: with merge_commit_title = PR_TITLE it becomes the
   # subject of the merge commit on main, which the changelog and the version bump both
   # read. Nothing validated it until this job existed, so a badly-typed title could put
@@ -116,7 +96,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -140,47 +119,3 @@ jobs:
             echo "::error::PR title is not a valid conventional commit. It becomes the merge commit subject on main."
             exit 1
           fi
-
-      - name: Report required status context
-        if: ${{ always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Commit Message Lint / pr-title
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-  # The commits and the title belong to a pull request, and a merge group has
-  # neither: both were linted on the pull request before it could join the queue.
-  # The queue still waits for every required context on the merge group's commit,
-  # so this job reports the two pull-request contexts there. release-policy runs
-  # in full on the merge group.
-  merge-group:
-    if: github.event_name == 'merge_group'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      statuses: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
-        with:
-          persist-credentials: false
-
-      - name: Report the commitlint context
-        if: ${{ always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Commit Message Lint / commitlint
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-      - name: Report the pr-title context
-        if: ${{ always() }}
-        uses: $/.github/actions/report-status-context
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          job-status: ${{ job.status }}
-          status-context: Commit Message Lint / pr-title
-          target-url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

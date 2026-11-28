@@ -166,7 +166,7 @@ Alternative: **drop KB from the chain**, use it on cooldown (every 6.94 sec at p
 
 ## Tools and resources
 
-- **The engine's chain planner** — `python -m coh_engine chain <dump>` picks the best chain a build can afford under its endurance budget and stance. See [`engine/chain-planner.md`](./engine/chain-planner.md).
+- **The engine's chain planner** — `coh-engine chain <dump>` picks the best chain a build can afford under its endurance budget and stance. See [`engine/chain-planner.md`](./engine/chain-planner.md).
 - **Mids' Reborn in-app DPS calculator** — shows attack-chain DPS in the build view.
 - **Sythlin DPS Tool** — bundled with MidsReborn at `%APPDATA%\LoadedCamel\MidsReborn\Sythlin_DPS_Tool.exe`. Standalone DPS analyzer for chain math.
 - **City of Data v2.0** — exact recharge / cast / arcanatime values per power.

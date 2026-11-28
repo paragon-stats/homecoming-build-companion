@@ -16,38 +16,12 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
 
-    "python.defaultInterpreterPath": "${workspaceFolder:homecoming-build-companion}/.venv/Scripts/python.exe",
-    "python.terminal.activateEnvironment": true,
-    "python.testing.pytestEnabled": true,
-    "python.testing.pytestArgs": ["scripts", "src"],
-    "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.exclude": [
-      "**/.venv/**",
-      "**/__pycache__/**",
-      "**/node_modules/**",
-    ],
-
-    "ruff.enable": true,
-    "ruff.organizeImports": true,
-    "[python]": {
-      "editor.defaultFormatter": "charliermarsh.ruff",
-      "editor.formatOnSave": true,
-      "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit",
-        "source.fixAll": "explicit",
-      },
-    },
-
     "files.associations": {
       "*.mhd": "binary",
       "*.mxd": "binary",
     },
 
     "files.exclude": {
-      "**/__pycache__": true,
-      "**/.pytest_cache": true,
-      "**/.mypy_cache": true,
-      "**/.ruff_cache": true,
       "**/scratch/build-archives": true,
     },
 
@@ -91,10 +65,6 @@
   },
   "extensions": {
     "recommendations": [
-      "charliermarsh.ruff",
-      "ms-python.python",
-      "ms-python.vscode-pylance",
-      "ms-python.mypy-type-checker",
       "tamasfe.even-better-toml",
       "redhat.vscode-yaml",
       "davidanson.vscode-markdownlint",
