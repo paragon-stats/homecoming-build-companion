@@ -1,27 +1,14 @@
-# Python
+# Clones made before the Python removal still hold a venv and its caches; keep them out of git status.
+.venv/
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .coverage
-.coverage.*
-htmlcov/
-coverage.xml
 *.egg-info/
-*.egg
-build/
-dist/
-wheels/
 
-# Virtual environments
-.venv/
-venv/
-env/
-ENV/
+# Coverage output (dotnet-coverage)
+coverage.xml
 
 # Editor / IDE
 .vscode/*
@@ -43,7 +30,7 @@ Desktop.ini
 # Project transient
 inbox/__staging/
 tmp/
-# The patch timeline's local page cache (python -m scripts.forum_scrape.patch_notes)
+# The patch timeline's local page cache (coh-engine patch-notes)
 data/patches/.cache/
 
 # .NET build artifacts + local Mids reference dumps (tools/mids-dump)
