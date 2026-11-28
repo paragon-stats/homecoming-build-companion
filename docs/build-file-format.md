@@ -55,7 +55,9 @@ Authoritative source: [CharacterBuildData.cs](../../MidsReborn/MidsReborn/Core/B
 - `Class` — archetype `ClassName` (e.g. `Class_Tanker`). Resolves through `data/mids/database/Archetypes.json`. Hard requirement.
 - `Origin` — Magic / Mutation / Natural / Science / Technology. Required.
 - `Alignment` — Hero / Vigilante / Rogue / Villain / Loyalist / Resistance.
-- `PowerSets[]` — fixed slot order: `[Primary, Secondary, Pool1, Pool2, Pool3, Pool4, Ancillary]`. Empty strings for unfilled slots. Each is a powerset full name.
+- `PowerSets[]` — eight entries in a fixed order: `[Primary, Secondary, "", Pool1, Pool2, Pool3, Pool4, Ancillary]`.
+  Index 2 is always an empty string; empty strings fill unused pool and ancillary entries.
+  Each other entry is a powerset full name. MidsReborn fails to load a file with any other count (H-FMT-001).
 - `PowerEntries[]` — **every** power slot, including inherents (Brawl, Sprint, Rest, Health, Stamina, AT inherent like Gauntlet) and Incarnate slots. Order matters; Mids uses index positions.
 
 ### PowerData shape
@@ -218,12 +220,12 @@ A tight build proposal should be ~200-400 lines of JSON plus a short narrative.
 Quick checks before submitting a JSON build:
 
 - `Class` is in `data/mids/database/Archetypes.json::ClassName`.
-- `PowerSets[0]` is in the AT's `Primary[]` list. Same for `[1]` Secondary, `[6]` Ancillary.
+- `PowerSets[0]` is in the AT's `Primary[]` list. Same for `[1]` Secondary, `[7]` Ancillary.
 - Every `PowerEntries[i].PowerName` is in `data/mids/database/Powers.json::FullName`.
 - Every `Level` ≤ 50 and ≥ the power's `Level` field.
 - Total non-inherent slots = `sum(SlotEntries.length where !IsInherent)` ≤ 67.
 - Per-power slot count ≤ 6.
 - Each enhancement `Uid` is in `data/mids/database/Enhancement.json::UID`.
-- 4 distinct pool sets max in `PowerSets[2..5]`.
+- 4 distinct pool sets max in `PowerSets[3..6]`.
 
 If any check fails, the build won't load — say so explicitly when proposing.
