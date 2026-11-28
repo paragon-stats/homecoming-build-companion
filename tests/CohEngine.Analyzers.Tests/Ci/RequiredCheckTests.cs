@@ -23,6 +23,13 @@ public sealed partial class RequiredCheckTests
         { MainRuleset, MergeGroup },
     };
 
+    // Every workflow, read from the directory so a new one cannot be missed, and the composite action.
+    public static TheoryData<string> FilesWithSteps() =>
+    [
+        .. Directory.EnumerateFiles(Workflows.WorkflowDirectory, "*.yml").Order(StringComparer.Ordinal).Select(path => $".github/workflows/{Path.GetFileName(path)}"),
+        ".github/actions/report-status-context/action.yml",
+    ];
+
     [Theory]
     [MemberData(nameof(RulesetsAndEvents))]
     public void Every_required_context_is_reported_by_exactly_one_job(string ruleset, string eventName)
@@ -44,13 +51,7 @@ public sealed partial class RequiredCheckTests
     }
 
     [Theory]
-    [InlineData(".github/workflows/build.yml")]
-    [InlineData(".github/workflows/codeql.yml")]
-    [InlineData(".github/workflows/commitlint.yml")]
-    [InlineData(".github/workflows/pr-summary.yml")]
-    [InlineData(".github/workflows/sonar.yml")]
-    [InlineData(".github/workflows/super-linter.yml")]
-    [InlineData(".github/actions/report-status-context/action.yml")]
+    [MemberData(nameof(FilesWithSteps))]
     public void The_file_runs_no_python(string file)
     {
         YamlMappingNode root = Workflows.Load(Path.Join(Workflows.RepositoryRoot, file));
