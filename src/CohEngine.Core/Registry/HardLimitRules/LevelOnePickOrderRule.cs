@@ -4,10 +4,11 @@ using CohEngine.Core.Diagnostics;
 namespace CohEngine.Core.Registry.HardLimitRules;
 
 /// <summary>
-/// H-POWER-006: at level 1 the primary pick comes before the secondary pick, the order the level-up view offers them.
+/// H-POWER-006: the two level 1 picks are a primary pick and then a secondary pick, the order the level-up view offers them.
 /// A power counts as primary or secondary by its category, the first segment of its name, so an epic archetype's base
 /// and branch sets count alike. The categories come from the file's <c>PowerSets</c>; a Mids dump directory has none,
-/// so the rule stays silent there.
+/// so the rule stays silent there, and fewer than two level 1 picks is H-POWER-003's. Names match ordinally, as the
+/// <c>.mbd</c> reader and the other rules match them, because Mids' spelling is the contract.
 /// </summary>
 internal static class LevelOnePickOrderRule
 {
@@ -16,29 +17,38 @@ internal static class LevelOnePickOrderRule
     /// <returns>The findings.</returns>
     public static IEnumerable<Diagnostic> Run(HardLimitsContext context)
     {
-        if (context.Format is not { PowerSets.Count: >= 2 } format)
+        Power[] levelOne = [.. context.Picks.Where(pick => pick.PickLevel == 0)];
+        if (context.Format is not { PowerSets.Count: >= 2 } format || string.IsNullOrEmpty(format.PowerSets[0]) || string.IsNullOrEmpty(format.PowerSets[1]) || levelOne.Length < 2)
         {
             yield break;
         }
 
-        Power[] levelOne = [.. context.Picks.Where(pick => pick.PickLevel == 0)];
-        Power? primary = levelOne.FirstOrDefault(pick => InCategory(pick, format.PowerSets[0]));
-        Power? secondary = levelOne.FirstOrDefault(pick => InCategory(pick, format.PowerSets[1]));
-        if (primary is not null && secondary is not null && secondary.BuildIndex < primary.BuildIndex)
+        (Power first, Power second) = (levelOne[0], levelOne[1]);
+        (string primarySet, string secondarySet) = (format.PowerSets[0], format.PowerSets[1]);
+        (string firstName, string secondName) = (PyText.Repr(first.FullName), PyText.Repr(second.FullName));
+        if (InCategory(first, secondarySet) && InCategory(second, primarySet))
         {
-            string first = PyText.Repr(secondary.FullName);
-            string second = PyText.Repr(primary.FullName);
-            yield return new Diagnostic("H-POWER-006", "error", $"{first}, the secondary pick, comes before {second}, the primary pick, at level 1; the level-up view offers the primary pick first")
+            yield return new Diagnostic("H-POWER-006", "error", $"{firstName}, the secondary pick, comes before {secondName}, the primary pick, at level 1; the level-up view offers the primary pick first")
             {
-                Fix = $"swap {first} and {second} so the primary pick comes first",
-                Expected = primary.FullName,
-                Actual = secondary.FullName,
+                Fix = $"swap {firstName} and {secondName} so the primary pick comes first",
+                Expected = second.FullName,
+                Actual = first.FullName,
+            };
+        }
+        else if (!InCategory(first, primarySet) || !InCategory(second, secondarySet))
+        {
+            (Power replaced, string needed) = InCategory(first, primarySet) ? (second, secondarySet) : (first, primarySet);
+            yield return new Diagnostic("H-POWER-006", "error", $"the level 1 picks are {firstName} and {secondName}; the level-up view offers a primary pick and then a secondary pick at level 1")
+            {
+                Fix = $"replace {PyText.Repr(replaced.FullName)} with a power from {PyText.Repr(needed)}",
+                Expected = needed,
+                Actual = replaced.FullName,
             };
         }
     }
 
     private static bool InCategory(Power power, string powerSet)
     {
-        return string.Equals(PowerGroups.Group(power), powerSet?.Split('.')[0], StringComparison.Ordinal);
+        return string.Equals(PowerGroups.Group(power), powerSet.Split('.')[0], StringComparison.Ordinal);
     }
 }

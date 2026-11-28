@@ -31,13 +31,13 @@ public sealed class MbdWriterTests
         };
     }
 
-    // 24 picks on the schedule's own levels; `added` maps a pick position to its added slots, `overrides` replaces a pick.
+    // 24 picks on the schedule's own levels, the first from the primary set; `added` maps a pick position to its added slots, `overrides` replaces a pick.
     private static List<PickSpec> Full(Dictionary<int, int>? added = null, params (int Index, PickSpec Pick)[] overrides)
     {
         List<PickSpec> picks =
         [
             .. PickLevels.Select((level, index) => TankerSpec.Pick(
-                string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"),
+                index == 0 ? "Tanker_Defense.Willpower.P0" : string.Create(CultureInfo.InvariantCulture, $"Tanker_Melee.Super_Strength.P{index}"),
                 level,
                 [.. Enumerable.Repeat("Crafted_Accuracy", 1 + (added?.GetValueOrDefault(index) ?? 0))])),
         ];
@@ -67,8 +67,8 @@ public sealed class MbdWriterTests
         MbdBuild build = Written(Spec([.. picks.AsEnumerable().Reverse()]));
 
         Assert.Equal(PickLevels, build.PowerEntries.Take(24).Select(entry => entry.Level + 1));
-        Assert.Equal([picks[1].Power, picks[0].Power, .. picks.Skip(2).Select(pick => pick.Power)], build.PowerEntries.Take(24).Select(entry => entry.PowerName), StringComparer.Ordinal);
-        Assert.Equal([1, 3, 3], build.PowerEntries[1].SlotEntries.Select(slot => slot.Level + 1));
+        Assert.Equal(picks.Select(pick => pick.Power), build.PowerEntries.Take(24).Select(entry => entry.PowerName), StringComparer.Ordinal);
+        Assert.Equal([1, 3, 3], build.PowerEntries[0].SlotEntries.Select(slot => slot.Level + 1));
         Assert.Equal([4, 5], build.PowerEntries[3].SlotEntries.Select(slot => slot.Level + 1));
         Assert.Equal((24, "2026.5.1337"), (build.LastPower, build.Meta.DatabaseVersion));
     }
@@ -77,7 +77,7 @@ public sealed class MbdWriterTests
     public void The_primary_pick_is_written_first_at_level_1_and_the_pools_in_first_pick_order()
     {
         PickSpec primary = TankerSpec.Pick("Tanker_Defense.Willpower.High_Pain_Tolerance", 1, ["Crafted_Accuracy"]);
-        List<PickSpec> picks = Full(added: null, (1, primary), (2, TankerSpec.Pick("Pool.Leaping.Combat_Jumping", 2, ["Crafted_Accuracy"])), (3, TankerSpec.Pick("Pool.Speed.Hasten", 4, ["Crafted_Accuracy"])));
+        List<PickSpec> picks = Full(added: null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.Jab", 1, ["Crafted_Accuracy"])), (1, primary), (2, TankerSpec.Pick("Pool.Leaping.Combat_Jumping", 2, ["Crafted_Accuracy"])), (3, TankerSpec.Pick("Pool.Speed.Hasten", 4, ["Crafted_Accuracy"])));
         BuildSpec spec = Spec(picks) with
         {
             PowerSets = ["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Flight", "Pool.Speed", "Pool.Leaping", string.Empty, string.Empty],
@@ -87,6 +87,16 @@ public sealed class MbdWriterTests
 
         Assert.Equal([primary.Power, picks[0].Power], build.PowerEntries.Take(2).Select(entry => entry.PowerName), StringComparer.Ordinal);
         Assert.Equal(["Tanker_Defense.Willpower", "Tanker_Melee.Super_Strength", string.Empty, "Pool.Leaping", "Pool.Speed", "Pool.Flight", string.Empty, string.Empty], build.PowerSets, StringComparer.Ordinal);
+    }
+
+    [Theory]
+    [InlineData("Tanker_Defense.Willpower.Mind_Over_Body", "Tanker_Defense.Willpower.High_Pain_Tolerance")]
+    [InlineData("Tanker_Melee.Super_Strength.Haymaker", "Tanker_Melee.Super_Strength.Jab")]
+    public void Two_level_1_picks_from_one_set_are_E46(string first, string second)
+    {
+        List<PickSpec> picks = Full(added: null, (0, TankerSpec.Pick(first, 1, ["Crafted_Accuracy"])), (1, TankerSpec.Pick(second, 1, ["Crafted_Accuracy"])));
+
+        Assert.Equal($"E46: the level 1 picks are {first} and {second}; the level-up view offers a primary pick and then a secondary pick at level 1", Message(Spec(picks)));
     }
 
     [Fact]
@@ -230,7 +240,7 @@ public sealed class MbdWriterTests
     {
         Dictionary<int, int> hungry = Enumerable.Range(1, 5).ToDictionary(index => index, _ => 5);
         PickSpec toggle = TankerSpec.Pick("Tanker_Defense.Willpower.Indomitable_Will", 6, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], statInclude: true, essential: true);
-        PickSpec anchor = TankerSpec.Pick("Tanker_Melee.Super_Strength.Punch", 1, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], statInclude: true, essential: true);
+        PickSpec anchor = TankerSpec.Pick("Tanker_Defense.Willpower.Mind_Over_Body", 1, [.. Enumerable.Repeat("Crafted_Accuracy", 3)], statInclude: true, essential: true);
 
         MbdBuild build = Written(Spec(Full(hungry, (0, anchor), (4, toggle))));
 
@@ -340,7 +350,7 @@ public sealed class MbdWriterTests
     [InlineData("Crafted_Accuracy", 49)]
     public void Io_level_follows_the_set_ceiling(string uid, int ceiling)
     {
-        MbdDocument written = Mbd.WriteMbd(Spec(Full(added: null, (0, TankerSpec.Pick("Tanker_Melee.Super_Strength.P0", 1, [uid])))), Schedule, Database);
+        MbdDocument written = Mbd.WriteMbd(Spec(Full(added: null, (0, TankerSpec.Pick("Tanker_Defense.Willpower.P0", 1, [uid])))), Schedule, Database);
 
         Assert.Equal(
             [ceiling],
@@ -380,7 +390,7 @@ public sealed class MbdWriterTests
         MbdSlotDoc first = document.PowerEntries[0].SlotEntries[0];
         first.Enhancement = new MbdEnhancementDoc { Uid = "Crafted_Kismet_A", IoLevel = 50 };
 
-        Assert.Matches("E74: Tanker_Melee.Super_Strength.P0 slot .*Crafted_Kismet_A.*50.*9 to 29", CheckMessage(document));
+        Assert.Matches("E74: Tanker_Defense.Willpower.P0 slot .*Crafted_Kismet_A.*50.*9 to 29", CheckMessage(document));
 
         first.FlippedEnhancement = first.Enhancement;
         first.Enhancement = null;

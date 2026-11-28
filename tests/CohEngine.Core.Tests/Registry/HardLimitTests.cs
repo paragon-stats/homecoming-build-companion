@@ -252,11 +252,36 @@ public sealed class HardLimitTests
         Assert.Empty(LevelOneOrder(format, "Blaster_Ranged.Fire_Blast.Flares", "Blaster_Support.Fire_Manipulation.Ring_of_Fire"));
     }
 
+    [Theory]
+    [InlineData("Blaster_Ranged.Fire_Blast.Flares", "Blaster_Ranged.Fire_Blast.Fire_Blast", "replace 'Blaster_Ranged.Fire_Blast.Fire_Blast' with a power from 'Blaster_Support.Fire_Manipulation'")]
+    [InlineData("Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Support.Fire_Manipulation.Fire_Sword", "replace 'Blaster_Support.Fire_Manipulation.Ring_of_Fire' with a power from 'Blaster_Ranged.Fire_Blast'")]
+    public void Two_level_one_picks_from_one_set_are_h_power_006_naming_both(string first, string second, string fix)
+    {
+        MbdFormat format = PowerSetsFormat("Blaster_Ranged.Fire_Blast", "Blaster_Support.Fire_Manipulation");
+
+        Diagnostic found = Assert.Single(LevelOneOrder(format, first, second));
+
+        Assert.Equal(
+            ($"the level 1 picks are '{first}' and '{second}'; the level-up view offers a primary pick and then a secondary pick at level 1", fix, "error"),
+            (found.Message, found.Fix, found.Severity));
+    }
+
     [Fact]
     public void The_level_one_order_is_not_checked_without_the_power_sets()
     {
         Assert.Empty(LevelOneOrder(format: null, "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
         Assert.Empty(LevelOneOrder(Format(1), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+        Assert.Empty(LevelOneOrder(PowerSetsFormat(string.Empty, "Blaster_Support.Fire_Manipulation"), "Blaster_Support.Fire_Manipulation.Ring_of_Fire", "Blaster_Ranged.Fire_Blast.Flares"));
+    }
+
+    [Fact]
+    public void A_single_level_one_pick_is_left_to_h_power_003()
+    {
+        Power[] powers = [Pick(0, "Blaster_Support.Fire_Manipulation.Ring_of_Fire"), Pick(1, "Blaster_Ranged.Fire_Blast.Flares", pickLevel: 1)];
+
+        IReadOnlyList<Diagnostic> found = Check(powers, slots: null, PowerSetsFormat("Blaster_Ranged.Fire_Blast", "Blaster_Support.Fire_Manipulation"));
+
+        Assert.Equal((false, true), (Ids(found).Contains("H-POWER-006"), Ids(found).Contains("H-POWER-003")));
     }
 
     [Fact]
@@ -281,7 +306,9 @@ public sealed class HardLimitTests
 
         // The swapped copy shows the rule reads this sample's level 1 picks, so the pass is not vacuous.
         Assert.Empty(LevelOneOrder(Mbd.PowersFromBuild(build, BuildFileFixtures.Database), format));
-        Assert.Single(LevelOneOrder(Mbd.PowersFromBuild(swapped, BuildFileFixtures.Database), format));
+        string fix = Assert.Single(LevelOneOrder(Mbd.PowersFromBuild(swapped, BuildFileFixtures.Database), format)).Fix;
+        Assert.Contains($"'{build.PowerEntries[0].PowerName}'", fix, StringComparison.Ordinal);
+        Assert.Contains($"'{build.PowerEntries[1].PowerName}'", fix, StringComparison.Ordinal);
     }
 
     [Fact]

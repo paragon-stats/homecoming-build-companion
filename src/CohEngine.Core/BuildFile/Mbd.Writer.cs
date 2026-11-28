@@ -127,7 +127,7 @@ public static partial class Mbd
     /// <param name="database">The reference tables.</param>
     /// <returns>The document, checked against <see cref="CheckMbdInvariants"/>.</returns>
     /// <exception cref="InvalidDataException">
-    /// E46 for a pick off its schedule level, E47 for a pinned slot before its power, E48 for a pinned slot off a grant level
+    /// E46 for a pick off its schedule level or a level 1 pair that is not a primary and then a secondary pick, E47 for a pinned slot before its power, E48 for a pinned slot off a grant level
     /// or a short pin list, E49 for added slots the schedule cannot place, E77 for an inherent power the powers table lacks,
     /// E78 for an enhancement the table lacks, E117 for a relative level that is not an <see cref="EnhRelative"/> name, and E73 to E76 from the invariants.
     /// </exception>
@@ -155,6 +155,7 @@ public static partial class Mbd
             PowerEntries = entries,
         };
         CheckMbdInvariants(document, database);
+        CheckLevelOnePair(picks, spec.PowerSets);
         return document;
     }
 
@@ -208,6 +209,17 @@ public static partial class Mbd
     {
         int FirstPick(string pool) => picks.FindIndex(pick => pick.Power.StartsWith(pool + ".", StringComparison.Ordinal)) is int index and >= 0 ? index : int.MaxValue;
         return [.. powerSets.Take(3), .. powerSets.Skip(3).Take(4).OrderBy(FirstPick), .. powerSets.Skip(7)];
+    }
+
+    // The sort puts a primary pick first at level 1, so a pair it cannot make primary then secondary holds two picks from one category.
+    private static void CheckLevelOnePair(List<PickSpec> picks, IReadOnlyList<string> powerSets)
+    {
+        bool primaryThenSecondary = picks.Count < 2 || powerSets.Count < 2
+            || (string.Equals(Category(picks[0].Power), Category(powerSets[0]), StringComparison.Ordinal) && string.Equals(Category(picks[1].Power), Category(powerSets[1]), StringComparison.Ordinal));
+        if (!primaryThenSecondary)
+        {
+            throw new InvalidDataException($"E46: the level 1 picks are {picks[0].Power} and {picks[1].Power}; the level-up view offers a primary pick and then a secondary pick at level 1");
+        }
     }
 
     private static List<PickSpec> OrderedPicks(IReadOnlyList<PickSpec> picks, string primaryCategory, LevelSchedule schedule)
